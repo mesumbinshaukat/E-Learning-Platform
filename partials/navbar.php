@@ -30,7 +30,7 @@
                         <a class="nav-link" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="./aboutus.php">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="index.html#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -39,7 +39,7 @@
                         </a>
                         <ul class="sub-menu dropdown-menu">
                             <li><a class="dropdown-item" href="./jobs.php">Jobs</a></li>
-                            <li><a class="dropdown-item" href="#">Internships</a>
+                            <li><a class="dropdown-item" href="./internships.php">Internships</a>
                             </li>
                             <li><a class="dropdown-item" href="#">Courses</a></li>
                             <li><a class="dropdown-item" href="#">Campus Recruitment Training - Coming Soon
@@ -47,19 +47,19 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./jobs.php">Jobs</a>
+                        <a class="nav-link" href="./jobslist.php">Jobs</a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Internships</a>
+                        <a class="nav-link" href="./internshipslist.php">Internships</a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Courses</a>
+                        <a class="nav-link" href="./courselist.php">Courses</a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Careers</a>
+                        <a class="nav-link" href="./careers.php">Careers</a>
 
                     </li>
 
@@ -108,7 +108,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="./contact.php">Contact Us</a>
                     </li>
 
                 </ul>

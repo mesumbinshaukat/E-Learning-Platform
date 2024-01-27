@@ -43,17 +43,17 @@
                     <h5 class="mb-4">General</h5>
                     <ul class="links-vertical">
                         <li><a target="_blank" href="./index.php">Home</a></li>
-                        <li><a target="_blank" href="#">About Us</a></li>
+                        <li><a target="_blank" href="./aboutus.php">About Us</a></li>
                         <li><a target="_blank" href="#">Services</a></li>
-                        <li><a target="_blank" href="#">Career</a></li>
-                        <li><a target="_blank" href="#">Contact Us</a></li>
+                        <li><a target="_blank" href="./careers.php">Career</a></li>
+                        <li><a target="_blank" href="./contact.php">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
                     <h5 class="mb-4">Services</h5>
                     <ul class="links-vertical">
                         <li><a target="_blank" href="./jobs.php">Jobs</a></li>
-                        <li><a target="_blank" href="#">Internships</a></li>
+                        <li><a target="_blank" href="./internships.php">Internships</a></li>
                         <li><a target="_blank" href="#">Courses</a></li>
 
                     </ul>

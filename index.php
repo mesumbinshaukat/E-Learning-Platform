@@ -34,15 +34,16 @@
                                 settled or do shyness address. Remainder northward performed out for moonlight. Yet late
                                 add
                                 name was rent park from rich.</p>
-                            <a href="./jobs.php" class="btn btn-secondary mt-3">Jobs</a>
-                            <a href="#" class="btn btn-secondary mt-3">Internships</a>
-                            <a href="#" class="btn btn-secondary mt-3">Courses</a>
+                            <a href="./jobslist.php" class="btn btn-secondary mt-3">Jobs</a>
+                            <a href="./internshipslist.php" class="btn btn-secondary mt-3">Internships</a>
+                            <a href="./courselist.php" class="btn btn-secondary mt-3">Courses</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-5">
                         <div>
 
-                            <img class=" " src="https://worldoftech.company/wp-content/uploads/2023/10/site24x71112.webp" alt="github logo">
+                            <img class="" src="https://worldoftech.company/wp-content/uploads/2023/10/site24x71112.webp"
+                                alt="github logo">
 
                         </div>
                     </div>
@@ -53,7 +54,8 @@
     </div>
 
 
-    <?php include("./partials/footer.php");
+    <?php 
+    include("./partials/footer.php");
     ?>
 
 
