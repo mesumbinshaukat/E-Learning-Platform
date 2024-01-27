@@ -16,10 +16,7 @@ include("./partials/links.php")
 
 <body>
     <section>
-        <navbar>
-            <?php include("./partials/navbar.php"); ?>
-        </navbar>
-
+        <?php include("./partials/navbar.php"); ?>
     </section>
 
     <h1 class="flex items-center text-5xl font-bold dark:text-dark">Hello</h1>
