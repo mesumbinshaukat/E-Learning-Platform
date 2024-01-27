@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-4">
                     <a class="footer-brand mr-lg-5 d-flex" href="index.html">
-                        <img src="https://triaright.com/assets/img/web/logoblack.png" class="mr-3" alt="Footer logo">
+                        <img src="https://techbloggers.co/wp-content/uploads/2023/07/LOGO-Full-screen2048px-1152px.png" class="mr-3" alt="Footer logo">
                     </a>
                     <p class="my-4">
                     <h5>Our Online Presence</h5>
@@ -14,21 +14,21 @@
 
                         <a href="https://www.twitter.com/triaright/">
                             <button class="btn btn-icon-only btn-pill btn-twitter mr-2 icon icon-xs icon-shape">
-                                <span class="fab fa-twitter"></span>
+                                <i class="bi bi-twitter-x"></i>
                             </button>
                         </a>
 
                         <a href="https://www.facebook.com/TriaRight/">
                             <button class="btn btn-icon-only btn-pill btn-facebook mr-2 icon icon-xs icon-shape" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
-                                <span aria-hidden="true" class="fab fa-facebook-f"></span>
+                                <i class="bi bi-facebook"></i>
                             </button> </a>
                         <a href="https://www.youtube.com/channel/UC1qsFfX4Dl3dMRcXV_wzBuA">
                             <button class="btn btn-icon-only btn-pill btn-youtube mr-2 icon icon-xs icon-shape" href="" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
-                                <span aria-hidden="true" class="fab fa-youtube"></span>
+                                <i class="bi bi-twitter-x"></i>
                             </button> </a>
                         <a href="https://instagram.com/triaright?igshid=ZDdkNTZiNTM=">
                             <button class="btn btn-icon-only btn-pill btn-dribbble icon icon-xs icon-shape" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
-                                <span aria-hidden="true" class="fab fa-instagram"></span>
+                                <i class="bi bi-instagram"></i>
                             </button>
                     </div>
                 </div>
@@ -69,11 +69,11 @@
             <div class="row">
                 <div class="col p-3">
                     <div class="d-flex text-center justify-content-center align-items-center">
-                        <p class="copyright pb-0 mb-0">Copyrights ©TriaRight 2023. All
+                        <p class="copyright pb-0 mb-0">Copyrights ©E-Learning 2024. All
                             rights reserved by
-                            <a href="http://www.triaright.com" target="_blank">TriaRight</a> &nbsp
+                            <a href="https://worldoftech.company" target="_blank">Mesum Bin Shaukat</a> &nbsp
                         </p>
-                        <p class="copyright pb-0 mb-0"> developed by <a href="http://www.mycompany.org.in" target="_blank">My Company</a> </p>
+                        <p class="copyright pb-0 mb-0"> developed by <a href="http://www.mycompany.org.in" target="_blank">World Of Tech</a> </p>
                     </div>
                 </div>
             </div>

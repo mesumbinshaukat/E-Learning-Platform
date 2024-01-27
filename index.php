@@ -17,34 +17,39 @@
         <?php include("./partials/navbar.php"); ?>
     </section>
 
-    <section class="section ">
-        <div class="container">
-            <div class="row align-items-center justify-content-lg-between justify-content-sm-center">
-                <div class="col-md-6 col-lg-6 mb-4 mb-md-4 mb-lg-0">
-                    <div class="hero-slider-content">
-                        <h1 class="display-2">Welcome to <br> TriaRight
-                        </h1>
-                        <p class="lead">TriaRight is a hub with the largest learning technologies community on your
-                            side. Join today and get access to thousands of live and on-demand learning resources with
-                            Internships in place and In addition with Job opportunities — all designed to help you take
-                            your professional development further.</p>
-                        <a href="https://triaright.com/jobslist.php" class="btn btn-secondary mt-3">Jobs</a>
-                        <a href="https://triaright.com/internshipslist.php"
-                            class="btn btn-secondary mt-3">Internships</a>
-                        <a href="https://triaright.com/courseslist.php" class="btn btn-secondary mt-3">Courses</a>
+    <div class="main">
+
+        <section class="section ">
+            <div class="container">
+                <div class="row align-items-center justify-content-lg-between justify-content-sm-center">
+                    <div class="col-md-6 col-lg-6 mb-4 mb-md-4 mb-lg-0">
+                        <div class="hero-slider-content">
+                            <h1 class="display-2">Welcome to <br> E-Learning Platform
+                            </h1>
+                            <p class="lead">To shewing another demands to. Marianne property cheerful informed at
+                                striking
+                                at. Clothes parlors however by cottage on. In views it or meant drift to. Be concern
+                                parlors
+                                settled or do shyness address. Remainder northward performed out for moonlight. Yet late
+                                add
+                                name was rent park from rich.</p>
+                            <a href="https://triaright.com/jobslist.php" class="btn btn-secondary mt-3">Jobs</a>
+                            <a href="https://triaright.com/internshipslist.php" class="btn btn-secondary mt-3">Internships</a>
+                            <a href="https://triaright.com/courseslist.php" class="btn btn-secondary mt-3">Courses</a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-5">
-                    <div>
+                    <div class="col-md-6 col-lg-5">
+                        <div>
 
-                        <img class=" " src="https://triaright.com/website/assets/img/bird&#32;(1).png"
-                            alt="modern desk">
+                            <img class=" " src="https://worldoftech.company/wp-content/uploads/2023/10/site24x71112.webp" alt="github logo">
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </div>
 
 
     <?php include("./partials/footer.php");
