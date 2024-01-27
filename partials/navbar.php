@@ -75,19 +75,14 @@
                                     aria-haspopup="true" aria-expanded="false">Login <i
                                         class="bi bi-caret-right-fill nav-link-arrow"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Super
-                                            admin</a></li>
-                                    <li><a class="dropdown-item" href="#">Employee</a>
-                                    </li>
+                    
                                     <li><a class="dropdown-item" href="#">Student</a>
                                     </li>
                                     <li><a class="dropdown-item" href="#">College</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">College-mentor</a></li>
                                     <li><a class="dropdown-item" href="#">Trainer</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Company</a>
-                                    </li>
+                                  
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
@@ -98,7 +93,6 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Student</a></li>
                                     <li><a class="dropdown-item" href="#">College</a></li>
-                                    <li><a class="dropdown-item" href="#">Company</a></li>
                                     <li><a class="dropdown-item" href="#">Trainer</a></li>
 
                                 </ul>
