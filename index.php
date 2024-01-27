@@ -20,7 +20,7 @@
     <h1 class=" flex items-center text-5xl font-bold dark:text-dark">Hello</h1>
 
 
-    <?php # include("./partials/footer.php"); 
+    <?php include("./partials/footer.php");
     ?>
 
 
