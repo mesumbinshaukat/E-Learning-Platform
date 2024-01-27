@@ -5,6 +5,7 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Learning</title>
     <?php
     include("links.php")
 
@@ -33,9 +34,9 @@
                                 settled or do shyness address. Remainder northward performed out for moonlight. Yet late
                                 add
                                 name was rent park from rich.</p>
-                            <a href="https://triaright.com/jobslist.php" class="btn btn-secondary mt-3">Jobs</a>
-                            <a href="https://triaright.com/internshipslist.php" class="btn btn-secondary mt-3">Internships</a>
-                            <a href="https://triaright.com/courseslist.php" class="btn btn-secondary mt-3">Courses</a>
+                            <a href="./jobs.php" class="btn btn-secondary mt-3">Jobs</a>
+                            <a href="#" class="btn btn-secondary mt-3">Internships</a>
+                            <a href="#" class="btn btn-secondary mt-3">Courses</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-5">

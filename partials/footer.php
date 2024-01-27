@@ -4,30 +4,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-4">
-                    <a class="footer-brand mr-lg-5 d-flex" href="index.html">
-                        <img src="https://techbloggers.co/wp-content/uploads/2023/07/LOGO-Full-screen2048px-1152px.png" class="mr-3" alt="Footer logo">
+                    <a class="footer-brand mr-lg-5 d-flex" href="./index.php">
+                        <img src="https://techbloggers.co/wp-content/uploads/2023/07/LOGO-Full-screen2048px-1152px.png"
+                            class="mr-3" alt="Footer logo">
                     </a>
                     <p class="my-4">
                     <h5>Our Online Presence</h5>
                     </p>
                     <div class="btn-wrapper mt-4">
 
-                        <a href="https://www.twitter.com/triaright/">
+                        <a href="#">
                             <button class="btn btn-icon-only btn-pill btn-twitter mr-2 icon icon-xs icon-shape">
                                 <i class="bi bi-twitter-x"></i>
                             </button>
                         </a>
 
-                        <a href="https://www.facebook.com/TriaRight/">
-                            <button class="btn btn-icon-only btn-pill btn-facebook mr-2 icon icon-xs icon-shape" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
+                        <a href="#">
+                            <button class="btn btn-icon-only btn-pill btn-facebook mr-2 icon icon-xs icon-shape"
+                                type="button" data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="">
                                 <i class="bi bi-facebook"></i>
                             </button> </a>
-                        <a href="https://www.youtube.com/channel/UC1qsFfX4Dl3dMRcXV_wzBuA">
-                            <button class="btn btn-icon-only btn-pill btn-youtube mr-2 icon icon-xs icon-shape" href="" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
+                        <a href="#">
+                            <button class="btn btn-icon-only btn-pill btn-youtube mr-2 icon icon-xs icon-shape" href=""
+                                type="button" data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="">
                                 <i class="bi bi-twitter-x"></i>
                             </button> </a>
-                        <a href="https://instagram.com/triaright?igshid=ZDdkNTZiNTM=">
-                            <button class="btn btn-icon-only btn-pill btn-dribbble icon icon-xs icon-shape" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
+                        <a href="#">
+                            <button class="btn btn-icon-only btn-pill btn-dribbble icon icon-xs icon-shape"
+                                type="button" data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="">
                                 <i class="bi bi-instagram"></i>
                             </button>
                     </div>
@@ -35,29 +42,29 @@
                 <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
                     <h5 class="mb-4">General</h5>
                     <ul class="links-vertical">
-                        <li><a target="_blank" href="https://triaright.com/index.php">Home</a></li>
-                        <li><a target="_blank" href="https://triaright.com/about.php">About Us</a></li>
-                        <li><a target="_blank" href="https://triaright.com/index.php">Services</a></li>
-                        <li><a target="_blank" href="https://triaright.com/careers.php">Career</a></li>
-                        <li><a target="_blank" href="https://triaright.com/contact.php">Contact Us</a></li>
+                        <li><a target="_blank" href="./index.php">Home</a></li>
+                        <li><a target="_blank" href="#">About Us</a></li>
+                        <li><a target="_blank" href="#">Services</a></li>
+                        <li><a target="_blank" href="#">Career</a></li>
+                        <li><a target="_blank" href="#">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
                     <h5 class="mb-4">Services</h5>
                     <ul class="links-vertical">
-                        <li><a target="_blank" href="https://triaright.com/jobs.php">Jobs</a></li>
-                        <li><a target="_blank" href="https://triaright.com/internships.php">Internships</a></li>
-                        <li><a target="_blank" href="https://triaright.com/courses.php">Courses</a></li>
+                        <li><a target="_blank" href="./jobs.php">Jobs</a></li>
+                        <li><a target="_blank" href="#">Internships</a></li>
+                        <li><a target="_blank" href="#">Courses</a></li>
 
                     </ul>
                 </div>
                 <div class="col-sm-6 col-lg-2">
                     <h5 class="mb-4">Register</h5>
                     <ul class="links-vertical">
-                        <li><a target="_blank" href="https://triaright.com/studentregister.php">Student</a></li>
-                        <li><a target="_blank" href="https://triaright.com/collegeregister.php">College</a></li>
-                        <li><a target="_blank" href="https://triaright.com/companyregister.php">Company</a></li>
-                        <li><a target="_blank" href="https://triaright.com/trainerregister.php">Trainer</a></li>
+                        <li><a target="_blank" href="#">Student</a></li>
+                        <li><a target="_blank" href="#">College</a></li>
+                        <li><a target="_blank" href="#">Company</a></li>
+                        <li><a target="_blank" href="#">Trainer</a></li>
 
                     </ul>
                 </div>
@@ -73,7 +80,8 @@
                             rights reserved by
                             <a href="https://worldoftech.company" target="_blank">Mesum Bin Shaukat</a> &nbsp
                         </p>
-                        <p class="copyright pb-0 mb-0"> developed by <a href="http://www.mycompany.org.in" target="_blank">World Of Tech</a> </p>
+                        <p class="copyright pb-0 mb-0"> developed by <a href="https://worldoftech.company"
+                                target="_blank">World Of Tech</a> </p>
                     </div>
                 </div>
             </div>

@@ -2,17 +2,19 @@
 <header class="header position-relative z-9">
     <nav class="navbar navbar-expand-lg navbar-light navbar-theme-white fixed-top headroom">
         <div class="container position-relative">
-            <a class="navbar-brand mr-lg-3" href="https://triaright.com/index.php">
-                <img class="navbar-brand-dark" src="https://triaright.com/assets/img/web/logoblack.png" alt="menuimage">
-                <img class="navbar-brand-light" src="https://triaright.com/assets/img/web/logowhite.png"
-                    alt="menuimage">
+            <a class="navbar-brand mr-lg-3" href="./index.php">
+                <img class="navbar-brand-dark"
+                    src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
+                <img class="navbar-brand-light"
+                    src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
             </a>
             <div class="navbar-collapse collapse" id="navbar-default-primary">
                 <div class="navbar-collapse-header">
                     <div class="row">
                         <div class="col-6 collapse-brand">
-                            <a href="index.html#">
-                                <img src="https://triaright.com/assets/img/web/logoblack.png" alt="menuimage">
+                            <a href="./index.php">
+                                <img src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp"
+                                    alt="menuimage">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
@@ -25,10 +27,10 @@
                 <ul class="navbar-nav navbar-nav-hover ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="https://triaright.com/index.php">Home</a>
+                        <a class="nav-link" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://triaright.com/about.php">About</a>
+                        <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="index.html#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -36,56 +38,55 @@
                             <i class="bi bi-caret-down-fill nav-link-arrow"></i>
                         </a>
                         <ul class="sub-menu dropdown-menu">
-                            <li><a class="dropdown-item" href="https://triaright.com/jobs.php">Jobs</a></li>
-                            <li><a class="dropdown-item" href="https://triaright.com/internships.php">Internships</a>
+                            <li><a class="dropdown-item" href="./jobs.php">Jobs</a></li>
+                            <li><a class="dropdown-item" href="#">Internships</a>
                             </li>
-                            <li><a class="dropdown-item" href="https://triaright.com/courses.php">Courses</a></li>
-                            <li><a class="dropdown-item" href="index.html">Campus Recruitment Training - Coming Soon
+                            <li><a class="dropdown-item" href="#">Courses</a></li>
+                            <li><a class="dropdown-item" href="#">Campus Recruitment Training - Coming Soon
                                 </a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://triaright.com/jobslist.php">Jobs</a>
+                        <a class="nav-link" href="./jobs.php">Jobs</a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://triaright.com/internshipslist.php">Internships</a>
+                        <a class="nav-link" href="#">Internships</a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://triaright.com/courseslist.php">Courses</a>
+                        <a class="nav-link" href="#">Courses</a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://triaright.com/careers.php">Careers</a>
+                        <a class="nav-link" href="#">Careers</a>
 
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a href="index.html#" class="nav-link" data-toggle="dropdown" role="button">
+                        <a href="#" class="nav-link" data-toggle="dropdown" role="button">
                             <span class="nav-link-inner-text ">Login/Register </span>
                             <i class="bi bi-caret-down-fill nav-link-arrow"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
-                                <a href="index.html#"
+                                <a href="#"
                                     class="dropdown-toggle dropdown-item d-flex justify-content-between align-items-center"
                                     aria-haspopup="true" aria-expanded="false">Login <i
                                         class="bi bi-caret-right-fill nav-link-arrow"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="https://triaright.com/superadmin.php">Super
+                                    <li><a class="dropdown-item" href="#">Super
                                             admin</a></li>
-                                    <li><a class="dropdown-item" href="https://triaright.com/employee.php">Employee</a>
+                                    <li><a class="dropdown-item" href="#">Employee</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="https://triaright.com/students.php">Student</a>
+                                    <li><a class="dropdown-item" href="#">Student</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="https://triaright.com/college.php">College</a>
+                                    <li><a class="dropdown-item" href="#">College</a>
                                     </li>
-                                    <li><a class="dropdown-item"
-                                            href="https://triaright.com/collegementor.php">College-mentor</a></li>
-                                    <li><a class="dropdown-item" href="https://triaright.com/trainer.php">Trainer</a>
+                                    <li><a class="dropdown-item" href="#">College-mentor</a></li>
+                                    <li><a class="dropdown-item" href="#">Trainer</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="https://triaright.com/company.php">Company</a>
+                                    <li><a class="dropdown-item" href="#">Company</a>
                                     </li>
                                 </ul>
                             </li>
@@ -95,14 +96,10 @@
                                     aria-haspopup="true" aria-expanded="false">Register<i
                                         class="bi bi-caret-right-fill nav-link-arrow"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item"
-                                            href="https://triaright.com/studentregister.php">Student</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="https://triaright.com/collegeregister.php">College</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="https://triaright.com/companyregister.php">Company</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="https://triaright.com/trainerregister.php">Trainer</a></li>
+                                    <li><a class="dropdown-item" href="#">Student</a></li>
+                                    <li><a class="dropdown-item" href="#">College</a></li>
+                                    <li><a class="dropdown-item" href="#">Company</a></li>
+                                    <li><a class="dropdown-item" href="#">Trainer</a></li>
 
                                 </ul>
                             </li>
@@ -111,7 +108,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="https://triaright.com/contact.php">Contact Us</a>
+                        <a class="nav-link" href="#">Contact Us</a>
                     </li>
 
                 </ul>
