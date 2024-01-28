@@ -1,22 +1,31 @@
-<?php 
+<?php
 session_start();
-include('./db_connection/connection.php');  
-if(isset($_POST['submitbtn'])){
+include('./db_connection/connection.php');
+if (isset($_POST['submitbtn'])) {
+    $regex_email = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
     $student_name = $_POST['student_name'];
     $student_phoneno = $_POST['phone_number'];
     $student_email = $_POST['mail_id'];
     $student_username = $_POST['student_username'];
     $intership_term = $_POST['intership_term'];
     $password = $_POST['password'];
-   
-    $insert_query = "INSERT INTO `student`( `name`, `contact_number`, `email`, `username`, `internship`, `password`) VALUES (?,?,?,?,?,?)";
-    bindparams($student_name, $student_phoneno, $student_email, $student_username, $intership_term, $password);
-    $insert_query_result = mysqli_query($conn, $insert_query);
-    if($insert_query_result){
-        $_SESSION['message'] = true;
-    }
-    else{
-        $_SESSION['message'] = false;
+    $hash_pass = password_hash($password, PASSWORD_DEFAULT);
+
+
+    if (preg_match($regex_email, $student_email) == 1) {
+        $insert_query = mysqli_prepare($conn, "INSERT INTO `student`( `name`, `contact_number`, `email`, `username`, `internship`, `password`) VALUES (?,?,?,?,?,?)");
+        $insert_query->bind_param("ssssss", $student_name, $student_phoneno, $student_email, $student_username, $intership_term, $hash_pass);
+
+        if ($insert_query->execute()) {
+            $_SESSION['message_success'] = true;
+        } else {
+            $_SESSION['message_failed'] = true;
+            $_SESSION["err_msg"] = "Database Error, Unable to register.";
+        }
+    } else {
+
+        $_SESSION['message_failed'] = true;
+        $_SESSION["err_msg"] = "Invalid Email Format";
     }
 }
 ?>
@@ -24,35 +33,34 @@ if(isset($_POST['submitbtn'])){
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Student Register</title>
-    
+
     <?php
     include("links.php");
     ?>
 </head>
 
 <body>
-<script>
-<?php 
-if(isset($_SESSION['message']) && $_SESSION['message'] == true){
-?>
-toastr.success('Registration Successful')  
-<?php
-}
-else if(isset($_SESSION['message']) && $_SESSION['message'] == false){
-?>
-toastr.error('Unable to Register')  
-<?php
-}
-?>
-</script>
+    <script>
+        <?php
+        if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+        ?>
+            toastr.success('Registration Successful')
+        <?php
+            session_destroy();
+        } else if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+        ?>
+            toastr.error(<?php echo $_SESSION["err_msg"]; ?>)
+        <?php
+            session_destroy();
+        }
+        ?>
+    </script>
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
@@ -96,7 +104,7 @@ toastr.error('Unable to Register')
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" maxlength="10" pattern=[0-9]{1}[0-9]{9} name="phone_number" class="form-control" placeholder="1234567890" required >
+                                            <input type="text" maxlength="10" pattern=[0-9]{1}[0-9]{9} name="phone_number" class="form-control" placeholder="1234567890" required>
 
                                         </div>
                                     </div>
@@ -199,8 +207,8 @@ toastr.error('Unable to Register')
     <button class="scroll-top scroll-to-target" data-target="html">
         <span class="fas fa-hand-point-up"></span>
     </button>
-    
-   
+
+
 </body>
 
 
