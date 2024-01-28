@@ -1,3 +1,14 @@
+<?php 
+include('./db_connection/connection.php');  
+if(isset($_POST['submitbtn'])){
+    $student_name = $_POST['student_name'];
+    $student_phoneno = $_POST['phone_number'];
+    $student_email = $_POST['mail_id'];
+    $student_username = $_POST['student_username'];
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +71,7 @@
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" maxlength="10" pattern=[0-9]{1}[0-9]{9} name="phone_number" class="form-control" placeholder="1234567890" required required>
+                                            <input type="text" maxlength="10" pattern=[0-9]{1}[0-9]{9} name="phone_number" class="form-control" placeholder="1234567890" required >
 
                                         </div>
                                     </div>
@@ -128,7 +139,7 @@
                                     </div> -->
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="submit" value="submit" type="submit" onclick="return check()">
+                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="submitbtn" value="submit" type="submit" onclick="return check()">
                                         Register
                                     </button>
                                 </form>

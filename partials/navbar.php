@@ -1,4 +1,3 @@
-<!--header section start-->
 <header class="header position-relative z-9">
     <nav class="navbar navbar-expand-lg navbar-light navbar-theme-white fixed-top headroom">
         <div class="container position-relative">
@@ -117,4 +116,3 @@
         </div>
     </nav>
 </header>
-<!--header section end-->
