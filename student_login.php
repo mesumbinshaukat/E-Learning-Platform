@@ -8,9 +8,11 @@ if (isset($_COOKIE['student_username']) && isset($_COOKIE['student_password'])) 
 }
 
 if (isset($_POST['loginBtn'])) {
+
+
     $username = $_POST['student_username'];
     $password = $_POST['password'];
-
+    $_SESSION['check'] = "Working";
     $sql = "SELECT * FROM `student` WHERE username = '$username'";
     $sql_run = mysqli_query($conn, $sql);
     $fetch_details = mysqli_fetch_assoc($sql_run);
@@ -40,34 +42,32 @@ if (isset($_POST['loginBtn'])) {
 <html lang="en">
 
 <head>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Student Log-In</title>
     <?php
-    include("links.php")
+    include("links.php");
     ?>
 </head>
 
 <body>
-    <script>
-    <?php
-        if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-        ?>
-    toastr.error(<?php echo $_SESSION["err_msg"]; ?>)
-    <?php
-            session_destroy();
-        }
-        ?>
-    </script>
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
 
+    <?php
+    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+        session_destroy();
+    }
+
+    ?>
+
     <div class="main">
 
         <!--login section start-->
-        <section
-            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center"
-            style="background: url('https://triaright.com/assets/img/slider-bg-1.svg')no-repeat center bottom / cover">
+        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center" style="background: url('https://triaright.com/assets/img/slider-bg-1.svg')no-repeat center bottom / cover">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-7 col-lg-6">
@@ -95,8 +95,7 @@ if (isset($_POST['loginBtn'])) {
                                                 <i class="bi bi-envelope"></i>
                                             </div>
 
-                                            <input type="text" class="form-control" name="student_username"
-                                                placeholder="Enter Username" required value="">
+                                            <input type="text" class="form-control" name="student_username" placeholder="Enter Username" required value="">
                                             <span class="error"></span><br>
                                         </div>
                                     </div>
@@ -116,15 +115,13 @@ if (isset($_POST['loginBtn'])) {
                                             <div class="input-icon">
                                                 <i class="bi bi-lock"></i>
                                             </div>
-                                            <input type="password" name="password" class="form-control"
-                                                placeholder="Enter your password">
+                                            <input type="password" name="password" class="form-control" placeholder="Enter your password">
                                             <span class="error"></span><br>
                                         </div>
                                     </div>
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary mt-4 mb-3" type="submit"
-                                        name="loginBtn">Sign
+                                    <button class="btn btn-block btn-secondary mt-4 mb-3" type="submit" name="loginBtn">Sign
                                         in</button>
                                     <span class="error"></span>
 
