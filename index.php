@@ -8,7 +8,6 @@
     <title>E-Learning</title>
     <?php
     include("links.php")
-
     ?>
 </head>
 

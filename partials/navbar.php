@@ -3,19 +3,24 @@
     <nav class="navbar navbar-expand-lg navbar-light navbar-theme-white fixed-top headroom">
         <div class="container position-relative">
             <a class="navbar-brand mr-lg-3" href="./index.php">
-                <img class="navbar-brand-dark" src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
-                <img class="navbar-brand-light" src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
+                <img class="navbar-brand-dark"
+                    src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
+                <img class="navbar-brand-light"
+                    src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
             </a>
             <div class="navbar-collapse collapse" id="navbar-default-primary">
                 <div class="navbar-collapse-header">
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a href="./index.php">
-                                <img src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
+                                <img src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp"
+                                    alt="menuimage">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
-                            <i class="fas fa-times" data-toggle="collapse" role="button" data-target="#navbar-default-primary" aria-controls="navbar-default-primary" aria-expanded="false" aria-label="Toggle navigation"></i>
+                            <i class="fas fa-times" data-toggle="collapse" role="button"
+                                data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                                aria-expanded="false" aria-label="Toggle navigation"></i>
                         </div>
                     </div>
                 </div>
@@ -65,24 +70,30 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle dropdown-item d-flex justify-content-between align-items-center" aria-haspopup="true" aria-expanded="false">Login <i class="bi bi-caret-right-fill nav-link-arrow"></i></a>
+                                <a href="#"
+                                    class="dropdown-toggle dropdown-item d-flex justify-content-between align-items-center"
+                                    aria-haspopup="true" aria-expanded="false">Login <i
+                                        class="bi bi-caret-right-fill nav-link-arrow"></i></a>
                                 <ul class="dropdown-menu">
 
                                     <li><a class="dropdown-item" href="./student_login.php">Student</a>
                                     </li>
                                     <li><a class="dropdown-item" href="./college_login.php">College</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Trainer</a>
+                                    <li><a class="dropdown-item" href="./trainer_login.php">Trainer</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a href="index.html#" class="dropdown-toggle dropdown-item d-flex justify-content-between align-items-center" aria-haspopup="true" aria-expanded="false">Register<i class="bi bi-caret-right-fill nav-link-arrow"></i></a>
+                                <a href="index.html#"
+                                    class="dropdown-toggle dropdown-item d-flex justify-content-between align-items-center"
+                                    aria-haspopup="true" aria-expanded="false">Register<i
+                                        class="bi bi-caret-right-fill nav-link-arrow"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Student</a></li>
-                                    <li><a class="dropdown-item" href="#">College</a></li>
-                                    <li><a class="dropdown-item" href="#">Trainer</a></li>
+                                    <li><a class="dropdown-item" href="./studentregister.php">Student</a></li>
+                                    <li><a class="dropdown-item" href="./collegeregister.php">College</a></li>
+                                    <li><a class="dropdown-item" href="./trainerregister.php">Trainer</a></li>
 
                                 </ul>
                             </li>
@@ -97,7 +108,9 @@
                 </ul>
             </div>
             <div class="d-flex align-items-center">
-                <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar-default-primary" aria-controls="navbar-default-primary" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                    data-target="#navbar-default-primary" aria-controls="navbar-default-primary" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>

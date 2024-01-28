@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>College Login</title>
+    <title>College Log-In</title>
 <?php
     include("links.php")
 
@@ -40,12 +40,12 @@
                                 <!--login form-->
                                 <form class="login-signup-form" action="college.php.html" method="POST">
                                     <div class="form-group">
-                                        <label class="font-weight-bold">username</label>
+                                        <label class="font-weight-bold">Username</label>
                                         <div class="input-group input-group-merge">
                                             <div class="input-icon">
-                                                <i class="ti-email"></i>
+                                                <i class="bi bi-envelope"></i>
                                             </div>
-                                            <input type="text" class="form-control" name="college_username" placeholder="username" required value=""> 
+                                            <input type="text" class="form-control" name="college_username" placeholder="Enter your username" required value=""> 
                                             <span class="error"></span><br>
                                         </div>
                                     </div>
@@ -63,9 +63,9 @@
                                         </div>
                                         <div class="input-group input-group-merge">
                                             <div class="input-icon">
-                                                <i class="ti-lock"></i>
+                                                <i class="bi bi-lock"></i>
                                             </div>
-                                            <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" name="password" class="form-control" placeholder="Enter your password"> 
                                             <span class="error"></span><br>
                                         </div>
                                     </div>
