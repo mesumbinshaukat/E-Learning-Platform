@@ -1,4 +1,10 @@
+<?php
+if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
+	header('location: ../student_login.php');
+	exit();
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 

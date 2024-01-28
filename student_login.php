@@ -1,3 +1,41 @@
+<?php
+session_start();
+include('./db_connection/connection.php');
+
+if (isset($_COOKIE['student_username']) && isset($_COOKIE['student_password'])) {
+    header('location: ./Student/dashboard.php');
+    exit();
+}
+
+if (isset($_POST['loginBtn'])) {
+    $username = $_POST['student_username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM `student` WHERE username = '$username'";
+    $sql_run = mysqli_query($conn, $sql);
+    $fetch_details = mysqli_fetch_assoc($sql_run);
+
+    if (mysqli_num_rows($sql_run) > 0) {
+        $fetch_username = $fetch_details['username'];
+        $fetch_password = $fetch_details['password'];
+
+        if (password_verify($password, $fetch_password) && $username == $fetch_username) {
+            setcookie("student_username", $fetch_username, time() + (86400 * 30), "/");
+            setcookie("student_password", $fetch_password, time() + (86400 * 30), "/");
+            header("location: ./Student/dashboard.php");
+            exit();
+        } else {
+            $_SESSION['message_failed'] = true;
+            $_SESSION["err_msg"] = "Username or Password Does Not Match.";
+        }
+    } else {
+        $_SESSION['message_failed'] = true;
+        $_SESSION["err_msg"] = "No Student Found";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,11 +44,20 @@
     <title>Student Log-In</title>
     <?php
     include("links.php")
-
     ?>
 </head>
 
 <body>
+    <script>
+    <?php
+        if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+        ?>
+    toastr.error(<?php echo $_SESSION["err_msg"]; ?>)
+    <?php
+            session_destroy();
+        }
+        ?>
+    </script>
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
@@ -40,7 +87,7 @@
                                 </div>
 
                                 <!--login form-->
-                                <form class="login-signup-form" action="students.php.html" method="POST">
+                                <form class="login-signup-form" action="" method="post">
                                     <div class="form-group">
                                         <label class="font-weight-bold">Student Username</label>
                                         <div class="input-group input-group-merge">
@@ -76,7 +123,8 @@
                                     </div>
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary mt-4 mb-3" name="sign_in">Sign
+                                    <button class="btn btn-block btn-secondary mt-4 mb-3" type="submit"
+                                        name="loginBtn">Sign
                                         in</button>
                                     <span class="error"></span>
 
