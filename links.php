@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <!-- <link href="../assets/Icons/fontawesome-free-6.5.1-web/css/fontawesome.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
@@ -23,3 +24,4 @@
 <script src="https://triaright.com/assets/js/vendors/jquery.countdown.min.js"></script>
 <script src="https://triaright.com/assets/js/vendors/validator.min.js"></script>
 <script src="https://triaright.com/assets/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

@@ -1,11 +1,23 @@
 <?php 
+session_start();
 include('./db_connection/connection.php');  
 if(isset($_POST['submitbtn'])){
     $student_name = $_POST['student_name'];
     $student_phoneno = $_POST['phone_number'];
     $student_email = $_POST['mail_id'];
     $student_username = $_POST['student_username'];
-
+    $intership_term = $_POST['intership_term'];
+    $password = $_POST['password'];
+   
+    $insert_query = "INSERT INTO `student`( `name`, `contact_number`, `email`, `username`, `internship`, `password`) VALUES (?,?,?,?,?,?)";
+    bindparams($student_name, $student_phoneno, $student_email, $student_username, $intership_term, $password);
+    $insert_query_result = mysqli_query($conn, $insert_query);
+    if($insert_query_result){
+        $_SESSION['message'] = true;
+    }
+    else{
+        $_SESSION['message'] = false;
+    }
 }
 ?>
 
@@ -20,14 +32,27 @@ if(isset($_POST['submitbtn'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Student Register</title>
-
+    
     <?php
-    include("links.php")
-
+    include("links.php");
     ?>
 </head>
 
 <body>
+<script>
+<?php 
+if(isset($_SESSION['message']) && $_SESSION['message'] == true){
+?>
+toastr.success('Registration Successful')  
+<?php
+}
+else if(isset($_SESSION['message']) && $_SESSION['message'] == false){
+?>
+toastr.error('Unable to Register')  
+<?php
+}
+?>
+</script>
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
@@ -174,27 +199,11 @@ if(isset($_POST['submitbtn'])){
     <button class="scroll-top scroll-to-target" data-target="html">
         <span class="fas fa-hand-point-up"></span>
     </button>
-    <!--scroll bottom to top button end-->
-    <!--build:js-->
-    <script src="assets/js/vendors/jquery-3.5.1.min.js"></script>
-    <script src="assets/js/vendors/popper.min.js"></script>
-    <script src="assets/js/vendors/bootstrap.min.js"></script>
-    <script src="assets/js/vendors/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/vendors/jquery.easing.min.js"></script>
-    <script src="assets/js/vendors/mixitup.min.js"></script>
-    <script src="assets/js/vendors/headroom.min.js"></script>
-    <script src="assets/js/vendors/smooth-scroll.min.js"></script>
-    <script src="assets/js/vendors/wow.min.js"></script>
-    <script src="assets/js/vendors/owl.carousel.min.js"></script>
-    <script src="assets/js/vendors/jquery.waypoints.min.js"></script>
-    <!--<script src="assets/js/vendors/countUp.min.js"></script>-->
-    <script src="assets/js/vendors/jquery.countdown.min.js"></script>
-    <script src="assets/js/vendors/validator.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <!--endbuild-->
+    
+   
 </body>
 
 
-<!-- Mirrored from corporx.themetags.com/basic-sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Jan 2023 13:39:06 GMT -->
+
 
 </html>
