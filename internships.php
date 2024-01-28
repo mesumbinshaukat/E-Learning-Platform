@@ -18,8 +18,7 @@
 
     <div class="main">
         <!--hero section start-->
-        <section class="section  bg-soft"
-            style="background: url('https://triaright.com/assets/img/globe.png')no-repeat right bottom">
+        <section class="section  bg-soft" style="background: url('https://triaright.com/assets/img/globe.png')no-repeat right bottom">
             <div class="container">
                 <div class="row align-items-center justify-content-lg-between justify-content-sm-center">
                     <div class="col-md-6 col-lg-6 mb-4 mb-md-4 mb-lg-0">
@@ -36,9 +35,7 @@
                     <div class="col-md-6 col-lg-5">
                         <div>
 
-                            <img class="fancy-radius img-fluid"
-                                src="https://worldoftech.company/wp-content/uploads/2023/10/semrush85.logowik.com_.webp"
-                                alt="modern desk">
+                            <img class="fancy-radius img-fluid" src="https://worldoftech.company/wp-content/uploads/2023/10/semrush85.logowik.com_.webp" alt="modern desk">
 
                         </div>
                     </div>
@@ -64,8 +61,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://worldoftech.company/wp-content/uploads/2023/10/software-agency-worldoftech.jpg"
-                                    alt="icon" width="60" class="img-fluid">
+                                <img src="https://worldoftech.company/wp-content/uploads/2023/10/software-agency-worldoftech.jpg" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">Affronting everything discretion men now own did. Still round match we to.
@@ -77,8 +73,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://worldoftech.company/wp-content/uploads/2023/10/photo-1501504905252-473c47e087f8.webp"
-                                    alt="icon" width="60" class="img-fluid">
+                                <img src="https://worldoftech.company/wp-content/uploads/2023/10/photo-1501504905252-473c47e087f8.webp" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">Precaution day see imprudence sympathize principles. At full leaf give quit
@@ -91,8 +86,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://worldoftech.company/wp-content/uploads/2023/10/biometric-technology-background-with-fingerprint-scanning-system-virtual-screen-digital-remix-1-min.jpg"
-                                    alt="icon" width="60" class="img-fluid">
+                                <img src="https://worldoftech.company/wp-content/uploads/2023/10/biometric-technology-background-with-fingerprint-scanning-system-virtual-screen-digital-remix-1-min.jpg" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">By outward neither he so covered amiable greater. Juvenile proposal betrayed
@@ -104,8 +98,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://worldoftech.company/wp-content/uploads/2023/09/close-up-image-programer-working-his-desk-office-min.jpg"
-                                    alt="icon" width="60" class="img-fluid">
+                                <img src="https://worldoftech.company/wp-content/uploads/2023/09/close-up-image-programer-working-his-desk-office-min.jpg" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">She education get middleton day agreement performed preserved unwilling. Do
@@ -117,8 +110,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-6.svg" alt="icon" width="60"
-                                    class="img-fluid">
+                                <img src="https://triaright.com/assets/img/icon/icon-6.svg" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">Savings her pleased are several started females met. Short her not among
@@ -130,8 +122,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://worldoftech.company/wp-content/uploads/2023/09/top-view-unrecognizable-hacker-performing-cyberattack-night-min.jpg"
-                                    alt="icon" width="60" class="img-fluid">
+                                <img src="https://worldoftech.company/wp-content/uploads/2023/09/top-view-unrecognizable-hacker-performing-cyberattack-night-min.jpg" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">Luckily but minutes ask picture man perhaps are inhabit. How her good all
@@ -143,8 +134,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://worldoftech.company/wp-content/uploads/2023/09/coding-man-min.jpg"
-                                    alt="icon" width="60" class="img-fluid">
+                                <img src="https://worldoftech.company/wp-content/uploads/2023/09/coding-man-min.jpg" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">Him comparison especially friendship was who sufficient attachment
@@ -156,8 +146,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://worldoftech.company/wp-content/uploads/2023/10/kali-linux.webp"
-                                    alt="icon" width="60" class="img-fluid">
+                                <img src="https://worldoftech.company/wp-content/uploads/2023/10/kali-linux.webp" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">Doubtful on an juvenile as of servants insisted. Judge why maids led sir
@@ -169,8 +158,7 @@
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://worldoftech.company/wp-content/uploads/2023/09/digital-marketing-with-icons-business-people-scaled.jpg"
-                                    alt="icon" width="60" class="img-fluid">
+                                <img src="https://worldoftech.company/wp-content/uploads/2023/09/digital-marketing-with-icons-business-people-scaled.jpg" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Demo</h2>
                             <p class="mb-0">Farther be chapter at visited married in it pressed. By distrusts procuring
