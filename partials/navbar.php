@@ -75,6 +75,8 @@
                                         class="bi bi-caret-right-fill nav-link-arrow"></i></a>
                                 <ul class="dropdown-menu">
 
+                                    <li><a class="dropdown-item" href="./super-admin_login.php">Super-Admin</a>
+                                    </li>
                                     <li><a class="dropdown-item" href="./student_login.php">Student</a>
                                     </li>
                                     <li><a class="dropdown-item" href="./college_login.php">College</a>
