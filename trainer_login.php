@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 
 
 <head>
-<title>Trainer Log-In</title>
+    <title>Trainer Log-In</title>
     <?php
     include("links.php")
     ?>
-   
+
 </head>
 
 <body>
@@ -21,7 +20,7 @@
     <div class="main">
 
         <!--login section start-->
-        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center" style="background: url('https://triaright.com/assets/img/slider-bg-1.svg')no-repeat center bottom / cover">
+        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center" style="background: url(./assets/background/abstract-design-purple-flowing-lines.jpg)no-repeat center bottom / cover">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-7 col-lg-6">
@@ -48,10 +47,10 @@
                                             <div class="input-icon">
                                                 <i class="bi bi-envelope"></i>
                                             </div>
-                                            
-                                            <input type="text" class="form-control" name="Trainer_Username" placeholder="Enter Username" required value=""> 
-                                            <span class="error"></span><br>      
-      
+
+                                            <input type="text" class="form-control" name="Trainer_Username" placeholder="Enter Username" required value="">
+                                            <span class="error"></span><br>
+
 
                                         </div>
                                     </div>
@@ -71,20 +70,21 @@
                                             <div class="input-icon">
                                                 <i class="bi bi-lock"></i>
                                             </div>
-                                            
+
                                             <input type="password" name="password" class="form-control" placeholder="Enter your password">
-                                            <span class="error"></span><br>   
+                                            <span class="error"></span><br>
 
                                         </div>
                                     </div>
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary mt-4 mb-3" name="sign_in">Sign in</button>
+                                    <button class="btn btn-block btn-secondary mt-4 mb-3" name="sign_in">Sign
+                                        in</button>
                                     <span class="error"></span>
 
                                 </form>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -92,8 +92,8 @@
         </section>
         <!--login section end-->
 
-        
-</div>
+
+    </div>
 
 </body>
 
