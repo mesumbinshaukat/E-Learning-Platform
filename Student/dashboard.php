@@ -1,8 +1,16 @@
 <?php
+session_start();
+
+include('../db_connection/connection.php');
+
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
     header('location: ../student_login.php');
     exit();
 }
+
+$query = "SELECT * FROM `student`";
+
+$run_query = mysqli_query($conn, $query);
 
 ?>
 
@@ -68,11 +76,14 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
-                                            <div class="prime-card"><img class="img-fluid" src="assets/icons/classroom.gif" alt=""></div>
+                                            <div class="prime-card"><img class="img-fluid"
+                                                    src="assets/icons/classroom.gif" alt=""></div>
                                         </div>
                                         <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
                                             <div class="text-justified align-items-center">
-                                                <h2 class="text-dark font-weight-semibold mb-3 mt-2">Hi <span style="color:#ff6700"></span>, Welcome to <span class="text-primary">E-Learning Platform</span></h2>
+                                                <h2 class="text-dark font-weight-semibold mb-3 mt-2">Hi <span
+                                                        style="color:#ff6700"></span>, Welcome to <span
+                                                        class="text-primary">E-Learning Platform</span></h2>
                                                 <p class="text-dark tx-15 mb-2 lh-3">Thankyou for choosing us, We are
                                                     delighted that you have joined us and we look forward to providing
                                                     you with a wealth of resources and information that will help you
@@ -115,8 +126,11 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col text-center">
-                                            <label class="tx-12">Register students</label>
-                                            <p class="font-weight-bold tx-20">5049</p>
+                                            <label class="tx-12">Resgitered Students</label>
+                                            <p class="font-weight-bold tx-20"><?php if ($run_query) {
+                                                                                    $student_count = mysqli_num_rows($run_query);
+                                                                                    echo $student_count;
+                                                                                } ?></p>
                                         </div><!-- col -->
                                         <div class="col border-start text-center">
                                             <label class="tx-12">Colleges</label>
@@ -264,7 +278,10 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 
                     <div class="main-footer">
                         <div class="container-fluid pd-t-0-f ht-100p">
-                            Copyrights ©TriaRight 2023. All rights reserved by <a href="https://www.triaright.com" class="text-primary">TriaRight</a> developed by <span class="fa fa-heart text-danger"></span><a href="http://www.mycompany.co.in" class="text-primary"> MY Company</a>.
+                            Copyrights ©TriaRight 2023. All rights reserved by <a href="https://www.triaright.com"
+                                class="text-primary">TriaRight</a> developed by <span
+                                class="fa fa-heart text-danger"></span><a href="http://www.mycompany.co.in"
+                                class="text-primary"> MY Company</a>.
                         </div>
                     </div>
                     <!-- Footer closed -->
