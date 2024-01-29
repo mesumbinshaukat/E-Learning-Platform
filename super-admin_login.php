@@ -40,7 +40,7 @@
                                 </div>
 
                                 <!--login form-->
-                                <form class="login-signup-form" action="trainer.php.html" method="POST">
+                                <form class="login-signup-form" action="" method="POST">
                                     <div class="form-group">
                                         <label class="font-weight-bold">Super-Admin Email</label>
                                         <div class="input-group input-group-merge">
@@ -48,7 +48,7 @@
                                                 <i class="bi bi-envelope"></i>
                                             </div>
 
-                                            <input type="email" class="form-control" name="email" placeholder="Enter Email" required value="">
+                                            <input type="email" class="form-control" name="email" placeholder="Enter Email" required value="" disabled>
                                             <span class="error"></span><br>
 
 
@@ -67,7 +67,7 @@
                                                 <i class="bi bi-lock"></i>
                                             </div>
 
-                                            <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" name="password" class="form-control" placeholder="Enter your password" disabled>
                                             <span class="error"></span><br>
 
                                         </div>
