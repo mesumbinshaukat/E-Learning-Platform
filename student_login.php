@@ -6,7 +6,6 @@ if (isset($_COOKIE['student_username']) && isset($_COOKIE['student_password'])) 
     header('location: ./Student/dashboard.php');
     exit();
 }
-
 if (isset($_POST['loginBtn'])) {
 
 

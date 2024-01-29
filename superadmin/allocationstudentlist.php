@@ -422,520 +422,14 @@
 							</div>
 
 						</div>
-						<div class="main-header-right">
-							<button class="navbar-toggler navresponsive-toggler d-md-none ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon fe fe-more-vertical "></span>
-							</button>
-							<div class="mb-0 navbar navbar-expand-lg navbar-nav-right responsive-navbar navbar-dark p-0">
-								<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-									<ul class="nav nav-item header-icons navbar-nav-right ms-auto">
-										
-										<li class="dropdown nav-item">
-											<a class="new nav-link theme-layout nav-link-bg layout-setting" >
-												<span class="dark-layout"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" width="24" height="24" viewBox="0 0 24 24"><path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z"/></svg></span>
-												<span class="light-layout"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" width="24" height="24" viewBox="0 0 24 24"><path d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19h2v3h-2zm0-17h2v3h-2zm-9 9h3v2h-3zm17 0h3v2h-3zM4.219 18.363l2.12-2.122 1.415 1.414-2.12 2.122zM16.24 6.344l2.122-2.122 1.414 1.414-2.122 2.122zM6.342 7.759 4.22 5.637l1.415-1.414 2.12 2.122zm13.434 10.605-1.414 1.414-2.122-2.122 1.414-1.414z"/></svg></span>
-											</a>
-										</li>
-										
-										
-										<li class="nav-item full-screen fullscreen-button">
-											<a class="new nav-link full-screen-link" href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" width="24" height="24" viewBox="0 0 24 24"><path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"/></svg></a>
-										</li>
-
-										<li class="nav-link Search-icon d-lg-none d-Block">
-											<form class="navbar-form" role="Search">
-												<div class="input-group">
-													<input type="text" class="form-control" placeholder="Search">
-													<span class="input-group-btn">
-														<button type="Reset" class="btn btn-default">
-															<i class="fas fa-times"></i>
-														</button>
-														<button type="submit" class="btn btn-default nav-link resp-btn">
-															<svg xmlns="http://www.w3.org/2000/svg" height="24px" class="header-icon-svgs" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-														</button>
-													</span>
-												</div>
-											</form>
-										</li>
-										<li class="dropdown main-profile-menu nav nav-item nav-link ps-lg-2">
-											<a class="new nav-link profile-user d-flex" href="#" data-bs-toggle="dropdown"><img alt="" src="assets/img/faces/2.jpg" class=""></a>
-											<div class="dropdown-menu">
-												<div class="menu-header-content p-3 border-bottom">
-													<div class="d-flex wd-100p">
-														<div class="main-img-user"><img alt="" src="assets/img/faces/2.jpg" class=""></div>
-														<div class="ms-3 my-auto">
-															<h6 class="tx-15 font-weight-semibold mb-0">Username</h6><span class="dropdown-title-text subtext op-6  tx-12">Super Admin</span>
-														</div>
-													</div>
-												</div>
-												<!--<a class="dropdown-item" href="profile.html"><i class="far fa-user-circle"></i>Profile</a> -->
-												
-												<a class="dropdown-item" href="changepassword.php"><i class="far fa-sun"></i>Change Password</a>
-												<a class="dropdown-item" href="../../"><i class="far fa-arrow-alt-circle-left"></i> Logout</a>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="d-flex">
-								<a class="demo-icon new nav-link" href="javascript:void(0);">
-									<svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs fa-spin" width="24" height="24" viewBox="0 0 24 24"><path d="M12 16c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.084 0 2 .916 2 2s-.916 2-2 2-2-.916-2-2 .916-2 2-2z"/><path d="m2.845 16.136 1 1.73c.531.917 1.809 1.261 2.73.73l.529-.306A8.1 8.1 0 0 0 9 19.402V20c0 1.103.897 2 2 2h2c1.103 0 2-.897 2-2v-.598a8.132 8.132 0 0 0 1.896-1.111l.529.306c.923.53 2.198.188 2.731-.731l.999-1.729a2.001 2.001 0 0 0-.731-2.732l-.505-.292a7.718 7.718 0 0 0 0-2.224l.505-.292a2.002 2.002 0 0 0 .731-2.732l-.999-1.729c-.531-.92-1.808-1.265-2.731-.732l-.529.306A8.1 8.1 0 0 0 15 4.598V4c0-1.103-.897-2-2-2h-2c-1.103 0-2 .897-2 2v.598a8.132 8.132 0 0 0-1.896 1.111l-.529-.306c-.924-.531-2.2-.187-2.731.732l-.999 1.729a2.001 2.001 0 0 0 .731 2.732l.505.292a7.683 7.683 0 0 0 0 2.223l-.505.292a2.003 2.003 0 0 0-.731 2.733zm3.326-2.758A5.703 5.703 0 0 1 6 12c0-.462.058-.926.17-1.378a.999.999 0 0 0-.47-1.108l-1.123-.65.998-1.729 1.145.662a.997.997 0 0 0 1.188-.142 6.071 6.071 0 0 1 2.384-1.399A1 1 0 0 0 11 5.3V4h2v1.3a1 1 0 0 0 .708.956 6.083 6.083 0 0 1 2.384 1.399.999.999 0 0 0 1.188.142l1.144-.661 1 1.729-1.124.649a1 1 0 0 0-.47 1.108c.112.452.17.916.17 1.378 0 .461-.058.925-.171 1.378a1 1 0 0 0 .471 1.108l1.123.649-.998 1.729-1.145-.661a.996.996 0 0 0-1.188.142 6.071 6.071 0 0 1-2.384 1.399A1 1 0 0 0 13 18.7l.002 1.3H11v-1.3a1 1 0 0 0-.708-.956 6.083 6.083 0 0 1-2.384-1.399.992.992 0 0 0-1.188-.141l-1.144.662-1-1.729 1.124-.651a1 1 0 0 0 .471-1.108z"/></svg>
-								</a>
-							</div>
-						</div>
+						<?php include('./partials/navbar.php')?>
 					</div>
 				</div>
 				<!-- /main-header -->
 				
                 <!-- main-sidebar -->
 								<div class="sticky">
-					<aside class="app-sidebar">
-<div class="main-sidebar-header active">
-							<a class="header-logo active" href="index.php">
-								<img src="assets/img/logowhite.png" class="main-logo  desktop-logo" alt="logo">
-								<img src="assets/img/logoblack.png" class="main-logo  desktop-dark" alt="logo">
-								<img src="assets/img/icon.png" class="main-logo  mobile-logo" alt="logo">
-								<img src="assets/img/icon.png" class="main-logo  mobile-dark" alt="logo">
-							</a>
-						</div>
-						<div class="main-sidemenu">
-							<div class="slide-left disabled" id="slide-left"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"/></svg></div>
-							<ul class="side-menu">
-								<li class="side-item side-item-category">Main</li>
-								<li class="slide">
-								<a class="side-menu__item" data-bs-toggle="slide" href="dashboard.php"><i class="si si-event" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Dashboard</span></a>
-									
-									</li>
-								
-								<li class="side-item side-item-category">Credentials</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-users" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Employee</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Employee</a></li>
-										<li><a class="slide-item" href="createemployee.php">Create</a></li>
-										<li><a class="slide-item" href="manageemployee.php">Manage</a></li>
-										<li><a class="slide-item" href="employeelogs.php">Logs</a></li>
-										<li><a class="slide-item" href="employeelist.php">List</a></li>
-										
-									</ul>
-								</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-user-plus" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Trainer</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Trainer</a></li>
-										<li><a class="slide-item" href="createtrainer.php">Create</a></li>
-										<li><a class="slide-item" href="trainersignup.php">Registrations</a></li>
-										<li><a class="slide-item" href="pendingtrainer.php">Pending</a></li>
-										<li><a class="slide-item" href="managetrainer.php">Manage</a></li>
-										<li><a class="slide-item" href="trainerlogs.php">Logs</a></li>
-										<li><a class="slide-item" href="trainerlist.php">List</a></li>
-										
-									</ul>
-								</li>
-								
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-badge" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Students</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Students</a></li>
-										<li><a class="slide-item" href="createstudent.php">Create</a></li>
-										<li><a class="slide-item" href="candidatesignup.php">Registrations</a></li>
-										<li><a class="slide-item" href="pendingstudent.php">Pending</a></li>
-										<li><a class="slide-item" href="managestudent.php">Manage</a></li>
-										<li><a class="slide-item" href="studentlist.php">List</a></li>
-										
-									</ul>
-								</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-graduation" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">College</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">College</a></li>
-										<li><a class="slide-item" href="createcollege.php">Create</a></li>
-										<li><a class="slide-item" href="collegesignup.php">Registrations</a></li>
-										<li><a class="slide-item" href="pendingcollege.php">Pending</a></li>
-										<li><a class="slide-item" href="managecollege.php">Manage</a></li>
-										<li><a class="slide-item" href="collegelist.php">List</a></li>
-										
-									</ul>
-								</li>
-																<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-puzzle" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">College mentor</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">College-Mentor</a></li>
-										<li><a class="slide-item" href="creatementor.php">Create</a></li>
-
-										<li><a class="slide-item" href="managementor.php">Manage</a></li>
-										<li><a class="slide-item" href="mentorlist.php">List</a></li>
-										
-									</ul>
-								</li>
-								
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-briefcase" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Company</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Company</a></li>
-										<li><a class="slide-item" href="createcompany.php">Create</a></li>
-										<li><a class="slide-item" href="companysignup.php">Registrations</a></li>
-										<li><a class="slide-item" href="pendingcompany.php">Pending</a></li>
-										<li><a class="slide-item" href="managecompany.php">Manage</a></li>
-										<li><a class="slide-item" href="companylist.php">List</a></li>
-										
-									</ul>
-								</li>
-								
-								<li class="side-item side-item-category">General</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-notebook" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Streams</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Streams</a></li>
-										<li><a class="slide-item" href="addstreams.php">Add</a></li>
-										<li><a class="slide-item" href="managestreams.php">Manage</a></li>
-										
-									</ul>
-								</li>
-																<!--<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-notebook" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">addon1</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">addon1</a></li>
-										<li><a class="slide-item" href="addon1.php">add</a></li>
-										<li><a class="slide-item" href="pendingaddon1.php">Pending</a></li>
-										<li><a class="slide-item" href="manageaddon1.php">Manage</a></li>
-										<li><a class="slide-item" href="Listaddon1.php">List</a></li>
-										
-									</ul>
-								</li>
-																								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-notebook" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">addon2</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">addon2</a></li>
-										<li><a class="slide-item" href="addon2.php">add</a></li>
-										<li><a class="slide-item" href="pendingaddon2.php">Pending</a></li>
-										<li><a class="slide-item" href="manageaddon2.php">Manage</a></li>
-										<li><a class="slide-item" href="Listaddon2.php">List</a></li>
-										
-									</ul>
-								</li>
-																								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-notebook" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">addon3</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">addon3</a></li>
-										<li><a class="slide-item" href="addon3.php">add</a></li>
-										<li><a class="slide-item" href="pendingaddon3.php">Pending</a></li>
-										<li><a class="slide-item" href="manageaddon3.php">Manage</a></li>
-										<li><a class="slide-item" href="Listaddon3.php">List</a></li>
-										
-									</ul>
-								</li>
-																								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-notebook" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">addon4</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">addon4</a></li>
-										<li><a class="slide-item" href="addon4.php">add</a></li>
-										<li><a class="slide-item" href="pendingaddon4.php">Pending</a></li>
-										<li><a class="slide-item" href="manageaddon4.php">Manage</a></li>
-										<li><a class="slide-item" href="Listaddon4.php">List</a></li>
-										
-									</ul>
-								</li>
-																								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-notebook" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">addon5</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">addon5</a></li>
-										<li><a class="slide-item" href="addon5.php">add</a></li>
-										<li><a class="slide-item" href="pendingaddon5.php">Pending</a></li>
-										<li><a class="slide-item" href="manageaddon5.php">Manage</a></li>
-										<li><a class="slide-item" href="Listaddon5.php">List</a></li>
-										
-									</ul>
-								</li>-->
-								
-								
-
-								<li class="side-item side-item-category">Courses</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-book-open" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Create</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Create</a></li>
-										<li><a class="slide-item" href="createcourse.php">Create</a></li>
-										<li><a class="slide-item" href="managecourse.php">Manage</a></li>
-																				<li><a class="slide-item" href="courselist.php">List</a></li>
-										
-									</ul>
-								</li>
-								
-																<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-list" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Registrations</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Registrations</a></li>
-										<li><a class="slide-item" href="courseregistrations.php">Add</a></li>
-										<li><a class="slide-item" href="pendingcourseregistrations.php">Pending</a></li>
-										<li><a class="slide-item" href="managecourseregistrations.php">Manage</a></li>
-										<li><a class="slide-item" href="courseregistrationslist.php">List</a></li>
-								<!--<li><a class="slide-item" href="courseregistrationanalysis.php">Analysis</a></li>-->
-										
-									</ul>
-								</li>
-								
-								
-								<li class="slide">
-								<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-organization" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Allocation</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Allocation</a></li>
-										<li class="sub-slide">
-											<a class="slide-item" data-bs-toggle="sub-slide" href="javascript:void(0);"><span class="sub-side-menu__label">Trainers</span><i class="sub-angle fe fe-chevron-right"></i></a>
-											<ul class="sub-slide-menu">
-												<li><a class="sub-side-menu__item" href="trainerallocation.php">Allocate</a></li>
-												<li><a class="sub-side-menu__item" href="managetrainerallocation.php">Manage</a></li>
-												<li><a class="sub-side-menu__item" href="allocationtrainerlist.php">List</a></li>
-
-											</ul>
-										</li>
-																				<li class="sub-slide">
-											<a class="slide-item" data-bs-toggle="sub-slide" href="javascript:void(0);"><span class="sub-side-menu__label">Students</span><i class="sub-angle fe fe-chevron-right"></i></a>
-											<ul class="sub-slide-menu">
-												<li><a class="sub-side-menu__item" href="studentallocation.php">Allocate</a></li>
-												<li><a class="sub-side-menu__item" href="managestudentallocation.php">Manage</a></li>
-												<li><a class="sub-side-menu__item" href="allocationstudentlist.php">List</a></li>
-
-											</ul>
-										</li>
-									
-									</ul>
-								</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-layers" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Student Batch</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Batching</a></li>
-										<li><a class="slide-item" href="createbatch.php">Create</a></li>
-										
-										<li><a class="slide-item" href="managebatch.php">Manage</a></li>
-										<li><a class="slide-item" href="batchlist.php">List</a></li>
-										
-									</ul>
-								</li>
-
-									<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-trending-up" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Suggestions</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Suggestions</a></li>
-										<li><a class="slide-item" href="addsuggestions.php">Add</a></li>
-										<li><a class="slide-item" href="managesuggestions.php">Manage</a></li>
-										<li><a class="slide-item" href="suggestionslist.php">List</a></li>
-										
-									</ul>
-								</li>
-																	<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-notebook" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Referal Code</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Referal Code</a></li>
-										<li><a class="slide-item" href="addreferalcode.php">Add</a></li>
-										<li><a class="slide-item" href="managereferalcode.php">Manage</a></li>
-										<li><a class="slide-item" href="referalcodelist.php">List</a></li>
-								<!-- <li><a class="slide-item" href="referalcodeanalysis.php">Analysis</a></li> -->
-										
-									</ul>
-								</li>
-								
-																									<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-briefcase" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Payments</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="addpayments.php">Add</a></li>
-										<li class="side-menu__label1"><a href="pendingpayments.php">Pending</a></li>
-										<li><a class="slide-item" href="managepayments.php">Manage</a></li>
-										<li><a class="slide-item" href="paymentslist.php">List</a></li>
-									<!--	<li><a class="slide-item" href="paymentanalysis.php">Analysis</a></li> -->
-
-										
-									</ul>
-								</li>
-								
-																<li class="slide">
-						<!--		<a class="side-menu__item" data-bs-toggle="slide" href="intrests.php"><i class="fe fe-thumbs-up" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Interests</span></a>-->
-									
-									</li>
-									
-									
-								
-								<li class="side-item side-item-category">Internship</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-feather" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Companies</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Companies</a></li>
-										<li><a class="slide-item" href="pendingcompanyinternship.php">Pending</a></li>
-										
-										<li><a class="slide-item" href="managecompanyinternship.php">Manage</a></li>
-										<li><a class="slide-item" href="internshipcompanylist.php">List</a></li>
-										
-									</ul>
-								</li>
-								
-																<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-plus" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Create</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Create</a></li>
-										<li><a class="slide-item" href="addinternship.php">Add</a></li>
-										<li><a class="slide-item" href="manageinternship.php">Manage</a></li>
-										<li><a class="slide-item" href="internshiplist.php">List</a></li>
-
-										
-									</ul>
-								</li>
-								
-																								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-menu" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Registrations</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Registrations</a></li>
-										<li><a class="slide-item" href="internshipregistrations.php">Add</a></li>
-											<li><a class="slide-item" href="pendinginternshipregistrations.php">Pending</a></li>
-										<li><a class="slide-item" href="manageinternshipregistrations.php">Manage</a></li>
-										<li><a class="slide-item" href="internshipregistrationlist.php">List</a></li>
-								<!--		<li><a class="slide-item" href="internshipregistrationsanalysis.php">Analysis</a></li> -->
-										
-									</ul>
-								</li>
-								
-								<li class="side-item side-item-category">Placements</li>
-	                               	<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-feather" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Companies</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Companies</a></li>
-										<li><a class="slide-item" href="pendingcompanyplacements.php">Pending</a></li>
-										
-										<li><a class="slide-item" href="managecompanyplacements.php">Manage</a></li>
-										<li><a class="slide-item" href="placementcompanylist.php">List</a></li>
-										
-									</ul>
-								</li>
-								
-																<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-file-text" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Create</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Create</a></li>
-										<li><a class="slide-item" href="addplacements.php">Add</a></li>
-										<li><a class="slide-item" href="pendingplacements.php">Pending</a></li>
-										<li><a class="slide-item" href="manageplacements.php">Manage</a></li>
-										<li><a class="slide-item" href="placementslist.php">List</a></li>
-
-										
-									</ul>
-								</li>
-								
-																								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-menu" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Registrations</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Registrations</a></li>
-										<li><a class="slide-item" href="placementsregistrations.php">Add</a></li>
-												<li><a class="slide-item" href="pendingplacementsregistrations.php">Pending</a></li>
-										<li><a class="slide-item" href="manageplacementsregistrations.php">Manage</a></li>
-										<li><a class="slide-item" href="placementsregistrationlist.php">List</a></li>
-									<!--	<li><a class="slide-item" href="placementsregistrationsanalysis.php">Analysis</a></li> -->
-										
-									</ul>
-								</li>
-								
-								<li class="side-item side-item-category">Internship management</li>
-
-																<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-layout" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Schedule</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Schedule</a></li>
-										<li><a class="slide-item" href="createschedule.php">Create</a></li>
-										<li><a class="slide-item" href="pendingschedule.php">Pending</a></li>
-										
-										<li><a class="slide-item" href="manageschedule.php">Manage</a></li>
-										<li><a class="slide-item" href="schedulelist.php">List</a></li>
-								
-										
-									</ul>
-								</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-video" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Meetings</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Meetings</a></li>
-										<li><a class="slide-item" href="createmeetings.php">Create</a></li>
-										<li><a class="slide-item" href="managemeetings.php">Manage</a></li>
-										<li><a class="slide-item" href="meetingslist.php">List</a></li>
-									</ul>
-								</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-edit" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Summary</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Summary</a></li>
-										<li><a class="slide-item" href="createsummary.php">Create</a></li>
-										<li><a class="slide-item" href="managesummary.php">Manage</a></li>
-										<li><a class="slide-item" href="summarylist.php">List</a></li>
-									</ul>
-								</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-stop-circle" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Recordings</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Recordings</a></li>
-										<li><a class="slide-item" href="createrecordings.php">Upload</a></li>
-										<li><a class="slide-item" href="managerecordings.php">Manage</a></li>
-										<li><a class="slide-item" href="recordingslist.php">List</a></li>
-									</ul>
-								</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-mail" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Chat</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Chats</a></li>
-										<li><a class="slide-item" href="compose.php">Compose</a></li>
-										<li><a class="slide-item" href="inbox.php">Inbox</a></li>
-										<li><a class="slide-item" href="outbox.php">Outbox</a></li>
-										<li><a class="slide-item" href="maillist.php">List</a></li>
-								<!--		<li><a class="slide-item" href="mailanalysis.php">Analysis</a></li> -->
-									</ul>
-								</li>
-								
-
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-clipboard" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Tasks</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Tasks</a></li>
-										<li><a class="slide-item" href="addtask.php">Add</a></li>
-										<li><a class="slide-item" href="managetask.php">Manage</a></li>
-										<li><a class="slide-item" href="tasklist.php">List</a></li>
-									</ul>
-								</li>	
-                                <li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-upload" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Documentations</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Documentations</a></li>
-										<li><a class="slide-item" href="uploaddocumentation.php">Upload</a></li>
-										<li><a class="slide-item" href="managedocumentation.php">Manage</a></li>
-										<li><a class="slide-item" href="documentationlist.php">List</a></li>
-									</ul>
-								</li>
-                                <li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-badge" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Certifications</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Certifications</a></li>
-										<li><a class="slide-item" href="certificationupload.php">Upload</a></li>
-										<li><a class="slide-item" href="certificationmanage.php">Manage</a></li>
-										<li><a class="slide-item" href="certificationlist.php">List</a></li>
-									</ul>
-								</li>
-								
-								<li class="side-item side-item-category">Settings</li>
-															<!--	<li class="slide">
-								<a class="side-menu__item" data-bs-toggle="slide" href="profile.php"><i class="fe fe-user" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Profile</span></a>
-									
-									</li> -->
-									
-									<li class="slide">
-								<a class="side-menu__item" data-bs-toggle="slide" href="changepassword.php"><i class="fe fe-lock" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Change Password</span></a>
-									
-									</li>
-								<li class="slide">
-								<a class="side-menu__item" data-bs-toggle="slide" href="../../"><i class="fe fe-log-out" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Logout</span></a>
-									
-									</li>
-								
-
-								
-							</ul>
-														<div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"/></svg></div>
-						</div>
-					</aside>
+								<?php include('./partials/sidebar.php')?>
 				</div>
 				<!-- main-sidebar -->
 
@@ -1012,7 +506,7 @@
                                                                                                 <option value="SRI VENKATESHWARA DEGREE COLLEGE " >SRI VENKATESHWARA DEGREE COLLEGE </option>
                                                                                                 <option value="CNR Arts & Science College- Annamayya" >CNR Arts & Science College- Annamayya</option>
                                                                                                 <option value="MVN JS & RVR College of Arts and Science" >MVN JS & RVR College of Arts and Science</option>
-                                                                                                <option value="Jyothirmayee women’s degree college" >Jyothirmayee women’s degree college</option>
+                                                                                                <option value="Jyothirmayee womenï¿½s degree college" >Jyothirmayee womenï¿½s degree college</option>
                                                                                                 <option value="Sree Devi degree college " >Sree Devi degree college </option>
                                                                                                 <option value="Sri Balaji Vidya Vihar degree college" >Sri Balaji Vidya Vihar degree college</option>
                                                                                                 <option value="SPVM Degree College Gorantla" >SPVM Degree College Gorantla</option>
@@ -54053,7 +53547,7 @@
 					<td>TRALL_3204</td>
 
                     <td>TRSTU_4614</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Manasa</td>
 					<td>Ramu</td>
 
@@ -54104,7 +53598,7 @@
 					<td>TRALL_3207</td>
 
                     <td>TRSTU_4638</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Kuruba Bhavani</td>
 					<td>Ramu</td>
 
@@ -54325,7 +53819,7 @@
 					<td>TRALL_3224</td>
 
                     <td>TRSTU_4633</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Paladugu prasanthi </td>
 					<td>Ramu</td>
 
@@ -54427,7 +53921,7 @@
 					<td>TRALL_3230</td>
 
                     <td>TRSTU_4623</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>V Ramya </td>
 					<td>Ramu</td>
 
@@ -54478,7 +53972,7 @@
 					<td>TRALL_3235</td>
 
                     <td>TRSTU_4628</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Maalammagari AMRUTHAVANI </td>
 					<td>Ramu</td>
 
@@ -59323,7 +58817,7 @@
 					<td>TRALL_3554</td>
 
                     <td>TRSTU_4551</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Bollineni lakshmi</td>
 					<td>demotrainer</td>
 
@@ -59357,7 +58851,7 @@
 					<td>TRALL_3556</td>
 
                     <td>TRSTU_5058</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>D .Haritha</td>
 					<td>tirdhala ashok</td>
 
@@ -59374,7 +58868,7 @@
 					<td>TRALL_3557</td>
 
                     <td>TRSTU_5057</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Kamarthy pallavi </td>
 					<td>tirdhala ashok</td>
 
@@ -59544,7 +59038,7 @@
 					<td>TRALL_3568</td>
 
                     <td>TRSTU_5181</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Y G Bindu Sree </td>
 					<td>tirdhala ashok</td>
 
@@ -59578,7 +59072,7 @@
 					<td>TRALL_3570</td>
 
                     <td>TRSTU_5184</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Setturu. lavanya</td>
 					<td>tirdhala ashok</td>
 
@@ -59595,7 +59089,7 @@
 					<td>TRALL_3571</td>
 
                     <td>TRSTU_5182</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>C keerthi </td>
 					<td>tirdhala ashok</td>
 
@@ -59612,7 +59106,7 @@
 					<td>TRALL_3572</td>
 
                     <td>TRSTU_5187</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>G.Girija</td>
 					<td>tirdhala ashok</td>
 
@@ -59680,7 +59174,7 @@
 					<td>TRALL_3576</td>
 
                     <td>TRSTU_5194</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Talarinagarugari sravani</td>
 					<td>tirdhala ashok</td>
 
@@ -59697,7 +59191,7 @@
 					<td>TRALL_3577</td>
 
                     <td>TRSTU_5188</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>E.Nagalakshmi</td>
 					<td>tirdhala ashok</td>
 
@@ -59714,7 +59208,7 @@
 					<td>TRALL_3578</td>
 
                     <td>TRSTU_5175</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>G keerthana </td>
 					<td>tirdhala ashok</td>
 
@@ -59731,7 +59225,7 @@
 					<td>TRALL_3579</td>
 
                     <td>TRSTU_5203</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>B Sowjanya </td>
 					<td>tirdhala ashok</td>
 
@@ -59748,7 +59242,7 @@
 					<td>TRALL_3580</td>
 
                     <td>TRSTU_5185</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Medam Manasa</td>
 					<td>tirdhala ashok</td>
 
@@ -59782,7 +59276,7 @@
 					<td>TRALL_3583</td>
 
                     <td>TRSTU_5204</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>G.hindu</td>
 					<td>tirdhala ashok</td>
 
@@ -59799,7 +59293,7 @@
 					<td>TRALL_3584</td>
 
                     <td>TRSTU_5198</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Yerukula sravani </td>
 					<td>tirdhala ashok</td>
 
@@ -59816,7 +59310,7 @@
 					<td>TRALL_3585</td>
 
                     <td>TRSTU_5210</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Golla Gayathri</td>
 					<td>tirdhala ashok</td>
 
@@ -59833,7 +59327,7 @@
 					<td>TRALL_3586</td>
 
                     <td>TRSTU_5212</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>E.lakshmi</td>
 					<td>tirdhala ashok</td>
 
@@ -59850,7 +59344,7 @@
 					<td>TRALL_3587</td>
 
                     <td>TRSTU_5190</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>P.Bhavana</td>
 					<td>tirdhala ashok</td>
 
@@ -59901,7 +59395,7 @@
 					<td>TRALL_3590</td>
 
                     <td>TRSTU_5213</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>H K Nandini</td>
 					<td>tirdhala ashok</td>
 
@@ -60632,7 +60126,7 @@
 					<td>TRALL_3636</td>
 
                     <td>TRSTU_5293</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>P.punithaj</td>
 					<td>Ramu</td>
 
@@ -60768,7 +60262,7 @@
 					<td>TRALL_3644</td>
 
                     <td>TRSTU_5304</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>K Bhumika </td>
 					<td>tirdhala ashok</td>
 
@@ -60938,7 +60432,7 @@
 					<td>TRALL_3655</td>
 
                     <td>TRSTU_5289</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>G .Ankitha</td>
 					<td>tirdhala ashok</td>
 
@@ -60955,7 +60449,7 @@
 					<td>TRALL_3656</td>
 
                     <td>TRSTU_5292</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>C Mamatha </td>
 					<td>tirdhala ashok</td>
 
@@ -60972,7 +60466,7 @@
 					<td>TRALL_3657</td>
 
                     <td>TRSTU_5266</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>M Tejaswini</td>
 					<td>demotrainer</td>
 
@@ -60989,7 +60483,7 @@
 					<td>TRALL_3658</td>
 
                     <td>TRSTU_5266</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>M Tejaswini</td>
 					<td>demotrainer</td>
 
@@ -61006,7 +60500,7 @@
 					<td>TRALL_3659</td>
 
                     <td>TRSTU_5292</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>C Mamatha </td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61023,7 +60517,7 @@
 					<td>TRALL_3660</td>
 
                     <td>TRSTU_5210</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Golla Gayathri</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61040,7 +60534,7 @@
 					<td>TRALL_3661</td>
 
                     <td>TRSTU_5266</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>M Tejaswini</td>
 					<td>tirdhala ashok</td>
 
@@ -61108,7 +60602,7 @@
 					<td>TRALL_3668</td>
 
                     <td>TRSTU_5255</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Morepalli mythili</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61125,7 +60619,7 @@
 					<td>TRALL_3669</td>
 
                     <td>TRSTU_5280</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>T Deepthi</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61159,7 +60653,7 @@
 					<td>TRALL_3672</td>
 
                     <td>TRSTU_5280</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>T Deepthi</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61176,7 +60670,7 @@
 					<td>TRALL_3673</td>
 
                     <td>TRSTU_5262</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>M.sravani</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61210,7 +60704,7 @@
 					<td>TRALL_3675</td>
 
                     <td>TRSTU_5254</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>M.Neeraja Bai</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61227,7 +60721,7 @@
 					<td>TRALL_3676</td>
 
                     <td>TRSTU_5265</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>G. Snehalatha</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61261,7 +60755,7 @@
 					<td>TRALL_3678</td>
 
                     <td>TRSTU_5257</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>K.sandhya</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61278,7 +60772,7 @@
 					<td>TRALL_3679</td>
 
                     <td>TRSTU_5265</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>G. Snehalatha</td>
 					<td>demotrainer</td>
 
@@ -61295,7 +60789,7 @@
 					<td>TRALL_3680</td>
 
                     <td>TRSTU_5263</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>T.haritha</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61312,7 +60806,7 @@
 					<td>TRALL_3681</td>
 
                     <td>TRSTU_5263</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>T.haritha</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61465,7 +60959,7 @@
 					<td>TRALL_3690</td>
 
                     <td>TRSTU_5258</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>N vandana</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61499,7 +60993,7 @@
 					<td>TRALL_3692</td>
 
                     <td>TRSTU_5264</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>NALLACHENNAPPA GARI CHANDHANA</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61533,7 +61027,7 @@
 					<td>TRALL_3694</td>
 
                     <td>TRSTU_5329</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>s.Sreelatha</td>
 					<td>Ramu</td>
 
@@ -61550,7 +61044,7 @@
 					<td>TRALL_3695</td>
 
                     <td>TRSTU_5311</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Pujari gowri</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61686,7 +61180,7 @@
 					<td>TRALL_3703</td>
 
                     <td>TRSTU_5341</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Kanekal. Nasrin banu</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61737,7 +61231,7 @@
 					<td>TRALL_3706</td>
 
                     <td>TRSTU_5318</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Tulasi</td>
 					<td>demotrainer</td>
 
@@ -61805,7 +61299,7 @@
 					<td>TRALL_3710</td>
 
                     <td>TRSTU_5348</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Hanumappagari Bharathi </td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61822,7 +61316,7 @@
 					<td>TRALL_3711</td>
 
                     <td>TRSTU_5333</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>GOLLAPALLI POOJASREE </td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -61873,7 +61367,7 @@
 					<td>TRALL_3714</td>
 
                     <td>TRSTU_5336</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>H Malleswari </td>
 					<td>Kishore Kumar </td>
 
@@ -61941,7 +61435,7 @@
 					<td>TRALL_3718</td>
 
                     <td>TRSTU_5356</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>B.lavanya </td>
 					<td>Kishore Kumar </td>
 
@@ -61992,7 +61486,7 @@
 					<td>TRALL_3721</td>
 
                     <td>TRSTU_5363</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>G.sravani</td>
 					<td>Kishore Kumar </td>
 
@@ -62009,7 +61503,7 @@
 					<td>TRALL_3722</td>
 
                     <td>TRSTU_5364</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>P.Thriveni</td>
 					<td>Kishore Kumar </td>
 
@@ -62026,7 +61520,7 @@
 					<td>TRALL_3723</td>
 
                     <td>TRSTU_5365</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>B.Aswini</td>
 					<td>Kishore Kumar </td>
 
@@ -62060,7 +61554,7 @@
 					<td>TRALL_3725</td>
 
                     <td>TRSTU_5259</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>S.shahnaj</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -62162,7 +61656,7 @@
 					<td>TRALL_3732</td>
 
                     <td>TRSTU_4624</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Indu</td>
 					<td>Ramu</td>
 
@@ -62179,7 +61673,7 @@
 					<td>TRALL_3733</td>
 
                     <td>TRSTU_5347</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>P Poojitha </td>
 					<td>tirdhala ashok</td>
 
@@ -62366,7 +61860,7 @@
 					<td>TRALL_3744</td>
 
                     <td>TRSTU_5318</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Tulasi</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -62451,7 +61945,7 @@
 					<td>TRALL_3753</td>
 
                     <td>TRSTU_5382</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Kavali Aswini</td>
 					<td>Ramu</td>
 
@@ -62638,7 +62132,7 @@
 					<td>TRALL_3764</td>
 
                     <td>TRSTU_5313</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Vadde rajeswari</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -62757,7 +62251,7 @@
 					<td>TRALL_3771</td>
 
                     <td>TRSTU_5396</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Mala.Suchithra</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -62808,7 +62302,7 @@
 					<td>TRALL_3774</td>
 
                     <td>TRSTU_5388</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>M.poojitha</td>
 					<td>tirdhala ashok</td>
 
@@ -63131,7 +62625,7 @@
 					<td>TRALL_3818</td>
 
                     <td>TRSTU_5312</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>T.ramalakshmi</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -63352,7 +62846,7 @@
 					<td>TRALL_3837</td>
 
                     <td>TRSTU_5411</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>GollaLalitha </td>
 					<td>Kishore Kumar </td>
 
@@ -63726,7 +63220,7 @@
 					<td>TRALL_3867</td>
 
                     <td>TRSTU_5310</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Y.sruthi</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -63794,7 +63288,7 @@
 					<td>TRALL_3871</td>
 
                     <td>TRSTU_5312</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>T.ramalakshmi</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -63811,7 +63305,7 @@
 					<td>TRALL_3872</td>
 
                     <td>TRSTU_5285</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>R. Pavani</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -64168,7 +63662,7 @@
 					<td>TRALL_3898</td>
 
                     <td>TRSTU_5267</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>B.ADILAKSHMI</td>
 					<td>tirdhala ashok</td>
 
@@ -65001,7 +64495,7 @@
 					<td>TRALL_3955</td>
 
                     <td>TRSTU_4786</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>KUNIGIRIMANJULA</td>
 					<td>vijay kumar sampathi</td>
 
@@ -65052,7 +64546,7 @@
 					<td>TRALL_3958</td>
 
                     <td>TRSTU_5332</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Thriveni </td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -65069,7 +64563,7 @@
 					<td>TRALL_3959</td>
 
                     <td>TRSTU_5317</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>G.Lakshmi</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -65171,7 +64665,7 @@
 					<td>TRALL_3967</td>
 
                     <td>TRSTU_5332</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Thriveni </td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -65205,7 +64699,7 @@
 					<td>TRALL_3969</td>
 
                     <td>TRSTU_5001</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Padmavati</td>
 					<td>vijay kumar sampathi</td>
 
@@ -65222,7 +64716,7 @@
 					<td>TRALL_3970</td>
 
                     <td>TRSTU_5419</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>M Anjali </td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -65290,7 +64784,7 @@
 					<td>TRALL_3974</td>
 
                     <td>TRSTU_5322</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>A.Ajithamma</td>
 					<td>Tiruvidhula Naga Sai Priyanka</td>
 
@@ -65443,7 +64937,7 @@
 					<td>TRALL_3986</td>
 
                     <td>TRSTU_4806</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Pallavi poojari </td>
 					<td>vijay kumar sampathi</td>
 
@@ -65596,7 +65090,7 @@
 					<td>TRALL_3998</td>
 
                     <td>TRSTU_5544</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Y. Manjula</td>
 					<td>Kishore Kumar </td>
 
@@ -65664,7 +65158,7 @@
 					<td>TRALL_4002</td>
 
                     <td>TRSTU_5485</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>Harijana.aparna</td>
 					<td>Kishore Kumar </td>
 
@@ -66412,7 +65906,7 @@
 					<td>TRALL_4047</td>
 
                     <td>TRSTU_5618</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>KM Pavithra </td>
 					<td>Kishore Kumar </td>
 
@@ -67296,7 +66790,7 @@
 					<td>TRALL_4106</td>
 
                     <td>TRSTU_5649</td>
-                    <td>Jyothirmayee women’s degree college</td>
+                    <td>Jyothirmayee womenï¿½s degree college</td>
                     <td>K.Lavanya</td>
 					<td>vijay kumar sampathi</td>
 
