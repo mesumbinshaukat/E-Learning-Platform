@@ -20,88 +20,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="Description" content="">
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!-- Data table css -->
-	<link href="assets/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
-	<link href="assets/plugins/datatable/css/buttons.bootstrap5.min.css" rel="stylesheet">
-	<link href="assets/plugins/datatable/responsive.bootstrap5.css" rel="stylesheet" />
-
-	<!-- INTERNAL Select2 css -->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!--- Internal Select2 css-->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet">
-
-	<!---Internal Fileupload css-->
-	<link href="assets/plugins/fileuploads/css/fileupload.css" rel="stylesheet" type="text/css" />
-
-	<!---Internal Fancy uploader css-->
-	<link href="assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
-
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
+	<?php include("./style.php"); ?>
 
 </head>
 
@@ -510,7 +429,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 								<option value="Saieshwari Gogu">Saieshwari Gogu</option>
 								<option value="tirdhala ashok">tirdhala ashok</option>
 								<option value="G Venkatesh">G Venkatesh</option>
-								<option value="Mekanaboyina Venkata murali Krishna">Mekanaboyina Venkata murali Krishna</option>
+								<option value="Mekanaboyina Venkata murali Krishna">Mekanaboyina Venkata murali Krishna
+								</option>
 								<option value="Ramu">Ramu</option>
 								<option value="Madanu Augustin">Madanu Augustin</option>
 								<option value="Akhila V">Akhila V</option>
@@ -1240,7 +1160,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Accept</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -1258,7 +1179,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Reject</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -1276,7 +1198,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Unblock</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -1299,7 +1222,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<!-- Footer opened -->
 	<div class="main-footer">
 		<div class="container-fluid pd-t-0-f ht-100p">
-			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
+			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
+			reserved
 		</div>
 	</div>
 	<!-- Footer closed -->
@@ -1311,236 +1235,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<!-- BACK-TO-TOP -->
 	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
-	<!-- JQUERY JS -->
-	<script src="assets/plugins/jquery/jquery.min.js"></script>
-
-	<!-- BOOTSTRAP JS -->
-	<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- IONICONS JS -->
-	<script src="assets/plugins/ionicons/ionicons.js"></script>
-
-	<!-- MOMENT JS -->
-	<script src="assets/plugins/moment/moment.js"></script>
-
-	<!-- P-SCROLL JS -->
-	<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-	<!-- SIDEBAR JS -->
-	<script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-	<!-- STICKY JS -->
-	<script src="assets/js/sticky.js"></script>
-
-	<!-- Chart-circle js -->
-	<script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-	<!-- RIGHT-SIDEBAR JS -->
-	<script src="assets/plugins/sidebar/sidebar.js"></script>
-	<script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-	<!-- Internal Data tables -->
-	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-	<script src="assets/plugins/datatable/js/jszip.min.js"></script>
-	<script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-	<script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-	<script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-	<script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-	<script src="assets/js/table-data.js"></script>
-
-	<!-- INTERNAL Select2 js -->
-	<script src="assets/plugins/select2/js/select2.full.min.js"></script>
-
-
-	<!-- EVA-ICONS JS -->
-	<script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-	<!-- THEME-COLOR JS -->
-	<script src="assets/js/themecolor.js"></script>
-
-	<!-- CUSTOM JS -->
-	<script src="assets/js/custom.js"></script>
-
-	<!-- exported JS -->
-	<script src="assets/js/exported.js"></script>
-
-	<!-- SWITCHER JS -->
-	<script src="assets/switcher/js/switcher.js"></script>
-
+	<?php include("./scripts.php"); ?>
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
-
-</html>                <div class="modal fade" id="accept">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to accept a student??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Accept</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="reject">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to reject a student??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Reject</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="Unblock">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to Unblock a employee??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Unblock</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
-    </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
-
-    <!-- Sidebar-right-->
-
-
-
-
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span
-                class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
-            reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <!-- JQUERY JS -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-
-    <!-- BOOTSTRAP JS -->
-    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- IONICONS JS -->
-    <script src="assets/plugins/ionicons/ionicons.js"></script>
-
-    <!-- MOMENT JS -->
-    <script src="assets/plugins/moment/moment.js"></script>
-
-    <!-- P-SCROLL JS -->
-    <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-    <!-- SIDEBAR JS -->
-    <script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-    <!-- STICKY JS -->
-    <script src="assets/js/sticky.js"></script>
-
-    <!-- Chart-circle js -->
-    <script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-    <!-- RIGHT-SIDEBAR JS -->
-    <script src="assets/plugins/sidebar/sidebar.js"></script>
-    <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-    <!-- Internal Data tables -->
-    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-    <script src="assets/plugins/datatable/js/jszip.min.js"></script>
-    <script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-    <script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-    <script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-    <script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-    <script src="assets/js/table-data.js"></script>
-
-    <!-- INTERNAL Select2 js -->
-    <script src="assets/plugins/select2/js/select2.full.min.js"></script>
-
-
-    <!-- EVA-ICONS JS -->
-    <script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-    <!-- THEME-COLOR JS -->
-    <script src="assets/js/themecolor.js"></script>
-
-    <!-- CUSTOM JS -->
-    <script src="assets/js/custom.js"></script>
-
-    <!-- exported JS -->
-    <script src="assets/js/exported.js"></script>
-
-    <!-- SWITCHER JS -->
-    <script src="assets/switcher/js/switcher.js"></script>
-
-</body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
 
 </html>

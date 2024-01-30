@@ -69,7 +69,8 @@
                         <!--<a class="dropdown-item" href="profile.html"><i class="far fa-user-circle"></i>Profile</a> -->
 
                         <a class="dropdown-item" href="changepassword.php"><i class="far fa-sun"></i>Change Password</a>
-                        <a class="dropdown-item" href="../../"><i class="far fa-arrow-alt-circle-left"></i> Logout</a>
+                        <a class="dropdown-item" href="partials/logout.php"><i class="far fa-arrow-alt-circle-left"></i>
+                            Logout</a>
                     </div>
                 </li>
             </ul>

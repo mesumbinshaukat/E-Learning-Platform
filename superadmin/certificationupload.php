@@ -19,88 +19,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="Description" content="">
 
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!-- Data table css -->
-	<link href="assets/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
-	<link href="assets/plugins/datatable/css/buttons.bootstrap5.min.css" rel="stylesheet">
-	<link href="assets/plugins/datatable/responsive.bootstrap5.css" rel="stylesheet" />
-
-	<!-- INTERNAL Select2 css -->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!--- Internal Select2 css-->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet">
-
-	<!---Internal Fileupload css-->
-	<link href="assets/plugins/fileuploads/css/fileupload.css" rel="stylesheet" type="text/css" />
-
-	<!---Internal Fancy uploader css-->
-	<link href="assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
-
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
+	<?php include("./style.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -449,12 +368,14 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 				<div class="breadcrumb-header justify-content-between">
 					<div class="right-content">
-						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Certification Upload</span>
+						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Certification
+							Upload</span>
 					</div>
 
 					<div class="justify-content-center mt-2">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">internship management</a></li>
+							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">internship management</a>
+							</li>
 							<li class="breadcrumb-item ">Certification</li>
 							<li class="breadcrumb-item ">Upload</li>
 						</ol>
@@ -485,7 +406,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 								<option value="Saieshwari Gogu">Saieshwari Gogu</option>
 								<option value="tirdhala ashok">tirdhala ashok</option>
 								<option value="G Venkatesh">G Venkatesh</option>
-								<option value="Mekanaboyina Venkata murali Krishna">Mekanaboyina Venkata murali Krishna</option>
+								<option value="Mekanaboyina Venkata murali Krishna">Mekanaboyina Venkata murali Krishna
+								</option>
 								<option value="Ramu">Ramu</option>
 								<option value="Madanu Augustin">Madanu Augustin</option>
 								<option value="Akhila V">Akhila V</option>
@@ -553,7 +475,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>Tiruvidhula Naga Sai Priyanka</td>
 												<td>JAVA</td>
 												<td>Java Fullstack Batch 1 2M & 6M</td>
-												<td><a href="studentcertificate.php?id=40" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=40" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>2</td>
@@ -561,7 +484,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>Srinivas Yerrravelli </td>
 												<td>Digital Marketing</td>
 												<td>Digital Marketing Batch 2 2M</td>
-												<td><a href="studentcertificate.php?id=41" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=41" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>3</td>
@@ -569,7 +493,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>V Bala Tripura Sunadri</td>
 												<td>JAVA</td>
 												<td>Java Batch 2 2M</td>
-												<td><a href="studentcertificate.php?id=42" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=42" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>4</td>
@@ -577,7 +502,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>tirdhala ashok</td>
 												<td>Web Technologies</td>
 												<td>Web Technologies Batch 2 2M</td>
-												<td><a href="studentcertificate.php?id=45" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=45" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>5</td>
@@ -585,7 +511,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>tirdhala ashok</td>
 												<td>Web Technologies</td>
 												<td>Web Technologies Batch 3 2M</td>
-												<td><a href="studentcertificate.php?id=47" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=47" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>6</td>
@@ -593,7 +520,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>Madhu Varshini</td>
 												<td>Human resource management</td>
 												<td>Human Resource Management Batch 2 2M</td>
-												<td><a href="studentcertificate.php?id=48" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=48" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>7</td>
@@ -601,7 +529,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>Srinivas Yerrravelli</td>
 												<td>Digital Marketing</td>
 												<td>Digital Marketinig Batch 3 2M</td>
-												<td><a href="studentcertificate.php?id=50" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=50" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>8</td>
@@ -609,7 +538,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>Shanti Kiran</td>
 												<td>Python</td>
 												<td>Python Batch 1 Shanti 2M</td>
-												<td><a href="studentcertificate.php?id=51" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=51" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>9</td>
@@ -617,7 +547,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>K Bharath Kumar</td>
 												<td>Tally GST</td>
 												<td>Tally + GST Batch 1 2M</td>
-												<td><a href="studentcertificate.php?id=52" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=52" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>10</td>
@@ -625,7 +556,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>V Bala Tripura Sunadri</td>
 												<td>JAVA</td>
 												<td>Java Batch 4 2M</td>
-												<td><a href="studentcertificate.php?id=54" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=54" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>11</td>
@@ -633,7 +565,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>Ramu</td>
 												<td>Medical Coding</td>
 												<td>Medical Coding Batch 4 2M</td>
-												<td><a href="studentcertificate.php?id=55" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=55" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>12</td>
@@ -641,7 +574,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>tirdhala ashok</td>
 												<td>Web Technologies</td>
 												<td>Web Technologies Batch 4 2M</td>
-												<td><a href="studentcertificate.php?id=56" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=56" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>13</td>
@@ -649,7 +583,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>demotrainer</td>
 												<td>Voice process</td>
 												<td>Demo Batch For Trash </td>
-												<td><a href="studentcertificate.php?id=57" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=57" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>14</td>
@@ -657,7 +592,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>M Sandeep Kumar</td>
 												<td>Digital Marketing</td>
 												<td>Digital Marketing Batch 1 6M</td>
-												<td><a href="studentcertificate.php?id=59" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=59" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>15</td>
@@ -665,7 +601,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>V Bala Tripura Sunadri </td>
 												<td>Python</td>
 												<td>Python Batch 1 2M</td>
-												<td><a href="studentcertificate.php?id=60" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=60" class="btn btn-info">view</a>
+												</td>
 											</tr>
 											<tr>
 												<td>16</td>
@@ -673,7 +610,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>Kishore Kumar </td>
 												<td>Human resource management</td>
 												<td>Human Resources Management Batch 1 6M</td>
-												<td><a href="studentcertificate.php?id=61" class="btn btn-info">view</a></td>
+												<td><a href="studentcertificate.php?id=61" class="btn btn-info">view</a>
+												</td>
 											</tr>
 
 
@@ -702,7 +640,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Accept</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -720,7 +659,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Reject</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -738,7 +678,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Unblock</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -761,7 +702,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<!-- Footer opened -->
 	<div class="main-footer">
 		<div class="container-fluid pd-t-0-f ht-100p">
-			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
+			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
+			reserved
 		</div>
 	</div>
 	<!-- Footer closed -->
@@ -773,158 +715,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<!-- BACK-TO-TOP -->
 	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
-	<!-- JQUERY JS -->
-	<script src="assets/plugins/jquery/jquery.min.js"></script>
-
-	<!-- BOOTSTRAP JS -->
-	<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- IONICONS JS -->
-	<script src="assets/plugins/ionicons/ionicons.js"></script>
-
-	<!-- MOMENT JS -->
-	<script src="assets/plugins/moment/moment.js"></script>
-
-	<!-- P-SCROLL JS -->
-	<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-	<!-- SIDEBAR JS -->
-	<script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-	<!-- STICKY JS -->
-	<script src="assets/js/sticky.js"></script>
-
-	<!-- Chart-circle js -->
-	<script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-	<!-- RIGHT-SIDEBAR JS -->
-	<script src="assets/plugins/sidebar/sidebar.js"></script>
-	<script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-	<!-- Internal Data tables -->
-	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-	<script src="assets/plugins/datatable/js/jszip.min.js"></script>
-	<script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-	<script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-	<script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-	<script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-	<script src="assets/js/table-data.js"></script>
-
-	<!-- INTERNAL Select2 js -->
-	<script src="assets/plugins/select2/js/select2.full.min.js"></script>
-
-
-	<!-- EVA-ICONS JS -->
-	<script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-	<!-- THEME-COLOR JS -->
-	<script src="assets/js/themecolor.js"></script>
-
-	<!-- CUSTOM JS -->
-	<script src="assets/js/custom.js"></script>
-
-	<!-- exported JS -->
-	<script src="assets/js/exported.js"></script>
-
-	<!-- SWITCHER JS -->
-	<script src="assets/switcher/js/switcher.js"></script>
+	<?php include("./scripts.php"); ?>
 
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
-
-</html>    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span
-                class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
-            reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <!-- JQUERY JS -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-
-    <!-- BOOTSTRAP JS -->
-    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- IONICONS JS -->
-    <script src="assets/plugins/ionicons/ionicons.js"></script>
-
-    <!-- MOMENT JS -->
-    <script src="assets/plugins/moment/moment.js"></script>
-
-    <!-- P-SCROLL JS -->
-    <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-    <!-- SIDEBAR JS -->
-    <script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-    <!-- STICKY JS -->
-    <script src="assets/js/sticky.js"></script>
-
-    <!-- Chart-circle js -->
-    <script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-    <!-- RIGHT-SIDEBAR JS -->
-    <script src="assets/plugins/sidebar/sidebar.js"></script>
-    <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-    <!-- Internal Data tables -->
-    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-    <script src="assets/plugins/datatable/js/jszip.min.js"></script>
-    <script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-    <script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-    <script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-    <script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-    <script src="assets/js/table-data.js"></script>
-
-    <!-- INTERNAL Select2 js -->
-    <script src="assets/plugins/select2/js/select2.full.min.js"></script>
-
-
-    <!-- EVA-ICONS JS -->
-    <script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-    <!-- THEME-COLOR JS -->
-    <script src="assets/js/themecolor.js"></script>
-
-    <!-- CUSTOM JS -->
-    <script src="assets/js/custom.js"></script>
-
-    <!-- exported JS -->
-    <script src="assets/js/exported.js"></script>
-
-    <!-- SWITCHER JS -->
-    <script src="assets/switcher/js/switcher.js"></script>
-
-</body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
 
 </html>

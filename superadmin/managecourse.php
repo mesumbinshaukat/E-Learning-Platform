@@ -20,89 +20,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="Description" content="">
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!-- Data table css -->
-	<link href="assets/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
-	<link href="assets/plugins/datatable/css/buttons.bootstrap5.min.css" rel="stylesheet">
-	<link href="assets/plugins/datatable/responsive.bootstrap5.css" rel="stylesheet" />
-
-	<!-- INTERNAL Select2 css -->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!--- Internal Select2 css-->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet">
-
-	<!---Internal Fileupload css-->
-	<link href="assets/plugins/fileuploads/css/fileupload.css" rel="stylesheet" type="text/css" />
-
-	<!---Internal Fancy uploader css-->
-	<link href="assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
-
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
+	<?php include("./style.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -1123,7 +1041,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Delete</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -1149,7 +1068,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<!-- Footer opened -->
 	<div class="main-footer">
 		<div class="container-fluid pd-t-0-f ht-100p">
-			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
+			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
+			reserved
 		</div>
 	</div>
 	<!-- Footer closed -->
@@ -1161,251 +1081,151 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<!-- BACK-TO-TOP -->
 	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
-	<!-- JQUERY JS -->
-	<script src="assets/plugins/jquery/jquery.min.js"></script>
-
-	<!-- BOOTSTRAP JS -->
-	<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- IONICONS JS -->
-	<script src="assets/plugins/ionicons/ionicons.js"></script>
-
-	<!-- MOMENT JS -->
-	<script src="assets/plugins/moment/moment.js"></script>
-
-	<!-- P-SCROLL JS -->
-	<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-	<!-- SIDEBAR JS -->
-	<script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-	<!-- STICKY JS -->
-	<script src="assets/js/sticky.js"></script>
-
-	<!-- Chart-circle js -->
-	<script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-	<!-- RIGHT-SIDEBAR JS -->
-	<script src="assets/plugins/sidebar/sidebar.js"></script>
-	<script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-	<!-- Internal Data tables -->
-	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-	<script src="assets/plugins/datatable/js/jszip.min.js"></script>
-	<script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-	<script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-	<script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-	<script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-	<script src="assets/js/table-data.js"></script>
-
-	<!-- INTERNAL Select2 js -->
-	<script src="assets/plugins/select2/js/select2.full.min.js"></script>
-
-
-	<!-- EVA-ICONS JS -->
-	<script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-	<!-- THEME-COLOR JS -->
-	<script src="assets/js/themecolor.js"></script>
-
-	<!-- CUSTOM JS -->
-	<script src="assets/js/custom.js"></script>
-
-	<!-- exported JS -->
-	<script src="assets/js/exported.js"></script>
-
-	<!-- SWITCHER JS -->
-	<script src="assets/switcher/js/switcher.js"></script>
-
+	<?php include("./scripts.php"); ?>
 </body>
 
 <!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
 
-</html>
-
-                                            </tr>
-
-                                            <tr>
+</html> class="dropdown-item">Resume</a>
+<a href="connection_files/manage/course_create_manage.php?id=34&delete=delete" class="dropdown-item">Delete</a>
 
 
-                                                <td>18</td>
-                                                <td>2023-08-09 16:02:47</td>
-                                                <td>TRCR_39</td>
-                                                <td>AI & ML</td>
-                                                <td>2700</td>
-                                                <td>60</td>
+</div><!-- dropdown-menu -->
+</div>
+</td>
 
 
-                                                <td>
-                                                    <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
-                                                        <button type="button" class="btn btn-info dropdown-toggle"
-                                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <i class="fe fe-more-horizontal"></i>
-                                                        </button>
+</tr>
 
-                                                        <div class="dropdown-menu">
-                                                            <a href="viewcourse.php?id=39"
-                                                                class="dropdown-item">view</a>
-                                                            <a href="updatecourse.php?id=39"
-                                                                class="dropdown-item">update</a>
-                                                            <a href="connection_files/manage/course_create_manage.php?id=39&pause=pause"
-                                                                class="dropdown-item">Pause</a>
-                                                            <a href="connection_files/manage/course_create_manage.php?id=39&resume=resume"
-                                                                class="dropdown-item">Resume</a>
-                                                            <a href="connection_files/manage/course_create_manage.php?id=39&delete=delete"
-                                                                class="dropdown-item">Delete</a>
+<tr>
 
 
-                                                        </div><!-- dropdown-menu -->
-                                                    </div>
-                                                </td>
+	<td>17</td>
+	<td>2023-08-09 13:29:29</td>
+	<td>TRCR_38</td>
+	<td>Power BI & Tableau</td>
+	<td>5400</td>
+	<td>60</td>
 
 
-                                            </tr>
+	<td>
+		<div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
+			<button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				<i class="fe fe-more-horizontal"></i>
+			</button>
+
+			<div class="dropdown-menu">
+				<a href="viewcourse.php?id=38" class="dropdown-item">view</a>
+				<a href="updatecourse.php?id=38" class="dropdown-item">update</a>
+				<a href="connection_files/manage/course_create_manage.php?id=38&pause=pause" class="dropdown-item">Pause</a>
+				<a href="connection_files/manage/course_create_manage.php?id=38&resume=resume" class="dropdown-item">Resume</a>
+				<a href="connection_files/manage/course_create_manage.php?id=38&delete=delete" class="dropdown-item">Delete</a>
 
 
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Row -->
+			</div><!-- dropdown-menu -->
+		</div>
+	</td>
 
 
-                <div class="modal fade" id="delete">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
+</tr>
 
-                                <p> Are you sure you want to delete a Course??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Delete</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<tr>
 
 
+	<td>18</td>
+	<td>2023-08-09 16:02:47</td>
+	<td>TRCR_39</td>
+	<td>AI & ML</td>
+	<td>2700</td>
+	<td>60</td>
+
+
+	<td>
+		<div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
+			<button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				<i class="fe fe-more-horizontal"></i>
+			</button>
+
+			<div class="dropdown-menu">
+				<a href="viewcourse.php?id=39" class="dropdown-item">view</a>
+				<a href="updatecourse.php?id=39" class="dropdown-item">update</a>
+				<a href="connection_files/manage/course_create_manage.php?id=39&pause=pause" class="dropdown-item">Pause</a>
+				<a href="connection_files/manage/course_create_manage.php?id=39&resume=resume" class="dropdown-item">Resume</a>
+				<a href="connection_files/manage/course_create_manage.php?id=39&delete=delete" class="dropdown-item">Delete</a>
+
+
+			</div><!-- dropdown-menu -->
+		</div>
+	</td>
+
+
+</tr>
 
 
 
-            </div>
-        </div>
-
-    </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
-
-    <!-- Sidebar-right-->
-
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Row -->
 
 
+<div class="modal fade" id="delete">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content modal-content-demo">
+			<div class="modal-header">
+				<h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
 
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span
-                class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
-            reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <!-- JQUERY JS -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-
-    <!-- BOOTSTRAP JS -->
-    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- IONICONS JS -->
-    <script src="assets/plugins/ionicons/ionicons.js"></script>
-
-    <!-- MOMENT JS -->
-    <script src="assets/plugins/moment/moment.js"></script>
-
-    <!-- P-SCROLL JS -->
-    <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-    <!-- SIDEBAR JS -->
-    <script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-    <!-- STICKY JS -->
-    <script src="assets/js/sticky.js"></script>
-
-    <!-- Chart-circle js -->
-    <script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-    <!-- RIGHT-SIDEBAR JS -->
-    <script src="assets/plugins/sidebar/sidebar.js"></script>
-    <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
+				<p> Are you sure you want to delete a Course??</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn ripple btn-success" type="button">Delete</button>
+				<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+					Now</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 
-    <!-- Internal Data tables -->
-    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-    <script src="assets/plugins/datatable/js/jszip.min.js"></script>
-    <script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-    <script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-    <script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-    <script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-    <script src="assets/js/table-data.js"></script>
-
-    <!-- INTERNAL Select2 js -->
-    <script src="assets/plugins/select2/js/select2.full.min.js"></script>
 
 
-    <!-- EVA-ICONS JS -->
-    <script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
 
-    <!-- THEME-COLOR JS -->
-    <script src="assets/js/themecolor.js"></script>
+</div>
+</div>
 
-    <!-- CUSTOM JS -->
-    <script src="assets/js/custom.js"></script>
+</div>
+<!-- Container closed -->
+</div>
+<!-- main-content closed -->
 
-    <!-- exported JS -->
-    <script src="assets/js/exported.js"></script>
+<!-- Sidebar-right-->
 
-    <!-- SWITCHER JS -->
-    <script src="assets/switcher/js/switcher.js"></script>
 
+
+
+<!-- Footer opened -->
+<div class="main-footer">
+	<div class="container-fluid pd-t-0-f ht-100p">
+		Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
+		reserved
+	</div>
+</div>
+<!-- Footer closed -->
+
+
+</div>
+<!-- End Page -->
+
+<!-- BACK-TO-TOP -->
+<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
+
+<?php include("./scripts.php"); ?>
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
 
 </html>

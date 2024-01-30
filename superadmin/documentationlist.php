@@ -19,89 +19,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="Description" content="">
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!-- Data table css -->
-	<link href="assets/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
-	<link href="assets/plugins/datatable/css/buttons.bootstrap5.min.css" rel="stylesheet">
-	<link href="assets/plugins/datatable/responsive.bootstrap5.css" rel="stylesheet" />
-
-	<!-- INTERNAL Select2 css -->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!--- Internal Select2 css-->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet">
-
-	<!---Internal Fileupload css-->
-	<link href="assets/plugins/fileuploads/css/fileupload.css" rel="stylesheet" type="text/css" />
-
-	<!---Internal Fancy uploader css-->
-	<link href="assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
-
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
+	<?php include("./style.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -451,12 +369,14 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 				<div class="breadcrumb-header justify-content-between">
 					<div class="right-content">
-						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Trainer Documentations </span>
+						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Trainer Documentations
+						</span>
 					</div>
 
 					<div class="justify-content-center mt-2">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">internship management</a></li>
+							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">internship management</a>
+							</li>
 							<li class="breadcrumb-item ">Documentations</li>
 							<li class="breadcrumb-item ">List</li>
 						</ol>
@@ -564,7 +484,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_1</td>
 												<td>0000-00-00</td>
 												<td>Nandamuru Koteswara Rao</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6443117f42770byp.php"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6443117f42770byp.php">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>ddfg</td>
 
 
@@ -575,7 +496,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_9</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d4890cb2dortho (2).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d4890cb2dortho (2).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>musculo skeletal system</td>
 
 
@@ -586,7 +508,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_10</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d5d76e832ORTHO QUESTIONS.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d5d76e832ORTHO QUESTIONS.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test for musculoskeletal system</td>
 
 
@@ -597,7 +520,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_11</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d61e80c6cmedical coding class 1 introduction.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d61e80c6cmedical coding class 1 introduction.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>introduction to medical coding</td>
 
 
@@ -608,7 +532,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_12</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d6ad1674apulmo (2).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d6ad1674apulmo (2).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>introduction to anatomy and pulmonary system</td>
 
 
@@ -619,7 +544,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_13</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d6d83cd2bpulmo questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6462d6d83cd2bpulmo questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>testfor pulmonary system</td>
 
 
@@ -630,7 +556,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_14</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64650a71d0adcMEDICAL TERMINOLOGY (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64650a71d0adcMEDICAL TERMINOLOGY (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical terminology</td>
 
 
@@ -641,7 +568,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_15</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64650abb5dd82lymph, hemic.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64650abb5dd82lymph, hemic.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>blood, lymphatic and immune system</td>
 
 
@@ -652,7 +580,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_16</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64650ad8294ddmedical coding class 1 introduction (1).pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64650ad8294ddmedical coding class 1 introduction (1).pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>introduction to medical coding</td>
 
 
@@ -663,7 +592,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_17</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64650b3bf339eMEDICAL TERMINOLOGY (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64650b3bf339eMEDICAL TERMINOLOGY (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical terminology</td>
 
 
@@ -674,8 +604,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_18</td>
 												<td>0000-00-00</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646731d80bed1Python Tuples,lists and dictionaries.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>Explain about Python List, tuple, set and dictionaries with Example Programs</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646731d80bed1Python Tuples,lists and dictionaries.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>Explain about Python List, tuple, set and dictionaries with Example
+													Programs</td>
 
 
 
@@ -685,7 +617,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_19</td>
 												<td>0000-00-00</td>
 												</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646c5d88f39ffpic.jpg"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646c5d88f39ffpic.jpg">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>testing</td>
 
 
@@ -696,7 +629,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_20</td>
 												<td>0000-00-00</td>
 												</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646c687750817hour.jpg"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646c687750817hour.jpg">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>ggg</td>
 
 
@@ -707,7 +641,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_22</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e4fe9107fepulmo test answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e4fe9107fepulmo test answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>answers for pulmonary system</td>
 
 
@@ -718,7 +653,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_23</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e501d6d37aortho answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e501d6d37aortho answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>answers for musculo skeletal system</td>
 
 
@@ -729,7 +665,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_24</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e504451dacgi test.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e504451dacgi test.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for gastrointestinal system</td>
 
 
@@ -740,7 +677,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_25</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5078261e4blood test questions.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5078261e4blood test questions.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>questions and answers for blood, lymph, immune system</td>
 
 
@@ -751,7 +689,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_26</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e50a67fbc4gi system.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e50a67fbc4gi system.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>gastrointestinal system</td>
 
 
@@ -762,7 +701,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_27</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e50d816258urology updated.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e50d816258urology updated.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>urinary system</td>
 
 
@@ -773,7 +713,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_28</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5110c6eaafemale reproductive system.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5110c6eaafemale reproductive system.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>female reproductive system</td>
 
 
@@ -784,7 +725,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_29</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e513f29ac5MALE REPRODUCTIVE SYSTEM.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e513f29ac5MALE REPRODUCTIVE SYSTEM.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>male reproductive system</td>
 
 
@@ -795,7 +737,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_30</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e516133afbendocrinology.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e516133afbendocrinology.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>endocrine system</td>
 
 
@@ -806,7 +749,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_31</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e51a5e9162pulmo (2).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e51a5e9162pulmo (2).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>pulmonary system</td>
 
 
@@ -817,7 +761,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_32</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e51cee35f5ortho (2).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e51cee35f5ortho (2).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>musculo skeletal system</td>
 
 
@@ -828,7 +773,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_33</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e525fbc99elymph, hemic.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e525fbc99elymph, hemic.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>hemic, lymphatic and immune system</td>
 
 
@@ -839,7 +785,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_34</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5295be75cortho (2).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5295be75cortho (2).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>musculo skeletal system</td>
 
 
@@ -850,7 +797,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_35</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e52cac2a4dlymph, hemic.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e52cac2a4dlymph, hemic.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>blood, lymphatic and immune system</td>
 
 
@@ -861,7 +809,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_36</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e53043f878pulmo questions.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e53043f878pulmo questions.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for pulmonary system</td>
 
 
@@ -872,7 +821,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_37</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e532307444pulmo test answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e532307444pulmo test answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>answers for pulmonary system</td>
 
 
@@ -883,7 +833,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_38</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5349f2f70ORTHO QUESTIONS.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5349f2f70ORTHO QUESTIONS.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for musculoskeletal system</td>
 
 
@@ -894,7 +845,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_39</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5368d5919ortho answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5368d5919ortho answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>answers for musculo skeletal system</td>
 
 
@@ -905,7 +857,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_40</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5392b2e30blood test questions.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5392b2e30blood test questions.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test and answers for blood, lymph, and immune system</td>
 
 
@@ -916,7 +869,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_41</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e53c607eafmedical terminology questions.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e53c607eafmedical terminology questions.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>questions for medical terminology</td>
 
 
@@ -927,7 +881,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_42</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e541624975MEDICAL TERMINOLOGY ANSWERS.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e541624975MEDICAL TERMINOLOGY ANSWERS.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>answers for medical terminology</td>
 
 
@@ -938,7 +893,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_43</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5453dac7fmedical terminology questions.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e5453dac7fmedical terminology questions.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for medical terminology</td>
 
 
@@ -949,7 +905,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_44</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e547cc85e2MEDICAL TERMINOLOGY ANSWERS.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/646e547cc85e2MEDICAL TERMINOLOGY ANSWERS.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>answers for medical terminology</td>
 
 
@@ -960,7 +917,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_45</td>
 												<td>0000-00-00</td>
 												</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647037ea3c3c0nannaya.jpg"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647037ea3c3c0nannaya.jpg">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Biology</td>
 
 
@@ -971,7 +929,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_46</td>
 												<td>0000-00-00</td>
 												</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470386e6947dnannaya.jpg"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470386e6947dnannaya.jpg">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Triaright</td>
 
 
@@ -982,7 +941,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_47</td>
 												<td>0000-00-00</td>
 												</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647038ce7d817nannaya.jpg"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647038ce7d817nannaya.jpg">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Triaright</td>
 
 
@@ -993,8 +953,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_48</td>
 												<td>0000-00-00</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647042c6e2410python strings.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>Explaining about Python Matrix , Python Strings and String methods</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647042c6e2410python strings.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>Explaining about Python Matrix , Python Strings and String methods
+												</td>
 
 
 
@@ -1004,7 +966,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_49</td>
 												<td>0000-00-00</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64708d4ed49faPython Programming Language Notes.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64708d4ed49faPython Programming Language Notes.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>python notes up to Strings Topics</td>
 
 
@@ -1015,7 +978,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_50</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470db7e5fc08gi test.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470db7e5fc08gi test.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for gastrointestinal system</td>
 
 
@@ -1026,7 +990,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_51</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470dba23b30agi answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470dba23b30agi answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>answers for gastrointestinal system</td>
 
 
@@ -1037,7 +1002,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_52</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470dbd8bf739uti answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470dbd8bf739uti answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>answers for urinarysystem</td>
 
 
@@ -1048,7 +1014,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_53</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470dc24eda06UTI QUESTIONS.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6470dc24eda06UTI QUESTIONS.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>questions for urinarysystem</td>
 
 
@@ -1059,7 +1026,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_54</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64718f8d77839Blogging.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64718f8d77839Blogging.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>BLOGGING</td>
 
 
@@ -1070,7 +1038,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_55</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6471903405bb4Class notes.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6471903405bb4Class notes.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>INTRODUCTION TO DIGITAL MARKETING</td>
 
 
@@ -1081,7 +1050,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_56</td>
 												<td>0000-00-00</td>
 												<td>Vasundhara</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6471d7ac24d7e27-05-2023 TPN (COMPANY MANAGEMENT IN TALLY PRIME).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6471d7ac24d7e27-05-2023 TPN (COMPANY MANAGEMENT IN TALLY PRIME).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>company management in tally prime</td>
 
 
@@ -1092,7 +1062,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_57</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64720181db09aGoogle Analytics 2.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64720181db09aGoogle Analytics 2.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>GOOGLE ANALYTICS METRICS AND REPORTS</td>
 
 
@@ -1103,7 +1074,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_58</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647203693223dGoogle Analytics.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647203693223dGoogle Analytics.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>GOOGLE ANALYTICS</td>
 
 
@@ -1114,7 +1086,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_59</td>
 												<td>0000-00-00</td>
 												<td>Shiva Krishna</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6473a2236677dDigital Marketing.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6473a2236677dDigital Marketing.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Digital marketing</td>
 
 
@@ -1125,7 +1098,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_60</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742822130ecFRS questions (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742822130ecFRS questions (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Test questions for FRS</td>
 
 
@@ -1136,7 +1110,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_61</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6474284132720FRS answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6474284132720FRS answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>TEST ANSWERS FOR FRS</td>
 
 
@@ -1147,7 +1122,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_62</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742861a279dmrs questions.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742861a279dmrs questions.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Test questions for MRS</td>
 
 
@@ -1158,7 +1134,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_63</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647429068c86eENDOCRINOLOGY_updated.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647429068c86eENDOCRINOLOGY_updated.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Test questions for endocrinology</td>
 
 
@@ -1169,7 +1146,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_64</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647429fc82918gi test.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647429fc82918gi test.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for GIS</td>
 
 
@@ -1180,7 +1158,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_65</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742a33ecaebgi answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742a33ecaebgi answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers forgastrointestinal system</td>
 
 
@@ -1191,7 +1170,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_66</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742a7494d2dgi system.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742a7494d2dgi system.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>gastrointestinal system</td>
 
 
@@ -1202,7 +1182,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_67</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742a7e7f012gi system.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64742a7e7f012gi system.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>gastrointestinal system</td>
 
 
@@ -1213,7 +1194,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_68</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64746063a5770mrs questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64746063a5770mrs questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for MRS</td>
 
 
@@ -1224,7 +1206,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_69</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647460835709bneurology questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647460835709bneurology questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for neurology</td>
 
 
@@ -1235,7 +1218,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_70</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647460a105f11neurology answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647460a105f11neurology answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for neurology</td>
 
 
@@ -1246,7 +1230,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_71</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647460fd378e1nervous.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647460fd378e1nervous.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>nervous sytem</td>
 
 
@@ -1257,7 +1242,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_72</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647461e220cfbpsychiatric.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647461e220cfbpsychiatric.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>psychiatric conditions</td>
 
 
@@ -1268,7 +1254,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_73</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6474c04f71f92EMAIL MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6474c04f71f92EMAIL MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>EMAIL MARKETING</td>
 
 
@@ -1279,7 +1266,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_74</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476cde575402cardiology.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476cde575402cardiology.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>cardiovascular system</td>
 
 
@@ -1290,7 +1278,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_75</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e4987b97bnervous (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e4987b97bnervous (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>nervous system</td>
 
 
@@ -1301,7 +1290,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_76</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e511cc65dneurology questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e511cc65dneurology questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for neurology</td>
 
 
@@ -1312,7 +1302,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_77</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e53b8a77aneurology answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e53b8a77aneurology answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for neurology</td>
 
 
@@ -1323,7 +1314,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_78</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e78b11364Cardiology answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e78b11364Cardiology answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for cardiology</td>
 
 
@@ -1334,7 +1326,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_79</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e7a2a4837Cardiology questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476e7a2a4837Cardiology questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for carrdiology</td>
 
 
@@ -1345,7 +1338,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_80</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476f5c896a82mail chimp.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6476f5c896a82mail chimp.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>MAIL CHIMP</td>
 
 
@@ -1356,7 +1350,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_81</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647704ab60077urology updated.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647704ab60077urology updated.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>urinary system</td>
 
 
@@ -1367,7 +1362,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_82</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647704ccf05e0UTI QUESTIONS.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647704ccf05e0UTI QUESTIONS.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for urology</td>
 
 
@@ -1378,7 +1374,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_83</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647704ef544bfuti answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647704ef544bfuti answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for urology</td>
 
 
@@ -1389,7 +1386,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_84</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64770521d494dfemale reproductive system.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64770521d494dfemale reproductive system.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>female reproductive system</td>
 
 
@@ -1400,7 +1398,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_85</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647772f3238f2mrs questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647772f3238f2mrs questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for male reproductive system</td>
 
 
@@ -1411,7 +1410,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_86</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6477731ae859cMALE REPRODUCTIVE SYSTEM.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6477731ae859cMALE REPRODUCTIVE SYSTEM.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>male reproductive system</td>
 
 
@@ -1422,7 +1422,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_87</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647773873adb5mrs answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647773873adb5mrs answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for MRS</td>
 
 
@@ -1433,7 +1434,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_88</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6477738dd5948mrs answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6477738dd5948mrs answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for MRS</td>
 
 
@@ -1444,7 +1446,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_89</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647773e40f891FRS questions (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647773e40f891FRS questions (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for FRS</td>
 
 
@@ -1455,8 +1458,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_90</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647832d9d12d3INBOUND MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>INBOUND MARKETING, OUTBOUND MARKETING, METHODOLOGY, STRATEGIES, FLYWHEEL MODEL</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647832d9d12d3INBOUND MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>INBOUND MARKETING, OUTBOUND MARKETING, METHODOLOGY, STRATEGIES,
+													FLYWHEEL MODEL</td>
 
 
 
@@ -1466,7 +1471,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_91</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647856ad8e347endocrinology answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647856ad8e347endocrinology answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for endocrinology</td>
 
 
@@ -1477,7 +1483,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_92</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b743c9390cpsychiatric (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b743c9390cpsychiatric (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>psychiatric disoreders</td>
 
 
@@ -1488,7 +1495,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_93</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b748023fefskin.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b748023fefskin.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>integumentary system</td>
 
 
@@ -1499,7 +1507,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_94</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b749c36c8askin questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b749c36c8askin questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for skin</td>
 
 
@@ -1510,7 +1519,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_95</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b74d51e425skin answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b74d51e425skin answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for skin</td>
 
 
@@ -1521,7 +1531,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_96</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b74f619d73SENSE.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b74f619d73SENSE.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>sense organs</td>
 
 
@@ -1532,7 +1543,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_97</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b752a8553dent questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b752a8553dent questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for ent</td>
 
 
@@ -1543,7 +1555,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_98</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b755435247ent answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647b755435247ent answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for ent</td>
 
 
@@ -1554,7 +1567,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_99</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2d94c1595urology updated.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2d94c1595urology updated.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>urinary system</td>
 
 
@@ -1565,7 +1579,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_100</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2dc6bd233UTI QUESTIONS.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2dc6bd233UTI QUESTIONS.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for UTI</td>
 
 
@@ -1576,7 +1591,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_101</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2dea222d2uti answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2dea222d2uti answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>TEST answers for UTI</td>
 
 
@@ -1587,7 +1603,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_102</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2e2a0a6d2endocrinology.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2e2a0a6d2endocrinology.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>endocrine system</td>
 
 
@@ -1598,7 +1615,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_103</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2e65240c1endocrinology answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2e65240c1endocrinology answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for endocrine system</td>
 
 
@@ -1609,7 +1627,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_104</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2ff08f118endocrinology answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c2ff08f118endocrinology answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for endocrinology</td>
 
 
@@ -1620,7 +1639,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_105</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c301620224nervous (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c301620224nervous (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>nervous system</td>
 
 
@@ -1631,7 +1651,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_106</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c302fad074neurology questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c302fad074neurology questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for neurology</td>
 
 
@@ -1642,7 +1663,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_107</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c304ec1be7neurology answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c304ec1be7neurology answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for neurology</td>
 
 
@@ -1653,7 +1675,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_108</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c307468494cardiology (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c307468494cardiology (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>cardiovascular system</td>
 
 
@@ -1664,7 +1687,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_109</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c30d2c94c9Cardiology questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c30d2c94c9Cardiology questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for cardiology</td>
 
 
@@ -1675,7 +1699,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_110</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c30e812d82Cardiology answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c30e812d82Cardiology answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for cardiology</td>
 
 
@@ -1686,7 +1711,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_111</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c317241725skin.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c317241725skin.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>integumentary system</td>
 
 
@@ -1697,7 +1723,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_112</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c31806e3bbskin.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c31806e3bbskin.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>integumentary system</td>
 
 
@@ -1708,7 +1735,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_113</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c31cca3bddskin questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c31cca3bddskin questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for skin</td>
 
 
@@ -1719,7 +1747,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_114</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c31ee7365askin answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c31ee7365askin answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answer for skin</td>
 
 
@@ -1730,7 +1759,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_115</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c3352d86ecSENSE.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c3352d86ecSENSE.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>senseorgans</td>
 
 
@@ -1741,7 +1771,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_116</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c3373ed5f6ent questions.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c3373ed5f6ent questions.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test questions for ent</td>
 
 
@@ -1752,7 +1783,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_117</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c338da6c47ent answers.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647c338da6c47ent answers.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for ent</td>
 
 
@@ -1763,7 +1795,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_118</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/647f055badd94FRS answers.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/647f055badd94FRS answers.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>test answers for FRS</td>
 
 
@@ -1774,7 +1807,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_119</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64803843c7979BUYER PERSONA.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64803843c7979BUYER PERSONA.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>BUYER PERSONA</td>
 
 
@@ -1785,7 +1819,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_120</td>
 												<td>0000-00-00</td>
 												</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6481c54e23e1d123.png"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6481c54e23e1d123.png">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>na</td>
 
 
@@ -1796,7 +1831,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_121</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6481cfa534d91BUYERS JOURNEY.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6481cfa534d91BUYERS JOURNEY.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>BUYERS JOURNEY</td>
 
 
@@ -1807,7 +1843,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_122</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6481d542dea2cCONTENT MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6481d542dea2cCONTENT MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>CONTENT MARKETING</td>
 
 
@@ -1818,7 +1855,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_123</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6482c06100a20123.png"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6482c06100a20123.png">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>na</td>
 
 
@@ -1829,7 +1867,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_124</td>
 												<td>0000-00-00</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6482fe43da9c4JAVA FULL DOCUMENT.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6482fe43da9c4JAVA FULL DOCUMENT.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Java course Full Document</td>
 
 
@@ -1840,7 +1879,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_125</td>
 												<td>0000-00-00</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6482fe65c688eJAVA FULL DOCUMENT.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6482fe65c688eJAVA FULL DOCUMENT.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Java course Full Document</td>
 
 
@@ -1851,7 +1891,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_126</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64840b27cc713GOLDEN CIRCLE FRAME WORK.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64840b27cc713GOLDEN CIRCLE FRAME WORK.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>GOLDEN CIRCLE FRAMEWORK</td>
 
 
@@ -1862,7 +1903,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_127</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/648410592e8c5SEARCH ENGINE.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/648410592e8c5SEARCH ENGINE.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>SEARCH ENGINE</td>
 
 
@@ -1873,7 +1915,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_128</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64841de71b835SEO.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64841de71b835SEO.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>SEO</td>
 
 
@@ -1884,7 +1927,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_129</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6484238c8c79aGOOGLE TRENDS.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6484238c8c79aGOOGLE TRENDS.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>GOOGLE TRENDS</td>
 
 
@@ -1895,8 +1939,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_130</td>
 												<td>0000-00-00</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/648453599ce5aPython Notes(5-6-23 to 9-6-23).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>Python notes( Modules, Interfaces, Error, User defined exception, and Regular Expressions)</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/648453599ce5aPython Notes(5-6-23 to 9-6-23).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>Python notes( Modules, Interfaces, Error, User defined exception,
+													and Regular Expressions)</td>
 
 
 
@@ -1906,8 +1952,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_131</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6486f2f9d7eddbootstrap navbar  and carousel^J embed.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>document for bootstrap navbar, carousel and embed utilities and also including in line and block elements</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6486f2f9d7eddbootstrap navbar  and carousel^J embed.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>document for bootstrap navbar, carousel and embed utilities and also
+													including in line and block elements</td>
 
 
 
@@ -1917,8 +1965,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_132</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871b89e24f6bootstrap navbar  and carousel^J embed.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>notes about bootstrap utilities navabr, embed , carousel and block level elements</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871b89e24f6bootstrap navbar  and carousel^J embed.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>notes about bootstrap utilities navabr, embed , carousel and block
+													level elements</td>
 
 
 
@@ -1928,7 +1978,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_133</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871bcd85c14fundamental concepts of css - inheritance,cascade and specificity.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871bcd85c14fundamental concepts of css - inheritance,cascade and specificity.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>notes about inheritance , cascade, and specificity</td>
 
 
@@ -1939,7 +1990,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_134</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871c19c5945html lists and selector elements.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871c19c5945html lists and selector elements.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>notes about html lists and different types of selectors in css</td>
 
 
@@ -1950,7 +2002,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_135</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871c9056006bootstrap grid system and spacing utilities.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871c9056006bootstrap grid system and spacing utilities.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>bootstrap grid system and spacing utilities notes</td>
 
 
@@ -1961,7 +2014,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_136</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871cc0689cebootstrap introduction (1).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871cc0689cebootstrap introduction (1).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>bootstrap introduction</td>
 
 
@@ -1972,7 +2026,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_137</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871cfb985f3css border properties for html elements.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871cfb985f3css border properties for html elements.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>notes for css border properties</td>
 
 
@@ -1983,7 +2038,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_138</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871d5a09a94CSS styling properties for HTML elements.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871d5a09a94CSS styling properties for HTML elements.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>notes for css styling properties</td>
 
 
@@ -1994,7 +2050,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_139</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871d875a21ahtml css introduction.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64871d875a21ahtml css introduction.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>html and css introduction</td>
 
 
@@ -2005,7 +2062,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_140</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/648844078d0afPAGE RANK, PA, DA.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/648844078d0afPAGE RANK, PA, DA.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>PAGE RANK, PA, DA</td>
 
 
@@ -2016,7 +2074,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_141</td>
 												<td>0000-00-00</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6488683477c94ON PAGE, OFF PAGE SEO (3).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6488683477c94ON PAGE, OFF PAGE SEO (3).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>ON PAGE SEO, OFF PAGE SEO</td>
 
 
@@ -2027,7 +2086,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_142</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/648ab75b26f01Bootstrap Containers and background-color of css.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/648ab75b26f01Bootstrap Containers and background-color of css.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>notes on bootstrap containers and css background colors</td>
 
 
@@ -2038,7 +2098,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_143</td>
 												<td>0000-00-00</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/648c5a15406daBootstrap Spacing Utilities and live website part 2 16-06-2023.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/648c5a15406daBootstrap Spacing Utilities and live website part 2 16-06-2023.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>NA</td>
 
 
@@ -2049,7 +2110,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_144</td>
 												<td>2023-07-05</td>
 												<td>Shaik Ashraf rahil</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a552a900685Web_Technology.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a552a900685Web_Technology.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>html and css notes</td>
 
 
@@ -2060,7 +2122,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_145</td>
 												<td>2023-07-05</td>
 												<td>Shaik Ashraf rahil</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a55327f05cfJavaScript.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a55327f05cfJavaScript.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>JavaScript notes</td>
 
 
@@ -2071,7 +2134,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_146</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940d7b3b509ICD CODING.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940d7b3b509ICD CODING.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical coding class 1 </td>
 
 
@@ -2082,7 +2146,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_147</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/648ff4d810c39medical coding class 2.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/648ff4d810c39medical coding class 2.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical coding class 1 </td>
 
 
@@ -2093,7 +2158,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_148</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/648ff50230a41medical coding class 3.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/648ff50230a41medical coding class 3.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical coding class 3</td>
 
 
@@ -2104,7 +2170,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_149</td>
 												<td>0000-00-00</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/648ff53a82be4medical coding claases 4.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/648ff53a82be4medical coding claases 4.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical coding class 4</td>
 
 
@@ -2115,7 +2182,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_151</td>
 												<td>2023-06-19</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649054e6626e0HTML5NotesForProfessionals.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649054e6626e0HTML5NotesForProfessionals.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Html full notes for exam prep</td>
 
 
@@ -2126,7 +2194,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_152</td>
 												<td>2023-06-19</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6490551573d05CSS units and bootstrap sizing utilities and icons and resoureces for restaurant web part 3.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6490551573d05CSS units and bootstrap sizing utilities and icons and resoureces for restaurant web part 3.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Css full notes for exam prep</td>
 
 
@@ -2137,7 +2206,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_153</td>
 												<td>2023-06-14</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64913acfd42c6EAT FRAMEWORK, SEO TOOLS.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64913acfd42c6EAT FRAMEWORK, SEO TOOLS.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>EAT FRAMEWORK, SEO TOOLS</td>
 
 
@@ -2148,7 +2218,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_154</td>
 												<td>2023-06-20</td>
 												<td>Nikhil Chakka</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64913e4f53ea0Nikhil_python_Overall Class Documentation.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64913e4f53ea0Nikhil_python_Overall Class Documentation.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>python class</td>
 
 
@@ -2159,7 +2230,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_155</td>
 												<td>2023-06-15</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64913fd517c73SEO ISSUES.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64913fd517c73SEO ISSUES.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>SEO ISSUES</td>
 
 
@@ -2170,7 +2242,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_156</td>
 												<td>2023-06-16</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6491444399e04SEARCH CONSOLE.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6491444399e04SEARCH CONSOLE.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>SEARCH CONSOLE</td>
 
 
@@ -2181,7 +2254,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_157</td>
 												<td>2023-06-19</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649157a011936SEARCH ENGINE MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649157a011936SEARCH ENGINE MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>SEARCH ENGINE MARKETING</td>
 
 
@@ -2192,7 +2266,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_158</td>
 												<td>2023-06-20</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64928b89368feAI Tools.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64928b89368feAI Tools.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>AI TOOLS</td>
 
 
@@ -2203,8 +2278,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_159</td>
 												<td>2023-06-21</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6493d1d0b0f75Bootstrap Flex Utilities  and restaurant website part - 4 on  21-06-2023.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>Includes bootstrap order and display utilities and restaurant website build part 4</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6493d1d0b0f75Bootstrap Flex Utilities  and restaurant website part - 4 on  21-06-2023.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>Includes bootstrap order and display utilities and restaurant
+													website build part 4</td>
 
 
 
@@ -2214,7 +2291,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_160</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940abf208a2medical coding classes 4.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940abf208a2medical coding classes 4.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical coding class 4</td>
 
 
@@ -2225,7 +2303,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_161</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940ae95f1ceMedical coding class 5.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940ae95f1ceMedical coding class 5.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical coding class 5</td>
 
 
@@ -2236,7 +2315,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_162</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940b3ced4c7Medical coding class 5.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940b3ced4c7Medical coding class 5.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical coding class 5</td>
 
 
@@ -2247,7 +2327,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_163</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940b842d7acmedical coding class 6.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940b842d7acmedical coding class 6.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>medical coding class 6</td>
 
 
@@ -2258,7 +2339,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_164</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940e30d01efanesthesia coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940e30d01efanesthesia coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>anesthesia coding</td>
 
 
@@ -2269,7 +2351,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_165</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940e4cc7c7cCPT CODING.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940e4cc7c7cCPT CODING.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>cpt coding</td>
 
 
@@ -2280,7 +2363,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_166</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940e696bb32cvs coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940e696bb32cvs coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>cardiovascular system</td>
 
 
@@ -2291,7 +2375,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_167</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940e9620e19eyes coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940e9620e19eyes coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>eyes, ocular, ear </td>
 
 
@@ -2302,7 +2387,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_168</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940eb9518c0frs coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940eb9518c0frs coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>frs</td>
 
 
@@ -2313,7 +2399,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_169</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940ee18a2f5gi coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940ee18a2f5gi coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>gastrointestinal</td>
 
 
@@ -2324,7 +2411,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_170</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940ef960947ICD CODING.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940ef960947ICD CODING.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>icd coding</td>
 
 
@@ -2335,7 +2423,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_171</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940f1b79020infectious and parasitic disorder coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940f1b79020infectious and parasitic disorder coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>infectious and parasitic diorders</td>
 
 
@@ -2346,7 +2435,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_172</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940f56b2b46radiology coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940f56b2b46radiology coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>radiology</td>
 
 
@@ -2357,7 +2447,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_173</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940f842b34eskin coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940f842b34eskin coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>integumentary system</td>
 
 
@@ -2368,7 +2459,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_174</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940fb882b15anesthesia coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940fb882b15anesthesia coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>anesthesia</td>
 
 
@@ -2379,7 +2471,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_175</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940fd50cd70CPT CODING.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64940fd50cd70CPT CODING.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>cpt coding</td>
 
 
@@ -2390,7 +2483,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_176</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494101719e55cvs coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494101719e55cvs coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>cardiovascular system</td>
 
 
@@ -2401,7 +2495,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_177</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494104575bfdeyes coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494104575bfdeyes coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>ocular and ear anatomy </td>
 
 
@@ -2412,7 +2507,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_178</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649410632a7bdfrs coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649410632a7bdfrs coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>female reproductive system</td>
 
 
@@ -2423,7 +2519,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_179</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494107ef3629gi coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494107ef3629gi coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>gastrointestinal system</td>
 
 
@@ -2434,7 +2531,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_180</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494109ae2e7fICD CODING.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494109ae2e7fICD CODING.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>icd coding</td>
 
 
@@ -2445,7 +2543,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_181</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649410a10db23ICD CODING.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649410a10db23ICD CODING.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>icd coding</td>
 
 
@@ -2456,7 +2555,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_182</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649410c59d811infectious and parasitic disorder coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649410c59d811infectious and parasitic disorder coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>infectious and parasitic diorders</td>
 
 
@@ -2467,7 +2567,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_183</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649410ea45432radiology coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649410ea45432radiology coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>radiology</td>
 
 
@@ -2478,7 +2579,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_184</td>
 												<td>2023-06-22</td>
 												<td>saitejaswi kolliboina</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494110713fbaskin coding.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6494110713fbaskin coding.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>integumentary system</td>
 
 
@@ -2489,7 +2591,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_185</td>
 												<td>2023-06-22</td>
 												</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64942361b2886Nikhil_python_Overall Class Documentation.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64942361b2886Nikhil_python_Overall Class Documentation.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>python class</td>
 
 
@@ -2500,7 +2603,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_186</td>
 												<td>2023-06-22</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64953077c2415GOOGLE ADS.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64953077c2415GOOGLE ADS.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>GOOGLE ADS</td>
 
 
@@ -2511,7 +2615,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_187</td>
 												<td>2023-06-17</td>
 												<td>Vasundhara</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649588c1b85fdinventory management -17th.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649588c1b85fdinventory management -17th.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>stock item creation , alter, deletion</td>
 
 
@@ -2522,7 +2627,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_188</td>
 												<td>2023-06-23</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6495977287f55MOBILE MARKETING (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6495977287f55MOBILE MARKETING (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>MOBILE MARKETING</td>
 
 
@@ -2533,7 +2639,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_189</td>
 												<td>2023-06-27</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649adbf6d5da7SOCIAL MEDIA MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649adbf6d5da7SOCIAL MEDIA MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Social media marketing </td>
 
 
@@ -2544,8 +2651,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_190</td>
 												<td>2023-06-26</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649adcdfc9c64Font Awesome Icons and accessing sections in website.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>font awesome icons and bootstrap accesing sections in the website</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649adcdfc9c64Font Awesome Icons and accessing sections in website.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>font awesome icons and bootstrap accesing sections in the website
+												</td>
 
 
 
@@ -2555,7 +2664,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_191</td>
 												<td>2023-06-27</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649c1f00edf31CSS Gradients and bootstrap modal 1 important.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649c1f00edf31CSS Gradients and bootstrap modal 1 important.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>css gradients in detail and bootstrap modal component</td>
 
 
@@ -2566,7 +2676,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_192</td>
 												<td>2023-06-27</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649adeb47ac2eDemo restaurant website full code for project.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649adeb47ac2eDemo restaurant website full code for project.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>full restaurant website code including html code and css code</td>
 
 
@@ -2577,7 +2688,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_193</td>
 												<td>2023-06-27</td>
 												<td>Shaik Ashraf rahil</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649c0e7509346PHP Introduction & Installation 27-06-2023.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649c0e7509346PHP Introduction & Installation 27-06-2023.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>PHP Introduction & Installation</td>
 
 
@@ -2588,7 +2700,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_194</td>
 												<td>2023-06-28</td>
 												<td>Shaik Ashraf rahil</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649c0ec8d2927PHP Basics 28-06-2023.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649c0ec8d2927PHP Basics 28-06-2023.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>PHP Basics & XAMPP Installation</td>
 
 
@@ -2599,7 +2712,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_195</td>
 												<td>2023-07-05</td>
 												<td>Shaik Ashraf rahil</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a549e75b287Php with MySQL Full Notes.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a549e75b287Php with MySQL Full Notes.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>PHP with MySQL full notes</td>
 
 
@@ -2610,7 +2724,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_196</td>
 												<td>2023-06-30</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649fc2dcd2843FB MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649fc2dcd2843FB MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>FACEBOOK MARKETING</td>
 
 
@@ -2621,7 +2736,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_197</td>
 												<td>2023-06-28</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/649fc3dee18c5FB MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/649fc3dee18c5FB MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>FB MARKETING</td>
 
 
@@ -2632,7 +2748,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_198</td>
 												<td>2023-07-03</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a2b5f025e37mysql Installation Process.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a2b5f025e37mysql Installation Process.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Mysql Installation Process</td>
 
 
@@ -2643,7 +2760,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_199</td>
 												<td>2023-07-03</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a2b6284d6d8Mysql full notes.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a2b6284d6d8Mysql full notes.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>mysql notes</td>
 
 
@@ -2654,7 +2772,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_200</td>
 												<td>2023-07-03</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a2b66b61585MySQL Python connector.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a2b66b61585MySQL Python connector.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Mysql Python Connectivity process</td>
 
 
@@ -2665,8 +2784,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_201</td>
 												<td>2023-07-03</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a2b80d1cc71Python Notes(29-5-23 to 2-6-23).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>python document(python recursion, lambda function and scope, methods amd oops in python , abstract method and class in python</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a2b80d1cc71Python Notes(29-5-23 to 2-6-23).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>python document(python recursion, lambda function and scope, methods
+													amd oops in python , abstract method and class in python</td>
 
 
 
@@ -2676,7 +2797,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_202</td>
 												<td>2023-07-03</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38c9dae7be04-05-2023.ipynb"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38c9dae7be04-05-2023.ipynb">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Introduction to python</td>
 
 
@@ -2687,7 +2809,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_203</td>
 												<td>2023-05-03</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38cd7d69c304-05-2023.ipynb"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38cd7d69c304-05-2023.ipynb">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Introduction to Python</td>
 
 
@@ -2698,7 +2821,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_204</td>
 												<td>2023-05-04</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38d196f5b604-05-2023.ipynb"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38d196f5b604-05-2023.ipynb">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Data Types</td>
 
 
@@ -2709,7 +2833,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_205</td>
 												<td>2023-05-05</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38d4ee6fe005-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38d4ee6fe005-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Data Types</td>
 
 
@@ -2720,7 +2845,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_206</td>
 												<td>2023-05-08</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38d8a7d94d08-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38d8a7d94d08-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Lists</td>
 
 
@@ -2731,7 +2857,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_207</td>
 												<td>2023-05-09</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38de051d7909-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38de051d7909-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Lists, strings</td>
 
 
@@ -2742,7 +2869,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_208</td>
 												<td>2023-05-10</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38e32500a611-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38e32500a611-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Lists, Tuples</td>
 
 
@@ -2753,7 +2881,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_209</td>
 												<td>2023-05-11</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38e682374c11-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38e682374c11-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Lists, Strings, Tuples</td>
 
 
@@ -2764,7 +2893,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_210</td>
 												<td>2023-05-12</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38ed5971e612-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38ed5971e612-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Problems on Lists, Strings</td>
 
 
@@ -2775,7 +2905,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_211</td>
 												<td>2023-05-15</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38f3793eaa15-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38f3793eaa15-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Problems on Lists, Tuples</td>
 
 
@@ -2786,7 +2917,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_212</td>
 												<td>2023-05-17</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38f99600e017-05-2023.ipynb"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a38f99600e017-05-2023.ipynb">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Problems on Lists, Tuples</td>
 
 
@@ -2797,7 +2929,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_213</td>
 												<td>2023-05-18</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3904b789c918-05-2023.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3904b789c918-05-2023.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Dictionaries</td>
 
 
@@ -2808,7 +2941,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_214</td>
 												<td>2023-05-19</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3911960f7322-05-2023.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3911960f7322-05-2023.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Problems on Dictionaries</td>
 
 
@@ -2819,7 +2953,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_215</td>
 												<td>2023-05-22</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a391f3853e122-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a391f3853e122-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Pattern Printing Problems</td>
 
 
@@ -2830,7 +2965,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_216</td>
 												<td>2023-05-23</td>
 												<td>Senthan M S V S</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3923e3049923-05-2023.py"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3923e3049923-05-2023.py">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Python Pattern Printing Problems</td>
 
 
@@ -2841,7 +2977,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_217</td>
 												<td>2023-07-03</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3ae3f5259bINSTAGRAM MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3ae3f5259bINSTAGRAM MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>INSTAGRAM MARKETING</td>
 
 
@@ -2852,7 +2989,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_218</td>
 												<td>2023-07-04</td>
 												<td>Shaik Ashraf rahil</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3f8fcef6b3python data types -lists in detail.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3f8fcef6b3python data types -lists in detail.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>NA</td>
 
 
@@ -2863,7 +3001,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_219</td>
 												<td>2023-07-04</td>
 												<td>Shaik Ashraf rahil</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3f937b3398python data type - tuples.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a3f937b3398python data type - tuples.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>NA</td>
 
 
@@ -2874,7 +3013,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_220</td>
 												<td>2023-07-04</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a412bdd647eYOUTUBE MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a412bdd647eYOUTUBE MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>YOUTUBE MARKETING</td>
 
 
@@ -2885,7 +3025,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_221</td>
 												<td>2023-07-05</td>
 												<td>Shaik Ashraf rahil</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a558ba0744fpython data types - sets in detail.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a558ba0744fpython data types - sets in detail.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>python data types - sets in detail </td>
 
 
@@ -2896,7 +3037,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_222</td>
 												<td>2023-07-07</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a7eae485b81CSSNotesForProfessionals full notes for students.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a7eae485b81CSSNotesForProfessionals full notes for students.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>css full notes for students</td>
 
 
@@ -2907,7 +3049,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_223</td>
 												<td>2023-07-07</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a7eb9a153d6bootstrap_notes for students.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64a7eb9a153d6bootstrap_notes for students.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>bootstrap full notes </td>
 
 
@@ -2918,7 +3061,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_224</td>
 												<td>2023-08-09</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64d3778d64917html and css introduction notes.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64d3778d64917html and css introduction notes.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>NA</td>
 
 
@@ -2929,7 +3073,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_225</td>
 												<td>2023-08-10</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64d4bf2c8fb3fHTML basic topics 10-08-2023.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64d4bf2c8fb3fHTML basic topics 10-08-2023.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>html and css basics</td>
 
 
@@ -2940,7 +3085,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_226</td>
 												<td>2023-08-11</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64d61ffeb3206HTML basic topics 10-08-2023.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64d61ffeb3206HTML basic topics 10-08-2023.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>html and css basics part 2</td>
 
 
@@ -2951,8 +3097,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_227</td>
 												<td>2023-08-14</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64d9d8dfb19c9INTRODUCTION TO DIGITAL MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>this document is about what, types and importance of digital marketing</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64d9d8dfb19c9INTRODUCTION TO DIGITAL MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>this document is about what, types and importance of digital
+													marketing</td>
 
 
 
@@ -2962,7 +3110,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_228</td>
 												<td>2023-08-16</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64dca9039cb94CSS box model for webtech 14-08-2023.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64dca9039cb94CSS box model for webtech 14-08-2023.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>css box model properties</td>
 
 
@@ -2973,7 +3122,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_229</td>
 												<td>2023-08-17</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64dde791dc862TYPES OF DIGITAL MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64dde791dc862TYPES OF DIGITAL MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>This notes is about 7 different types of digital marketing</td>
 
 
@@ -2984,8 +3134,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_230</td>
 												<td>2023-08-18</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64df125f1cf10ADVANTAGES & DISADVANTAGES OF DM.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>this document is about advantages and disadvantages of digital marketing</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64df125f1cf10ADVANTAGES & DISADVANTAGES OF DM.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>this document is about advantages and disadvantages of digital
+													marketing</td>
 
 
 
@@ -2995,7 +3147,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_231</td>
 												<td>2023-08-18</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64df6430731bacss selectors and html lists - 18-08-2023 (1).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64df6430731bacss selectors and html lists - 18-08-2023 (1).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>css selectors and html lists</td>
 
 
@@ -3006,8 +3159,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_232</td>
 												<td>2023-08-21</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64e307861048dEMAIL MARKETING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>this document is about what, types , advantages and disaddvantages of email marketing</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64e307861048dEMAIL MARKETING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>this document is about what, types , advantages and disaddvantages
+													of email marketing</td>
 
 
 
@@ -3017,8 +3172,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_233</td>
 												<td>2023-08-22</td>
 												<td>Saieshwari Gogu</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64e459df718c1email terms.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>this document about email marketing types and how to write email</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64e459df718c1email terms.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>this document about email marketing types and how to write email
+												</td>
 
 
 
@@ -3028,8 +3185,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_234</td>
 												<td>2023-08-24</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/64e7041a0f63fpython Notes(Introduction to looping Statements).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>Python Document from python Introduction to python Looping Statements</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/64e7041a0f63fpython Notes(Introduction to looping Statements).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>Python Document from python Introduction to python Looping
+													Statements</td>
 
 
 
@@ -3039,7 +3198,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_235</td>
 												<td>2023-09-29</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6516a8a28c1ceIntroduction of HRM.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6516a8a28c1ceIntroduction of HRM.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Introduction</td>
 
 
@@ -3050,7 +3210,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_236</td>
 												<td>2023-09-29</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6516ac782912aIntroduction of HRM.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6516ac782912aIntroduction of HRM.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Introduction</td>
 
 
@@ -3061,7 +3222,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_237</td>
 												<td>2023-09-29</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6516b588ad07eAbstract.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6516b588ad07eAbstract.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>DEMO</td>
 
 
@@ -3072,7 +3234,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_238</td>
 												<td>2023-10-03</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/651bed2878dd6Importance of HRM.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/651bed2878dd6Importance of HRM.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Importance of HRM</td>
 
 
@@ -3083,7 +3246,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_239</td>
 												<td>2023-10-04</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/651d4f7542b0aHuman Resource planning.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/651d4f7542b0aHuman Resource planning.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Human Resource Planning</td>
 
 
@@ -3094,7 +3258,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_240</td>
 												<td>2023-10-05</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/651e980f94ed7Job Analysis.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/651e980f94ed7Job Analysis.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Job Analysis</td>
 
 
@@ -3105,7 +3270,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_241</td>
 												<td>2023-10-09</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6523d5f224852Job Analysis.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6523d5f224852Job Analysis.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Job Analysis</td>
 
 
@@ -3116,7 +3282,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_242</td>
 												<td>2023-10-11</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6526ab9d51790Recuritment and selection Introduction.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6526ab9d51790Recuritment and selection Introduction.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Recruitment and Selection</td>
 
 
@@ -3127,7 +3294,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_243</td>
 												<td>2023-10-11</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6526abc312b0eIntroduction of HRM.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6526abc312b0eIntroduction of HRM.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Introduction</td>
 
 
@@ -3138,7 +3306,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_244</td>
 												<td>2023-10-12</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6527cb8e27a36Interview.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6527cb8e27a36Interview.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Interview</td>
 
 
@@ -3149,7 +3318,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_245</td>
 												<td>2023-10-12</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6527cc703ebcaHuman Resource planning.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6527cc703ebcaHuman Resource planning.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Human Resource Planning</td>
 
 
@@ -3160,7 +3330,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_246</td>
 												<td>2023-10-13</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/65291ce300d0eINTERVIEW SCRIPT.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/65291ce300d0eINTERVIEW SCRIPT.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Interview calling Script</td>
 
 
@@ -3171,7 +3342,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_247</td>
 												<td>2023-10-16</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/652d11abce723Induction and placement.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/652d11abce723Induction and placement.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Induction and Placement</td>
 
 
@@ -3182,7 +3354,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_248</td>
 												<td>2023-10-16</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/65312fe677e28Job Analysis.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/65312fe677e28Job Analysis.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Job Analysis</td>
 
 
@@ -3193,7 +3366,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_249</td>
 												<td>2023-10-19</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/65313011eb4f3JOB DESIGN.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/65313011eb4f3JOB DESIGN.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Job Design</td>
 
 
@@ -3204,7 +3378,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_250</td>
 												<td>2023-10-13</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6531303b98510Importance of HRM.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6531303b98510Importance of HRM.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Importance of HRM</td>
 
 
@@ -3215,8 +3390,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_251</td>
 												<td>2023-10-19</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/65313202ba8c7TRAINING.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
-												<td>Training introduction, Factors Affecting Training, Steps in Training</td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/65313202ba8c7TRAINING.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td>Training introduction, Factors Affecting Training, Steps in Training
+												</td>
 
 
 
@@ -3226,7 +3403,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_252</td>
 												<td>2023-10-20</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/653284b5dfca3Recuritment and selection Introduction.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/653284b5dfca3Recuritment and selection Introduction.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Recruitment and Selection</td>
 
 
@@ -3237,7 +3415,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_253</td>
 												<td>2023-10-26</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/653a5ec4b023bINTERVIEW SCRIPT.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/653a5ec4b023bINTERVIEW SCRIPT.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Interview calling Script</td>
 
 
@@ -3248,7 +3427,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_254</td>
 												<td>2023-10-27</td>
 												<td>Srinivas Yerrravelli</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/653bc180aae9flive-audit.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/653bc180aae9flive-audit.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>seo audit report</td>
 
 
@@ -3259,7 +3439,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_255</td>
 												<td>2023-10-27</td>
 												<td>Srinivas Yerrravelli </td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/653bc1d4cf51dDIGITAL MARKETING.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/653bc1d4cf51dDIGITAL MARKETING.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Digital marketing PPT</td>
 
 
@@ -3270,7 +3451,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_256</td>
 												<td>2023-10-27</td>
 												<td>Srinivas Yerrravelli</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/653bc1ed3bb9aDIGITAL MARKETING.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/653bc1ed3bb9aDIGITAL MARKETING.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Digital marketing PPT</td>
 
 
@@ -3281,7 +3463,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_257</td>
 												<td>2023-10-30</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/653f91b8369b0PERFORMANCE APPRAISAL.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/653f91b8369b0PERFORMANCE APPRAISAL.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Performance Appraisal</td>
 
 
@@ -3292,7 +3475,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_258</td>
 												<td>2023-10-27</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/653f91ec689a2Interview.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/653f91ec689a2Interview.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Interview</td>
 
 
@@ -3303,7 +3487,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_259</td>
 												<td>2023-10-27</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6543869d59228PERFORMANCE APPRAISAL.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6543869d59228PERFORMANCE APPRAISAL.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Performance Appraisal</td>
 
 
@@ -3314,7 +3499,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_260</td>
 												<td>2023-11-03</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6544f97ca5db5induction sample.pptx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6544f97ca5db5induction sample.pptx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Induction Sample</td>
 
 
@@ -3325,7 +3511,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_261</td>
 												<td>2023-11-03</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/6544f9b557af1HRD.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/6544f9b557af1HRD.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Human Resource Development</td>
 
 
@@ -3336,7 +3523,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_262</td>
 												<td>2023-11-03</td>
 												<td>Tiruvidhula Naga Sai Priyanka</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/65487dedd190bJava 2 months .docx (1).pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/65487dedd190bJava 2 months .docx (1).pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td> JAVA SHORT TERM INTERNSHIP FULL DOCUMENT</td>
 
 
@@ -3347,7 +3535,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_263</td>
 												<td>2023-11-08</td>
 												<td>Madhu Varshini</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/654b915097004COMPENSATION MANAGEMENT.pdf"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/654b915097004COMPENSATION MANAGEMENT.pdf">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Compensation management</td>
 
 
@@ -3358,7 +3547,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_264</td>
 												<td>2023-11-09</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/655b5458e6401Java Full Notes (Short Term Internship)).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/655b5458e6401Java Full Notes (Short Term Internship)).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Java Document(short Term Internship)</td>
 
 
@@ -3369,7 +3559,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_265</td>
 												<td>2023-11-20</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/655b54389811cJava Full Notes (Short Term Internship)).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/655b54389811cJava Full Notes (Short Term Internship)).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Java Document(short Term Internship)</td>
 
 
@@ -3380,7 +3571,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_266</td>
 												<td>2023-11-20</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/655af474a6d01JAVA PROGRAMS.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/655af474a6d01JAVA PROGRAMS.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>JAVA PROGRAMS </td>
 
 
@@ -3391,7 +3583,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_267</td>
 												<td>2023-11-20</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/655b5419032c0Java Full Notes (Short Term Internship)).docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/655b5419032c0Java Full Notes (Short Term Internship)).docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Java Document(short Term Internship)</td>
 
 
@@ -3402,7 +3595,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_268</td>
 												<td>2023-11-20</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/655af4d6a4510JAVA PROGRAMS.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/655af4d6a4510JAVA PROGRAMS.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>JAVA PROGRAMS</td>
 
 
@@ -3413,7 +3607,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_269</td>
 												<td>2023-11-20</td>
 												<td>V Bala Tripura Sunadri</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/655b548a40654JAVA PROGRAMS.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/655b548a40654JAVA PROGRAMS.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Java Programs</td>
 
 
@@ -3424,7 +3619,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<td>TRDOC_270</td>
 												<td>2024-01-13</td>
 												<td>tirdhala ashok</td>
-												<td><a target="_blank" href="../images/documentations/Shared_Documents/65a21c3a2b0ebweb technology full document notes.docx"> <button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
+												<td><a target="_blank" href="../images/documentations/Shared_Documents/65a21c3a2b0ebweb technology full document notes.docx">
+														<button type="submit" class="btn btn-info mt-3 mb-0" name="Shared_Documents">Download</button></a></td>
 												<td>Web technology notes - HTML,CSS and BOOTSTRAP INCLUDED</td>
 
 
@@ -3451,7 +3647,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Accept</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -3469,7 +3666,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Reject</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -3487,7 +3685,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							</div>
 							<div class="modal-footer">
 								<button class="btn ripple btn-success" type="button">Unblock</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+									Now</button>
 							</div>
 						</div>
 					</div>
@@ -3510,7 +3709,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<!-- Footer opened -->
 	<div class="main-footer">
 		<div class="container-fluid pd-t-0-f ht-100p">
-			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
+			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
+			reserved
 		</div>
 	</div>
 	<!-- Footer closed -->
@@ -3522,938 +3722,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<!-- BACK-TO-TOP -->
 	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
-	<!-- JQUERY JS -->
-	<script src="assets/plugins/jquery/jquery.min.js"></script>
-
-	<!-- BOOTSTRAP JS -->
-	<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- IONICONS JS -->
-	<script src="assets/plugins/ionicons/ionicons.js"></script>
-
-	<!-- MOMENT JS -->
-	<script src="assets/plugins/moment/moment.js"></script>
-
-	<!-- P-SCROLL JS -->
-	<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-	<!-- SIDEBAR JS -->
-	<script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-	<!-- STICKY JS -->
-	<script src="assets/js/sticky.js"></script>
-
-	<!-- Chart-circle js -->
-	<script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-	<!-- RIGHT-SIDEBAR JS -->
-	<script src="assets/plugins/sidebar/sidebar.js"></script>
-	<script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-	<!-- Internal Data tables -->
-	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-	<script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-	<script src="assets/plugins/datatable/js/jszip.min.js"></script>
-	<script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-	<script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-	<script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-	<script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-	<script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-	<script src="assets/js/table-data.js"></script>
-
-	<!-- INTERNAL Select2 js -->
-	<script src="assets/plugins/select2/js/select2.full.min.js"></script>
-
-
-	<!-- EVA-ICONS JS -->
-	<script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-	<!-- THEME-COLOR JS -->
-	<script src="assets/js/themecolor.js"></script>
-
-	<!-- CUSTOM JS -->
-	<script src="assets/js/custom.js"></script>
-
-	<!-- exported JS -->
-	<script src="assets/js/exported.js"></script>
-
-	<!-- SWITCHER JS -->
-	<script src="assets/switcher/js/switcher.js"></script>
-
+	<?php include("./scripts.php"); ?>
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
-
-</html>                                            <tr>
-                                                <td>213</td>
-                                                <td>2023-07-07 16:07:24</td>
-                                                <td>TRDOC_222</td>
-                                                <td>2023-07-07</td>
-                                                <td>tirdhala ashok</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64a7eae485b81CSSNotesForProfessionals full notes for students.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>css full notes for students</td>
-
-
-
-                                            <tr>
-                                                <td>214</td>
-                                                <td>2023-07-07 16:10:26</td>
-                                                <td>TRDOC_223</td>
-                                                <td>2023-07-07</td>
-                                                <td>tirdhala ashok</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64a7eb9a153d6bootstrap_notes for students.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>bootstrap full notes </td>
-
-
-
-                                            <tr>
-                                                <td>215</td>
-                                                <td>2023-08-09 16:55:01</td>
-                                                <td>TRDOC_224</td>
-                                                <td>2023-08-09</td>
-                                                <td>tirdhala ashok</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64d3778d64917html and css introduction notes.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>NA</td>
-
-
-
-                                            <tr>
-                                                <td>216</td>
-                                                <td>2023-08-10 16:12:52</td>
-                                                <td>TRDOC_225</td>
-                                                <td>2023-08-10</td>
-                                                <td>tirdhala ashok</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64d4bf2c8fb3fHTML basic topics 10-08-2023.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>html and css basics</td>
-
-
-
-                                            <tr>
-                                                <td>217</td>
-                                                <td>2023-08-11 17:18:14</td>
-                                                <td>TRDOC_226</td>
-                                                <td>2023-08-11</td>
-                                                <td>tirdhala ashok</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64d61ffeb3206HTML basic topics 10-08-2023.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>html and css basics part 2</td>
-
-
-
-                                            <tr>
-                                                <td>218</td>
-                                                <td>2023-08-14 13:03:51</td>
-                                                <td>TRDOC_227</td>
-                                                <td>2023-08-14</td>
-                                                <td>Saieshwari Gogu</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64d9d8dfb19c9INTRODUCTION TO DIGITAL MARKETING.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>this document is about what, types and importance of digital
-                                                    marketing</td>
-
-
-
-                                            <tr>
-                                                <td>219</td>
-                                                <td>2023-08-16 16:16:27</td>
-                                                <td>TRDOC_228</td>
-                                                <td>2023-08-16</td>
-                                                <td>tirdhala ashok</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64dca9039cb94CSS box model for webtech 14-08-2023.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>css box model properties</td>
-
-
-
-                                            <tr>
-                                                <td>220</td>
-                                                <td>2023-08-17 14:55:37</td>
-                                                <td>TRDOC_229</td>
-                                                <td>2023-08-17</td>
-                                                <td>Saieshwari Gogu</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64dde791dc862TYPES OF DIGITAL MARKETING.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>This notes is about 7 different types of digital marketing</td>
-
-
-
-                                            <tr>
-                                                <td>221</td>
-                                                <td>2023-08-18 12:10:31</td>
-                                                <td>TRDOC_230</td>
-                                                <td>2023-08-18</td>
-                                                <td>Saieshwari Gogu</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64df125f1cf10ADVANTAGES & DISADVANTAGES OF DM.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>this document is about advantages and disadvantages of digital
-                                                    marketing</td>
-
-
-
-                                            <tr>
-                                                <td>222</td>
-                                                <td>2023-08-18 17:59:36</td>
-                                                <td>TRDOC_231</td>
-                                                <td>2023-08-18</td>
-                                                <td>tirdhala ashok</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64df6430731bacss selectors and html lists - 18-08-2023 (1).docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>css selectors and html lists</td>
-
-
-
-                                            <tr>
-                                                <td>223</td>
-                                                <td>2023-08-21 12:13:18</td>
-                                                <td>TRDOC_232</td>
-                                                <td>2023-08-21</td>
-                                                <td>Saieshwari Gogu</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64e307861048dEMAIL MARKETING.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>this document is about what, types , advantages and disaddvantages
-                                                    of email marketing</td>
-
-
-
-                                            <tr>
-                                                <td>224</td>
-                                                <td>2023-08-22 12:16:55</td>
-                                                <td>TRDOC_233</td>
-                                                <td>2023-08-22</td>
-                                                <td>Saieshwari Gogu</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64e459df718c1email terms.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>this document about email marketing types and how to write email
-                                                </td>
-
-
-
-                                            <tr>
-                                                <td>225</td>
-                                                <td>2023-08-24 12:47:46</td>
-                                                <td>TRDOC_234</td>
-                                                <td>2023-08-24</td>
-                                                <td>V Bala Tripura Sunadri</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/64e7041a0f63fpython Notes(Introduction to looping Statements).docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Python Document from python Introduction to python Looping
-                                                    Statements</td>
-
-
-
-                                            <tr>
-                                                <td>226</td>
-                                                <td>2023-09-29 16:06:18</td>
-                                                <td>TRDOC_235</td>
-                                                <td>2023-09-29</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6516a8a28c1ceIntroduction of HRM.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Introduction</td>
-
-
-
-                                            <tr>
-                                                <td>227</td>
-                                                <td>2023-09-29 16:22:40</td>
-                                                <td>TRDOC_236</td>
-                                                <td>2023-09-29</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6516ac782912aIntroduction of HRM.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Introduction</td>
-
-
-
-                                            <tr>
-                                                <td>228</td>
-                                                <td>2023-09-29 17:01:20</td>
-                                                <td>TRDOC_237</td>
-                                                <td>2023-09-29</td>
-                                                <td>V Bala Tripura Sunadri</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6516b588ad07eAbstract.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>DEMO</td>
-
-
-
-                                            <tr>
-                                                <td>229</td>
-                                                <td>2023-10-03 16:00:00</td>
-                                                <td>TRDOC_238</td>
-                                                <td>2023-10-03</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/651bed2878dd6Importance of HRM.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Importance of HRM</td>
-
-
-
-                                            <tr>
-                                                <td>230</td>
-                                                <td>2023-10-04 17:11:41</td>
-                                                <td>TRDOC_239</td>
-                                                <td>2023-10-04</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/651d4f7542b0aHuman Resource planning.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Human Resource Planning</td>
-
-
-
-                                            <tr>
-                                                <td>231</td>
-                                                <td>2023-10-05 16:33:43</td>
-                                                <td>TRDOC_240</td>
-                                                <td>2023-10-05</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/651e980f94ed7Job Analysis.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Job Analysis</td>
-
-
-
-                                            <tr>
-                                                <td>232</td>
-                                                <td>2023-10-09 15:59:06</td>
-                                                <td>TRDOC_241</td>
-                                                <td>2023-10-09</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6523d5f224852Job Analysis.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Job Analysis</td>
-
-
-
-                                            <tr>
-                                                <td>233</td>
-                                                <td>2023-10-11 19:35:17</td>
-                                                <td>TRDOC_242</td>
-                                                <td>2023-10-11</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6526ab9d51790Recuritment and selection Introduction.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Recruitment and Selection</td>
-
-
-
-                                            <tr>
-                                                <td>234</td>
-                                                <td>2023-10-11 19:35:55</td>
-                                                <td>TRDOC_243</td>
-                                                <td>2023-10-11</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6526abc312b0eIntroduction of HRM.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Introduction</td>
-
-
-
-                                            <tr>
-                                                <td>235</td>
-                                                <td>2023-10-12 16:03:50</td>
-                                                <td>TRDOC_244</td>
-                                                <td>2023-10-12</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6527cb8e27a36Interview.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Interview</td>
-
-
-
-                                            <tr>
-                                                <td>236</td>
-                                                <td>2023-10-12 16:07:36</td>
-                                                <td>TRDOC_245</td>
-                                                <td>2023-10-12</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6527cc703ebcaHuman Resource planning.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Human Resource Planning</td>
-
-
-
-                                            <tr>
-                                                <td>237</td>
-                                                <td>2023-10-13 16:03:07</td>
-                                                <td>TRDOC_246</td>
-                                                <td>2023-10-13</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/65291ce300d0eINTERVIEW SCRIPT.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Interview calling Script</td>
-
-
-
-                                            <tr>
-                                                <td>238</td>
-                                                <td>2023-10-16 16:04:19</td>
-                                                <td>TRDOC_247</td>
-                                                <td>2023-10-16</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/652d11abce723Induction and placement.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Induction and Placement</td>
-
-
-
-                                            <tr>
-                                                <td>239</td>
-                                                <td>2023-10-19 19:02:22</td>
-                                                <td>TRDOC_248</td>
-                                                <td>2023-10-16</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/65312fe677e28Job Analysis.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Job Analysis</td>
-
-
-
-                                            <tr>
-                                                <td>240</td>
-                                                <td>2023-10-19 19:03:05</td>
-                                                <td>TRDOC_249</td>
-                                                <td>2023-10-19</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/65313011eb4f3JOB DESIGN.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Job Design</td>
-
-
-
-                                            <tr>
-                                                <td>241</td>
-                                                <td>2023-10-19 19:03:47</td>
-                                                <td>TRDOC_250</td>
-                                                <td>2023-10-13</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6531303b98510Importance of HRM.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Importance of HRM</td>
-
-
-
-                                            <tr>
-                                                <td>242</td>
-                                                <td>2023-10-19 19:11:22</td>
-                                                <td>TRDOC_251</td>
-                                                <td>2023-10-19</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/65313202ba8c7TRAINING.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Training introduction, Factors Affecting Training, Steps in Training
-                                                </td>
-
-
-
-                                            <tr>
-                                                <td>243</td>
-                                                <td>2023-10-20 19:16:29</td>
-                                                <td>TRDOC_252</td>
-                                                <td>2023-10-20</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/653284b5dfca3Recuritment and selection Introduction.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Recruitment and Selection</td>
-
-
-
-                                            <tr>
-                                                <td>244</td>
-                                                <td>2023-10-26 18:12:44</td>
-                                                <td>TRDOC_253</td>
-                                                <td>2023-10-26</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/653a5ec4b023bINTERVIEW SCRIPT.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Interview calling Script</td>
-
-
-
-                                            <tr>
-                                                <td>245</td>
-                                                <td>2023-10-27 19:26:16</td>
-                                                <td>TRDOC_254</td>
-                                                <td>2023-10-27</td>
-                                                <td>Srinivas Yerrravelli</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/653bc180aae9flive-audit.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>seo audit report</td>
-
-
-
-                                            <tr>
-                                                <td>246</td>
-                                                <td>2023-10-27 19:27:40</td>
-                                                <td>TRDOC_255</td>
-                                                <td>2023-10-27</td>
-                                                <td>Srinivas Yerrravelli </td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/653bc1d4cf51dDIGITAL MARKETING.pptx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Digital marketing PPT</td>
-
-
-
-                                            <tr>
-                                                <td>247</td>
-                                                <td>2023-10-27 19:28:05</td>
-                                                <td>TRDOC_256</td>
-                                                <td>2023-10-27</td>
-                                                <td>Srinivas Yerrravelli</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/653bc1ed3bb9aDIGITAL MARKETING.pptx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Digital marketing PPT</td>
-
-
-
-                                            <tr>
-                                                <td>248</td>
-                                                <td>2023-10-30 16:51:28</td>
-                                                <td>TRDOC_257</td>
-                                                <td>2023-10-30</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/653f91b8369b0PERFORMANCE APPRAISAL.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Performance Appraisal</td>
-
-
-
-                                            <tr>
-                                                <td>249</td>
-                                                <td>2023-10-30 16:52:20</td>
-                                                <td>TRDOC_258</td>
-                                                <td>2023-10-27</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/653f91ec689a2Interview.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Interview</td>
-
-
-
-                                            <tr>
-                                                <td>250</td>
-                                                <td>2023-11-02 16:53:09</td>
-                                                <td>TRDOC_259</td>
-                                                <td>2023-10-27</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6543869d59228PERFORMANCE APPRAISAL.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Performance Appraisal</td>
-
-
-
-                                            <tr>
-                                                <td>251</td>
-                                                <td>2023-11-03 19:15:32</td>
-                                                <td>TRDOC_260</td>
-                                                <td>2023-11-03</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6544f97ca5db5induction sample.pptx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Induction Sample</td>
-
-
-
-                                            <tr>
-                                                <td>252</td>
-                                                <td>2023-11-03 19:16:29</td>
-                                                <td>TRDOC_261</td>
-                                                <td>2023-11-03</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/6544f9b557af1HRD.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Human Resource Development</td>
-
-
-
-                                            <tr>
-                                                <td>253</td>
-                                                <td>2023-11-06 11:17:25</td>
-                                                <td>TRDOC_262</td>
-                                                <td>2023-11-03</td>
-                                                <td>Tiruvidhula Naga Sai Priyanka</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/65487dedd190bJava 2 months .docx (1).pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td> JAVA SHORT TERM INTERNSHIP FULL DOCUMENT</td>
-
-
-
-                                            <tr>
-                                                <td>254</td>
-                                                <td>2023-11-08 19:16:56</td>
-                                                <td>TRDOC_263</td>
-                                                <td>2023-11-08</td>
-                                                <td>Madhu Varshini</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/654b915097004COMPENSATION MANAGEMENT.pdf">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Compensation management</td>
-
-
-
-                                            <tr>
-                                                <td>255</td>
-                                                <td>2023-11-20 18:13:04</td>
-                                                <td>TRDOC_264</td>
-                                                <td>2023-11-09</td>
-                                                <td>V Bala Tripura Sunadri</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/655b5458e6401Java Full Notes (Short Term Internship)).docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Java Document(short Term Internship)</td>
-
-
-
-                                            <tr>
-                                                <td>256</td>
-                                                <td>2023-11-20 18:12:32</td>
-                                                <td>TRDOC_265</td>
-                                                <td>2023-11-20</td>
-                                                <td>V Bala Tripura Sunadri</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/655b54389811cJava Full Notes (Short Term Internship)).docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Java Document(short Term Internship)</td>
-
-
-
-                                            <tr>
-                                                <td>257</td>
-                                                <td>2023-11-20 11:23:56</td>
-                                                <td>TRDOC_266</td>
-                                                <td>2023-11-20</td>
-                                                <td>V Bala Tripura Sunadri</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/655af474a6d01JAVA PROGRAMS.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>JAVA PROGRAMS </td>
-
-
-
-                                            <tr>
-                                                <td>258</td>
-                                                <td>2023-11-20 18:12:01</td>
-                                                <td>TRDOC_267</td>
-                                                <td>2023-11-20</td>
-                                                <td>V Bala Tripura Sunadri</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/655b5419032c0Java Full Notes (Short Term Internship)).docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Java Document(short Term Internship)</td>
-
-
-
-                                            <tr>
-                                                <td>259</td>
-                                                <td>2023-11-20 11:25:34</td>
-                                                <td>TRDOC_268</td>
-                                                <td>2023-11-20</td>
-                                                <td>V Bala Tripura Sunadri</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/655af4d6a4510JAVA PROGRAMS.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>JAVA PROGRAMS</td>
-
-
-
-                                            <tr>
-                                                <td>260</td>
-                                                <td>2023-11-20 18:13:54</td>
-                                                <td>TRDOC_269</td>
-                                                <td>2023-11-20</td>
-                                                <td>V Bala Tripura Sunadri</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/655b548a40654JAVA PROGRAMS.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Java Programs</td>
-
-
-
-                                            <tr>
-                                                <td>261</td>
-                                                <td>2024-01-13 10:44:34</td>
-                                                <td>TRDOC_270</td>
-                                                <td>2024-01-13</td>
-                                                <td>tirdhala ashok</td>
-                                                <td><a target="_blank"
-                                                        href="../images/documentations/Shared_Documents/65a21c3a2b0ebweb technology full document notes.docx">
-                                                        <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                            name="Shared_Documents">Download</button></a></td>
-                                                <td>Web technology notes - HTML,CSS and BOOTSTRAP INCLUDED</td>
-
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Row -->
-
-
-                <div class="modal fade" id="accept">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to accept a recordings??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Accept</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="reject">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to reject a recordings??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Reject</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="Unblock">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to Unblock a employee??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Unblock</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
-    </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
-
-    <!-- Sidebar-right-->
-
-
-
-
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span
-                class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
-            reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <!-- JQUERY JS -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-
-    <!-- BOOTSTRAP JS -->
-    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- IONICONS JS -->
-    <script src="assets/plugins/ionicons/ionicons.js"></script>
-
-    <!-- MOMENT JS -->
-    <script src="assets/plugins/moment/moment.js"></script>
-
-    <!-- P-SCROLL JS -->
-    <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-    <!-- SIDEBAR JS -->
-    <script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-    <!-- STICKY JS -->
-    <script src="assets/js/sticky.js"></script>
-
-    <!-- Chart-circle js -->
-    <script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-    <!-- RIGHT-SIDEBAR JS -->
-    <script src="assets/plugins/sidebar/sidebar.js"></script>
-    <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-    <!-- Internal Data tables -->
-    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-    <script src="assets/plugins/datatable/js/jszip.min.js"></script>
-    <script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-    <script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-    <script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-    <script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-    <script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-    <script src="assets/js/table-data.js"></script>
-
-    <!-- INTERNAL Select2 js -->
-    <script src="assets/plugins/select2/js/select2.full.min.js"></script>
-
-
-    <!-- EVA-ICONS JS -->
-    <script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-    <!-- THEME-COLOR JS -->
-    <script src="assets/js/themecolor.js"></script>
-
-    <!-- CUSTOM JS -->
-    <script src="assets/js/custom.js"></script>
-
-    <!-- exported JS -->
-    <script src="assets/js/exported.js"></script>
-
-    <!-- SWITCHER JS -->
-    <script src="assets/switcher/js/switcher.js"></script>
-
-</body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
 
 </html>

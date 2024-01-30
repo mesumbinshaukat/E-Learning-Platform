@@ -20,89 +20,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="Description" content="">
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!-- Data table css -->
-	<link href="assets/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
-	<link href="assets/plugins/datatable/css/buttons.bootstrap5.min.css" rel="stylesheet">
-	<link href="assets/plugins/datatable/responsive.bootstrap5.css" rel="stylesheet" />
-
-	<!-- INTERNAL Select2 css -->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!--- Internal Select2 css-->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet">
-
-	<!---Internal Fileupload css-->
-	<link href="assets/plugins/fileuploads/css/fileupload.css" rel="stylesheet" type="text/css" />
-
-	<!---Internal Fancy uploader css-->
-	<link href="assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
-
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
+	<?php include("./style.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -455,7 +373,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 					<!-- breadcrumb -->
 					<div class="breadcrumb-header justify-content-between">
 						<div class="left-content">
-							<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Create Trainer</span>
+							<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Create
+								Trainer</span>
 						</div>
 						<div class="justify-content-center mt-2">
 							<ol class="breadcrumb">
@@ -478,20 +397,23 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 										<div class="row row-xs formgroup-wrapper">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputName">Trainer Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputName">Trainer Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="text" required class="form-control" name="Trainer_Name" id="exampleInputName" placeholder="Enter Name">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputCompanyPhone">Personal Phone Number <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputCompanyPhone">Personal Phone Number <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="number" required class="form-control" name="Personal_Phone_Number" maxlength="14" minlength="10" id="exampleInputCompanyPhone" placeholder="Enter Contact Number">
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputPerEmail"> Personal Mail Id <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputPerEmail"> Personal Mail Id <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="email" required class="form-control" name="Personal_Mail_id" id="exampleInputPerEmail" placeholder="Enter Mail Id">
 												</div>
 											</div>
@@ -499,52 +421,60 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputDOB">Date of Birth <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputDOB">Date of Birth <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input class="form-control" required name="Date_Of_Birth" id="dateMask" placeholder="YYYY/MM/DD" type="date">
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputQualification">Aadhar Card No <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputQualification">Aadhar Card No <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="number" required class="form-control" name="Aadhar_Card_No" id="exampleInputQualification" placeholder="Enter Aadhar Card Number">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputcode">Upload Aadhar Card <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputcode">Upload Aadhar Card <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="file" required class="form-control" name="Upload_Aadhar_Card" id="exampleInputcode" placeholder="">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputAadhar">PAN Card No <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputAadhar">PAN Card No <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="text" required class="form-control" name="Pan_Card_No" id="exampleInputAadhar" placeholder="Enter Pan Card Number">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputcode"> Upload PAN Card <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputcode"> Upload PAN Card <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="file" required class="form-control" id="exampleInputcode" name="Upload_Pan_Card" placeholder="">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputUserName">Date of joining <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputUserName">Date of joining <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input class="form-control" required name="Date_Of_joining" id="dateMask" placeholder="YYYY/MM/DD" type="date">
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputQualification">Qualification <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputQualification">Qualification <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="text" required class="form-control" name="Qualification" id="exampleInputQualification" placeholder="Enter qualification">
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputExperience">Any Experience <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputExperience">Any Experience <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<select class="form-control form-select select2" required name="Any_Experience" id="exampleInputExperience" data-bs-placeholder="Enter Experience">
 														<option value="yes">Yes</option>
 														<option value="no">No</option>
@@ -556,14 +486,17 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputUserName">Previous/Current Organisation Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputUserName">Previous/Current Organisation Name
+														<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="text" required class="form-control" name="Previous/Current_Organization_name" id="exampleInputUserName" placeholder="Enter Company Name">
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputUserName">Designation <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputUserName">Designation <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="text" required class="form-control" name="Designation" id="exampleInputDesignation" placeholder="Enter Designation">
 												</div>
 											</div>
@@ -571,27 +504,31 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputcode"> Trainer Documents <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputcode"> Trainer Documents <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="file" class="form-control" required name="Trainer_Documents" id="exampleInputcode" placeholder="">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputUserName">Trainer Username <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputUserName">Trainer Username <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="text" required class="form-control" name="Trainer_Username" id="exampleInputUserName" placeholder="Enter Username">
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputPassword">Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputPassword">Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="password" required class="form-control" minlength=8 maxlength=10 name="Password" id='password' placeholder="Enter Password">
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="exampleInputRe-EnterPassword">Re-Enter Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+													<label for="exampleInputRe-EnterPassword">Re-Enter Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 													<input type="password" required class="form-control" minlength=8 maxlength=10 id='retypepassword' placeholder="Re-Enter Password">
 												</div>
 											</div>
@@ -619,25 +556,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 				<!-- Container closed -->
 			</div>
 
-
-
-			<!-- <div class="modal fade" id="modaldemo1">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content modal-content-demo">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                    <p> Are you sure you want to create a trainer?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn ripple btn-success" type="submit" name="submit" value="submit">Create</button>
-                                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 		</form>
 
 		<script type="text/javascript">
@@ -654,7 +572,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 		<!-- Footer opened -->
 		<div class="main-footer">
 			<div class="container-fluid pd-t-0-f ht-100p">
-				Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
+				Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All
+				rights reserved
 			</div>
 		</div>
 		<!-- Footer closed -->
@@ -664,187 +583,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 	<!-- BACK-TO-TOP -->
 	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-	<!-- JQUERY JS -->
-	<script src="assets/plugins/jquery/jquery.min.js"></script>
-
-	<!-- BOOTSTRAP JS -->
-	<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- IONICONS JS -->
-	<script src="assets/plugins/ionicons/ionicons.js"></script>
-
-	<!-- MOMENT JS -->
-	<script src="assets/plugins/moment/moment.js"></script>
-
-	<!-- P-SCROLL JS -->
-	<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-	<!-- SIDEBAR JS -->
-	<script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-	<!-- STICKY JS -->
-	<script src="assets/js/sticky.js"></script>
-
-	<!-- Chart-circle js -->
-	<script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-	<!-- RIGHT-SIDEBAR JS -->
-	<script src="assets/plugins/sidebar/sidebar.js"></script>
-	<script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-
-	<!-- EVA-ICONS JS -->
-	<script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-	<!-- THEME-COLOR JS -->
-	<script src="assets/js/themecolor.js"></script>
-
-	<!-- CUSTOM JS -->
-	<script src="assets/js/custom.js"></script>
-
-	<!-- exported JS -->
-	<script src="assets/js/exported.js"></script>
-
-	<!-- SWITCHER JS -->
-	<script src="assets/switcher/js/switcher.js"></script>
+	<?php include("./scripts.php"); ?>
 
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
-
-</html>                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="password" required class="form-control" minlength=8
-                                                        maxlength=10 id='retypepassword'
-                                                        placeholder="Re-Enter Password">
-                                                </div>
-                                            </div>
-
-
-
-
-
-
-
-
-
-
-                                            <button type="submit" name="submit" value="submit"
-                                                class="btn btn-primary mt-3 mb-0" onclick="return check()"
-                                                style="text-align:right">Generate</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                <!-- Container closed -->
-            </div>
-
-
-
-            <!-- <div class="modal fade" id="modaldemo1">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content modal-content-demo">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                    <p> Are you sure you want to create a trainer?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn ripple btn-success" type="submit" name="submit" value="submit">Create</button>
-                                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-        </form>
-
-        <script type="text/javascript">
-        function check() {
-            var b = document.getElementById('password').value;
-            var c = document.getElementById('retypepassword').value;
-            if (b != c) {
-                alert('Password doesnt match');
-                return false;
-            } else
-                return true;
-        }
-        </script>
-        <!-- Footer opened -->
-        <div class="main-footer">
-            <div class="container-fluid pd-t-0-f ht-100p">
-                Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span
-                    class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All
-                rights reserved
-            </div>
-        </div>
-        <!-- Footer closed -->
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <!-- JQUERY JS -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-
-    <!-- BOOTSTRAP JS -->
-    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- IONICONS JS -->
-    <script src="assets/plugins/ionicons/ionicons.js"></script>
-
-    <!-- MOMENT JS -->
-    <script src="assets/plugins/moment/moment.js"></script>
-
-    <!-- P-SCROLL JS -->
-    <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-    <!-- SIDEBAR JS -->
-    <script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-    <!-- STICKY JS -->
-    <script src="assets/js/sticky.js"></script>
-
-    <!-- Chart-circle js -->
-    <script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-    <!-- RIGHT-SIDEBAR JS -->
-    <script src="assets/plugins/sidebar/sidebar.js"></script>
-    <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-
-    <!-- EVA-ICONS JS -->
-    <script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-    <!-- THEME-COLOR JS -->
-    <script src="assets/js/themecolor.js"></script>
-
-    <!-- CUSTOM JS -->
-    <script src="assets/js/custom.js"></script>
-
-    <!-- exported JS -->
-    <script src="assets/js/exported.js"></script>
-
-    <!-- SWITCHER JS -->
-    <script src="assets/switcher/js/switcher.js"></script>
-
-</body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 
 </html>

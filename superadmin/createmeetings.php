@@ -22,88 +22,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="Description" content="">
 
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!-- Data table css -->
-	<link href="assets/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
-	<link href="assets/plugins/datatable/css/buttons.bootstrap5.min.css" rel="stylesheet">
-	<link href="assets/plugins/datatable/responsive.bootstrap5.css" rel="stylesheet" />
-
-	<!-- INTERNAL Select2 css -->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
-	<link rel="icon" href="assets/img/icon.png" type="image/x-icon" />
-
-	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
-
-	<!-- BOOTSTRAP CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-	<!-- RIGHT-SIDEMENU CSS -->
-	<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-	<!-- P-SCROLL BAR CSS -->
-	<link href="assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
-
-
-	<!--- Internal Select2 css-->
-	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet">
-
-	<!---Internal Fileupload css-->
-	<link href="assets/plugins/fileuploads/css/fileupload.css" rel="stylesheet" type="text/css" />
-
-	<!---Internal Fancy uploader css-->
-	<link href="assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
-
-
-
-	<!-- STYLES CSS -->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/css/style-dark.css" rel="stylesheet">
-	<link href="assets/css/style-transparent.css" rel="stylesheet">
-
-
-	<!-- SKIN-MODES CSS -->
-	<link href="assets/css/skin-modes.css" rel="stylesheet" />
-
-	<!-- ANIMATION CSS -->
-	<link href="assets/css/animate.css" rel="stylesheet">
-
-	<!-- SWITCHER CSS -->
-	<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-	<link href="assets/switcher/demo.css" rel="stylesheet" />
-
+	<?php include("./style.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -456,7 +375,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 					<!-- breadcrumb -->
 					<div class="breadcrumb-header justify-content-between">
 						<div class="left-content">
-							<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Create Meetings</span>
+							<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Create
+								Meetings</span>
 						</div>
 						<div class="justify-content-center mt-2">
 							<ol class="breadcrumb">
@@ -490,58 +410,110 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 					<div class="form-group col-md-4">
 						<select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-							<option value="1">TRSTBA_1_Nandamuru Koteswara Rao_Medical Coding</option> <!--college name -->
-							<option value="2">TRSTBA_2_M Sandeep Kumar_Digital Marketing</option> <!--college name -->
-							<option value="3">TRSTBA_3_Uma Kiran V_Medical Coding</option> <!--college name -->
-							<option value="4">TRSTBA_4_Uma Kiran V_Medical Coding</option> <!--college name -->
-							<option value="5">TRSTBA_5_V Bala Tripura Sunadri_JAVA</option> <!--college name -->
-							<option value="6">TRSTBA_6_V Bala Tripura Sunadri_JAVA</option> <!--college name -->
-							<option value="7">TRSTBA_7_V Bala Tripura Sunadri_Python</option> <!--college name -->
-							<option value="8">TRSTBA_8_SRIKANTH _Cloud computing</option> <!--college name -->
-							<option value="9">TRSTBA_9_Nikhil Chakka_Python</option> <!--college name -->
-							<option value="10">TRSTBA_10_Shaik Ashraf rahil_Web Technologies</option> <!--college name -->
-							<option value="11">TRSTBA_11_Shaik Ashraf rahil_Web Technologies</option> <!--college name -->
-							<option value="12">TRSTBA_12_Senthan M S V S_Python</option> <!--college name -->
-							<option value="13">TRSTBA_13_Shiva Krishna_Digital Marketing</option> <!--college name -->
-							<option value="14">TRSTBA_14_saitejaswi kolliboina_Medical Coding</option> <!--college name -->
-							<option value="15">TRSTBA_15_Vasundhara_Tally</option> <!--college name -->
-							<option value="16">TRSTBA_16_Narender_US Taxation</option> <!--college name -->
-							<option value="17">TRSTBA_17_Madhu Varshini_Human resource management</option> <!--college name -->
-							<option value="18">TRSTBA_18_saitejaswi kolliboina_Medical Coding</option> <!--college name -->
-							<option value="20">TRSTBA_20_Saieshwari Gogu_Digital Marketing</option> <!--college name -->
-							<option value="23">TRSTBA_23_tirdhala ashok_Web Technologies</option> <!--college name -->
-							<option value="24">TRSTBA_24_G Venkatesh_Cloud computing</option> <!--college name -->
-							<option value="26">TRSTBA_26_V Bala Tripura Sunadri_Python</option> <!--college name -->
-							<option value="27">TRSTBA_27_V Bala Tripura Sunadri_JAVA</option> <!--college name -->
-							<option value="28">TRSTBA_28_Saieshwari Gogu_Digital Marketing</option> <!--college name -->
-							<option value="29">TRSTBA_29_Mekanaboyina Venkata murali Krishna_Tally</option> <!--college name -->
-							<option value="30">TRSTBA_30_Madhu Varshini_Human resource management</option> <!--college name -->
-							<option value="31">TRSTBA_31_tirdhala ashok_Web Technologies</option> <!--college name -->
-							<option value="32">TRSTBA_32_Ramu_Medical Coding</option> <!--college name -->
-							<option value="34">TRSTBA_34_Madanu Augustin_AI </option> <!--college name -->
-							<option value="37">TRSTBA_37_Madanu Augustin_Power BI </option> <!--college name -->
-							<option value="38">TRSTBA_38_Akhila V_My SQL </option> <!--college name -->
-							<option value="39">TRSTBA_39_vijay kumar sampathi_Medical Coding</option> <!--college name -->
-							<option value="40">TRSTBA_40_Tiruvidhula Naga Sai Priyanka_JAVA</option> <!--college name -->
-							<option value="41">TRSTBA_41_Srinivas Yerrravelli _Digital Marketing</option> <!--college name -->
-							<option value="42">TRSTBA_42_V Bala Tripura Sunadri_JAVA</option> <!--college name -->
-							<option value="43">TRSTBA_43_V Bala Tripura Sunadri_JAVA</option> <!--college name -->
-							<option value="44">TRSTBA_44_Ramu_Medical Coding</option> <!--college name -->
-							<option value="45">TRSTBA_45_tirdhala ashok_Web Technologies</option> <!--college name -->
-							<option value="47">TRSTBA_47_tirdhala ashok_Web Technologies</option> <!--college name -->
-							<option value="48">TRSTBA_48_Madhu Varshini_Human resource management</option> <!--college name -->
-							<option value="50">TRSTBA_50_Srinivas Yerrravelli_Digital Marketing</option> <!--college name -->
-							<option value="51">TRSTBA_51_Shanti Kiran_Python</option> <!--college name -->
-							<option value="52">TRSTBA_52_K Bharath Kumar_Tally GST</option> <!--college name -->
-							<option value="54">TRSTBA_54_V Bala Tripura Sunadri_JAVA</option> <!--college name -->
-							<option value="55">TRSTBA_55_Ramu_Medical Coding</option> <!--college name -->
-							<option value="56">TRSTBA_56_tirdhala ashok_Web Technologies</option> <!--college name -->
-							<option value="57">TRSTBA_57_demotrainer_Voice process</option> <!--college name -->
-							<option value="58">TRSTBA_58_M Sandeep Kumar_Digital Marketing</option> <!--college name -->
-							<option value="59">TRSTBA_59_M Sandeep Kumar_Digital Marketing</option> <!--college name -->
-							<option value="60">TRSTBA_60_V Bala Tripura Sunadri _Python</option> <!--college name -->
-							<option value="61">TRSTBA_61_Kishore Kumar _Human resource management</option> <!--college name -->
-							<option value="62">TRSTBA_62_Shanti Kiran_Python</option> <!--college name -->
+							<option value="1">TRSTBA_1_Nandamuru Koteswara Rao_Medical Coding</option>
+							<!--college name -->
+							<option value="2">TRSTBA_2_M Sandeep Kumar_Digital Marketing</option>
+							<!--college name -->
+							<option value="3">TRSTBA_3_Uma Kiran V_Medical Coding</option>
+							<!--college name -->
+							<option value="4">TRSTBA_4_Uma Kiran V_Medical Coding</option>
+							<!--college name -->
+							<option value="5">TRSTBA_5_V Bala Tripura Sunadri_JAVA</option>
+							<!--college name -->
+							<option value="6">TRSTBA_6_V Bala Tripura Sunadri_JAVA</option>
+							<!--college name -->
+							<option value="7">TRSTBA_7_V Bala Tripura Sunadri_Python</option>
+							<!--college name -->
+							<option value="8">TRSTBA_8_SRIKANTH _Cloud computing</option>
+							<!--college name -->
+							<option value="9">TRSTBA_9_Nikhil Chakka_Python</option>
+							<!--college name -->
+							<option value="10">TRSTBA_10_Shaik Ashraf rahil_Web Technologies</option>
+							<!--college name -->
+							<option value="11">TRSTBA_11_Shaik Ashraf rahil_Web Technologies</option>
+							<!--college name -->
+							<option value="12">TRSTBA_12_Senthan M S V S_Python</option>
+							<!--college name -->
+							<option value="13">TRSTBA_13_Shiva Krishna_Digital Marketing</option>
+							<!--college name -->
+							<option value="14">TRSTBA_14_saitejaswi kolliboina_Medical Coding</option>
+							<!--college name -->
+							<option value="15">TRSTBA_15_Vasundhara_Tally</option>
+							<!--college name -->
+							<option value="16">TRSTBA_16_Narender_US Taxation</option>
+							<!--college name -->
+							<option value="17">TRSTBA_17_Madhu Varshini_Human resource management</option>
+							<!--college name -->
+							<option value="18">TRSTBA_18_saitejaswi kolliboina_Medical Coding</option>
+							<!--college name -->
+							<option value="20">TRSTBA_20_Saieshwari Gogu_Digital Marketing</option>
+							<!--college name -->
+							<option value="23">TRSTBA_23_tirdhala ashok_Web Technologies</option>
+							<!--college name -->
+							<option value="24">TRSTBA_24_G Venkatesh_Cloud computing</option>
+							<!--college name -->
+							<option value="26">TRSTBA_26_V Bala Tripura Sunadri_Python</option>
+							<!--college name -->
+							<option value="27">TRSTBA_27_V Bala Tripura Sunadri_JAVA</option>
+							<!--college name -->
+							<option value="28">TRSTBA_28_Saieshwari Gogu_Digital Marketing</option>
+							<!--college name -->
+							<option value="29">TRSTBA_29_Mekanaboyina Venkata murali Krishna_Tally</option>
+							<!--college name -->
+							<option value="30">TRSTBA_30_Madhu Varshini_Human resource management</option>
+							<!--college name -->
+							<option value="31">TRSTBA_31_tirdhala ashok_Web Technologies</option>
+							<!--college name -->
+							<option value="32">TRSTBA_32_Ramu_Medical Coding</option>
+							<!--college name -->
+							<option value="34">TRSTBA_34_Madanu Augustin_AI </option>
+							<!--college name -->
+							<option value="37">TRSTBA_37_Madanu Augustin_Power BI </option>
+							<!--college name -->
+							<option value="38">TRSTBA_38_Akhila V_My SQL </option>
+							<!--college name -->
+							<option value="39">TRSTBA_39_vijay kumar sampathi_Medical Coding</option>
+							<!--college name -->
+							<option value="40">TRSTBA_40_Tiruvidhula Naga Sai Priyanka_JAVA</option>
+							<!--college name -->
+							<option value="41">TRSTBA_41_Srinivas Yerrravelli _Digital Marketing</option>
+							<!--college name -->
+							<option value="42">TRSTBA_42_V Bala Tripura Sunadri_JAVA</option>
+							<!--college name -->
+							<option value="43">TRSTBA_43_V Bala Tripura Sunadri_JAVA</option>
+							<!--college name -->
+							<option value="44">TRSTBA_44_Ramu_Medical Coding</option>
+							<!--college name -->
+							<option value="45">TRSTBA_45_tirdhala ashok_Web Technologies</option>
+							<!--college name -->
+							<option value="47">TRSTBA_47_tirdhala ashok_Web Technologies</option>
+							<!--college name -->
+							<option value="48">TRSTBA_48_Madhu Varshini_Human resource management</option>
+							<!--college name -->
+							<option value="50">TRSTBA_50_Srinivas Yerrravelli_Digital Marketing</option>
+							<!--college name -->
+							<option value="51">TRSTBA_51_Shanti Kiran_Python</option>
+							<!--college name -->
+							<option value="52">TRSTBA_52_K Bharath Kumar_Tally GST</option>
+							<!--college name -->
+							<option value="54">TRSTBA_54_V Bala Tripura Sunadri_JAVA</option>
+							<!--college name -->
+							<option value="55">TRSTBA_55_Ramu_Medical Coding</option>
+							<!--college name -->
+							<option value="56">TRSTBA_56_tirdhala ashok_Web Technologies</option>
+							<!--college name -->
+							<option value="57">TRSTBA_57_demotrainer_Voice process</option>
+							<!--college name -->
+							<option value="58">TRSTBA_58_M Sandeep Kumar_Digital Marketing</option>
+							<!--college name -->
+							<option value="59">TRSTBA_59_M Sandeep Kumar_Digital Marketing</option>
+							<!--college name -->
+							<option value="60">TRSTBA_60_V Bala Tripura Sunadri _Python</option>
+							<!--college name -->
+							<option value="61">TRSTBA_61_Kishore Kumar _Human resource management</option>
+							<!--college name -->
+							<option value="62">TRSTBA_62_Shanti Kiran_Python</option>
+							<!--college name -->
 
 						</select>
 					</div>
@@ -590,13 +562,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 										</div>
 
 
-										<!--<div class="col-md-6">-->
-										<!--<div class="form-group">-->
-										<!--	<label for="exampleInputcode"> additional information</label>-->
-										<!--	<input type="text" required name="additional_information" class="form-control"  id="exampleInputcode" placeholder="">-->
-										<!--</div>-->
-										<!--</div>-->
-
 									</div>
 									<button type="submit" name="submit" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Upload Link</button>
 								</div>
@@ -612,30 +577,11 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	</div>
 	</form>
 
-
-	<!-- <div class="modal fade" id="schedule">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content modal-content-demo">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                    <p> Are you sure you want to upload a link??</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn ripple btn-success" type="button">Create</button>
-                                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-
 	<!-- Footer opened -->
 	<div class="main-footer">
 		<div class="container-fluid pd-t-0-f ht-100p">
-			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
+			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
+			reserved
 		</div>
 	</div>
 	<!-- Footer closed -->
@@ -645,68 +591,33 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 	<!-- BACK-TO-TOP -->
 	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-	<!-- JQUERY JS -->
-	<script src="assets/plugins/jquery/jquery.min.js"></script>
-
-	<!-- BOOTSTRAP JS -->
-	<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- IONICONS JS -->
-	<script src="assets/plugins/ionicons/ionicons.js"></script>
-
-	<!-- MOMENT JS -->
-	<script src="assets/plugins/moment/moment.js"></script>
-
-	<!-- P-SCROLL JS -->
-	<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-	<!-- SIDEBAR JS -->
-	<script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-	<!-- STICKY JS -->
-	<script src="assets/js/sticky.js"></script>
-
-	<!-- Chart-circle js -->
-	<script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-	<!-- RIGHT-SIDEBAR JS -->
-	<script src="assets/plugins/sidebar/sidebar.js"></script>
-	<script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-
-	<!-- EVA-ICONS JS -->
-	<script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-	<!-- THEME-COLOR JS -->
-	<script src="assets/js/themecolor.js"></script>
-
-	<!-- CUSTOM JS -->
-	<script src="assets/js/custom.js"></script>
-
-	<!-- exported JS -->
-	<script src="assets/js/exported.js"></script>
-
-	<!-- SWITCHER JS -->
-	<script src="assets/switcher/js/switcher.js"></script>
+	<?php include("./scripts.php"); ?>
 
 </body>
 
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
-
-</html>                                            </div>
+</html>                                 <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputAadhar">Platform</label>
+                                                <select name="Platform" required
+                                                    class="form-control form-select select2"
+                                                    data-bs-placeholder="Select Batch">
+                                                    <option value="webex">Webex</option>
+                                                    <option value="Gmeet">Gmeet</option>
+                                                    <option value="Zoom">Zoom</option>
+                                                    <option value="Microsoft_Teams">Microsoft Teams</option>
+                                                </select>
+                                            </div>
                                         </div>
 
 
-                                        <!--<div class="col-md-6">-->
-                                        <!--<div class="form-group">-->
-                                        <!--	<label for="exampleInputcode"> additional information</label>-->
-                                        <!--	<input type="text" required name="additional_information" class="form-control"  id="exampleInputcode" placeholder="">-->
-                                        <!--</div>-->
-                                        <!--</div>-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputcode">Meeting link</label>
+                                                <input type="text" required name="Meeting_link" class="form-control"
+                                                    id="exampleInputcode" placeholder="Enter meet link">
+                                            </div>
+                                        </div>
+
 
                                     </div>
                                     <button type="submit" name="submit" class="btn btn-info mt-3 mb-0"
@@ -725,26 +636,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     </div>
     </form>
 
-
-    <!-- <div class="modal fade" id="schedule">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content modal-content-demo">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                    <p> Are you sure you want to upload a link??</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn ripple btn-success" type="button">Create</button>
-                                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-
     <!-- Footer opened -->
     <div class="main-footer">
         <div class="container-fluid pd-t-0-f ht-100p">
@@ -760,56 +651,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
     <!-- BACK-TO-TOP -->
     <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <!-- JQUERY JS -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-
-    <!-- BOOTSTRAP JS -->
-    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- IONICONS JS -->
-    <script src="assets/plugins/ionicons/ionicons.js"></script>
-
-    <!-- MOMENT JS -->
-    <script src="assets/plugins/moment/moment.js"></script>
-
-    <!-- P-SCROLL JS -->
-    <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-    <!-- SIDEBAR JS -->
-    <script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-    <!-- STICKY JS -->
-    <script src="assets/js/sticky.js"></script>
-
-    <!-- Chart-circle js -->
-    <script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-    <!-- RIGHT-SIDEBAR JS -->
-    <script src="assets/plugins/sidebar/sidebar.js"></script>
-    <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-
-    <!-- EVA-ICONS JS -->
-    <script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-    <!-- THEME-COLOR JS -->
-    <script src="assets/js/themecolor.js"></script>
-
-    <!-- CUSTOM JS -->
-    <script src="assets/js/custom.js"></script>
-
-    <!-- exported JS -->
-    <script src="assets/js/exported.js"></script>
-
-    <!-- SWITCHER JS -->
-    <script src="assets/switcher/js/switcher.js"></script>
+    <?php include("./scripts.php"); ?>
 
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 
 </html>
