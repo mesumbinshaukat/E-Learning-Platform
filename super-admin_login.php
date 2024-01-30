@@ -3,10 +3,10 @@ session_start();
 include('./db_connection/connection.php');
 
 if (isset($_COOKIE['superadmin_username']) && isset($_COOKIE['superadmin_password'])) {
-    header('location: ./Student/dashboard.php');
+    header('location: ./superadmin/dashboard.php');
     exit();
 }
-if (isset($_POST['loginBtn'])) {
+if (isset($_POST['sign_in'])) {
 
 
     $email = $_POST['email'];
@@ -29,11 +29,11 @@ if (isset($_POST['loginBtn'])) {
         $fetch_password = $fetch_details['password'];
         $fetch_email = $fetch_details['email'];
 
-        if (password_verify($password, $fetch_password) && $username == $fetch_username) {
+        if ($password == $fetch_password && $email == $email) {
             setcookie("superadmin_username", $fetch_username, time() + (86400 * 30), "/");
             setcookie("superadmin_password", $fetch_password, time() + (86400 * 30), "/");
             setcookie("superadmin_email", $fetch_email, time() + (86400 * 30), "/");
-            header("location: ./Student/dashboard.php");
+            header("location: ./superadmin/dashboard.php");
             exit();
         } else {
             $_SESSION['message_failed'] = true;
@@ -104,7 +104,7 @@ if (isset($_POST['loginBtn'])) {
                                                 <i class="bi bi-envelope"></i>
                                             </div>
 
-                                            <input type="email" class="form-control" name="email" placeholder="Enter Email" required value="" disabled>
+                                            <input type="email" class="form-control" name="email" placeholder="Enter Email" required value="">
                                             <span class="error"></span><br>
 
 
@@ -123,7 +123,7 @@ if (isset($_POST['loginBtn'])) {
                                                 <i class="bi bi-lock"></i>
                                             </div>
 
-                                            <input type="password" name="password" class="form-control" placeholder="Enter your password" disabled>
+                                            <input type="password" name="password" class="form-control" placeholder="Enter your password">
                                             <span class="error"></span><br>
 
                                         </div>
