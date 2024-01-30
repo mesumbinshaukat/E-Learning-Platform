@@ -1,7 +1,55 @@
+<?php
+session_start();
+include('./db_connection/connection.php');
+
+if (isset($_COOKIE['superadmin_username']) && isset($_COOKIE['superadmin_password'])) {
+    header('location: ./Student/dashboard.php');
+    exit();
+}
+if (isset($_POST['loginBtn'])) {
+
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM `superadmin` WHERE email = ?";
+
+    $sql_run = mysqli_prepare($conn, $sql);
+
+    mysqli_stmt_bind_param($sql_run, "s", $email);
+
+    mysqli_stmt_execute($sql_run);
+
+    $result = mysqli_stmt_get_result($sql_run);
+
+    $fetch_details = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) > 0) {
+        $fetch_username = $fetch_details['username'];
+        $fetch_password = $fetch_details['password'];
+        $fetch_email = $fetch_details['email'];
+
+        if (password_verify($password, $fetch_password) && $username == $fetch_username) {
+            setcookie("superadmin_username", $fetch_username, time() + (86400 * 30), "/");
+            setcookie("superadmin_password", $fetch_password, time() + (86400 * 30), "/");
+            setcookie("superadmin_email", $fetch_email, time() + (86400 * 30), "/");
+            header("location: ./Student/dashboard.php");
+            exit();
+        } else {
+            $_SESSION['message_failed'] = true;
+            $_SESSION["err_msg"] = "Email or Password Does Not Match.";
+        }
+    } else {
+        $_SESSION['message_failed'] = true;
+        $_SESSION["err_msg"] = "No Superadmin Found";
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
-
-
 
 <head>
     <title>Super-Admin Log-In</title>
@@ -16,6 +64,14 @@
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
+
+    <?php
+    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+        session_destroy();
+    }
+
+    ?>
 
     <div class="main">
 
