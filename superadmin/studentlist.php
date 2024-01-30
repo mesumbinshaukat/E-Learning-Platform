@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+include('../db_connection/connection.php');
+
+if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
+	header('location: ../super-admin_login.php');
+	exit();
+}
+?>
+
 
 
 
