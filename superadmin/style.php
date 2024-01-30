@@ -1,5 +1,5 @@
 	<!-- ICONS CSS -->
-	<link href="assets/plugins/icons/icons.css" rel="stylesheet">
+	<link href="assets/img/WordPress_blue_logo.svg-min.webp" rel="icon">
 
 	<!-- BOOTSTRAP CSS -->
 	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
