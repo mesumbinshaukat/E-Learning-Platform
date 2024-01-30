@@ -1,3 +1,51 @@
+<?php
+session_start();
+include('./db_connection/connection.php');
+
+if (isset($_COOKIE['trainer_username']) && isset($_COOKIE['trainer_password'])) {
+    header('location: ./Trainer/dashboard.php');
+    exit();
+}
+if (isset($_POST['loginBtn'])) {
+
+
+    $username = $_POST['trainer_username'];
+    $password = $_POST['trainer_password'];
+    $_SESSION['check'] = "Working";
+    $sql = "SELECT * FROM `trainer` WHERE username = ?";
+    $sql_run = mysqli_prepare($conn, $sql);
+
+    mysqli_stmt_bind_param($sql_run, "s", $username);
+
+    mysqli_stmt_execute($sql_run);
+
+    $result = mysqli_stmt_get_result($sql_run);
+
+    $fetch_details = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) > 0) {
+        $fetch_username = $fetch_details['username'];
+        $fetch_password = $fetch_details['password'];
+        $fetch_email = $fetch_details['email'];
+
+        if (password_verify($password, $fetch_password) && $username == $fetch_username) {
+            setcookie("trainer_username", $fetch_username, time() + (86400 * 30), "/");
+            setcookie("trainer_password", $fetch_password, time() + (86400 * 30), "/");
+            setcookie("trainer_email", $fetch_email, time() + (86400 * 30), "/");
+            header("location: ./Trainer/dashboard.php");
+            exit();
+        } else {
+            $_SESSION['message_failed'] = true;
+            $_SESSION["err_msg"] = "Username or Password Does Not Match.";
+        }
+    } else {
+        $_SESSION['message_failed'] = true;
+        $_SESSION["err_msg"] = "No Trainer Found";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +65,13 @@
         <?php include("./partials/navbar.php"); ?>
     </section>
 
+    <?php
+    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+        session_destroy();
+    }
+
+    ?>
     <div class="main">
 
         <!--login section start-->
@@ -40,7 +95,7 @@
                                 </div>
 
                                 <!--login form-->
-                                <form class="login-signup-form" action="trainer.php.html" method="POST">
+                                <form class="login-signup-form" action="" method="POST">
                                     <div class="form-group">
                                         <label class="font-weight-bold">Trainer Username</label>
                                         <div class="input-group input-group-merge">
@@ -48,7 +103,7 @@
                                                 <i class="bi bi-envelope"></i>
                                             </div>
 
-                                            <input type="text" class="form-control" name="Trainer_Username" placeholder="Enter Username" required value="">
+                                            <input type="text" class="form-control" name="trainer_username" placeholder="Enter Username" required value="">
                                             <span class="error"></span><br>
 
 
@@ -71,14 +126,14 @@
                                                 <i class="bi bi-lock"></i>
                                             </div>
 
-                                            <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" name="trainer_password" class="form-control" placeholder="Enter your password">
                                             <span class="error"></span><br>
 
                                         </div>
                                     </div>
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary mt-4 mb-3" name="sign_in">Sign
+                                    <button class="btn btn-block btn-secondary mt-4 mb-3" name="loginBtn">Sign
                                         in</button>
                                     <span class="error"></span>
 

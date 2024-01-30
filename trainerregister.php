@@ -1,3 +1,48 @@
+<?php
+session_start();
+include('./db_connection/connection.php');
+
+if (isset($_POST['RegisterBtn'])) {
+    $regex_email = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+    $trainer_name = $_POST['Trainer_Name'];
+    $trainer_phoneno = $_POST['Personal_Phone_Number'];
+    $trainer_email = $_POST['Personal_Mail_id'];
+    $trainer_username = $_POST['Trainer_Username'];
+    $password = $_POST['Password'];
+    $select_query = "SELECT * FROM `trainer` WHERE email = '$trainer_email'";
+    $select_query_run = mysqli_query($conn, $select_query);
+    $fetch_query = mysqli_fetch_array($select_query_run);
+    $fetched_email = isset($fetch_query['email']);	
+
+    $hash_pass = password_hash($password, PASSWORD_DEFAULT);
+
+
+    if (preg_match($regex_email, $trainer_email) == 1) {
+        if($fetched_email == null){
+        $insert_query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`) VALUES (?,?,?,?,?)");
+        $insert_query->bind_param("sssss", $trainer_name, $trainer_phoneno, $trainer_email , $hash_pass,$trainer_username);
+            if ($insert_query->execute()) {
+                $_SESSION['message_success'] = true;
+            } else {
+                $_SESSION['message_failed'] = true;
+                $_SESSION["err_msg"] = "Database Error, Unable to register.";
+            
+            }
+            
+            }
+      else{
+        $_SESSION['message_failed'] = true;
+        $_SESSION["err_msg"] = "Email is Already Registered.";
+      
+     }
+    } else {
+
+        $_SESSION['message_failed'] = true;
+        $_SESSION["err_msg"] = "Invalid Email Format";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +57,22 @@
 </head>
 
 <body>
+<script>
+        <?php
+        if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+        ?>
+            toastr.success('Registration Successful')
+        <?php
+            session_destroy();
+        } 
+        ?>
+    </script>
+    <?php
+        if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+        session_destroy();
+    }
+    ?>
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
@@ -115,7 +176,7 @@
                                     </div> -->
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="submit" value="submit" type="submit" onclick="return check()">
+                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="RegisterBtn" value="submit" type="submit" onclick="return check()">
                                         Register
                                     </button>
                                 </form>
@@ -124,7 +185,7 @@
                                         var b = document.getElementById('password').value;
                                         var c = document.getElementById('retypepassword').value;
                                         if (b != c) {
-                                            alert('Password doesnt match');
+                                            toastr.error("Password Does Not Match")
                                             return false;
                                         } else
                                             return true;
@@ -134,7 +195,7 @@
                             </div>
                             <div class="card-footer bg-soft text-center border-top px-md-5"><small>Already
                                     registered?</small>
-                                <a href="trainer_login.php" class="small"> Login</a>
+                                <a href="trainer_login.php" class="small">Login</a>
                             </div>
                         </div>
                     </div>

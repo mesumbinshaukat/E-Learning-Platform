@@ -1,5 +1,10 @@
 
-
+<?php 
+if (isset($_COOKIE['trainer_username']) && isset($_COOKIE['trainer_password'])) {
+    header('location: ./Trainer/dashboard.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
