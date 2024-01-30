@@ -28,8 +28,6 @@
 <script src="assets/plugins/sidebar/sidebar.js"></script>
 <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
 
-
-
 <!-- EVA-ICONS JS -->
 <script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
 
@@ -44,3 +42,4 @@
 
 <!-- SWITCHER JS -->
 <script src="assets/switcher/js/switcher.js"></script>
+

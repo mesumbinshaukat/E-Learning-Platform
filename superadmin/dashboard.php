@@ -437,25 +437,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                 </div>
                 <!-- /breadcrumb -->
                 <div class="row">
-                    <!--<div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
-							<div class="card primary-custom-card1">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
-											<div class="prime-card"><img class="img-fluid" src="assets/img/reg.gif" alt=""></div>
-										</div>
-										<div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
-											<div class="text-justified align-items-center">
-												<h2 class="text-dark font-weight-semibold mb-3 mt-2">Hi, welcome to  <span class="text-primary">Triaright</span></h2>
-												<p class="text-dark tx-15 mb-2 lh-3">Thankyou for choosing us, Please complete your registration process to dive into our platform</p>
-												<p class="font-weight-semibold tx-12 mb-4" style="color:#ff6700">For any queries, contact us through support chat or mail us at info@triaright.com </p> 
-												<button class="btn btn-primary mb-3 shadow"><a href="registerstudent0.html"><span style="color:#ffffff;">Complete Registration</span></a></button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div> -->
+
 
                     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                         <div class="card">

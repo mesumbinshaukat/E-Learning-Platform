@@ -17,17 +17,7 @@
 									</li>
 								
 								<li class="side-item side-item-category">Credentials</li>
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-users" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Employee</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Employee</a></li>
-										<li><a class="slide-item" href="createemployee.php">Create</a></li>
-										<li><a class="slide-item" href="manageemployee.php">Manage</a></li>
-										<li><a class="slide-item" href="employeelogs.php">Logs</a></li>
-										<li><a class="slide-item" href="employeelist.php">List</a></li>
-										
-									</ul>
-								</li>
+							
 								<li class="slide">
 									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-user-plus" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Trainer</span><i class="angle fe fe-chevron-right"></i></a>
 									<ul class="slide-menu">
@@ -66,30 +56,9 @@
 										
 									</ul>
 								</li>
-																<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-puzzle" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">College mentor</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">College-Mentor</a></li>
-										<li><a class="slide-item" href="creatementor.php">Create</a></li>
-
-										<li><a class="slide-item" href="managementor.php">Manage</a></li>
-										<li><a class="slide-item" href="mentorlist.php">List</a></li>
-										
-									</ul>
-								</li>
+												
 								
-								<li class="slide">
-									<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="si si-briefcase" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Company</span><i class="angle fe fe-chevron-right"></i></a>
-									<ul class="slide-menu">
-										<li class="side-menu__label1"><a href="javascript:void(0);">Company</a></li>
-										<li><a class="slide-item" href="createcompany.php">Create</a></li>
-										<li><a class="slide-item" href="companysignup.php">Registrations</a></li>
-										<li><a class="slide-item" href="pendingcompany.php">Pending</a></li>
-										<li><a class="slide-item" href="managecompany.php">Manage</a></li>
-										<li><a class="slide-item" href="companylist.php">List</a></li>
-										
-									</ul>
-								</li>
+								
 								
 								<li class="side-item side-item-category">General</li>
 								<li class="slide">

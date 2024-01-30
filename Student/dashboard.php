@@ -28,7 +28,7 @@ $run_query = mysqli_query($conn, $query);
 
     <!-- Title -->
     <title>Dashboard</title>
-
+    
     <?php include("./links.php"); ?>
 
 </head>
