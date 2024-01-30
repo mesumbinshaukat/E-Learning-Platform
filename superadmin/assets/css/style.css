@@ -1,6 +1,5 @@
-@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap);
 @charset "UTF-8";
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap");
 .accordion>.card:not(:first-of-type) .card-header:first-child {
     border-radius: 0
 }
@@ -33536,7 +33535,7 @@ slide is-expanded side-menu__item {
 
 .slide.is-expanded .slide-menu,
 .sub-slide {
-    display: block
+    display: block;
 }
 
 .sub-side-menu__item {
@@ -33544,29 +33543,29 @@ slide is-expanded side-menu__item {
     display: flex;
     font-size: 12px;
     padding: 7px 0;
-    position: relative
+    position: relative;
 }
 
 .sub-side-menu__label {
     flex: 1 1 auto;
     font-weight: 400;
-    white-space: normal
+    white-space: normal;
 }
 
 .sub-slide .sub-angle {
-    transform-origin: center
+    transform-origin: center;
 }
 
 .sub-slide.is-expanded .sub-angle {
-    transform: rotate(-90deg)
+    transform: rotate(-90deg);
 }
 
 .sub-slide2 .sub-angle {
-    transform-origin: center
+    transform-origin: center;
 }
 
 .sub-slide2.is-expanded .sub-angle2 {
-    transform: rotate(-90deg)
+    transform: rotate(-90deg);
 }
 
 .sub-slide-menu {

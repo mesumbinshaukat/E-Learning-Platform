@@ -2,7 +2,7 @@
     <button class="navbar-toggler navresponsive-toggler d-md-none ms-auto" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false"
         aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon fe fe-more-vertical "></span>
+        <span class="navbar-toggler-icon bi bi-distribute-vertical"></span>
     </button>
     <div class="mb-0 navbar navbar-expand-lg navbar-nav-right responsive-navbar navbar-dark p-0">
         <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
@@ -68,8 +68,9 @@
                         </div>
                         <!--<a class="dropdown-item" href="profile.html"><i class="far fa-user-circle"></i>Profile</a> -->
 
-                        <a class="dropdown-item" href="changepassword.php"><i class="far fa-sun"></i>Change Password</a>
-                        <a class="dropdown-item" href="partials/logout.php"><i class="far fa-arrow-alt-circle-left"></i>
+                        <a class="dropdown-item" href="changepassword.php"><i class="bi bi-shield-check"></i>Change
+                            Password</a>
+                        <a class="dropdown-item" href="partials/logout.php"><i class="bi bi-box-arrow-right"></i>
                             Logout</a>
                     </div>
                 </li>
