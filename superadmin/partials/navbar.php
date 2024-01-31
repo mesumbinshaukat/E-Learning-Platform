@@ -1,3 +1,24 @@
+<div class=" main-container container-fluid">
+                    <div class="main-header-left ">
+                        <div class="responsive-logo">
+                            <a href="" class="header-logo">
+                                <img src="assets/img/logowhite.png" class="mobile-logo logo-1" alt="logo">
+                                <img src="assets/img/logoblack.png" class="mobile-logo dark-logo-1" alt="logo">
+                            </a>
+                        </div>
+                        <div class="app-sidebar__toggle" data-bs-toggle="sidebar">
+                            <a class="open-toggle" href="javascript:void(0);"><i
+                                    class="header-icon fe fe-align-left"></i></a>
+                            <a class="close-toggle" href="javascript:void(0);"><i class="header-icon fe fe-x"></i></a>
+                        </div>
+                        <div class="logo-horizontal">
+                            <a href="index.php" class="header-logo">
+                                <img src="assets/img/logowhite.png" class="mobile-logo logo-1" alt="logo">
+                                <img src="assets/img/logoblack.png" class="mobile-logo dark-logo-1" alt="logo">
+                            </a>
+                        </div>
+
+                    </div>
 <div class="main-header-right">
     <button class="navbar-toggler navresponsive-toggler d-md-none ms-auto" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false"
@@ -88,4 +109,5 @@
             </svg>
         </a>
     </div>
+</div>
 </div>
