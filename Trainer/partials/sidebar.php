@@ -123,7 +123,7 @@
 									
 									</li>
 								<li class="slide">
-								<a class="side-menu__item" data-bs-toggle="slide" href="../../"><i class="fe fe-log-out" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Logout</span></a>
+								<a class="side-menu__item" data-bs-toggle="slide" href="logout.php"><i class="fe fe-log-out" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Logout</span></a>
 									
 									</li>
 								
