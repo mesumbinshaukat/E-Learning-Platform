@@ -1,8 +1,8 @@
 
 <?php 
-if (isset($_COOKIE['trainer_username']) && isset($_COOKIE['trainer_password'])) {
-    header('location: ./Trainer/dashboard.php');
-    exit();
+if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
+	header('location: ../trainer_login.php');
+	exit();
 }
 ?>
 <!DOCTYPE html>

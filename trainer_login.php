@@ -2,10 +2,10 @@
 session_start();
 include('./db_connection/connection.php');
 
-// if (isset($_COOKIE['trainer_username']) && isset($_COOKIE['trainer_password'])) {
-//     header('location: ./Trainer/dashboard.php');
-//     exit();
-// }
+if (isset($_COOKIE['trainer_username']) && isset($_COOKIE['trainer_password'])) {
+    header('location: ./Trainer/dashboard.php');
+    exit();
+}
 
 if (isset($_POST['loginBtn'])) {
 
