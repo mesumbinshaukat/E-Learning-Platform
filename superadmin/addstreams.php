@@ -18,12 +18,10 @@ if (isset($_POST["submit"])) {
 	$query->bind_param("sss", $name, $location, $image_name);
 	if ($query->execute()) {
 		$_SESSION['message_success'] = true;
-		echo "<script>alert('Success')</script>";
 		move_uploaded_file($image_tmp, "./assets/img/stream/" . $image_name);
 		header("location: addstreams.php");
 	} else {
 		$_SESSION['message_failed'] = true;
-		echo "<script>alert('Failed')</script>";
 		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
 	}
 }
@@ -46,21 +44,6 @@ if (isset($_POST["submit"])) {
 
 <body class="ltr main-body app sidebar-mini">
 
-	<?php
-	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-	?>
-		toastr.success('Stream Added Successfully')
-	<?php
-		session_destroy();
-	}
-	?>
-	</script>
-	<?php
-	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-		session_destroy();
-	}
-	?>
 
 	<!-- Switcher -->
 	<div class="switcher-wrapper">
@@ -354,11 +337,20 @@ if (isset($_POST["submit"])) {
 	</div>
 	<!-- End Switcher -->
 
-	<!-- Loader -->
-	<!--<div id="global-loader">-->
-	<!--	<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">-->
-	<!--</div>-->
-	<!-- /Loader -->
+
+	<?php
+	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+		echo "<script>toastr.success('Stream Added Successfully')</script>";
+		session_destroy();
+	}
+	?>
+
+	<?php
+	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+		session_destroy();
+	}
+	?>
 
 	<!-- Page -->
 	<div class="page">
