@@ -24,7 +24,7 @@
 	<link href="assets/css/style.css" rel="stylesheet">
 	<link href="assets/css/style-dark.css" rel="stylesheet">
 	<link href="assets/css/style-transparent.css" rel="stylesheet">
-	
+
 
 	<!-- Bootstrap Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -46,4 +46,13 @@
 	<!---Internal Fancy uploader css-->
 	<link href="assets/plugins/fancyuploder/fancy_fileupload.css" rel="stylesheet" />
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet"
+	    href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+	    integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw=="
+	    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+	<!-- Toastr Alert -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+	<!-- Toastr Alert -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

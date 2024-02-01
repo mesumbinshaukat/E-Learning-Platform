@@ -7,6 +7,26 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	header('location: ../super-admin_login.php');
 	exit();
 }
+
+if (isset($_POST["submit"])) {
+	$location = $_POST["location"];
+	$name = $_POST["name"];
+	$image_name = $_FILES["image"]["name"];
+	$image_tmp = $_FILES["image"]["tmp_name"];
+
+	$query = mysqli_prepare($conn, "INSERT INTO `stream`(`stream_name`, `stream_location`, `image`) VALUES (?,?,?)");
+	$query->bind_param("sss", $name, $location, $image_name);
+	if ($query->execute()) {
+		$_SESSION['message_success'] = true;
+		echo "<script>alert('Success')</script>";
+		move_uploaded_file($image_tmp, "./assets/img/stream/" . $image_name);
+		header("location: addstreams.php");
+	} else {
+		$_SESSION['message_failed'] = true;
+		echo "<script>alert('Failed')</script>";
+		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,12 +38,29 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="Description" content="">
+	<title>Add Stream</title>
 
 	<?php include("./style.php"); ?>
 
 </head>
 
 <body class="ltr main-body app sidebar-mini">
+
+	<?php
+	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+	?>
+		toastr.success('Stream Added Successfully')
+	<?php
+		session_destroy();
+	}
+	?>
+	</script>
+	<?php
+	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+		session_destroy();
+	}
+	?>
 
 	<!-- Switcher -->
 	<div class="switcher-wrapper">
@@ -328,11 +365,11 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 		<div>
 
-		<div class="main-header side-header sticky nav nav-item">
-                
+			<div class="main-header side-header sticky nav nav-item">
+
 				<?php include('./partials/navbar.php'); ?>
-			
-		</div>
+
+			</div>
 			<!-- /main-header -->
 
 			<!-- main-sidebar -->

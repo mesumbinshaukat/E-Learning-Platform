@@ -4,8 +4,37 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
+}
+
+if (isset($_POST['submit'])) {
+    $course_name = $_POST['name_of_the_course'];
+    $stream = $_POST['stream'];
+    $posting_category = $_POST['posting_category'];
+    $provider_name = $_POST['provider_name'];
+    $training_type = $_POST['training_type'];
+    $offline_address = $_POST['offline_address'];
+    $duration = $_POST['duration'];
+    $last_date = $_POST['last_date'];
+    $hours_perday = $_POST['hours_perday'];
+    $certifications = $_POST['certifications'];
+    $no_of_slots = $_POST['no_of_slots'];
+    $course_description = $_POST['course_description'];
+    $topics_covered = $_POST['topics_covered'];
+    $benefits = $_POST['benefits'];
+    $pre_requirements = $_POST['pre_requirements'];
+    $additional_information = $_POST['additional_information'];
+    $course_type = $_POST['course_type'];
+    $original_cost = $_POST['original_cost'];
+    $discount = $_POST['discount'];
+    $final_cost = $_POST['final_cost'];
+    $main_image_name = $_FILES['main_image']['name'];
+    $main_image_tmp = $_FILES['main_image']['tmp_name'];
+    $inner_image_name = $_FILES['inner_image']['name'];
+    $inner_image_tmp = $_FILES['inner_image']['tmp_name'];
+    $image2_name = $_FILES['image2']['name'];
+    $image2_tmp = $_FILES['image2']['tmp_name'];
 }
 ?>
 
@@ -20,6 +49,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
+    <title>Create Course</title>
 
     <?php include("./style.php"); ?>
 </head>
@@ -368,22 +398,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     </div>
     <!-- End Switcher -->
 
-    <!-- Loader -->
-    <!--<div id="global-loader">-->
-    <!--	<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">-->
-    <!--</div>-->
-    <!-- /Loader -->
-
     <!-- Page -->
     <div class="page">
 
         <div>
 
-        <div class="main-header side-header sticky nav nav-item">
-                
+            <div class="main-header side-header sticky nav nav-item">
+
                 <?php include('./partials/navbar.php'); ?>
-            
-        </div>
+
+            </div>
             <!-- /main-header -->
 
             <!-- main-sidebar -->

@@ -42,4 +42,3 @@
 
 <!-- SWITCHER JS -->
 <script src="assets/switcher/js/switcher.js"></script>
-
