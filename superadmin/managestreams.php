@@ -7,6 +7,13 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	header('location: ../super-admin_login.php');
 	exit();
 }
+
+$select_query = "SELECT * FROM `stream`";
+
+$select_query_run = mysqli_query($conn, $select_query);
+
+$fetch_details = mysqli_fetch_assoc($select_query_run);
+
 ?>
 
 <!DOCTYPE html>
@@ -329,11 +336,11 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 		<div>
 
-		<div class="main-header side-header sticky nav nav-item">
-                
+			<div class="main-header side-header sticky nav nav-item">
+
 				<?php include('./partials/navbar.php'); ?>
-			
-		</div>
+
+			</div>
 			<!-- /main-header -->
 
 			<!-- main-sidebar -->
@@ -364,46 +371,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 					</div>
 
 				</div>
-				<!--	<div class="row row-sm">
-					                 <div class="form-group col-md-3">
-										<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">
-												<option value="br">Filter4</option>
-												<option value="cz">Filter3</option>
-												<option value="de">Filter2</option>
-												<option value="pl" selected>Filter1</option>
-											</select>
-									</div>
-									<div class="form-group col-md-3">
-										<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">
-												<option value="br">Filter4</option>
-												<option value="cz">Filter3</option>
-												<option value="de">Filter2</option>
-												<option value="pl" selected>Filter1</option>
-											</select>
-									</div>
-									<div class="form-group col-md-3">
-										<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">
-												<option value="br">Filter4</option>
-												<option value="cz">Filter3</option>
-												<option value="de">Filter2</option>
-												<option value="pl" selected>Filter1</option>
-											</select>
-									</div>
-																		<div class="form-group col-md-3">
-										<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">
-												<option value="br">Filter4</option>
-												<option value="cz">Filter3</option>
-												<option value="de">Filter2</option>
-												<option value="pl" selected>Filter1</option>
-											</select>
-									</div>
 
-									&nbsp &nbsp	<a href="javascript:void(0);" class="btn btn-success">Search</a>	
-                                               &nbsp &nbsp <a href="javascript:void(0);" class="btn btn-danger">Reset All </a>									
-									</div>
-									
-<br>																		
-<br>	-->
 				<div class="row row-sm">
 					<div class="col-lg-12">
 						<div class="card custom-card overflow-hidden">
@@ -427,293 +395,27 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 											</tr>
 										</thead>
 										<tbody>
+											<?php while ($i = mysqli_fetch_array($select_query_run)) {
 
-											<tr>
-												<td>1</td>
-												<td>2023-02-24 16:30:48</td>
-												<td>TRSTRM_1</td>
-												<td>courses</td>
-												<td>Information Technology</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=1" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=1&delete=delete">delete</a>
-												</td>
+												if ($i["stream_location"] == "courses") {
+											?>
+													<tr>
+														<td><?php echo $i["id"] ?></td>
+														<td><?php echo $i["date"] ?></td>
+														<td>TRSTRM_<?php echo $i["id"] ?></td>
+														<td><?php echo $i["stream_location"] ?></td>
+														<td><?php echo $i["stream_name"] ?></td>
+														<td>--</td>
 
-											</tr>
+														<td> <a href="updatestream.php?id=<?php echo $i["id"] ?>" class="btn btn-info">update</a>
+														</td>
+														<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=<?php echo $i["id"] ?>">delete</a>
+														</td>
 
-											<tr>
-												<td>2</td>
-												<td>2023-02-24 17:05:20</td>
-												<td>TRSTRM_2</td>
-												<td>courses</td>
-												<td>Non IT</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=2" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=2&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>3</td>
-												<td>2023-02-24 17:10:33</td>
-												<td>TRSTRM_3</td>
-												<td>courses</td>
-												<td>Finance</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=3" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=3&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>4</td>
-												<td>2023-02-24 17:19:12</td>
-												<td>TRSTRM_4</td>
-												<td>courses</td>
-												<td>Pharmaceuticals</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=4" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=4&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>5</td>
-												<td>2023-02-24 17:23:23</td>
-												<td>TRSTRM_5</td>
-												<td>courses</td>
-												<td>Management</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=5" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=5&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>6</td>
-												<td>2023-02-24 17:24:27</td>
-												<td>TRSTRM_6</td>
-												<td>internship</td>
-												<td>Information Technology</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=6" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=6&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>7</td>
-												<td>2023-02-24 17:32:55</td>
-												<td>TRSTRM_7</td>
-												<td>internship</td>
-												<td>Non IT</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=7" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=7&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>8</td>
-												<td>2023-02-24 17:34:51</td>
-												<td>TRSTRM_8</td>
-												<td>internship</td>
-												<td>Finance</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=8" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=8&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>9</td>
-												<td>2023-02-24 17:36:58</td>
-												<td>TRSTRM_9</td>
-												<td>internship</td>
-												<td>Pharmaceuticals</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=9" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=9&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>10</td>
-												<td>2023-02-24 17:38:17</td>
-												<td>TRSTRM_10</td>
-												<td>internship</td>
-												<td>Management</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=10" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=10&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>11</td>
-												<td>2023-02-24 17:39:21</td>
-												<td>TRSTRM_11</td>
-												<td>placements</td>
-												<td>Information Technology</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=11" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=11&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>12</td>
-												<td>2023-02-24 17:43:23</td>
-												<td>TRSTRM_12</td>
-												<td>placements</td>
-												<td>Non IT</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=12" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=12&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>13</td>
-												<td>2023-02-24 17:44:30</td>
-												<td>TRSTRM_13</td>
-												<td>placements</td>
-												<td>Finance</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=13" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=13&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>14</td>
-												<td>2023-02-24 17:45:39</td>
-												<td>TRSTRM_14</td>
-												<td>placements</td>
-												<td>Pharmaceuticals</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=14" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=14&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>15</td>
-												<td>2023-02-24 17:47:00</td>
-												<td>TRSTRM_15</td>
-												<td>placements</td>
-												<td>Management</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=15" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=15&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>16</td>
-												<td>2023-03-20 20:53:09</td>
-												<td>TRSTRM_18</td>
-												<td>internship</td>
-												<td>event</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=18" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=18&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>17</td>
-												<td>2023-03-20 20:53:25</td>
-												<td>TRSTRM_19</td>
-												<td>placements</td>
-												<td>event</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=19" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=19&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>18</td>
-												<td>2023-03-25 10:02:57</td>
-												<td>TRSTRM_21</td>
-												<td>internship</td>
-												<td>TESTING</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=21" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=21&delete=delete">delete</a>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td>19</td>
-												<td>2023-03-25 10:03:14</td>
-												<td>TRSTRM_22</td>
-												<td>placements</td>
-												<td>TESTING</td>
-												<td>--</td>
-												<td> <a href="updatestream.php?id=22" class="btn btn-info">update</a>
-												</td>
-												<td> <a class="btn btn-danger" href="connection_files/manage/delete_stream.php?id=22&delete=delete">delete</a>
-												</td>
-
-											</tr>
-											<!--<tr>-->
-											<!--	<td>01</td>-->
-											<!--	<td>23/11/2022 14:00:23</td>-->
-											<!--	<td>TRSTRM_1</td>-->
-											<!--		<td>Courses</td>-->
-											<!--	<td>Infrastructure</td>-->
-											<!--	<td>12</td>-->
-
-
-											<!--	<td><a href="updatestream.html" class="btn btn-info">update</a></td>-->
-
-											<!--	<td><a href=""data-bs-target="#reject" data-bs-toggle="modal" class="btn btn-danger">Delete</a></td>-->
-
-
-
-
-
-											<!--</tr>-->
-
-
-
+													</tr>
+											<?php
+												}
+											} ?>
 										</tbody>
 									</table>
 								</div>
