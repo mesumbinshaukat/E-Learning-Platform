@@ -12,8 +12,6 @@ $select_query = "SELECT * FROM `stream`";
 
 $select_query_run = mysqli_query($conn, $select_query);
 
-$fetch_details = mysqli_fetch_assoc($select_query_run);
-
 ?>
 
 <!DOCTYPE html>
@@ -395,9 +393,12 @@ $fetch_details = mysqli_fetch_assoc($select_query_run);
 											</tr>
 										</thead>
 										<tbody>
-											<?php while ($i = mysqli_fetch_array($select_query_run)) {
+											<?php
+											if (mysqli_num_rows($select_query_run) > 0) {
 
-												if ($i["stream_location"] == "courses") {
+												while ($i = mysqli_fetch_assoc($select_query_run)) {
+
+
 											?>
 													<tr>
 														<td><?php echo $i["id"] ?></td>
@@ -414,8 +415,10 @@ $fetch_details = mysqli_fetch_assoc($select_query_run);
 
 													</tr>
 											<?php
+
 												}
-											} ?>
+											}
+											?>
 										</tbody>
 									</table>
 								</div>

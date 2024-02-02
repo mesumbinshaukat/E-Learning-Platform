@@ -33634,9 +33634,8 @@ slide is-expanded side-menu__item {
     max-height: 0
 }
 
-.app-sidebar .slide-menu .slide-item:before {
-    color: #7b8191;
-    content: "\f22d";
+/* .app-sidebar .slide-menu .slide-item:before {
+    color: #7b8191;    
     font-family: Font Awesome\ 5 Free;
     font-size: 10px;
     font-weight: 900;
@@ -33644,7 +33643,7 @@ slide is-expanded side-menu__item {
     opacity: .5;
     position: absolute;
     top: 9px
-}
+} */
 
 .app-sidebar__toggle .close-toggle,
 .sidebar-mini.sidenav-toggled .open-toggle {
