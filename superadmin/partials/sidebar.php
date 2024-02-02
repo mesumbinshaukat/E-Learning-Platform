@@ -183,17 +183,7 @@
 
 
             <li class="side-item side-item-category">Internship</li>
-            <li class="slide">
-                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="bi bi-feather" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span class="side-menu__label">Companies</span><i class="angle bi bi-chevron-right"></i></a>
-                <ul class="slide-menu">
-                    <li class="side-menu__label1"><a href="javascript:void(0);">Companies</a></li>
-                    <li><a class="bi bi-dot" href="pendingcompanyinternship.php" style="font-size:14px; line-height: 2;">Pending</a></li>
-
-                    <li><a class="bi bi-dot" href="managecompanyinternship.php" style="font-size:14px; line-height: 2;">Manage</a></li>
-                    <li><a class="bi bi-dot" href="internshipcompanylist.php" style="font-size:14px; line-height: 2;">List</a></li>
-
-                </ul>
-            </li>
+       
 
             <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="bi bi-plus-circle-dotted" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp
@@ -222,17 +212,7 @@
             </li>
 
             <li class="side-item side-item-category">Placements</li>
-            <li class="slide">
-                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="bi bi-buildings" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span class="side-menu__label">Companies</span><i class="angle bi bi-chevron-right"></i></a>
-                <ul class="slide-menu">
-                    <li class="side-menu__label1"><a href="javascript:void(0);">Companies</a></li>
-                    <li><a class="bi bi-dot" href="pendingcompanyplacements.php" style="font-size:14px; line-height: 2;">Pending</a></li>
-
-                    <li><a class="bi bi-dot" href="managecompanyplacements.php" style="font-size:14px; line-height: 2;">Manage</a></li>
-                    <li><a class="bi bi-dot" href="placementcompanylist.php" style="font-size:14px; line-height: 2;">List</a></li>
-
-                </ul>
-            </li>
+        
 
             <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="bi bi-card-checklist" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span class="side-menu__label">Create</span><i class="angle bi bi-chevron-right"></i></a>
