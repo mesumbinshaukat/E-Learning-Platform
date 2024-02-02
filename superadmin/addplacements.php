@@ -414,7 +414,9 @@ else{
         </div>
     </div>
     <!-- End Switcher -->
-
+<!-- <script>
+    toastr.success('Placement Added Successfully')
+</script> -->
     <?php
 	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
 		echo "<script>toastr.success('Placement Added Successfully')</script>";
