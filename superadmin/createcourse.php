@@ -8,7 +8,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['create'])) {
     $course_name = $_POST['name_of_the_course'];
     $stream = $_POST['stream'];
     $posting_category = $_POST['posting_category'];
@@ -36,16 +36,20 @@ if (isset($_POST['submit'])) {
     $image2_name = $_FILES['image2']['name'];
     $image2_tmp = $_FILES['image2']['tmp_name'];
 
-    $query = mysqli_prepare($conn, "INSERT INTO `course`(`course_name`, `stream_name`, `posting_category`, `provider_name_company_id`, `training_type`, `offline_address`, `duration_days`, `last_date_to_apply`, `hours_per_day`, `certification`, `slots`, `course_description`, `topics_covered`, `benefits_of_course`, `pre_requirements`, `additional_info`, `course_type`, `original_cost`, `discount_percentage`, `final_cost`, `main_image`, `inner_image`, `image_two`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $query->bind_param("sssssssssssssssssssssss", $course_name, $stream, $posting_category, $provider_name, $offline_address, $duration, $last_date, $hours_perday, $certifications, $no_of_slots, $course_description, $topics_covered, $benefits, $pre_requirements, $additional_information, $course_type, $original_cost, $discount, $final_cost, $main_image_name, $inner_image_name, $image2_name);
+    $query = mysqli_prepare($conn, "INSERT INTO `course`(`course_name`, `stream_name`, `posting_category`, `provider_name_company`, `training_type`, `offline_address`, `duration_days`, `last_date_to_apply`, `hours_per_day`, `certification`, `slots`, `course_description`, `topics_covered`, `benefits_of_course`, `pre_requirements`, `additional_info`, `course_type`, `original_cost`, `discount_percentage`, `final_cost`, `main_image`, `inner_image`, `image_two`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($query, "ssssssssssssssssssssss", $course_name, $stream, $posting_category, $provider_name, $training_type, $offline_address, $duration, $last_date, $hours_perday, $certifications, $no_of_slots, $course_description, $topics_covered, $benefits, $pre_requirements, $additional_information, $course_type, $original_cost, $discount, $final_cost, $main_image_name, $inner_image_name, $image2_name);
 
-    if ($query->execute()) {
+
+    if (mysqli_stmt_execute($query)) {
 
         move_uploaded_file($main_image_tmp, "./assets/img/course/" . $main_image_name);
         move_uploaded_file($inner_image_tmp, "./assets/img/course/" . $inner_image_name);
         move_uploaded_file($image2_tmp, "./assets/img/course/" . $image2_name);
         header("location: createcourse.php");
+    } else {
+        echo mysqli_error($conn);
     }
+    mysqli_stmt_close($query);
 }
 ?>
 
@@ -378,7 +382,7 @@ if (isset($_POST['submit'])) {
             <!-- main-sidebar -->
 
         </div>
-        <form action="connection_files/create/course_create.php" method="POST" enctype="multipart/form-data">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
             <!-- main-content -->
             <div class="main-content app-content">
 
