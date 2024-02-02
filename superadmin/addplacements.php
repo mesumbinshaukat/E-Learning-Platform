@@ -7,6 +7,57 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	header('location: ../super-admin_login.php');
 	exit();
 }
+if(isset($_POST['createBtn'])){
+
+$company_name = $_POST['company_name'];
+$job_role = $_POST['job_role'];
+$salary = $_POST['salary'];
+$industry = $_POST['industry'];
+$experience =  $_POST['experience'];
+$workmode = $_POST['workmode'];
+$years_of_experience = $_POST['years_of_experience'];
+$eligibility = $_POST['eligibility'];
+$location = $_POST['location'];
+$jobtype = $_POST['eligibility'];
+$preffered_for = $_POST['preffered_for'];
+$number_of_vacancies = $_POST['number_of_vacancies'];
+$last_date = $_POST['last_date'];
+$full_description = $_POST['full_description'];
+$requirements = $_POST['requirements'];
+$additional_information = $_POST['additional_information'];
+$food_allowance = $_POST['food_allowance'];
+$transport_allowance = $_POST['transport_allowance'];
+$espf = $_POST['espf'];
+$main_image_name = $_FILES['main_image']['name'];
+$main_image_tmpname = $_FILES['main_image']['tmp_name'];
+$main_image_path = "./assets/img/" . date('Y-m-d-H-s') . $main_image_name;
+
+$inner_image_name = $_FILES['inner_image']['name'];
+$inner_image_tmpname = $_FILES['inner_image']['tmp_name'];
+$inner_image_path = "./assets/img/" . date('Y-m-d-H-s') . $inner_image_name;
+
+$image2_name = $_FILES['image2']['name'];
+$image2_tmpname = $_FILES['image2']['tmp_name'];
+$image2_path = "./assets/img/" . date('Y-m-d-H-s') . $image2_name;
+
+
+$insert_query = mysqli_prepare($conn, "INSERT INTO `placement`(`company_name`, `job_role`, `salary`, `industry`, `experience`, `work_mode`, `years_open_experience`, `eligibility`, `location`, `job_type`, `gender`, `vacancies`, `last_date_to_apply`, `full_description`, `requirements`, `additional_info`, `food_allowances`, `transport_allowances`, `esi`, `main_image`, `inner_image`, `image_two`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$insert_query->bind_param("ssssssssssssssssssssss", $company_name,$job_role,$salary,$industry,$experience,$workmode,$years_of_experience,$eligibility,$location,$jobtype,$preffered_for,$number_of_vacancies,$last_date,$full_description,$requirements,$additional_information,$food_allowance,$transport_allowance,$espf,$main_image_path,$inner_image_path,$image2_imgpath);
+if($insert_query->execute()){
+    $_SESSION['message_success'] = true;
+    move_uploaded_file($main_image_tmpname , $main_image_path);
+    move_uploaded_file($inner_image_tmpname , $inner_image_path);
+    move_uploaded_file($image2_tmpname , $image2_path);
+    header("location: addplacements.php");
+}
+else{
+    $_SESSION['message_failed'] = true;
+    $_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
+
+}
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -15,10 +66,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="Description" content="">
 
     <?php include("./style.php"); ?>
 
@@ -368,6 +415,20 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     </div>
     <!-- End Switcher -->
 
+    <?php
+	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+		echo "<script>toastr.success('Placement Added Successfully')</script>";
+		session_destroy();
+	}
+	?>
+
+	<?php
+	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+		session_destroy();
+	}
+	?>
+
     <!-- Loader -->
     <!--<div id="global-loader">-->
     <!--	<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">-->
@@ -393,7 +454,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
             <!-- main-sidebar -->
 
         </div>
-        <form action="connection_files/create/add_placements.php" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             <!-- main-content -->
             <div class="main-content app-content">
 
@@ -407,7 +468,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <span class="main-content-title mg-b-0 mg-b-lg-1">Add Placement</span>
                         </div>
                         <div class="justify-content-center mt-2">
-                            <ol class="breadcrumb">
+                            <ol class="breadcrumb"> 
                                 <li class="breadcrumb-item "><a href="javascript:void(0);">Placement</a></li>
                                 <li class="breadcrumb-item " aria-current="page">Add</li>
                             </ol>
@@ -466,8 +527,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                     <option value="Finance">Finance</option>
                                                     <option value="Pharmaceuticals">Pharmaceuticals</option>
                                                     <option value="Management">Management</option>
-                                                    <option value="event">event</option>
-                                                    <option value="TESTING">TESTING</option>
+                                               
                                                 </select>
                                             </div>
                                             <div class="control-group form-group mb-2">
@@ -680,7 +740,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                     placeholder="Choose File" required width="540" height="300">
                                             </div>
                                         </section>
-                                        <button name="create" value="submit" type="submit"
+                                        <button name="createBtn" value="submit" type="submit"
                                             class="btn btn-primary mt-3 mb-0" onclick="return check()"
                                             style="text-align:right">Generate</button>
                                     </div>
@@ -1570,259 +1630,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
     </div>
     <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <!-- JQUERY JS -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-
-    <!-- BOOTSTRAP JS -->
-    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- IONICONS JS -->
-    <script src="assets/plugins/ionicons/ionicons.js"></script>
-
-    <!-- MOMENT JS -->
-    <script src="assets/plugins/moment/moment.js"></script>
-
-    <!-- P-SCROLL JS -->
-    <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
-
-    <!-- SIDEBAR JS -->
-    <script src="assets/plugins/side-menu/sidemenu.js"></script>
-
-    <!-- STICKY JS -->
-    <script src="assets/js/sticky.js"></script>
-
-    <!-- Chart-circle js -->
-    <script src="assets/plugins/circle-progress/circle-progress.min.js"></script>
-
-    <!-- RIGHT-SIDEBAR JS -->
-    <script src="assets/plugins/sidebar/sidebar.js"></script>
-    <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
-
-
-    <!--Internal  Select2 js -->
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
-
-    <!-- Internal Jquery.steps js -->
-    <script src="assets/plugins/jquery-steps/jquery.steps.min.js"></script>
-    <script src="assets/plugins/parsleyjs/parsley.min.js"></script>
-
-    <!--Internal  Form-wizard js -->
-    <script src="assets/js/form-wizard.js"></script>
-
-    <!--Internal Fileuploads js-->
-    <script src="assets/plugins/fileuploads/js/fileupload.js"></script>
-    <script src="assets/plugins/fileuploads/js/file-upload.js"></script>
-
-    <!--Internal Fancy uploader js-->
-    <script src="assets/plugins/fancyuploder/jquery.ui.widget.js"></script>
-    <script src="assets/plugins/fancyuploder/jquery.fileupload.js"></script>
-    <script src="assets/plugins/fancyuploder/jquery.iframe-transport.js"></script>
-    <script src="assets/plugins/fancyuploder/jquery.fancy-fileupload.js"></script>
-    <script src="assets/plugins/fancyuploder/fancy-uploader.js"></script>
-
-
-    <!-- EVA-ICONS JS -->
-    <script src="assets/plugins/eva-icons/eva-icons.min.js"></script>
-
-    <!-- THEME-COLOR JS -->
-    <script src="assets/js/themecolor.js"></script>
-
-    <!-- CUSTOM JS -->
-    <script src="assets/js/custom.js"></script>
-
-    <!-- exported JS -->
-    <script src="assets/js/exported.js"></script>
-
-    <!-- SWITCHER JS -->
-    <script src="assets/switcher/js/switcher.js"></script>
-
-</body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/form-wizards by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:55 GMT -->
-
-</html>
-<div class="d-flex justify-content-end ">
-    <div class="msg_cotainer_send">
-        You welcome Connor Paige
-        <span class="msg_time_send">9:05 AM, Today</span>
-    </div>
-    <div class="img_cont_msg">
-        <img src="assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
-    </div>
-</div>
-<div class="d-flex justify-content-start ">
-    <div class="img_cont_msg">
-        <img src="assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
-    </div>
-    <div class="msg_cotainer">
-        Yo, Can you update views?
-        <span class="msg_time">9:07 AM, Today</span>
-    </div>
-</div>
-<div class="d-flex justify-content-end mb-4">
-    <div class="msg_cotainer_send">
-        But I must explain to you how all this mistaken born and I will give
-        <span class="msg_time_send">9:10 AM, Today</span>
-    </div>
-    <div class="img_cont_msg">
-        <img src="assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
-    </div>
-</div>
-<div class="d-flex justify-content-start ">
-    <div class="img_cont_msg">
-        <img src="assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
-    </div>
-    <div class="msg_cotainer">
-        Yo, Can you update views?
-        <span class="msg_time">9:07 AM, Today</span>
-    </div>
-</div>
-<div class="d-flex justify-content-end mb-4">
-    <div class="msg_cotainer_send">
-        But I must explain to you how all this mistaken born and I will give
-        <span class="msg_time_send">9:10 AM, Today</span>
-    </div>
-    <div class="img_cont_msg">
-        <img src="assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
-    </div>
-</div>
-<div class="d-flex justify-content-start ">
-    <div class="img_cont_msg">
-        <img src="assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
-    </div>
-    <div class="msg_cotainer">
-        Yo, Can you update views?
-        <span class="msg_time">9:07 AM, Today</span>
-    </div>
-</div>
-<div class="d-flex justify-content-end mb-4">
-    <div class="msg_cotainer_send">
-        But I must explain to you how all this mistaken born and I will give
-        <span class="msg_time_send">9:10 AM, Today</span>
-    </div>
-    <div class="img_cont_msg">
-        <img src="assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
-    </div>
-</div>
-<div class="d-flex justify-content-start">
-    <div class="img_cont_msg">
-        <img src="assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
-    </div>
-    <div class="msg_cotainer">
-        Okay Bye, text you later..
-        <span class="msg_time">9:12 AM, Today</span>
-    </div>
-</div>
-</div>
-<!-- msg_card_body end -->
-<!-- card-footer -->
-<div class="card-footer">
-    <div class="msb-reply d-flex">
-        <div class="input-group">
-            <input type="text" class="form-control " placeholder="Typing....">
-            <div class="input-group-append ">
-                <button type="button" class="btn btn-primary ">
-                    <i class="far fa-paper-plane" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div><!-- card-footer end -->
-</div>
-</div>
-</div>
-</div>
-
-<!--Video Modal -->
-<div id="videomodal" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body mx-auto text-center p-7">
-                <h5>Nowa Video call</h5>
-                <img src="assets/img/faces/6.jpg" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
-                <h4 class="mb-1 font-weight-semibold">Daneil Scott</h4>
-                <h6>Calling...</h6>
-                <div class="mt-5">
-                    <div class="row">
-                        <div class="col-4">
-                            <a class="icon icon-shape rounded-circle mb-0 me-3" href="javascript:void(0);">
-                                <i class="fas fa-video-slash"></i>
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a class="icon icon-shape rounded-circle text-white mb-0 me-3" href="javascript:void(0);"
-                                data-bs-dismiss="modal" aria-label="Close">
-                                <i class="fas fa-phone bg-danger text-white"></i>
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a class="icon icon-shape rounded-circle mb-0 me-3" href="javascript:void(0);">
-                                <i class="fas fa-microphone-slash"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- modal-body -->
-        </div>
-    </div><!-- modal-dialog -->
-</div><!-- modal -->
-
-<!-- Audio Modal -->
-<div id="audiomodal" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body mx-auto text-center p-7">
-                <h5>Nowa Voice call</h5>
-                <img src="assets/img/faces/6.jpg" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
-                <h4 class="mb-1  font-weight-semibold">Daneil Scott</h4>
-                <h6>Calling...</h6>
-                <div class="mt-5">
-                    <div class="row">
-                        <div class="col-4">
-                            <a class="icon icon-shape rounded-circle mb-0 me-3" href="javascript:void(0);">
-                                <i class="fas fa-volume-up bg-light"></i>
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a class="icon icon-shape rounded-circle text-white mb-0 me-3" href="javascript:void(0);"
-                                data-bs-dismiss="modal" aria-label="Close">
-                                <i class="fas fa-phone text-white bg-primary"></i>
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a class="icon icon-shape  rounded-circle mb-0 me-3" href="javascript:void(0);">
-                                <i class="fas fa-microphone-slash bg-light"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- modal-body -->
-        </div>
-    </div><!-- modal-dialog -->
-</div><!-- modal -->
-
-
-<!-- Footer opened -->
-<div class="main-footer">
-    <div class="container-fluid pd-t-0-f ht-100p">
-        Copyrights ©TriaRight 2023. All rights reserved by <a href="https://www.triaright.com"
-            class="text-primary">TriaRight</a> developed by <span class="fa fa-heart text-danger"></span><a
-            href="http://www.mycompany.co.in" class="text-primary"> MY Company</a>.
-    </div>
-</div>
-<!-- Footer closed -->
-
-</div>
-<!-- End Page -->
-
-<!-- BACK-TO-TOP -->
-<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
 <?php include("./scripts.php"); ?>
 </body>
