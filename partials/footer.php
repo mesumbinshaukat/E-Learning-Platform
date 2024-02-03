@@ -5,7 +5,8 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-4">
                     <a class="footer-brand mr-lg-5 d-flex" href="./index.php">
-                        <img src="https://techbloggers.co/wp-content/uploads/2023/08/youtube-banner2048px-1152px.png" class="mr-3" alt="Footer logo">
+                        <img src="https://techbloggers.co/wp-content/uploads/2023/08/youtube-banner2048px-1152px.png"
+                            class="mr-3" alt="Footer logo">
                     </a>
                     <p class="my-4">
                     <h5>Our Online Presence</h5>
@@ -19,15 +20,21 @@
                         </a>
 
                         <a href="#">
-                            <button class="btn btn-icon-only btn-pill btn-facebook mr-2 icon icon-xs icon-shape" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
+                            <button class="btn btn-icon-only btn-pill btn-facebook mr-2 icon icon-xs icon-shape"
+                                type="button" data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="">
                                 <i class="bi bi-facebook"></i>
                             </button> </a>
                         <a href="#">
-                            <button class="btn btn-icon-only btn-pill btn-youtube mr-2 icon icon-xs icon-shape" href="" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
+                            <button class="btn btn-icon-only btn-pill btn-youtube mr-2 icon icon-xs icon-shape" href=""
+                                type="button" data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="">
                                 <i class="bi bi-twitter-x"></i>
                             </button> </a>
                         <a href="#">
-                            <button class="btn btn-icon-only btn-pill btn-dribbble icon icon-xs icon-shape" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
+                            <button class="btn btn-icon-only btn-pill btn-dribbble icon icon-xs icon-shape"
+                                type="button" data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="">
                                 <i class="bi bi-instagram"></i>
                             </button>
                     </div>
@@ -52,12 +59,12 @@
                     </ul>
                 </div>
                 <div class="col-sm-6 col-lg-2">
-                    <h5 class="mb-4">Register</h5>
+                    <h5 class="mb-4">Learn More</h5>
                     <ul class="links-vertical">
-                        <li><a target="_blank" href="#">Student</a></li>
-                        <li><a target="_blank" href="#">College</a></li>
-                        <li><a target="_blank" href="#">Company</a></li>
-                        <li><a target="_blank" href="#">Trainer</a></li>
+                        <li><a target="_blank" href="./jobslist.php">Jobgs List</a></li>
+                        <li><a target="_blank" href="./internshipslist.php">Internship List</a></li>
+                        <li><a target="_blank" href="./courselist.php">Our Courses</a></li>
+                        <li><a target="_blank" href="./careers.php">Careers</a></li>
 
                     </ul>
                 </div>
@@ -73,7 +80,8 @@
                             rights reserved by
                             <a href="https://worldoftech.company" target="_blank">Mesum Bin Shaukat</a> &nbsp
                         </p>
-                        <p class="copyright pb-0 mb-0"> developed by <a href="https://worldoftech.company" target="_blank">World Of Tech</a> </p>
+                        <p class="copyright pb-0 mb-0"> developed by <a href="https://worldoftech.company"
+                                target="_blank">World Of Tech</a> </p>
                     </div>
                 </div>
             </div>
