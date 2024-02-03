@@ -9,23 +9,23 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 }
 
 if (isset($_POST['create'])) {
-    $course_name = $_POST['name_of_the_course'];
+    $course_name = mysqli_real_escape_string($conn, $_POST['name_of_the_course']);
     $stream = $_POST['stream'];
-    $posting_category = $_POST['posting_category'];
-    $provider_name = $_POST['provider_name'];
-    $training_type = $_POST['training_type'];
-    $offline_address = $_POST['offline_address'];
+    $posting_category = mysqli_real_escape_string($conn, $_POST['posting_category']);
+    $provider_name = mysqli_real_escape_string($conn, $_POST['provider_name']);
+    $training_type = mysqli_real_escape_string($conn, $_POST['training_type']);
+    $offline_address = mysqli_real_escape_string($conn, $_POST['offline_address']);
     $duration = $_POST['duration'];
     $last_date = $_POST['last_date'];
     $hours_perday = $_POST['hours_perday'];
-    $certifications = $_POST['certifications'];
+    $certifications = mysqli_real_escape_string($conn, $_POST['certifications']);
     $no_of_slots = $_POST['no_of_slots'];
-    $course_description = $_POST['course_description'];
-    $topics_covered = $_POST['topics_covered'];
-    $benefits = $_POST['benefits'];
-    $pre_requirements = $_POST['pre_requirements'];
-    $additional_information = $_POST['additional_information'];
-    $course_type = $_POST['course_type'];
+    $course_description = mysqli_real_escape_string($conn, $_POST['course_description']);
+    $topics_covered = mysqli_real_escape_string($conn, $_POST['topics_covered']);
+    $benefits = mysqli_real_escape_string($conn, $_POST['benefits']);
+    $pre_requirements = mysqli_real_escape_string($conn, $_POST['pre_requirements']);
+    $additional_information = mysqli_real_escape_string($conn, $_POST['additional_information']);
+    $course_type = mysqli_real_escape_string($conn, $_POST['course_type']);
     $original_cost = $_POST['original_cost'];
     $discount = $_POST['discount'];
     $final_cost = $_POST['final_cost'];
@@ -37,7 +37,7 @@ if (isset($_POST['create'])) {
     $image2_tmp = $_FILES['image2']['tmp_name'];
 
     $query = mysqli_prepare($conn, "INSERT INTO `course`(`course_name`, `stream_name`, `posting_category`, `provider_name_company`, `training_type`, `offline_address`, `duration_days`, `last_date_to_apply`, `hours_per_day`, `certification`, `slots`, `course_description`, `topics_covered`, `benefits_of_course`, `pre_requirements`, `additional_info`, `course_type`, `original_cost`, `discount_percentage`, `final_cost`, `main_image`, `inner_image`, `image_two`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($query, "ssssssssssssssssssssss", $course_name, $stream, $posting_category, $provider_name, $training_type, $offline_address, $duration, $last_date, $hours_perday, $certifications, $no_of_slots, $course_description, $topics_covered, $benefits, $pre_requirements, $additional_information, $course_type, $original_cost, $discount, $final_cost, $main_image_name, $inner_image_name, $image2_name);
+    mysqli_stmt_bind_param($query, "sssssssssssssssssssssss", $course_name, $stream, $posting_category, $provider_name, $training_type, $offline_address, $duration, $last_date, $hours_perday, $certifications, $no_of_slots, $course_description, $topics_covered, $benefits, $pre_requirements, $additional_information, $course_type, $original_cost, $discount, $final_cost, $main_image_name, $inner_image_name, $image2_name);
 
 
     if (mysqli_stmt_execute($query)) {
@@ -479,7 +479,7 @@ if (isset($_POST['create'])) {
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Offline address ( if offline ) <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="" class="form-control required" name="offline_address" placeholder="Offline address">
+                                                <input class="form-control required" name="offline_address" placeholder="Offline address">
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Duration(Days) <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
