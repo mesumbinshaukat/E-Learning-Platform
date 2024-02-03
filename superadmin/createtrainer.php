@@ -7,6 +7,45 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	header('location: ../super-admin_login.php');
 	exit();
 }
+
+if (isset($_POST["submit"])) {
+	$Trainer_Name = $_POST["Trainer_Name"];
+	$Personal_Phone_Number = $_POST["Personal_Phone_Number"];
+	$Personal_Mail_id = $_POST["Personal_Mail_id"];
+	$Date_Of_Birth = $_POST["Date_Of_Birth"];
+	$Aadhar_Card_No = $_POST["Aadhar_Card_No"];
+	$Upload_Aadhar_Card = $_FILES["Upload_Aadhar_Card"]["name"];
+	$Upload_Aadhar_Card_Tmp = $_FILES["Upload_Aadhar_Card"]["tmp_name"];
+	$Pan_Card_No = $_POST["Pan_Card_No"];
+	$Upload_Pan_Card = $_FILES["Upload_Pan_Card"]["name"];
+	$Upload_Pan_Card_Tmp = $_FILES["Upload_Pan_Card"]["tmp_name"];
+	$Date_Of_joining = $_POST["Date_Of_joining"];
+	$Qualification = $_POST["Qualification"];
+	$Any_Experience = $_POST["Any_Experience"];
+	$Previous_Current_Organization_name = $_POST["Previous/Current_Organization_name"];
+	$Designation = $_POST["Designation"];
+	$Trainer_Documents = $_FILES["Trainer_Documents"]["name"];
+	$Trainer_Documents_Tmp = $_FILES["Trainer_Documents"]["tmp_name"];
+	$Trainer_Username = $_POST["Trainer_Username"];
+	$Password = $_POST["Password"];
+
+	$query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`, `dob`, `aadhar_card_number`, `aadhar_card_picture`, `pan_card_number`, `pan_card_picture`, `date_of_joining`, `qualification`, `experience`, `organization_name`, `designation`, `trainer_document`, `ip`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+	$query->bind_param("sssssssssssssssss", $Trainer_Name, $Personal_Phone_Number, $Personal_Mail_id, $Password, $Trainer_Username, $Date_Of_Birth, $Aadhar_Card_No, $Upload_Aadhar_Card, $Pan_Card_No, $Upload_Pan_Card, $Date_Of_joining, $Qualification, $Any_Experience, $Previous_Current_Organization_name, $Designation, $Trainer_Documents, $ip);
+
+	if ($query->execute()) {
+		move_uploaded_file($Upload_Aadhar_Card_Tmp, "./assets/trainer/" . $Upload_Aadhar_Card);
+		move_uploaded_file($Upload_Pan_Card_Tmp, "./assets/trainer/" . $Upload_Pan_Card);
+		move_uploaded_file($Trainer_Documents_Tmp, "./assets/trainer/" . $Trainer_Documents);
+		$_SESSION["success"] = "Trainer Added Successfully";
+		header('location:createtrainer.php');
+	} else {
+		$_SESSION["error"] = "Something went wrong";
+		header('location:createtrainer.php');
+	}
+}
+
+
 ?>
 
 
@@ -24,6 +63,12 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 </head>
 
 <body class="ltr main-body app sidebar-mini">
+
+	<?php if (isset($_SESSION["success"])) {
+		echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+	} else if (isset($_SESSION["error"])) {
+		echo "<script>toastr.error('" . $_SESSION["error"] . "</script>";
+	} ?>
 
 	<?php include("./switcher.php"); ?>
 	<!-- Page -->
@@ -45,9 +90,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 			<!-- main-sidebar -->
 
 		</div>
-		<form action="connection_files/create/trainer_create.php" method="POST" enctype="multipart/form-data">
-			<!-- main-content -->
-			<!-- main-content -->
+		<form method="POST" enctype="multipart/form-data">
 			<div class="main-content app-content">
 
 				<!-- container -->
@@ -244,20 +287,13 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 					return true;
 			}
 		</script>
-		<!-- Footer opened -->
-		<div class="main-footer">
-			<div class="container-fluid pd-t-0-f ht-100p">
-				Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All
-				rights reserved
-			</div>
-		</div>
-		<!-- Footer closed -->
+
 
 	</div>
 	<!-- End Page -->
 
 	<!-- BACK-TO-TOP -->
-	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
+	<a href="#top" id="back-to-top"><i class="bi bi-arrow-bar-up"></i></a>
 	<?php include("./scripts.php"); ?>
 
 </body>
