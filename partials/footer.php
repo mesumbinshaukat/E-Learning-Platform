@@ -5,8 +5,7 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-4">
                     <a class="footer-brand mr-lg-5 d-flex" href="./index.php">
-                        <img src="https://techbloggers.co/wp-content/uploads/2023/08/youtube-banner2048px-1152px.png"
-                            class="mr-3" alt="Footer logo">
+                        <img src="https://techbloggers.co/wp-content/uploads/2023/08/youtube-banner2048px-1152px.png" class="mr-3" alt="Footer logo">
                     </a>
                     <p class="my-4">
                     <h5>Our Online Presence</h5>
@@ -20,21 +19,15 @@
                         </a>
 
                         <a href="#">
-                            <button class="btn btn-icon-only btn-pill btn-facebook mr-2 icon icon-xs icon-shape"
-                                type="button" data-toggle="tooltip" data-placement="top" title=""
-                                data-original-title="">
+                            <button class="btn btn-icon-only btn-pill btn-facebook mr-2 icon icon-xs icon-shape" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
                                 <i class="bi bi-facebook"></i>
                             </button> </a>
                         <a href="#">
-                            <button class="btn btn-icon-only btn-pill btn-youtube mr-2 icon icon-xs icon-shape" href=""
-                                type="button" data-toggle="tooltip" data-placement="top" title=""
-                                data-original-title="">
+                            <button class="btn btn-icon-only btn-pill btn-youtube mr-2 icon icon-xs icon-shape" href="" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
                                 <i class="bi bi-twitter-x"></i>
                             </button> </a>
                         <a href="#">
-                            <button class="btn btn-icon-only btn-pill btn-dribbble icon icon-xs icon-shape"
-                                type="button" data-toggle="tooltip" data-placement="top" title=""
-                                data-original-title="">
+                            <button class="btn btn-icon-only btn-pill btn-dribbble icon icon-xs icon-shape" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="">
                                 <i class="bi bi-instagram"></i>
                             </button>
                     </div>
@@ -71,17 +64,16 @@
             </div>
         </div>
     </div>
-    <div class="footer py-3 text-white border-top border-variant-default" style="background-color: black !important;">
+    <div class="footer py-3 text-white border-top border-variant-light" style="background-color: black !important;">
         <div class="container">
             <div class="row">
                 <div class="col p-3">
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <p class="copyright pb-0 mb-0">Copyrights ©E-Learning 2024. All
-                            rights reserved by
+                            Rights Reserved By
                             <a href="https://worldoftech.company" target="_blank">Mesum Bin Shaukat</a> &nbsp
                         </p>
-                        <p class="copyright pb-0 mb-0"> developed by <a href="https://worldoftech.company"
-                                target="_blank">World Of Tech</a> </p>
+                        <p class="copyright pb-0 mb-0"> Developed By <a href="https://worldoftech.company" target="_blank">World Of Tech</a> </p>
                     </div>
                 </div>
             </div>
