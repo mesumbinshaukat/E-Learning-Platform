@@ -238,7 +238,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="assets/icons/internship.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/icons/internship.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Internship Management Software</h2>
                             <p class="mb-0">We are here with IMS with extended functionalities beyond the expectations.
@@ -250,7 +250,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="assets/icons/coach.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/icons/coach.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Experienced Trainers</h2>
                             <p class="mb-0"> Every Trainer at TriaRight holds real time experience in the respective
@@ -263,7 +263,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="assets/icons/customer-service.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/icons/customer-service.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">12/7 CS</h2>
                             <p class="mb-0"> A customer service strategy that involves providing support 12 hours a day,
@@ -276,7 +276,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="assets/icons/personality.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/icons/personality.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Personality Development</h2>
                             <p class="mb-0">Not just the course TriaRight will also help the student in developing the
@@ -288,7 +288,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="assets/icons/rating-stars.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/icons/rating-stars.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Internships Oriented Training </h2>
                             <p class="mb-0">Most of our courses are designed based on the requirements of our clients
@@ -301,7 +301,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="assets/icons/salary.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/icons/salary.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Placement Assistance </h2>
                             <p class="mb-0"> We strive hard to see every candidate as an employee and fill the gaps from

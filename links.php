@@ -20,3 +20,30 @@
 <script src="./assets/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+
+<?php if (empty($_COOKIE["trainer_ip"]) && !isset($_COOKIE["trainer_ip"])) { ?>
+<script>
+let apiKey = '3caa1dbb-d5f8-430d-a5d8-3ee0623a9b31';
+
+// Use AJAX to send the IP address to the server
+$.getJSON('https://ipfind.co/me?auth=' + apiKey, function(data) {
+    let ip = data["ip_address"];
+    console.log(ip);
+
+    // Use AJAX to send the IP address to the server
+    $.ajax({
+        type: 'POST',
+        url: 'ip_script.php', // Replace with the actual PHP script URL
+        data: {
+            ip: ip
+        },
+        success: function(response) {
+            console.log(response); // Log the response from the server
+        },
+        error: function(error) {
+            console.error(error); // Log any errors
+        }
+    });
+});
+</script>
+<?php } ?>

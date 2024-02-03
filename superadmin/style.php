@@ -20,7 +20,7 @@
 	<link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
 
 
-	<!-- STYLES CSS -->	
+	<!-- STYLES CSS -->
 	<link href="assets/css/style.css" rel="stylesheet">
 	<link href="assets/css/style-dark.css" rel="stylesheet">
 	<link href="assets/css/style-transparent.css" rel="stylesheet">
@@ -44,14 +44,18 @@
 	<!-- Bootstrap Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet"
+	    href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+	    integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw=="
+	    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 	<!-- Toastr Alert -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
 	<!-- JQUERY JS -->
-	<script src="./assets/plugins/jquery/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 	<!-- Toastr Alert -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

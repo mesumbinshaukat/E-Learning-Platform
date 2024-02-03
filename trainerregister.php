@@ -12,29 +12,26 @@ if (isset($_POST['RegisterBtn'])) {
     $select_query = "SELECT * FROM `trainer` WHERE email = '$trainer_email'";
     $select_query_run = mysqli_query($conn, $select_query);
     $fetch_query = mysqli_fetch_array($select_query_run);
-    $fetched_email = isset($fetch_query['email']);	
-
+    $fetched_email = isset($fetch_query['email']);
+    $ip = $_COOKIE['trainer_ip'];
     $hash_pass = password_hash($password, PASSWORD_DEFAULT);
 
 
     if (preg_match($regex_email, $trainer_email) == 1) {
-        if($fetched_email == null){
-        $insert_query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`) VALUES (?,?,?,?,?)");
-        $insert_query->bind_param("sssss", $trainer_name, $trainer_phoneno, $trainer_email , $hash_pass,$trainer_username);
+        if ($fetched_email == null) {
+            $insert_query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`, `ip`) VALUES (?,?,?,?,?,?)");
+            $insert_query->bind_param("ssssss", $trainer_name, $trainer_phoneno, $trainer_email, $hash_pass, $trainer_username, $ip);
             if ($insert_query->execute()) {
+
                 $_SESSION['message_success'] = true;
             } else {
                 $_SESSION['message_failed'] = true;
                 $_SESSION["err_msg"] = "Database Error, Unable to register.";
-            
             }
-            
-            }
-      else{
-        $_SESSION['message_failed'] = true;
-        $_SESSION["err_msg"] = "Email is Already Registered.";
-      
-     }
+        } else {
+            $_SESSION['message_failed'] = true;
+            $_SESSION["err_msg"] = "Email is Already Registered.";
+        }
     } else {
 
         $_SESSION['message_failed'] = true;
@@ -57,18 +54,18 @@ if (isset($_POST['RegisterBtn'])) {
 </head>
 
 <body>
-<script>
+    <script>
         <?php
         if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
         ?>
             toastr.success('Registration Successful')
         <?php
             session_destroy();
-        } 
+        }
         ?>
     </script>
     <?php
-        if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
         echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
         session_destroy();
     }
@@ -212,26 +209,9 @@ if (isset($_POST['RegisterBtn'])) {
         <span class="fas fa-hand-point-up"></span>
     </button>
     <!--scroll bottom to top button end-->
-    <!--build:js-->
-    <script src="assets/js/vendors/jquery-3.5.1.min.js"></script>
-    <script src="assets/js/vendors/popper.min.js"></script>
-    <script src="assets/js/vendors/bootstrap.min.js"></script>
-    <script src="assets/js/vendors/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/vendors/jquery.easing.min.js"></script>
-    <script src="assets/js/vendors/mixitup.min.js"></script>
-    <script src="assets/js/vendors/headroom.min.js"></script>
-    <script src="assets/js/vendors/smooth-scroll.min.js"></script>
-    <script src="assets/js/vendors/wow.min.js"></script>
-    <script src="assets/js/vendors/owl.carousel.min.js"></script>
-    <script src="assets/js/vendors/jquery.waypoints.min.js"></script>
-    <!--<script src="assets/js/vendors/countUp.min.js"></script>-->
-    <script src="assets/js/vendors/jquery.countdown.min.js"></script>
-    <script src="assets/js/vendors/validator.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <!--endbuild-->
+
+
+
 </body>
-
-
-<!-- Mirrored from corporx.themetags.com/basic-sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Jan 2023 13:39:06 GMT -->
 
 </html>
