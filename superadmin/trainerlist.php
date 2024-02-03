@@ -72,62 +72,8 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                     </div>
 
                 </div>
-                <form method="post">
-                    <div class="row row-sm">
-                        <div class="form-group col-md-3">
-                            <b> <label>Qualifications</label> </b>
-                            <select name="Qualification" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
-                                <option value="ALL">ALL</option>
-                                <option value="Graduate">Graduate</option>
-                                <option value="NA">NA</option>
-                                <option value="MCA">MCA</option>
-                                <option value="Btech">Btech</option>
-                                <option value="Bachelor of technology ">Bachelor of technology </option>
-                                <option value="B.com Computers">B.com Computers</option>
-                                <option value="Bsc">Bsc</option>
-                                <option value="B Tech 3rd year">B Tech 3rd year</option>
-                                <option value="Doctor of pharmacy">Doctor of pharmacy</option>
-                                <option value="MBA">MBA</option>
-                                <option value="B.Tech">B.Tech</option>
-                                <option value="b sc biotechnology">b sc biotechnology</option>
-                                <option value="pursuing PGDM">pursuing PGDM</option>
-                                <option value="cse">cse</option>
-                                <option value="B-tech">B-tech</option>
-                                <option value="B.E">B.E</option>
-                                <option value="degree">degree</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <b> <label>Any Experience</label> </b>
 
-                            <select name="Any_Experience" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
 
-                                <option value="ALL" selected="selected">ALL</option>
-                                <option value=""></option>
-                                <option value="yes">yes</option>
-                                <option value="Fresher">Fresher</option>
-                                <option value="no">no</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <P><b> Status</b> </p>
-                            <select name="user_status" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
-                                <option value="ALL">ALL</option>
-                                <option value="0">Active</option>
-                                <option value="1">blocked</option>
-                                <option value="2">Deleted</option>
-                            </select>
-                        </div>
-
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search"
-                            style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
-                    </div>
-                </form>
-                <br>
-                <br>
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
