@@ -39,7 +39,7 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <div>
 
                             <img class="fancy-radius img-fluid"
-                                src="./assets/media/business-people-board-room-meeting.jpg" alt="modern desk">
+                                src="./assets/media/city-committed-education-collage-concept.jpg" alt="modern desk">
 
                         </div>
                     </div>

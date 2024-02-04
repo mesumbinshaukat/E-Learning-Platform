@@ -62,7 +62,7 @@ if (isset($_POST['createBtn'])) {
 
 
 <head>
-
+    <title>Add Placement</title>
 
     <?php include("./style.php"); ?>
 
