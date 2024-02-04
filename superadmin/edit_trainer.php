@@ -28,7 +28,7 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
     $Date_Of_Birth = $_POST["Date_Of_Birth"];
     $Password = $_POST["Password"];
     $hash_pass = password_hash($Password, PASSWORD_DEFAULT);
-    $created_by = "admin";
+    $created_by = $trainer["created_by"];
     $Aadhar_Card_No = $_POST["Aadhar_Card_No"];
     $Pan_Card_No = $_POST["Pan_Card_No"];
     $Date_Of_joining = $_POST["Date_Of_joining"];
@@ -55,19 +55,22 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
     if (empty($Upload_Pan_Card)) {
         $Upload_Pan_Card = $trainer["pan_card_picture"];
     }
+    if (empty($password)) {
+        $hash_pass = $trainer["password"];
+    }
     $query = mysqli_prepare($conn, "UPDATE `trainer` SET `name`=?,`contact_number`=?,`email`=?,`password`=?,`username`=?,`dob`=?,`aadhar_card_number`=?,`aadhar_card_picture`=?,`pan_card_number`=?,`pan_card_picture`=?,`date_of_joining`=?,`qualification`=?,`experience`=?,`organization_name`=?,`designation`=?,`trainer_document`=?,`created_by`=? WHERE `id`='$id'");
 
-    $query->bind_param("ssssssssssssssssss", $Trainer_Name, $Personal_Phone_Number, $Personal_Mail_id, $hash_pass, $Trainer_Username, $Date_Of_Birth, $Aadhar_Card_No, $Upload_Aadhar_Card, $Pan_Card_No, $Upload_Pan_Card, $Date_Of_joining, $Qualification, $Any_Experience, $Previous_Current_Organization_name, $Designation, $Trainer_Documents, $created_by);
+    $query->bind_param("sssssssssssssssss", $Trainer_Name, $Personal_Phone_Number, $Personal_Mail_id, $hash_pass, $Trainer_Username, $Date_Of_Birth, $Aadhar_Card_No, $Upload_Aadhar_Card, $Pan_Card_No, $Upload_Pan_Card, $Date_Of_joining, $Qualification, $Any_Experience, $Previous_Current_Organization_name, $Designation, $Trainer_Documents, $created_by);
 
     if ($query->execute()) {
-        move_uploaded_file($Upload_Aadhar_Card_Tmp, "./assets/trainer/" . $Upload_Aadhar_Card);
-        move_uploaded_file($Upload_Pan_Card_Tmp, "./assets/trainer/" . $Upload_Pan_Card);
-        move_uploaded_file($Trainer_Documents_Tmp, "./assets/trainer/" . $Trainer_Documents);
-        $_SESSION["success"] = "Trainer Added Successfully";
-        header('location:createtrainer.php');
+        move_uploaded_file($Upload_Aadhar_Card_Tmp, "./assets/img/trainer/" . $Upload_Aadhar_Card);
+        move_uploaded_file($Upload_Pan_Card_Tmp, "./assets/img/trainer/" . $Upload_Pan_Card);
+        move_uploaded_file($Trainer_Documents_Tmp, "./assets/docs/trainer/" . $Trainer_Documents);
+        $_SESSION["success"] = "Trainer Edited Successfully";
+        header('location:edit_trainer.php');
     } else {
         $_SESSION["error"] = "Something went wrong";
-        header('location:createtrainer.php');
+        header('location:edit_trainer.php');
     }
 }
 
@@ -85,6 +88,7 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
+    <title>Edit Trainer</title>
     <?php include("./style.php"); ?>
 </head>
 
@@ -301,8 +305,11 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
                                                 <select class="form-control form-select select2" required
                                                     name="Any_Experience" id="exampleInputExperience"
                                                     data-bs-placeholder="Enter Experience">
+                                                    <?php if (!empty($any_experience)) {
+                                                            ?>
                                                     <option value="<?php echo $any_experience; ?>">Default:
                                                         <?php echo $any_experience; ?></option>
+                                                    <?php } ?>
                                                     <option value="yes">Yes</option>
                                                     <option value="no">No</option>
                                                 </select>
@@ -345,7 +352,8 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="file" class="form-control" required
                                                     name="Trainer_Documents" id="exampleInputcode" placeholder="">
-                                                <a href="./assets/docs/<?php echo $trainer_document; ?>"
+                                                <a class="text-danger"
+                                                    href="./assets/docs/trainer/<?php echo $trainer_document; ?>"
                                                     download=""><?php echo $trainer_document; ?></a>
                                             </div>
                                         </div>
@@ -356,7 +364,8 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
                                                     <span style="color:red;font-size: 90%;">*</span><span
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="text" required class="form-control" name="Trainer_Username"
-                                                    id="exampleInputUserName" placeholder="Enter Username">
+                                                    value="<?php echo $username; ?>" id="exampleInputUserName"
+                                                    placeholder="Enter Username">
                                             </div>
                                         </div>
 
@@ -366,9 +375,8 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
                                                     <span style="color:red;font-size: 90%;">*</span><span
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="password" required class="form-control" minlength=8
-                                                    maxlength=10 name="Password" id='password'
-                                                    placeholder="Enter Password">
+                                                <input type="password" class="form-control" minlength=8 maxlength=10
+                                                    name="Password" id='password' placeholder="Enter Password">
                                             </div>
                                         </div>
 
@@ -378,8 +386,8 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
                                                     <span style="color:red;font-size: 90%;">*</span><span
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="password" required class="form-control" minlength=8
-                                                    maxlength=10 id='retypepassword' placeholder="Re-Enter Password">
+                                                <input type="password" class="form-control" minlength=8 maxlength=10
+                                                    id='retypepassword' placeholder="Re-Enter Password">
                                             </div>
                                         </div>
 

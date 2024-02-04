@@ -28,6 +28,7 @@ if (isset($_GET["error"])) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
+    <title>Trainer Sign Up - Registrations</title>
 
     <?php include("./style.php"); ?>
 
@@ -129,14 +130,14 @@ if (isset($_GET["error"])) {
                                                 </td>
                                                 <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>"
                                                         class="btn btn-warning">Edit</a></td>
-                                                <td styl </tr>
+                                            </tr>
 
-                                                    <?php
+                                            <?php
 													}
 												}
 											} else { ?>
-                                                    <?php echo "No data found";
-												} ?>
+                                            <?php echo "No data found";
+											} ?>
 
                                         </tbody>
                                     </table>

@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
@@ -23,6 +23,7 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
+    <title>Trainers List</title>
 
     <?php include("./style.php"); ?>
 </head>
@@ -93,16 +94,16 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                                                 <th class="border-bottom-0">Experience</th>
 
                                                 <th class="border-bottom-0">User status</th>
-
-
+                                                <th class="border-bottom-0">Delete</th>
+                                                <th class="border-bottom-0">Edit</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php if (mysqli_num_rows($select_query) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($select_query)) {
-											?>
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($select_query)) {
+                                            ?>
 
                                             <tr>
                                                 <td><?php echo $i++; ?></td>
@@ -110,16 +111,22 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                                                 <td><?php echo $row['email']; ?></td>
                                                 <td>ID_<?php echo $row['id']; ?></td>
                                                 <td><?php echo $row['name']; ?></td>
-                                                <td><?php echo !empty($row['qualification']) ?? null; ?></td>
+                                                <td><?php echo $row['qualification'] ?? null; ?></td>
                                                 <td><?php echo $row['experience'] ?? null; ?></td>
                                                 <td style=color:#4aa02c> <b> Active <b></td>
+                                                <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer"
+                                                        class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
+                                                </td>
+                                                <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>"
+                                                        class="btn btn-warning">Edit</a></td>
                                             </tr>
 
                                             <?php
-												}
-											} else { ?>
+                                                }
+                                            } else { ?>
                                             <?php echo "No data found";
-											} ?>
+                                            } ?>
 
 
 
