@@ -1,3 +1,9 @@
+<?php
+include("./db_connection/connection.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +60,8 @@
                                     <div class="card card-body shadow mt-4">
                                         <div class="d-flex">
                                             <div class="mr-3 mr-md-4">
-                                                <div class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-default-alt text-default">
+                                                <div
+                                                    class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-default-alt text-default">
                                                     <i class="bi bi-trophy-fill"></i>
                                                 </div>
                                             </div>
@@ -75,7 +82,8 @@
                                     <div class="card card-body shadow mt-4">
                                         <div class="d-flex">
                                             <div class="mr-3 mr-md-4">
-                                                <div class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-secondary-alt text-secondary">
+                                                <div
+                                                    class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-secondary-alt text-secondary">
                                                     <i class="bi bi-stack"></i>
                                                 </div>
                                             </div>
@@ -92,7 +100,8 @@
                                     <div class="card card-body shadow mt-4">
                                         <div class="d-flex">
                                             <div class="mr-3 mr-md-4">
-                                                <div class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-success-alt text-success">
+                                                <div
+                                                    class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-success-alt text-success">
                                                     <i class="bi bi-sign-turn-slight-right"></i>
                                                 </div>
                                             </div>
@@ -121,18 +130,24 @@
                             Become an Employee.</p>
 
                         <ul class="list-unstyled tech-feature-list">
-                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i class="bi bi-fast-forward"></i></i>Courses
+                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i
+                                        class="bi bi-fast-forward"></i></i>Courses
                                     at
                                     very Low Price</li>
-                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i class="bi bi-fast-forward"></i></i>Recordings
+                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i
+                                        class="bi bi-fast-forward"></i></i>Recordings
                                     of every session</li>
-                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i class="bi bi-fast-forward"></i></i>Doubt
+                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i
+                                        class="bi bi-fast-forward"></i></i>Doubt
                                     Clearance during sesion and post session</li>
-                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i class="bi bi-fast-forward"></i></i>12//7
+                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i
+                                        class="bi bi-fast-forward"></i></i>12//7
                                     Technical, Theoritical and Conceptual Support</li>
-                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i class="bi bi-fast-forward"></i></i>Personality
+                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i
+                                        class="bi bi-fast-forward"></i></i>Personality
                                     Development</li>
-                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i class="bi bi-fast-forward"></i></i>Internship
+                            <li class="py-1"><span class="icon icon-xs mr-2 "> <i
+                                        class="bi bi-fast-forward"></i></i>Internship
                                     Appplication</li>
                             <li class="py-1"><span class="icon icon-xs mr-2 "> <i class="bi bi-fast-forward"></i></i>Job
                                     Application</li>

@@ -64,7 +64,7 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/environment.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/environment.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Information Technologies</h2>
                             <p class="mb-0">Not just basics, but every technology starts with these… C, C++ Java and
@@ -77,7 +77,7 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/non-conforming.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/non-conforming.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Non-IT</h2>
                             <p class="mb-0">Courses related to Voice, Non Voice, Transcription, Translations etc…</p>
@@ -88,7 +88,7 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/customer-service.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/customer-service.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Management</h2>
                             <p class="mb-0">Leader doesn’t become overnight you need to be scaled so, pick your
@@ -100,7 +100,7 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/salary.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/salary.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Finance</h2>
                             <p class="mb-0">US Taxation, Income Tax, Accounts executives are created with practice,
@@ -112,7 +112,7 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/pharmaceutical.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/pharmaceutical.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Pharmaceticals</h2>
                             <p class="mb-0">Medical coding is the transformation of medical diagnosis… Be a Medical
@@ -124,7 +124,7 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/online-education.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/online-education.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Professional Courses</h2>
                             <p class="mb-0">Would like to Upskill your profile with the Professional Courses here is the
@@ -133,12 +133,12 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <!-- End of Icon box -->
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0 mb-md-0">
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0 mb-md-0 text-center">
                         <!-- Icon box -->
                         <div class="icon-box text-center">
-                            <img src="./assets/icons/creative-brain.png" alt="icon" width="60" class="img-fluid">
+                            <img src="./assets/Icons/creative-brain.png" alt="icon" width="60" class="img-fluid">
                         </div>
-                        <h2 class="h5">Creative Courses</h2>
+                        <h2 class="h5 ">Creative Courses</h2>
                         <p class="mb-0">Photography, Videography, Cinematography, Fashion Designing, Interior
                         <div class="card-icon mb-4">
                             Designing and many more yet to come…</p>

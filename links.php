@@ -7,6 +7,10 @@
 <link href="./superadmin/assets/img/WordPress_blue_logo.svg-min.webp" rel="icon">
 
 <style>
+.owl-carousel:hover {
+    cursor: grab !important;
+}
+
 .main {
 
     /* Media query for smaller screens */

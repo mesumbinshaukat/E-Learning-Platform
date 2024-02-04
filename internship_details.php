@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include("db_connection/connection.php");
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -100,7 +102,7 @@ $fetch_internships = $_SESSION["fetch_internships"];
                             <img class="fancy-radius img-fluid"
                                 src="./superadmin/assets/img/internship/<?php echo $fetch_internships['main_image']; ?>"
                                 alt="modern desk">
-
+                            <?php session_destroy(); ?>
                         </div>
                     </div>
                 </div>
@@ -110,7 +112,7 @@ $fetch_internships = $_SESSION["fetch_internships"];
     </div>
 
     <?php include("./partials/footer.php");
-    session_destroy()
+
     ?>
 
 </body>

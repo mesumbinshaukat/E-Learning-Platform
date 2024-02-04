@@ -1,3 +1,8 @@
+<?php
+
+$l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
+?>
+
 <!--footer section start-->
 <footer class="footer-wrap">
     <div class="footer footer-top section section-md text-white" style="background-color: black !important;">
@@ -50,11 +55,31 @@
                     </ul>
                 </div>
                 <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
-                    <h5 class="mb-4">Services</h5>
+                    <h5 class="mb-4">Latest Courses</h5>
                     <ul class="links-vertical">
-                        <li><a target="_blank" href="./jobs.php">Jobs</a></li>
-                        <li><a target="_blank" href="./internships.php">Internships</a></li>
-                        <li><a target="_blank" href="#">Courses</a></li>
+                        <?php if (mysqli_num_rows($l_query) > 0) {
+                            while ($row = mysqli_fetch_assoc($l_query)) {
+                                $course_one = $row['course_one'];
+                                $course_two = $row['course_two'];
+                                $course_three = $row['course_three'];
+
+                                $courseOne = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '$course_one'");
+                                $courseTwo = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '$course_two'");
+                                $courseThree = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '$course_three'");
+                                if (
+                                    mysqli_num_rows($courseOne) > 0 && mysqli_num_rows($courseTwo) > 0 && mysqli_num_rows($courseThree) > 0
+                                ) {
+                                    $fetch_course_one = mysqli_fetch_assoc($courseOne);
+                                    $fetch_course_two = mysqli_fetch_assoc($courseTwo);
+                                    $fetch_course_three = mysqli_fetch_assoc($courseThree);
+
+                                    echo '<li><a target="_blank" href="./course_details.php?id=' . $course_one . '">' . $fetch_course_one['course_name'] . '</a></li>';
+                                    echo '<li><a target="_blank" href="./course_details.php?id=' . $course_two . '">' . $fetch_course_two['course_name'] . '</a></li>';
+                                    echo '<li><a target="_blank" href="./course_details.php?id=' . $course_three . '">' . $fetch_course_three['course_name'] . '</a></li>';
+                                }
+                            }
+                        } ?>
+
 
                     </ul>
                 </div>

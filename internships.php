@@ -64,7 +64,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/maintenance.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/maintenance.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Automobile Manufacturing</h2>
                             <p class="mb-0">If its your dream to be an Mechanical Engineer try our path to reach your
@@ -76,7 +76,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/wrench-tool.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/wrench-tool.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Constructions</h2>
                             <p class="mb-0">Our way of building techniques are with the top notch construction companies
@@ -88,7 +88,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/pharmaceutical.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/pharmaceutical.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Pharmaceutical</h2>
                             <p class="mb-0">Pharmacy now is following a high technology in their own ways - Try
@@ -100,7 +100,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/environment.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/environment.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Information Technology</h2>
                             <p class="mb-0">We provide you the latest IT job postings from our clients, pick what’s your
@@ -112,7 +112,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/communication.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/communication.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Tele Communications</h2>
                             <p class="mb-0">Here you will have the latest updates Non IT job postings by our clients.
@@ -124,7 +124,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/textile.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/textile.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Textiles</h2>
                             <p class="mb-0">Fashion Designers this is your place to get be creative - Find your Right
@@ -136,7 +136,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/budget.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/budget.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Finance</h2>
                             <p class="mb-0">Finance and funds makes it all with the company. If you are looking for the
@@ -148,7 +148,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/travel.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/travel.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Transportation/Tourism</h2>
                             <p class="mb-0">Are you a Travel freak and wanted to earn being in your passion this is the
@@ -160,7 +160,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="./assets/icons/expand.png" alt="icon" width="60" class="img-fluid">
+                                <img src="./assets/Icons/expand.png" alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Others</h2>
                             <p class="mb-0">There are many more Industries whom we provide Jobs from </p>
