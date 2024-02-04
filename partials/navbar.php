@@ -48,7 +48,7 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./courselist.php">Courses</a>
+                        <a class="nav-link" href="./courses.php">Courses</a>
 
                     </li>
 

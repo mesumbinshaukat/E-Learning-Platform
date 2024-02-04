@@ -33,7 +33,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                             </h1>
                             <p class="lead">Yourself required no at thoughts delicate landlord it be. Branched dashwood
                                 do is whatever it.</p>
-                            <a href="./jobslist.php" class="btn btn-secondary mt-3">Available
+                            <a href="#jobs" class="btn btn-secondary mt-3">Available
                                 jobs</a>
 
                         </div>
@@ -189,7 +189,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
 
         <!--Process Steps section start-->
 
-        <section>
+        <section id="jobs">
             <div class="container">
                 <h2 class="text-center pt-5">Available Jobs</h2>
                 <hr style="background-color:grey">
@@ -236,6 +236,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
         $('.owl-carousel').owlCarousel({
             loop: true,
             margin: 20,
+            autoplayHoverPause: true,
             autoplay: true,
             autoplayTimeout: 3000,
             responsiveClass: true,
