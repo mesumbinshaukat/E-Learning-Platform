@@ -33,8 +33,7 @@
                     </li>
                     <li><a class="bi bi-dot" href="trainersignup.php"
                             style="font-size:14px; line-height: 2;">Registrations</a></li>
-                    <li><a class="bi bi-dot" href="pendingtrainer.php"
-                            style="font-size:14px; line-height: 2;">Pending</a></li>
+
                     <li><a class="bi bi-dot" href="managetrainer.php" style="font-size:14px; line-height: 2;">Manage</a>
                     </li>
                     <li><a class="bi bi-dot" href="trainerlogs.php" style="font-size:14px; line-height: 2;">Logs</a>

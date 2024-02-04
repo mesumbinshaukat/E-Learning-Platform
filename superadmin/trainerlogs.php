@@ -91,6 +91,7 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                                                 <th class="border-bottom-0">Trainer ID</th>
                                                 <th class="border-bottom-0">Email</th>
                                                 <th class="border-bottom-0">IP address</th>
+                                                <th class="border-bottom-0">Created By</th>
 
                                             </tr>
                                         </thead>
@@ -106,6 +107,7 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                                                         $email = $row['email'];
                                                         $ip = $row['ip'];
                                                         $username = $row['username'];
+                                                        $created_by = $row['created_by'];
                                                         ?>
                                             <tr>
                                                 <td><?= $i; ?></td>
@@ -113,6 +115,14 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                                                 <td>TRID_<?= $id; ?></td>
                                                 <td><?= $email; ?></td>
                                                 <td><?= $ip; ?></td>
+
+                                                <td><?php 
+                                                    if($created_by == "admin"){
+                                                        echo "Superadmin";
+                                                    }else{
+                                                        echo "User";
+                                                    }
+                                                ?></td>
 
 
                                                 <?php } }?>

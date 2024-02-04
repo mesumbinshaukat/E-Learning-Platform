@@ -15,12 +15,13 @@ if (isset($_POST['RegisterBtn'])) {
     $fetched_email = isset($fetch_query['email']);
     $ip = $_COOKIE['trainer_ip'];
     $hash_pass = password_hash($password, PASSWORD_DEFAULT);
+    $created_by = "user";
 
 
     if (preg_match($regex_email, $trainer_email) == 1) {
         if ($fetched_email == null) {
-            $insert_query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`, `ip`) VALUES (?,?,?,?,?,?)");
-            $insert_query->bind_param("ssssss", $trainer_name, $trainer_phoneno, $trainer_email, $hash_pass, $trainer_username, $ip);
+            $insert_query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`, `ip`, `created_by`) VALUES (?,?,?,?,?,?,?)");
+            $insert_query->bind_param("sssssss", $trainer_name, $trainer_phoneno, $trainer_email, $hash_pass, $trainer_username, $ip, $created_by);
             if ($insert_query->execute()) {
 
                 $_SESSION['message_success'] = true;
@@ -55,11 +56,11 @@ if (isset($_POST['RegisterBtn'])) {
 
 <body>
     <script>
-        <?php
+    <?php
         if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
         ?>
-            toastr.success('Registration Successful')
-        <?php
+    toastr.success('Registration Successful')
+    <?php
             session_destroy();
         }
         ?>
@@ -77,7 +78,8 @@ if (isset($_POST['RegisterBtn'])) {
 
         <!--sign up section start-->
 
-        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
+        <section
+            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
 
@@ -100,7 +102,8 @@ if (isset($_POST['RegisterBtn'])) {
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" name="Trainer_Name" class="form-control" placeholder="Enter your name" required>
+                                            <input type="text" name="Trainer_Name" class="form-control"
+                                                placeholder="Enter your name" required>
                                         </div>
                                     </div>
 
@@ -112,7 +115,9 @@ if (isset($_POST['RegisterBtn'])) {
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="number" name="Personal_Phone_Number" class="form-control" placeholder="1234567890" required max="9999999999" min="1000000000" required>
+                                            <input type="number" name="Personal_Phone_Number" class="form-control"
+                                                placeholder="1234567890" required max="9999999999" min="1000000000"
+                                                required>
                                         </div>
                                     </div>
 
@@ -125,7 +130,8 @@ if (isset($_POST['RegisterBtn'])) {
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="email" name="Personal_Mail_id" class="form-control" placeholder="name@address.com" required>
+                                            <input type="email" name="Personal_Mail_id" class="form-control"
+                                                placeholder="name@address.com" required>
                                         </div>
                                     </div>
 
@@ -137,7 +143,8 @@ if (isset($_POST['RegisterBtn'])) {
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" name="Trainer_Username" class="form-control" placeholder="Enter username" required minlength=8 maxlength=16 required>
+                                            <input type="text" name="Trainer_Username" class="form-control"
+                                                placeholder="Enter username" required minlength=8 maxlength=16 required>
                                         </div>
                                     </div>
 
@@ -149,7 +156,8 @@ if (isset($_POST['RegisterBtn'])) {
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="password" name="Password" class="form-control" id='password' placeholder="Enter your password" minlength=8 maxlength=10 required>
+                                            <input type="password" name="Password" class="form-control" id='password'
+                                                placeholder="Enter your password" minlength=8 maxlength=10 required>
                                         </div>
                                     </div>
 
@@ -161,7 +169,8 @@ if (isset($_POST['RegisterBtn'])) {
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="password" class="form-control" id='retypepassword' placeholder="Re-Enter your password" minlength=8 maxlength=10 required>
+                                            <input type="password" class="form-control" id='retypepassword'
+                                                placeholder="Re-Enter your password" minlength=8 maxlength=10 required>
                                         </div>
                                     </div>
 
@@ -173,20 +182,21 @@ if (isset($_POST['RegisterBtn'])) {
                                     </div> -->
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="RegisterBtn" value="submit" type="submit" onclick="return check()">
+                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3"
+                                        name="RegisterBtn" value="submit" type="submit" onclick="return check()">
                                         Register
                                     </button>
                                 </form>
                                 <script type="text/javascript">
-                                    function check() {
-                                        var b = document.getElementById('password').value;
-                                        var c = document.getElementById('retypepassword').value;
-                                        if (b != c) {
-                                            toastr.error("Password Does Not Match")
-                                            return false;
-                                        } else
-                                            return true;
-                                    }
+                                function check() {
+                                    var b = document.getElementById('password').value;
+                                    var c = document.getElementById('retypepassword').value;
+                                    if (b != c) {
+                                        toastr.error("Password Does Not Match")
+                                        return false;
+                                    } else
+                                        return true;
+                                }
                                 </script>
 
                             </div>
