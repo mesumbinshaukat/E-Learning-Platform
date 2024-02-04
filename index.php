@@ -11,10 +11,10 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>E-Learning</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E-Learning</title>
+
     <?php
     include("links.php")
     ?>
@@ -139,6 +139,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                 </div>
             </div>
         </section>
+
         <section class="section section-lg">
             <div class="container">
                 <div class="row justify-content-center">
@@ -148,6 +149,9 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
 
                         <?php if (mysqli_num_rows($l_query) > 0) { ?>
                         <div class="owl-carousel owl-theme">
+
+
+
                             <?php while ($l_course = mysqli_fetch_assoc($l_query)) {
                                     $course_one = $l_course['course_one'];
                                     $course_two = $l_course['course_two'];
@@ -168,7 +172,8 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                                     src="./superadmin/assets/img/course/<?php echo $fetch_course_one['main_image']; ?>"
                                     alt="Course Image">
                                 <div class="card-body">
-                                    <h4 class="card-title">Course Name: <?php echo $fetch_course_one['course_name']; ?>
+                                    <h4 class="card-title">Course Name:
+                                        <?php echo $fetch_course_one['course_name']; ?>
                                     </h4>
                                     <h5 class="card-title">Topics Covered:
                                         <?php echo $fetch_course_one['topics_covered']; ?></h5>
@@ -178,12 +183,14 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                                 </div>
                             </div>
 
+
                             <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
                                 <img class="card-img-top"
                                     src="./superadmin/assets/img/course/<?php echo $fetch_course_two['main_image']; ?>"
                                     alt="Course Image">
                                 <div class="card-body">
-                                    <h4 class="card-title">Course Name: <?php echo $fetch_course_two['course_name']; ?>
+                                    <h4 class="card-title">Course Name:
+                                        <?php echo $fetch_course_two['course_name']; ?>
                                     </h4>
                                     <h5 class="card-title">Topics Covered:
                                         <?php echo $fetch_course_two['topics_covered']; ?></h5>
@@ -192,6 +199,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                                         <?php echo $fetch_course_two['pre_requirements']; ?></p>
                                 </div>
                             </div>
+
 
                             <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
                                 <img class="card-img-top"
@@ -202,11 +210,18 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                                         <?php echo $fetch_course_three['course_name']; ?></h4>
                                     <h5 class="card-title">Topics Covered:
                                         <?php echo $fetch_course_three['topics_covered']; ?></h5>
-                                    <h5 class="card-title">Slots: <?php echo $fetch_course_three['slots']; ?></h5>
+                                    <h5 class="card-title">Slots: <?php echo $fetch_course_three['slots']; ?>
+                                    </h5>
                                     <p class="card-text">Pre-Requirements:
                                         <?php echo $fetch_course_three['pre_requirements']; ?></p>
                                 </div>
                             </div>
+
+
+
+
+
+
 
                             <?php
                                     }
@@ -405,7 +420,27 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
 
         <script>
         $(document).ready(function() {
-            $('.owl-carousel').owlCarousel();
+            $('.owl-carousel').owlCarousel({
+                items: 3,
+                loop: true,
+                margin: 20,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                responsiveClass: true,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    600: {
+                        items: 2,
+                    },
+                    1000: {
+                        items: 3,
+                    }
+                }
+
+            });
         });
         </script>
 

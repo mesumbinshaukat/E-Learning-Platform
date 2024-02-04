@@ -17,17 +17,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
 </head>
 
 <body>
-    <!--preloader start-->
-    <div id="preloader">
-        <div class="loader1">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-    <!--preloader end-->
+
 
     <section>
         <?php include("./partials/navbar.php"); ?>
@@ -59,39 +49,60 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
     <!--page header section end-->
     <!--main section start-->
     <div class="container">
-    <h2 class="text-center pt-5">Available Jobs</h2>
-    <hr style="background-color:grey">
+        <h2 class="text-center pt-5">Available Jobs</h2>
+        <hr style="background-color:grey">
     </div>
     <main class="p-4 mb-5 mt-3">
-    <div class="container">
-      <?php if(mysqli_num_rows($select_jobs) > 0) {?>  
-    <div class="owl-carousel owl-theme">
-     <?php while($fetch_jobs = mysqli_fetch_assoc($select_jobs)) {?>   
-  <div class="card" style="width: 20rem; border: 2px solid black;" >
-    <img class="card-img-top" src="./superadmin/<?php echo $fetch_jobs['main_image']; ?>" alt="Job_main_image">
-    <div class="card-body">
-    <h4 class="card-title">Job Role: <?php echo $fetch_jobs['job_role']; ?></h4>
-    <h5 class="card-title">Company: <?php echo $fetch_jobs['company_name']; ?></h5>
-    <h5 class="card-title">Need <?php echo $fetch_jobs['years_open_experience'];?> Years of Experience</h5>
-    <p class="card-text">Requirements: <?php echo $fetch_jobs['requirements']; ?><p>
-  </div>
-  </div>
-  <?php }?>
+        <div class="container">
+            <?php if (mysqli_num_rows($select_jobs) > 0) { ?>
+            <div class="owl-carousel owl-theme">
+                <?php while ($fetch_jobs = mysqli_fetch_assoc($select_jobs)) { ?>
+                <div class="card" style="width: 20rem; border: 2px solid black;">
+                    <img class="card-img-top" src="./superadmin/<?php echo $fetch_jobs['main_image']; ?>"
+                        alt="Job_main_image">
+                    <div class="card-body">
+                        <h4 class="card-title">Job Role: <?php echo $fetch_jobs['job_role']; ?></h4>
+                        <h5 class="card-title">Company: <?php echo $fetch_jobs['company_name']; ?></h5>
+                        <h5 class="card-title">Need <?php echo $fetch_jobs['years_open_experience']; ?> Years of
+                            Experience</h5>
+                        <p class="card-text">Requirements: <?php echo $fetch_jobs['requirements']; ?>
+                        <p>
+                    </div>
+                </div>
+                <?php } ?>
 
-</div>
-<?php } else {?>
-    <h2 class="p-2 text-center">No Jobs Available Right Now</h2>
-    <?php }?>
-</div>
+            </div>
+            <?php } else { ?>
+            <h2 class="p-2 text-center">No Jobs Available Right Now</h2>
+            <?php } ?>
+        </div>
     </main>
     <!--main section end-->
     <?php include("./partials/footer.php");
     ?>
-<script>
-    $(document).ready(function(){
-  $('.owl-carousel').owlCarousel();
-});
-</script>
+    <script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                400: {
+                    items: 1,
+                },
+                800: {
+                    items: 2,
+                },
+                1000: {
+                    items: 3,
+                }
+            }
+        });
+    });
+    </script>
 
 
 </body>

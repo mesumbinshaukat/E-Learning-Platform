@@ -2,11 +2,17 @@
     <nav class="navbar navbar-expand-lg navbar-light navbar-theme-white fixed-top headroom">
         <div class="container position-relative">
             <a class="navbar-brand mr-lg-3" href="./index.php">
-                <img class="navbar-brand-dark"
+                <img class="navbar-brand-dark img-fluid"
                     src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
-                <img class="navbar-brand-light"
+                <img class="navbar-brand-light img-fluid"
                     src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
+
             </a>
+            <div class="navbar-toggler d-lg-none d-flex align-items-center ml-2" type="button" data-toggle="collapse"
+                data-target="#navbar-default-primary" aria-controls="navbar-default-primary" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </div>
             <div class="navbar-collapse collapse" id="navbar-default-primary">
                 <div class="navbar-collapse-header">
                     <div class="row">
@@ -16,8 +22,9 @@
                                     alt="menuimage">
                             </a>
                         </div>
-                        <div class="col-6 collapse-close">
-                            <i class="fas fa-times" data-toggle="collapse" role="button"
+                        <div class="col-6 collapse-close d-lg-none">
+                            <!-- Hide on large screens -->
+                            <i class="bi bi-list d-lg-none" data-toggle="collapse" role="button"
                                 data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
                                 aria-expanded="false" aria-label="Toggle navigation"></i>
                         </div>
@@ -31,36 +38,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./aboutus.php">About</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a href="index.html#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                            <span class="nav-link-inner-text">Services</span>
-                            <i class="bi bi-caret-down-fill nav-link-arrow"></i>
-                        </a>
-                        <ul class="sub-menu dropdown-menu">
-                            <li><a class="dropdown-item" href="./jobs.php">Jobs</a></li>
-                            <li><a class="dropdown-item" href="./internships.php">Internships</a>
-                            </li>
-                            <li><a class="dropdown-item" href="#">Courses</a></li>
-                            <li><a class="dropdown-item" href="#">Campus Recruitment Training - Coming Soon
-                                </a></li>
-                        </ul>
-                    </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="./jobslist.php">Jobs</a>
+                        <a class="nav-link" href="./jobs.php">Jobs</a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./internshipslist.php">Internships</a>
+                        <a class="nav-link" href="./internships.php">Internships</a>
 
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./courselist.php">Courses</a>
 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./careers.php">Careers</a>
 
-                    </li>
 
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown" role="button">
@@ -107,13 +98,6 @@
                     </li>
 
                 </ul>
-            </div>
-            <div class="d-flex align-items-center">
-                <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
-                    data-target="#navbar-default-primary" aria-controls="navbar-default-primary" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
             </div>
         </div>
     </nav>

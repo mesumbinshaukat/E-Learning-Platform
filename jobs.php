@@ -1,3 +1,8 @@
+<?php
+include('./db_connection/connection.php');
+$select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,9 +50,212 @@
                 </div>
             </div>
         </section>
+
+        <!--features section start-->
+        <section class="section section-lg  ">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="section-heading text-center mb-5">
+                            <h2>Categories</h2>
+                            <p class="lead">We Provide Jobs in the following Industries
+                            <p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-2.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Automobile Manufacturing</h2>
+                            <p class="mb-0">If its your dream to be an Mechanical Engineer try our path to reach your
+                                destination</p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-1.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Constructions</h2>
+                            <p class="mb-0">Our way of building techniques are with the top notch construction companies
+                            </p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-3.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Pharmaceutical</h2>
+                            <p class="mb-0">Pharmacy now is following a high technology in their own ways - Try
+                                TriaRight</p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-4.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Information Technology</h2>
+                            <p class="mb-0">We provide you the latest IT job postings from our clients, pick what’s your
+                                Right Job</p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0 mb-md-0">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-6.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Tele Communications</h2>
+                            <p class="mb-0">Here you will have the latest updates Non IT job postings by our clients.
+                                Voice, Non Voice, Back Office, Admins, MIS etc..</p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-lg-0 mb-md-0">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-8.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Textiles</h2>
+                            <p class="mb-0">Fashion Designers this is your place to get be creative - Find your Right
+                                Company here</p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-4.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Finance</h2>
+                            <p class="mb-0">Finance and funds makes it all with the company. If you are looking for the
+                                same Apply today</p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0 mb-md-0">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-6.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Transportation/Tourism</h2>
+                            <p class="mb-0">Are you a Travel freak and wanted to earn being in your passion this is the
+                                Right place, pick your Job</p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-lg-0 mb-md-0">
+                        <!-- Icon box -->
+                        <div class="icon-box text-center">
+                            <div class="card-icon mb-4">
+                                <img src="https://triaright.com/assets/img/icon/icon-8.svg" alt="icon" width="60"
+                                    class="img-fluid">
+                            </div>
+                            <h2 class="h5">Others</h2>
+                            <p class="mb-0">There are many more Industries whom we provide Jobs from </p>
+                        </div>
+                        <!-- End of Icon box -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--features section end-->
+
+        <!--Process Steps section start-->
+
+        <section>
+            <div class="container">
+                <h2 class="text-center pt-5">Available Jobs</h2>
+                <hr style="background-color:grey">
+            </div>
+            <main class="p-4 mb-5 mt-3">
+                <div class="container">
+                    <?php if (mysqli_num_rows($select_jobs) > 0) { ?>
+                    <div class="owl-carousel owl-theme">
+                        <?php while ($fetch_jobs = mysqli_fetch_assoc($select_jobs)) { ?>
+                        <div class="card" style="width: 20rem; border: 2px solid black;">
+                            <img class="card-img-top" src="./superadmin/<?php echo $fetch_jobs['main_image']; ?>"
+                                alt="Job_main_image">
+                            <div class="card-body">
+                                <h4 class="card-title">Job Role: <?php echo $fetch_jobs['job_role']; ?></h4>
+                                <h5 class="card-title">Company: <?php echo $fetch_jobs['company_name']; ?></h5>
+                                <h5 class="card-title">Need <?php echo $fetch_jobs['years_open_experience']; ?> Years of
+                                    Experience</h5>
+                                <p class="card-text">Requirements: <?php echo $fetch_jobs['requirements']; ?>
+                                <p>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                    </div>
+                    <?php } else { ?>
+                    <h2 class="p-2 text-center">No Jobs Available Right Now</h2>
+                    <?php } ?>
+                </div>
+            </main>
+        </section>
+
+        <!--Our posting section end-->
+
+
     </div>
+
+
+
     <?php include("./partials/footer.php");
     ?>
+
+    <script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 20,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                400: {
+                    items: 1,
+                },
+                800: {
+                    items: 2,
+                },
+                1000: {
+                    items: 3,
+                }
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

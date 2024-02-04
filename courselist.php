@@ -49,27 +49,29 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
             <div class="container text-center">
                 <h1>Courses</h1>
 
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     <div class="col-12">
                         <?php if (mysqli_num_rows($select_courses) > 0) { ?>
-                            <div class="owl-carousel owl-theme">
-                                <?php while ($fetch_courses = mysqli_fetch_assoc($select_courses)) { ?>
-                                    <div class="card" style="width: 20rem; border: 2px solid black;">
-                                        <img class="card-img-top" src="./superadmin/assets/img/course/<?php echo $fetch_courses['main_image']; ?>" alt="Course Image">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Course Name: <?php echo $fetch_courses['course_name']; ?>
-                                            </h4>
-                                            <h5 class="card-title">Topics Covered:
-                                                <?php echo $fetch_courses['topics_covered']; ?></h5>
-                                            <h5 class="card-title">Slots: <?php echo $fetch_courses['slots']; ?></h5>
-                                            <p class="card-text">Pre-Requirements:
-                                                <?php echo $fetch_courses['pre_requirements']; ?>
-                                            <p>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-
+                        <div class="owl-carousel owl-theme">
+                            <?php while ($fetch_courses = mysqli_fetch_assoc($select_courses)) { ?>
+                            <div class="card" style="width: 20rem; border: 2px solid black;">
+                                <img class="card-img-top"
+                                    src="./superadmin/assets/img/course/<?php echo $fetch_courses['main_image']; ?>"
+                                    alt="Course Image">
+                                <div class="card-body">
+                                    <h4 class="card-title">Course Name: <?php echo $fetch_courses['course_name']; ?>
+                                    </h4>
+                                    <h5 class="card-title">Topics Covered:
+                                        <?php echo $fetch_courses['topics_covered']; ?></h5>
+                                    <h5 class="card-title">Slots: <?php echo $fetch_courses['slots']; ?></h5>
+                                    <p class="card-text">Pre-Requirements:
+                                        <?php echo $fetch_courses['pre_requirements']; ?>
+                                    <p>
+                                </div>
                             </div>
+                            <?php } ?>
+
+                        </div>
                         <?php } else {
                             echo "<h3>No Available Courses</h3>";
                         } ?>
@@ -83,9 +85,29 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
     ?>
 
     <script>
-        $(document).ready(function() {
-            $('.owl-carousel').owlCarousel();
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 20,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                400: {
+                    items: 1,
+                },
+                800: {
+                    items: 2,
+                },
+                1000: {
+                    items: 3,
+                }
+            }
         });
+    });
     </script>
 
 </body>
