@@ -34,8 +34,7 @@
                     <li><a class="bi bi-dot" href="trainersignup.php"
                             style="font-size:14px; line-height: 2;">Registrations</a></li>
 
-                    <li><a class="bi bi-dot" href="managetrainer.php" style="font-size:14px; line-height: 2;">Manage</a>
-                    </li>
+
                     <li><a class="bi bi-dot" href="trainerlogs.php" style="font-size:14px; line-height: 2;">Logs</a>
                     </li>
                     <li><a class="bi bi-dot" href="trainerlist.php" style="font-size:14px; line-height: 2;">List</a>

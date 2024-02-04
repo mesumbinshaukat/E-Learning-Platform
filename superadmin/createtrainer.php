@@ -4,46 +4,47 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 if (isset($_POST["submit"])) {
-	$Trainer_Name = $_POST["Trainer_Name"];
-	$Personal_Phone_Number = $_POST["Personal_Phone_Number"];
-	$Personal_Mail_id = $_POST["Personal_Mail_id"];
-	$Date_Of_Birth = $_POST["Date_Of_Birth"];
-	$Aadhar_Card_No = $_POST["Aadhar_Card_No"];
-	$Upload_Aadhar_Card = $_FILES["Upload_Aadhar_Card"]["name"];
-	$Upload_Aadhar_Card_Tmp = $_FILES["Upload_Aadhar_Card"]["tmp_name"];
-	$Pan_Card_No = $_POST["Pan_Card_No"];
-	$Upload_Pan_Card = $_FILES["Upload_Pan_Card"]["name"];
-	$Upload_Pan_Card_Tmp = $_FILES["Upload_Pan_Card"]["tmp_name"];
-	$Date_Of_joining = $_POST["Date_Of_joining"];
-	$Qualification = $_POST["Qualification"];
-	$Any_Experience = $_POST["Any_Experience"];
-	$Previous_Current_Organization_name = $_POST["Previous/Current_Organization_name"];
-	$Designation = $_POST["Designation"];
-	$Trainer_Documents = $_FILES["Trainer_Documents"]["name"];
-	$Trainer_Documents_Tmp = $_FILES["Trainer_Documents"]["tmp_name"];
-	$Trainer_Username = $_POST["Trainer_Username"];
-	$Password = $_POST["Password"];
-	$created_by = "admin";
+    $Trainer_Name = $_POST["Trainer_Name"];
+    $Personal_Phone_Number = $_POST["Personal_Phone_Number"];
+    $Personal_Mail_id = $_POST["Personal_Mail_id"];
+    $Date_Of_Birth = $_POST["Date_Of_Birth"];
+    $Aadhar_Card_No = $_POST["Aadhar_Card_No"];
+    $Upload_Aadhar_Card = $_FILES["Upload_Aadhar_Card"]["name"];
+    $Upload_Aadhar_Card_Tmp = $_FILES["Upload_Aadhar_Card"]["tmp_name"];
+    $Pan_Card_No = $_POST["Pan_Card_No"];
+    $Upload_Pan_Card = $_FILES["Upload_Pan_Card"]["name"];
+    $Upload_Pan_Card_Tmp = $_FILES["Upload_Pan_Card"]["tmp_name"];
+    $Date_Of_joining = $_POST["Date_Of_joining"];
+    $Qualification = $_POST["Qualification"];
+    $Any_Experience = $_POST["Any_Experience"];
+    $Previous_Current_Organization_name = $_POST["Previous/Current_Organization_name"];
+    $Designation = $_POST["Designation"];
+    $Trainer_Documents = $_FILES["Trainer_Documents"]["name"];
+    $Trainer_Documents_Tmp = $_FILES["Trainer_Documents"]["tmp_name"];
+    $Trainer_Username = $_POST["Trainer_Username"];
+    $Password = $_POST["Password"];
+    $hash_pass = password_hash($Password, PASSWORD_DEFAULT);
+    $created_by = "admin";
 
-	$query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`, `dob`, `aadhar_card_number`, `aadhar_card_picture`, `pan_card_number`, `pan_card_picture`, `date_of_joining`, `qualification`, `experience`, `organization_name`, `designation`, `trainer_document`, `ip`, `created_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`, `dob`, `aadhar_card_number`, `aadhar_card_picture`, `pan_card_number`, `pan_card_picture`, `date_of_joining`, `qualification`, `experience`, `organization_name`, `designation`, `trainer_document`, `ip`, `created_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-	$query->bind_param("ssssssssssssssssss", $Trainer_Name, $Personal_Phone_Number, $Personal_Mail_id, $Password, $Trainer_Username, $Date_Of_Birth, $Aadhar_Card_No, $Upload_Aadhar_Card, $Pan_Card_No, $Upload_Pan_Card, $Date_Of_joining, $Qualification, $Any_Experience, $Previous_Current_Organization_name, $Designation, $Trainer_Documents, $ip, $created_by);
+    $query->bind_param("ssssssssssssssssss", $Trainer_Name, $Personal_Phone_Number, $Personal_Mail_id, $hash_pass, $Trainer_Username, $Date_Of_Birth, $Aadhar_Card_No, $Upload_Aadhar_Card, $Pan_Card_No, $Upload_Pan_Card, $Date_Of_joining, $Qualification, $Any_Experience, $Previous_Current_Organization_name, $Designation, $Trainer_Documents, $ip, $created_by);
 
-	if ($query->execute()) {
-		move_uploaded_file($Upload_Aadhar_Card_Tmp, "./assets/trainer/" . $Upload_Aadhar_Card);
-		move_uploaded_file($Upload_Pan_Card_Tmp, "./assets/trainer/" . $Upload_Pan_Card);
-		move_uploaded_file($Trainer_Documents_Tmp, "./assets/trainer/" . $Trainer_Documents);
-		$_SESSION["success"] = "Trainer Added Successfully";
-		header('location:createtrainer.php');
-	} else {
-		$_SESSION["error"] = "Something went wrong";
-		header('location:createtrainer.php');
-	}
+    if ($query->execute()) {
+        move_uploaded_file($Upload_Aadhar_Card_Tmp, "./assets/img/trainer/" . $Upload_Aadhar_Card);
+        move_uploaded_file($Upload_Pan_Card_Tmp, "./assets/img/trainer/" . $Upload_Pan_Card);
+        move_uploaded_file($Trainer_Documents_Tmp, "./assets/docs/trainer/" . $Trainer_Documents);
+        $_SESSION["success"] = "Trainer Added Successfully";
+        header('location:createtrainer.php');
+    } else {
+        $_SESSION["error"] = "Something went wrong";
+        header('location:createtrainer.php');
+    }
 }
 
 
@@ -66,10 +67,10 @@ if (isset($_POST["submit"])) {
 <body class="ltr main-body app sidebar-mini">
 
     <?php if (isset($_SESSION["success"])) {
-		echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
-	} else if (isset($_SESSION["error"])) {
-		echo "<script>toastr.error('" . $_SESSION["error"] . "</script>";
-	} ?>
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "</script>";
+    } ?>
 
     <?php include("./switcher.php"); ?>
     <!-- Page -->
