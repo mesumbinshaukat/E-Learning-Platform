@@ -24,6 +24,10 @@
         padding-left: 15px;
     }
 
+    .navbar .nav-link:hover {
+        color: black !important;
+    }
+
     .navbar-brand img {
         max-width: 70px;
         /* Adjust the value as needed */

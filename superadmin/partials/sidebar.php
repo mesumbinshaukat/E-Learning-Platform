@@ -464,11 +464,16 @@
                 </ul>
             </li>
 
+            <li class="side-item side-item-category">Testimonial</li>
+            <li class="slide">
+                <a class="side-menu__item" data-bs-toggle="slide" href="testimonial.php"><i class="bi bi-star"
+                        width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span class="side-menu__label">Create
+                        Testimony</span></a>
+
+            </li>
+
+
             <li class="side-item side-item-category">Settings</li>
-            <!--	<li class="slide">
-								<a class="side-menu__item" data-bs-toggle="slide" href="profile.php"><i class="fe fe-user" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp  <span class="side-menu__label">Profile</span></a>
-									
-									</li> -->
 
             <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="changepassword.php"><i

@@ -30,7 +30,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                             <h1 class="display-2">Internships :<br> The Right place to start your Career
                             </h1>
                             <p class="lead">Your Successful Career is now sorted with our Internship Programs</p>
-                            <a href="internshipslist.php" class="btn btn-secondary mt-3">Available Internships</a>
+                            <a href="#internships" class="btn btn-secondary mt-3">Available Internships</a>
 
                         </div>
                     </div>
@@ -175,7 +175,7 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
 
 
 
-        <section class="m-5" id="courses">
+        <section class="m-5" id="internships">
             <div class="container text-center">
                 <h1>Internships</h1>
                 <p class="lead mb-5">These are the available internships
@@ -185,25 +185,27 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                         <?php if (mysqli_num_rows($select_internships) > 0) { ?>
                         <div class="owl-carousel owl-theme">
                             <?php while ($fetch_courses = mysqli_fetch_assoc($select_internships)) { ?>
-                            <div class="card" style="width: 20rem; border: 2px solid black;">
-                                <img class="card-img-top"
-                                    src="./superadmin/assets/img/internship/<?php echo $fetch_courses['main_image']; ?>"
-                                    alt="Course Image">
-                                <div class="card-body">
-                                    <h4 class="card-title"><span class="text-muted">Internship Name:</span>
-                                        <?php echo $fetch_courses['internship']; ?>
-                                    </h4>
-                                    <h5 class="card-title"><span class="text-muted">Vacancies:</span>
-                                        <?php echo $fetch_courses['vacancies']; ?></h5>
-                                    <h5 class="card-title"><span class="text-muted">Last Day To Apply:</span>
-                                        <?php echo $fetch_courses['last_date_to_apply']; ?>
-                                    </h5>
-                                    <p class="card-text text-danger"><span class="text-muted">Salary:</span>
-                                        <b><?php echo $fetch_courses['salary']; ?>₹
-                                        </b>
-                                    <p>
+                            <a href="./internship_details.php?id=<?php echo $fetch_courses['id']; ?>" target="_blank">
+                                <div class="card" style="width: 20rem; border: 2px solid black;">
+                                    <img class="card-img-top"
+                                        src="./superadmin/assets/img/internship/<?php echo $fetch_courses['main_image']; ?>"
+                                        alt="Course Image">
+                                    <div class="card-body">
+                                        <h4 class="card-title"><span class="text-muted">Internship Name:</span>
+                                            <?php echo $fetch_courses['internship']; ?>
+                                        </h4>
+                                        <h5 class="card-title"><span class="text-muted">Vacancies:</span>
+                                            <?php echo $fetch_courses['vacancies']; ?></h5>
+                                        <h5 class="card-title"><span class="text-muted">Last Day To Apply:</span>
+                                            <?php echo $fetch_courses['last_date_to_apply']; ?>
+                                        </h5>
+                                        <p class="card-text text-danger"><span class="text-muted">Salary:</span>
+                                            <b><?php echo $fetch_courses['salary']; ?>₹
+                                            </b>
+                                        <p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <?php } ?>
 
                         </div>

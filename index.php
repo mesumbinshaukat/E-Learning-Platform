@@ -1,7 +1,11 @@
 <?php
 include("./db_connection/connection.php");
 
+// Latest Course Query
 $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
+
+// Testimonial Query
+$testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
 
 
 
@@ -18,7 +22,46 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
     <?php
     include("links.php")
     ?>
+    <style>
+    .owl-carousel {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
 
+    .owl-item {
+        flex: 0 0 auto;
+    }
+
+    .testimonial-card {
+        /* Modify the styles as needed */
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px;
+        text-align: center;
+        /* Center align content */
+    }
+
+    .rating {
+        margin-top: 15px;
+        /* Add some space between the comment and the rating stars */
+    }
+
+    .rating-stars {
+        color: #ffd700;
+        /* Set the color of filled stars */
+    }
+
+    .user-image {
+        width: 100%;
+        height: auto;
+        /* Allow the height to adjust based on the width */
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto;
+    }
+    </style>
 </head>
 
 
@@ -329,91 +372,51 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
             </div>
         </section>
 
-
         <section>
             <center>
                 <h1>Testimonials</h1>
             </center>
-            <div class="section section-sm ">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-12">
-                            <div class="owl-carousel owl-theme clients-carousel">
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/15.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/14.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/13.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/12.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/11.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/10.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/2.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/17.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/1.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/16.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/7.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/6.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/5.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/4.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/3.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/8.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                                <div class="item single-client">
-                                    <img src="https://triaright.com/assets/img/web/9.jpeg" alt="client logo"
-                                        class="img-fluid">
-                                </div>
-                            </div>
+            <!-- Testimonial -->
+            <div class="container">
+                <div class="owl-carousel owl-theme">
+                    <?php
+                    if (mysqli_num_rows($testimony) > 0) {
+                        while ($row = mysqli_fetch_assoc($testimony)) {
+                            $name = $row['name'];
+                            $comment = $row['message'];
+                            $rating = $row['rating'];
+                            $picture = $row['picture'];
+                    ?>
+
+                    <div class="testimonial-card">
+                        <img src="./superadmin/assets/img/testimonial/<?php echo $picture; ?>" alt="User Image"
+                            class="user-image">
+                        <h4 class="mb-3"><?php echo $name; ?></h4>
+                        <p>"<?php echo $comment; ?>"</p>
+                        <div class="rating">
+                            <?php
+                                    for ($i = 1.0; $i <= 5.0; $i++) {
+                                        if ($i <= $rating) {
+                                            echo '<span class="rating-stars">&#9733;</span>';
+                                        } else {
+                                            echo '<span>&#9734;</span>';
+                                        }
+                                    }
+                                    ?>
                         </div>
                     </div>
+
+                    <?php
+                        }
+                    } else {
+                        echo "<p>No testimonials available.</p>";
+                    }
+                    ?>
                 </div>
             </div>
 
         </section>
+
         <?php
         include("./partials/footer.php");
         ?>
@@ -424,6 +427,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                 items: 3,
                 loop: true,
                 margin: 20,
+                autoWidth: false,
                 autoplay: true,
                 autoplayTimeout: 3000,
                 responsiveClass: true,

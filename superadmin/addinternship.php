@@ -76,9 +76,11 @@ if (isset($_POST["create"])) {
     <?php
     if (isset($_SESSION['message_success'])) {
         echo "<script>toastr.success('Internship Added!')</script>";
+        session_destroy();
     }
     if (isset($_SESSION['message_failed'])) {
         echo "<script>toastr.error('Fill Correct Details!')</script>";
+        session_destroy();
     }
     ?>
 
