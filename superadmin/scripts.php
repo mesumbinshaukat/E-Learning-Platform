@@ -1,5 +1,6 @@
  <!-- BACK-TO-TOP -->
- <a href="#top" id="back-to-top"><img width="48" height="48" src="https://img.icons8.com/papercut/60/chevron-up.png" alt="chevron-up" /></a>
+ <a href="#top" id="back-to-top"><img width="48" height="48" src="https://img.icons8.com/papercut/60/chevron-up.png"
+         alt="chevron-up" /></a>
 
  <!-- BOOTSTRAP JS -->
  <script src="./assets/plugins/bootstrap/js/popper.min.js"></script>

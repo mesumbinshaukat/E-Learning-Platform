@@ -30,7 +30,7 @@ if (isset($_POST['sign_in'])) {
         $fetch_email = $fetch_details['email'];
 
         if ($password == $fetch_password && $email == $email) {
-            setcookie("superadmin_username", $fetch_username, time() + (86400 * 30), "/");
+            setcookie("superadmin_username", $fetch_username, time() + (86400 * 30), "/", "", true, true);
             setcookie("superadmin_password", $fetch_password, time() + (86400 * 30), "/");
             setcookie("superadmin_email", $fetch_email, time() + (86400 * 30), "/");
             header("location: ./superadmin/dashboard.php");
@@ -76,7 +76,9 @@ if (isset($_POST['sign_in'])) {
     <div class="main">
 
         <!--login section start-->
-        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center" style="background: url(./assets/background/abstract-design-purple-flowing-lines.jpg)no-repeat center bottom / cover">
+        <section
+            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center"
+            style="background: url(./assets/background/abstract-design-purple-flowing-lines.jpg)no-repeat center bottom / cover">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-7 col-lg-6">
@@ -104,7 +106,8 @@ if (isset($_POST['sign_in'])) {
                                                 <i class="bi bi-envelope"></i>
                                             </div>
 
-                                            <input type="email" class="form-control" name="email" placeholder="Enter Email" required value="">
+                                            <input type="email" class="form-control" name="email"
+                                                placeholder="Enter Email" required value="">
                                             <span class="error"></span><br>
 
 
@@ -123,7 +126,8 @@ if (isset($_POST['sign_in'])) {
                                                 <i class="bi bi-lock"></i>
                                             </div>
 
-                                            <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" name="password" class="form-control"
+                                                placeholder="Enter your password">
                                             <span class="error"></span><br>
 
                                         </div>

@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -86,19 +86,21 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <p class="text-danger" id="current_password_msg">Incorrect Password</p>
                                             </div>
                                             <?php
-											$username = $_COOKIE["superadmin_username"];
-											$query = mysqli_query($conn, "SELECT `password` FROM `superadmin` WHERE `username`='$username'");
-											$current_password = mysqli_fetch_assoc($query)["password"];
-											?>
+                                            $username = $_COOKIE["superadmin_username"];
+                                            $query = mysqli_query($conn, "SELECT `password` FROM `superadmin` WHERE `username`='$username'");
+                                            $current_password = mysqli_fetch_assoc($query)["password"];
+                                            ?>
                                             <script>
                                             const current_password = '<?php echo $current_password; ?>';
+                                            const cookie_password = '<?php echo $_COOKIE["superadmin_password"]; ?>'
 
                                             function CheckPassword() {
                                                 const inputPassword = document.getElementById('current_password').value;
                                                 const passwordMsg = document.getElementById('current_password_msg');
 
 
-                                                if (current_password === inputPassword) {
+                                                if (current_password === inputPassword || inputPassword ===
+                                                    cookie_password) {
                                                     passwordMsg.textContent = 'Password Matched';
                                                     passwordMsg.classList.remove('text-danger');
                                                     passwordMsg.classList.add('text-success');
