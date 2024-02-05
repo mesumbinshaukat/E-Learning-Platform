@@ -161,19 +161,21 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                         <div class="owl-carousel owl-theme">
                             <?php while ($fetch_courses = mysqli_fetch_assoc($select_courses)) { ?>
                             <div class="card" style="width: 20rem; border: 2px solid black;">
-                                <img class="card-img-top"
-                                    src="./superadmin/assets/img/course/<?php echo $fetch_courses['main_image']; ?>"
-                                    alt="Course Image">
-                                <div class="card-body">
-                                    <h4 class="card-title">Course Name: <?php echo $fetch_courses['course_name']; ?>
-                                    </h4>
-                                    <h5 class="card-title">Topics Covered:
-                                        <?php echo $fetch_courses['topics_covered']; ?></h5>
-                                    <h5 class="card-title">Slots: <?php echo $fetch_courses['slots']; ?></h5>
-                                    <p class="card-text">Pre-Requirements:
-                                        <?php echo $fetch_courses['pre_requirements']; ?>
-                                    <p>
-                                </div>
+                                <a href="./course_details.php?id=<?php echo $fetch_courses['id']; ?>">
+                                    <img class="card-img-top"
+                                        src="./superadmin/assets/img/course/<?php echo $fetch_courses['main_image']; ?>"
+                                        alt="Course Image">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Course Name: <?php echo $fetch_courses['course_name']; ?>
+                                        </h4>
+                                        <h5 class="card-title">Topics Covered:
+                                            <?php echo $fetch_courses['topics_covered']; ?></h5>
+                                        <h5 class="card-title">Slots: <?php echo $fetch_courses['slots']; ?></h5>
+                                        <p class="card-text text-dark">Pre-Requirements:
+                                            <?php echo $fetch_courses['pre_requirements']; ?>
+                                        <p>
+                                    </div>
+                                </a>
                             </div>
                             <?php } ?>
 
