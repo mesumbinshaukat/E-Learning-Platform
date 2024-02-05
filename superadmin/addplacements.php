@@ -30,19 +30,19 @@ if (isset($_POST['createBtn'])) {
     $espf = $_POST['espf'];
     $main_image_name = $_FILES['main_image']['name'];
     $main_image_tmpname = $_FILES['main_image']['tmp_name'];
-    $main_image_path = "./assets/img/" . date('Y-m-d-H-s') . $main_image_name;
+    $main_image_path = "./assets/img/placement/" . date('Y-m-d-H-s') . $main_image_name;
 
     $inner_image_name = $_FILES['inner_image']['name'];
     $inner_image_tmpname = $_FILES['inner_image']['tmp_name'];
-    $inner_image_path = "./assets/img/" . date('Y-m-d-H-s') . $inner_image_name;
+    $inner_image_path = "./assets/img/placement/" . date('Y-m-d-H-s') . $inner_image_name;
 
     $image2_name = $_FILES['image2']['name'];
     $image2_tmpname = $_FILES['image2']['tmp_name'];
-    $image2_path = "./assets/img/" . date('Y-m-d-H-s') . $image2_name;
+    $image2_path = "./assets/img/placement/" . date('Y-m-d-H-s') . $image2_name;
 
 
     $insert_query = mysqli_prepare($conn, "INSERT INTO `placement`(`company_name`, `job_role`, `salary`, `industry`, `experience`, `work_mode`, `years_open_experience`, `eligibility`, `location`, `job_type`, `gender`, `vacancies`, `last_date_to_apply`, `full_description`, `requirements`, `additional_info`, `food_allowances`, `transport_allowances`, `esi`, `main_image`, `inner_image`, `image_two`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $insert_query->bind_param("ssssssssssssssssssssss", $company_name, $job_role, $salary, $industry, $experience, $workmode, $years_of_experience, $eligibility, $location, $jobtype, $preffered_for, $number_of_vacancies, $last_date, $full_description, $requirements, $additional_information, $food_allowance, $transport_allowance, $espf, $main_image_path, $inner_image_path, $image2_imgpath);
+    $insert_query->bind_param("ssssssssssssssssssssss", $company_name, $job_role, $salary, $industry, $experience, $workmode, $years_of_experience, $eligibility, $location, $jobtype, $preffered_for, $number_of_vacancies, $last_date, $full_description, $requirements, $additional_information, $food_allowance, $transport_allowance, $espf, $main_image_name, $inner_image_path, $image2_name);
     if ($insert_query->execute()) {
         $_SESSION['message_success'] = true;
         move_uploaded_file($main_image_tmpname, $main_image_path);

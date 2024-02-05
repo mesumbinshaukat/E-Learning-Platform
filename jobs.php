@@ -69,8 +69,8 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-2.svg" alt="icon" width="60"
-                                    class="img-fluid">
+                                <img src="https://img.icons8.com/external-wanicon-flat-wanicon/64/external-construction-construction-wanicon-flat-wanicon.png"
+                                    alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Automobile Manufacturing</h2>
                             <p class="mb-0">If its your dream to be an Mechanical Engineer try our path to reach your
@@ -82,8 +82,8 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-1.svg" alt="icon" width="60"
-                                    class="img-fluid">
+                                <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-pharmaceutical-bioengineering-flaticons-flat-flat-icons.png"
+                                    alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Constructions</h2>
                             <p class="mb-0">Our way of building techniques are with the top notch construction companies
@@ -108,7 +108,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-4.svg" alt="icon" width="60"
+                                <img src="https://img.icons8.com/nolan/64/circuit.png" alt="icon" width="60"
                                     class="img-fluid">
                             </div>
                             <h2 class="h5">Information Technology</h2>
@@ -121,7 +121,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-6.svg" alt="icon" width="60"
+                                <img src="https://img.icons8.com/nolan/64/bbm-messenger.png" alt="icon" width="60"
                                     class="img-fluid">
                             </div>
                             <h2 class="h5">Tele Communications</h2>
@@ -134,8 +134,8 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-8.svg" alt="icon" width="60"
-                                    class="img-fluid">
+                                <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-fashion-designer-modelling-agency-flaticons-lineal-color-flat-icons-6.png"
+                                    alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Textiles</h2>
                             <p class="mb-0">Fashion Designers this is your place to get be creative - Find your Right
@@ -147,7 +147,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-4.svg" alt="icon" width="60"
+                                <img src="https://img.icons8.com/3d-fluency/94/money-bag.png" alt="icon" width="60"
                                     class="img-fluid">
                             </div>
                             <h2 class="h5">Finance</h2>
@@ -160,7 +160,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-6.svg" alt="icon" width="60"
+                                <img src="https://img.icons8.com/fluency/48/around-the-globe.png" alt="icon" width="60"
                                     class="img-fluid">
                             </div>
                             <h2 class="h5">Transportation/Tourism</h2>
@@ -173,8 +173,8 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <!-- Icon box -->
                         <div class="icon-box text-center">
                             <div class="card-icon mb-4">
-                                <img src="https://triaright.com/assets/img/icon/icon-8.svg" alt="icon" width="60"
-                                    class="img-fluid">
+                                <img src="https://img.icons8.com/external-bearicons-gradient-bearicons/64/external-ellipsis-essential-collection-bearicons-gradient-bearicons.png"
+                                    alt="icon" width="60" class="img-fluid">
                             </div>
                             <h2 class="h5">Others</h2>
                             <p class="mb-0">There are many more Industries whom we provide Jobs from </p>
@@ -200,7 +200,8 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                     <div class="owl-carousel owl-theme">
                         <?php while ($fetch_jobs = mysqli_fetch_assoc($select_jobs)) { ?>
                         <div class="card" style="width: 20rem; border: 2px solid black;">
-                            <img class="card-img-top" src="./superadmin/<?php echo $fetch_jobs['main_image']; ?>"
+                            <img class="card-img-top"
+                                src="./superadmin/assets/img/placement/<?php echo $fetch_jobs['main_image']; ?>"
                                 alt="Job_main_image">
                             <div class="card-body">
                                 <h4 class="card-title">Job Role: <?php echo $fetch_jobs['job_role']; ?></h4>
