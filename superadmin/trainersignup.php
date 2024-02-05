@@ -4,15 +4,18 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
 
 if (isset($_GET["error"])) {
-	$error = $_GET["error"];
-	$_SESSION["error"] = $error;
+    // Sanitize the value using htmlspecialchars
+    $error = htmlspecialchars($_GET["error"], ENT_QUOTES, 'UTF-8');
+
+    // Store the sanitized value in the session
+    $_SESSION["error"] = $error;
 }
 ?>
 
@@ -37,8 +40,8 @@ if (isset($_GET["error"])) {
 <body class="ltr main-body app sidebar-mini">
 
     <?php if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
-		echo "<script>toastr.alert('" . $_SESSION["error"] . "')</script>";
-	} ?>
+        echo "<script>toastr.alert('Unable To Delete. " . $_SESSION["error"] . "')</script>";
+    } ?>
 
     <?php include("./switcher.php") ?>
 
@@ -90,8 +93,7 @@ if (isset($_GET["error"])) {
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -111,33 +113,30 @@ if (isset($_GET["error"])) {
                                         <tbody>
 
                                             <?php if (mysqli_num_rows($select_query) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($select_query)) {
-													if ($row["created_by"] == "user") {
-											?>
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($select_query)) {
+                                                    if ($row["created_by"] == "user") {
+                                            ?>
 
-                                            <tr>
-                                                <td><?php echo $i++; ?></td>
-                                                <td><?php echo $row['creation_date']; ?></td>
-                                                <td>REG_<?php echo $row['id']; ?></td>
-                                                <td><?php echo $row['name']; ?></td>
-                                                <td><?php echo $row['contact_number']; ?></td>
-                                                <td><?php echo $row['username']; ?></td>
-                                                <td><?php echo $row['password']; ?></td>
-                                                <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer"
-                                                        class="btn btn-danger"
-                                                        onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
-                                                </td>
-                                                <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>"
-                                                        class="btn btn-warning">Edit</a></td>
-                                            </tr>
+                                                        <tr>
+                                                            <td><?php echo $i++; ?></td>
+                                                            <td><?php echo $row['creation_date']; ?></td>
+                                                            <td>REG_<?php echo $row['id']; ?></td>
+                                                            <td><?php echo $row['name']; ?></td>
+                                                            <td><?php echo $row['contact_number']; ?></td>
+                                                            <td><?php echo $row['username']; ?></td>
+                                                            <td><?php echo $row['password']; ?></td>
+                                                            <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
+                                                            </td>
+                                                            <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>" class="btn btn-warning">Edit</a></td>
+                                                        </tr>
 
-                                            <?php
-													}
-												}
-											} else { ?>
+                                                <?php
+                                                    }
+                                                }
+                                            } else { ?>
                                             <?php echo "No data found";
-											} ?>
+                                            } ?>
 
                                         </tbody>
                                     </table>
@@ -153,9 +152,7 @@ if (isset($_GET["error"])) {
                     <div class="modal-dialog" role="document">
                         <div class="modal-content modal-content-demo">
                             <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
+                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
 
@@ -175,9 +172,7 @@ if (isset($_GET["error"])) {
                     <div class="modal-dialog" role="document">
                         <div class="modal-content modal-content-demo">
                             <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
+                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
 

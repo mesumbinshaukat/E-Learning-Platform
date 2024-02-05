@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 
@@ -13,9 +13,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-
+    <title>Create Student</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,22 +79,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         <div class="row row-xs formgroup-wrapper">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputName">Student Name <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" class="form-control" id="exampleInputName"
-                                                        name="student_name" placeholder="Enter Student Name" required>
+                                                    <label for="exampleInputName">Student Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" class="form-control" id="exampleInputName" name="student_name" placeholder="Enter Student Name" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputAadhar">Gender <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <select class="form-control form-select select2" name="gender"
-                                                        data-bs-placeholder="Select Country" required>
+                                                    <label for="exampleInputAadhar">Gender <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <select class="form-control form-select select2" name="gender" data-bs-placeholder="Select Country" required>
                                                         <option value="male">Male</option>
                                                         <option value="female">Female</option>
                                                         <option value="others">others</option>
@@ -105,87 +98,59 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputDOB">Date of Birth <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input class="form-control" id="dateMask" name="date_of_birth"
-                                                        placeholder="DD/MM/YYYY" type="date" d>
+                                                    <label for="exampleInputDOB">Date of Birth <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input class="form-control" id="dateMask" name="date_of_birth" placeholder="DD/MM/YYYY" type="date" d>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPersonalPhone">Phone Number <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="number" class="form-control" name="phone_number"
-                                                        placeholder="1234567890" required max="9999999999"
-                                                        min="1000000000" id="exampleInputPersonalPhone"
-                                                        placeholder="1234567890" required max="9999999999"
-                                                        min="1000000000" placeholder="Enter Phone Number">
+                                                    <label for="exampleInputPersonalPhone">Phone Number <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="number" class="form-control" name="phone_number" placeholder="1234567890" required max="9999999999" min="1000000000" id="exampleInputPersonalPhone" placeholder="1234567890" required max="9999999999" min="1000000000" placeholder="Enter Phone Number">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputPersonalPhone">Alternative Phone Number
                                                         <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="number" class="form-control" placeholder="1234567890"
-                                                        max="9999999999" min="1000000000"
-                                                        name="alternative_phone_number" id="exampleInputPersonalPhone"
-                                                        placeholder="Enter Alternative Contact Number">
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="number" class="form-control" placeholder="1234567890" max="9999999999" min="1000000000" name="alternative_phone_number" id="exampleInputPersonalPhone" placeholder="Enter Alternative Contact Number">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPerEmail">Mail Id <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="email" class="form-control" name="mail_id"
-                                                        id="exampleInputPerEmail" placeholder="Enter Mail ID" required>
+                                                    <label for="exampleInputPerEmail">Mail Id <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="email" class="form-control" name="mail_id" id="exampleInputPerEmail" placeholder="Enter Mail ID" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPerEmail">Address <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" class="form-control " name="address"
-                                                        id="exampleInputPerEmail" rows="5" placeholder="Enter address">
+                                                    <label for="exampleInputPerEmail">Address <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" class="form-control " name="address" id="exampleInputPerEmail" rows="5" placeholder="Enter address">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPerEmail">District <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" class="form-control" name="district"
-                                                        id="exampleInputPerEmail" placeholder="Enter District">
+                                                    <label for="exampleInputPerEmail">District <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" class="form-control" name="district" id="exampleInputPerEmail" placeholder="Enter District">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPerEmail">State <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" class="form-control" name="state"
-                                                        id="exampleInputPerEmail" placeholder="Enter State">
+                                                    <label for="exampleInputPerEmail">State <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" class="form-control" name="state" id="exampleInputPerEmail" placeholder="Enter State">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPerEmail">PIN code <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="number" class="form-control" name="pincode"
-                                                        id="exampleInputPerEmail" placeholder="enter Pincode">
+                                                    <label for="exampleInputPerEmail">PIN code <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="number" class="form-control" name="pincode" id="exampleInputPerEmail" placeholder="enter Pincode">
                                                 </div>
                                             </div>
 
@@ -196,13 +161,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputQualification">Qualification <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <select class="form-control form-select select2"
-                                                        name="qualification" data-bs-placeholder="select qulification"
-                                                        required>
+                                                    <label for="exampleInputQualification">Qualification <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <select class="form-control form-select select2" name="qualification" data-bs-placeholder="select qulification" required>
                                                         <option value="10th">10th</option>
                                                         <option value="+12">+12</option>
                                                         <option value="polytechnic">Polytechnic</option>
@@ -215,24 +176,18 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPerEmail">Branch/Stream <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" class="form-control " name="stream"
-                                                        id="exampleInputPerEmail" placeholder="MPC/BCOM/CSE" required>
+                                                    <label for="exampleInputPerEmail">Branch/Stream <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" class="form-control " name="stream" id="exampleInputPerEmail" placeholder="MPC/BCOM/CSE" required>
                                                 </div>
                                             </div>
 
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputAadhar"> Semester <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span> </label>
-                                                    <select class="form-control form-select select2" name="semester"
-                                                        data-bs-placeholder="Select Country" required>
+                                                    <label for="exampleInputAadhar"> Semester <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span> </label>
+                                                    <select class="form-control form-select select2" name="semester" data-bs-placeholder="Select Country" required>
                                                         <option value="1stsem">1st sem</option>
                                                         <option value="2ndSem">2nd Sem</option>
                                                         <option value="3rdSem">3rd Sem</option>
@@ -248,12 +203,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputQualification">Account type <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <select class="form-control form-select select2" name="account_type"
-                                                        data-bs-placeholder="select qulification" required>
+                                                    <label for="exampleInputQualification">Account type <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <select class="form-control form-select select2" name="account_type" data-bs-placeholder="select qulification" required>
                                                         <option value=""></option>
                                                         <option value="college">College</option>
                                                         <option value="individual">Individual</option>
@@ -263,13 +215,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputQualification">Insitution Name <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <select class="form-control form-select select2"
-                                                        name="institution_name"
-                                                        data-bs-placeholder="select qulification">
+                                                    <label for="exampleInputQualification">Insitution Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <select class="form-control form-select select2" name="institution_name" data-bs-placeholder="select qulification">
 
                                                         <option value=""></option>
                                                         <option value="GNR Degree College">GNR Degree College</option>
@@ -352,8 +300,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         <option value="SRI ABN & PRR COLLEGE OF SCIENCE">SRI ABN & PRR
                                                             COLLEGE OF SCIENCE</option>
                                                         <option value=""></option>
-                                                        <option
-                                                            value="S. V. K. P. & Dr. K. S. Raju Arts and Science College (A)">
+                                                        <option value="S. V. K. P. & Dr. K. S. Raju Arts and Science College (A)">
                                                             S. V. K. P. & Dr. K. S. Raju Arts and Science College (A)
                                                         </option>
                                                         <option value=""></option>
@@ -414,8 +361,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         <option value="SVV Degree College, Penumuru ">SVV Degree
                                                             College, Penumuru </option>
                                                         <option value=""></option>
-                                                        <option
-                                                            value="Sri Rachapudy Nagabhushanam Degree & P.G College, Badvel">
+                                                        <option value="Sri Rachapudy Nagabhushanam Degree & P.G College, Badvel">
                                                             Sri Rachapudy Nagabhushanam Degree & P.G College, Badvel
                                                         </option>
                                                         <option value=""></option>
@@ -424,8 +370,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         <option value=""></option>
                                                         <option value="SAI DEGREE COLLEGE">SAI DEGREE COLLEGE</option>
                                                         <option value=""></option>
-                                                        <option
-                                                            value="SPACE DEGREE FOR WOMEN                                  ">
+                                                        <option value="SPACE DEGREE FOR WOMEN                                  ">
                                                             SPACE DEGREE FOR WOMEN </option>
                                                         <option value=""></option>
                                                         <option value="Vellore institute of Technology AP">Vellore
@@ -437,54 +382,38 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputUserName">Student Username <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" class="form-control" name="student_username"
-                                                        id="exampleInputUserName" placeholder="Enter Username"
-                                                        minlength=8 maxlength=16 required>
+                                                    <label for="exampleInputUserName">Student Username <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" class="form-control" name="student_username" id="exampleInputUserName" placeholder="Enter Username" minlength=8 maxlength=16 required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPassword">Password <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="password" class="form-control" name="password"
-                                                        id='password' placeholder="Enter Password" minlength=8
-                                                        maxlength=10 required>
+                                                    <label for="exampleInputPassword">Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="password" class="form-control" name="password" id='password' placeholder="Enter Password" minlength=8 maxlength=10 required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputRe-EnterPassword">Re-Enter Password <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="password" class="form-control" name="password"
-                                                        id='retypepassword' placeholder="Re-Enter Password" minlength=8
-                                                        maxlength=10 required>
+                                                    <label for="exampleInputRe-EnterPassword">Re-Enter Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="password" class="form-control" name="password" id='retypepassword' placeholder="Re-Enter Password" minlength=8 maxlength=10 required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputcode">Upload CV <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Optional)</span></label>
-                                                    <input type="file" class="form-control" name="upload_cv"
-                                                        id="exampleInputcode" placeholder="">
+                                                    <label for="exampleInputcode">Upload CV <span style="color:#D3D3D3;font-size: 90%;">(Optional)</span></label>
+                                                    <input type="file" class="form-control" name="upload_cv" id="exampleInputcode" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputQualification">Internship Term </label>
-                                                    <select class="form-control form-select select2"
-                                                        name="intership_term"
-                                                        data-bs-placeholder="select Internship Term" required>
+                                                    <select class="form-control form-select select2" name="intership_term" data-bs-placeholder="select Internship Term" required>
                                                         <option value="short_term">Short Term</option>
                                                         <option value="long_term">Long Term</option>
                                                     </select>
@@ -492,9 +421,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             </div>
 
 
-                                            <button type="submit" name="create" value="create" onclick="return check()"
-                                                class="btn btn-primary mt-3 mb-0"
-                                                style="text-align:right">Generate</button>
+                                            <button type="submit" name="create" value="create" onclick="return check()" class="btn btn-primary mt-3 mb-0" style="text-align:right">Generate</button>
                                         </div>
                                     </div>
                                 </div>
@@ -511,15 +438,15 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
         </form>
         <script type="text/javascript">
-        function check() {
-            var b = document.getElementById('password').value;
-            var c = document.getElementById('retypepassword').value;
-            if (b != c) {
-                alert('Password doesnt match');
-                return false;
-            } else
-                return true;
-        }
+            function check() {
+                var b = document.getElementById('password').value;
+                var c = document.getElementById('retypepassword').value;
+                if (b != c) {
+                    alert('Password doesnt match');
+                    return false;
+                } else
+                    return true;
+            }
         </script>
         <!-- Footer opened -->
 

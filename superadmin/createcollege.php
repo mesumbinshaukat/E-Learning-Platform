@@ -7,13 +7,57 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	header('location: ../super-admin_login.php');
 	exit();
 }
+
+if (isset($_POST["create"])) {
+
+	// Function to sanitize and validate input
+	function sanitizeInput($input)
+	{
+		return htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
+	}
+
+	// Sanitize and validate each input
+	$college_name = sanitizeInput($_POST["college_name"]);
+	$college_code = sanitizeInput($_POST["college_code"]);
+	$address = sanitizeInput($_POST["address"]);
+	$district = sanitizeInput($_POST["district"]);
+	$state = sanitizeInput($_POST["state"]);
+	$pin_code = sanitizeInput($_POST["pin_code"]);
+	$college_phone_number = sanitizeInput($_POST["college_phone_number"]);
+	$college_mail_id = sanitizeInput($_POST["college_mail_id"]);
+	$college_representative_name = sanitizeInput($_POST["college_representative_name"]);
+	$college_representative_contact_no = sanitizeInput($_POST["college_representative_contact_no"]);
+	$college_representative_mail_id = sanitizeInput($_POST["college_representative_mail_id"]);
+	$college_stream = sanitizeInput($_POST["college_stream"]);
+	$affiliated_university = sanitizeInput($_POST["affiliated_university"]);
+	$college_website = sanitizeInput($_POST["college_website"]);
+	$college_username = sanitizeInput($_POST["college_username"]);
+	$password = sanitizeInput($_POST["password"]);
+	$created_by = "Admin";
+	// Hash the password
+	$hash_pass = password_hash($password, PASSWORD_DEFAULT);
+
+
+	$query = mysqli_prepare($conn, "INSERT INTO `college`(`name`, `username`, `password`, `email`, `contact_number`,  `address`, `district`, `state`, `pin_code`, `representative_name`, `representative_contact_number`, `representative_email`, `college_streams`, `affiliated_university`, `website`, `college_code`, `created_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+	$query->bind_param("sssssssssssssssss", $college_name, $college_username, $hash_pass, $college_mail_id, $college_phone_number, $address, $district, $state, $pin_code, $college_representative_name, $college_representative_contact_no, $college_representative_mail_id, $college_stream, $affiliated_university, $college_website, $college_code, $created_by);
+
+	if ($query->execute()) {
+		$_SESSION["success"] = "College created successfully";
+		header('location: createcollege.php');
+		exit();
+	} else {
+		$_SESSION["error"] = "Error creating college";
+		echo "Error: " . $query->error;
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 
 <head>
-
+	<title>Create College</title>
 	<meta charset="UTF-8">
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,314 +69,18 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 <body class="ltr main-body app sidebar-mini">
 
-	<!-- Switcher -->
-	<div class="switcher-wrapper">
-		<div class="demo_changer">
-			<div class="form_holder sidebar-right1">
-				<div class="row">
-					<div class="predefined_styles">
 
-						<div class="swichermainleft text-center">
-							<h4>LTR AND RTL VERSIONS</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">LTR</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch25" id="myonoffswitch54" class="onoffswitch2-checkbox" checked>
-											<label for="myonoffswitch54" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">RTL</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch25" id="myonoffswitch55" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch55" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft">
-							<h4>Navigation Style</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Vertical Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch15" id="myonoffswitch34" class="onoffswitch2-checkbox" checked>
-											<label for="myonoffswitch34" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Horizantal Click Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch15" id="myonoffswitch35" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch35" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Horizantal Hover Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch15" id="myonoffswitch111" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch111" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft">
-							<h4>Light Theme Style</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Light Theme</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch1" id="myonoffswitch1" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch1" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Light Primary</span>
-										<div class="">
-											<input class="wd-25 ht-25 input-color-picker color-primary-light" value="#38cab3" id="colorID" type="color" data-id="bg-color" data-id1="bg-hover" data-id2="bg-border" data-id7="transparentcolor" name="lightPrimary">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft">
-							<h4>Dark Theme Style</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Dark Theme</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch1" id="myonoffswitch2" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch2" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Dark Primary</span>
-										<div class="">
-											<input class="wd-25 ht-25 input-dark-color-picker color-primary-dark" value="#38cab3" id="darkPrimaryColorID" type="color" data-id="bg-color" data-id1="bg-hover" data-id2="bg-border" data-id3="primary" data-id8="transparentcolor" name="darkPrimary">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft">
-							<h4>Transparent Style</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex mt-2 mb-3">
-										<span class="me-auto">Transparent Theme</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch1" id="myonoffswitchTransparent" class="onoffswitch2-checkbox">
-											<label for="myonoffswitchTransparent" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Transparent Primary</span>
-										<div class="">
-											<input class="wd-30 ht-30 input-transparent-color-picker color-primary-transparent" value="#38cab3" id="transparentPrimaryColorID" type="color" data-id="bg-color" data-id1="bg-hover" data-id2="bg-border" data-id3="primary" data-id4="primary" data-id9="transparentcolor" name="tranparentPrimary">
-										</div>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Transparent Background</span>
-										<div class="">
-											<input class="wd-30 ht-30 input-transparent-color-picker color-bg-transparent" value="#38cab3" id="transparentBgColorID" type="color" data-id5="body" data-id6="theme" data-id9="transparentcolor" name="transparentBackground">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft">
-							<h4>Transparent Bg-Image Style</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">BG-Image Primary</span>
-										<div class="">
-											<input class="wd-30 ht-30 input-transparent-color-picker color-bgImg-transparent" value="#38cab3" id="transparentBgImgPrimaryColorID" type="color" data-id="bg-color" data-id1="bg-hover" data-id2="bg-border" data-id3="primary" data-id4="primary" data-id9="transparentcolor" name="tranparentPrimary">
-										</div>
-									</div>
-									<div class="switch-toggle">
-										<a class="bg-img1 bg-img" href="javascript:void(0);"><img src="assets/img/media/bg-img1.jpg" id="bgimage1" alt="switch-img"></a>
-										<a class="bg-img2 bg-img" href="javascript:void(0);"><img src="assets/img/media/bg-img2.jpg" id="bgimage2" alt="switch-img"></a>
-										<a class="bg-img3 bg-img" href="javascript:void(0);"><img src="assets/img/media/bg-img3.jpg" id="bgimage3" alt="switch-img"></a>
-										<a class="bg-img4 bg-img" href="javascript:void(0);"><img src="assets/img/media/bg-img4.jpg" id="bgimage4" alt="switch-img"></a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft leftmenu-styles">
-							<h4>Leftmenu Styles</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Light Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch2" id="myonoffswitch3" class="onoffswitch2-checkbox" checked>
-											<label for="myonoffswitch3" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Color Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch2" id="myonoffswitch4" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch4" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Dark Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch2" id="myonoffswitch5" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch5" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Gradient Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch2" id="myonoffswitch25" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch25" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft header-styles">
-							<h4>Header Styles</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Light Header</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch3" id="myonoffswitch6" class="onoffswitch2-checkbox" checked>
-											<label for="myonoffswitch6" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Color Header</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch3" id="myonoffswitch7" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch7" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Dark Header</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch3" id="myonoffswitch8" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch8" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Gradient Header</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch3" id="myonoffswitch26" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch26" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft">
-							<h4>Layout Width Styles</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Full Width</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch4" id="myonoffswitch9" class="onoffswitch2-checkbox" checked>
-											<label for="myonoffswitch9" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Boxed</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch4" id="myonoffswitch10" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch10" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft">
-							<h4>Layout Positions</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Fixed</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch5" id="myonoffswitch11" class="onoffswitch2-checkbox" checked>
-											<label for="myonoffswitch11" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Scrollable</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch5" id="myonoffswitch12" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch12" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft vertical-switcher">
-							<h4>Sidemenu layout Styles</h4>
-							<div class="skin-body">
-								<div class="switch_section">
-									<div class="switch-toggle d-flex">
-										<span class="me-auto">Default Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch6" id="myonoffswitch13" class="onoffswitch2-checkbox default-menu" checked>
-											<label for="myonoffswitch13" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Closed Menu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch6" id="myonoffswitch30" class="onoffswitch2-checkbox default-menu">
-											<label for="myonoffswitch30" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Icon with Text</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch6" id="myonoffswitch14" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch14" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Icon Overlay</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch6" id="myonoffswitch15" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch15" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Hover Submenu</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch6" id="myonoffswitch32" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch32" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-									<div class="switch-toggle d-flex mt-2">
-										<span class="me-auto">Hover Submenu style 1</span>
-										<p class="onoffswitch2 my-0"><input type="radio" name="onoffswitch6" id="myonoffswitch33" class="onoffswitch2-checkbox">
-											<label for="myonoffswitch33" class="onoffswitch2-label"></label>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swichermainleft">
-							<h4>Reset All Styles</h4>
-							<div class="skin-body">
-								<div class="switch_section my-4">
-									<button class="btn btn-danger btn-Block ResetCustomStyles" type="button">Reset All
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Switcher -->
-
-	<!-- Loader -->
-	<!--<div id="global-loader">-->
-	<!--	<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">-->
-	<!--</div>-->
-	<!-- /Loader -->
-
+	<?php include("./switcher.php"); ?>
 	<!-- Page -->
 	<div class="page">
 
 		<div>
 
-		<div class="main-header side-header sticky nav nav-item">
-                
+			<div class="main-header side-header sticky nav nav-item">
+
 				<?php include('./partials/navbar.php'); ?>
-			
-		</div>
+
+			</div>
 			<!-- /main-header -->
 
 			<!-- main-sidebar -->
@@ -342,8 +90,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 			<!-- main-sidebar -->
 
 		</div>
-		<form action="connection_files/create/college_create.php" method="POST">
-			<!-- main-content -->
+		<form method="POST">
+
 			<!-- main-content -->
 			<div class="main-content app-content">
 
@@ -357,6 +105,20 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Create
 								College</span>
 						</div>
+						<?php if (isset($_SESSION["error"])) { ?>
+							<div class="alert alert-danger" role="alert">
+								<?php echo "Error while creating. Error: '" . $_SESSION["error"] . "'"; ?>
+							</div>
+						<?php unset($_SESSION["error"]);
+							session_destroy();
+						} ?>
+						<?php if (isset($_SESSION["success"])) { ?>
+							<div class="alert alert-success" role="alert">
+								<?php echo "Successfully Created."; ?>
+							</div>
+						<?php unset($_SESSION["success"]);
+							session_destroy();
+						} ?>
 						<div class="justify-content-center mt-2">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Credentials</a></li>
@@ -372,145 +134,143 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 						<div class="col-lg-12 col-md-12">
 							<div class="card">
 								<div class="card-body">
-
-
-									<div class="">
-										<div class="row row-xs formgroup-wrapper">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputName">College Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="text" class="form-control" id="exampleInputName" name="college_name" placeholder="Enter College Name" required>
-												</div>
+									<div class="row row-xs formgroup-wrapper">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputName">College Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="text" class="form-control" id="exampleInputName" name="college_name" placeholder="Enter College Name" required>
 											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputName">College Code <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="text" class="form-control" id="exampleInputName" name="college_code" placeholder="Enter College Code" required>
-												</div>
-											</div>
-
-											<div class="col-md-12">
-												<div class="form-group">
-													<label for="exampleInputPerEmail">Address <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="text" class="form-control " id="exampleInputPerEmail" name="address" rows="5" placeholder="Enter address" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPerEmail">District <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="text" class="form-control" id="exampleInputPerEmail" name="district" placeholder="Enter District" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPerEmail">State <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="text" class="form-control" id="exampleInputPerEmail" name="state" placeholder="Enter State" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPerEmail">PIN code <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="number" class="form-control" id="exampleInputPerEmail" name="pin_code" placeholder="enter Pincode" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPersonalPhone">College Phone Number<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="number" class="form-control" id="exampleInputPersonalPhone" name="college_phone_number" placeholder="Enter Contact Number" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPerEmail">College Mail Id <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="email" class="form-control" id="exampleInputPerEmail" name="college_mail_id" placeholder="Enter Mail Id" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputCompanyPhone">College Represntative Name
-														<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="Text" class="form-control" id="exampleInputCompanyPhone" name="college_representative_name" placeholder="Enter Representative Name" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPersonalPhone">College Represntative Contact
-														No<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="number" class="form-control" id="exampleInputPersonalPhone" name="college_representative_contact_no" required placeholder="Enter Represntative Number">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPerEmail">College Represntative Mail Id
-														<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="email" class="form-control" id="exampleInputPerEmail" name="college_representative_mail_id" placeholder="Enter Represntative Mail Id" required>
-												</div>
-											</div>
-
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputQualification">College Streams ( seperate
-														your streams by comma(,) <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="text" class="form-control" id="exampleInputQualification" name="college_stream" placeholder="B.SC,B.COM" required>
-												</div>
-
-											</div>
-
-
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputQualification">Affliated Univeristy <span style="color:#D3D3D3;font-size: 90%;"> (Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="text" class="form-control" id="exampleInputQualification" name="affiliated_university" placeholder="Enter University Board" required>
-												</div>
-											</div>
-
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputQualification">College Website<span style="color:#D3D3D3;font-size: 90%;">
-															(Optional)</span></label>
-													<input type="text" class="form-control" id="exampleInputQualification" name="college_website" placeholder="Enter Website">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputUserName">College Username <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="text" class="form-control" id="exampleInputUserName" name="college_username" placeholder="Enter Username" required>
-												</div>
-											</div>
-
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputPassword">Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" minlength=8 maxlenght=10 required>
-												</div>
-											</div>
-
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputRe-EnterPassword">Re-Enter Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-														<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-													<input type="password" class="form-control" id="retypepassword" minlength=8 maxlenght=10 name="re_enter_password" placeholder="Re-Enter Password" required>
-												</div>
-											</div>
-
-											<button type="submit" name="create" value="create" class="btn btn-primary mt-3 mb-0" style="text-align:right" onclick="return check()">Generate</button>
 										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputName">College Code <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="text" class="form-control" id="exampleInputName" name="college_code" placeholder="Enter College Code" required>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPerEmail">Address <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="text" class="form-control " id="exampleInputPerEmail" name="address" rows="5" placeholder="Enter address" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPerEmail">District <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="text" class="form-control" id="exampleInputPerEmail" name="district" placeholder="Enter District" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPerEmail">State <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="text" class="form-control" id="exampleInputPerEmail" name="state" placeholder="Enter State" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPerEmail">PIN code <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="number" class="form-control" id="exampleInputPerEmail" name="pin_code" placeholder="enter Pincode" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPersonalPhone">College Phone Number<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="number" class="form-control" id="exampleInputPersonalPhone" name="college_phone_number" placeholder="Enter Contact Number" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPerEmail">College Mail Id <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="email" class="form-control" id="exampleInputPerEmail" name="college_mail_id" placeholder="Enter Mail Id" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputCompanyPhone">College Represntative Name
+													<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="Text" class="form-control" id="exampleInputCompanyPhone" name="college_representative_name" placeholder="Enter Representative Name" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPersonalPhone">College Represntative Contact
+													No<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="number" class="form-control" id="exampleInputPersonalPhone" name="college_representative_contact_no" required placeholder="Enter Represntative Number">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPerEmail">College Represntative Mail Id
+													<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="email" class="form-control" id="exampleInputPerEmail" name="college_representative_mail_id" placeholder="Enter Represntative Mail Id" required>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputQualification">College Streams ( seperate
+													your streams by comma(,) <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="text" class="form-control" id="exampleInputQualification" name="college_stream" placeholder="B.SC,B.COM" required>
+											</div>
+
+										</div>
+
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputQualification">Affliated Univeristy <span style="color:#D3D3D3;font-size: 90%;"> (Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="text" class="form-control" id="exampleInputQualification" name="affiliated_university" placeholder="Enter University Board" required>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputQualification">College Website<span style="color:#D3D3D3;font-size: 90%;">
+														(Optional)</span></label>
+												<input type="text" class="form-control" id="exampleInputQualification" name="college_website" placeholder="Enter Website">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputUserName">College Username <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="text" class="form-control" id="exampleInputUserName" name="college_username" placeholder="Enter Username" required>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputPassword">Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" minlength=8 maxlenght=10 required>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputRe-EnterPassword">Re-Enter Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+													<span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+												<input type="password" class="form-control" id="retypepassword" minlength=8 maxlenght=10 name="re_enter_password" placeholder="Re-Enter Password" required>
+											</div>
+										</div>
+
+										<button type="submit" name="create" value="create" class="btn btn-primary mt-3 mb-0" style="text-align:right" onclick="return check()">Generate</button>
 									</div>
+
 								</div>
 							</div>
 						</div>
@@ -537,20 +297,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 			}
 		</script>
 
-		<!-- Footer opened -->
-		<div class="main-footer">
-			<div class="container-fluid pd-t-0-f ht-100p">
-				Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All
-				rights reserved
-			</div>
-		</div>
-		<!-- Footer closed -->
-
 	</div>
 	<!-- End Page -->
-
-	<!-- BACK-TO-TOP -->
-	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
 	<?php include("./scripts.php"); ?>
 
