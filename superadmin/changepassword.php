@@ -7,6 +7,28 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     header('location: ../super-admin_login.php');
     exit();
 }
+
+if (isset($_POST["submit"])) {
+
+    $username = $_COOKIE['superadmin_username'];
+    $password = $_COOKIE['superadmin_password'];
+    $email = $_COOKIE['superadmin_email'];
+
+    $new_password = $_POST['new_pass'];
+    $match_password = $_POST['match_pass'];
+
+    if ($new_password === $match_password) {
+        $hash_pass = password_hash($new_password, PASSWORD_DEFAULT);
+        $update_query = mysqli_prepare($conn, "UPDATE `superadmin` SET `password` = ? WHERE `email` = '$email'");
+        $update_query->bind_param("s", $hash_pass);
+        if ($update_query->execute()) {
+            unset($_COOKIE['superadmin_password']);
+            setcookie("superadmin_password", $hash_pass, time() + (86400 * 30), "/");
+            $_SESSION["success"] = "Password changed successfully";
+            header('location: changepassword.php');
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +91,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                 <!-- row -->
                 <form method="post">
+                    <?php if (isset($_SESSION["success"])) { ?>
+                    <div class="d-flex justify-content-center">
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $_SESSION["success"]; ?>
+                        </div>
+                    </div>
+                    <?php session_destroy();
+                    } ?>
                     <div class="row">
+
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
@@ -91,6 +122,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             $current_password = mysqli_fetch_assoc($query)["password"];
                                             ?>
                                             <script>
+                                            let check = false;
                                             const current_password = '<?php echo $current_password; ?>';
                                             const cookie_password = '<?php echo $_COOKIE["superadmin_password"]; ?>'
 
@@ -101,13 +133,27 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                                                 if (current_password === inputPassword || inputPassword ===
                                                     cookie_password) {
+                                                    check = true;
                                                     passwordMsg.textContent = 'Password Matched';
                                                     passwordMsg.classList.remove('text-danger');
                                                     passwordMsg.classList.add('text-success');
                                                 } else {
+                                                    check = false;
                                                     passwordMsg.textContent = 'Incorrect Password';
                                                     passwordMsg.classList.remove('text-success');
                                                     passwordMsg.classList.add('text-danger');
+                                                }
+
+                                                if (check === true) {
+                                                    document.querySelector('#new_pass').removeAttribute('disabled');
+                                                    document.querySelector('#match_pass').removeAttribute('disabled');
+                                                    document.querySelector('#submit').removeAttribute('disabled');
+
+                                                } else {
+                                                    document.querySelector('#new_pass').setAttribute('disabled', true);
+                                                    document.querySelector('#match_pass').setAttribute('disabled',
+                                                        true);
+                                                    document.querySelector('#submit').setAttribute('disabled', true);
                                                 }
                                             }
                                             </script>
@@ -115,22 +161,24 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputPassword">New Password</label>
-                                                <input type="text" class="form-control" id="exampleInputName"
-                                                    placeholder="Enter New Passowrd">
+                                                <input type="text" class="form-control" id="new_pass"
+                                                    placeholder="Enter New Passowrd" disabled>
 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputPassword">Re-Enter New Password</label>
-                                                <input type="text" class="form-control" id="exampleInputName"
-                                                    placeholder="Re-Enter New Passowrd">
+                                                <input type="text" class="form-control" id="match_pass"
+                                                    placeholder="Re-Enter New Passowrd" disabled>
                                             </div>
                                         </div>
 
                                     </div>
                                     <button type="submit" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule"
-                                        data-bs-toggle="modal" style="text-align:right">Change Password</button>
+                                        data-bs-toggle="modal" style="text-align:right" name="submit" id="submit"
+                                        disabled>Change
+                                        Password</button>
 
                                 </div>
                             </div>
