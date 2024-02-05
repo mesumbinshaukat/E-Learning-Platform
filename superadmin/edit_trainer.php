@@ -428,8 +428,7 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
     </div>
     <!-- End Page -->
 
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="bi bi-arrow-bar-up"></i></a>
+
     <?php include("./scripts.php"); ?>
 
 </body>

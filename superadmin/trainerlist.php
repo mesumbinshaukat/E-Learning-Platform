@@ -81,8 +81,7 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
@@ -105,24 +104,21 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                                                 while ($row = mysqli_fetch_assoc($select_query)) {
                                             ?>
 
-                                            <tr>
-                                                <td><?php echo $i++; ?></td>
-                                                <td><?php echo $row['username']; ?></td>
-                                                <td><?php echo $row['email']; ?></td>
-                                                <td>ID_<?php echo $row['id']; ?></td>
-                                                <td><?php echo $row['name']; ?></td>
-                                                <td><?php echo $row['qualification'] ?? null; ?></td>
-                                                <td><?php echo $row['experience'] ?? null; ?></td>
-                                                <td style=color:#4aa02c> <b> Active <b></td>
-                                                <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer"
-                                                        class="btn btn-danger"
-                                                        onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
-                                                </td>
-                                                <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>"
-                                                        class="btn btn-warning">Edit</a></td>
-                                            </tr>
+                                                    <tr>
+                                                        <td><?php echo $i++; ?></td>
+                                                        <td><?php echo $row['username']; ?></td>
+                                                        <td><?php echo $row['email']; ?></td>
+                                                        <td>ID_<?php echo $row['id']; ?></td>
+                                                        <td><?php echo $row['name']; ?></td>
+                                                        <td><?php echo $row['qualification'] ?? null; ?></td>
+                                                        <td><?php echo $row['experience'] ?? null; ?></td>
+                                                        <td style=color:#4aa02c> <b> Active <b></td>
+                                                        <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
+                                                        </td>
+                                                        <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>" class="btn btn-warning">Edit</a></td>
+                                                    </tr>
 
-                                            <?php
+                                                <?php
                                                 }
                                             } else { ?>
                                             <?php echo "No data found";
@@ -147,9 +143,7 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                     <div class="modal-dialog" role="document">
                         <div class="modal-content modal-content-demo">
                             <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
+                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
 
@@ -168,9 +162,7 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                     <div class="modal-dialog" role="document">
                         <div class="modal-content modal-content-demo">
                             <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
+                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
 
@@ -189,9 +181,7 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
                     <div class="modal-dialog" role="document">
                         <div class="modal-content modal-content-demo">
                             <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
+                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
 
@@ -215,28 +205,6 @@ $select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
     </div>
     <!-- main-content closed -->
 
-    <!-- Sidebar-right-->
-
-
-
-
-
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span
-                class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
-            reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
     <?php include("./scripts.php"); ?>
 
