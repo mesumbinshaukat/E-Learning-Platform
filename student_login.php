@@ -27,11 +27,14 @@ if (isset($_POST['loginBtn'])) {
         $fetch_username = $fetch_details['username'];
         $fetch_password = $fetch_details['password'];
         $fetch_email = $fetch_details['email'];
+        $fetch_id = $fetch_details['id'];
+        
 
         if (password_verify($password, $fetch_password) && $username == $fetch_username) {
             setcookie("student_username", $fetch_username, time() + (86400 * 30), "/");
             setcookie("student_password", $fetch_password, time() + (86400 * 30), "/");
             setcookie("student_email", $fetch_email, time() + (86400 * 30), "/");
+            setcookie("student_id", $fetch_id, time() + (86400 * 30), "/");
             header("location: ./Student/dashboard.php");
             exit();
         } else {
