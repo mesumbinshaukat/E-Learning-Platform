@@ -15,24 +15,18 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     } else {
         echo mysqli_error($conn);
     }
-} else {
-    $error = "Invalid Request";
-    header("location:trainersignup.php?error=" . $error . "");
-    exit();
-}
-
-if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "college") {
+} elseif (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "college") {
     $id = $_GET["id"];
     $sql = "DELETE FROM `college` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
-        header("location: collegesignup.php");
+        header("location: collegelist.php");
         exit();
     } else {
         echo mysqli_error($conn);
     }
 } else {
     $error = "Invalid Request";
-    header("location:collegesignup.php?error=" . $error . "");
+    header("location:dashboard.php?error=" . $error . "");
     exit();
 }

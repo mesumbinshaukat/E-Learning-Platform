@@ -75,7 +75,7 @@ if (isset($_GET["error"])) {
                     </div>
 
                 </div>
-                <form method="post">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
                             <P><b> Affliated University</b> </p>
@@ -152,10 +152,22 @@ if (isset($_GET["error"])) {
                                         <tbody>
 
                                             <?php
-                                            $query = mysqli_query($conn, "SELECT * FROM `college`");
-                                            if (mysqli_num_rows($query) > 0) {
+                                            $query = "SELECT * FROM `college` WHERE 1=1";
+
+                                            if (!empty($_POST['affiliated_university'])) {
+                                                $affiliated_university = mysqli_real_escape_string($conn, $_POST['affiliated_university']);
+                                                $query .= " AND `affiliated_university` = '$affiliated_university'";
+                                            }
+
+                                            if (!empty($_POST['district'])) {
+                                                $district = mysqli_real_escape_string($conn, $_POST['district']);
+                                                $query .= " AND `district` = '$district'";
+                                            }
+
+                                            $result = mysqli_query($conn, $query);
+                                            if (mysqli_num_rows($result) > 0) {
                                                 $i = 1;
-                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                while ($row = mysqli_fetch_assoc($result)) {
                                                     echo "<tr>";
                                                     echo "<td>" . $i . "</td>";
                                                     echo "<td>" . $row["creation_date"] . "</td>";
@@ -167,8 +179,8 @@ if (isset($_GET["error"])) {
                                                     echo "<td>" . $row["college_streams"] . "</td>";
                                                     echo "<td>" . $row["address"] . "</td>";
                                                     echo "<td><a class='text-primary' href='https://" . $row["website"] . "'>" . $row["website"] . "</a></td>";
-                                                    echo "<td><a class='btn btn-warning' href='edit_college.php?id=" . $row["id"] . "'>Edit</a></a></td>";
-                                                    echo "<td><a class='btn btn-danger' href='delete.php?id=" . $row["id"] . "&user=college'>Edit</a></a></td>";
+                                                    echo "<td><a class='btn btn-warning' href='college_edit.php?id=" . $row["id"] . "'>Edit</a></a></td>";
+                                                    echo "<td><a class='btn btn-danger' href='delete.php?id=" . $row["id"] . "&user=college'>Delete</a></a></td>";
                                                     echo "</tr>";
                                                     $i++;
                                                 }
