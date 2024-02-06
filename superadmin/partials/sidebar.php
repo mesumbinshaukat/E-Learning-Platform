@@ -409,8 +409,9 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Chats</a></li>
                     <li><a class="bi bi-dot" href="compose.php" style="font-size:14px; line-height: 2;">Compose</a></li>
                     <li><a class="bi bi-dot" href="inbox.php" style="font-size:14px; line-height: 2;">Inbox</a></li>
-                    <li><a class="bi bi-dot" href="outbox.php" style="font-size:14px; line-height: 2;">Outbox</a></li>
-                    <li><a class="bi bi-dot" href="maillist.php" style="font-size:14px; line-height: 2;">List</a></li>
+                    <li><a class="bi bi-dot" href="livechat.php" style="font-size:14px; line-height: 2;">Live Chat Messages</a></li>
+                   
+            
                     <!--		<li><a class="bi bi-dot" href="mailanalysis.php">Analysis</a></li> -->
                 </ul>
             </li>

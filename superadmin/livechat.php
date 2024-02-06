@@ -10,7 +10,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +22,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	<meta name="Description" content="">
 
 	<?php include("./style.php"); ?>
+
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -353,7 +353,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 				<div class="breadcrumb-header justify-content-between">
 					<div class="right-content">
-						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Mail List</span>
+						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Inbox</span>
 					</div>
 
 					<div class="justify-content-center mt-2">
@@ -361,7 +361,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">internship management</a>
 							</li>
 							<li class="breadcrumb-item ">Chats</li>
-							<li class="breadcrumb-item ">all </li>
+							<li class="breadcrumb-item ">Inbox</li>
 						</ol>
 					</div>
 
@@ -377,8 +377,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 										<thead>
 											<tr>
 												<th class="border-bottom-0">S.no</th>
-												<th class="border-bottom-0">Message ID</th>
-												<th class="border-bottom-0">category</th>
 												<th class="border-bottom-0">login type</th>
 												<th class="border-bottom-0">user id</th>
 												<th class="border-bottom-0">username</th>
@@ -386,203 +384,17 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												<th class="border-bottom-0">purpose</th>
 												<th class="border-bottom-0">description</th>
 												<th class="border-bottom-0">Attachment</th>
+												<th class="border-bottom-0">Reply</th>
 												<th class="border-bottom-0">date and time</th>
+
+
+
+
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>TRMSG_621</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>2871</td>
-												<td>Lavanya.V</td>
-												<td>Medical coding</td>
-												<td>query</td>
-												<td>Sir documentation is not opening sir please can you solve this
-													problem as early as possible </td>
-												<td><a target="_blank" href="../images/chat/add_attachments/6494478b926da16874392215582276110032337182469.jpg">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-06-22 18:37:23</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>TRMSG_622</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>2871</td>
-												<td>Lavanya.V</td>
-												<td>Medical coding</td>
-												<td>query</td>
-												<td>Sir documentation is not opening sir please can you solve this
-													problem as early as possible </td>
-												<td><a target="_blank" href="../images/chat/add_attachments/649447c1dab7216874392215582276110032337182469.jpg">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-06-22 18:38:17</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>TRMSG_626</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>2664</td>
-												<td>Mamata Venagi </td>
-												<td>Full stack developer</td>
-												<td>General</td>
-												<td>Higher order function</td>
-												<td><a target="_blank" href="../images/chat/add_attachments/64982d3de7880IMG_20230625_173201.jpg">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-06-25 17:34:13</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td>TRMSG_631</td>
-												<td>Inbox</td>
-												<td>College</td>
-												<td>61</td>
-												<td>Demo Degree College</td>
-												<td>Better</td>
-												<td>feedback</td>
-												<td>Better</td>
-												<td><a target="_blank" href="../images/chat/add_attachments/6499581c09b28bird 03-01.png">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-06-26 14:49:24</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td>TRMSG_632</td>
-												<td>Outbox</td>
-												<td>College</td>
-												<td>61</td>
-												<td>Demo Degree College</td>
-												<td>khebqefehk</td>
-												<td>query</td>
-												<td>hqebihfiheq</td>
-												<td><a target="_blank" href="../images/chat/add_attachments/6499598e98def123.png">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-06-26 14:55:34</td>
-											</tr>
-											<tr>
-												<td>6</td>
-												<td>TRMSG_642</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>4232</td>
-												<td>Nimalpalli Shaik Ashwak</td>
-												<td>Course problem</td>
-												<td>query</td>
-												<td>I have Applied for the course python why my applied course is not
-													seen in the my course option</td>
-												<td><a target="_blank" href="../images/chat/add_attachments/64d5f1900cefdIMG-20230811-WA0002 (1).jpg">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-08-11 14:00:08</td>
-											</tr>
-											<tr>
-												<td>7</td>
-												<td>TRMSG_643</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td></td>
-												<td>Nimalpalli Shaik Ashwak</td>
-												<td>Error </td>
-												<td>issue</td>
-												<td>Sir I am having a problem to access the recoded sessions so kindly
-													fix that issue </td>
-												<td><a target="_blank" href="../images/chat/add_attachments/64dc75b6ca620Screenshot_2023-08-16-12-36-59-674_com.android.chrome.jpg">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-08-16 12:37:34</td>
-											</tr>
-											<tr>
-												<td>8</td>
-												<td>TRMSG_644</td>
-												<td>Outbox</td>
-												<td>Trainer</td>
-												<td>56</td>
-												<td>Akhila V</td>
-												<td>hi</td>
-												<td>query</td>
-												<td>bye</td>
-												<td><a target="_blank" href="../images/chat/add_attachments/6512a2bf7de9bDigital form.pdf">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-09-26 14:52:07</td>
-											</tr>
-											<tr>
-												<td>9</td>
-												<td>TRMSG_645</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>4620</td>
-												<td> Shaik .faridha</td>
-												<td>Course </td>
-												<td>issue</td>
-												<td>After applied for the course, but that same course is not showing in
-													'my course' </td>
-												<td><a target="_blank" href="../images/chat/add_attachments/6517996561af8Screenshot_2023-09-30-09-13-15-319_com.android.chrome.png">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-09-30 09:13:33</td>
-											</tr>
-											<tr>
-												<td>10</td>
-												<td>TRMSG_646</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>4738</td>
-												<td>P chandrakala</td>
-												<td>Java</td>
-												<td>issue</td>
-												<td>Can apply for java course but approval kaledhu madam </td>
-												<td><a target="_blank" href="../images/chat/add_attachments/651fdf5185a69Resume_Padigeri chandrakala_Format2.pdf">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-10-06 15:50:01</td>
-											</tr>
-											<tr>
-												<td>11</td>
-												<td>TRMSG_654</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>4867</td>
-												<td>Nvnugopal</td>
-												<td>Medical coding</td>
-												<td>query</td>
-												<td>Endocrine anatomy</td>
-												<td><a target="_blank" href="../images/chat/add_attachments/6540cd18090bdResume_Lilly_Format1.pdf">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-10-31 15:17:04</td>
-											</tr>
-											<tr>
-												<td>12</td>
-												<td>TRMSG_655</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>4738</td>
-												<td>P chandrakala</td>
-												<td>java</td>
-												<td>issue</td>
-												<td>2 months internship java bur 6 months internship converted into
-													digital marketing</td>
-												<td><a target="_blank" href="../images/chat/add_attachments/655b261c6f7a2resume.pdf">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2023-11-20 14:55:48</td>
-											</tr>
-											<tr>
-												<td>13</td>
-												<td>TRMSG_656</td>
-												<td>Inbox</td>
-												<td>Student</td>
-												<td>20</td>
-												<td>GUTTAVALLI PAVAN KALYAN</td>
-												<td>kk</td>
-												<td>feedback</td>
-												<td>kk</td>
-												<td><a target="_blank" href="../images/chat/add_attachments/65a8f307db0aclord-shiva.jpg">
-														<button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
-												<td>2024-01-18 15:14:39</td>
-											</tr>
-
-
-
-
-										</tbody>
+										<tr>
+                                            
+                                        </tr>
 									</table>
 								</div>
 							</div>
@@ -590,45 +402,46 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 					</div>
 				</div>
 				<!-- End Row -->
+				<form action="delete_chat.php" method="POST" enctype="multipart/form-data">
 
-				<div class="modal fade" id="upload">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content modal-content-demo">
-							<div class="modal-header">
-								<h6 class="modal-title">Reply</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-							</div>
-							<div class="modal-body">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="exampleInputCompanyPhone" style="color:#ff6700"><b>Subject</b></label>
-										<input type="text" class="form-control" id="exampleInputCompanyPhone" placeholder="Enter Subject">
+					<div class="modal fade" id="upload">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content modal-content-demo">
+								<div class="modal-header">
+									<h6 class="modal-title">Reply</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+								</div>
+								<div class="modal-body">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="exampleInputCompanyPhone" style="color:#ff6700"><b>Subject</b></label>
+											<input type="text" class="form-control" readonly id="exampleInputCompanyPhone" disabled value="">
+										</div>
+									</div>
+
+
+									<div class="col-md-12">
+										<div class="form-label">
+											<label for="exampleInputAadhar" style="color:#ff6700"><b>Describe</b></label>
+											<input class="form-control" placeholder="Textarea" name="Describe" required>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="exampleInputcode">add attachments</label>
+											<input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments" required>
+										</div>
 									</div>
 								</div>
-
-
-								<div class="col-md-12">
-									<div class="form-label">
-										<label for="exampleInputAadhar" style="color:#ff6700"><b>Describe</b></label>
-										<textarea class="form-control" placeholder="Textarea"></textarea>
-									</div>
+								<div class="modal-footer">
+									<button class="btn ripple btn-success" name="reply" type="submit">reply</button>
+									<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
+										Now</button>
 								</div>
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="exampleInputcode">add attachments</label>
-										<input type="file" class="form-control" id="exampleInputcode" placeholder="">
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button class="btn ripple btn-success" type="button">reply</button>
-								<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-									Now</button>
 							</div>
 						</div>
 					</div>
-				</div>
-
+				</form>
 				<div class="modal fade" id="reject">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content modal-content-demo">
@@ -680,23 +493,12 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 
 
-
-	<!-- Footer opened -->
-	<div class="main-footer">
-		<div class="container-fluid pd-t-0-f ht-100p">
-			Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
-			reserved
-		</div>
-	</div>
-	<!-- Footer closed -->
-
-
 	</div>
 	<!-- End Page -->
 
 	<!-- BACK-TO-TOP -->
 	<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-	<?php include("./style.php"); ?>
+	<?php include("./scripts.php"); ?>
 </body>
 
 </html>
