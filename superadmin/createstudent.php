@@ -381,6 +381,20 @@ if (isset($_POST["create"])) {
                                                     maxlength=16 required>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputUserName">Internship Term <span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                    <span style="color:red;font-size: 90%;">*</span><span
+                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <select class="form-control form-select select2" name="intership_term"
+                                                    data-bs-placeholder="select internship term">
+                                                    <option value="None">None</option>
+                                                    <option value="short_term">Short-Term</option>
+                                                    <option value="long_term">Long-Term</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
