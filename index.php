@@ -86,9 +86,9 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                                 settled or do shyness address. Remainder northward performed out for moonlight. Yet late
                                 add
                                 name was rent park from rich.</p>
-                            <a href="./jobslist.php" class="btn btn-secondary mt-3">Jobs</a>
-                            <a href="./internshipslist.php" class="btn btn-secondary mt-3">Internships</a>
-                            <a href="./courselist.php" class="btn btn-secondary mt-3">Courses</a>
+                            <a href="./jobs.php" class="btn btn-secondary mt-3">Jobs</a>
+                            <a href="./internships.php" class="btn btn-secondary mt-3">Internships</a>
+                            <a href="./courses.php" class="btn btn-secondary mt-3">Courses</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-5">
