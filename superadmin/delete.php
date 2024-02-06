@@ -25,6 +25,16 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     } else {
         echo mysqli_error($conn);
     }
+} elseif (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "student") {
+    $id = $_GET["id"];
+    $sql = "DELETE FROM `student` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location: studentlist.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
 } else {
     $error = "Invalid Request";
     header("location:dashboard.php?error=" . $error . "");

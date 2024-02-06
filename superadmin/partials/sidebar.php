@@ -1,10 +1,9 @@
 <aside class="app-sidebar">
     <div class="main-sidebar-header active">
         <a class="header-logo active" href="./dashboard.php">
-            <img src="assets/img/WordPress_blue_logo.svg-min.webp" class="main-logo  " alt="logo">
-            <img src="assets/img/WordPress_blue_logo.svg-min.webp" class="main-logo  desktop-dark" alt="logo">
-            <img src="assets/img/WordPress_blue_logo.svg-min.webp" class="main-logo  mobile-logo" alt="logo">
-            <img src="assets/img/WordPress_blue_logo.svg-min.webp" class="main-logo  mobile-dark" alt="logo">
+            <img src="assets/img/WordPress_blue_logo.svg-min.webp" class="main-logo" alt="logo">
+
+
         </a>
     </div>
     <div class="main-sidemenu">

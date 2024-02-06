@@ -43,3 +43,12 @@
 
  <!-- SWITCHER JS -->
  <script src="./assets/switcher/js/switcher.js"></script>
+
+ <script>
+document.querySelector(".dark-layout").addEventListener("click", () => {
+    document.querySelector(".main-logo").classList.add("desktop-dark");
+})
+document.querySelector(".light-layout").addEventListener("click", () => {
+    document.querySelector(".main-logo").classList.remove("desktop-dark");
+})
+ </script>

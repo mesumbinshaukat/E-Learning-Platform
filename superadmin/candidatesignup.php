@@ -7,7 +7,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	header('location: ../super-admin_login.php');
 	exit();
 }
-
+// Store the current URL in the session
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 ?>
 <!DOCTYPE html>
@@ -78,8 +79,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <select name="intership_term" class="form-control form-select"
                                 data-bs-placeholder="Select Filter">
                                 <option value="None">None</option>
-                                <option value="long_term">Short Term</option>
-                                <option value="short_term">Long Term</option>
+                                <option value="short_term">Short Term</option>
+                                <option value="long_term">Long Term</option>
                             </select>
                         </div>
 
@@ -142,8 +143,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 															echo "<td>" . $row['password'] . "</td>";
 															echo "<td>" . $row['internship'] . "</td>";
 															echo "<td>" . $row['contact_number'] . "</td>";
-															echo "<td><a class='btn btn-danger' href='connection_files/manage/student_manage.php?id=" . $row['id'] . "&delete=delete'>delete</a></td>";
-															echo "<td><a href='updatecandidatesignup.php?id=" . $row['id'] . "' class='btn btn-info'>update</a></td>";
+															echo "<td><a class='btn btn-danger' href='./delete.php?id=" . $row['id'] . "&user=student'>Delete</a></td>";
+															echo "<td><a href='student_edit.php?id=" . $row['id'] . "' class='btn btn-info'>update</a></td>";
 															echo "</tr>";
 															$i++;
 														}
