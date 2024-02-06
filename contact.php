@@ -1,6 +1,14 @@
 <?php
+session_start();
 include("./db_connection/connection.php");
-
+if(isset($_POST['lc_modalBtn'])){
+    $username = $_POST['lc_username'];
+    $email = $_POST['lc_email'];
+    $_SESSION['lc_username'] = $username;
+    $_SESSION['lc_email'] = $email;
+    header('location: ./partials/chatsystem/chat.php');
+    exit();
+}
 
 ?>
 <!DOCTYPE html>
@@ -151,8 +159,8 @@ if(isset($_COOKIE['trainer_id'])){
                             </div>
                         </div>
                     </div>
-                    <a href="./partials/chatsystem/chat.php">
                     <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-md-4 mb-lg-0" id="livechat_div">
+                        <button data-toggle="modal" data-target="#exampleModal" style="outline: none; border: none;">
                         <div class="rounded-custom text-center shadow-sm">
                             <div class="card-body py-5">
                                 <div class="icon icon-md text-secondary">
@@ -165,13 +173,41 @@ if(isset($_COOKIE['trainer_id'])){
                                 </div>
                             </div>
                         </div>
-                    </a>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-    
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form onsubmit="return validate_lcmodel_form()" method="post">
+      <div class="modal-body">
+            <label for="">Username</label>
+            <input type="text" class="form-control mb-2" name="lc_username" id="lc_username">
+            <p id="lc_error_username" style="color: red;"></p>
+            <label for="">Email</label>
+            <input type="email" class="form-control" name="lc_email" id="lc_email">
+            <p id="lc_error_email" style="color: red;"></p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input type="submit" name="lc_modalBtn" class="btn btn-primary"/>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
     <?php include("./partials/footer.php");
     ?>
 <script>
@@ -208,6 +244,34 @@ if(isset($_COOKIE['trainer_id'])){
         else{
             return true;
         }
+    }
+   function validate_lcmodel_form(){
+        var username = document.getElementById("lc_username").value;
+        var email = document.getElementById("lc_email").value;
+
+        if(username == ""){
+            errorMessage = "Please Enter Username";
+            document.getElementById("lc_error_username").innerHTML = errorMessage;
+        }
+        else{
+            document.getElementById("lc_error_username").innerHTML = "";
+            
+        }
+        if(email == ""){
+            errorMessage = "Please Enter Email";
+            document.getElementById("lc_error_email").innerHTML = errorMessage;
+        }
+        else{
+            document.getElementById("lc_error_email").innerHTML = "";
+            
+        }
+        if(errorMessage == ""){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 </script>
 </body>

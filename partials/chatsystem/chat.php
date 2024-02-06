@@ -23,7 +23,7 @@
 
               <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important; width: 100% !important">
                 <div class="media media-chat">
-                  <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                  <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
                   <div class="media-body">
                     <div id="chat-container" class="mb-">
 
@@ -58,8 +58,8 @@
 
              </div>
           </div>
-          </div>
-          </div>
+        </div>
+      </div>
           </div>
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
