@@ -23,20 +23,21 @@
 
               <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important; width: 100% !important">
                 <div class="media media-chat">
-                  <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="">
+                  <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="" id="admin_avatar">
                   <div class="media-body">
-                    <div id="chat-container" class="mb-">
-
-                    </div>
+                  <p>Admin Here, How may i help you</p>
+                   
                    
                   </div>
-                </div>
+                  </div>
 
      
 
                 <div class="media media-chat media-chat-reverse">
                   <div class="media-body">
-                    <p>Hiii, I'm good.</p>
+                  <div id="chat-container" class="mb-">
+
+                  </div>
                 
                   </div>
                 </div>
