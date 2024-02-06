@@ -55,41 +55,43 @@ if (isset($_POST["update"])) {
     $intership_term = filter_var($_POST['intership_term'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $created_by = "Admin";
 
-    $upload_cv =  $_FILES['upload_cv']['name'];
 
-    if (empty($upload_cv)) {
-        $cv = $fetch_student['upload_cv'];
-    } else {
+
+    if (!empty($_FILES['upload_cv']['name'])) {
+        // Process file upload and update CV field
+        $upload_cv =  $_FILES['upload_cv']['name'];
         $cv = date('Y-m-d-H-s') . $upload_cv;
         $upload_cv_tmp = $_FILES['upload_cv']['tmp_name'];
         $upload_cv_path = "./assets/docs/student/cv/" . $cv;
-    }
 
-    $query = mysqli_prepare($conn, "INSERT INTO `student`(`name`, `contact_number`, `email`, `username`, `internship`, `password`, `gender`, `address`, `alternate_contact_number`, `state`, `district`, `dob`, `pin_code`, `qualification`, `branch`, `semester`, `account_type`, `college_name`, `cv`, `created_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        // Upload the file if needed
+        if (move_uploaded_file($upload_cv_tmp, $upload_cv_path)) {
+            // Update the CV field with the new filename
+            $query = mysqli_prepare($conn, "UPDATE `student` SET `cv`=? WHERE `id` = $id");
+            $query->bind_param("s", $cv);
 
-    $query->bind_param("ssssssssssssssssssss", $student_name, $phone_number, $mail_id, $student_username, $intership_term, $password_hash, $gender, $address, $alternative_phone_number, $state, $district, $date_of_birth, $pincode, $qualification, $stream, $semester, $account_type, $institution_name, $cv, $created_by);
-
-    if ($query->execute()) {
-        if (!empty($upload_cv)) {
-            $upload_cv_error = $_FILES['upload_cv']['error'];
-
-            if ($upload_cv_error !== UPLOAD_ERR_OK) {
-                echo "File upload failed with error code: $upload_cv_error";
+            if (!$query->execute()) {
+                echo "Error updating CV: " . $query->error;
                 exit();
             }
-            if (move_uploaded_file($upload_cv_tmp, $upload_cv_path)) {
-                echo "File successfully moved!";
-            } else {
-                echo "Failed to move the file.";
-            }
+        } else {
+            // Handle file upload error if needed
+            echo "File upload failed!";
+            exit();
         }
+    }
 
+    $query = mysqli_prepare($conn, "UPDATE `student` SET `name`=?,`contact_number`=?,`email`=?,`username`=?,`internship`=?,`password`=?,`gender`=?,`address`=?,`alternate_contact_number`=?,`state`=?,`district`=?,`dob`=?,`pin_code`=?,`qualification`=?,`branch`=?,`semester`=?,`account_type`=?,`college_name`=? WHERE `id` = $id");
+
+    $query->bind_param("ssssssssssssssssss", $student_name, $phone_number, $mail_id, $student_username, $intership_term, $password_hash, $gender, $address, $alternative_phone_number, $state, $district, $date_of_birth, $pincode, $qualification, $stream, $semester, $account_type, $institution_name);
+
+    if ($query->execute()) {
         $_SESSION['success'] = "Student created successfully";
-        header('location: createstudent.php');
+        header('location: studentlist.php');
     } else {
         echo "Error creating student: " . $query->error;
         $_SESSION['error'] = "Something went wrong";
-        header('location: createstudent.php');
+        header('location: student_edit.php');
     }
 }
 ?>
@@ -138,6 +140,27 @@ if (isset($_POST["update"])) {
 
             </div>
 
+            <?php
+
+            if (isset($_SESSION['error'])) {
+                echo "
+        <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        <strong>Error!</strong> Something went wrong
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>
+        ";
+                unset($_SESSION['error']);
+            } elseif (isset($_SESSION['success'])) {
+                echo "
+        <div class='alert alert-success alert-dismissible fade show' role='alert'>
+        <strong>Success!</strong> Student created successfully
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>
+        ";
+                unset($_SESSION['success']);
+            }
+
+            ?>
 
             <!-- main-sidebar -->
             <div class="sticky">
@@ -226,6 +249,9 @@ if (isset($_POST["update"])) {
                                                             echo '<option value="male">Male</option>';
                                                             echo '<option value="female" selected>Female</option>';
                                                             break;
+                                                        default:
+                                                            echo '<option value="male">Male</option>';
+                                                            echo '<option value="female">Female</option>';
                                                     }
 
                                                     ?>
@@ -239,9 +265,9 @@ if (isset($_POST["update"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
                                                     <span style="color:red;font-size: 90%;">*</span><span
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input class="form-control"
-                                                    value="<?php echo $fetch_student['date_of_birth']; ?>" id="dateMask"
-                                                    name="date_of_birth" placeholder="DD/MM/YYYY" type="date" required>
+                                                <input class="form-control" value="<?php echo $fetch_student['dob']; ?>"
+                                                    id="dateMask" name="date_of_birth" placeholder="DD/MM/YYYY"
+                                                    type="date" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -254,7 +280,7 @@ if (isset($_POST["update"])) {
                                                     placeholder="1234567890" required max="9999999999" min="1000000000"
                                                     id="exampleInputPersonalPhone" placeholder="1234567890" required
                                                     max="9999999999"
-                                                    value="<?php echo $fetch_student['phone_number']; ?>"
+                                                    value="<?php echo $fetch_student['contact_number']; ?>"
                                                     min="1000000000" placeholder="Enter Phone Number">
                                             </div>
                                         </div>
@@ -267,7 +293,7 @@ if (isset($_POST["update"])) {
                                                 <input type="number" class="form-control" placeholder="1234567890"
                                                     max="9999999999" min="1000000000" name="alternative_phone_number"
                                                     id="exampleInputPersonalPhone"
-                                                    value="<?php echo $fetch_student['alternative_phone_number']; ?>"
+                                                    value="<?php echo $fetch_student['alternate_contact_number']; ?>"
                                                     placeholder="Enter Alternative Contact Number">
                                             </div>
                                         </div>
@@ -279,7 +305,7 @@ if (isset($_POST["update"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="email" class="form-control" name="mail_id"
                                                     id="exampleInputPerEmail"
-                                                    value="<?php echo $fetch_student['mail_id']; ?>"
+                                                    value="<?php echo $fetch_student['email']; ?>"
                                                     placeholder="Enter Mail ID" required>
                                             </div>
                                         </div>
@@ -327,7 +353,7 @@ if (isset($_POST["update"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="number" class="form-control" name="pincode"
                                                     id="exampleInputPerEmail"
-                                                    value="<?php echo $fetch_student['pincode']; ?>"
+                                                    value="<?php echo $fetch_student['pin_code']; ?>"
                                                     placeholder="enter Pincode">
                                             </div>
                                         </div>
@@ -430,7 +456,7 @@ if (isset($_POST["update"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="text" class="form-control " name="stream"
                                                     id="exampleInputPerEmail"
-                                                    value="<?php echo $fetch_student["stream"]; ?>"
+                                                    value="<?php echo $fetch_student["branch"]; ?>"
                                                     placeholder="MPC/BCOM/CSE" required>
                                             </div>
                                         </div>
@@ -626,7 +652,7 @@ if (isset($_POST["update"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="text" class="form-control" name="student_username"
                                                     id="exampleInputUserName"
-                                                    value="<?php echo $fetch_student['student_username']; ?>"
+                                                    value="<?php echo $fetch_student['username']; ?>"
                                                     placeholder="Enter Username" minlength=8 maxlength=16 required>
                                             </div>
                                         </div>
@@ -687,9 +713,10 @@ if (isset($_POST["update"])) {
                                                         style="color:#D3D3D3;font-size: 90%;">(Optional)</span></label>
                                                 <input type="file" class="form-control" name="upload_cv" id="cv"
                                                     placeholder="" onchange="validateFile()">
-                                                <a href="./assets/docs/student/cv/<?php echo $fetch_student['upload_cv']; ?>"
+
+                                                <a href="./assets/docs/student/cv/<?php echo $fetch_student['cv']; ?>"
                                                     class="text-danger"
-                                                    download=""><?php echo $fetch_student['upload_cv']; ?></a>
+                                                    download=""><?php echo $fetch_student['cv']; ?></a>
                                                 <!-- Display file info if needed -->
                                                 <div id="fileInfo"></div>
                                             </div>
