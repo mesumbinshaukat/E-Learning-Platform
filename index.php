@@ -189,12 +189,8 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                     <div class="col-lg-12 text-center">
 
                         <h1>Latest Courses</h1>
-
                         <?php if (mysqli_num_rows($l_query) > 0) { ?>
-                        <div class="owl-carousel owl-theme">
-
-
-
+                        <div class="owl-carousel owl-theme text-dark">
                             <?php while ($l_course = mysqli_fetch_assoc($l_query)) {
                                     $course_one = $l_course['course_one'];
                                     $course_two = $l_course['course_two'];
@@ -208,68 +204,121 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                                         $fetch_course_one = mysqli_fetch_assoc($courseOne);
                                         $fetch_course_two = mysqli_fetch_assoc($courseTwo);
                                         $fetch_course_three = mysqli_fetch_assoc($courseThree);
+
+                                        $title_words_one = str_word_count($fetch_course_one['course_name'], 2);
+                                        $title_words_two = str_word_count($fetch_course_two['course_name'], 2);
+                                        $title_words_three = str_word_count($fetch_course_three['course_name'], 2);
+
+                                        $topics_words_one = str_word_count($fetch_course_one['topics_covered'], 2);
+                                        $topics_words_two = str_word_count($fetch_course_two['topics_covered'], 2);
+                                        $topics_words_three = str_word_count($fetch_course_three['topics_covered'], 2);
+
+                                        $pre_requirements_words_one = str_word_count($fetch_course_one['pre_requirements'], 2);
+                                        $pre_requirements_words_two = str_word_count($fetch_course_two['pre_requirements'], 2);
+                                        $pre_requirements_words_three = str_word_count($fetch_course_three['pre_requirements'], 2);
+
+                                        $limit = 3;
+
+                                        // Topics Covered
+                                        if (count($topics_words_one) > $limit || count($topics_words_two) > $limit || count($topics_words_three) > $limit) {
+                                            $limited_topics_one = implode(' ', array_slice($topics_words_one, 0, $limit)) . '...';
+                                            $limited_topics_two = implode(' ', array_slice($topics_words_two, 0, $limit)) . '...';
+                                            $limited_topics_three = implode(' ', array_slice($topics_words_three, 0, $limit)) . '...';
+                                        } else {
+                                            $limited_topics_one = implode(' ', $topics_words_one);
+                                            $limited_topics_two = implode(' ', $topics_words_two);
+                                            $limited_topics_three = implode(' ', $topics_words_three);
+                                        }
+
+                                        // Pre-Requirements
+                                        if (count($pre_requirements_words_one) > $limit || count($pre_requirements_words_two) > $limit || count($pre_requirements_words_three) > $limit) {
+                                            $limited_pre_requirements_one = implode(' ', array_slice($pre_requirements_words_one, 0, $limit)) . '...';
+                                            $limited_pre_requirements_two = implode(' ', array_slice($pre_requirements_words_two, 0, $limit)) . '...';
+                                            $limited_pre_requirements_three = implode(' ', array_slice($pre_requirements_words_three, 0, $limit)) . '...';
+                                        } else {
+                                            $limited_pre_requirements_one = implode(' ', $pre_requirements_words_one);
+                                            $limited_pre_requirements_two = implode(' ', $pre_requirements_words_two);
+                                            $limited_pre_requirements_three = implode(' ', $pre_requirements_words_three);
+                                        }
+                                        if (count($title_words_one) > $limit || count($title_words_two) > $limit || count($title_words_three) > $limit) {
+                                            $limited_title_one = implode(' ', array_slice($title_words_one, 0, $limit)) . '...';
+                                            $limited_title_two = implode(' ', array_slice($title_words_two, 0, $limit)) . '...';
+                                            $limited_title_three = implode(' ', array_slice($title_words_three, 0, $limit)) . '...';
+                                        } else {
+                                            $limited_title_one = implode(' ', $title_words_one);
+                                            $limited_title_two = implode(' ', $title_words_two);
+                                            $limited_title_three = implode(' ', $title_words_three);
+                                        }
+
                                 ?>
 
+                            <!-- Course One -->
                             <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
-                                <img class="card-img-top"
-                                    src="./superadmin/assets/img/course/<?php echo $fetch_course_one['main_image']; ?>"
-                                    alt="Course Image">
-                                <div class="card-body">
-                                    <h4 class="card-title">Course Name:
-                                        <?php echo $fetch_course_one['course_name']; ?>
-                                    </h4>
-                                    <h5 class="card-title">Topics Covered:
-                                        <?php echo $fetch_course_one['topics_covered']; ?></h5>
-                                    <h5 class="card-title">Slots: <?php echo $fetch_course_one['slots']; ?></h5>
-                                    <p class="card-text">Pre-Requirements:
-                                        <?php echo $fetch_course_one['pre_requirements']; ?></p>
-                                </div>
+                                <a href="./course_details.php?id=<?php echo $fetch_course_one['id']; ?>">
+                                    <img class="card-img-top"
+                                        src="./superadmin/assets/img/course/<?php echo $fetch_course_one['main_image']; ?>"
+                                        alt="Course Image">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Course Name:<br>
+                                            <?php echo $limited_title_one; ?>
+                                        </h4>
+                                        <h5 class="card-title">Topics Covered:<br>
+                                            <?php echo $limited_topics_one; ?>
+                                        </h5>
+                                        <h5 class="card-title">Slots: <?php echo $fetch_course_one['slots']; ?></h5>
+                                        <p class="card-text">Pre-Requirements:<br>
+                                            <?php echo $limited_pre_requirements_one; ?>
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
 
-
+                            <!-- Course Two -->
                             <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
-                                <img class="card-img-top"
-                                    src="./superadmin/assets/img/course/<?php echo $fetch_course_two['main_image']; ?>"
-                                    alt="Course Image">
-                                <div class="card-body">
-                                    <h4 class="card-title">Course Name:
-                                        <?php echo $fetch_course_two['course_name']; ?>
-                                    </h4>
-                                    <h5 class="card-title">Topics Covered:
-                                        <?php echo $fetch_course_two['topics_covered']; ?></h5>
-                                    <h5 class="card-title">Slots: <?php echo $fetch_course_two['slots']; ?></h5>
-                                    <p class="card-text">Pre-Requirements:
-                                        <?php echo $fetch_course_two['pre_requirements']; ?></p>
-                                </div>
+                                <a href="./course_details.php?id=<?php echo $fetch_course_two['id']; ?>">
+                                    <img class="card-img-top"
+                                        src="./superadmin/assets/img/course/<?php echo $fetch_course_two['main_image']; ?>"
+                                        alt="Course Image">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Course Name:<br>
+                                            <?php echo $limited_title_two; ?>
+                                        </h4>
+                                        <h5 class="card-title">Topics Covered:<br>
+                                            <?php echo $limited_topics_two; ?>
+                                        </h5>
+                                        <h5 class="card-title">Slots: <?php echo $fetch_course_two['slots']; ?></h5>
+                                        <p class="card-text">Pre-Requirements:<br>
+                                            <?php echo $limited_pre_requirements_two; ?>
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
 
-
+                            <!-- Course Three -->
                             <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
-                                <img class="card-img-top"
-                                    src="./superadmin/assets/img/course/<?php echo $fetch_course_three['main_image']; ?>"
-                                    alt="Course Image">
-                                <div class="card-body">
-                                    <h4 class="card-title">Course Name:
-                                        <?php echo $fetch_course_three['course_name']; ?></h4>
-                                    <h5 class="card-title">Topics Covered:
-                                        <?php echo $fetch_course_three['topics_covered']; ?></h5>
-                                    <h5 class="card-title">Slots: <?php echo $fetch_course_three['slots']; ?>
-                                    </h5>
-                                    <p class="card-text">Pre-Requirements:
-                                        <?php echo $fetch_course_three['pre_requirements']; ?></p>
-                                </div>
+                                <a href="./course_details.php?id=<?php echo $fetch_course_three['id']; ?>">
+                                    <img class="card-img-top"
+                                        src="./superadmin/assets/img/course/<?php echo $fetch_course_three['main_image']; ?>"
+                                        alt="Course Image">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Course Name: <br>
+                                            <?php echo $limited_title_three; ?>
+                                        </h4>
+                                        <h5 class="card-title">Topics Covered:<br>
+                                            <?php echo $limited_topics_three; ?>
+                                        </h5>
+                                        <h5 class="card-title">Slots: <?php echo $fetch_course_three['slots']; ?></h5>
+                                        <p class="card-text">Pre-Requirements: <br>
+                                            <?php echo $limited_pre_requirements_three; ?>
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
-
-
-
-
-
-
 
                             <?php
                                     }
-                                } ?>
-
+                                }
+                                ?>
                         </div>
                         <?php } else {
                             echo "<h3>No Available Courses</h3>";

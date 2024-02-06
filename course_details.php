@@ -14,11 +14,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $fetch_internships = mysqli_fetch_assoc($select_internships);
         $_SESSION["fetch_internships"] = $fetch_internships;
     } else {
-        header('location: internships.php');
+        header('location: courses.php');
         exit();
     }
 } else {
-    header('location: internships.php');
+    header('location: courses.php');
     exit();
 }
 $fetch_internships = $_SESSION["fetch_internships"];

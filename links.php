@@ -102,6 +102,44 @@
         /* Adjust the font size as needed */
     }
 }
+
+.owl-carousel .owl-item {
+    width: 20rem;
+    /* Set your desired fixed width for each item */
+
+}
+
+.owl-carousel .owl-item .card {
+    width: 100%;
+    /* Make the card fill the fixed width */
+    height: 100%;
+    /* Make the card fill the fixed height */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.owl-carousel .owl-item img {
+    flex-grow: 1;
+    /* Allow the image to take up remaining space */
+    width: 100%;
+    /* Make the image fill the card width */
+    height: auto;
+    /* Maintain aspect ratio without damaging pixels */
+    object-fit: cover;
+    /* Ensure the image covers the entire container */
+    border-bottom: 2px solid #ddd;
+    /* Add a border at the bottom for separation */
+    aspect-ratio: 3 / 2;
+
+}
+
+.owl-carousel .owl-item .card-body {
+    padding: 1rem;
+    /* Add padding to the card body */
+    text-align: center;
+
+}
 </style>
 
 <script src="./assets/js/jquery-3.5.1.min.js"></script>

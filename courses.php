@@ -15,6 +15,9 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
     include("links.php")
 
     ?>
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -159,20 +162,45 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
                     <div class="col-12">
                         <?php if (mysqli_num_rows($select_courses) > 0) { ?>
                         <div class="owl-carousel owl-theme">
-                            <?php while ($fetch_courses = mysqli_fetch_assoc($select_courses)) { ?>
+                            <?php while ($fetch_courses = mysqli_fetch_assoc($select_courses)) {
+                                    // Limit the description to a certain number of words
+                                    $title = $fetch_courses['course_name'];
+                                    $description = $fetch_courses['topics_covered'];
+                                    $requirements = $fetch_courses['pre_requirements'];
+                                    $words = str_word_count($description, 2);
+                                    $title_words = str_word_count($title, 2);
+                                    $requirements_words = str_word_count($requirements, 2);
+                                    $limit = 3;
+
+                                    if (count($words) > $limit) {
+                                        $limited_description = implode(' ', array_slice($words, 0, $limit)) . '...';
+                                    } else {
+                                        $limited_description = $description;
+                                    }
+                                    if (count($requirements_words) > $limit) {
+                                        $limited_requirements = implode(' ', array_slice($requirements_words, 0, $limit)) . '...';
+                                    } else {
+                                        $limited_requirements = $requirements;
+                                    }
+                                    if (count($title_words) > $limit) {
+                                        $limited_title = implode(' ', array_slice($title_words, 0, 2)) . '...';
+                                    } else {
+                                        $limited_title = $title;
+                                    }
+                                ?>
                             <div class="card" style="width: 20rem; border: 2px solid black;">
                                 <a href="./course_details.php?id=<?php echo $fetch_courses['id']; ?>">
                                     <img class="card-img-top"
                                         src="./superadmin/assets/img/course/<?php echo $fetch_courses['main_image']; ?>"
                                         alt="Course Image">
                                     <div class="card-body">
-                                        <h4 class="card-title">Course Name: <?php echo $fetch_courses['course_name']; ?>
+                                        <h4 class="card-title">Title: <br><?php echo $limited_title; ?>
                                         </h4>
-                                        <h5 class="card-title">Topics Covered:
-                                            <?php echo $fetch_courses['topics_covered']; ?></h5>
+                                        <h5 class="card-title">Topics Covered: <br>
+                                            <?php echo $limited_description; ?></h5>
                                         <h5 class="card-title">Slots: <?php echo $fetch_courses['slots']; ?></h5>
-                                        <p class="card-text text-dark">Pre-Requirements:
-                                            <?php echo $fetch_courses['pre_requirements']; ?>
+                                        <p class="card-text text-dark">Pre-Requirements: <br>
+                                            <?php echo $limited_requirements; ?>
                                         <p>
                                     </div>
                                 </a>

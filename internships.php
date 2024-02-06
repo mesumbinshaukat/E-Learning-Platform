@@ -181,22 +181,31 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                 <p class="lead mb-5">These are the available internships
                 <p>
                 <div class="row d-flex justify-content-center">
-                    <div class="col-12">
-                        <?php if (mysqli_num_rows($select_internships) > 0) { ?>
+                    <div class="col-12"><?php if (mysqli_num_rows($select_internships) > 0) { ?>
                         <div class="owl-carousel owl-theme">
-                            <?php while ($fetch_courses = mysqli_fetch_assoc($select_internships)) { ?>
+                            <?php while ($fetch_courses = mysqli_fetch_assoc($select_internships)) {
+                                                $internship_name_words = str_word_count($fetch_courses['internship'], 2);
+                                                $limit = 3;
+
+                                                // Internship Name
+                                                if (count($internship_name_words) > $limit) {
+                                                    $limited_internship_name = implode(' ', array_slice($internship_name_words, 0, $limit)) . '...';
+                                                } else {
+                                                    $limited_internship_name = implode(' ', $internship_name_words);
+                                                }
+                                ?>
                             <a href="./internship_details.php?id=<?php echo $fetch_courses['id']; ?>" target="_blank">
                                 <div class="card" style="width: 20rem; border: 2px solid black;">
                                     <img class="card-img-top"
                                         src="./superadmin/assets/img/internship/<?php echo $fetch_courses['main_image']; ?>"
                                         alt="Course Image">
                                     <div class="card-body">
-                                        <h4 class="card-title"><span class="text-muted">Internship Name:</span>
-                                            <?php echo $fetch_courses['internship']; ?>
+                                        <h4 class="card-title"><span class="text-muted">Internship Name:</span> <br>
+                                            <?php echo $limited_internship_name; ?>
                                         </h4>
-                                        <h5 class="card-title"><span class="text-muted">Vacancies:</span>
+                                        <h5 class="card-title"><span class="text-muted">Vacancies:</span><br>
                                             <?php echo $fetch_courses['vacancies']; ?></h5>
-                                        <h5 class="card-title"><span class="text-muted">Last Day To Apply:</span>
+                                        <h5 class="card-title"><span class="text-muted">Last Day To Apply:</span><br>
                                             <?php echo $fetch_courses['last_date_to_apply']; ?>
                                         </h5>
                                         <p class="card-text text-danger"><span class="text-muted">Salary:</span>
@@ -207,11 +216,11 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
                                 </div>
                             </a>
                             <?php } ?>
-
                         </div>
                         <?php } else {
-                            echo "<h3>No Available Courses</h3>";
-                        } ?>
+                                            echo "<h3>No Available Internships</h3>";
+                                        } ?>
+
                     </div>
                 </div>
             </div>
