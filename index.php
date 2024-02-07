@@ -23,44 +23,44 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
     include("links.php")
     ?>
     <style>
-    .owl-carousel {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow: hidden;
-    }
+        .owl-carousel {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow: hidden;
+        }
 
-    .owl-item {
-        flex: 0 0 auto;
-    }
+        .owl-item {
+            flex: 0 0 auto;
+        }
 
-    .testimonial-card {
-        /* Modify the styles as needed */
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 20px;
-        margin: 20px;
-        text-align: center;
-        /* Center align content */
-    }
+        .testimonial-card {
+            /* Modify the styles as needed */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            /* Center align content */
+        }
 
-    .rating {
-        margin-top: 15px;
-        /* Add some space between the comment and the rating stars */
-    }
+        .rating {
+            margin-top: 15px;
+            /* Add some space between the comment and the rating stars */
+        }
 
-    .rating-stars {
-        color: #ffd700;
-        /* Set the color of filled stars */
-    }
+        .rating-stars {
+            color: #ffd700;
+            /* Set the color of filled stars */
+        }
 
-    .user-image {
-        width: 100%;
-        height: auto;
-        /* Allow the height to adjust based on the width */
-        border-radius: 50%;
-        object-fit: cover;
-        margin: 0 auto;
-    }
+        .user-image {
+            width: 100%;
+            height: auto;
+            /* Allow the height to adjust based on the width */
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -94,9 +94,7 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                     <div class="col-md-6 col-lg-5">
                         <div>
 
-                            <img class="pt-5"
-                                src="https://worldoftech.company/wp-content/uploads/2023/10/site24x71112.webp"
-                                alt="github logo">
+                            <img class="pt-5" src="https://worldoftech.company/wp-content/uploads/2023/10/site24x71112.webp" alt="github logo">
 
                         </div>
                     </div>
@@ -113,8 +111,7 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                             <div class="col-12 col-lg-6 col-md-6 mt-4">
                                 <div class="feature-card text-md-center text-lg-left">
                                     <div>
-                                        <div
-                                            class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-default text-white">
+                                        <div class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-default text-white">
                                             <i class="bi bi-link-45deg"></i>
                                         </div>
                                         <h5>Our Mission</h5>
@@ -128,8 +125,7 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                             <div class="col-lg-6 col-md-6 col-xs-6 mt-4">
                                 <div class="feature-card text-md-center text-lg-left">
                                     <div>
-                                        <div
-                                            class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-secondary text-white">
+                                        <div class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-secondary text-white">
                                             <i class="bi bi-eye"></i>
                                         </div>
                                         <h5>Our Vision</h5>
@@ -142,8 +138,7 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                             <div class="col-lg-6 col-md-6 col-xs-6 mt-4">
                                 <div class="feature-card text-md-center text-lg-left">
                                     <div>
-                                        <div
-                                            class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-success text-white">
+                                        <div class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-success text-white">
                                             <i class="bi bi-gem"></i>
                                         </div>
                                         <h5>Core Values</h5>
@@ -157,8 +152,7 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                             <div class="col-lg-6 col-md-6 col-xs-6 mt-4">
                                 <div class="feature-card text-md-center text-lg-left">
                                     <div>
-                                        <div
-                                            class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-primary text-white">
+                                        <div class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-primary text-white">
                                             <i class="bi bi-stars"></i>
                                         </div>
                                         <h5>Area of Expertise</h5>
@@ -175,8 +169,7 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                     </div>
                     <div class="col-lg-5 col-md-7 order-1 order-lg-2">
                         <div class="image-box fancy-radius p-2 bg-primary-alt">
-                            <img class="fancy-radius img-fluid"
-                                src="./assets/media/city-committed-education-collage-concept.jpg" alt="modern desk">
+                            <img class="fancy-radius img-fluid" src="./assets/media/city-committed-education-collage-concept.jpg" alt="modern desk">
                         </div>
                     </div>
                 </div>
@@ -190,8 +183,8 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
 
                         <h1>Latest Courses</h1>
                         <?php if (mysqli_num_rows($l_query) > 0) { ?>
-                        <div class="owl-carousel owl-theme text-dark">
-                            <?php while ($l_course = mysqli_fetch_assoc($l_query)) {
+                            <div class="owl-carousel owl-theme text-dark">
+                                <?php while ($l_course = mysqli_fetch_assoc($l_query)) {
                                     $course_one = $l_course['course_one'];
                                     $course_two = $l_course['course_two'];
                                     $course_three = $l_course['course_three'];
@@ -249,77 +242,73 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                                             $limited_title_two = implode(' ', $title_words_two);
                                             $limited_title_three = implode(' ', $title_words_three);
                                         }
-
+                                        echo "Course One ID: " . $course_one . "<br>";
+                                        echo "Course Two ID: " . $course_two . "<br>";
+                                        echo "Course Three ID: " . $course_three . "<br>";
                                 ?>
 
-                            <!-- Course One -->
-                            <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
-                                <a href="./course_details.php?id=<?php echo $fetch_course_one['id']; ?>">
-                                    <img class="card-img-top"
-                                        src="./superadmin/assets/img/course/<?php echo $fetch_course_one['main_image']; ?>"
-                                        alt="Course Image">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Course Name:<br>
-                                            <?php echo $limited_title_one; ?>
-                                        </h4>
-                                        <h5 class="card-title">Topics Covered:<br>
-                                            <?php echo $limited_topics_one; ?>
-                                        </h5>
-                                        <h5 class="card-title">Slots: <?php echo $fetch_course_one['slots']; ?></h5>
-                                        <p class="card-text">Pre-Requirements:<br>
-                                            <?php echo $limited_pre_requirements_one; ?>
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
+                                        <!-- Course One -->
+                                        <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
+                                            <a href="./course_details.php?id=<?php echo $fetch_course_one['id']; ?>">
+                                                <img class="card-img-top" src="./superadmin/assets/img/course/<?php echo $fetch_course_one['main_image']; ?>" alt="Course Image">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Course Name:<br>
+                                                        <?php echo $limited_title_one; ?>
+                                                    </h4>
+                                                    <h5 class="card-title">Topics Covered:<br>
+                                                        <?php echo $limited_topics_one; ?>
+                                                    </h5>
+                                                    <h5 class="card-title">Slots: <?php echo $fetch_course_one['slots']; ?></h5>
+                                                    <p class="card-text">Pre-Requirements:<br>
+                                                        <?php echo $limited_pre_requirements_one; ?>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </div>
 
-                            <!-- Course Two -->
-                            <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
-                                <a href="./course_details.php?id=<?php echo $fetch_course_two['id']; ?>">
-                                    <img class="card-img-top"
-                                        src="./superadmin/assets/img/course/<?php echo $fetch_course_two['main_image']; ?>"
-                                        alt="Course Image">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Course Name:<br>
-                                            <?php echo $limited_title_two; ?>
-                                        </h4>
-                                        <h5 class="card-title">Topics Covered:<br>
-                                            <?php echo $limited_topics_two; ?>
-                                        </h5>
-                                        <h5 class="card-title">Slots: <?php echo $fetch_course_two['slots']; ?></h5>
-                                        <p class="card-text">Pre-Requirements:<br>
-                                            <?php echo $limited_pre_requirements_two; ?>
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
+                                        <!-- Course Two -->
+                                        <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
+                                            <a href="./course_details.php?id=<?php echo $fetch_course_two['id']; ?>">
+                                                <img class="card-img-top" src="./superadmin/assets/img/course/<?php echo $fetch_course_two['main_image']; ?>" alt="Course Image">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Course Name:<br>
+                                                        <?php echo $limited_title_two; ?>
+                                                    </h4>
+                                                    <h5 class="card-title">Topics Covered:<br>
+                                                        <?php echo $limited_topics_two; ?>
+                                                    </h5>
+                                                    <h5 class="card-title">Slots: <?php echo $fetch_course_two['slots']; ?></h5>
+                                                    <p class="card-text">Pre-Requirements:<br>
+                                                        <?php echo $limited_pre_requirements_two; ?>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </div>
 
-                            <!-- Course Three -->
-                            <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
-                                <a href="./course_details.php?id=<?php echo $fetch_course_three['id']; ?>">
-                                    <img class="card-img-top"
-                                        src="./superadmin/assets/img/course/<?php echo $fetch_course_three['main_image']; ?>"
-                                        alt="Course Image">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Course Name: <br>
-                                            <?php echo $limited_title_three; ?>
-                                        </h4>
-                                        <h5 class="card-title">Topics Covered:<br>
-                                            <?php echo $limited_topics_three; ?>
-                                        </h5>
-                                        <h5 class="card-title">Slots: <?php echo $fetch_course_three['slots']; ?></h5>
-                                        <p class="card-text">Pre-Requirements: <br>
-                                            <?php echo $limited_pre_requirements_three; ?>
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
+                                        <!-- Course Three -->
+                                        <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
+                                            <a href="./course_details.php?id=<?php echo $fetch_course_three['id']; ?>">
+                                                <img class="card-img-top" src="./superadmin/assets/img/course/<?php echo $fetch_course_three['main_image']; ?>" alt="Course Image">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Course Name: <br>
+                                                        <?php echo $limited_title_three; ?>
+                                                    </h4>
+                                                    <h5 class="card-title">Topics Covered:<br>
+                                                        <?php echo $limited_topics_three; ?>
+                                                    </h5>
+                                                    <h5 class="card-title">Slots: <?php echo $fetch_course_three['slots']; ?></h5>
+                                                    <p class="card-text">Pre-Requirements: <br>
+                                                        <?php echo $limited_pre_requirements_three; ?>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </div>
 
-                            <?php
+                                <?php
                                     }
                                 }
                                 ?>
-                        </div>
+                            </div>
                         <?php } else {
                             echo "<h3>No Available Courses</h3>";
                         } ?>
@@ -437,13 +426,12 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                             $picture = $row['picture'];
                     ?>
 
-                    <div class="testimonial-card">
-                        <img src="./superadmin/assets/img/testimonial/<?php echo $picture; ?>" alt="User Image"
-                            class="user-image">
-                        <h4 class="mb-3"><?php echo $name; ?></h4>
-                        <p>"<?php echo $comment; ?>"</p>
-                        <div class="rating">
-                            <?php
+                            <div class="testimonial-card">
+                                <img src="./superadmin/assets/img/testimonial/<?php echo $picture; ?>" alt="User Image" class="user-image">
+                                <h4 class="mb-3"><?php echo $name; ?></h4>
+                                <p>"<?php echo $comment; ?>"</p>
+                                <div class="rating">
+                                    <?php
                                     for ($i = 1.0; $i <= 5.0; $i++) {
                                         if ($i <= $rating) {
                                             echo '<span class="rating-stars">&#9733;</span>';
@@ -452,8 +440,8 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                                         }
                                     }
                                     ?>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
 
                     <?php
                         }
@@ -471,30 +459,30 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
         ?>
 
         <script>
-        $(document).ready(function() {
-            $('.owl-carousel').owlCarousel({
-                items: 3,
-                loop: true,
-                margin: 20,
-                autoWidth: false,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                responsiveClass: true,
-                autoplayHoverPause: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                    },
-                    600: {
-                        items: 2,
-                    },
-                    1000: {
-                        items: 3,
+            $(document).ready(function() {
+                $('.owl-carousel').owlCarousel({
+                    items: 3,
+                    loop: true,
+                    margin: 20,
+                    autoWidth: false,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    responsiveClass: true,
+                    autoplayHoverPause: true,
+                    responsive: {
+                        0: {
+                            items: 1,
+                        },
+                        600: {
+                            items: 2,
+                        },
+                        1000: {
+                            items: 3,
+                        }
                     }
-                }
 
+                });
             });
-        });
         </script>
 
 

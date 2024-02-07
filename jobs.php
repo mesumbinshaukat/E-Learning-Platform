@@ -198,30 +198,54 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                 <div class="container">
                     <?php if (mysqli_num_rows($select_jobs) > 0) { ?>
                     <div class="owl-carousel owl-theme">
-                        <?php while ($fetch_jobs = mysqli_fetch_assoc($select_jobs)) { ?>
+                        <?php while ($fetch_jobs = mysqli_fetch_assoc($select_jobs)) {
+                                $title = $fetch_jobs['job_role'];
+                                $requirements = $fetch_jobs['requirements'];
+                                $company = $fetch_jobs['company_name'];
+                                $title_words = str_word_count($title, 2);
+                                $company_words = str_word_count($company, 2);
+                                $requirements_words = str_word_count($requirements, 2);
+                                $limit = 3;
+
+                                if (count($requirements_words) > $limit) {
+                                    $limited_requirements = implode(' ', array_slice($requirements_words, 0, $limit)) . '...';
+                                } else {
+                                    $limited_requirements = $requirements;
+                                }
+
+                                if (count($title_words) > $limit) {
+                                    $limited_title = implode(' ', array_slice($title_words, 0, $limit)) . '...';
+                                } else {
+                                    $limited_title = $title;
+                                }
+
+                                if (count($company_words) > $limit) {
+                                    $limited_company = implode(' ', array_slice($company_words, 0, $limit)) . '...';
+                                } else {
+                                    $limited_company = $company;
+                                }
+                            ?>
                         <div class="card" style="width: 20rem; border: 2px solid black;">
                             <a href="job_details.php?id=<?php echo $fetch_jobs['id']; ?>">
                                 <img class="card-img-top"
                                     src="./superadmin/assets/img/placement/<?php echo $fetch_jobs['main_image']; ?>"
                                     alt="Job_main_image">
                                 <div class="card-body">
-                                    <h4 class="card-title">Job Role: <?php echo $fetch_jobs['job_role']; ?></h4>
-                                    <h5 class="card-title">Company: <?php echo $fetch_jobs['company_name']; ?></h5>
+                                    <h4 class="card-title">Job Role: <br><?php echo $limited_title; ?></h4>
+                                    <h5 class="card-title">Company: <br><?php echo $limited_company; ?></h5>
                                     <h5 class="card-title">Need <?php echo $fetch_jobs['years_open_experience']; ?>
-                                        Years of
-                                        Experience</h5>
-                                    <p class="card-text text-dark">Requirements:
-                                        <?php echo $fetch_jobs['requirements']; ?>
-                                    <p>
+                                        Years of Experience</h5>
+                                    <p class="card-text text-dark">Requirements:<br><?php echo $limited_requirements; ?>
+                                    </p>
                                 </div>
                             </a>
                         </div>
                         <?php } ?>
-
                     </div>
                     <?php } else { ?>
                     <h2 class="p-2 text-center">No Jobs Available Right Now</h2>
                     <?php } ?>
+
                 </div>
             </main>
         </section>
