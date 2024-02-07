@@ -6,7 +6,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
-    $id = $_GET["id"];
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
     $sql = "DELETE FROM `trainer` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
@@ -16,7 +17,8 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
         echo mysqli_error($conn);
     }
 } elseif (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "college") {
-    $id = $_GET["id"];
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
     $sql = "DELETE FROM `college` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
@@ -26,11 +28,23 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
         echo mysqli_error($conn);
     }
 } elseif (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "student") {
-    $id = $_GET["id"];
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
     $sql = "DELETE FROM `student` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header("location: studentlist.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
+} elseif (isset($_GET["type"]) && isset($_GET["id"]) && $_GET["type"] == "course") {
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `course` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location: managecourse.php");
         exit();
     } else {
         echo mysqli_error($conn);

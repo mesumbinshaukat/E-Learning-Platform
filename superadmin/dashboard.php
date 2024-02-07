@@ -7,6 +7,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     header('location: ../super-admin_login.php');
     exit();
 }
+
+// Store the current URL in the session
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
@@ -448,25 +451,29 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="courselist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courselist.php" style="color:#1d71f2"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Registered</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>18</b></h4>
                                         </div>
                                     </a>
-                                    <a href="courselist.php?type=active" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courselist.php?type=active" style="color:#4AA02C"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Active</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>18</b></h4>
                                         </div>
                                     </a>
-                                    <a href="courselist.php?type=pause" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courselist.php?type=pause" style="color:#ff6700"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Paused</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>0</b></h4>
                                         </div>
                                     </a>
-                                    <a href="courselist.php?type=delete" style="color:#000000" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courselist.php?type=delete" style="color:#000000"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Delete</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>0</b></h4>
@@ -484,18 +491,21 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="courseregistrationslist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php" style="color:#1d71f2"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Applied</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>4046</b></h4>
                                         </div>
                                     </a>
-                                    <a href="pendingcourseregistrations.php" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="pendingcourseregistrations.php" style="color:#ff6700"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Pending</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>0</b></h4>
                                         </div>
-                                        <a href="managecourseregistrations.php" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                        <a href="managecourseregistrations.php" style="color:#4AA02C"
+                                            class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <p class="tx-13 mb-2 font-weight-semibold ">Accepted</p>
                                                 <h4 class=" mb-0 font-weight-semibold  tx-18"><b>3978</b></h4>
@@ -503,13 +513,15 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </a>
 
                                     </a>
-                                    <a href="courseregistrationslist.php?type=rejected" style="color:#ff0000" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php?type=rejected" style="color:#ff0000"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Rejected</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>12</b></h4>
                                         </div>
                                     </a>
-                                    <a href="courseregistrationslist.php?type=delete" style="color:#ff0000" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php?type=delete" style="color:#ff0000"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Deleted</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>50</b></h4>
@@ -527,19 +539,22 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="managecourseregistrations.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="managecourseregistrations.php" style="color:#1d71f2"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Available</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>3978</b></h4>
                                         </div>
                                     </a>
-                                    <a href="managestudentallocation.php" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="managestudentallocation.php" style="color:#4AA02C"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Allocated</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>3921</b></h4>
                                         </div>
                                     </a>
-                                    <a href="managestudentdeallocation.php" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="managestudentdeallocation.php" style="color:#ff6700"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Unallocated</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>57</b></h4>
@@ -557,31 +572,36 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="batchlist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php" style="color:#1d71f2"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Created</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>52</b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=active" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=active" style="color:#ff6700"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Active</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>16</b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=complete" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=complete" style="color:#4AA02C"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Completed</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>31</b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=delete" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=delete" style="color:#4AA02C"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Deleted</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>5</b></h4>
                                         </div>
                                     </a>
-                                    <a href="allocationstudentlist.php?type=batch" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="allocationstudentlist.php?type=batch" style="color:#ff6700"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Students</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>3980</b></h4>
