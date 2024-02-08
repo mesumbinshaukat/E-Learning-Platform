@@ -80,7 +80,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
                             <P><b> Affliated University</b> </p>
-                            <select name="affiliated_university" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="affiliated_university" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="" selected>
+                                    None
+                                </option>
                                 <?php
                                 $query = "SELECT `affiliated_university` FROM `college`";
                                 $result = mysqli_query($conn, $query);
@@ -99,7 +103,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         </div>
                         <div class="form-group col-md-4">
                             <P><b>District</b> </p>
-                            <select name="district" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="district" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="" selected>
+                                    None
+                                </option>
                                 <?php
                                 $query = "SELECT `district` FROM `college`";
                                 $result = mysqli_query($conn, $query);
@@ -129,7 +137,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
