@@ -28,6 +28,7 @@ if (isset($_POST['submitbtn'])) {
         $_SESSION["err_msg"] = "Invalid Email Format";
     }
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>

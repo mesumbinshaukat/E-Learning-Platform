@@ -32,6 +32,7 @@ if (mysqli_num_rows($query) == 0) {
     }
 }
 $fetch_course_details = mysqli_fetch_assoc($query);
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
@@ -106,34 +107,26 @@ $fetch_course_details = mysqli_fetch_assoc($query);
                                     <section>
                                         <div class="control-group form-group">
                                             <label class="form-label">Name of the Course</label>
-                                            <input type="text" readonly class="form-control required" disabled
-                                                placeholder=""
-                                                value="<?php echo $fetch_course_details['course_name']; ?>">
+                                            <input type="text" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['course_name']; ?>">
                                         </div>
 
                                         <div class="control-group form-group">
                                             <label class="form-label">Streams</label>
-                                            <input type="text" readonly class="form-control required" disabled
-                                                placeholder=""
-                                                value="<?php echo $fetch_course_details['stream_name']; ?>">
+                                            <input type="text" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['stream_name']; ?>">
                                         </div>
 
 
 
                                         <div class="control-group form-group">
                                             <label class="form-label">Posting Category</label>
-                                            <input type="text" readonly class="form-control required" disabled
-                                                placeholder=""
-                                                value="<?php echo $fetch_course_details['posting_category']; ?>">
+                                            <input type="text" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['posting_category']; ?>">
                                         </div>
 
 
 
                                         <div class="control-group form-group">
                                             <label class="form-label">Course provider Name</label>
-                                            <input type="text" readonly class="form-control required" disabled
-                                                placeholder=""
-                                                value="<?php echo $fetch_course_details['provider_name_company']; ?>">
+                                            <input type="text" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['provider_name_company']; ?>">
                                         </div>
 
 
@@ -141,52 +134,38 @@ $fetch_course_details = mysqli_fetch_assoc($query);
                                         <div class="control-group form-group">
                                             <div class="control-group form-group">
                                                 <label class="form-label">Training Type</label>
-                                                <input type="text" readonly class="form-control required" disabled
-                                                    placeholder=""
-                                                    value="<?php echo $fetch_course_details['training_type']; ?>">
+                                                <input type="text" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['training_type']; ?>">
                                             </div>
 
 
                                             <div class="control-group form-group">
                                                 <label class="form-label">Offline address ( if offline )</label>
-                                                <input type="" readonly class="form-control required" disabled
-                                                    placeholder=""
-                                                    value="<?php echo $fetch_course_details['offline_address']; ?>">
+                                                <input type="" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['offline_address']; ?>">
                                             </div>
 
                                             <div class="control-group form-group">
                                                 <label class="form-label">Duration(hrs)</label>
-                                                <input type="number" readonly class="form-control required" disabled
-                                                    placeholder=""
-                                                    value="<?php echo $fetch_course_details['duration_days']; ?>">
+                                                <input type="number" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['duration_days']; ?>">
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Last date to apply</label>
-                                                <input type="text" readonly class="form-control required" disabled
-                                                    placeholder=""
-                                                    value="<?php echo $fetch_course_details['last_date_to_apply']; ?>">
+                                                <input type="text" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['last_date_to_apply']; ?>">
                                             </div>
 
                                             <div class="control-group form-group">
                                                 <label class="form-label">Hours per day</label>
-                                                <input type="number" readonly class="form-control required" disabled
-                                                    placeholder=""
-                                                    value="<?php echo $fetch_course_details['hours_per_day']; ?>">
+                                                <input type="number" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['hours_per_day']; ?>">
                                             </div>
 
                                             <div class="control-group form-group">
                                                 <label class="form-label">Certifications</label>
-                                                <input type="text" readonly class="form-control required" disabled
-                                                    placeholder=""
-                                                    value="<?php echo $fetch_course_details['certification']; ?>">
+                                                <input type="text" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['certification']; ?>">
                                             </div>
 
 
                                             <div class="control-group form-group">
                                                 <label class="form-label">No of Slots available</label>
-                                                <input type="number" readonly class="form-control required" disabled
-                                                    placeholder=""
-                                                    value="<?php echo $fetch_course_details['slots']; ?>">
+                                                <input type="number" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['slots']; ?>">
                                             </div>
 
                                     </section>
@@ -195,29 +174,24 @@ $fetch_course_details = mysqli_fetch_assoc($query);
 
                                         <label class="form-label">Course Description</label>
                                         <div class="form-label">
-                                            <input class="form-control" readonly
-                                                value="<?php echo $fetch_course_details['course_description']; ?>">
+                                            <input class="form-control" readonly value="<?php echo $fetch_course_details['course_description']; ?>">
                                         </div>
                                         <label class="form-label">Topics Covered</label>
                                         <div class="form-label">
-                                            <input class="form-control" readonly disabled placeholder=""
-                                                value="<?php echo $fetch_course_details['topics_covered']; ?>">
+                                            <input class="form-control" readonly disabled placeholder="" value="<?php echo $fetch_course_details['topics_covered']; ?>">
                                         </div>
                                         <label class="form-label">Benefits of Course</label>
                                         <div class="form-label">
-                                            <input class="form-control" readonly disabled placeholder=""
-                                                value="<?php echo $fetch_course_details['benefits_of_course']; ?>">
+                                            <input class="form-control" readonly disabled placeholder="" value="<?php echo $fetch_course_details['benefits_of_course']; ?>">
                                         </div>
 
                                         <label class="form-label">Pre-Requirements</label>
                                         <div class="form-label">
-                                            <input class="form-control" readonly disabled placeholder=""
-                                                value="<?php echo $fetch_course_details['pre_requirements']; ?>">
+                                            <input class="form-control" readonly disabled placeholder="" value="<?php echo $fetch_course_details['pre_requirements']; ?>">
                                         </div>
                                         <label class="form-label">additional information</label>
                                         <div class="form-label">
-                                            <input class="form-control" readonly disabled placeholder=""
-                                                value="<?php echo $fetch_course_details['additional_info']; ?>">
+                                            <input class="form-control" readonly disabled placeholder="" value="<?php echo $fetch_course_details['additional_info']; ?>">
                                         </div>
                                     </section>
                                     <h3>Pricings </h3>
@@ -225,29 +199,21 @@ $fetch_course_details = mysqli_fetch_assoc($query);
 
                                         <div class="control-group form-group">
                                             <label class="form-label">Course type</label>
-                                            <input type="text" readonly class="form-control required" disabled
-                                                placeholder=""
-                                                value="<?php echo $fetch_course_details['course_type']; ?>">
+                                            <input type="text" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['course_type']; ?>">
                                         </div>
 
 
                                         <div class="control-group form-group">
                                             <label class="form-label">Orginal Cost</label>
-                                            <input type="number" readonly class="form-control required" disabled
-                                                placeholder=""
-                                                value="<?php echo $fetch_course_details['original_cost']; ?>">
+                                            <input type="number" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['original_cost']; ?>">
                                         </div>
                                         <div class="control-group form-group">
                                             <label class="form-label">Discount %</label>
-                                            <input type="number" readonly class="form-control required" disabled
-                                                placeholder=""
-                                                value="<?php echo $fetch_course_details['discount_percentage']; ?>">
+                                            <input type="number" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['discount_percentage']; ?>">
                                         </div>
                                         <div class="control-group form-group">
                                             <label class="form-label">Final cost</label>
-                                            <input type="number" readonly class="form-control required" disabled
-                                                placeholder=""
-                                                value="<?php echo $fetch_course_details['final_cost']; ?>">
+                                            <input type="number" readonly class="form-control required" disabled placeholder="" value="<?php echo $fetch_course_details['final_cost']; ?>">
                                         </div>
                                     </section>
                                     <h3>Uploadings </h3>
@@ -255,27 +221,18 @@ $fetch_course_details = mysqli_fetch_assoc($query);
 
                                         <div class="control-group form-group">
                                             <label class="form-label">Main Image</label>
-                                            <a target="_blank"
-                                                href="./assets/img/course/<?php echo $fetch_course_details['main_image']; ?>"
-                                                download="">
-                                                <button type="submit" class="btn btn-primary mt-3 mb-0"
-                                                    style="text-align:right">Download</button>
+                                            <a target="_blank" href="./assets/img/course/<?php echo $fetch_course_details['main_image']; ?>" download="">
+                                                <button type="submit" class="btn btn-primary mt-3 mb-0" style="text-align:right">Download</button>
                                         </div>
                                         <div class="control-group form-group">
                                             <label class="form-label">Inner image</label>
-                                            <a target="_blank"
-                                                href="./assets/img/course/<?php echo $fetch_course_details['inner_image']; ?>"
-                                                download=""><button type="submit" class="btn btn-primary mt-3 mb-0"
-                                                    style="text-align:right">Download</button>
+                                            <a target="_blank" href="./assets/img/course/<?php echo $fetch_course_details['inner_image']; ?>" download=""><button type="submit" class="btn btn-primary mt-3 mb-0" style="text-align:right">Download</button>
                                         </div>
                                         <div class="control-group form-group">
                                             <label class="form-label">image 2</label>
 
-                                            <a target="_blank"
-                                                href="./assets/img/course/<?php echo $fetch_course_details['image_two']; ?>"
-                                                download="">
-                                                <button type="submit" class="btn btn-primary mt-3 mb-0"
-                                                    style="text-align:right">Download</button>
+                                            <a target="_blank" href="./assets/img/course/<?php echo $fetch_course_details['image_two']; ?>" download="">
+                                                <button type="submit" class="btn btn-primary mt-3 mb-0" style="text-align:right">Download</button>
                                         </div>
                                     </section>
 
