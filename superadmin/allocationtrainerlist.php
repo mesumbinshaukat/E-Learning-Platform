@@ -29,7 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             INNER JOIN `trainer` ON allocate_trainer_course.trainer_id = trainer.id
                                             INNER JOIN `course` ON allocate_trainer_course.course_id = course.id");
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
