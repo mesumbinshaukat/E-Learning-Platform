@@ -46,7 +46,7 @@ if (isset($_POST["submit"])) {
         header('location:createtrainer.php');
     }
 }
-
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 ?>
 
@@ -56,7 +56,7 @@ if (isset($_POST["submit"])) {
 
 
 <head>
-
+    <title>Create Trainer</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -126,124 +126,85 @@ if (isset($_POST["submit"])) {
                                         <div class="row row-xs formgroup-wrapper">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputName">Trainer Name <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" required class="form-control" name="Trainer_Name"
-                                                        id="exampleInputName" placeholder="Enter Name">
+                                                    <label for="exampleInputName">Trainer Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" required class="form-control" name="Trainer_Name" id="exampleInputName" placeholder="Enter Name">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputCompanyPhone">Personal Phone Number <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="number" required class="form-control"
-                                                        name="Personal_Phone_Number" maxlength="14" minlength="10"
-                                                        id="exampleInputCompanyPhone"
-                                                        placeholder="Enter Contact Number">
+                                                    <label for="exampleInputCompanyPhone">Personal Phone Number <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="number" required class="form-control" name="Personal_Phone_Number" maxlength="14" minlength="10" id="exampleInputCompanyPhone" placeholder="Enter Contact Number">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPerEmail"> Personal Mail Id <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="email" required class="form-control"
-                                                        name="Personal_Mail_id" id="exampleInputPerEmail"
-                                                        placeholder="Enter Mail Id">
+                                                    <label for="exampleInputPerEmail"> Personal Mail Id <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="email" required class="form-control" name="Personal_Mail_id" id="exampleInputPerEmail" placeholder="Enter Mail Id">
                                                 </div>
                                             </div>
 
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputDOB">Date of Birth <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input class="form-control" required name="Date_Of_Birth"
-                                                        id="dateMask" placeholder="YYYY/MM/DD" type="date">
+                                                    <label for="exampleInputDOB">Date of Birth <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input class="form-control" required name="Date_Of_Birth" id="dateMask" placeholder="YYYY/MM/DD" type="date">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputQualification">Aadhar Card No <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="number" required class="form-control"
-                                                        name="Aadhar_Card_No" id="exampleInputQualification"
-                                                        placeholder="Enter Aadhar Card Number">
+                                                    <label for="exampleInputQualification">Aadhar Card No <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="number" required class="form-control" name="Aadhar_Card_No" id="exampleInputQualification" placeholder="Enter Aadhar Card Number">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputcode">Upload Aadhar Card <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="file" required class="form-control"
-                                                        name="Upload_Aadhar_Card" id="exampleInputcode" placeholder="">
+                                                    <label for="exampleInputcode">Upload Aadhar Card <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="file" required class="form-control" name="Upload_Aadhar_Card" id="exampleInputcode" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputAadhar">PAN Card No <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" required class="form-control" name="Pan_Card_No"
-                                                        id="exampleInputAadhar" placeholder="Enter Pan Card Number">
+                                                    <label for="exampleInputAadhar">PAN Card No <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" required class="form-control" name="Pan_Card_No" id="exampleInputAadhar" placeholder="Enter Pan Card Number">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputcode"> Upload PAN Card <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="file" required class="form-control"
-                                                        id="exampleInputcode" name="Upload_Pan_Card" placeholder="">
+                                                    <label for="exampleInputcode"> Upload PAN Card <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="file" required class="form-control" id="exampleInputcode" name="Upload_Pan_Card" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputUserName">Date of joining <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input class="form-control" required name="Date_Of_joining"
-                                                        id="dateMask" placeholder="YYYY/MM/DD" type="date">
+                                                    <label for="exampleInputUserName">Date of joining <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input class="form-control" required name="Date_Of_joining" id="dateMask" placeholder="YYYY/MM/DD" type="date">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputQualification">Qualification <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" required class="form-control"
-                                                        name="Qualification" id="exampleInputQualification"
-                                                        placeholder="Enter qualification">
+                                                    <label for="exampleInputQualification">Qualification <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" required class="form-control" name="Qualification" id="exampleInputQualification" placeholder="Enter qualification">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputExperience">Any Experience <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <select class="form-control form-select select2" required
-                                                        name="Any_Experience" id="exampleInputExperience"
-                                                        data-bs-placeholder="Enter Experience">
+                                                    <label for="exampleInputExperience">Any Experience <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <select class="form-control form-select select2" required name="Any_Experience" id="exampleInputExperience" data-bs-placeholder="Enter Experience">
                                                         <option value="yes">Yes</option>
                                                         <option value="no">No</option>
                                                     </select>
@@ -256,75 +217,52 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Previous/Current Organisation Name
                                                         <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" required class="form-control"
-                                                        name="Previous/Current_Organization_name"
-                                                        id="exampleInputUserName" placeholder="Enter Company Name">
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" required class="form-control" name="Previous/Current_Organization_name" id="exampleInputUserName" placeholder="Enter Company Name">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputUserName">Designation <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" required class="form-control" name="Designation"
-                                                        id="exampleInputDesignation" placeholder="Enter Designation">
+                                                    <label for="exampleInputUserName">Designation <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" required class="form-control" name="Designation" id="exampleInputDesignation" placeholder="Enter Designation">
                                                 </div>
                                             </div>
 
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputcode"> Trainer Documents <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="file" class="form-control" required
-                                                        name="Trainer_Documents" id="exampleInputcode" placeholder="">
+                                                    <label for="exampleInputcode"> Trainer Documents <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="file" class="form-control" required name="Trainer_Documents" id="exampleInputcode" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputUserName">Trainer Username <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" required class="form-control"
-                                                        name="Trainer_Username" id="exampleInputUserName"
-                                                        placeholder="Enter Username">
+                                                    <label for="exampleInputUserName">Trainer Username <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="text" required class="form-control" name="Trainer_Username" id="exampleInputUserName" placeholder="Enter Username">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputPassword">Password <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="password" required class="form-control" minlength=8
-                                                        maxlength=10 name="Password" id='password'
-                                                        placeholder="Enter Password">
+                                                    <label for="exampleInputPassword">Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="password" required class="form-control" minlength=8 maxlength=10 name="Password" id='password' placeholder="Enter Password">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputRe-EnterPassword">Re-Enter Password <span
-                                                            style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span
-                                                            style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="password" required class="form-control" minlength=8
-                                                        maxlength=10 id='retypepassword'
-                                                        placeholder="Re-Enter Password">
+                                                    <label for="exampleInputRe-EnterPassword">Re-Enter Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                    <input type="password" required class="form-control" minlength=8 maxlength=10 id='retypepassword' placeholder="Re-Enter Password">
                                                 </div>
                                             </div>
 
-                                            <button type="submit" name="submit" value="submit"
-                                                class="btn btn-primary mt-3 mb-0" onclick="return check()"
-                                                style="text-align:right">Generate</button>
+                                            <button type="submit" name="submit" value="submit" class="btn btn-primary mt-3 mb-0" onclick="return check()" style="text-align:right">Generate</button>
                                         </div>
                                     </div>
                                 </div>
@@ -341,15 +279,15 @@ if (isset($_POST["submit"])) {
         </form>
 
         <script type="text/javascript">
-        function check() {
-            var b = document.getElementById('password').value;
-            var c = document.getElementById('retypepassword').value;
-            if (b != c) {
-                alert('Password doesnt match');
-                return false;
-            } else
-                return true;
-        }
+            function check() {
+                var b = document.getElementById('password').value;
+                var c = document.getElementById('retypepassword').value;
+                if (b != c) {
+                    alert('Password doesnt match');
+                    return false;
+                } else
+                    return true;
+            }
         </script>
 
 
