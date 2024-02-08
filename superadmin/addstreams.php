@@ -4,27 +4,28 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 if (isset($_POST["submit"])) {
-	$location = $_POST["location"];
-	$name = $_POST["name"];
-	$image_name = $_FILES["image"]["name"];
-	$image_tmp = $_FILES["image"]["tmp_name"];
+    $location = $_POST["location"];
+    $name = $_POST["name"];
+    $image_name = $_FILES["image"]["name"];
+    $image_tmp = $_FILES["image"]["tmp_name"];
 
-	$query = mysqli_prepare($conn, "INSERT INTO `stream`(`stream_name`, `stream_location`, `image`) VALUES (?,?,?)");
-	$query->bind_param("sss", $name, $location, $image_name);
-	if ($query->execute()) {
-		$_SESSION['message_success'] = true;
-		move_uploaded_file($image_tmp, "./assets/img/stream/" . $image_name);
-		header("location: addstreams.php");
-	} else {
-		$_SESSION['message_failed'] = true;
-		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
-	}
+    $query = mysqli_prepare($conn, "INSERT INTO `stream`(`stream_name`, `stream_location`, `image`) VALUES (?,?,?)");
+    $query->bind_param("sss", $name, $location, $image_name);
+    if ($query->execute()) {
+        $_SESSION['message_success'] = true;
+        move_uploaded_file($image_tmp, "./assets/img/stream/" . $image_name);
+        header("location: addstreams.php");
+    } else {
+        $_SESSION['message_failed'] = true;
+        $_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
+    }
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,18 +48,18 @@ if (isset($_POST["submit"])) {
     <?php include("./switcher.php"); ?>
 
     <?php
-	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-		echo "<script>toastr.success('Stream Added Successfully')</script>";
-		session_destroy();
-	}
-	?>
+    if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+        echo "<script>toastr.success('Stream Added Successfully')</script>";
+        session_destroy();
+    }
+    ?>
 
     <?php
-	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-		session_destroy();
-	}
-	?>
+    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+        session_destroy();
+    }
+    ?>
 
     <!-- Page -->
     <div class="page">
@@ -116,8 +117,7 @@ if (isset($_POST["submit"])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputAadhar">Stream Location</label>
-                                                    <select name="location" class="form-control form-select select2"
-                                                        data-bs-placeholder="Enter Stream">
+                                                    <select name="location" class="form-control form-select select2" data-bs-placeholder="Enter Stream">
                                                         <option value="courses">Courses</option>
                                                         <option value="internship">Internship</option>
                                                         <option value="placements">Placements</option>
@@ -128,15 +128,13 @@ if (isset($_POST["submit"])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputPersonalPhone">Stream Name</label>
-                                                    <input name="name" type="text" class="form-control"
-                                                        id="exampleInputPersonalPhone" placeholder="Enter stream name">
+                                                    <input name="name" type="text" class="form-control" id="exampleInputPersonalPhone" placeholder="Enter stream name">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode">Upload Image</label>
-                                                    <input type="file" class="form-control" id="exampleInputcode"
-                                                        name="image" placeholder="" required width="540" height="300">
+                                                    <input type="file" class="form-control" id="exampleInputcode" name="image" placeholder="" required width="540" height="300">
                                                 </div>
                                             </div>
 
@@ -145,8 +143,7 @@ if (isset($_POST["submit"])) {
 
 
                                         </div>
-                                        <button type="submit" value="submit" name="submit"
-                                            class="btn btn-info mt-3 mb-0" style="text-align:right">Add Stream</button>
+                                        <button type="submit" value="submit" name="submit" class="btn btn-info mt-3 mb-0" style="text-align:right">Add Stream</button>
                                     </div>
                                 </div>
                             </div>
@@ -160,23 +157,8 @@ if (isset($_POST["submit"])) {
         </div>
 
 
-
-        <!-- Footer opened -->
-        <div class="main-footer">
-            <div class="container-fluid pd-t-0-f ht-100p">
-                Copyrights ©TriaRight 2023. All rights reserved by <a href="https://www.triaright.com"
-                    class="text-primary">TriaRight</a> developed by <span class="fa fa-heart text-danger"></span><a
-                    href="http://www.mycompany.co.in" class="text-primary"> MY Company</a>.
-            </div>
-        </div>
-        <!-- Footer closed -->
-
     </div>
     <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
     <?php include("./scripts.php"); ?>
 

@@ -54,6 +54,8 @@ if (isset($_POST["create"])) {
         $_SESSION["err_msg"] = "Fill Correct Details.";
     }
 }
+
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 

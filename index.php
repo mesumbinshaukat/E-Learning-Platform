@@ -187,11 +187,11 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12 text-center">
-
                         <h1>Latest Courses</h1>
                         <?php if (mysqli_num_rows($l_query) > 0) { ?>
                         <div class="owl-carousel owl-theme text-dark">
-                            <?php while ($l_course = mysqli_fetch_assoc($l_query)) {
+                            <?php
+                                while ($l_course = mysqli_fetch_assoc($l_query)) {
                                     $course_one = $l_course['course_one'];
                                     $course_two = $l_course['course_two'];
                                     $course_three = $l_course['course_three'];
@@ -249,11 +249,9 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                                             $limited_title_two = implode(' ', $title_words_two);
                                             $limited_title_three = implode(' ', $title_words_three);
                                         }
-                                        echo "Course One ID: " . $course_one . "<br>";
-                                        echo "Course Two ID: " . $course_two . "<br>";
-                                        echo "Course Three ID: " . $course_three . "<br>";
-                                ?>
 
+                                        // Display course cards
+                                ?>
                             <!-- Course One -->
                             <div class="card mx-3" style="width: 20rem; border: 2px solid black;">
                                 <a href="./course_details.php?id=<?php echo $fetch_course_one['id']; ?>">
@@ -316,7 +314,6 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                                     </div>
                                 </a>
                             </div>
-
                             <?php
                                     }
                                 }
@@ -325,12 +322,10 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                         <?php } else {
                             echo "<h3>No Available Courses</h3>";
                         } ?>
-
                     </div>
                 </div>
             </div>
         </section>
-
         <section class="section section-lg  ">
             <div class="container">
                 <div class="row justify-content-center">

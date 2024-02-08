@@ -241,11 +241,10 @@
                     <span class="side-menu__label">Display 3 Courses</span><i class="angle bi bi-chevron-right"></i></a>
                 <ul class="slide-menu">
 
-                    <li><a class="bi bi-dot" href="latest_course.php" style="font-size:14px; line-height: 2;">Add</a>
+                    <li><a class="bi bi-dot" href="latest_course.php" style="font-size:14px; line-height: 2;">Manage
+                            Latest Courses</a>
                     </li>
-                    <li><a class="bi bi-dot" href="paymentslist.php" style="font-size:14px; line-height: 2;">List</a>
-                    </li>
-                    <!--	<li><a class="bi bi-dot" href="paymentanalysis.php">Analysis</a></li> -->
+
 
 
                 </ul>
@@ -409,9 +408,10 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Chats</a></li>
                     <li><a class="bi bi-dot" href="compose.php" style="font-size:14px; line-height: 2;">Compose</a></li>
                     <li><a class="bi bi-dot" href="inbox.php" style="font-size:14px; line-height: 2;">Inbox</a></li>
-                    <li><a class="bi bi-dot" href="livechat.php" style="font-size:14px; line-height: 2;">Live Chat Messages</a></li>
-                   
-            
+                    <li><a class="bi bi-dot" href="livechat.php" style="font-size:14px; line-height: 2;">Live Chat
+                            Messages</a></li>
+
+
                     <!--		<li><a class="bi bi-dot" href="mailanalysis.php">Analysis</a></li> -->
                 </ul>
             </li>

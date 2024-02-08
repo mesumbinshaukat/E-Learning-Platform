@@ -49,6 +49,23 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     } else {
         echo mysqli_error($conn);
     }
+} elseif (isset($_GET["type"]) && isset($_GET["id"]) && $_GET["type"] == "stream") {
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `stream` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        if (isset($_SESSION['previous_url'])) {
+            header('Location: ' . $_SESSION['previous_url']);
+            exit();
+        } else {
+            // Fallback redirection if previous_url is not set
+            header('Location: ./dashboard.php');
+            exit();
+        }
+    } else {
+        echo mysqli_error($conn);
+    }
 } else {
     $error = "Invalid Request";
     header("location:dashboard.php?error=" . $error . "");

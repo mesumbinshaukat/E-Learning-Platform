@@ -21,9 +21,22 @@ $select_query = mysqli_query($conn, "SELECT * FROM `course`");
 
 $check_latest_course = mysqli_query($conn, "SELECT * FROM `latest_course`");
 
-if (!empty($check_latest_course)) {
-    $_SESSION["latest_course_exist"] = true;
+$fetch_id = mysqli_fetch_assoc($check_latest_course)['id'];
+
+if (isset($_POST["update"])) {
+    $course_one = $_POST["course_one"];
+    $course_two = $_POST["course_two"];
+    $course_three = $_POST["course_three"];
+
+    $query = mysqli_prepare($conn, "UPDATE `latest_course` SET `course_one`=?,`course_two`=?,`course_three`=? WHERE `id`='$fetch_id'");
+    mysqli_stmt_bind_param($query, "sss", $course_one, $course_two, $course_three);
+    if (mysqli_stmt_execute($query)) {
+        header("location: latest_course.php");
+    } else {
+        echo mysqli_error($conn);
+    }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -40,12 +53,6 @@ if (!empty($check_latest_course)) {
     <?php include("./switcher.php"); ?>
 
     <div class="page">
-
-
-        <?php if ($_SESSION["latest_course_exist"]) {
-            echo "<script>toastr.success('Latest Course Already Exist.')</script>";
-            session_destroy();
-        } ?>
 
         <div class="main-header side-header sticky nav nav-item">
 
@@ -172,13 +179,17 @@ if (!empty($check_latest_course)) {
 
 
                                     </div>
-                                    <button type="submit" value="submit" name="submit" class="btn btn-info mt-3 mb-0"
-                                        style="text-align:right"
-                                        <?php if ($_SESSION["latest_course_exist"]) {
-                                                                                                                                                    echo "disabled";
-                                                                                                                                                } ?>>Add
-                                        Course</button>
 
+                                    <?php if (isset($check_latest_course)) {
+                                        echo "<button type='submit' name='update' class='btn btn-info mt-3 mb-0'
+                                        style='text-align:right'>Update
+                                        Course</button>";
+                                    } else { ?>
+
+                                    <button type="submit" value="submit" name="submit" class="btn btn-info mt-3 mb-0"
+                                        style="text-align:right">Add
+                                        Course</button>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

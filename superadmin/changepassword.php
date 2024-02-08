@@ -26,6 +26,7 @@ if (isset($_POST["submit"])) {
         }
     }
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,11 +90,11 @@ if (isset($_POST["submit"])) {
                 <!-- row -->
                 <form method="post">
                     <?php if (isset($_SESSION["success"])) { ?>
-                    <div class="d-flex justify-content-center">
-                        <div class="alert alert-success" role="alert">
-                            <?php echo $_SESSION["success"]; ?>
+                        <div class="d-flex justify-content-center">
+                            <div class="alert alert-success" role="alert">
+                                <?php echo $_SESSION["success"]; ?>
+                            </div>
                         </div>
-                    </div>
                     <?php session_destroy();
                     } ?>
                     <div class="row">
@@ -108,8 +109,7 @@ if (isset($_POST["submit"])) {
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputPassword">Current Password</label>
-                                                <input type="password" class="form-control" oninput="checkPassword()"
-                                                    id="current_password" placeholder="Enter Current Password">
+                                                <input type="password" class="form-control" oninput="checkPassword()" id="current_password" placeholder="Enter Current Password">
                                                 <p class="text-danger" id="current_password_msg">Incorrect Password</p>
                                             </div>
                                             <?php
@@ -118,72 +118,72 @@ if (isset($_POST["submit"])) {
                                             $current_password_hash = mysqli_fetch_assoc($query)["password"];
                                             ?>
                                             <script>
-                                            let check = false;
+                                                let check = false;
 
-                                            function debounce(func, wait, immediate) {
-                                                let timeout;
-                                                return function() {
-                                                    const context = this,
-                                                        args = arguments;
-                                                    const later = function() {
-                                                        timeout = null;
-                                                        if (!immediate) func.apply(context, args);
+                                                function debounce(func, wait, immediate) {
+                                                    let timeout;
+                                                    return function() {
+                                                        const context = this,
+                                                            args = arguments;
+                                                        const later = function() {
+                                                            timeout = null;
+                                                            if (!immediate) func.apply(context, args);
+                                                        };
+                                                        const callNow = immediate && !timeout;
+                                                        clearTimeout(timeout);
+                                                        timeout = setTimeout(later, wait);
+                                                        if (callNow) func.apply(context, args);
                                                     };
-                                                    const callNow = immediate && !timeout;
-                                                    clearTimeout(timeout);
-                                                    timeout = setTimeout(later, wait);
-                                                    if (callNow) func.apply(context, args);
-                                                };
-                                            }
+                                                }
 
-                                            const debouncedCheckPassword = debounce(checkPassword,
-                                                500); // Adjust the delay as needed
+                                                const debouncedCheckPassword = debounce(checkPassword,
+                                                    500); // Adjust the delay as needed
 
-                                            function checkPassword() {
-                                                const inputPassword = document.getElementById('current_password').value;
-                                                const passwordMsg = document.getElementById('current_password_msg');
+                                                function checkPassword() {
+                                                    const inputPassword = document.getElementById('current_password').value;
+                                                    const passwordMsg = document.getElementById('current_password_msg');
 
-                                                // Make an AJAX request to a PHP script for password verification
-                                                fetch('verify_password.php', {
-                                                        method: 'POST',
-                                                        headers: {
-                                                            'Content-Type': 'application/x-www-form-urlencoded',
-                                                        },
-                                                        body: 'current_password=' + encodeURIComponent(
-                                                            inputPassword),
-                                                    })
-                                                    .then(response => response.json())
-                                                    .then(data => {
-                                                        if (data.verify_pass) {
-                                                            check = true;
-                                                            passwordMsg.textContent = 'Password Matched';
-                                                            passwordMsg.classList.remove('text-danger');
-                                                            passwordMsg.classList.add('text-success');
-                                                        } else {
-                                                            check = false;
-                                                            passwordMsg.textContent = 'Incorrect Password';
-                                                            passwordMsg.classList.remove('text-success');
-                                                            passwordMsg.classList.add('text-danger');
-                                                        }
+                                                    // Make an AJAX request to a PHP script for password verification
+                                                    fetch('verify_password.php', {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/x-www-form-urlencoded',
+                                                            },
+                                                            body: 'current_password=' + encodeURIComponent(
+                                                                inputPassword),
+                                                        })
+                                                        .then(response => response.json())
+                                                        .then(data => {
+                                                            if (data.verify_pass) {
+                                                                check = true;
+                                                                passwordMsg.textContent = 'Password Matched';
+                                                                passwordMsg.classList.remove('text-danger');
+                                                                passwordMsg.classList.add('text-success');
+                                                            } else {
+                                                                check = false;
+                                                                passwordMsg.textContent = 'Incorrect Password';
+                                                                passwordMsg.classList.remove('text-success');
+                                                                passwordMsg.classList.add('text-danger');
+                                                            }
 
-                                                        if (check === true) {
-                                                            document.querySelector('#new_pass').removeAttribute(
-                                                                'disabled');
-                                                            document.querySelector('#match_pass').removeAttribute(
-                                                                'disabled');
-                                                            document.querySelector('#submit').removeAttribute(
-                                                                'disabled');
-                                                        } else {
-                                                            document.querySelector('#new_pass').setAttribute(
-                                                                'disabled', true);
-                                                            document.querySelector('#match_pass').setAttribute(
-                                                                'disabled', true);
-                                                            document.querySelector('#submit').setAttribute(
-                                                                'disabled', true);
-                                                        }
-                                                    })
-                                                    .catch(error => console.error('Error:', error));
-                                            }
+                                                            if (check === true) {
+                                                                document.querySelector('#new_pass').removeAttribute(
+                                                                    'disabled');
+                                                                document.querySelector('#match_pass').removeAttribute(
+                                                                    'disabled');
+                                                                document.querySelector('#submit').removeAttribute(
+                                                                    'disabled');
+                                                            } else {
+                                                                document.querySelector('#new_pass').setAttribute(
+                                                                    'disabled', true);
+                                                                document.querySelector('#match_pass').setAttribute(
+                                                                    'disabled', true);
+                                                                document.querySelector('#submit').setAttribute(
+                                                                    'disabled', true);
+                                                            }
+                                                        })
+                                                        .catch(error => console.error('Error:', error));
+                                                }
                                             </script>
 
 
@@ -193,22 +193,19 @@ if (isset($_POST["submit"])) {
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputPassword">New Password</label>
-                                                <input type="text" name="new_pass" class="form-control" id="new_pass"
-                                                    placeholder="Enter New Passowrd" disabled>
+                                                <input type="text" name="new_pass" class="form-control" id="new_pass" placeholder="Enter New Passowrd" disabled>
 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputPassword">Re-Enter New Password</label>
-                                                <input type="text" class="form-control" name="match_pass"
-                                                    id="match_pass" placeholder="Re-Enter New Passowrd" disabled>
+                                                <input type="text" class="form-control" name="match_pass" id="match_pass" placeholder="Re-Enter New Passowrd" disabled>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <button type="submit" class="btn btn-info mt-3 mb-0" style="text-align:right"
-                                        name="submit" id="submit" disabled>Change
+                                    <button type="submit" class="btn btn-info mt-3 mb-0" style="text-align:right" name="submit" id="submit" disabled>Change
                                         Password</button>
 
                                 </div>

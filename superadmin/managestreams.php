@@ -4,14 +4,14 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 $select_query = "SELECT * FROM `stream`";
 
 $select_query_run = mysqli_query($conn, $select_query);
-
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@ $select_query_run = mysqli_query($conn, $select_query);
 
 <head>
 
+    <title>Manage Stream</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +31,7 @@ $select_query_run = mysqli_query($conn, $select_query);
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-    <?php include("./switcher.php")?>
+    <?php include("./switcher.php") ?>
 
     <!-- Page -->
     <div class="page">
@@ -88,7 +89,7 @@ $select_query_run = mysqli_query($conn, $select_query);
                                                 <th class="border-bottom-0">Stream ID</th>
                                                 <th class="border-bottom-0">Category</th>
                                                 <th class="border-bottom-0">Name</th>
-                                                <th class="border-bottom-0">Available</th>
+
                                                 <th class="border-bottom-0">update</th>
                                                 <th class="border-bottom-0">Delete</th>
 
@@ -98,33 +99,32 @@ $select_query_run = mysqli_query($conn, $select_query);
                                         </thead>
                                         <tbody>
                                             <?php
-											if (mysqli_num_rows($select_query_run) > 0) {
+                                            if (mysqli_num_rows($select_query_run) > 0) {
 
-												while ($i = mysqli_fetch_assoc($select_query_run)) {
+                                                while ($i = mysqli_fetch_assoc($select_query_run)) {
 
 
-											?>
+                                            ?>
                                             <tr>
                                                 <td><?php echo $i["id"] ?></td>
                                                 <td><?php echo $i["date"] ?></td>
                                                 <td>TRSTRM_<?php echo $i["id"] ?></td>
                                                 <td><?php echo $i["stream_location"] ?></td>
                                                 <td><?php echo $i["stream_name"] ?></td>
-                                                <td>--</td>
 
                                                 <td> <a href="updatestream.php?id=<?php echo $i["id"] ?>"
                                                         class="btn btn-info">update</a>
                                                 </td>
                                                 <td> <a class="btn btn-danger"
-                                                        href="connection_files/manage/delete_stream.php?id=<?php echo $i["id"] ?>">delete</a>
+                                                        href="delete.php?id=<?php echo $i["id"] ?>&type=stream">Delete</a>
                                                 </td>
 
                                             </tr>
                                             <?php
 
-												}
-											}
-											?>
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
