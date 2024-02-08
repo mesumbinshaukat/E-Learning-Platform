@@ -7,6 +7,28 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     header('location: ../super-admin_login.php');
     exit();
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Handle Courses filter
+    $courseFilter = isset($_POST['course_name']) ? $_POST['course_name'] : '';
+    $courseFilterQuery = ($courseFilter != '') ? " AND course.course_name = '$courseFilter'" : '';
+
+    // Handle Trainer filter
+    $trainerFilter = isset($_POST['trainer_name']) ? $_POST['trainer_name'] : '';
+    $trainerFilterQuery = ($trainerFilter != '') ? " AND trainer.name = '$trainerFilter'" : '';
+
+    // Modify your existing SQL query to include the filters
+    $allocation_query = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` 
+                                            INNER JOIN `trainer` ON allocate_trainer_course.trainer_id = trainer.id
+                                            INNER JOIN `course` ON allocate_trainer_course.course_id = course.id
+                                            WHERE 1 $courseFilterQuery $trainerFilterQuery");
+} else {
+    // If the form is not submitted, fetch all records
+    $allocation_query = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` 
+                                            INNER JOIN `trainer` ON allocate_trainer_course.trainer_id = trainer.id
+                                            INNER JOIN `course` ON allocate_trainer_course.course_id = course.id");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,8 +93,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
                             <b> <label>Courses</label> </b>
-                            <select name="course_name" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
+                            <select name="course_name" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <?php
                                 $course = mysqli_query($conn, "SELECT * FROM `course`");
@@ -89,8 +110,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                         </div>
                         <div class="form-group col-md-4">
                             <b> <label>Trainer</label> </b>
-                            <select name="trainer_name" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
+                            <select name="trainer_name" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <?php
                                 $trainer = mysqli_query($conn, "SELECT * FROM `trainer`");
@@ -106,11 +126,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             </select>
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
-                            style="height:40px;width:100px;margin-top:35px">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" style="height:40px;width:100px;margin-top:35px">Search</button>
                     </div>
                 </form>
-
                 <br>
                 <br>
                 <div class="row row-sm">
@@ -119,8 +137,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -130,52 +147,28 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">Trainer ID</th>
                                                 <th class="border-bottom-0">Trainer Name</th>
                                                 <th class="border-bottom-0">Course name</th>
-
-
-
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <tbody>
                                             <?php
-                                            $allocation_query = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course`");
-
                                             if (mysqli_num_rows($allocation_query) > 0) {
                                                 $i = 1;
                                                 while ($al = mysqli_fetch_assoc($allocation_query)) {
-                                                    $trainer_id = $al['trainer_id'];
-                                                    $course_id = $al['course_id'];
-                                                    $trainer = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '$trainer_id'");
-                                                    $course = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '$course_id'");
-
-                                                    if (mysqli_num_rows($trainer) > 0) {
-                                                        $tr = mysqli_fetch_assoc($trainer);
-                                                        if (mysqli_num_rows($course) > 0) {
-                                                            $cr = mysqli_fetch_assoc($course);
-                                                            echo "<tr>
-                                                                    <td>" . $i . "</td>
-                                                                    <td>" . $al['created_date'] . "</td>
-                                                                    <td>ALL_" . $al['id'] . "</td>
-                                                                    <td>TRALLID_" . $tr['id'] . "</td>
-                                                                    <td>" . $tr['name'] . "</td>
-                                                                    <td>" . $cr['course_name'] . "</td>
-                                                                    
-                                                                </tr>";
-                                                            $i++;
-                                                        }
-                                                    } else {
-                                                        echo "No Trainer Found";
-                                                    }
+                                                    echo "<tr>
+                                                            <td>" . $i . "</td>
+                                                            <td>" . $al['created_date'] . "</td>
+                                                            <td>ALL_" . $al['id'] . "</td>
+                                                            <td>TRALLID_" . $al['trainer_id'] . "</td>
+                                                            <td>" . $al['name'] . "</td>
+                                                            <td>" . $al['course_name'] . "</td>
+                                                        </tr>";
+                                                    $i++;
                                                 }
+                                            } else {
+                                                echo "<tr><td colspan='6'>No records found</td></tr>";
                                             }
-
                                             ?>
-
-
-
-
                                         </tbody>
                                     </table>
                                 </div>
