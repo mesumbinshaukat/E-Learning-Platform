@@ -37,3 +37,8 @@
 	    <!-- SWITCHER CSS -->
 		<link href="assets/switcher/css/switcher.css" rel="stylesheet"/>
 		<link href="assets/switcher/demo.css" rel="stylesheet"/>
+<!-- JQUERY JS -->
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
