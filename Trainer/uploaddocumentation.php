@@ -20,7 +20,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 		<?php 
 	 include('./style.php'); 
 	  ?>
-
+ 
 	</head>
 
 	<body class="ltr main-body app sidebar-mini">

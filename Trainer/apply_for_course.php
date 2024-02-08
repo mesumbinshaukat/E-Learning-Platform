@@ -1,0 +1,170 @@
+
+<?php 
+session_start();
+include('../db_connection/connection.php');
+if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
+	header('location: ../trainer_login.php');
+	exit();
+}
+$course_id = $_GET['id']; 
+if(isset($_POST['submitBtn'])){
+$trainer_name = $_POST['trainer_name'];
+$course_name = $_POST['course_name'];
+$trainer_id = $_POST['trainer_id'];
+$insert_query = ($conn->query("INSERT INTO `trainer_applying_for_courses`(`trainer_name`, `trainer_id`, `course_name`, `course_id`) VALUES ('$trainer_name','$trainer_id','$course_name','$course_id')"));
+if($insert_query){
+    $_SESSION['message_success'] = true;
+   
+}
+else{
+    $_SESSION['message_failed'] = true;
+
+}
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="Description" content="">
+		
+		<!-- Title -->
+		<title> TriaRight: The New Era of Learning</title>
+
+		<?php 
+	 include('./style.php'); 
+	  ?>
+
+	</head>
+
+	<body class="ltr main-body app sidebar-mini">
+
+	<?php 
+	 include('./switcher.php'); 
+	  ?>
+		<!-- Loader -->
+	
+		<!-- /Loader -->
+
+		<!-- Page -->
+		<div class="page">
+            <?php 
+            if(isset($_SESSION['message_success']) && $_SESSION['message_success'] == true){
+                echo "<script>toastr.success('Applied Successfully!');</script>";
+                session_destroy();
+            }
+            elseif(isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true){
+                echo "<script>toastr.error('Error in applying');</script>";
+                session_destroy();
+            }
+            ?>
+			<div>
+	
+				<div class="main-header side-header sticky nav nav-item">
+				<?php include('./partials/navbar.php')?>			
+				</div>
+				<!-- /main-header -->
+				 <!-- main-sidebar -->
+ <div class="sticky">
+				<?php include('./partials/sidebar.php')?>
+				</div>
+				<!-- main-sidebar -->
+
+			</div>			
+			<form action="" method="POST" >
+			<!-- main-content -->
+			<!-- main-content -->
+			<div class="main-content app-content">
+
+				<!-- container -->
+				<div class="main-container container-fluid">
+
+                    
+					<!-- breadcrumb -->
+					<div class="breadcrumb-header justify-content-between">
+						<div class="left-content">
+						  <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Trainer Applying for Course</span>
+						</div>
+						<div class="justify-content-center mt-2">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Schedule</li>
+								<li class="breadcrumb-item active" aria-current="page">Meetings</li>
+							</ol>
+						</div>
+					</div>
+				
+									
+                                    					
+					</div>
+					<br>
+									
+
+					<!-- row -->
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="card">
+								<div class="card-body">
+									
+									<?php 
+                                    $select_trainer_name = ($conn->query("SELECT * FROM `trainer` WHERE `username` = '$_COOKIE[trainer_username]'"))->fetch_assoc();
+                                    ?>
+
+									<div class="">
+										<div class="row row-xs formgroup-wrapper">
+									     <div class="col-md-6">
+											<div class="form-group">
+												<label for="exampleInputDOB">Trainer </label>
+												<input class="form-control" name="trainer_name" id="trainer_name" required value="<?php echo $select_trainer_name['name']?>" type="text">
+                                                <input type="hidden" name="trainer_id" id="trainer_id" value="<?php echo $select_trainer_name['id'] ?>">
+											</div>
+											</div>
+											
+											<div class="col-md-6">
+											<div class="form-group">
+                                        <?php
+                                       
+                                        $select_courses = ($conn->query("SELECT * FROM `course` WHERE id = '$course_id'"))->fetch_assoc();
+                                        ?>    
+										<label for="course">Course</label>
+                                        <input type="text" class="form-control" name="course_name" id="course_name" value="<?php echo $select_courses['course_name'] ?>" required>
+									        </div>
+											</div>
+										
+										</div>
+								<input type="submit" name="submitBtn" class="btn btn-info mt-3 mb-0"  data-bs-toggle="modal" style="text-align:right">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+
+    
+				</div>
+				<!-- Container closed -->
+			</div>
+</form>
+		
+
+		
+
+       
+
+		</div>
+		<!-- End Page -->
+
+        <!-- BACK-TO-TOP -->
+		<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
+
+	    <?php 
+	 include('./script.php'); 
+	  ?>
+    </body>
+
+<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
+</html>

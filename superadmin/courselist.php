@@ -95,6 +95,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 													echo "<td>" . $row['course_name'] . "</td>";
 													echo "<td>" . $row['final_cost'] . "</td>";
 													echo "<td>" . $row['duration_days'] . " days</td>";
+                                                    echo "</tr>";
 												}
 											} else {
 												echo "No data found";
