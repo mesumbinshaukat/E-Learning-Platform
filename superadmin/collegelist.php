@@ -15,6 +15,7 @@ if (isset($_GET["error"])) {
     // Store the sanitized value in the session
     $_SESSION["error"] = $error;
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +86,7 @@ if (isset($_GET["error"])) {
                                 $result = mysqli_query($conn, $query);
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        if ($row["affiliated_university"] != $_SESSION["affiliated_university"]) {
+                                        if ($row["affiliated_university"] != $_SESSION["affiliated_university"] && !empty($row["affiliated_university"])) {
                                             $_SESSION["affiliated_university"] = $row["affiliated_university"];
                                             echo "<option value='" . $row["affiliated_university"] . "'>" . $row["affiliated_university"] . "</option>";
                                         }
@@ -104,7 +105,7 @@ if (isset($_GET["error"])) {
                                 $result = mysqli_query($conn, $query);
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        if ($row["district"] != $_SESSION["district"]) {
+                                        if ($row["district"] != $_SESSION["district"] && !empty($row["district"])) {
                                             $_SESSION["district"] = $row["district"];
                                             echo "<option value='" . $row["district"] . "'>" . $row["district"] . "</option>";
                                         }
@@ -171,7 +172,7 @@ if (isset($_GET["error"])) {
                                                     echo "<tr>";
                                                     echo "<td>" . $i . "</td>";
                                                     echo "<td>" . $row["creation_date"] . "</td>";
-                                                    echo "<td>COL_" . $row["college_code"] . "</td>";
+                                                    echo "<td>COL_" . $row["id"] . "</td>";
                                                     echo "<td>" . $row["name"] . "</td>";
                                                     echo "<td>" . $row["representative_name"] . "</td>";
                                                     echo "<td>" . $row["district"] . "</td>";

@@ -57,6 +57,7 @@ if (isset($_POST["create"]) && isset($_GET["id"])) {
         echo "Error: " . $query->error;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,16 +113,16 @@ if (isset($_POST["create"]) && isset($_GET["id"])) {
                                 College</span>
                         </div>
                         <?php if (isset($_SESSION["error"])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo "Error while creating. Error: '" . $_SESSION["error"] . "'"; ?>
-                            </div>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo "Error while creating. Error: '" . $_SESSION["error"] . "'"; ?>
+                        </div>
                         <?php unset($_SESSION["error"]);
                             session_destroy();
                         } ?>
                         <?php if (isset($_SESSION["success"])) { ?>
-                            <div class="alert alert-success" role="alert">
-                                <?php echo "Successfully Created."; ?>
-                            </div>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo "Successfully Created."; ?>
+                        </div>
                         <?php unset($_SESSION["success"]);
                             session_destroy();
                         } ?>
@@ -148,140 +149,176 @@ if (isset($_POST["create"]) && isset($_GET["id"])) {
                                             $result = mysqli_query($conn, $sql);
                                             $row = mysqli_fetch_assoc($result);
                                         ?>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputName">College Name <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" value="<?php echo $row["name"]; ?>" class="form-control" id="exampleInputName" name="college_name" placeholder="Enter College Name" required>
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName">College Name <span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                    <span style="color:red;font-size: 90%;">*</span><span
+                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <input type="text" value="<?php echo $row["name"]; ?>"
+                                                    class="form-control" id="exampleInputName" name="college_name"
+                                                    placeholder="Enter College Name" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName">College Code</label>
+                                                <input type="text" value="<?php echo $row["college_code"]; ?>"
+                                                    class="form-control" id="exampleInputName" name="college_code"
+                                                    placeholder="Enter College Code">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPerEmail">Address </label>
+                                                <input type="text" value="<?php echo $row["address"]; ?>"
+                                                    class="form-control " id="exampleInputPerEmail" name="address"
+                                                    rows="5" placeholder="Enter address">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPerEmail">District</label>
+                                                <input type="text" value="<?php echo $row["district"]; ?>"
+                                                    class="form-control" id="exampleInputPerEmail" name="district"
+                                                    placeholder="Enter District">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPerEmail">State</label>
+                                                <input type="text" value="<?php echo $row["state"]; ?>"
+                                                    class="form-control" id="exampleInputPerEmail" name="state"
+                                                    placeholder="Enter State">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPerEmail">PIN code </label>
+                                                <input type="number" value="<?php echo $row["pin_code"]; ?>"
+                                                    class="form-control" id="exampleInputPerEmail" name="pin_code"
+                                                    placeholder="enter Pincode">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPersonalPhone">College Phone Number<span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                    <span style="color:red;font-size: 90%;">*</span><span
+                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <input type="number" value="<?php echo $row["contact_number"]; ?>"
+                                                    class="form-control" id="exampleInputPersonalPhone"
+                                                    name="college_phone_number" placeholder="Enter Contact Number"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPerEmail">College Mail Id <span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
+                                                    <span style="color:red;font-size: 90%;">*</span><span
+                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <input type="email" class="form-control" id="exampleInputPerEmail"
+                                                    name="college_mail_id" value="<?php echo $row["email"]; ?>"
+                                                    placeholder="Enter Mail Id" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputCompanyPhone">College Represntative Name
+                                                </label>
+                                                <input type="Text" value="<?php echo $row["representative_name"]; ?>"
+                                                    class="form-control" id="exampleInputCompanyPhone"
+                                                    name="college_representative_name"
+                                                    placeholder="Enter Representative Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPersonalPhone">College Represntative Contact
+                                                    No</label>
+                                                <input type="number" class="form-control" id="exampleInputPersonalPhone"
+                                                    name="college_representative_contact_no"
+                                                    value="<?php echo $row["representative_contact_number"]; ?>"
+                                                    placeholder="Enter Represntative Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPerEmail">College Represntative Mail Id
+                                                </label>
+                                                <input type="email" value="<?php echo $row["representative_email"]; ?>"
+                                                    class="form-control" id="exampleInputPerEmail"
+                                                    name="college_representative_mail_id"
+                                                    placeholder="Enter Represntative Mail Id">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputQualification">College Streams</label>
+                                                <input type="text" value="<?php echo $row["college_streams"]; ?>"
+                                                    class="form-control" id="exampleInputQualification"
+                                                    name="college_stream" placeholder="B.SC,B.COM">
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputName">College Code <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" value="<?php echo $row["college_code"]; ?>" class="form-control" id="exampleInputName" name="college_code" placeholder="Enter College Code" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPerEmail">Address <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" value="<?php echo $row["address"]; ?>" class="form-control " id="exampleInputPerEmail" name="address" rows="5" placeholder="Enter address" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPerEmail">District <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" value="<?php echo $row["district"]; ?>" class="form-control" id="exampleInputPerEmail" name="district" placeholder="Enter District" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPerEmail">State <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" value="<?php echo $row["state"]; ?>" class="form-control" id="exampleInputPerEmail" name="state" placeholder="Enter State" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPerEmail">PIN code <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="number" value="<?php echo $row["pin_code"]; ?>" class="form-control" id="exampleInputPerEmail" name="pin_code" placeholder="enter Pincode" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPersonalPhone">College Phone Number<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="number" value="<?php echo $row["contact_number"]; ?>" class="form-control" id="exampleInputPersonalPhone" name="college_phone_number" placeholder="Enter Contact Number" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPerEmail">College Mail Id <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="email" class="form-control" id="exampleInputPerEmail" name="college_mail_id" value="<?php echo $row["email"]; ?>" placeholder="Enter Mail Id" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputCompanyPhone">College Represntative Name
-                                                        <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="Text" value="<?php echo $row["representative_name"]; ?>" class="form-control" id="exampleInputCompanyPhone" name="college_representative_name" placeholder="Enter Representative Name" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPersonalPhone">College Represntative Contact
-                                                        No<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="number" class="form-control" id="exampleInputPersonalPhone" name="college_representative_contact_no" value="<?php echo $row["representative_contact_number"]; ?>" required placeholder="Enter Represntative Number">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPerEmail">College Represntative Mail Id
-                                                        <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="email" value="<?php echo $row["representative_email"]; ?>" class="form-control" id="exampleInputPerEmail" name="college_representative_mail_id" placeholder="Enter Represntative Mail Id" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputQualification">College Streams ( seperate
-                                                        your streams by comma(,)) <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" value="<?php echo $row["college_streams"]; ?>" class="form-control" id="exampleInputQualification" name="college_stream" placeholder="B.SC,B.COM" required>
-                                                </div>
-
-                                            </div>
+                                        </div>
 
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputQualification">Affliated Univeristy <span style="color:#D3D3D3;font-size: 90%;"> (Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" value="<?php echo $row["affiliated_university"]; ?>" class="form-control" id="exampleInputQualification" name="affiliated_university" placeholder="Enter University Board" required>
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputQualification">Affliated Univeristy</label>
+                                                <input type="text" value="<?php echo $row["affiliated_university"]; ?>"
+                                                    class="form-control" id="exampleInputQualification"
+                                                    name="affiliated_university" placeholder="Enter University Board">
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputQualification">College Website<span style="color:#D3D3D3;font-size: 90%;">
-                                                            (Optional)</span></label>
-                                                    <input type="text" value="<?php echo $row["website"]; ?>" class="form-control" id="exampleInputQualification" name="college_website" placeholder="Enter Website">
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputQualification">College Website<span
+                                                        style="color:#D3D3D3;font-size: 90%;">
+                                                        (Optional)</span></label>
+                                                <input type="text" value="<?php echo $row["website"]; ?>"
+                                                    class="form-control" id="exampleInputQualification"
+                                                    name="college_website" placeholder="Enter Website">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputUserName">College Username <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="text" class="form-control" id="exampleInputUserName" name="college_username" value="<?php echo $row["username"]; ?>" placeholder="Enter Username" required>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputUserName">College Username<span
+                                                        style="color:#D3D3D3;font-size: 90%;"> (Mandatory</span>
+                                                    <span style="color:red;font-size: 90%;">*</span><span
+                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <input type="text" class="form-control" id="exampleInputUserName"
+                                                    name="college_username" value="<?php echo $row["username"]; ?>"
+                                                    placeholder="Enter Username" required>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputPassword">Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" minlength=8 maxlenght=10>
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword">Password</label>
+                                                <input type="password" class="form-control" id="password"
+                                                    name="password" placeholder="Enter Password" minlength=8
+                                                    maxlenght=10>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputRe-EnterPassword">Re-Enter Password <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                        <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                    <input type="password" class="form-control" id="retypepassword" minlength=8 maxlenght=10 name="re_enter_password" placeholder="Re-Enter Password">
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputRe-EnterPassword">Re-Enter Password</label>
+                                                <input type="password" class="form-control" id="retypepassword"
+                                                    minlength=8 maxlenght=10 name="re_enter_password"
+                                                    placeholder="Re-Enter Password">
                                             </div>
+                                        </div>
 
-                                            <button type="submit" name="create" value="create" class="btn btn-primary mt-3 mb-0" style="text-align:right" onclick="return check()">Generate</button>
+                                        <button type="submit" name="create" value="create"
+                                            class="btn btn-primary mt-3 mb-0" style="text-align:right"
+                                            onclick="return check()">Update</button>
                                         <?php } ?>
                                     </div>
 
@@ -300,15 +337,15 @@ if (isset($_POST["create"]) && isset($_GET["id"])) {
         </form>
 
         <script type="text/javascript">
-            function check() {
-                var b = document.getElementById('password').value;
-                var c = document.getElementById('retypepassword').value;
-                if (b != c) {
-                    alert('Password doesnt match');
-                    return false;
-                } else
-                    return true;
-            }
+        function check() {
+            var b = document.getElementById('password').value;
+            var c = document.getElementById('retypepassword').value;
+            if (b != c) {
+                alert('Password doesnt match');
+                return false;
+            } else
+                return true;
+        }
         </script>
 
     </div>
