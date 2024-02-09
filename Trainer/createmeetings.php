@@ -1,8 +1,24 @@
 
 <?php 
+include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
 	header('location: ../trainer_login.php');
 	exit();
+}
+if(isset($_POST['submitBtn'])){
+	$date_of_meeting_link = $_POST['date_of_meeting_link'];
+	$Platform = $_POST['Platform'];
+	$Meeting_link = $_POST['Meeting_link'];
+	$insert_query = mysqli_prepare($conn, "INSERT INTO `internship_meetings`(`date_of_meeting_link`, `platform`, `meeting_link`) VALUES (?,?,?)");
+	$insert_query->bind_param('sss',$date_of_meeting_link,$Platform,$Meeting_link);
+	if($insert_query->execute()){
+		$_SESSION['message_success'] = true;
+		header("location:createmeetings.php");
+	}
+	else{
+		$_SESSION['message_failed'] = true;
+		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -29,10 +45,25 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	<?php 
 	 include('./switcher.php'); 
 	  ?>
+
+	  
+<?php
+	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+		echo "<script>toastr.success('Meeting Scheduled Successfully')</script>";
+		session_destroy();
+	}
+	?>
+
+    <?php
+	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+		session_destroy();
+	}
+	?>
 		<!-- Loader -->
-		<div id="global-loader">
+		<!-- <div id="global-loader">
 			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div>
+		</div> -->
 		<!-- /Loader -->
 
 		<!-- Page -->
@@ -51,7 +82,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 				<!-- main-sidebar -->
 
 			</div>			
-			<form action="../superadmin/connection_files/create/trainer_meetings_create.php" method="POST" enctype="multipart/form-data">
+			<form action="" method="POST" enctype="multipart/form-data">
 			<!-- main-content -->
 			<!-- main-content -->
 			<div class="main-content app-content">
@@ -73,33 +104,9 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 							</ol>
 						</div>
 					</div>
-					<!-- /breadcrumb -->
 					
-											<!-- <div class="row row-sm">
-					                 <div class="form-group col-md-4">
-										<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Course">
-											<option value="">Course1</option>
-											<option value="">Course2</option>
-											<option value="">Course3</option>
-											<option value="">Course4</option>
-											<option value="" selected>Course5</option>
-										</select>
-									</div>
-									<div class="form-group col-md-4">
-									<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Trainer">
-											<option value="">Trainer1</option>
-											<option value="">Trainer2</option>
-											<option value="">Trainer3</option>
-											<option value="">Trainer4</option>
-											<option value="" selected>Trainer5</option>
-										</select>
-									</div> -->
 									
-									<div class="form-group col-md-4">
-									<select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-										
-										</select>
-									</div>
+									
                                         &nbsp &nbsp	<a href="https://meet.google.com/" class="btn btn-success">Create Meet</a>       								
                                         &nbsp &nbsp	<a href="https://zoom.us/" class="btn btn-info">Create Zoom</a>       								
                                         &nbsp &nbsp	<a href="https://www.microsoft.com/en-in/microsoft-teams/log-in" class="btn btn-primary">Create Teams</a>       								
@@ -120,7 +127,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 									     <div class="col-md-6">
 											<div class="form-group">
 												<label for="exampleInputDOB">Date of Meeting link</label>
-												<input class="form-control" name="Date_of_Training_link" id="dateMask" required placeholder="MM/DD/YYYY" type="date">
+												<input class="form-control" name="date_of_meeting_link" id="dateMask" required placeholder="MM/DD/YYYY" type="date">
 											</div>
 											</div>
 											
@@ -148,7 +155,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 								
 									
 										</div>
-								<button type="submit" name="submit" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Upload Link</button>
+								<button type="submit" name="submitBtn" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Upload Link</button>
 									</div>
 								</div>
 							</div>
@@ -182,13 +189,8 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
                     </div>
 
             
-            <!-- Footer opened -->
-			<div class="main-footer">
-				<div class="container-fluid pd-t-0-f ht-100p">
-					 Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
-				</div>
-			</div>
-			<!-- Footer closed -->
+         
+		
 
 		</div>
 		<!-- End Page -->

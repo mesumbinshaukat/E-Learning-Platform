@@ -72,9 +72,9 @@ if (isset($_POST['suggestBtn'])) {
 	}
 	?>
     <!-- Loader -->
-    <div id="global-loader">
+    <!-- <div id="global-loader">
         <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div>
+    </div> -->
     <!-- /Loader -->
 
     <!-- Page -->

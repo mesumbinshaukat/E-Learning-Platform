@@ -76,7 +76,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 					</div>
 					<!-- /breadcrumb -->
 					
-										<!-- <div class="row row-sm">
+										<div class="row row-sm">
 					                 <div class="form-group col-md-4">
 										<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Course">
 											<option value="">Course1</option>
@@ -94,7 +94,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 											<option value="">Trainer4</option>
 											<option value="" selected>Trainer5</option>
 										</select>
-									</div> -->
+									</div>
 									
 									<div class="form-group col-md-4">
 	                               <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
@@ -121,7 +121,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 </form>
 
 
-		  <!-- <div class="modal fade" id="schedule">
+		  <div class="modal fade" id="schedule">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content modal-content-demo">
                                 <div class="modal-header">
@@ -137,16 +137,10 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
             
-            <!-- Footer opened -->
-			<div class="main-footer">
-				<div class="container-fluid pd-t-0-f ht-100p">
-					 Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
-				</div>
-			</div>
-			<!-- Footer closed -->
+         
 
 		</div>
 		<!-- End Page -->
@@ -159,5 +153,4 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	  ?>
     </body>
 
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 </html>

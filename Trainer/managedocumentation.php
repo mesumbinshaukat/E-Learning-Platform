@@ -21,7 +21,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 		<title> TriaRight: The New Era of Learning</title>
 
 		<?php 
-	 include('./script.php'); 
+	 include('./style.php'); 
 	  ?>
 
 	</head>

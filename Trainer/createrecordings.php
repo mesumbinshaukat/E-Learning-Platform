@@ -1,8 +1,24 @@
 
 <?php 
+include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
 	header('location: ../trainer_login.php');
 	exit();
+}
+if(isset($_POST['submitBtn'])){
+	$recording_name = $_POST['recording_name'];
+	$Date_of_Upload = $_POST['Date_of_Upload'];
+	$Driving_link = $_POST['Driving_link'];
+	$insert_query = mysqli_prepare($conn,"INSERT INTO `internship_recording`(`recording_topic_name`, `date_of_upload`, `driving_link`) VALUES (?,?,?)");
+	$insert_query->bind_param('sss',$recording_name,$Date_of_Upload,$Driving_link);
+	if($insert_query->execute()){
+		$_SESSION['message_success'] = true;	
+		header('location: createrecordings.php');
+	}
+	else{
+		$_SESSION['message_failed'] = true;
+		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -31,11 +47,23 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	<?php 
 	 include('./switcher.php'); 
 	  ?>
+<?php
+	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+		echo "<script>toastr.success('Meeting Scheduled Successfully')</script>";
+		session_destroy();
+	}
+	?>
 
+    <?php
+	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+		session_destroy();
+	}
+	?>
 		<!-- Loader -->
-		<div id="global-loader">
+		<!-- <div id="global-loader">
 			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div>
+		</div> -->
 		<!-- /Loader -->
 
 		<!-- Page -->
@@ -54,7 +82,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 				</div>
 				<!-- main-sidebar -->
 
-			</div>			<form action="../superadmin/connection_files/create/trainer_recordings_create.php" method="POST" enctype="multipart/form-data">
+			</div>			<form action="" method="POST" enctype="multipart/form-data">
 			<!-- main-content -->
 			<!-- main-content -->
 			<div class="main-content app-content">
@@ -76,32 +104,9 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 							</ol>
 						</div>
 					</div>
-					<!-- /breadcrumb -->
-                             <!-- 			<div class="row row-sm">
-					                 <div class="form-group col-md-4">
-										<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Course">
-											<option value="">Course1</option>
-											<option value="">Course2</option>
-											<option value="">Course3</option>
-											<option value="">Course4</option>
-											<option value="" selected>Course5</option>
-										</select>
-									</div>
-									<div class="form-group col-md-4">
-									<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Trainer">
-											<option value="">Trainer1</option>
-											<option value="">Trainer2</option>
-											<option value="">Trainer3</option>
-											<option value="">Trainer4</option>
-											<option value="" selected>Trainer5</option>
-										</select>
-									</div> -->
+					
 									
-									<div class="form-group col-md-4">
-									<select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-										
-										</select>
-									</div>
+								
                                                								
 									</div>
 									<br>
@@ -136,21 +141,16 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 										    <div class="col-md-6">
 											<div class="form-group">
 												<label for="exampleInputcode">Driving link</label>
-												<input type="text" class="form-control" id="exampleInputcode" placeholder="Enter meet link" name="Driving_link" required>
+												<input type="text" class="form-control" id="exampleInputcode" placeholder="Enter driving link" name="Driving_link" required>
 											</div>
 											</div> <br>
 											
 
-											<!--	<div class="col-md-6">-->
-											<!--<div class="form-group">-->
-											<!--	<label for="exampleInputcode"> additional Info</label>-->
-											<!--	<input type="text" class="form-control"  id="exampleInputcode" placeholder="" name="additional_Info" required>-->
-											<!--</div>-->
-											<!--</div>-->
+											
 
 									
 										</div>
-								<button type="submit" name="submit" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Upload Recording</button>
+								<button type="submit" name="submitBtn" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Upload Recording</button>
 									</div>
 								</div>
 							</div>
