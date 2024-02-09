@@ -1,11 +1,40 @@
-<?php 
+<?php
+session_start();
+
 include('../db_connection/connection.php');
+
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-	header('location: ../trainer_login.php');
-	exit();
+    header('location: ../trainer_login.php');
+    exit();
 }
-if(isset($_POST['CreateBtn'])){
-	$scheduled_date = $_POST['scheduled_date'];
+
+if (isset($_GET['s_id'])) {
+    $id = filter_var($_GET['s_id'], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $query = "SELECT * FROM `scheduling_internship` WHERE `id` = '$id'";
+    $run = mysqli_query($conn, $query);
+    if (!$run) {
+        if (isset($_SESSION['trainer_previous_url'])) {
+            header('Location: ' . $_SESSION['trainer_previous_url']);
+            exit();
+        } else {
+            // Fallback redirection if previous_url is not set
+            header('Location: ./dashboard.php');
+            exit();
+        }
+    }
+    $schedule = mysqli_fetch_assoc($run);
+
+    if (!$id) {
+        echo "Schedule not found!";
+        exit();
+    }
+
+    if (isset($_POST['UpdateBtn'])) {
+        // Updated code here is similar to the createcourse.php file
+
+        // Retrieve updated values
+        $scheduled_date = $_POST['scheduled_date'];
 	$main_topic = $_POST['main_topic'];
 	$Duration = $_POST['Duration'];
 	$tasks = $_POST['tasks'];
@@ -14,24 +43,41 @@ if(isset($_POST['CreateBtn'])){
 	$Topics_to_be_covered = $_POST['Topics_to_be_covered'];
 	$Training_Starting_time = $_POST['Training_Starting_time'];
 	$Training_Ending_time = $_POST['Training_Ending_time'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `scheduling_internship`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`) VALUES (?,?,?,?,?,?,?,?)");
-	$insert_query->bind_param("ssssssss",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time);
-	if($insert_query->execute()){
-		$_SESSION['message_success'] = true;
-		move_uploaded_file($Shared_Documents_tmpname, "./assets/docs/supportive_docs/" . $Shared_Documents_name);
-		header("location:createschedule.php");
-	}
-	else{
-		$_SESSION['message_failed'] = true;
-		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
-	}
+      
+
+        // Update query
+        $update_query = "UPDATE `scheduling_internship` SET `date_of_schedule`=?,`main_topic`=?,`class_duration`=?,`tasks`=?,`shared_documents`=?,`topics_to_be_covered`=?,`class_starting_time`=?,`class_ending_time`=? WHERE id = ?";
+        $update_stmt = mysqli_prepare($conn, $update_query);
+        $update_stmt->bind_param(
+            "ssssssssi",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time,$id
+           
+        );
+
+        if (mysqli_stmt_execute($update_stmt)) {
+            move_uploaded_file($Shared_Documents_tmpname, "./assets/docs/supportive_docs/" . $Shared_Documents_name);
+            session_destroy();
+            header("location: manageschedule.php");
+            exit();
+        } else {
+            echo mysqli_error($conn);
+        }
+
+        mysqli_stmt_close($update_stmt);
+    }
+} elseif (!isset($_GET["s_id"]) || empty($_GET["s_id"])) {
+    echo "<script>alert('Error')</script>";
+    if (isset($_SESSION['trainer_previous_url'])) {
+        header('Location: ' . $_SESSION['trainer_previous_url']);
+        exit();
+    } else {
+        // Fallback redirection if previous_url is not set
+        header('Location: ./dashboard.php');
+        exit();
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
-
 
 <head>
 
@@ -39,60 +85,35 @@ if(isset($_POST['CreateBtn'])){
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
+    <title>Update Schedule</title>
 
-    <!-- Title -->
-    <title> TriaRight: The New Era of Learning</title>
-
-    <?php 
-	 include('./style.php'); 
-	  ?>
-
-
+    <?php include("./style.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
 
-    <?php 
-	 include('./switcher.php'); 
-	  ?>
-
-<?php
-	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-		echo "<script>toastr.success('Schedule Created Successfully')</script>";
-		session_destroy();
-	}
-	?>
-
-    <?php
-	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-		session_destroy();
-	}
-	?>
-    <!-- Loader -->
-    <!-- <div id="global-loader">
-        <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div> -->
-    <!-- /Loader -->
+    <!-- Switcher -->
+    <?php include("./switcher.php"); ?>
+    <!-- End Switcher -->
 
     <!-- Page -->
     <div class="page">
 
-        <div>
+        <div class="main-header side-header sticky nav nav-item">
 
-            <div class="main-header side-header sticky nav nav-item">
-                <?php include('./partials/navbar.php')?>
-            </div>
-            <!-- /main-header -->
-
-            <!-- main-sidebar -->
-            <div class="sticky">
-                <?php include('./partials/sidebar.php')?>
-            </div>
-            <!-- main-sidebar -->
+            <?php include('./partials/navbar.php'); ?>
 
         </div>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <!-- /main-header -->
+
+        <!-- main-sidebar -->
+        <div class="sticky">
+            <?php include('./partials/sidebar.php') ?>
+        </div>
+        <!-- main-sidebar -->
+
+
+        <form method="POST" enctype="multipart/form-data">
             <!-- main-content -->
             <!-- main-content -->
             <div class="main-content app-content">
@@ -104,14 +125,14 @@ if(isset($_POST['CreateBtn'])){
                     <!-- breadcrumb -->
                     <div class="breadcrumb-header justify-content-between">
                         <div class="left-content">
-                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Create
+                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Update
                                 Schedule</span>
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Schedule</li>
-                                <li class="breadcrumb-item active" aria-current="page">Create</li>
+                                <li class="breadcrumb-item active" aria-current="page">Update</li>
                             </ol>
                         </div>
                     </div>
@@ -132,7 +153,7 @@ if(isset($_POST['CreateBtn'])){
                                                 <div class="form-group">
                                                     <label for="exampleInputDOB">Date of Schedule</label>
                                                     <input class="form-control" name="scheduled_date" id="dateMask"
-                                                        placeholder="MM/DD/YYYY" type="date" required>
+                                                        placeholder="MM/DD/YYYY" type="date" value="<?php echo $schedule['date_of_schedule']?>" required>
                                                 </div>
                                             </div>
 
@@ -141,7 +162,7 @@ if(isset($_POST['CreateBtn'])){
                                                     <label for="exampleInputPersonalPhone">Main Topic</label>
                                                     <input type="text" class="form-control" name="main_topic"
                                                         id="exampleInputPersonalPhone" placeholder="Enter Main Topic"
-                                                        required>
+                                                        required value="<?php echo $schedule['main_topic']?>">
                                                 </div>
                                             </div>
 
@@ -150,7 +171,7 @@ if(isset($_POST['CreateBtn'])){
                                                 <div class="form-group">
                                                     <label for="exampleInputcode">Duration</label>
                                                     <input type="number" class="form-control" min="1" name="Duration"
-                                                        id="exampleInputcode" placeholder="Enter Duration" required>
+                                                        id="exampleInputcode" placeholder="Enter Duration" required value="<?php echo $schedule['class_duration']?>">
                                                 </div>
                                             </div>
 
@@ -162,8 +183,14 @@ if(isset($_POST['CreateBtn'])){
                                                     <label for="exampleInputAadhar">Tasks</label>
                                                     <select name="tasks" class="form-control form-select select2"
                                                         data-bs-placeholder="Select Batch" required>
-                                                        <option value="Yes">Yes</option>
+                                                        <?php if($schedule['tasks'] == 'Yes') {?>
+                                                        <option value="Yes" selected>Yes</option>
                                                         <option value="No">No</option>
+                                                        <?php }?>
+                                                        <?php if($schedule['tasks'] == 'No') {?>
+                                                        <option value="Yes" >Yes</option>
+                                                        <option value="No" selected>No</option>
+                                                        <?php }?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -171,8 +198,10 @@ if(isset($_POST['CreateBtn'])){
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode"> Shared Documents</label>
-                                                    <input type="file" name="Shared_Documents" class="form-control"
-                                                        id="exampleInputcode" placeholder="">
+                                                  <input type="file" class="form-control" id="exampleInputcode"
+                                                        name="Shared_Documents" placeholder="" width="540" height="300">
+                                                    <img src="./assets/docs/supportive_docs/<?php echo $schedule['shared_documents']?>" >
+                                                    <p class="text-danger">Leave It Empty If You Want This Image.</p>
                                                 </div>
                                             </div>
 
@@ -180,7 +209,7 @@ if(isset($_POST['CreateBtn'])){
                                                 <div class="form-group">
                                                     <label for="exampleInputAadhar">Topics to be covered</label>
                                                     <input type="text" name="Topics_to_be_covered" class="form-control"
-                                                        id="exampleInputAadhar" placeholder="Topics List" required>
+                                                        id="exampleInputAadhar" placeholder="Topics List" required value="<?php echo $schedule['topics_to_be_covered']?>">
                                                 </div>
                                             </div>
 
@@ -189,7 +218,7 @@ if(isset($_POST['CreateBtn'])){
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Class Starting Time</label>
                                                     <input name="Training_Starting_time" class="form-control"
-                                                        id="start-date" placeholder="" type="time" required>
+                                                        id="start-date" placeholder="" type="time" required value="<?php echo $schedule['class_starting_time']?>">
                                                 </div>
                                             </div>
 
@@ -197,7 +226,7 @@ if(isset($_POST['CreateBtn'])){
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Class Ending time </label>
                                                     <input name="Training_Ending_time" class="form-control"
-                                                        id="end-date" placeholder="" type="time" required>
+                                                        id="end-date" placeholder="" type="time" required value="<?php echo $schedule['class_ending_time']?>">
                                                     <div id="message" style="color:red"></div>
                                                 </div>
                                             </div>
@@ -220,9 +249,9 @@ if(isset($_POST['CreateBtn'])){
 
                                         
                                         </div>
-                                        <button type="submit" name="CreateBtn" onclick="return checkDateRange()"
+                                        <button type="submit" name="UpdateBtn" onclick="return checkDateRange()"
                                             class="btn btn-info mt-3 mb-0" data-bs-target="#schedule"
-                                            data-bs-toggle="modal" style="text-align:right">Schedule</button>
+                                            data-bs-toggle="modal" style="text-align:right">Update Schedule</button>
                                     </div>
                                 </div>
                             </div>
@@ -234,23 +263,17 @@ if(isset($_POST['CreateBtn'])){
                 </div>
                 <!-- Container closed -->
             </div>
-        </form>
-
-
-     
-
+            <!-- Container closed -->
     </div>
-    <!-- End Page -->
+    <!-- main-content closed -->
+    </form>
+    </div>
 
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
-    <!-- JQUERY JS -->
-    <?php 
-	 include('./script.php'); 
-	  ?>
+    <!-- JS -->
+    <?php include('./script.php'); ?>
+
+
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 
 </html>

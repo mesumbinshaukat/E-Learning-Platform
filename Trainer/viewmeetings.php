@@ -46,7 +46,7 @@ $_SESSION['trainer_previous_url'] = $_SERVER['REQUEST_URI'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
 
-    <title>View Course</title>
+    <title>View Meetings</title>
 
     <?php include("./style.php"); ?>
 </head>
