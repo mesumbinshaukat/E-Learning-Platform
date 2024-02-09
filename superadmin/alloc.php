@@ -7,6 +7,12 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 	header('location: ../super-admin_login.php');
 	exit();
 }
+
+if (isset($_GET["error"])) {
+	$error = $_GET["error"];
+	echo "<script>alert('$error')</script>";
+}
+
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
@@ -52,36 +58,21 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 				<div class="breadcrumb-header justify-content-between">
 					<div class="right-content">
-						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Registration Allocation
+						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Trainer
+							Allocation
 						</span>
 					</div>
 
 					<div class="justify-content-center mt-2">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
-							<li class="breadcrumb-item ">registration</li>
-							<li class="breadcrumb-item ">add</li>
+							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Manage</a></li>
+							<li class="breadcrumb-item ">Allocation</li>
+							<li class="breadcrumb-item ">Trainer</li>
 						</ol>
 					</div>
 
 				</div>
-				<form method="post">
-					<div class="row row-sm">
-						<div class="form-group col-md-3">
-							<b> <label>College Name</label> </b>
-							<select name="college_name" class="form-control form-select" data-bs-placeholder="Select Filter">
-								<option value="" selected>ALL</option>
-								<!-- College Names -->
-							</select>
-						</div>
 
-
-						&nbsp &nbsp <button type="submit" class="btn btn-primary" name="search" style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
-					</div>
-				</form>
-
-				<br>
-				<br>
 				<div class="row row-sm">
 					<div class="col-lg-12">
 						<div class="card custom-card overflow-hidden">
@@ -93,28 +84,48 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 											<tr>
 												<th class="border-bottom-0">S.no</th>
 												<th class="border-bottom-0">Course id</th>
-												<th class="border-bottom-0">student name</th>
+												<th class="border-bottom-0">Trainer Id</th>
 
-												<th class="border-bottom-0">College name</th>
-												<th class="border-bottom-0">Course</th>
-												<th class="border-bottom-0">full info.</th>
-												<th class="border-bottom-0">allocate </th>
+												<th class="border-bottom-0">Trainer Name</th>
+												<th class="border-bottom-0">Course Name</th>
+
+												<th class="border-bottom-0">Allocate</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>COUREG_5</td>
-												<td>Thriveni </td>
-												<td>Jyothirmayee women’s degree college </td>
-												<td>Java Script</td>
-												<td><a href="./viewstudent.php?id=5332" class="btn btn-info">view</a>
-												</td>
-												<td> <a href="https://triaright.com/superadmin/connection_files/allocation/allocatestu.php?crid=5&amp;trid=&amp;stuid=5332" class="btn btn-success">allocate</a></td>
 
-												<b></td>
+											<?php
+											$id = filter_var($_GET["crid"], FILTER_SANITIZE_NUMBER_INT);
+											$id = (int) $id;
+											$query_allocate = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `course_id` = '$id'");
 
-											</tr>
+											if (mysqli_num_rows($query_allocate) > 0) {
+												$i = 1;
+												while ($row = mysqli_fetch_assoc($query_allocate)) {
+													$course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'");
+													$course_row = mysqli_fetch_assoc($course_query);
+													$trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$row['trainer_id']}'");
+													$trainer_row = mysqli_fetch_assoc($trainer_query);
+													if (mysqli_num_rows($trainer_query) > 0) {
+														$trainer_name = $trainer_row['name'];
+														echo "<tr>";
+														echo "<td>{$i}</td>";
+														echo "<td>{$row['course_id']}</td>";
+														echo "<td>{$row['trainer_id']}</td>";
+														echo "<td>{$trainer_row['name']}</td>";
+														echo "<td>{$course_row['course_name']}</td>";
+														echo "<td><a href='./coursestudentallocation.php?type=allocate&id={$row['id']}&crid={$row['course_id']}&tid={$row['trainer_id']}' class='btn btn-info'>Allocate</a></td>";
+														echo "</tr>";
+														$i++;
+													} else {
+														$trainer_name = "Not Available";
+													}
+												}
+											} else {
+												echo "No Data Found";
+											}
+											?>
+
 
 										</tbody>
 									</table>

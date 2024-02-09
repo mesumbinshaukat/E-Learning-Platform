@@ -13,7 +13,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <title>Student Allocation</title>
     <meta charset="UTF-8">
@@ -93,38 +92,33 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 $i = 1;
 
                                                 while ($row = mysqli_fetch_assoc($course_query)) {
-                                                    $crid = $row['id'];
-                                                    $cname = $row['name'];
-                                                    $cprice = $row['final_cost'];
-                                                    $cduration = $row['duration_days'];
+                                                    $allocate_query = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `course_id` = '" . $row['id'] . "'");
+                                                    if (mysqli_num_rows($allocate_query) > 0) {
+                                                        $crid = $row['id'];
+                                                        $date = $row['creation_date'];
+                                                        $cname = $row['course_name'];
+                                                        $cprice = $row['final_cost'];
+                                                        $cduration = $row['duration_days'];
 
-                                                    echo '
+                                                        echo '
                                         <tr>
                                             <td>' . $i . '</td>
-                                            <td>2023-02-26 15:55:08</td>
-                                            <td>TRCR_' . $crid . '</td>
+                                            <td>' . $date . '</td>
+                                            <td>CRID_' . $crid . '</td>
                                             <td>' . $cname . '</td>
                                             <td>' . $cprice . '</td>
                                             <td>' . $cduration . '</td>
                                             <td><a href="alloc.php?crid=' . $crid . '" class="btn btn-info">Allocate</a></td>
                                         </tr>
                                         ';
+                                                    } else {
+                                                        echo 'No Allocated Course';
+                                                    }
                                                     $i++;
                                                 }
                                             }
                                             ?>
-                                            <tr>
 
-
-                                                <td>1</td>
-                                                <td>2023-02-26 15:55:08</td>
-                                                <td>TRCR_5</td>
-                                                <td>Java Script</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-                                                <td><a href="alloc.php?crid=5" class="btn btn-info">allocate</a></td>
-                                            </tr>
 
                                         </tbody>
                                     </table>
