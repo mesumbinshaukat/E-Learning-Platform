@@ -15,69 +15,69 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 
 <head>
-	<title>Manage Batch</title>
-	<meta charset="UTF-8">
-	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="Description" content="">
-	<?php include("./style.php"); ?>
-	<style>
-		.dropdown-menu {
-			position: fixed !important;
-			/* or 'fixed', depending on your layout */
-			transform: translate3d(0, 0, 0);
-		}
-	</style>
+    <title>Manage Batch</title>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="">
+    <?php include("./style.php"); ?>
+    <style>
+    .dropdown-menu {
+        position: fixed !important;
+        /* or 'fixed', depending on your layout */
+        transform: translate3d(0, 0, 0);
+    }
+    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
 
-	<?php
+    <?php
 	include("./switcher.php");
 
 	?>
-	<!-- Page -->
-	<div class="page">
+    <!-- Page -->
+    <div class="page">
 
-		<div>
-			<div class="main-header side-header sticky nav nav-item">
+        <div>
+            <div class="main-header side-header sticky nav nav-item">
 
-				<?php include('./partials/navbar.php'); ?>
+                <?php include('./partials/navbar.php'); ?>
 
-			</div>
-			<!-- /main-header -->
+            </div>
+            <!-- /main-header -->
 
-			<!-- main-sidebar -->
-			<div class="sticky">
-				<?php include('./partials/sidebar.php') ?>
-			</div>
-			<!-- main-sidebar -->
+            <!-- main-sidebar -->
+            <div class="sticky">
+                <?php include('./partials/sidebar.php') ?>
+            </div>
+            <!-- main-sidebar -->
 
-		</div>
-
-
-		<!-- main-content -->
-		<div class="main-content app-content">
-
-			<!-- container -->
-			<div class="main-container container-fluid">
+        </div>
 
 
-				<div class="breadcrumb-header justify-content-between">
-					<div class="right-content">
-						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Batch</span>
-					</div>
+        <!-- main-content -->
+        <div class="main-content app-content">
 
-					<div class="justify-content-center mt-2">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
-							<li class="breadcrumb-item ">Student batching</li>
-							<li class="breadcrumb-item ">Manage</li>
-						</ol>
-					</div>
+            <!-- container -->
+            <div class="main-container container-fluid">
 
-				</div>
-				<!-- <form method="post">
+
+                <div class="breadcrumb-header justify-content-between">
+                    <div class="right-content">
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Batch</span>
+                    </div>
+
+                    <div class="justify-content-center mt-2">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
+                            <li class="breadcrumb-item ">Student batching</li>
+                            <li class="breadcrumb-item ">Manage</li>
+                        </ol>
+                    </div>
+
+                </div>
+                <!-- <form method="post">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
                             <b> <label>Course</label> </b>
@@ -149,34 +149,35 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
                 </form> -->
 
-				<br>
-				<br>
-				<div class="row row-sm">
-					<div class="col-lg-12">
-						<div class="card custom-card overflow-hidden">
-							<div class="card-body">
+                <br>
+                <br>
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <div class="card custom-card overflow-hidden">
+                            <div class="card-body">
 
-								<div class="table-responsive  export-table">
-									<table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
-										<thead>
-											<tr>
-												<th class="border-bottom-0">S.No</th>
-												<th class="border-bottom-0">Batch adding</th>
-												<th class="border-bottom-0">Batch ID</th>
-												<th class="border-bottom-0">Trainer name</th>
-												<th class="border-bottom-0">Course name</th>
-												<th class="border-bottom-0"> Count</th>
-												<th class="border-bottom-0">Actions</th>
-												<!--<th class="border-bottom-0">update</th>-->
-												<!--<th class="border-bottom-0">add</th>-->
-												<!--<th class="border-bottom-0">Remove</th>-->
+                                <div class="table-responsive  export-table">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-bottom-0">S.No</th>
+                                                <th class="border-bottom-0">Batch adding</th>
+                                                <th class="border-bottom-0">Batch ID</th>
+                                                <th class="border-bottom-0">Trainer name</th>
+                                                <th class="border-bottom-0">Course name</th>
+                                                <th class="border-bottom-0"> Count</th>
+                                                <th class="border-bottom-0">Actions</th>
+                                                <!--<th class="border-bottom-0">update</th>-->
+                                                <!--<th class="border-bottom-0">add</th>-->
+                                                <!--<th class="border-bottom-0">Remove</th>-->
 
 
 
-											</tr>
-										</thead>
-										<tbody>
-											<?php
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
 											$batch_query = mysqli_query($conn, "SELECT * FROM `batch`");
 											if (mysqli_num_rows($batch_query) > 0) {
 												$i = 1;
@@ -209,7 +210,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                         <a href="updatefinalbatchcreate.php?id=' . $batch_row['id'] . '" class="dropdown-item">Update</a>
                         <a class="dropdown-item" href="addbatchstudent.php?trainer_id=' . $batch_row['batchtrainer_id'] . '&course_id=' . $batch_row['batchcourse_id'] . '&batch_id=' . $batch_row['id'] . '">Add</a>
                         <a class="dropdown-item" href="removebatchstudent.php?trainer_id=' . $batch_row['batchtrainer_id'] . '&course_id=' . $batch_row['batchcourse_id'] . '&batch_id=' . $batch_row['id'] . '">Remove</a>
-                        <a class="btn dropdown-item" href="connection_files/manage/batch_manage.php?id=' . $batch_row['id'] . '&delete=delete">Delete</a>
+                        <a class="btn dropdown-item" href="batch_manage.php?id=' . $batch_row['id'] . '&status=delete">Delete</a>
                         <a class="dropdown-item" href="batch_manage.php?id=' . $batch_row['id'] . '&status=complete">Complete</a>
                     </div>
                 </div>
@@ -217,11 +218,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 															// Add the course name to the unique courses array
 															$unique_courses[] = $course_name;
-														} else {
-															echo '<tr><td colspan="7">No Record Found</td></tr>';
 														}
-													} else {
-														echo '<tr><td colspan="7">No Record Found</td></tr>';
 													}
 												}
 											} else {
@@ -230,21 +227,21 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 											?>
 
 
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Row -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
 
-			</div>
-		</div>
+            </div>
+        </div>
 
-	</div>
+    </div>
 
-	<?php include("./scripts.php"); ?>
+    <?php include("./scripts.php"); ?>
 </body>
 
 </html>
