@@ -4,9 +4,11 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
+
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 
@@ -42,7 +44,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
             <!-- main-sidebar -->
             <div class="sticky">
-                <?php include('./partials/sidebar.php')?>
+                <?php include('./partials/sidebar.php') ?>
             </div>
             <!-- main-sidebar -->
 
@@ -70,38 +72,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
 
                 </div>
-                <form method="post">
-                    <div class="row row-sm">
-                        <div class="form-group col-md-3">
-                            <b> <label>College name</label> </b>
-                            <select name="college_name" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
-                                <!-- College Name -->
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <b> <label>Trainer name</label> </b>
-                            <select name="Trainer_Name" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
-                                <!-- Trainer Name -->
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <b> <label>Course name</label> </b>
-                            <select name="course" class="form-control form-select" data-bs-placeholder="Select Filter">
-                                <!-- Course -->
-                            </select>
-                        </div>
-
-
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
-                            style="height:40px;width:100px;margin-top:35px">Search</button>
-
-                    </div>
-                </form>
-
-                <br>
-                <br>
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
@@ -120,31 +90,56 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">Student Name</th>
                                                 <th class="border-bottom-0">Trainer name</th>
                                                 <th class="border-bottom-0">Course name</th>
-                                                <th class="border-bottom-0">status</th>
-
-
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>0000-00-00 00:00:00</td>
-                                                <td>TRALL_1</td>
+                                            <?php
+                                            $student_allocate_query = mysqli_query($conn, "SELECT * FROM `student_allocate`");
+                                            if (mysqli_num_rows($student_allocate_query) > 0) {
+                                                $i = 1;
+                                                while ($std_alloc = mysqli_fetch_assoc($student_allocate_query)) {
+                                                    $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '{$std_alloc['student_id']}'");
+                                                    if (mysqli_num_rows($student_query) > 0) {
+                                                        $std = mysqli_fetch_assoc($student_query);
+                                                        $trainer_alloc_query = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `id` = '{$std_alloc['allocate_id']}'");
+                                                        if (mysqli_num_rows($trainer_alloc_query) > 0) {
+                                                            $id = $std_alloc['id'];
+                                                            $tr = mysqli_fetch_assoc($trainer_alloc_query);
+                                                            $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$tr['trainer_id']}'");
+                                                            if (mysqli_num_rows($trainer_query) > 0) {
+                                                                $trainer = mysqli_fetch_assoc($trainer_query);
+                                                                $course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '{$std_alloc['course_id']}'");
+                                                                if (mysqli_num_rows($course_query) > 0) {
+                                                                    $course = mysqli_fetch_assoc($course_query);
+                                                                    echo "<tr>";
+                                                                    echo "<td>" . $i++ . "</td>";
+                                                                    echo "<td>" . $std_alloc['date'] . "</td>";
+                                                                    echo "<td>STDALLOCID_" . $std_alloc['allocate_id'] . "</td>";
+                                                                    echo "<td>STU_" . $std['id'] . "</td>";
+                                                                    echo "<td>" . $std['college_name'] . "</td>";
+                                                                    echo "<td>" . $std['name'] . "</td>";
+                                                                    echo "<td>" . $course['course_name'] . "</td>";
+                                                                    echo "<td>" . $trainer['name'] . "</td>";
 
-                                                <td>TRSTU_2270</td>
-                                                <td>Aditya degree college</td>
-                                                <td>Undi Rohith</td>
-                                                <td>demotrainer</td>
-
-                                                <td>Voice process</td>
-
-                                                <td style=color:#4aa02c> <b> Active <b></td>
-
-
-                                            </tr>
+                                                                    echo "</tr>";
+                                                                } else {
+                                                                    echo "No Course found";
+                                                                }
+                                                            } else {
+                                                                echo "No Trainer found";
+                                                            }
+                                                        } else {
+                                                            echo "No Trainer Allocated";
+                                                        }
+                                                    } else {
+                                                        echo "No Student found";
+                                                    }
+                                                }
+                                            } else {
+                                                echo "No data found";
+                                            }
+                                            ?>
 
 
                                         </tbody>

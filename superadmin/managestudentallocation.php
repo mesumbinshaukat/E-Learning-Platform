@@ -9,43 +9,45 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 }
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if form is submitted
-    $college_name = mysqli_real_escape_string($conn, $_POST['college_name']);
-    $trainer_name = mysqli_real_escape_string($conn, $_POST['Trainer_Name']);
-    $course_name = mysqli_real_escape_string($conn, $_POST['course']);
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     // Check if form is submitted
+//     $college_name = mysqli_real_escape_string($conn, $_POST['college_name']);
+//     $trainer_name = mysqli_real_escape_string($conn, $_POST['Trainer_Name']);
+//     $course_name = mysqli_real_escape_string($conn, $_POST['course']);
 
-    // Build the query based on selected filters
-    $filter_query = "SELECT * FROM `student_allocate` WHERE 1";
+//     // Build the query based on selected filters
+//    $filter_query = "SELECT sa.id, sa.student_id, sa.allocate_id, sa.course_id, sa.date
+//                  FROM student_allocate sa
+//                  JOIN trainer t ON sa.allocate_id = t.id
+//                  JOIN course c ON sa.course_id = c.id
+//                  JOIN student s ON sa.student_id = s.id
+//                  WHERE 1";
 
-    if (!empty($college_name)) {
-        $filter_query .= " AND `name` = '$college_name'";
-    }
+// if (!empty($college_name)) {
+//     $filter_query .= " AND s.college_name = '$college_name'";
+// }
 
-    if (!empty($trainer_name)) {
-        // Assuming `trainer_id` is the correct column name
-        $filter_query .= " AND `id` IN (SELECT `id` FROM `trainer` WHERE `name` = '$trainer_name')";
-    }
+// if (!empty($trainer_name)) {
+//     $filter_query .= " AND t.name = '$trainer_name'";
+// }
 
-    if (!empty($course_name)) {
-        $filter_query .= " AND `course_name` = '$course_name'";
-    }
+// if (!empty($course_name)) {
+//     $filter_query .= " AND c.course_name = '$course_name'";
+// }
 
-    $student_allocate_query = mysqli_query($conn, $filter_query);
+// $student_allocate_query = mysqli_query($conn, $filter_query);
 
-    if (!$student_allocate_query) {
-        die('Error executing filter query: ' . mysqli_error($conn));
-    }
-} else {
-    // If the form is not submitted, fetch all records
-    $student_allocate_query = mysqli_query($conn, "SELECT * FROM `student_allocate`");
+// if (!$student_allocate_query) {
+//     die('Error executing filter query: ' . mysqli_error($conn));
+// }
+// } else {
+//     // If the form is not submitted, fetch all records
+//     $student_allocate_query = mysqli_query($conn, "SELECT * FROM `student_allocate`");
 
-    if (!$student_allocate_query) {
-        die('Error executing query: ' . mysqli_error($conn));
-    }
-}
-
-
+//     if (!$student_allocate_query) {
+//         die('Error executing query: ' . mysqli_error($conn));
+//     }
+// }
 
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
@@ -112,7 +114,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     </div>
 
                 </div>
-                <form method="post">
+
+                <!-- <form method="post">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
                             <b> <label>College name</label> </b>
@@ -120,10 +123,10 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                 data-bs-placeholder="Select Filter">
                                 <option value="" selected>None</option>
                                 <?php
-    $college_query = mysqli_query($conn, "SELECT DISTINCT `name` FROM `college`");
-    while ($college_row = mysqli_fetch_assoc($college_query)) {
-        echo "<option value='" . $college_row["name"] . "'>" . $college_row["name"] . "</option>";
-    }
+    // $college_query = mysqli_query($conn, "SELECT DISTINCT `name` FROM `college`");
+    // while ($college_row = mysqli_fetch_assoc($college_query)) {
+    //     echo "<option value='" . $college_row["name"] . "'>" . $college_row["name"] . "</option>";
+    // }
     ?>
                             </select>
                         </div>
@@ -133,10 +136,10 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                 data-bs-placeholder="Select Filter">
                                 <option value="" selected>None</option>
                                 <?php
-    $trainer_query = mysqli_query($conn, "SELECT DISTINCT `name` FROM `trainer`");
-    while ($trainer_row = mysqli_fetch_assoc($trainer_query)) {
-        echo "<option value='" . $trainer_row["name"] . "'>" . $trainer_row["name"] . "</option>";
-    }
+    // $trainer_query = mysqli_query($conn, "SELECT DISTINCT `name` FROM `trainer`");
+    // while ($trainer_row = mysqli_fetch_assoc($trainer_query)) {
+    //     echo "<option value='" . $trainer_row["name"] . "'>" . $trainer_row["name"] . "</option>";
+    // }
     ?>
                             </select>
                         </div>
@@ -145,22 +148,22 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             <select name="course" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="" selected>None</option>
                                 <?php
-    $course_query = mysqli_query($conn, "SELECT DISTINCT `course_name` FROM `course`");
-    while ($course_row = mysqli_fetch_assoc($course_query)) {
-        echo "<option value='" . $course_row["course_name"] . "'>" . $course_row["course_name"] . "</option>";
-    }
+    // $course_query = mysqli_query($conn, "SELECT DISTINCT `course_name` FROM `course`");
+    // while ($course_row = mysqli_fetch_assoc($course_query)) {
+    //     echo "<option value='" . $course_row["course_name"] . "'>" . $course_row["course_name"] . "</option>";
+    // }
     ?>
                             </select>
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
+                       <button type="submit" class="btn btn-primary"
                             style="height:40px;width:100px;margin-top:35px">Search</button>
-                        <!-- &nbsp &nbsp <a href="javascript:void(0);" class="btn btn-danger">reset all </a>	 -->
+                       
                     </div>
-                </form>
-
+                </form> -->
+                <!-- 
                 <br>
-                <br>
+                <br> -->
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
@@ -190,6 +193,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <tbody>
 
                                             <?php
+											$student_allocate_query = mysqli_query($conn, "SELECT * FROM `student_allocate`");
 if (mysqli_num_rows($student_allocate_query) > 0) {
     $i = 1;
     while ($std_alloc = mysqli_fetch_assoc($student_allocate_query)) {
