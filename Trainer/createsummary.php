@@ -1,7 +1,24 @@
 <?php 
+include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
 	header('location: ../trainer_login.php');
 	exit();
+}
+if(isset($_POST['submitBtn'])){
+	$Date_of_Summary = $_POST['Date_of_Summary'];
+	$Performer_of_the_day = $_POST['Performer_of_the_day'];
+	$Topics_Covered = $_POST['Topics_Covered'];
+	$Overall_Feedback = $_POST['Overall_Feedback'];
+	$insert_query = mysqli_prepare($conn,"INSERT INTO `internship_summary`(`date_of_summary`, `performer_of_day`, `topics_covered`, `overall_feedback`) VALUES (?,?,?,?)");
+	$insert_query->bind_param("ssss",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback);
+	if($insert_query->execute()){
+		$_SESSION['message_success'] = true;
+		header('location: createsummary.php');
+	}
+	else{
+		$_SESSION['message_failed'] = true;
+		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
+	}
 }
 ?>
 	
@@ -31,12 +48,19 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	<?php 
 	 include('./switcher.php'); 
 	  ?>
+<?php
+	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+		echo "<script>toastr.success('Summary Created Successfully')</script>";
+		session_destroy();
+	}
+	?>
 
-		<!-- Loader -->
-		<div id="global-loader">
-			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div>
-		<!-- /Loader -->
+    <?php
+	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+		session_destroy();
+	}
+	?>
 
 		<!-- Page -->
 		<div class="page">
@@ -50,11 +74,11 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 
 				 <!-- main-sidebar -->
  <div class="sticky">
- <?php include('./partials/navbar.php')?>
+ <?php include('./partials/sidebar.php')?>
 				</div>
 				<!-- main-sidebar -->
 
-			</div>			<form action="../superadmin/connection_files/create/trainer_summary_create.php" method="POST" enctype="multipart/form-data">
+			</div>			<form method="POST" enctype="multipart/form-data">
 
 			<!-- main-content -->
 			<!-- main-content -->
@@ -79,31 +103,6 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 					</div>
 					<!-- /breadcrumb -->
 					
-										<!-- <div class="row row-sm">
-					                 <div class="form-group col-md-4">
-										<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Course">
-											<option value="">Course1</option>
-											<option value="">Course2</option>
-											<option value="">Course3</option>
-											<option value="">Course4</option>
-											<option value="" selected>Course5</option>
-										</select>
-									</div>
-									<div class="form-group col-md-4">
-									<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Trainer">
-											<option value="">Trainer1</option>
-											<option value="">Trainer2</option>
-											<option value="">Trainer3</option>
-											<option value="">Trainer4</option>
-											<option value="" selected>Trainer5</option>
-										</select>
-									</div> -->
-									
-									<div class="form-group col-md-4">
-	                                <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-										
-										</select>
-									</div>
                                                								
 									</div>
 									<br>
@@ -126,28 +125,6 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 											</div>
 											</div>
 											
-											<!--<div class="col-md-6">-->
-											<!--<div class="form-group">-->
-											<!--	<label for="exampleInputProEmail">Overall Attedance %</label>-->
-											<!--	<input type="number"  name="Overall_Attedance" class="form-control" min="1" max="100" id="exampleInputProEmail" placeholder="" required>-->
-											<!--</div>-->
-											<!--</div>-->
-											
-											<!--<div class="col-md-6">-->
-											<!--<div class="form-group">-->
-											<!--	<label for="exampleInputPersonalPhone">Responsive of Students</label>-->
-											<!--	<input type="text" name="Responsive_of_Students"  class="form-control" id="exampleInputPersonalPhone" placeholder="Enter Training Title" required>-->
-											<!--</div>-->
-											<!--</div>-->
-																						
-											<!--<div class="col-md-6">-->
-											<!--<div class="form-group">-->
-											<!--	<label for="exampleInputProEmail">Queries Clarification%</label>-->
-											<!--	<input type="number" name="Queries_Clarification" min="1" max="100" class="form-control" id="exampleInputProEmail" placeholder="" required>-->
-											<!--</div>-->
-											
-											<!--</div>-->
-											
 												<div class="col-md-6">
 											<div class="form-group">
 										<label for="exampleInputAadhar">Performer of the day</label>
@@ -169,7 +146,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 										  
 									
 										</div>
-								<button type="submit"  name="submit" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">add Summary</button>
+								<button type="submit"  name="submitBtn" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Add Summary</button>
 									</div>
 								</div>
 							</div>
