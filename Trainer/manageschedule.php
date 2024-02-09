@@ -74,27 +74,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 							</ol>
 						</div>
 					</div>
-					<!-- /breadcrumb -->
 					
-										<!-- <div class="row row-sm">
-					                 <div class="form-group col-md-4">
-										<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Course">
-											<option value="">Course1</option>
-											<option value="">Course2</option>
-											<option value="">Course3</option>
-											<option value="">Course4</option>
-											<option value="" selected>Course5</option>
-										</select>
-									</div>
-									<div class="form-group col-md-4">
-									<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Trainer">
-											<option value="">Trainer1</option>
-											<option value="">Trainer2</option>
-											<option value="">Trainer3</option>
-											<option value="">Trainer4</option>
-											<option value="" selected>Trainer5</option>
-										</select>
-									</div> -->
 									
 								<div class="form-group col-md-4">
 	                               <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
@@ -119,35 +99,6 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 				<!-- Container closed -->
 			</div>
 </form>
-
-
-		  <!-- <div class="modal fade" id="schedule">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content modal-content-demo">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                    <p> Are you sure you want to add task?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn ripple btn-success" type="button">Create</button>
-                                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-            
-            <!-- Footer opened -->
-			<div class="main-footer">
-				<div class="container-fluid pd-t-0-f ht-100p">
-					 Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
-				</div>
-			</div>
-			<!-- Footer closed -->
-
 		</div>
 		<!-- End Page -->
 
