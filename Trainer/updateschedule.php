@@ -200,7 +200,7 @@ if (isset($_GET['s_id'])) {
                                                     <label for="exampleInputcode"> Shared Documents</label>
                                                   <input type="file" class="form-control" id="exampleInputcode"
                                                         name="Shared_Documents" placeholder="" width="540" height="300">
-                                                    <img src="./assets/docs/supportive_docs/<?php echo $schedule['shared_documents']?>" >
+                                                    <img src="./assets/docs/supportive_docs/<?php echo $schedule['shared_documents']?>" width="300" height="300">
                                                     <p class="text-danger">Leave It Empty If You Want This Image.</p>
                                                 </div>
                                             </div>

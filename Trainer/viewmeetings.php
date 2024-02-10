@@ -9,8 +9,8 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 }
 
 if (!isset($_GET['id']) && empty($_GET['id'])) {
-    if (isset($_SESSION['trainer_previous_url'])) {
-        header('Location: ' . $_SESSION['trainer_previous_url']);
+    if (isset($_SESSION['previous_url'])) {
+        header('Location: ' . $_SESSION['previous_url']);
         exit();
     } else {
         // Fallback redirection if previous_url is not set
@@ -23,7 +23,7 @@ $id = (int) $id;
 $query = mysqli_query($conn, "SELECT * FROM `internship_meetings` WHERE `id` = '$id'");
 if (mysqli_num_rows($query) == 0) {
     if (isset($_SESSION['previous_url'])) {
-        header('Location: ' . $_SESSION['trainer_previous_url']);
+        header('Location: ' . $_SESSION['previous_url']);
         exit();
     } else {
         // Fallback redirection if previous_url is not set
@@ -32,7 +32,7 @@ if (mysqli_num_rows($query) == 0) {
     }
 }
 $fetch_meeting_details = mysqli_fetch_assoc($query);
-$_SESSION['trainer_previous_url'] = $_SERVER['REQUEST_URI'];
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>

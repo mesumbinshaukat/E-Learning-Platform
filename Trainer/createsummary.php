@@ -35,7 +35,7 @@ if(isset($_POST['submitBtn'])){
 		<meta name="Description" content="">
 		
 		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+		<title>Create Summary</title>
 
 		<?php 
 	 include('./style.php'); 
