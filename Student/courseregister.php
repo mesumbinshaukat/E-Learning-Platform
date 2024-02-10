@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
     $course_id = $_POST["course_id"];
     $query = "INSERT INTO `course_registration`(`course_id`, `student_id`) VALUES ('$course_id','$stud_id')";
     $run_query = mysqli_query($conn , $query);
-    $check = true;
+    header("location:courseregister.php");
 }
 
 
@@ -38,9 +38,9 @@ if(isset($_POST['submit'])){
 
 
     <!-- Loader -->
-    <div id="global-loader">
+    <!-- <div id="global-loader">
         <img src="https://triaright.com/Student/assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div>
+    </div> -->
     <!-- /Loader -->
 
     <!-- Page -->

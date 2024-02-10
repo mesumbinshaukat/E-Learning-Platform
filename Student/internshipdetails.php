@@ -4,15 +4,15 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 	header('location: ../student_login.php');
 	exit();
 }
-$id = $_GET['courseid'];
-$select_query = "SELECT * FROM `course` WHERE `id` = $id";
+$id = $_GET['internshipid'];
+$select_query = "SELECT * FROM `internship` WHERE `id` = $id";
 $run_query = mysqli_query($conn , $select_query );
 $array_data = mysqli_fetch_array($run_query);
 
 if(isset($_POST['submit'])){
     $stud_id = $_POST["stud_id"];
-    $course_id = $_POST["course_id"];
-    $query = "INSERT INTO `course_registration`(`course_id`, `student_id`) VALUES ('$course_id','$stud_id')";
+    $internship_id = $_POST["inter_id"];
+    $query = "INSERT INTO `internship_registration`(`internship_id`, `student_id`) VALUES ('$internship_id','$stud_id')";
     $run_query = mysqli_query($conn , $query);
     $check = true;
 }
@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
     <meta name="Description" content="">
 
     <!-- Title -->
-    <title>Course Details</title>
+    <title>Internship Details</title>
 
     <?php include("./links.php"); ?>
 
@@ -62,11 +62,11 @@ if(isset($_POST['submit'])){
                     <!-- breadcrumb -->
                     <div class="breadcrumb-header justify-content-between">
                         <div class="left-content">
-                            <span class="main-content-title mg-b-0 mg-b-lg-1">Course Details</span>
+                            <span class="main-content-title mg-b-0 mg-b-lg-1">Internship Details</span>
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Courses</a></li>
+                                <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Internship</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">full details</li>
                             </ol>
                         </div>
@@ -112,7 +112,7 @@ if(isset($_POST['submit'])){
                                                         <div id="Slider" class="carousel slide" data-bs-ride="false">
                                                             <div class="carousel-inner">
                                                                 <div class="carousel-item active"><img
-                                                                        src="../superadmin/assets/img/course/<?php echo $array_data["inner_image"] ?>"
+                                                                        src="../superadmin/assets/img/internship/<?php echo $array_data["inner_image"] ?>"
                                                                         alt="img" class="img-fluid mx-auto d-block"
                                                                         width="540" height="300">
                                                                     <div class="text-center mt-5 mb-5 btn-list">
@@ -125,23 +125,23 @@ if(isset($_POST['submit'])){
 
                                                     <form method="post">
                                                         <input type="hidden" value="<?php echo $array_data["id"] ?>"
-                                                            name="course_id">
+                                                            name="inter_id">
                                                         <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>"
                                                             name="stud_id">
 
 
                                                         <div class="text-center  mt-4">
-                                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `course_id` = {$array_data['id']} "); 
+                                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `internship_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `internship_id` = {$array_data['id']} "); 
                                                                 if(mysqli_num_rows($query_check) > 0){
-                                                                    echo "<input value='Already Registered' disabled class='btn ripple btn-primary me-2'>";
+                                                                    echo "<input value='Already Applied' disabled class='btn ripple btn-primary me-2'>";
                                                                 }else{
 
                                                                 
                                                             ?>
                                                             <input type="submit" class="btn ripple btn-primary me-2"
-                                                                value="Register" name="submit" id="submit_btn" />
+                                                                value="Apply" name="submit" id="submit_btn" />
 
-                                                                <?php }?>
+                                                            <?php }?>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -150,47 +150,61 @@ if(isset($_POST['submit'])){
                                         <div class="details col-xl-6 col-lg-12 col-md-12 mt-4 mt-xl-0">
 
                                             <h4 class="product-title mb-1"><b
-                                                    style="color: #ff6700;"><?php echo $array_data['course_name'];?>
+                                                    style="color: #ff6700;"><?php echo $array_data['internship'];?>
                                                 </b>
                                             </h4>
-                                            <!-- <p class="text-muted tx-13 mb-1">Information Technology</p> -->
+                                            <p class="text-muted tx-13 mb-1"><?php echo $array_data['industry'];?></p>
                                             <br>
 
 
 
-                                            <p class="card-text tx-15"><span style="color: #13131a;"> Provider Name
+                                            <p class="card-text tx-15"><span style="color: #13131a;"> Company Name
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['provider_name_company'];?>
+                                                <?php echo $array_data['company_name'];?>
                                             </p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;"> Course Type &nbsp
+                                            <p class="card-text tx-15"><span style="color: #13131a;"> Eligibility &nbsp
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['course_type'];?></p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;"> Duration (Hrs)
+                                                <?php echo $array_data['eligibility'];?></p>
+                                            <p class="card-text tx-15"><span style="color: #13131a;"> Duration (Days)
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
                                                 <?php echo $array_data['duration_days'];?></p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;"> Hours/day &nbsp
+                                            <p class="card-text tx-15"><span style="color: #13131a;"> Type &nbsp
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['hours_per_day'];?></p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;"> Training Type
+                                                <?php echo $array_data['internship_type'];?></p>
+                                            <p class="card-text tx-15"><span style="color: #13131a;"> Vacancies
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['training_type'];?></p>
+                                                <?php echo $array_data['vacancies'];?></p>
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Certification
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
                                                 <?php echo $array_data['certification'];?>
                                             </p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;"> Orginal Price
+                                            <p class="card-text tx-15"><span style="color: #13131a;"> Gender
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['original_cost'];?>/-
+                                                <?php echo $array_data['gender'];?>
                                             </p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;"> Discount Price
+                                            <p class="card-text tx-15"><span style="color: #13131a;">Internship type
+                                                    &nbsp &nbsp &nbsp &nbsp &nbsp:</span>&nbsp &nbsp
+                                                <?php echo $array_data['internship_type'];?></p>
+                                            <p class="card-text tx-15"><span style="color: #13131a;"> Monthly Salary
+                                                    Pkg.
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['final_cost'];?>/-</p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;">Number of
-                                                    seats &nbsp &nbsp &nbsp &nbsp &nbsp:</span>&nbsp &nbsp
-                                                <?php echo $array_data['slots'];?></p>
+                                                <?php echo $array_data['salary'];?>/-</p>
+
                                             <p class="card-text tx-15"><span style="color: #13131a;">Last date to apply
                                                     &nbsp &nbsp :</span>&nbsp &nbsp &nbsp
                                                 <?php echo $array_data['last_date_to_apply'];?></p>
+                                            <p class="card-text tx-15"><span style="color: #13131a;">Transport
+                                                    Allowances &nbsp &nbsp &nbsp &nbsp &nbsp:</span>&nbsp &nbsp
+                                                <?php echo $array_data['transport_allowances'];?></p>
+                                            <p class="card-text tx-15"><span style="color: #13131a;">Food Allowances
+                                                    &nbsp &nbsp &nbsp &nbsp &nbsp:</span>&nbsp &nbsp
+                                                <?php echo $array_data['food_allowances'];?></p>
+                                            <p class="card-text tx-15"><span style="color: #13131a;">Stifund &nbsp &nbsp
+                                                    &nbsp &nbsp &nbsp:</span>&nbsp &nbsp
+                                                <?php echo $array_data['stifund'];?></p>
+                                            <p class="card-text tx-15"><span style="color: #13131a;">Location &nbsp
+                                                    &nbsp &nbsp &nbsp &nbsp:</span>&nbsp &nbsp
+                                                <?php echo $array_data['location'];?></p>
 
                                         </div>
                                     </div>
@@ -200,7 +214,7 @@ if(isset($_POST['submit'])){
                     </div>
                     <?php if(isset($check) && $check === true){?>
                     <div class="alert alert-success" role="alert" id="alert">
-                    You're Registered for this Course!
+                        You Applied for this Internship!
                     </div>
                     <?php }?>
                     <div class="row row-sm">
@@ -213,47 +227,38 @@ if(isset($_POST['submit'])){
                                                 <!-- Tabs -->
                                                 <ul class="nav panel-tabs">
                                                     <li><a href="coursedetails1.php@details=6.html#tab5" class="active"
-                                                            data-bs-toggle="tab">Course Description</a></li>
+                                                            data-bs-toggle="tab">Full Description</a></li>
                                                     <li><a href="coursedetails1.php@details=6.html#tab6"
-                                                            data-bs-toggle="tab">Topic Covered</a></li>
-                                                    <li><a href="coursedetails1.php@details=6.html#tab7"
-                                                            data-bs-toggle="tab">Benefits of Course</a></li>
-                                                    <li><a href="coursedetails1.php@details=6.html#tab7"
                                                             data-bs-toggle="tab">Pre Requirements</a></li>
+                                                    <li><a href="coursedetails1.php@details=6.html#tab7"
+                                                            data-bs-toggle="tab">Additional Inforamtion</a></li>
+
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="panel-body tabs-menu-body">
                                             <div class="tab-content">
                                                 <div class="tab-pane active" id="tab5">
-                                                    <h5 class="mb-2 mt-1 fw-semibold"><span
-                                                            style="color:#ff6700;">Course Description :</span></h5>
+                                                    <h5 class="mb-2 mt-1 fw-semibold"><span style="color:#ff6700;">Full
+                                                            Description :</span></h5>
                                                     <p class="mb-3 tx-13"><span
-                                                            style="line-height:30px"><span><?php echo $array_data['course_description'];?></span>
+                                                            style="line-height:30px"><span><?php echo $array_data['full-description'];?></span>
                                                     </p>
 
                                                 </div>
                                                 <div class="tab-pane active" id="tab6">
-                                                    <h5 class="mb-2 mt-1 fw-semibold"><span
-                                                            style="color:#ff6700;">Topics Covered :</span></h5>
+                                                    <h5 class="mb-2 mt-1 fw-semibold"><span style="color:#ff6700;">Pre
+                                                            Requirements :</span></h5>
                                                     <p class="mb-3 tx-13"><span
-                                                            style="line-height:30px"><?php echo $array_data['topics_covered'];?></span>
+                                                            style="line-height:30px"><?php echo $array_data['pre-requirements'];?></span>
                                                     </p>
 
                                                 </div>
                                                 <div class="tab-pane active" id="tab7">
                                                     <h5 class="mb-2 mt-1 fw-semibold"><span
-                                                            style="color:#ff6700;">Benefits of Courses :</span></h5>
+                                                            style="color:#ff6700;">Additional Inforamtion :</span></h5>
                                                     <p class="mb-3 tx-13"><span
-                                                            style="line-height:30px"><?php echo $array_data['benefits_of_course'];?></span>
-                                                    </p>
-
-                                                </div>
-                                                <div class="tab-pane active" id="tab8">
-                                                    <h5 class="mb-2 mt-1 fw-semibold"><span
-                                                            style="color:#ff6700;">Pre-Requirements :</span></h5>
-                                                    <p class="mb-3 tx-14"><span
-                                                            style="line-height:30px"><?php echo $array_data['pre_requirements'];?></span>
+                                                            style="line-height:30px"><?php echo $array_data['additional_info'];?></span>
                                                     </p>
 
                                                 </div>
@@ -382,7 +387,3 @@ if(isset($_POST['submit'])){
     <?php include("./scripts.php") ?>
 
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
-
-</html>
