@@ -5,7 +5,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	header('location: ../trainer_login.php');
 	exit();
 }
-$_SESSION['trainer_previous_url'] = $_SERVER['REQUEST_URI'];
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 	
 <!DOCTYPE html>
