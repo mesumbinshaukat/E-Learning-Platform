@@ -335,11 +335,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 </div>
                        
 					   	
-			<div class="main-footer">
-				<div class="container-fluid pd-t-0-f ht-100p">
-					 Copyright © 2023 <a href="www.triaright.com" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="http://www.mycompany.co.in"> my company</a> . All rights reserved
-				</div>
-			</div>
+			
 
 
 		</div>

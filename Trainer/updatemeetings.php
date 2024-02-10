@@ -14,8 +14,8 @@ if (isset($_GET['id'])) {
     $query = "SELECT * FROM `internship_meetings` WHERE `id` = '$id'";
     $run = mysqli_query($conn, $query);
     if (!$run) {
-        if (isset($_SESSION['trainer_previous_url'])) {
-            header('Location: ' . $_SESSION['trainer_previous_url']);
+        if (isset($_SESSION['previous_url'])) {
+            header('Location: ' . $_SESSION['previous_url']);
             exit();
         } else {
             // Fallback redirection if previous_url is not set
@@ -59,8 +59,8 @@ if (isset($_GET['id'])) {
     }
 } elseif (!isset($_GET["id"]) || empty($_GET["id"])) {
     echo "<script>alert('Error')</script>";
-    if (isset($_SESSION['trainer_previous_url'])) {
-        header('Location: ' . $_SESSION['trainer_previous_url']);
+    if (isset($_SESSION['previous_url'])) {
+        header('Location: ' . $_SESSION['previous_url']);
         exit();
     } else {
         // Fallback redirection if previous_url is not set

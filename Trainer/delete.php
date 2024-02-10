@@ -43,3 +43,16 @@ elseif (isset($_GET["summary_id"])) {
     }
 
 }
+elseif (isset($_GET["r_id"])) {
+    $id = filter_var($_GET["r_id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `internship_recording` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location: managerecordings.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
+
+}

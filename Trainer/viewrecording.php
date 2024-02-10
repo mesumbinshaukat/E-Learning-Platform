@@ -8,7 +8,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
         exit();
     }
 
-if (!isset($_GET['summary_id']) && empty($_GET['summary_id'])) {
+if (!isset($_GET['r_id']) && empty($_GET['r_id'])) {
     if (isset($_SESSION['previous_url'])) {
         header('Location: ' . $_SESSION['previous_url']);
         exit();
@@ -18,9 +18,9 @@ if (!isset($_GET['summary_id']) && empty($_GET['summary_id'])) {
         exit();
     }
 }
-$id = filter_var(isset($_GET['summary_id']), FILTER_SANITIZE_NUMBER_INT);
+$id = filter_var(isset($_GET['r_id']), FILTER_SANITIZE_NUMBER_INT);
 $id = (int) $id;
-$query = mysqli_query($conn, "SELECT * FROM `internship_summary` WHERE `id` = '$id'");
+$query = mysqli_query($conn, "SELECT * FROM `internship_recording` WHERE `id` = '$id'");
 if (mysqli_num_rows($query) == 0) {
     if (isset($_SESSION['previous_url'])) {
         header('Location: ' . $_SESSION['previous_url']);
@@ -31,7 +31,7 @@ if (mysqli_num_rows($query) == 0) {
         exit();
     }
 }
-$fetch_summary_details = mysqli_fetch_assoc($query);
+$fetch_recording_details = mysqli_fetch_assoc($query);
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
@@ -46,7 +46,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
 
-    <title>View Summary</title>
+    <title>View Recording</title>
 
     <?php include("./style.php"); ?>
 </head>
@@ -83,12 +83,90 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     <div class="breadcrumb-header justify-content-between">
                         <div class="left-content">
                             <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> View
-                                Summary</span>
+                                Recordings</span>
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Summary</li>
+                                <li class="breadcrumb-item active" aria-current="page">Recordings</li>
+                                <li class="breadcrumb-item active" aria-current="page">View</li>
+                            </ol>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <br>
+
+
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+
+
+                                <div class="">
+                                    <div class="row row-xs formgroup-wrapper">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputDOB">Recording Topic Name</label>
+                                                <input class="form-control" placeholder="enter the recording name"
+                                                    type="text" name="recording_name" value="<?php echo $fetch_recording_details['recording_topic_name']?>" required disabled >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputDOB">Date of Upload</label>
+                                                <input class="form-control" id="dateMask" placeholder="MM/DD/YYYY"
+                                                    type="date" name="Date_of_Upload" value="<?php echo $fetch_recording_details['date_of_upload']?>" required disabled>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputcode">Driving link</label>
+                                                <input type="text" class="form-control" id="exampleInputcode"
+                                                    placeholder="Enter driving link" value="<?php echo $fetch_recording_details['driving_link']?>" name="Driving_link" required disabled>
+                                            </div>
+                                        </div> <br>
+
+
+
+
+
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+                <!-- container -->
+                <div class="main-container container-fluid">
+
+
+                    <!-- breadcrumb -->
+                    <div class="breadcrumb-header justify-content-between">
+                        <div class="left-content">
+                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> View
+                                Recording</span>
+                        </div>
+                        <div class="justify-content-center mt-2">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Recording</li>
                                 <li class="breadcrumb-item active" aria-current="page">View</li>
                             </ol>
                         </div>

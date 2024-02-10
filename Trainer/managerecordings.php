@@ -1,8 +1,11 @@
 <?php 
+session_start();
+include('../db_connection/connection.php');	
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
 	header('location: ../trainer_login.php');
 	exit();
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 	
 <!DOCTYPE html>
@@ -18,11 +21,12 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 		<meta name="Description" content="">
 		
 		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+		<title> Manage Recordings</title>
 
 		<?php 
 	 include('./style.php'); 
 	  ?>
+
 	</head>
 
 	<body class="ltr main-body app sidebar-mini">
@@ -30,10 +34,11 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	<?php 
 	 include('./switcher.php'); 
 	  ?>
+
 		<!-- Loader -->
-		<div id="global-loader">
+		<!-- <div id="global-loader">
 			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div>
+		</div> -->
 		<!-- /Loader -->
 
 		<!-- Page -->
@@ -47,115 +52,111 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 				<!-- /main-header -->
 
 				 <!-- main-sidebar -->
- <div class="sticky">
- <?php include('./partials/sidebar.php')?>
+ 					<div class="sticky">
+					 <?php include('./partials/sidebar.php')?>
 				</div>
 				<!-- main-sidebar -->
 
-			</div>			<form action="managerecordings1.php" method="POST" enctype="multipart/form-data">
-
+			</div>		
+	
 			<!-- main-content -->
 			<!-- main-content -->
 			<div class="main-content app-content">
 
-				<!-- container -->
-				<div class="main-container container-fluid">
-
-                    
-					<!-- breadcrumb -->
-					<div class="breadcrumb-header justify-content-between">
-						<div class="left-content">
-						  <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Manage Recordings</span>
-						</div>
-						<div class="justify-content-center mt-2">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Recordings</li>
-								<li class="breadcrumb-item active" aria-current="page">Manage</li>
-							</ol>
-						</div>
-					</div>
-					<!-- /breadcrumb -->
-					
-										<!-- <div class="row row-sm">
-					                 <div class="form-group col-md-4">
-										<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Course">
-											<option value="">Course1</option>
-											<option value="">Course2</option>
-											<option value="">Course3</option>
-											<option value="">Course4</option>
-											<option value="" selected>Course5</option>
-										</select>
-									</div>
-									<div class="form-group col-md-4">
-									<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Trainer">
-											<option value="">Trainer1</option>
-											<option value="">Trainer2</option>
-											<option value="">Trainer3</option>
-											<option value="">Trainer4</option>
-											<option value="" selected>Trainer5</option>
-										</select>
-									</div> -->
-									
-								<div class="form-group col-md-4">
-	                               <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-										
-										</select>
-                                               								
-									
-
-								<button type="submit" name="submit" class="btn btn-info mt-3 mb-0" style="text-align:right">submit</button>
-									</div>
-									</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					
-
-    
-				</div>
-				<!-- Container closed -->
-			</div>
-</form>
+<!-- container -->
+<div class="main-container container-fluid">
 
 
-		  <!-- <div class="modal fade" id="schedule">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content modal-content-demo">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                    <p> Are you sure you want to add task?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn ripple btn-success" type="button">Create</button>
-                                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-            
-            <!-- Footer opened -->
-			<div class="main-footer">
-				<div class="container-fluid pd-t-0-f ht-100p">
-					 Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
-				</div>
-			</div>
-			<!-- Footer closed -->
-
+	<div class="breadcrumb-header justify-content-between">
+		<div class="right-content">
+			<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Recordings </span>
 		</div>
+
+		<div class="justify-content-center mt-2">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship Management</a></li>
+				<li class="breadcrumb-item ">Recordings</li>
+				<li class="breadcrumb-item ">Manage</li>
+			</ol>
+		</div>
+
+	</div>
+
+
+	<div class="row row-sm">
+		<div class="col-lg-12">
+			<div class="card custom-card overflow-hidden">
+				<div class="card-body">
+
+					<div class="table-responsive  export-table">
+						<table id="file-datatable"
+							class="table table-bordered text-nowrap key-buttons border-bottom">
+							<thead>
+								<tr>
+									<th class="border-bottom-0">S.No</th>
+									<th class="border-bottom-0">Recording Topic Name</th>
+									<th class="border-bottom-0">Date of Upload</th>
+									<th class="border-bottom-0">Driving Link</th>
+									
+									<th class="border-bottom-0">Actions </th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								$recording_query = mysqli_query($conn, "SELECT * FROM `internship_recording`");
+								if (mysqli_num_rows($recording_query) > 0) {
+									$i = 1;
+									while ($row = mysqli_fetch_assoc($recording_query)) {
+
+										echo "<tr>";
+										echo "<td>" . $i++ . "</td>";
+										echo "<td>" . $row['recording_topic_name'] . "</td>";
+										echo "<td>" . $row['date_of_upload'] . "</td>";
+										echo "<td>" . $row['driving_link'] . "</td>";
+										echo "<td>
+										<div class='col-sm-6 col-md-15 mg-t-10 mg-sm-t-0'>
+											<button type='button' class='btn btn-info dropdown-toggle'
+												data-bs-toggle='dropdown' aria-expanded='false'>
+												<i class='fe fe-more-horizontal'></i>
+											</button>
+
+											<div class='dropdown-menu'>
+												<a href='viewrecording.php?r_id=" . $row['id'] . "' class='dropdown-item'>view</a>
+												<a href='updaterecording.php?r_id=" . $row['id'] . "'
+													class='dropdown-item'>update</a>
+												<a href='delete.php?r_id=" . $row['id'] . "'
+													class='dropdown-item'>Delete</a>
+											</div>
+										</div>
+									</td>
+									</tr>";
+									}
+								} else {
+								
+									echo "No Recording found";
+								
+								}
+								?>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Row -->
+</div>
+</div>
+</div>
 		<!-- End Page -->
 
         <!-- BACK-TO-TOP -->
 		<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
-	    <?php 
+		<!-- JQUERY JS -->
+		<?php 
 	 include('./script.php'); 
 	  ?>
 

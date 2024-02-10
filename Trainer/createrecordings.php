@@ -112,7 +112,7 @@ if(isset($_POST['submitBtn'])){
 									<br>
 									
 
-					<!-- row -->
+					
 					<div class="row">
 						<div class="col-lg-12 col-md-12">
 							<div class="card">
@@ -185,13 +185,7 @@ if(isset($_POST['submitBtn'])){
                     </div>
 
             
-            <!-- Footer opened -->
-			<div class="main-footer">
-				<div class="container-fluid pd-t-0-f ht-100p">
-					 Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights reserved
-				</div>
-			</div>
-			<!-- Footer closed -->
+       
 
 		</div>
 		<!-- End Page -->
