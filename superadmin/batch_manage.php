@@ -30,6 +30,19 @@ if (isset($_POST["update"])) {
     }
 }
 
+if (isset($_GET["id"]) && isset($_GET["status"]) && $_GET["status"] == "delete") {
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int)$id;
+    $update = mysqli_prepare($conn, "UPDATE `batch` SET `status` = 'Deleted' WHERE `id` = '$id'");
+    if ($update->execute()) {
+        header('location: ./managebatch.php');
+        exit();
+    } else {
+        $error = $update->error;
+        echo $error;
+    }
+}
+
 if (isset($_GET["id"]) && isset($_GET["status"]) && $_GET["status"] == "complete") {
     $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int)$id;
