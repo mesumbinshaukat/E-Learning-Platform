@@ -78,7 +78,7 @@ if (isset($_GET['id'])) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
-    <title>Update Course</title>
+    <title>Update Meetings</title>
 
     <?php include("./style.php"); ?>
 </head>

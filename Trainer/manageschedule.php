@@ -1,11 +1,16 @@
 <?php 
+session_start();
+include('../db_connection/connection.php');	
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
 	header('location: ../trainer_login.php');
 	exit();
 }
+$_SESSION['trainer_previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
+	
 <!DOCTYPE html>
 <html lang="en">
+	
 	
 
 <head>
@@ -16,7 +21,8 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 		<meta name="Description" content="">
 		
 		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+		<title> Manage Schedule </title>
+
 		<?php 
 	 include('./style.php'); 
 	  ?>
@@ -30,9 +36,9 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	  ?>
 
 		<!-- Loader -->
-		<div id="global-loader">
+		<!-- <div id="global-loader">
 			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div>
+		</div> -->
 		<!-- /Loader -->
 
 		<!-- Page -->
@@ -42,74 +48,125 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 
                <div class="main-header side-header sticky nav nav-item">
 			   <?php include('./partials/navbar.php')?>
-				</div>
+				</div> 
 				<!-- /main-header -->
 
 				 <!-- main-sidebar -->
- <div class="sticky">
- <?php include('./partials/sidebar.php')?>
+ 					<div class="sticky">
+					 <?php include('./partials/sidebar.php')?>
 				</div>
 				<!-- main-sidebar -->
 
-			</div>			<form action="manageschedule1.php" method="POST" enctype="multipart/form-data">
-
+			</div>		
+	
 			<!-- main-content -->
 			<!-- main-content -->
 			<div class="main-content app-content">
 
-				<!-- container -->
-				<div class="main-container container-fluid">
+<!-- container -->
+<div class="main-container container-fluid">
 
-                    
-					<!-- breadcrumb -->
-					<div class="breadcrumb-header justify-content-between">
-						<div class="left-content">
-						  <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Schedule </span>
-						</div>
-						<div class="justify-content-center mt-2">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Schedule</li>
-								<li class="breadcrumb-item active" aria-current="page">Manage</li>
-							</ol>
-						</div>
-					</div>
-					
-									
-								<div class="form-group col-md-4">
-	                               <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-										
-										</select>
-                                               								
-									
 
-								<button type="submit" name="submit" class="btn btn-info mt-3 mb-0" style="text-align:right">submit</button>
-									</div>
-									</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					
-
-    
-				</div>
-				<!-- Container closed -->
-			</div>
-</form>
+	<div class="breadcrumb-header justify-content-between">
+		<div class="right-content">
+			<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Schedule </span>
 		</div>
+
+		<div class="justify-content-center mt-2">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship Management</a></li>
+				<li class="breadcrumb-item ">Schedule</li>
+				<li class="breadcrumb-item ">Manage</li>
+			</ol>
+		</div>
+
+	</div>
+
+
+	<div class="row row-sm">
+		<div class="col-lg-12">
+			<div class="card custom-card overflow-hidden">
+				<div class="card-body">
+
+					<div class="table-responsive  export-table">
+						<table id="file-datatable"
+							class="table table-bordered text-nowrap key-buttons border-bottom">
+							<thead>
+								<tr>
+									<th class="border-bottom-0">S.No</th>
+									<th class="border-bottom-0">Date of Schedule</th>
+									<th class="border-bottom-0">Main Topic</th>
+									<th class="border-bottom-0">Duration </th>
+									<th class="border-bottom-0">Tasks</th>
+									<th class="border-bottom-0">Covering Topics</th>
+									<th class="border-bottom-0">Starting Time</th>
+									<th class="border-bottom-0">Ending Time</th>
+									<th class="border-bottom-0">Actions</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								$meeting_query = mysqli_query($conn, "SELECT * FROM `scheduling_internship`");
+								if (mysqli_num_rows($meeting_query) > 0) {
+									$i = 1;
+									while ($row = mysqli_fetch_assoc($meeting_query)) {
+
+										echo "<tr>";
+										echo "<td>" . $i++ . "</td>";
+										echo "<td>" . $row['date_of_schedule'] . "</td>";
+										echo "<td>" . $row['main_topic'] . "</td>";
+										echo "<td>" . $row['class_duration'] . "</td>";
+										echo "<td>" . $row['tasks'] . "</td>";
+										echo "<td>" . $row['topics_to_be_covered'] . "</td>";
+										echo "<td>" . $row['class_starting_time'] . "</td>";
+										echo "<td>" . $row['class_ending_time'] . "</td>";
+										echo "<td>
+										<div class='col-sm-6 col-md-15 mg-t-10 mg-sm-t-0'>
+											<button type='button' class='btn btn-info dropdown-toggle'
+												data-bs-toggle='dropdown' aria-expanded='false'>
+												<i class='fe fe-more-horizontal'></i>
+											</button>
+
+											<div class='dropdown-menu'>
+												<a href='viewschedule.php?s_id=" . $row['id'] . "' class='dropdown-item'>view</a>
+												<a href='updateschedule.php?s_id=" . $row['id'] . "'
+													class='dropdown-item'>update</a>
+												<a href='delete.php?s_id=" . $row['id'] . "'
+													class='dropdown-item'>Delete</a>
+											</div>
+										</div>
+									</td>
+									</tr>";
+									}
+								} else {
+								
+									echo "No Schedule found";
+								
+								}
+								?>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Row -->
+</div>
+</div>
+</div>
 		<!-- End Page -->
 
         <!-- BACK-TO-TOP -->
 		<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
+		<!-- JQUERY JS -->
 		<?php 
 	 include('./script.php'); 
 	  ?>
 
     </body>
 
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 </html>
