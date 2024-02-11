@@ -63,7 +63,7 @@ if (isset($_SESSION["recipient_name"]) && isset($_SESSION["recipient_email"])) {
         // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
         //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->isHTML(true); //Set email format to HTML
         $mail->Subject = $recipient_subject;
         $mail->Body    = $recipient_message;
         $mail->AltBody = strip_tags($recipient_message);

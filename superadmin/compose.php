@@ -62,11 +62,11 @@ if (isset($_POST["submit"])) {
 					$student_email = $student["email"];
 					$recipient = $student_email;
 					$insert_query_student = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-					var_dump($sender_email, $sender_id, $sender_name, $sender_type, $student_email, $recipient_id, $student_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+					// var_dump($sender_email, $sender_id, $sender_name, $sender_type, $student_email, $recipient_id, $student_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
 
-					if ($insert_query_student === false) {
-						die('Error binding parameters: ' . mysqli_error($conn));
-					}
+					// if ($insert_query_student === false) {
+					// 	die('Error binding parameters: ' . mysqli_error($conn));
+					// }
 					$insert_query_student->bind_param("ssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $student_email, $recipient_id, $student_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
 					if ($insert_query_student->execute()) {
 						if (!empty($add_attachments)) {
@@ -86,13 +86,24 @@ if (isset($_POST["submit"])) {
 					}
 				}
 			} else if ($sending_format === "Batches") {
-				$recipient = "All";
 			} else if ($sending_format === "All") {
 			}
 
 			break;
 		case "College":
+			if ($sending_format == "All") {
+				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?)");
+				$insert_query_college->bind_param("sssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+			} else if ($sending_format == "Individuals") {
+				$college_query = mysqli_query($conn, "SELECT * FROM `college` WHERE `id` = $college_id");
+				if (mysqli_num_rows($college_query) > 0) {
+					$college = mysqli_fetch_assoc($college_query);
 
+					$college_name = $college["name"];
+					$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+					$insert_query_college->bind_param("ssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $college_email, $college_id, $college_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+				}
+			}
 			break;
 		case "Trainer":
 
@@ -104,313 +115,253 @@ if (isset($_POST["submit"])) {
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-    <title>Compose</title>
-    <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="Description" content="">
-    <?php include("./style.php"); ?>
-
+	<title>Compose</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Description" content="">
+	<?php include("./style.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-    <?php include("./switcher.php"); ?>
+	<?php include("./switcher.php"); ?>
 
-    <!-- Page -->
-    <div class="page">
+	<!-- Page -->
+	<div class="page">
+		<div>
+			<div class="main-header side-header sticky nav nav-item">
+				<?php include('./partials/navbar.php'); ?>
+			</div>
+			<!-- /main-header -->
 
-        <div>
+			<!-- main-sidebar -->
+			<div class="sticky">
+				<?php include('./partials/sidebar.php'); ?>
+			</div>
+			<!-- main-sidebar -->
 
-            <div class="main-header side-header sticky nav nav-item">
+		</div>
+		<form action="" method="POST" enctype="multipart/form-data">
+			<!-- main-content -->
+			<div class="main-content app-content">
+				<!-- container -->
+				<div class="main-container container-fluid">
+					<!-- breadcrumb -->
+					<div class="breadcrumb-header justify-content-between">
+						<div class="left-content">
+							<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Compose Mail</span>
+						</div>
+					</div>
 
-                <?php include('./partials/navbar.php'); ?>
-
-            </div>
-            <!-- /main-header -->
-
-            <!-- main-sidebar -->
-            <div class="sticky">
-                <?php include('./partials/sidebar.php'); ?>
-            </div>
-            <!-- main-sidebar -->
-
-        </div>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <!-- main-content -->
-            <!-- main-content -->
-            <div class="main-content app-content">
-
-                <!-- container -->
-                <div class="main-container container-fluid">
-
-
-                    <!-- breadcrumb -->
-                    <div class="breadcrumb-header justify-content-between">
-                        <div class="left-content">
-                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Compose Mail</span>
-                        </div>
-
-                    </div>
-
-                    <?php
+					<?php
 					if (isset($_SESSION["mail_sent"]) && !empty($_SESSION["mail_sent"])) {
 						echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>" . $_SESSION['mail_sent'] . "</div> ";
 						unset($_SESSION["mail_sent"]);
 						echo "<script>alert('Mail sent successfully!')</script>";
 					}
-
 					?>
 
-                    <div class="card">
-                        <div class="card-body">
+					<div class="card">
+						<div class="card-body">
+							<div class="row row-sm">
+								<div class="form-group col-md-6">
+									<label for="dropdown">Recipient</label>
+									<select id="dropdown1" onchange="showOptions1()" name="recipient" required class="form-control form-select select2" data-bs-placeholder="Select Country">
+										<option value="College">College</option>
+										<option value="Trainer">Trainer</option>
+										<option value="Student">Student</option>
+									</select>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="dropdown">Sending format</label>
+									<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">
+										<option value="All">All</option>
+										<option value="Individuals">Individuals</option>
+										<option id="batch" style="display:none;" value="Batches">Batches</option>
+									</select>
+								</div>
+								<div class="form-group col-md-12" id="optionsDiv">
+									<label for="exampleInputAadhar" hidden>User ID</label>
+									<select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
+										<option value="ALL"></option>
+									</select>
+								</div>
 
-                            <div class="row row-sm">
-                                <div class="form-group col-md-6">
-                                    <label for="dropdown">Recipient</label>
-                                    <select id="dropdown1" onchange="showOptions1()" name="recipient" required
-                                        class="form-control form-select select2" data-bs-placeholder="Select Country">
+								<script>
+									function showOptions1() {
+										var recipientValue = document.getElementById("dropdown1").value;
+										var sendingFormatValue = document.getElementById("dropdown").value;
 
-                                        <option value="College">College</option>
-                                        <!-- <option value="CollegeMentor">College-Mentor</option> -->
-                                        <option value="Trainer">Trainer</option>
-                                        <option value="Student">Student</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="dropdown">Sending format</label>
-                                    <select id="dropdown" onchange="showOptions1()" name="sending_format" required
-                                        class="form-control form-select select2" data-bs-placeholder="Select Country">
-                                        <option value="All">All</option>
-                                        <option value="Individuals">Individuals</option>
-                                        <option id="batch" style="display:none;" value="Batches">Batches</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-12" id="optionsDiv">
-                                    <label for="exampleInputAadhar" hidden>User ID</label>
-                                    <select name="User_ID" hidden required class="form-control form-select select2"
-                                        data-bs-placeholder="Select Country">
-                                        <option value="ALL"></option>
-                                    </select>
-                                </div>
+										if (recipientValue === "Student") {
+											document.getElementById("batch").style.display = "unset";
 
-                                <script>
-                                function showOptions1() {
-                                    var harsha = document.getElementById("dropdown1").value;
-                                    if (harsha === "Student") {
-                                        document.getElementById("batch").style.display = "unset";
-
-                                        var selectedOption = document.getElementById("dropdown").value;
-                                        if (selectedOption === "Individuals") {
-                                            document.getElementById("optionsDiv").innerHTML = `
-
-<label for="exampleInputAadhar">User ID</label>
-<select name="student_id" required class="form-control form-select select2" data-bs-placeholder="Select Student">
-	<?php
-	$student_query = mysqli_query($conn, "SELECT * FROM student");
-	$i = 1;
-	if (mysqli_num_rows($student_query) > 0) {
-		while ($student = mysqli_fetch_assoc($student_query)) {
-			echo "<option value='{$student['id']}'>{$i}) {$student['name']} | STID_{$student['id']} | Username : {$student['username']}</option>";
-			$i++;
-		}
-	}
-	?>
-	
-</select>
-
-`;
-                                        } else if (selectedOption === "batches") {
-                                            document.getElementById("optionsDiv").innerHTML = `
-				<div class="form-group col-md-6">
-											<label for="exampleInputAadhar">Select batch</label>
-										<select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-										<?php echo "<option value='All'>All</option>"; ?>
-										<?php
-										$batch_query = mysqli_query($conn, "SELECT * FROM batch");
-										$i = 1;
-										if (mysqli_num_rows($batch_query) > 0) {
-											while ($batch = mysqli_fetch_assoc($batch_query)) {
-												echo "<option value='{$batch['id']}'>{$i}) {$batch['batch_name']} | Batch ID : BID_{$batch['id']}</option>";
-												$i++;
-											}
-										}
-
-										?>
-																				
-</select>
-
-`;
-                                        } else if (selectedOption === "batches") {
-                                            document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-										   
-											<option value="All">All</option>
-											<option value="Individuals">Individuals</option>
-											<option id="batch" style="display:none;" value="batches">batches</option>
-											</select>`;
-                                            document.getElementById("optionsDiv").innerHTML = "";
-                                        } else {
-                                            document.getElementById("optionsDiv").innerHTML = `
-				<label for="exampleInputAadhar" hidden>User ID</label>
-				<select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
-				<option value="ALL"></option>
-				</select>
-				`;
-                                        }
-                                    } else if (harsha === "College") {
-                                        document.getElementById("batch").style.display = "none";
-
-                                        var selectedOption = document.getElementById("dropdown").value;
-                                        if (selectedOption === "Individuals") {
-                                            document.getElementById("optionsDiv").innerHTML = `
-
-<label for="exampleInputAadhar">College ID</label>
-<select name="college_id" required class="form-control form-select select2" data-bs-placeholder="Select Country">
-<?php
-$college_query = mysqli_query($conn, "SELECT * FROM college");
-$i = 1;
-if (mysqli_num_rows($college_query) > 0) {
-	while ($college = mysqli_fetch_assoc($college_query)) {
-		echo "<option value='{$college['id']}'>{$i}) {$college['name']}</option>";
-		$i++;
-	}
-}
-?>
-</select>
-
-`;
-                                        } else if (selectedOption === "batches") {
-                                            document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">
-										   
-											<option value="All">All</option>
-											<option value="Individuals">Individuals</option>
-											<option id="batch" style="display:none;" value="Batches">batches</option>
-											</select>`;
-                                            document.getElementById("optionsDiv").innerHTML = "";
-                                        } else {
-                                            document.getElementById("optionsDiv").innerHTML = `
-				<label for="exampleInputAadhar" hidden>User ID</label>
-				<select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
-				<option value="ALL"></option>
-				</select>
-				`;
-                                        }
-                                    } else if (harsha === "Trainer") {
-                                        document.getElementById("batch").style.display = "none";
-
-                                        var selectedOption = document.getElementById("dropdown").value;
-                                        if (selectedOption === "Individuals") {
-                                            document.getElementById("optionsDiv").innerHTML = `
-
-<label for="exampleInputAadhar">User ID</label>
-<select name="trainer_id" required class="form-control form-select select2" data-bs-placeholder="Select Trainer">
-	<?php
-	$trainer_query = mysqli_query($conn, "SELECT * FROM trainer");
-	$i = 1;
-	if (mysqli_num_rows($trainer_query) > 0) {
-		while ($trainer = mysqli_fetch_assoc($trainer_query)) {
-			echo "<option value='{$trainer['id']}'> {$trainer['name']}</option>";
-			$i++;
-		}
-	}
-	?>										
-</select>
-
-`;
-                                        } else if (selectedOption === "batches") {
-                                            document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">										    
-											<option value="All">All</option>
-											<option value="Individuals">Individuals</option>
-											<option id="batch" style="display:none;" value="batches">batches</option>
-											</select>`;
-                                            document.getElementById("optionsDiv").innerHTML = "";
-                                        } else {
-                                            document.getElementById("optionsDiv").innerHTML = `
-				<label for="exampleInputAadhar" hidden>User ID</label>
-				<select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
-				<option value="ALL"></option>
-				</select>
-				`;
-                                        }
-                                    } else {
-                                        document.getElementById("batch").style.display = "none";
-                                    }
-                                }
-                                </script>
-
-                            </div>
-
-
-                            <!-- row -->
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-
-
-                                    <div class="">
-                                        <div class="row row-xs formgroup-wrapper">
-
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputCompanyPhone"
-                                                        style="color:#ff6700"><b>Subject</b></label>
-                                                    <input type="text" class="form-control"
-                                                        id="exampleInputCompanyPhone" placeholder="Enter Subject"
-                                                        name="subject" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputAadhar"
-                                                        style="color:#ff6700"><b>Purpose</b></label>
-                                                    <select name="purpose" class="form-control form-select select2"
-                                                        data-bs-placeholder="Select Country" required>
-                                                        <option value="query">query</option>
-                                                        <option value="feedback">feedback</option>
-                                                        <option value="issue">issue</option>
-                                                        <option value="General">General</option>
+											if (sendingFormatValue === "Individuals") {
+												document.getElementById("optionsDiv").innerHTML = `
+                                                <label for="exampleInputAadhar">User ID</label>
+                                                <select name="student_id" required class="form-control form-select select2" data-bs-placeholder="Select Student">
+                                                    <?php
+													$student_query = mysqli_query($conn, "SELECT * FROM student");
+													$i = 1;
+													if (mysqli_num_rows($student_query) > 0) {
+														while ($student = mysqli_fetch_assoc($student_query)) {
+															echo "<option value='{$student['id']}'>{$i}) {$student['name']} | STID_{$student['id']} | Username : {$student['username']}</option>";
+															$i++;
+														}
+													}
+													?>
+                                                </select>
+                                            `;
+											} else if (sendingFormatValue === "Batches") {
+												document.getElementById("optionsDiv").innerHTML = `
+                                                <div class="form-group col-md-6">
+                                                    <label for="exampleInputAadhar">Select batch</label>
+                                                    <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
+                                                        <?php echo "<option value='All'>All</option>"; ?>
+                                                        <?php
+														$batch_query = mysqli_query($conn, "SELECT * FROM batch");
+														$i = 1;
+														if (mysqli_num_rows($batch_query) > 0) {
+															while ($batch = mysqli_fetch_assoc($batch_query)) {
+																echo "<option value='{$batch['id']}'>{$i}) {$batch['batch_name']} | Batch ID : BID_{$batch['id']}</option>";
+																$i++;
+															}
+														}
+														?>
                                                     </select>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-label">
-                                                    <label for="exampleInputAadhar"
-                                                        style="color:#ff6700"><b>Message</b></label>
-                                                    <input class="form-control" placeholder="Textarea" name="message"
-                                                        required>
-                                                </div>
-                                            </div>
+                                            `;
+											} else {
+												document.getElementById("optionsDiv").innerHTML = "";
+											}
+										} else if (recipientValue === "College") {
+											document.getElementById("batch").style.display = "none";
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="exampleInputcode">add attachments</label>
-                                                    <input type="file" class="form-control" id="exampleInputcode"
-                                                        placeholder="" name="add_attachments">
-                                                </div>
-                                            </div>
+											var selectedOption = document.getElementById("dropdown").value;
+											if (selectedOption === "Individuals") {
+												document.getElementById("optionsDiv").innerHTML = `
+                                                <label for="exampleInputAadhar">College ID</label>
+                                                <select name="college_id" required class="form-control form-select select2" data-bs-placeholder="Select Country">
+                                                    <?php
+													$college_query = mysqli_query($conn, "SELECT * FROM college");
+													$i = 1;
+													if (mysqli_num_rows($college_query) > 0) {
+														while ($college = mysqli_fetch_assoc($college_query)) {
+															echo "<option value='{$college['id']}'>{$i}) {$college['name']}</option>";
+															$i++;
+														}
+													}
+													?>
+                                                </select>
+                                            `;
+											} else if (selectedOption === "batches") {
+												document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">
+                                                    <option value="All">All</option>
+                                                    <option value="Individuals">Individuals</option>
+                                                    <option id="batch" style="display:none;" value="Batches">batches</option>
+                                                </select>`;
+												document.getElementById("optionsDiv").innerHTML = "";
+											} else {
+												document.getElementById("optionsDiv").innerHTML = `
+                                                <label for="exampleInputAadhar" hidden>User ID</label>
+                                                <select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
+                                                    <option value="ALL"></option>
+                                                </select>
+                                                `;
+											}
+										} else if (recipientValue === "Trainer") {
+											document.getElementById("batch").style.display = "none";
 
-                                            <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0"
-                                                style="text-align:right">Send</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+											var selectedOption = document.getElementById("dropdown").value;
+											if (selectedOption === "Individuals") {
+												document.getElementById("optionsDiv").innerHTML = `
+                                                <label for="exampleInputAadhar">User ID</label>
+                                                <select name="trainer_id" required class="form-control form-select select2" data-bs-placeholder="Select Trainer">
+                                                    <?php
+													$trainer_query = mysqli_query($conn, "SELECT * FROM trainer");
+													$i = 1;
+													if (mysqli_num_rows($trainer_query) > 0) {
+														while ($trainer = mysqli_fetch_assoc($trainer_query)) {
+															echo "<option value='{$trainer['id']}'> {$trainer['name']}</option>";
+															$i++;
+														}
+													}
+													?>
+                                                </select>
+                                            `;
+											} else if (selectedOption === "batches") {
+												document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">                                           
+                                                    <option value="All">All</option>
+                                                    <option value="Individuals">Individuals</option>
+                                                    <option id="batch" style="display:none;" value="batches">batches</option>
+                                                </select>`;
+												document.getElementById("optionsDiv").innerHTML = "";
+											} else {
+												document.getElementById("optionsDiv").innerHTML = `
+                                                <label for="exampleInputAadhar" hidden>User ID</label>
+                                                <select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
+                                                    <option value="ALL"></option>
+                                                </select>
+                                                `;
+											}
+										} else {
+											document.getElementById("batch").style.display = "none";
+										}
+									}
+								</script>
+							</div>
 
+							<!-- row -->
+							<div class="row">
+								<div class="col-lg-12 col-md-12">
+									<div class="">
+										<div class="row row-xs formgroup-wrapper">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="exampleInputCompanyPhone" style="color:#ff6700"><b>Subject</b></label>
+													<input type="text" class="form-control" id="exampleInputCompanyPhone" placeholder="Enter Subject" name="subject" required>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="exampleInputAadhar" style="color:#ff6700"><b>Purpose</b></label>
+													<select name="purpose" class="form-control form-select select2" data-bs-placeholder="Select Country" required>
+														<option value="query">query</option>
+														<option value="feedback">feedback</option>
+														<option value="issue">issue</option>
+														<option value="General">General</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-label">
+													<label for="exampleInputAadhar" style="color:#ff6700"><b>Message</b></label>
+													<input class="form-control" placeholder="Textarea" name="message" required>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="exampleInputcode">add attachments</label>
+													<input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments">
+												</div>
+											</div>
+											<button type="submit" name="submit" class="btn btn-primary mt-3 mb-0" style="text-align:right">Send
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Container closed -->
+			</div>
+		</form>
+	</div>
 
+	<!-- End Page -->
 
-                </div>
-                <!-- Container closed -->
-            </div>
-        </form>
-
-
-    </div>
-    <!-- End Page -->
-
-    <?php include("./scripts.php"); ?>
+	<?php include("./scripts.php"); ?>
 
 </body>
 
