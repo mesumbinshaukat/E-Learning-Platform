@@ -86,28 +86,113 @@ if (isset($_POST["submit"])) {
 					}
 				}
 			} else if ($sending_format === "Batches") {
-			} else if ($sending_format === "All") {
+				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `batch_id`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+				$insert_query_college->bind_param("ssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $batch_id);
+				if ($insert_query_college->execute()) {
+					if (!empty($add_attachments)) {
+						move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
+						$_SESSION["attachment"] = $add_attachments_with_date;
+					}
+					$_SESSION["sending_format"] = $sending_format;
+					$_SESSION["batch_id"] = $batch_id;
+					$_SESSION["subject"] = $subject;
+					$_SESSION["message"] = $message;
+					$_SESSION["purpose"] = $purpose;
+					$_SESSION["recipient"] = $recipient;
+					header('location: ./sendmail.php');
+				}
 			}
-
 			break;
 		case "College":
 			if ($sending_format == "All") {
 				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?)");
 				$insert_query_college->bind_param("sssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+				if ($insert_query_college->execute()) {
+					if (!empty($add_attachments)) {
+						move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
+						$_SESSION["attachment"] = $add_attachments_with_date;
+					}
+					$_SESSION["sending_format"] = $sending_format;
+					$_SESSION["subject"] = $subject;
+					$_SESSION["message"] = $message;
+					$_SESSION["purpose"] = $purpose;
+					$_SESSION["recipient"] = $recipient;
+					header('location: ./sendmail.php');
+				}
 			} else if ($sending_format == "Individuals") {
 				$college_query = mysqli_query($conn, "SELECT * FROM `college` WHERE `id` = $college_id");
 				if (mysqli_num_rows($college_query) > 0) {
 					$college = mysqli_fetch_assoc($college_query);
-
+					$college_email = $college["email"];
 					$college_name = $college["name"];
+
 					$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 					$insert_query_college->bind_param("ssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $college_email, $college_id, $college_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+
+					if ($insert_query_college->execute()) {
+						if (!empty($add_attachments)) {
+							move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
+							$_SESSION["attachment"] = $add_attachments_with_date;
+						}
+						$_SESSION["recipient_name"] = $college_name;
+						$_SESSION["recipient_email"] = $college_email;
+						$_SESSION["sending_format"] = $sending_format;
+						$_SESSION["subject"] = $subject;
+						$_SESSION["message"] = $message;
+						$_SESSION["purpose"] = $purpose;
+						header('location: ./sendmail.php');
+					}
 				}
 			}
 			break;
 		case "Trainer":
+			if ($sending_format == "All") {
 
-			break;
+				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?)");
+				$insert_query_college->bind_param("sssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+				if ($insert_query_college->execute()) {
+					if (!empty($add_attachments)) {
+						move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
+						$_SESSION["attachment"] = $add_attachments_with_date;
+					}
+					$_SESSION["sending_format"] = $sending_format;
+					$_SESSION["subject"] = $subject;
+					$_SESSION["message"] = $message;
+					$_SESSION["purpose"] = $purpose;
+					$_SESSION["recipient"] = $recipient;
+					header('location: ./sendmail.php');
+				}
+			} else if ($sending_format == "Individuals") {
+				$trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = $trainer_id");
+				if (mysqli_num_rows($trainer_query) > 0) {
+					$trainer = mysqli_fetch_assoc($trainer_query);
+					$trainer_email = $trainer["email"];
+					$trainer_name = $trainer["name"];
+
+					$insert_trainer = mysqli_prepare(
+						$conn,
+						"INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+					);
+
+					$insert_trainer->bind_param("ssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $trainer_email, $trainer_id, $trainer_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+					if ($insert_trainer->execute()) {
+
+						if (!empty($add_attachments)) {
+							move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
+							$_SESSION["attachment"] = $add_attachments_with_date;
+						}
+						$_SESSION["recipient_name"] = $trainer_name;
+						$_SESSION["recipient_email"] = $trainer_email;
+						$_SESSION["sending_format"] = $sending_format;
+						$_SESSION["subject"] = $subject;
+						$_SESSION["message"] = $message;
+						$_SESSION["purpose"] = $purpose;
+						header('location: ./sendmail.php');
+					}
+				}
+
+				break;
+			}
 	}
 }
 ?>
@@ -158,7 +243,6 @@ if (isset($_POST["submit"])) {
 					if (isset($_SESSION["mail_sent"]) && !empty($_SESSION["mail_sent"])) {
 						echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>" . $_SESSION['mail_sent'] . "</div> ";
 						unset($_SESSION["mail_sent"]);
-						echo "<script>alert('Mail sent successfully!')</script>";
 					}
 					?>
 
@@ -217,7 +301,7 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group col-md-6">
                                                     <label for="exampleInputAadhar">Select batch</label>
                                                     <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-                                                        <?php echo "<option value='All'>All</option>"; ?>
+                                                      
                                                         <?php
 														$batch_query = mysqli_query($conn, "SELECT * FROM batch");
 														$i = 1;

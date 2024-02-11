@@ -21,9 +21,11 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 
-if (isset($_SESSION["recipient_name"]) && isset($_SESSION["recipient_email"])) {
-    $recipient_name = $_SESSION["recipient_name"];
-    $recipient_email = $_SESSION["recipient_email"];
+if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
+    if ($_SESSION["sending_format"] !== "All") {
+        $recipient_name = $_SESSION["recipient_name"];
+        $recipient_email = $_SESSION["recipient_email"];
+    }
     $recipient_subject = $_SESSION["subject"];
     $recipient_message = $_SESSION["message"];
     $attachment = $_SESSION["attachment"];
@@ -52,14 +54,57 @@ if (isset($_SESSION["recipient_name"]) && isset($_SESSION["recipient_email"])) {
 
         //Recipients
         $mail->setFrom($_COOKIE["superadmin_email"], $_COOKIE["superadmin_username"]);
-        $mail->addAddress($recipient_email, $recipient_name);     //Add a recipient
+        if (!empty($recipient_email) && !empty($recipient_name)) {
+            $mail->addAddress($recipient_email, $recipient_name);     //Add a recipient
+
+        } else {
+            $mail->addAddress("masumbinshaukat786@gmail.com", "Mesum Bin Shaukat");
+        }
+
         //$mail->addAddress('ellen@example.com');               //Name is optional
         // $mail->addReplyTo('', '');
+        if ($_SESSION["sending_format"] === "All" && $_SESSION["recipient"] === "College") {
+            $college_query = mysqli_query($conn, "SELECT * FROM `college`");
+            if (mysqli_num_rows($college_query) > 0) {
+                while ($college = mysqli_fetch_assoc($college_query)) {
+                    $mail->addBCC($college["email"], $college["name"]);
+                }
+            }
+        } else if ($_SESSION["sending_format"] === "All" && $_SESSION["recipient"] === "Trainer") {
+
+            $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer`");
+            if (mysqli_num_rows($trainer_query) > 0) {
+                while ($trainer = mysqli_fetch_assoc($trainer_query)) {
+                    $mail->addBCC($trainer["email"], $trainer["name"]);
+                }
+            }
+        } else if ($_SESSION["sending_format"] === "All" && $_SESSION["recipient"] === "Student") {
+
+            $student_query = mysqli_query($conn, "SELECT * FROM `student`");
+            if (mysqli_num_rows($student_query) > 0) {
+                while ($student = mysqli_fetch_assoc($student_query)) {
+                    $mail->addBCC($student["email"], $student["name"]);
+                }
+            }
+        } else if ($_SESSION["sending_format"] === "Batches" && isset($_SESSION["batch_id"])) {
+
+            $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `id` IN (" . $_SESSION["batch_id"] . ")");
+            $trainer_id = mysqli_fetch_assoc($batch_query)["id"];
+            $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id`='$trainer_id'");
+            if (mysqli_num_rows($trainer_query) > 0) {
+                while ($batch = mysqli_fetch_assoc($trainer_query)) {
+                    $mail->addBCC($batch["email"], $batch["name"]);
+                }
+            }
+        }
         // $mail->addCC('');
         // $mail->addBCC('');
 
         //Attachments
-        $mail->addAttachment('./assets/docs/attachments/' . $attachment, $purpose); //Add attachments
+        if (!empty($attachment) && file_exists('./assets/docs/attachments/' . $attachment)) {
+            $mail->addAttachment('./assets/docs/attachments/' . $attachment, $purpose); //Add attachments
+
+        }
         // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
         //Content
