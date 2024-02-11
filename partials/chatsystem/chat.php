@@ -1,15 +1,40 @@
-
+<?php 
+session_start();
+if(isset($_SESSION['lc_username']) && isset($_SESSION['lc_email'])){
+  $lc_username = $_SESSION['lc_username'];
+  $lc_email = $_SESSION['lc_email'];
+  setcookie("lc_username", $lc_username , time() + (86400 * 30), "/"); 
+ setcookie("lc_email", $lc_email , time() + (86400 * 30), "/"); 
+  
+}
+else{
+  header('location: ../../contact.php');
+  exit();
+}
+ 
+ 
+if(isset($_POST['btnEnd'])){
+  session_unset();
+  session_destroy();
+    setcookie("lc_username", "", time() - 3600, "/");
+    setcookie("lc_email", "", time() - 3600, "/");
+    header('location: ../../contact.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Chat</title>
+   
     <link rel="stylesheet" href="./chat.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 </head>
 <body>
+
 <div class="page-content page-container" id="page-content">
     <div class="padding" >
         <div class="row container d-flex justify-content-center " >
@@ -22,14 +47,14 @@
 
 
               <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important; width: 100% !important">
-                <div class="media media-chat">
+                <!-- <div class="media media-chat">
                   <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="" id="admin_avatar">
                   <div class="media-body">
                   <p>Admin Here, How may i help you</p>
                    
                    
                   </div>
-                  </div>
+                  </div> -->
 
      
 
@@ -49,19 +74,19 @@
               <div class="publisher bt-1 border-light">
                 <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
                 <input class="publisher-input" type="text" id="user_messagebox" placeholder="Write something">
-                <!-- <span class="publisher-btn file-group">
-                  <i class="fa fa-paperclip file-browser"></i>
-                  <input type="file">
-                </span> -->
-                <!-- <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a> -->
-                <button class="publisher-btn text-info" href="#" data-abc="true" onclick="sendMessage('Anonymous')"><i class="fa fa-paper-plane"></i></button>
+               <button class="publisher-btn text-info" href="#" data-abc="true" onclick="sendMessage('Anonymous')"><i class="fa fa-paper-plane"></i></button>
               </div>
 
              </div>
           </div>
         </div>
+        <form action="" method="POST">
+        <input type="submit" name="btnEnd" class="btn btn-danger mx-3" value="End Chat">
+        </form>
       </div>
           </div>
+         
+
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           <script>

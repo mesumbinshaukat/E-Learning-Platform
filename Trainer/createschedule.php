@@ -14,8 +14,8 @@ if(isset($_POST['CreateBtn'])){
 	$Topics_to_be_covered = $_POST['Topics_to_be_covered'];
 	$Training_Starting_time = $_POST['Training_Starting_time'];
 	$Training_Ending_time = $_POST['Training_Ending_time'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `scheduling_internship`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`) VALUES (?,?,?,?,?,?,?,?)");
-	$insert_query->bind_param("ssssssss",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time);
+	$insert_query = mysqli_prepare($conn, "INSERT INTO `scheduling_internship`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`, `trainer_id`) VALUES (?,?,?,?,?,?,?,?,?)");
+	$insert_query->bind_param("ssssssssi",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time, $_COOKIE['trainer_id']);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;
 		move_uploaded_file($Shared_Documents_tmpname, "./assets/docs/supportive_docs/" . $Shared_Documents_name);

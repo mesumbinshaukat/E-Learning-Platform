@@ -9,8 +9,8 @@ if(isset($_POST['submitBtn'])){
 	$date_of_meeting_link = $_POST['date_of_meeting_link'];
 	$Platform = $_POST['Platform'];
 	$Meeting_link = $_POST['Meeting_link'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `internship_meetings`(`date_of_meeting_link`, `platform`, `meeting_link`) VALUES (?,?,?)");
-	$insert_query->bind_param('sss',$date_of_meeting_link,$Platform,$Meeting_link);
+	$insert_query = mysqli_prepare($conn, "INSERT INTO `internship_meetings`(`date_of_meeting_link`, `platform`, `meeting_link`,`trainer_id`) VALUES (?,?,?,?)");
+	$insert_query->bind_param('sssi',$date_of_meeting_link,$Platform,$Meeting_link,$_COOKIE['trainer_id']);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;
 		header("location:createmeetings.php");
