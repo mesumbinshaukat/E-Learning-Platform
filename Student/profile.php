@@ -3,6 +3,12 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 	header('location: ../student_login.php');
 	exit();
 }
+include('../db_connection/connection.php');
+$id = $_COOKIE["student_id"];
+$select_query = "SELECT * FROM `student` WHERE `id` = $id";
+$run_query = mysqli_query($conn , $select_query );
+$data = mysqli_fetch_array($run_query);
+
 
 ?>
 <!DOCTYPE html>
@@ -62,7 +68,19 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                 <div class="card-body d-md-flex">
                                     <div class="">
                                         <span class="profile-image pos-relative">
-                                            <img class="br-5" alt="" src="../images/students/profile/">
+                                            <?php 
+                                              if($data['picture'] == ""){
+                                                echo "<img class='br-5' src='assets/img/profile/user.png'>";
+                                              }
+                                              else{?>
+
+                                            <img class='br-5' alt=''
+                                                src='assets/img/profile/<?php echo $data['picture']; ?>'>
+
+                                            <?php }
+                                            
+                                            ?>
+
 
                                         </span>
                                     </div>
@@ -77,15 +95,18 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 									</p> -->
                                         <p class="text-muted ms-md-4 ms-0 mb-3"><span><i
                                                     class="fa fa-phone me-2"></i></span><span
-                                                class="font-weight-semibold me-2">Phone:</span></span>
+                                                class="font-weight-semibold me-2">Phone:
+                                                <?php echo $data['contact_number']; ?></span></span>
                                         </p>
                                         <p class="text-muted ms-md-4 ms-0 mb-3"><span><i
                                                     class="fa fa-envelope me-2"></i></span><span
-                                                class="font-weight-semibold me-2">Email:</span></span>
+                                                class="font-weight-semibold me-2">Email:
+                                                <?php echo $data['email']; ?></span></span>
                                         </p>
                                         <p class="text-muted ms-md-4 ms-0 mb-3"><span><i
                                                     class="far fa-flag me-2"></i></span><span
-                                                class="font-weight-semibold me-2">Address:</span></span>
+                                                class="font-weight-semibold me-2">Address:
+                                                <?php echo $data['address']; ?></span></span>
                                         </p>
 
                                         &nbsp
@@ -132,7 +153,8 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                         </div>
                                                         <div class="col-md-9">
                                                             <input readonly type="text" class="form-control"
-                                                                placeholder="Student Name" name="student_name" value="">
+                                                                placeholder="Student Name" name="student_name"
+                                                                value="<?php echo $data['name']; ?>">
                                                             <input type="hidden" name="id" value="">
                                                         </div>
                                                     </div>
@@ -144,7 +166,8 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                         </div>
                                                         <div class="col-md-9">
                                                             <input readonly type="text" class="form-control"
-                                                                placeholder="Gender" name="gender" value="">
+                                                                placeholder="Gender" name="gender"
+                                                                value="<?php echo $data['gender']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -156,7 +179,8 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                         <div class="col-md-9">
                                                             <input readonly type="date" class="form-control"
                                                                 id="dateMask" placeholder="DD/MM/YYYY"
-                                                                name="date_of_birth" value="">
+                                                                name="date_of_birth"
+                                                                value="<?php echo $data['dob']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,7 +192,7 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                         <div class="col-md-9">
                                                             <input readonly type="Number" class="form-control"
                                                                 placeholder="10 Digit Number" name="phone_number"
-                                                                value="">
+                                                                value="<?php echo $data['contact_number']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -180,7 +204,8 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                         <div class="col-md-9">
                                                             <input readonly type="number" class="form-control"
                                                                 placeholder="10 Digit Number"
-                                                                name="alternative_phone_number" value="">
+                                                                name="alternative_phone_number"
+                                                                value="<?php echo $data['alternate_contact_number']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -192,7 +217,8 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                         </div>
                                                         <div class="col-md-9">
                                                             <input readonly type="mail" class="form-control"
-                                                                placeholder="Email" name="mail_id" value="">
+                                                                placeholder="Email" name="mail_id"
+                                                                value="<?php echo $data['email']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -203,134 +229,141 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                         </div>
                                                         <div class="col-md-9">
                                                             <input readonly readonly type="text" class="form-control"
-                                                                id="exampleInputName" name="address" value="">
+                                                                id="exampleInputName" name="address"
+                                                                value="<?php echo $data['address']; ?>">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">District</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="text" class="form-control"
-                                                                    placeholder="District" name="district" value="">
-                                                            </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">District</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="District" name="district"
+                                                                value="<?php echo $data['district']; ?>">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">State</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="text" class="form-control"
-                                                                    placeholder="State" name="state"
-                                                                    id="exampleInputPerEmail" value="">
-                                                            </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">State</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="State" name="state"
+                                                                id="exampleInputPerEmail"
+                                                                value="<?php echo $data['state']; ?>">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">Pincode</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="number" class="form-control"
-                                                                    placeholder="Pincode" name="pincode"
-                                                                    id="exampleInputPerEmail" value="">
-                                                            </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Pincode</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="number" class="form-control"
+                                                                placeholder="Pincode" name="pincode"
+                                                                id="exampleInputPerEmail"
+                                                                value="<?php echo $data['pin_code']; ?>">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">Qualification</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="text" class="form-control"
-                                                                    placeholder="Qualification" name="qualification"
-                                                                    value="">
-                                                            </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Qualification</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="Qualification" name="qualification"
+                                                                value="<?php echo $data['qualification']; ?>">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">Semester</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="text" class="form-control"
-                                                                    placeholder="Semester" name="semester" value="">
-                                                            </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Semester</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="Semester" name="semester"
+                                                                value="<?php echo $data['semester']; ?>">
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">Branch/Stream</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="text" class="form-control"
-                                                                    placeholder="Branch/Stream" name="stream"
-                                                                    id="exampleInputPerEmail" value="">
-                                                            </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Branch/Stream</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="Branch/Stream" name="stream"
+                                                                id="exampleInputPerEmail"
+                                                                value="<?php echo $data['branch']; ?>">
                                                         </div>
                                                     </div>
-                                                    <!--	<div class="mb-4 main-content-label">Social Info</div> -->
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">Account Type</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="text" class="form-control"
-                                                                    placeholder="Individual" name="account_type"
-                                                                    value="">
-                                                            </div>
+                                                </div>
+                                                <!--	<div class="mb-4 main-content-label">Social Info</div> -->
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Account Type</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="Individual" name="account_type"
+                                                                value="<?php echo $data['account_type']; ?>">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">Institutions</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="text" class="form-control"
-                                                                    placeholder="Institutions" name="institution_name"
-                                                                    value="">
-                                                            </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Institutions</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="Institutions" name="institution_name"
+                                                                value="<?php echo $data['college_name']; ?>">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">Referral Code</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <input readonly type="text" class="form-control"
-                                                                    placeholder="Referral Code" value="">
-                                                            </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Referral Code</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="Referral Code" value="">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group ">
-                                                        <div class="row row-sm">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label">Upload Resume</label>
-                                                            </div>
-                                                            <div class="col-md-9">
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div class="row row-sm">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Upload Resume</label>
+                                                        </div>
+                                                        <div class="col-md-9">
 
-                                                                <a target="_blank" href="../images/students/cv/"><button
-                                                                        type="button" class="btn btn-primary mt-3 mb-0"
-                                                                        name="upload_cv"
-                                                                        style="text-align:right">Download</button></a>
+                                                            <a target="_blank" href="../images/students/cv/"><button
+                                                                    type="button" class="btn btn-primary mt-3 mb-0"
+                                                                    name="upload_cv"
+                                                                    style="text-align:right">Download</button></a>
 
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <button type="button" class=" btn btn-info mt-3 mb-0"><a
-                                                            href="updatestudentprofile.php?id=&page=profile">Update
-                                                            Profile</a></button>
+                                                </div>
+                                                <button type="button" class=" btn btn-info mt-3 mb-0"><a
+                                                        href="updatestudentprofile.php?id=&page=profile">Update
+                                                        Profile</a></button>
                                             </form>
                                         </div>
                                     </div>
