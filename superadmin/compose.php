@@ -61,13 +61,14 @@ if (isset($_POST["submit"])) {
 					$recipient_id = (int) $student["id"];
 					$student_email = $student["email"];
 					$recipient = $student_email;
-					$insert_query_student = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+					$insert_query_student = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 					// var_dump($sender_email, $sender_id, $sender_name, $sender_type, $student_email, $recipient_id, $student_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
 
 					// if ($insert_query_student === false) {
 					// 	die('Error binding parameters: ' . mysqli_error($conn));
 					// }
-					$insert_query_student->bind_param("ssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $student_email, $recipient_id, $student_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+					$recipient_type = "Student";
+					$insert_query_student->bind_param("sssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $student_email, $recipient_id, $student_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $recipient_type);
 					if ($insert_query_student->execute()) {
 						if (!empty($add_attachments)) {
 							move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
@@ -86,8 +87,9 @@ if (isset($_POST["submit"])) {
 					}
 				}
 			} else if ($sending_format === "Batches") {
-				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `batch_id`) VALUES (?,?,?,?,?,?,?,?,?,?)");
-				$insert_query_college->bind_param("ssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $batch_id);
+				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `batch_id`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+				$recipient_type = "Trainer";
+				$insert_query_college->bind_param("ssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $batch_id, $recipient_type);
 				if ($insert_query_college->execute()) {
 					if (!empty($add_attachments)) {
 						move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
@@ -105,8 +107,9 @@ if (isset($_POST["submit"])) {
 			break;
 		case "College":
 			if ($sending_format == "All") {
-				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?)");
-				$insert_query_college->bind_param("sssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+				$recipient_type = "College";
+				$insert_query_college->bind_param("ssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $recipient_type);
 				if ($insert_query_college->execute()) {
 					if (!empty($add_attachments)) {
 						move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
@@ -126,8 +129,9 @@ if (isset($_POST["submit"])) {
 					$college_email = $college["email"];
 					$college_name = $college["name"];
 
-					$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-					$insert_query_college->bind_param("ssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $college_email, $college_id, $college_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+					$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+					$recipient_type = "College";
+					$insert_query_college->bind_param("sssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $college_email, $college_id, $college_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $recipient_type);
 
 					if ($insert_query_college->execute()) {
 						if (!empty($add_attachments)) {
@@ -148,8 +152,9 @@ if (isset($_POST["submit"])) {
 		case "Trainer":
 			if ($sending_format == "All") {
 
-				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?)");
-				$insert_query_college->bind_param("sssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+				$recipient_type = "Trainer";
+				$insert_query_college->bind_param("ssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $recipient_type);
 				if ($insert_query_college->execute()) {
 					if (!empty($add_attachments)) {
 						move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
@@ -171,10 +176,10 @@ if (isset($_POST["submit"])) {
 
 					$insert_trainer = mysqli_prepare(
 						$conn,
-						"INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+						"INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
 					);
-
-					$insert_trainer->bind_param("ssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $trainer_email, $trainer_id, $trainer_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose);
+					$recipient_type = "Trainer";
+					$insert_trainer->bind_param("sssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $trainer_email, $trainer_id, $trainer_name, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $recipient_type);
 					if ($insert_trainer->execute()) {
 
 						if (!empty($add_attachments)) {
