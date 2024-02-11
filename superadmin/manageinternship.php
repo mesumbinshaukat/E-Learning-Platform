@@ -20,7 +20,14 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <?php include("./style.php"); ?>
+
+    <style>
+        .dropdown-menu {
+            position: fixed !important;
+        }
+    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -69,7 +76,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
 
                 </div>
-                <form method="post">
+                <!-- <form method="post">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
                             <b>
@@ -98,18 +105,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             style="height:40px;width:100px;margin-top:35px">Search</button>
 
                     </div>
-                </form>
+                </form> -->
 
-                <br>
-                <br>
+                <!-- <br>
+                <br> -->
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
-
-                                <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                <div class="table-responsive export-table">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
@@ -121,23 +126,32 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">Vacancy</th>
                                                 <th class="border-bottom-0">Last date</th>
                                                 <th class="border-bottom-0">actions</th>
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                            $query = mysqli_query($conn, "SELECT * FROM `internship`");
 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2023-12-12 18:03:08</td>
-                                                <td>Triaright Solutions LLP</td>
-                                                <td>TRINT_01</td>
-                                                <td>Virtual</td>
-                                                <td>Frontend Developer</td>
-                                                <td>50</td>
-                                                <td>2023-12-31</td>
+                                            if (mysqli_num_rows($query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                    $id = $row['id'];
+                                                    $company_name = $row['company_name'];
+                                                    $internship_category = $row['internship_category'];
+                                                    $role = $row['internship'];
+                                                    $vacancy = $row['vacancies'];
+                                                    $last_date = $row['last_date_to_apply'];
 
-                                                <td>
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $row['creation_date'] . "</td>";
+                                                    echo "<td>" . $company_name . "</td>";
+                                                    echo "<td>INTID_" . $row['id'] . "</td>";
+                                                    echo "<td>" . $internship_category . "</td>";
+                                                    echo "<td>" . $role . "</td>";
+                                                    echo "<td>" . $vacancy . "</td>";
+                                                    echo "<td>" . $last_date . "</td>";
+                                                    echo '  <td>
                                                     <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
                                                         <button type="button" class="btn btn-info dropdown-toggle"
                                                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -145,27 +159,21 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         </button>
 
                                                         <div class="dropdown-menu">
-                                                            <a href="viewinternship.php?id=1"
-                                                                class="dropdown-item">view</a>
-                                                            <a href="updateinternship.php?id=1"
-                                                                class="dropdown-item">update</a>
-                                                            <a data-bs-target="#complete" data-bs-toggle="modal"
-                                                                class="dropdown-item">complete</a>
+                                                            <a href="viewinternship.php?id=' . $id . '"
+                                                                class="dropdown-item">View</a>
+                                                            <a href="updateinternship.php?id=' . $id . '"
+                                                                class="dropdown-item">Update</a>
+                                                          
                                                             <a class="btn dropdown-item"
-                                                                href="connection_files/manage/internshipcreate_manage.php?id=1&block=block">pause</a>
-                                                            <a class="btn dropdown-item"
-                                                                href="connection_files/manage/internshipcreate_manage.php?id=1&unblock=unblock">resume</a>
-                                                            <a href="internshipregistration.html"
-                                                                class="dropdown-item">registered candidates</a>
-                                                            <a href="selectstudent.html" class="dropdown-item">add
-                                                                candidate</a>
-                                                            <a class="btn dropdown-item"
-                                                                href="connection_files/manage/internshipcreate_manage.php?id=1&delete=delete">delete</a>
-
-                                                        </div><!-- dropdown-menu -->
+                                                                href="connection_files/manage/internshipcreate_manage.php?id=' . $id . '&delete=delete">Delete</a>
+                                                        </div>
                                                     </div>
-                                                </td>
-                                            </tr>
+                                                </td>';
+                                                    echo "</tr>";
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -180,6 +188,19 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     </div>
 
     <?php include("./scripts.php"); ?>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#file-datatable').DataTable({
+                paging: true,
+                lengthChange: false,
+                searching: false,
+                ordering: true,
+                info: false,
+                autoWidth: false,
+            });
+        });
+    </script>
 </body>
 
 </html>

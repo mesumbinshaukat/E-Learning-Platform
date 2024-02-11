@@ -288,7 +288,7 @@
                             style="font-size:14px; line-height: 2;">Manage</a></li>
                     <li><a class="bi bi-dot" href="internshipregistrationlist.php"
                             style="font-size:14px; line-height: 2;">List</a></li>
-                    <!--		<li><a class="bi bi-dot" href="internshipregistrationsanalysis.php">Analysis</a></li> -->
+
 
                 </ul>
             </li>
