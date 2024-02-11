@@ -9,8 +9,8 @@ if(isset($_POST['submitBtn'])){
 	$recording_name = $_POST['recording_name'];
 	$Date_of_Upload = $_POST['Date_of_Upload'];
 	$Driving_link = $_POST['Driving_link'];
-	$insert_query = mysqli_prepare($conn,"INSERT INTO `internship_recording`(`recording_topic_name`, `date_of_upload`, `driving_link`) VALUES (?,?,?)");
-	$insert_query->bind_param('sss',$recording_name,$Date_of_Upload,$Driving_link);
+	$insert_query = mysqli_prepare($conn,"INSERT INTO `internship_recording`(`recording_topic_name`, `date_of_upload`, `driving_link`,`trainer_id`) VALUES (?,?,?,?)");
+	$insert_query->bind_param('sssi',$recording_name,$Date_of_Upload,$Driving_link,$_COOKIE['trainer_id']);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;	
 		header('location: createrecordings.php');

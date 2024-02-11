@@ -35,7 +35,7 @@ if(isset($_POST['lc_modalBtn'])){
 
 <body>
    
-    
+  
     
     <section>
         <?php include("./partials/navbar.php"); ?>
@@ -45,6 +45,9 @@ if(isset($_POST['lc_modalBtn'])){
     echo "<script>toastr.success('Message Sent Successfully!');</script>";
     session_destroy();
     }?>
+
+  
+
     <div class="main">
         <!--page header section start-->
         <section>
@@ -75,29 +78,17 @@ if(isset($_POST['lc_modalBtn'])){
         <form method="post" onsubmit="return validatecontactform()" action="./contact_backend.php">
   <div class="mb-3">
     <label class="form-label">Email address</label>
-    <?php 
-if(isset($_COOKIE['trainer_id'])){
-    ?>
-    <input type="email" class="form-control" value="<?php echo $_COOKIE['trainer_email']?>" placeholder="<?php echo $_COOKIE['trainer_email']?>" name="email" value="" id="email" >
-    <?php } elseif(isset($_COOKIE['student_id'])){?>
-        <input type="email" class="form-control" name="email" id="email" value="<?php echo $_COOKIE['student_email']?>" placeholder="<?php echo $_COOKIE['student_email']?>" >
-        
-        <?php } else {?>
+     
+
             <input type="email" class="form-control" name="email" placeholder="Enter your email" id="email">
             
-    <?php }?>
+    
     <p id="email_msgerror" style="color:red;"></p>
   </div>
   <div class="mb-3">
     <label class="form-label">Username</label>
-    <?php if(isset($_COOKIE['trainer_id'])){?>
-    <input type="text" class="form-control" value="<?php echo $_COOKIE['trainer_username']?>" placeholder="<?php echo $_COOKIE['trainer_username']?>" name="username" id="username" >
-    <?php } elseif(isset($_COOKIE['student_id'])) { ?>
-        <input type="text" class="form-control" value="<?php echo $_COOKIE['student_username']?>" placeholder="<?php echo $_COOKIE['student_username']?>" name="username" id="username" >
-        <?php } else {?>
             <input type="text" class="form-control" placeholder="Enter your username" name="username" id="username">
-
-            <?php }?>
+            
     <p id="username_msgerror" style="color:red;"></p>
   </div>
 
@@ -160,7 +151,23 @@ if(isset($_COOKIE['trainer_id'])){
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 mb-4 mb-md-4 mb-lg-0" id="livechat_div">
-                        <button data-toggle="modal" data-target="#exampleModal" style="outline: none; border: none;">
+                    <?php if(isset($_COOKIE['lc_username']) && isset($_COOKIE['lc_email'])) {?>
+                        <a href="./partials/chatsystem/chat.php" style="outline: none; border: none;background-color:transparent;">
+                        <div class="rounded-custom text-center shadow-sm">
+                            <div class="card-body py-5">
+                                <div class="icon icon-md text-secondary">
+                                    <i class="bi bi-headset"></i>
+                                </div>
+                                <div>
+                                    <h5 class="h6">Live Chat</h5>
+                                    <p class="text-muted mb-4">Support Available 24/7</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                        <?php } else {?>
+                            <button data-toggle="modal" data-target="#exampleModal" style="outline: none; border: none;background-color:transparent;">
                         <div class="rounded-custom text-center shadow-sm">
                             <div class="card-body py-5">
                                 <div class="icon icon-md text-secondary">
@@ -174,14 +181,15 @@ if(isset($_COOKIE['trainer_id'])){
                             </div>
                         </div>
                         </button>
+                            <?php } ?>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -206,7 +214,9 @@ if(isset($_COOKIE['trainer_id'])){
     </form>
     </div>
   </div>
+
 </div>
+
 
     <?php include("./partials/footer.php");
     ?>
@@ -245,27 +255,28 @@ if(isset($_COOKIE['trainer_id'])){
             return true;
         }
     }
+   var errorMessage2 = "";
    function validate_lcmodel_form(){
         var username = document.getElementById("lc_username").value;
         var email = document.getElementById("lc_email").value;
 
         if(username == ""){
-            errorMessage = "Please Enter Username";
-            document.getElementById("lc_error_username").innerHTML = errorMessage;
+            errorMessage2 = "Please Enter Username";
+            document.getElementById("lc_error_username").innerHTML = errorMessage2;
         }
         else{
             document.getElementById("lc_error_username").innerHTML = "";
             
         }
         if(email == ""){
-            errorMessage = "Please Enter Email";
-            document.getElementById("lc_error_email").innerHTML = errorMessage;
+            errorMessage2 = "Please Enter Email";
+            document.getElementById("lc_error_email").innerHTML = errorMessage2;
         }
         else{
             document.getElementById("lc_error_email").innerHTML = "";
             
         }
-        if(errorMessage == ""){
+        if(errorMessage2 == ""){
             return true;
         }
         else{

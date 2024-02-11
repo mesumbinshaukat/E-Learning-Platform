@@ -407,6 +407,7 @@
                     <li><a class="bi bi-dot" href="inbox.php" style="font-size:14px; line-height: 2;">Inbox</a></li>
                     <li><a class="bi bi-dot" href="livechat.php" style="font-size:14px; line-height: 2;">Live Chat
                             Messages</a></li>
+                    <li><a class="bi bi-dot" href="livechat.php" style="font-size:14px; line-height: 2;">Contact Form Messages</a></li>
 
 
                     <!--		<li><a class="bi bi-dot" href="mailanalysis.php">Analysis</a></li> -->

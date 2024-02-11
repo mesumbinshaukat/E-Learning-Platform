@@ -1,7 +1,10 @@
 <?php
 // Fetch messages from the database
+$username = $_COOKIE['lc_username'];
+$email = $_COOKIE['lc_email'];
+
 $pdo = new PDO("mysql:host=localhost;dbname=e-learning", "root", "");
-$stmt = $pdo->query("SELECT * FROM messages WHERE sender_id = 0 ORDER BY id;");
+$stmt = $pdo->query("SELECT * FROM messages WHERE (sender_id = 0) && (username = '$username') && (email = '$email') && (message_type = 'Live_Chat') ORDER BY id");
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   echo "<p>" . htmlspecialchars($row['message']) . "</p>";
 }
