@@ -28,7 +28,7 @@ $run_query = mysqli_query($conn, $query);
 
     <!-- Title -->
     <title>Dashboard</title>
-    
+
     <?php include("./links.php"); ?>
 
 </head>
@@ -275,16 +275,6 @@ $run_query = mysqli_query($conn, $query);
                         </div>
                     </div>
 
-
-                    <div class="main-footer">
-                        <div class="container-fluid pd-t-0-f ht-100p">
-                            Copyrights ©TriaRight 2023. All rights reserved by <a href="https://www.triaright.com"
-                                class="text-primary">TriaRight</a> developed by <span
-                                class="fa fa-heart text-danger"></span><a href="http://www.mycompany.co.in"
-                                class="text-primary"> MY Company</a>.
-                        </div>
-                    </div>
-                    <!-- Footer closed -->
 
                 </div>
                 <!-- End Page -->

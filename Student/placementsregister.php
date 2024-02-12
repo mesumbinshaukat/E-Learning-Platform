@@ -85,7 +85,7 @@ if(isset($_POST['submit'])){
                             ?>
 
                         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                        <div class="carousel slide" data-bs-ride="carousel" id="carouselExample3">
+                            <div class="carousel slide" data-bs-ride="carousel" id="carouselExample3">
                                 <ol class="carousel-indicators">
                                     <li class="active" data-bs-slide-to="0" data-bs-target="#carouselExample3"></li>
                                     <li data-bs-slide-to="1" data-bs-target="#carouselExample3"></li>
@@ -119,27 +119,25 @@ if(isset($_POST['submit'])){
                                             <?php echo $data['last_date_to_apply']?> </p>
                                     <a class="btn btn-primary btn-block"
                                         href="placementdetails.php?placementid=<?php echo $data['id']?>">Read More</a>
-                                        <form method="post">
-                                                        <input type="hidden" value="<?php echo $data["id"] ?>"
-                                                            name="job_id">
-                                                        <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>"
-                                                            name="stud_id">
+                                    <form method="post">
+                                        <input type="hidden" value="<?php echo $data["id"] ?>" name="job_id">
+                                        <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>" name="stud_id">
 
 
-                                                        <div class="text-center  mt-4">
-                                                            <?php $query_checked = mysqli_query($conn, "SELECT * FROM `placement_applicants` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `job_id` = {$data['id']} "); 
+                                        <div class="text-center  mt-4">
+                                            <?php $query_checked = mysqli_query($conn, "SELECT * FROM `placement_applicants` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `job_id` = {$data['id']} "); 
                                                                 if(mysqli_num_rows($query_checked) > 0){
                                                                     echo "<input value='Already Applied' disabled class='btn btn-primary btn-block'>";
                                                                 }else{
 
                                                                 
                                                             ?>
-                                                            <input type="submit" class="btn btn-primary btn-block"
-                                                                value="Apply" name="submit" id="submit_btn" />
+                                            <input type="submit" class="btn btn-primary btn-block" value="Apply"
+                                                name="submit" id="submit_btn" />
 
-                                                            <?php }?>
-                                                        </div>
-                                                    </form>
+                                            <?php }?>
+                                        </div>
+                                    </form>
 
 
                                 </div>
@@ -161,26 +159,6 @@ if(isset($_POST['submit'])){
     <!-- Container closed -->
     </div>
     <!-- main-content closed -->
-
-
-
-
-
-
-
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="https://triaright.com/Student/www.triaright.com"
-                class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a
-                href="http://www.mycompany.co.in"> my company</a> . All rights reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
-    <!-- End Page -->
 
     <!-- BACK-TO-TOP -->
     <a href="viewcourses1.php@course=Information&#32;Technology.html#top" id="back-to-top"><i

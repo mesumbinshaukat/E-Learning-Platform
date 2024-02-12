@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
 
     <!-- Title -->
     <title>Courses</title>
-	<?php include("./links.php"); ?>
+    <?php include("./links.php"); ?>
 
 </head>
 
@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
 
         <div>
 
-		<?php include("./partials/sidebar.php"); ?>
+            <?php include("./partials/sidebar.php"); ?>
 
 
 
@@ -80,7 +80,7 @@ if(isset($_POST['submit'])){
 
                     <div class="row row-sm">
 
-					<?php
+                        <?php
                             while ($data = mysqli_fetch_array($run_query)) {
                             ?>
 
@@ -107,43 +107,45 @@ if(isset($_POST['submit'])){
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title mb-3"><span
-                                            style="font-size:20px; color:#1d71f2; text-transform:none;"><?php echo $data['course_name'];?></span></h4>
+                                            style="font-size:20px; color:#1d71f2; text-transform:none;"><?php echo $data['course_name'];?></span>
+                                    </h4>
                                     <p class="card-text"><span style="color: #ff6700; font-size:15px;">Due Date
-                                            :</span><span style="font-size:15px;"> <?php echo $data['last_date_to_apply']?> </p>
+                                            :</span><span style="font-size:15px;">
+                                            <?php echo $data['last_date_to_apply']?> </p>
                                     <p class="card-text"><span style="color: #ff6700; font-size:15px;">Author
-                                            :</span><span style="font-size:15px;"> <?php echo $data['provider_name_company']?> </p>
+                                            :</span><span style="font-size:15px;">
+                                            <?php echo $data['provider_name_company']?> </p>
                                     <p class="card-text"><span style="color: #ff6700; font-size:15px;">Date of posting
-                                            :</span><span style="font-size:15px;"> <?php echo $data['creation_date']?> </p>
+                                            :</span><span style="font-size:15px;"> <?php echo $data['creation_date']?>
+                                    </p>
                                     <a class="btn btn-primary btn-block"
                                         href="coursedetails1.php?courseid=<?php echo $data['id']?>">Read More</a>
-                                        <form method="post">
-                                                        <input type="hidden" value="<?php echo $data["id"] ?>"
-                                                            name="course_id">
-                                                        <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>"
-                                                            name="stud_id">
+                                    <form method="post">
+                                        <input type="hidden" value="<?php echo $data["id"] ?>" name="course_id">
+                                        <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>" name="stud_id">
 
 
-                                                        <div class="text-center  mt-4">
-                                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `course_id` = {$data['id']} "); 
+                                        <div class="text-center  mt-4">
+                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `course_id` = {$data['id']} "); 
                                                                 if(mysqli_num_rows($query_check) > 0){
                                                                     echo "<input value='Already Registered' disabled class='btn btn-primary btn-block'>";
                                                                 }else{
 
                                                                 
                                                             ?>
-                                                            <input type="submit" class="btn btn-primary btn-block"
-                                                                value="Apply" name="submit" id="submit_btn" />
+                                            <input type="submit" class="btn btn-primary btn-block" value="Apply"
+                                                name="submit" id="submit_btn" />
 
-                                                                <?php }?>
-                                                        </div>
-                                                    </form>
+                                            <?php }?>
+                                        </div>
+                                    </form>
 
 
                                 </div>
                             </div>
                         </div>
 
-						<?php }?> 
+                        <?php }?>
 
 
 
@@ -165,24 +167,10 @@ if(isset($_POST['submit'])){
 
 
 
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="https://triaright.com/Student/www.triaright.com"
-                class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a
-                href="http://www.mycompany.co.in"> my company</a> . All rights reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
-    <!-- End Page -->
-
     <!-- BACK-TO-TOP -->
     <a href="viewcourses1.php@course=Information&#32;Technology.html#top" id="back-to-top"><i
             class="las la-arrow-up"></i></a>
-			<?php include("./scripts.php") ?>
+    <?php include("./scripts.php") ?>
 
 </body>
 

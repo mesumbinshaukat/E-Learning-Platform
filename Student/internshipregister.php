@@ -104,27 +104,25 @@ if(isset($_POST['submit'])){
                                     </p>
                                     <a class="btn btn-primary btn-block"
                                         href="internshipdetails.php?internshipid=<?php echo $data['id']?>">Read More</a>
-                                        <form method="post">
-                                                        <input type="hidden" value="<?php echo $data["id"] ?>"
-                                                            name="inter_id">
-                                                        <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>"
-                                                            name="stud_id">
+                                    <form method="post">
+                                        <input type="hidden" value="<?php echo $data["id"] ?>" name="inter_id">
+                                        <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>" name="stud_id">
 
 
-                                                        <div class="text-center  mt-4">
-                                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `internship_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `internship_id` = {$data['id']} "); 
+                                        <div class="text-center  mt-4">
+                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `internship_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `internship_id` = {$data['id']} "); 
                                                                 if(mysqli_num_rows($query_check) > 0){
                                                                     echo "<input value='Already Applied' disabled class='btn btn-primary btn-block'>";
                                                                 }else{
 
                                                                 
                                                             ?>
-                                                            <input type="submit" class="btn btn-primary btn-block"
-                                                                value="Apply" name="submit" id="submit_btn" />
+                                            <input type="submit" class="btn btn-primary btn-block" value="Apply"
+                                                name="submit" id="submit_btn" />
 
-                                                            <?php }?>
-                                                        </div>
-                                                    </form>
+                                            <?php }?>
+                                        </div>
+                                    </form>
 
 
                                 </div>
@@ -145,26 +143,7 @@ if(isset($_POST['submit'])){
 
     <!-- Container closed -->
     </div>
-    <!-- main-content closed -->
 
-
-
-
-
-
-
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="https://triaright.com/Student/www.triaright.com"
-                class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a
-                href="http://www.mycompany.co.in"> my company</a> . All rights reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
     <!-- End Page -->
 
     <!-- BACK-TO-TOP -->

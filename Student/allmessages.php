@@ -66,8 +66,7 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                 <div class="card-body">
 
                                     <div class="table-responsive  export-table">
-                                        <table id="file-datatable"
-                                            class="table table-bordered text-nowrap key-buttons border-bottom">
+                                        <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                             <thead>
                                                 <tr>
                                                     <th class="border-bottom-0">S.no</th>
@@ -99,10 +98,8 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                     <td>issue</td>
                                                     <td>Sir I am having a problem to access the recoded sessions so
                                                         kindly fix that issue </td>
-                                                    <td><a target="_blank"
-                                                            href="../images/chat/add_attachments/64dc75b6ca620Screenshot_2023-08-16-12-36-59-674_com.android.chrome.jpg">
-                                                            <button type="submit" class="btn btn-info mt-3 mb-0"
-                                                                name="add_attachments">Download</button></a></td>
+                                                    <td><a target="_blank" href="../images/chat/add_attachments/64dc75b6ca620Screenshot_2023-08-16-12-36-59-674_com.android.chrome.jpg">
+                                                            <button type="submit" class="btn btn-info mt-3 mb-0" name="add_attachments">Download</button></a></td>
                                                     <td>2023-08-16 12:37:34</td>
                                                 </tr>
 
@@ -122,25 +119,20 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                         <div class="modal-dialog" role="document">
                             <div class="modal-content modal-content-demo">
                                 <div class="modal-header">
-                                    <h6 class="modal-title">Reply</h6><button aria-label="Close" class="btn-close"
-                                        data-bs-dismiss="modal" type="button"><span
-                                            aria-hidden="true">&times;</span></button>
+                                    <h6 class="modal-title">Reply</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="exampleInputCompanyPhone"
-                                                style="color:#ff6700"><b>Subject</b></label>
-                                            <input type="text" class="form-control" id="exampleInputCompanyPhone"
-                                                placeholder="Enter Subject">
+                                            <label for="exampleInputCompanyPhone" style="color:#ff6700"><b>Subject</b></label>
+                                            <input type="text" class="form-control" id="exampleInputCompanyPhone" placeholder="Enter Subject">
                                         </div>
                                     </div>
 
 
                                     <div class="col-md-12">
                                         <div class="form-label">
-                                            <label for="exampleInputAadhar"
-                                                style="color:#ff6700"><b>Describe</b></label>
+                                            <label for="exampleInputAadhar" style="color:#ff6700"><b>Describe</b></label>
                                             <textarea class="form-control" placeholder="Textarea"></textarea>
                                         </div>
                                     </div>
@@ -148,8 +140,7 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleInputcode">add attachments</label>
-                                            <input type="file" class="form-control" id="exampleInputcode"
-                                                placeholder="">
+                                            <input type="file" class="form-control" id="exampleInputcode" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -166,9 +157,7 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                         <div class="modal-dialog" role="document">
                             <div class="modal-content modal-content-demo">
                                 <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                        class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                            aria-hidden="true">&times;</span></button>
+                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
 
@@ -187,9 +176,7 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                         <div class="modal-dialog" role="document">
                             <div class="modal-content modal-content-demo">
                                 <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                        class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                            aria-hidden="true">&times;</span></button>
+                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
 
@@ -212,25 +199,6 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
         <!-- Container closed -->
     </div>
     <!-- main-content closed -->
-
-    <!-- Sidebar-right-->
-
-
-
-
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="www.triaright.in" class="text-primary">triaright</a>. Designed with <span
-                class="fa fa-heart text-danger"></span> by <a href="www.mycompany.co.in"> my company</a> . All rights
-            reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
-    <!-- End Page -->
 
     <!-- BACK-TO-TOP -->
     <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>

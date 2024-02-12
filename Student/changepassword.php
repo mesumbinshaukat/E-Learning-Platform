@@ -1,7 +1,7 @@
 <?php
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
-	header('location: ../student_login.php');
-	exit();
+    header('location: ../student_login.php');
+    exit();
 }
 
 ?>
@@ -86,30 +86,19 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword">Current Password</label>
-                                                        <input type="password" data-pristine-equals="#pwd"
-                                                            data-pristine-equals-message="Passwords don't match"
-                                                            class="form-control" name="oldpassword" id="oldpassword"
-                                                            required />
+                                                        <input type="password" data-pristine-equals="#pwd" data-pristine-equals-message="Passwords don't match" class="form-control" name="oldpassword" id="oldpassword" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword">New Password</label>
-                                                        <input type="password" required
-                                                            data-pristine-required-message="Please Enter a new password"
-                                                            data-pristine-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/"
-                                                            data-pristine-pattern-message="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number"
-                                                            class="form-control" name="newpassword" id="newpassword"
-                                                            value="" />
+                                                        <input type="password" required data-pristine-required-message="Please Enter a new password" data-pristine-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/" data-pristine-pattern-message="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number" class="form-control" name="newpassword" id="newpassword" value="" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword">Re-Enter New Password</label>
-                                                        <input type="password" data-pristine-equals="#pwd"
-                                                            data-pristine-equals-message="Passwords don't match"
-                                                            class="form-control" name="confirmpassword"
-                                                            id="confirmpassword" value="" />
+                                                        <input type="password" data-pristine-equals="#pwd" data-pristine-equals-message="Passwords don't match" class="form-control" name="confirmpassword" id="confirmpassword" value="" />
                                                     </div>
                                                 </div>
 
@@ -125,8 +114,7 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 
 
                                             </div>
-                                            <button type="submit" class="btn btn-info mt-3 mb-0" name="change_pwd"
-                                                value="Change Password" onclick="return check()">Change
+                                            <button type="submit" class="btn btn-info mt-3 mb-0" name="change_pwd" value="Change Password" onclick="return check()">Change
                                                 password</button>
                                             <input type="hidden" name="id" id="id" value="" />
                                             <input type="hidden" name="action" id="change_pwd" value="changepwd" />
@@ -144,30 +132,28 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
             </div>
 
             <script type="text/javascript">
-            function check() {
-                var a = document.getElementById('oldpassword').value;
-                var b = document.getElementById('newpassword').value;
-                var c = document.getElementById('confirmpassword').value;
-                if (b != c) {
-                    $(".show_error").find(".alert").html("<p>Password doesnt match</p>");
-                    $(".show_error").show();
-                    return false;
-                } else if (a != 'Mycompany@123') {
-                    $(".show_error").find(".alert").html("<p>Old password doesnt matched</p>");
-                    $(".show_error").show();
-                    return false;
-                } else
-                    return true;
-            }
+                function check() {
+                    var a = document.getElementById('oldpassword').value;
+                    var b = document.getElementById('newpassword').value;
+                    var c = document.getElementById('confirmpassword').value;
+                    if (b != c) {
+                        $(".show_error").find(".alert").html("<p>Password doesnt match</p>");
+                        $(".show_error").show();
+                        return false;
+                    } else if (a != 'Mycompany@123') {
+                        $(".show_error").find(".alert").html("<p>Old password doesnt matched</p>");
+                        $(".show_error").show();
+                        return false;
+                    } else
+                        return true;
+                }
             </script>
 
             <div class="modal fade" id="schedule">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content modal-content-demo">
                         <div class="modal-header">
-                            <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                    aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
 
@@ -182,16 +168,6 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                 </div>
             </div>
 
-
-            <!-- Footer opened -->
-            <div class="main-footer">
-                <div class="container-fluid pd-t-0-f ht-100p">
-                    Copyright © 2023 <a href="www.triaright.com" class="text-primary">triaright</a>. Designed with <span
-                        class="fa fa-heart text-danger"></span> by <a href="http://www.mycompany.co.in"> my company</a>
-                    . All rights reserved
-                </div>
-            </div>
-            <!-- Footer closed -->
 
         </div>
         <!-- End Page -->

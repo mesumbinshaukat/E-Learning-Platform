@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship</a></li>
-                            <li class="breadcrumb-item ">Create</li>
+                            <li class="breadcrumb-item ">View</li>
                             <li class="breadcrumb-item ">List</li>
                         </ol>
                     </div>
@@ -75,13 +75,13 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                                 <option value="" selected="selected">ALL</option>
                                 <?php
-								$sql = mysqli_query($conn, "SELECT DISTINCT company_name FROM `internship`");
-								if (mysqli_num_rows($sql) > 0) {
-									while ($row = mysqli_fetch_assoc($sql)) {
-										echo '<option value="' . $row['company_name'] . '">' . $row['company_name'] . '</option>';
-									}
-								}
-								?>
+                                $sql = mysqli_query($conn, "SELECT DISTINCT company_name FROM `internship`");
+                                if (mysqli_num_rows($sql) > 0) {
+                                    while ($row = mysqli_fetch_assoc($sql)) {
+                                        echo '<option value="' . $row['company_name'] . '">' . $row['company_name'] . '</option>';
+                                    }
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
@@ -90,13 +90,13 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                 data-bs-placeholder="Select Filter">
                                 <option value="" selected>All</option>
                                 <?php
-								$sql = mysqli_query($conn, "SELECT DISTINCT internship_category FROM `internship`");
-								if (mysqli_num_rows($sql) > 0) {
-									while ($row = mysqli_fetch_assoc($sql)) {
-										echo '<option value="' . $row['internship_category'] . '">' . $row['internship_category'] . '</option>';
-									}
-								}
-								?>
+                                $sql = mysqli_query($conn, "SELECT DISTINCT internship_category FROM `internship`");
+                                if (mysqli_num_rows($sql) > 0) {
+                                    while ($row = mysqli_fetch_assoc($sql)) {
+                                        echo '<option value="' . $row['internship_category'] . '">' . $row['internship_category'] . '</option>';
+                                    }
+                                }
+                                ?>
 
                             </select>
                         </div>
@@ -119,7 +119,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
                                                 <th class="border-bottom-0">date of adding</th>
-                                                <th class="border-bottom-0">Author</th>
+                                                <th class="border-bottom-0">Company</th>
                                                 <th class="border-bottom-0">Internship ID</th>
                                                 <th class="border-bottom-0">Role</th>
                                                 <th class="border-bottom-0">Vacancy</th>
@@ -133,34 +133,34 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         <tbody>
 
                                             <?php
-											$query = "SELECT * FROM `internship` WHERE 1=1";
-											if (isset($_POST['company_name']) && $_POST['company_name'] != '') {
-												$company_name = $_POST['company_name'];
-												$query .= " AND company_name = '$company_name'";
-											}
-											if (isset($_POST['internship_category']) && $_POST['internship_category'] != '') {
-												$internship_category = $_POST['internship_category'];
-												$query .= " AND internship_category = '$internship_category'";
-											}
-											$result = mysqli_query($conn, $query);
-											if (!$result) {
-												die('Error: ' . mysqli_error($conn));
-											}
-											$i = 1;
-											while ($row = mysqli_fetch_assoc($result)) {
-												echo '<tr>';
-												echo '<td>' . $i . '</td>';
-												echo '<td>' . $row['creation_date'] . '</td>';
-												echo '<td>' . $row['company_name'] . '</td>';
-												echo '<td>INTID_' . $row['id'] . '</td>';
-												echo '<td>' . $row['internship'] . '</td>';
-												echo '<td>' . $row['vacancies'] . '</td>';
-												echo '<td>' . $row['last_date_to_apply'] . '</td>';
-												echo '<td>' . $row['internship_category'] . '</td>';
-												echo '</tr>';
-												$i++;
-											}
-											?>
+                                            $query = "SELECT * FROM `internship` WHERE 1=1";
+                                            if (isset($_POST['company_name']) && $_POST['company_name'] != '') {
+                                                $company_name = $_POST['company_name'];
+                                                $query .= " AND company_name = '$company_name'";
+                                            }
+                                            if (isset($_POST['internship_category']) && $_POST['internship_category'] != '') {
+                                                $internship_category = $_POST['internship_category'];
+                                                $query .= " AND internship_category = '$internship_category'";
+                                            }
+                                            $result = mysqli_query($conn, $query);
+                                            if (!$result) {
+                                                die('Error: ' . mysqli_error($conn));
+                                            }
+                                            $i = 1;
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo '<tr>';
+                                                echo '<td>' . $i . '</td>';
+                                                echo '<td>' . $row['creation_date'] . '</td>';
+                                                echo '<td>' . $row['company_name'] . '</td>';
+                                                echo '<td>INTID_' . $row['id'] . '</td>';
+                                                echo '<td>' . $row['internship'] . '</td>';
+                                                echo '<td>' . $row['vacancies'] . '</td>';
+                                                echo '<td>' . $row['last_date_to_apply'] . '</td>';
+                                                echo '<td>' . $row['internship_category'] . '</td>';
+                                                echo '</tr>';
+                                                $i++;
+                                            }
+                                            ?>
 
                                         </tbody>
                                     </table>

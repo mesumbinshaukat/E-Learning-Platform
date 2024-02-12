@@ -141,7 +141,7 @@ if(isset($_POST['submit'])){
                                                             <input type="submit" class="btn ripple btn-primary me-2"
                                                                 value="Register" name="submit" id="submit_btn" />
 
-                                                                <?php }?>
+                                                            <?php }?>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -200,7 +200,7 @@ if(isset($_POST['submit'])){
                     </div>
                     <?php if(isset($check) && $check === true){?>
                     <div class="alert alert-success" role="alert" id="alert">
-                    You're Registered for this Course!
+                        You're Registered for this Course!
                     </div>
                     <?php }?>
                     <div class="row row-sm">
@@ -363,18 +363,6 @@ if(isset($_POST['submit'])){
 
 
 
-    <!-- Footer opened -->
-    <div class="main-footer">
-        <div class="container-fluid pd-t-0-f ht-100p">
-            Copyright © 2023 <a href="https://triaright.com/Student/www.triaright.com"
-                class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a
-                href="http://www.mycompany.co.in"> my company</a> . All rights reserved
-        </div>
-    </div>
-    <!-- Footer closed -->
-
-
-    </div>
     <!-- End Page -->
 
     <!-- BACK-TO-TOP -->

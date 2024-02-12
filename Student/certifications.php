@@ -1,7 +1,7 @@
 <?php
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
-	header('location: ../student_login.php');
-	exit();
+    header('location: ../student_login.php');
+    exit();
 }
 
 ?>
@@ -59,16 +59,14 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
                             <b> <label>Batch id</label> </b>
-                            <select name="batch_id" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
+                            <select name="batch_id" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="ALL">ALL</option>
                                 <option value="57">57</option>
                                 <option value="0">0</option>
                             </select>
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search"
-                            style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search" style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
                     </div>
                 </form>
 
@@ -482,22 +480,6 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
             <!-- Container closed -->
         </div>
         <!-- main-content closed -->
-
-        <!-- Sidebar-right-->
-
-
-
-
-        <!-- Footer opened -->
-        <div class="main-footer">
-            <div class="container-fluid pd-t-0-f ht-100p">
-                Copyright © 2023 <a href="www.triaright.com" class="text-primary">triaright</a>. Designed with <span
-                    class="fa fa-heart text-danger"></span> by <a href="http://www.mycompany.co.in"> my company</a> .
-                All rights reserved
-            </div>
-        </div>
-        <!-- Footer closed -->
-
 
     </div>
     <!-- End Page -->
