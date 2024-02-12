@@ -15,68 +15,68 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 
 <head>
-	<title>Internship Management</title>
-	<meta charset="UTF-8">
-	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="Description" content="">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-	<?php include("./style.php"); ?>
+    <title>Placement Management</title>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <?php include("./style.php"); ?>
 
-	<style>
-		.dropdown-menu {
-			position: fixed !important;
-		}
-	</style>
+    <style>
+    .dropdown-menu {
+        position: fixed !important;
+    }
+    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-	<?php
+    <?php
 	include("./switcher.php")
 
 	?>
 
-	<!-- Page -->
-	<div class="page">
+    <!-- Page -->
+    <div class="page">
 
-		<div>
+        <div>
 
-			<div class="main-header side-header sticky nav nav-item">
+            <div class="main-header side-header sticky nav nav-item">
 
-				<?php include('./partials/navbar.php'); ?>
+                <?php include('./partials/navbar.php'); ?>
 
-			</div>
-			<!-- /main-header -->
+            </div>
+            <!-- /main-header -->
 
-			<!-- main-sidebar -->
-			<div class="sticky">
-				<?php include('./partials/sidebar.php') ?>
-			</div>
-			<!-- main-sidebar -->
+            <!-- main-sidebar -->
+            <div class="sticky">
+                <?php include('./partials/sidebar.php') ?>
+            </div>
+            <!-- main-sidebar -->
 
-		</div> <!-- main-content -->
-		<div class="main-content app-content">
+        </div> <!-- main-content -->
+        <div class="main-content app-content">
 
-			<!-- container -->
-			<div class="main-container container-fluid">
+            <!-- container -->
+            <div class="main-container container-fluid">
 
 
-				<div class="breadcrumb-header justify-content-between">
-					<div class="right-content">
-						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Internship
-						</span>
-					</div>
+                <div class="breadcrumb-header justify-content-between">
+                    <div class="right-content">
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Internship
+                        </span>
+                    </div>
 
-					<div class="justify-content-center mt-2">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship</a></li>
-							<li class="breadcrumb-item ">Create</li>
-							<li class="breadcrumb-item ">Manage</li>
-						</ol>
-					</div>
+                    <div class="justify-content-center mt-2">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship</a></li>
+                            <li class="breadcrumb-item ">Create</li>
+                            <li class="breadcrumb-item ">Manage</li>
+                        </ol>
+                    </div>
 
-				</div>
-				<!-- <form method="post">
+                </div>
+                <!-- <form method="post">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
                             <b>
@@ -107,29 +107,29 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
                 </form> -->
 
-				<!-- <br>
+                <!-- <br>
                 <br> -->
-				<div class="row row-sm">
-					<div class="col-lg-12">
-						<div class="card custom-card overflow-hidden">
-							<div class="card-body">
-								<div class="table-responsive export-table">
-									<table id="file-datatable" class="table table-bordered text-nowrap key-buttons">
-										<thead>
-											<tr>
-												<th class="border-bottom-0">S.no</th>
-												<th class="border-bottom-0">Sate of Adding</th>
-												<th class="border-bottom-0">Company Name</th>
-												<th class="border-bottom-0">Placement ID</th>
-												<th class="border-bottom-0">Work Mode</th>
-												<th class="border-bottom-0">Role</th>
-												<th class="border-bottom-0">Vacancy</th>
-												<th class="border-bottom-0">Last date</th>
-												<th class="border-bottom-0">Actions</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <div class="card custom-card overflow-hidden">
+                            <div class="card-body">
+                                <div class="table-responsive export-table">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-bottom-0">S.no</th>
+                                                <th class="border-bottom-0">Sate of Adding</th>
+                                                <th class="border-bottom-0">Company Name</th>
+                                                <th class="border-bottom-0">Placement ID</th>
+                                                <th class="border-bottom-0">Work Mode</th>
+                                                <th class="border-bottom-0">Role</th>
+                                                <th class="border-bottom-0">Vacancy</th>
+                                                <th class="border-bottom-0">Last date</th>
+                                                <th class="border-bottom-0">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
 											$query = mysqli_query($conn, "SELECT * FROM `placement`");
 
 											if (mysqli_num_rows($query) > 0) {
@@ -159,13 +159,13 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         </button>
 
                                                         <div class="dropdown-menu">
-                                                            <a href="viewinternship.php?id=' . $id . '"
+                                                            <a href="view_placement.php?id=' . $id . '"
                                                                 class="dropdown-item">View</a>
-                                                            <a href="updateinternship.php?id=' . $id . '"
+                                                            <a href="update_placement.php?id=' . $id . '"
                                                                 class="dropdown-item">Update</a>
                                                           
                                                             <a class="btn dropdown-item"
-                                                                href="delete.php?id=' . $id . '&type=internship">Delete</a>
+                                                                href="delete.php?id=' . $id . '&type=placement">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>';
@@ -173,34 +173,34 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 												}
 											}
 											?>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Row -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
 
-			</div>
-		</div>
+            </div>
+        </div>
 
-	</div>
+    </div>
 
-	<?php include("./scripts.php"); ?>
-	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('#file-datatable').DataTable({
-				paging: true,
-				lengthChange: false,
-				searching: false,
-				ordering: true,
-				info: false,
-				autoWidth: false,
-			});
-		});
-	</script>
+    <?php include("./scripts.php"); ?>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#file-datatable').DataTable({
+            paging: true,
+            lengthChange: false,
+            searching: false,
+            ordering: true,
+            info: false,
+            autoWidth: false,
+        });
+    });
+    </script>
 </body>
 
 </html>

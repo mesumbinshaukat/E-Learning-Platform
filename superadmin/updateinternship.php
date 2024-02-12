@@ -38,15 +38,20 @@ if (isset($_POST["Update"])) {
     $inner_image_old = $_POST["inner_image_old"];
 
 
-    if (empty($_FILES["main_image"]["name"]) && empty($_FILES["inner_image"]["name"])) {
+    if (empty($_FILES["main_image"]["name"])) {
         $main_image = $main_image_old;
-        $inner_image = $inner_image_old;
     } else {
         $main_image = $_FILES["main_image"]["name"];
         $main_image_tmp = $_FILES["main_image"]["tmp_name"];
+    }
+
+    if (empty($_FILES["inner_image"]["name"])) {
+        $inner_image = $inner_image_old;
+    } else {
         $inner_image = $_FILES["inner_image"]["name"];
         $inner_image_tmp = $_FILES["inner_image"]["tmp_name"];
     }
+
     $update_query = mysqli_prepare($conn, "UPDATE `internship` SET `internship`=?,`company_name`=?,`industry`=?,`duration_days`=?,`eligibility`=?,`location`=?,`internship_category`=?,`gender`=?,`vacancies`=?,`last_date_to_apply`=?,`certification`=?,`full-description`=?,`pre-requirements`=?,`additional_info`=?,`internship_type`=?,`salary`=?,`stifund`=?,`food_allowances`=?,`transport_allowances`=?,`main_image`=?,`inner_image`=? WHERE `id`=?");
     $update_query->bind_param("sssssssssssssssssssssi", $internship, $company_name, $industry, $duration, $eligibility, $location, $category, $gender, $vacancies, $last_date_to_apply, $certification, $full_description, $pre_requirements, $additional_info, $internship_type, $salary, $stifund, $food_allowances, $transport_allowances, $main_image, $inner_image, $id);
     if ($update_query->execute()) {
@@ -104,12 +109,12 @@ if (isset($_POST["Update"])) {
                 <!-- breadcrumb -->
                 <div class="breadcrumb-header justify-content-between">
                     <div class="left-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1">View Internship</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1">Update Internship</span>
                     </div>
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item "><a href="javascript:void(0);">Internship</a></li>
-                            <li class="breadcrumb-item " aria-current="page">view</li>
+                            <li class="breadcrumb-item " aria-current="page">Update</li>
                         </ol>
                     </div>
                 </div>
@@ -133,26 +138,23 @@ if (isset($_POST["Update"])) {
                                         $fetch = mysqli_fetch_assoc($result);
 
                                     ?>
-                                    <input name="id" type="hidden" value="<?php echo $fetch['id']; ?>">
-                                    <div id="wizard3">
-                                        <h3>Overview</h3>
-                                        <section>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Company Name</label>
-                                                <input type="text" name="company_name" class="form-control"
-                                                    placeholder="Course Name"
-                                                    value="<?php echo $fetch['company_name']; ?>">
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Internship Title</label>
-                                                <input type="text" name="internship" class="form-control"
-                                                    placeholder="Title" value="<?php echo $fetch['internship']; ?>">
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Industry</label>
+                                        <input name="id" type="hidden" value="<?php echo $fetch['id']; ?>">
+                                        <div id="wizard3">
+                                            <h3>Overview</h3>
+                                            <section>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Company Name</label>
+                                                    <input type="text" name="company_name" class="form-control" placeholder="Course Name" value="<?php echo $fetch['company_name']; ?>">
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Internship Title</label>
+                                                    <input type="text" name="internship" class="form-control" placeholder="Title" value="<?php echo $fetch['internship']; ?>">
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Industry</label>
 
-                                                <select class="form-control form-select select2" name="industry">
-                                                    <?php
+                                                    <select class="form-control form-select select2" name="industry">
+                                                        <?php
                                                         switch ($fetch["industry"]) {
                                                             case "Information Technology":
                                                                 echo "<option selected value='Information Technology'>Information Technology
@@ -200,20 +202,18 @@ if (isset($_POST["Update"])) {
                                                                 break;
                                                         }
                                                         ?>
-                                                </select>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Duration(Days)</label>
-                                                <input type="number" name="duration" class="form-control"
-                                                    placeholder="Duration(min)"
-                                                    value="<?php echo $fetch["duration_days"] ?>">
-                                            </div>
+                                                    </select>
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Duration(Days)</label>
+                                                    <input type="number" name="duration" class="form-control" placeholder="Duration(min)" value="<?php echo $fetch["duration_days"] ?>">
+                                                </div>
 
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Eligibility</label>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Eligibility</label>
 
-                                                <select class="form-control form-select select2" name="eligibility">
-                                                    <?php
+                                                    <select class="form-control form-select select2" name="eligibility">
+                                                        <?php
                                                         switch ($fetch["eligibility"]) {
                                                             case "Under Graduate":
                                                                 echo "<option selected value='Under Graduate'>Under Graduate</option>";
@@ -236,19 +236,17 @@ if (isset($_POST["Update"])) {
                                                                 echo "<option value='Post Graduate'>Post Graduate</option>";
                                                         }
                                                         ?>
-                                                </select>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Location</label>
-                                                <input type="text" name="location" class="form-control"
-                                                    placeholder="Enter Location"
-                                                    value="<?php echo $fetch["location"] ?>">
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Internship Category</label>
+                                                    </select>
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Location</label>
+                                                    <input type="text" name="location" class="form-control" placeholder="Enter Location" value="<?php echo $fetch["location"] ?>">
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Internship Category</label>
 
-                                                <select class="form-control form-select select2" name="category">
-                                                    <?php
+                                                    <select class="form-control form-select select2" name="category">
+                                                        <?php
                                                         switch ($fetch["internship_category"]) {
                                                             case "Virtual":
                                                                 echo "<option selected value='Virtual'>Virtual</option>";
@@ -273,13 +271,13 @@ if (isset($_POST["Update"])) {
                                                         }
                                                         ?>
 
-                                                </select>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Preferred For</label>
-                                                <select class="form-control form-select select2" name="gender">
+                                                    </select>
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Preferred For</label>
+                                                    <select class="form-control form-select select2" name="gender">
 
-                                                    <?php
+                                                        <?php
                                                         switch ($fetch["gender"]) {
                                                             case "Male":
                                                                 echo "<option selected value='Male'>Male</option>";
@@ -304,25 +302,22 @@ if (isset($_POST["Update"])) {
                                                         }
                                                         ?>
 
-                                                </select>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Number of Vacancies</label>
-                                                <input type="number" class="form-control" placeholder="Vaccancies Count"
-                                                    name="vacancies" value="<?php echo $fetch["vacancies"] ?>">
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Last Date to apply</label>
-                                                <input type="date" class="form-control" name="last_date_to_apply"
-                                                    placeholder="YYYY\MM\DD"
-                                                    value="<?php echo $fetch["last_date_to_apply"] ?>">
-                                            </div>
+                                                    </select>
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Number of Vacancies</label>
+                                                    <input type="number" class="form-control" placeholder="Vaccancies Count" name="vacancies" value="<?php echo $fetch["vacancies"] ?>">
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Last Date to apply</label>
+                                                    <input type="date" class="form-control" name="last_date_to_apply" placeholder="YYYY\MM\DD" value="<?php echo $fetch["last_date_to_apply"] ?>">
+                                                </div>
 
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Certification</label>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Certification</label>
 
-                                                <select class="form-control form-select select2" name="certification">
-                                                    <?php
+                                                    <select class="form-control form-select select2" name="certification">
+                                                        <?php
                                                         switch ($fetch["certification"]) {
                                                             case "Yes":
                                                                 echo "<option selected value='Yes'>Yes</option>";
@@ -340,44 +335,37 @@ if (isset($_POST["Update"])) {
 
                                                         ?>
 
-                                                </select>
-                                            </div>
+                                                    </select>
+                                                </div>
 
 
-                                        </section>
-                                        <h3> Full information</h3>
-                                        <section>
+                                            </section>
+                                            <h3> Full information</h3>
+                                            <section>
 
-                                            <label class="form-label">Full Description</label>
-                                            <div class="form-label">
-                                                <input class="form-control" placeholder="Textarea"
-                                                    name="full_description" rows="5"
-                                                    value="<?php echo $fetch["full-description"] ?>"></input>
-                                            </div>
+                                                <label class="form-label">Full Description</label>
+                                                <div class="form-label">
+                                                    <input class="form-control" placeholder="Textarea" name="full_description" rows="5" value="<?php echo $fetch["full-description"] ?>"></input>
+                                                </div>
 
 
-                                            <label class="form-label"> Pre-Requirements</label>
-                                            <div class="form-label">
-                                                <input class="form-control" name="pre-requirements"
-                                                    placeholder="Textarea" rows="5"
-                                                    value="<?php echo $fetch["pre-requirements"] ?>"></input>
-                                            </div>
+                                                <label class="form-label"> Pre-Requirements</label>
+                                                <div class="form-label">
+                                                    <input class="form-control" name="pre-requirements" placeholder="Textarea" rows="5" value="<?php echo $fetch["pre-requirements"] ?>"></input>
+                                                </div>
 
-                                            <label class="form-label">additional information</label>
-                                            <div class="form-label">
-                                                <input class="form-control" name="additional_info"
-                                                    placeholder="Textarea" rows="3"
-                                                    value="<?php echo $fetch["additional_info"] ?>">
-                                            </div>
+                                                <label class="form-label">additional information</label>
+                                                <div class="form-label">
+                                                    <input class="form-control" name="additional_info" placeholder="Textarea" rows="3" value="<?php echo $fetch["additional_info"] ?>">
+                                                </div>
 
-                                        </section>
-                                        <h3>Pricings </h3>
-                                        <section>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Internship Type</label>
-                                                <select class="form-control form-select select2" name="internship_type"
-                                                    data-bs-placeholder="Internship Type" required>
-                                                    <?php switch ($fetch["internship_type"]) {
+                                            </section>
+                                            <h3>Pricings </h3>
+                                            <section>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Internship Type</label>
+                                                    <select class="form-control form-select select2" name="internship_type" data-bs-placeholder="Internship Type" required>
+                                                        <?php switch ($fetch["internship_type"]) {
                                                             case "Paid":
                                                                 echo '<option value="Paid" selected>Paid</option>
 															<option value="Free">Free</option>
@@ -400,15 +388,15 @@ if (isset($_POST["Update"])) {
                                                                 break;
                                                         } ?>
 
-                                                </select>
+                                                    </select>
 
-                                            </div>
+                                                </div>
 
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Food Allowances</label>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Food Allowances</label>
 
-                                                <select class="form-control form-select select2" name="food_allowances">
-                                                    <?php
+                                                    <select class="form-control form-select select2" name="food_allowances">
+                                                        <?php
                                                         switch ($fetch["food_allowances"]) {
                                                             case "Yes":
                                                                 echo "<option selected value='Yes'>Yes</option>";
@@ -424,15 +412,14 @@ if (isset($_POST["Update"])) {
                                                                 break;
                                                         }
                                                         ?>
-                                                </select>
-                                            </div>
+                                                    </select>
+                                                </div>
 
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Transport Allowances</label>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Transport Allowances</label>
 
-                                                <select class="form-control form-select select2"
-                                                    name="transport_allowances">
-                                                    <?php
+                                                    <select class="form-control form-select select2" name="transport_allowances">
+                                                        <?php
                                                         switch ($fetch["transport_allowances"]) {
                                                             case "Yes":
                                                                 echo "<option selected value='Yes'>Yes</option>";
@@ -448,48 +435,39 @@ if (isset($_POST["Update"])) {
                                                                 break;
                                                         }
                                                         ?>
-                                                </select>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Enter Value (if paid)</label>
-                                                <input type="number" class="form-control" name="salary"
-                                                    placeholder="0,000/-" value="<?php echo $fetch["salary"] ?>">
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Enter Value (if stifund)</label>
-                                                <input type="number" class="form-control" name="stifund"
-                                                    placeholder="0,000/-" value="<?php echo $fetch["stifund"] ?>">
-                                            </div>
+                                                    </select>
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Enter Value (if paid)</label>
+                                                    <input type="number" class="form-control" name="salary" placeholder="0,000/-" value="<?php echo $fetch["salary"] ?>">
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Enter Value (if stifund)</label>
+                                                    <input type="number" class="form-control" name="stifund" placeholder="0,000/-" value="<?php echo $fetch["stifund"] ?>">
+                                                </div>
 
-                                        </section>
-                                        <h3>Uploadings </h3>
-                                        <section>
+                                            </section>
+                                            <h3>Uploadings </h3>
+                                            <section>
 
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Main Image</label>
-                                                <input type="file" name="main_image" class="form-control">
-                                                <input type="hidden" name="main_image_old"
-                                                    value="<?php echo $fetch["main_image"] ?>">
-                                                <a target="_blank"
-                                                    href="./assets/img/internship/<?php echo $fetch["main_image"] ?>"
-                                                    class="btn btn-primary mt-3 mb-0" style="text-align:right">View Main
-                                                    Image</a>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <label class="form-label">Inner image</label>
-                                                <input type="file" name="inner_image" class="form-control">
-                                                <input type="hidden" name="inner_image_old"
-                                                    value="<?php echo $fetch["inner_image"] ?>">
-                                                <a href="<?php echo "./assets/img/internship/" . $fetch["inner_image"] ?>"
-                                                    class="btn btn-primary mt-3 mb-0" style="text-align:right"
-                                                    target="_blank">View Inner Image</a>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <input type="submit" class="btn btn-success" value="Update"
-                                                    name="Update">
-                                            </div>
-                                        </section>
-                                    </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Main Image</label>
+                                                    <input type="file" name="main_image" class="form-control">
+                                                    <input type="hidden" name="main_image_old" value="<?php echo $fetch["main_image"] ?>">
+                                                    <a target="_blank" href="./assets/img/internship/<?php echo $fetch["main_image"] ?>" class="btn btn-primary mt-3 mb-0" style="text-align:right">View Main
+                                                        Image</a>
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <label class="form-label">Inner image</label>
+                                                    <input type="file" name="inner_image" class="form-control">
+                                                    <input type="hidden" name="inner_image_old" value="<?php echo $fetch["inner_image"] ?>">
+                                                    <a href="<?php echo "./assets/img/internship/" . $fetch["inner_image"] ?>" class="btn btn-primary mt-3 mb-0" style="text-align:right" target="_blank">View Inner Image</a>
+                                                </div>
+                                                <div class="control-group form-group">
+                                                    <input type="submit" class="btn btn-success" value="Update" name="Update">
+                                                </div>
+                                            </section>
+                                        </div>
 
                                     <?php  } else {
                                         echo '<div class="alert alert-danger">Internship Not Found</div>';
