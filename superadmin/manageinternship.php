@@ -24,9 +24,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <?php include("./style.php"); ?>
 
     <style>
-        .dropdown-menu {
-            position: fixed !important;
-        }
+    .dropdown-menu {
+        position: fixed !important;
+    }
     </style>
 </head>
 
@@ -165,7 +165,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                                 class="dropdown-item">Update</a>
                                                           
                                                             <a class="btn dropdown-item"
-                                                                href="connection_files/manage/internshipcreate_manage.php?id=' . $id . '&delete=delete">Delete</a>
+                                                                href="delete.php?id=' . $id . '&type=internship">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>';
@@ -190,16 +190,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <?php include("./scripts.php"); ?>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#file-datatable').DataTable({
-                paging: true,
-                lengthChange: false,
-                searching: false,
-                ordering: true,
-                info: false,
-                autoWidth: false,
-            });
+    $(document).ready(function() {
+        $('#file-datatable').DataTable({
+            paging: true,
+            lengthChange: false,
+            searching: false,
+            ordering: true,
+            info: false,
+            autoWidth: false,
         });
+    });
     </script>
 </body>
 
