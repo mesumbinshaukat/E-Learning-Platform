@@ -1,27 +1,20 @@
 <?php 
 session_start();
-if((isset($_SESSION['lc_username']) && isset($_SESSION['lc_email'])) || (isset($_COOKIE['lc_username']) && isset($_COOKIE['lc_email']))){
-  $lc_username = $_SESSION['lc_username'];
-  $lc_email = $_SESSION['lc_email'];
-  setcookie("lc_username", $lc_username , time() + (86400 * 30), "/"); 
- setcookie("lc_email", $lc_email , time() + (86400 * 30), "/"); 
-  
+
+if(!isset($_GET['username']) && !isset($_GET['email'])){
+  header('location:../../livechat.php');
 }
-else{
-  header('location: ../../contact.php');
+
+$_SESSION["lv_username"] = $_GET['username'];
+$_SESSION["lv_email"] = $_GET['email'];
+if(isset($_POST['btnGo'])){
+  unset($_SESSION["lv_username"]);
+  unset($_SESSION["lv_email"]);
+  header('location:../../livechat.php');
   exit();
 }
- 
- 
-if(isset($_POST['btnEnd'])){
-  unset($_SESSION["lc_username"]);
-  unset($_SESSION["lc_email"]);
-    setcookie("lc_username", "", time() - 3600, "/");
-    setcookie("lc_email", "", time() - 3600, "/");
-    header('location: ../../contact.php');
-    exit();
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +25,7 @@ if(isset($_POST['btnEnd'])){
     <link rel="stylesheet" href="./chat.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    
 </head>
 <body>
 
@@ -41,13 +35,16 @@ if(isset($_POST['btnEnd'])){
         <div class="col-lg-12 col-md-12 col-sm-12 " >
             <div class="card card-bordered"  style="width: 100% !important;" >
               <div class="card-header">
-                <h4 class="card-title pt-3"><strong>Live Chat With Admin</strong></h4>
+                <h4 class="card-title pt-3"><strong>Live Chat With <strong><?php echo $_SESSION["lv_username"]?></strong></strong></h4>
              
               </div>
 
 
               <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important; width: 100% !important">
-               
+
+             
+                
+                
 
              
 
@@ -55,15 +52,15 @@ if(isset($_POST['btnEnd'])){
 
               <div class="publisher bt-1 border-light">
                 <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
-                <input class="publisher-input" type="text" id="user_messagebox" placeholder="Write something">
-               <button class="publisher-btn text-info" href="#" data-abc="true" onclick="sendMessage('Anonymous')"><i class="fa fa-paper-plane"></i></button>
+                <input class="publisher-input" type="text" id="user_messageboxx" placeholder="Write something">
+               <button class="publisher-btn text-info" href="#" data-abc="true" onclick="sendMessagess('Admin')"><i class="fa fa-paper-plane"></i></button>
               </div>
 
              </div>
           </div>
         </div>
         <form action="" method="POST">
-        <input type="submit" name="btnEnd" class="btn btn-danger mx-3" value="End Chat">
+        <input type="submit" name="btnGo" class="btn btn-danger mx-3" value="Go back">
         </form>
       </div>
           </div>
@@ -87,8 +84,8 @@ if(isset($_POST['btnEnd'])){
     xhr.send();
   }
   
-  function sendMessage(user) {
-    var message = document.getElementById('user_messagebox').value.trim();
+  function sendMessagess(user) {
+    var message = document.getElementById('user_messageboxx').value.trim();
     if (message !== "") {
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "send_message.php", true);

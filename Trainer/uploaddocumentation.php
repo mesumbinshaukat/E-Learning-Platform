@@ -147,9 +147,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
                     </div> -->
 
             
-            <!-- Footer opened -->
-		
-			<!-- Footer closed -->
+
 
 		</div>
 		<!-- End Page -->
