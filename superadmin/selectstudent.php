@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+include('../db_connection/connection.php');
+
+if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
+	header('location: ../super-admin_login.php');
+	exit();
+}
+
+if (!isset($_GET["id"]) || empty($_GET["id"])) {
+	header("location:./manageinternshipregistrations.php");
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,32 +69,27 @@
                     </div>
 
                 </div>
-                <form method="post">
+                <form method="post" action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $_GET["id"] ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
                             <p><b> College Name</b> </p>
 
-                            <select name="institution_name" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
-
-                                <!-- <option value="cz">none</option>
-												<option value="de">College Name 1</option>
-												<option value="pl" > College Name 2</option> -->
-
-                                <option value="ALL" selected="selected">All</option>
-                                <option value="GNR Degree College">GNR Degree College</option>
+                            <select name="college" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected="selected">All</option>
+                                <?php
+								$query = mysqli_query($conn, "SELECT DISTINCT `college_name` FROM `student`");
+								if (mysqli_num_rows($query) > 0) {
+									while ($row = mysqli_fetch_assoc($query)) {
+										echo '<option value="' . $row["college_name"] . '">' . $row["college_name"] . '</option>';
+									}
+								}
+								?>
 
                             </select>
                         </div>
 
 
-
-
-
-
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary">Search</button>
-
-
+                        <button type="submit" class="btn btn-primary">Filter</button>
 
                     </div>
                 </form>
@@ -95,29 +105,57 @@
                                         class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
-                                                <th class="border-bottom-0">S.no</th>
-                                                <th class="border-bottom-0">student id</th>
-                                                <th class="border-bottom-0">student name</th>
+                                                <th class="border-bottom-0">S.No</th>
+                                                <th class="border-bottom-0">Student Id</th>
+                                                <th class="border-bottom-0">Student Name</th>
 
-                                                <th class="border-bottom-0">College name</th>
-                                                <th class="border-bottom-0">branch</th>
-                                                <th class="border-bottom-0">full info.</th>
-                                                <th class="border-bottom-0">allocate </th>
-
-
-
+                                                <th class="border-bottom-0">College Name</th>
+                                                <th class="border-bottom-0">Branch</th>
+                                                <th class="border-bottom-0">Full Info</th>
+                                                <th class="border-bottom-0">Allocate </th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+											$id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+											$id = (int) $id;
 
+											$query = "SELECT * FROM `internship_registration` WHERE `internship_id`='{$id}'";
 
-                                            <tr>
+											$internship_reg_query = mysqli_query($conn, $query);
 
-                                            </tr>
+											if (mysqli_num_rows($internship_reg_query) > 0) {
+												$i = 1;
+												while ($row = mysqli_fetch_assoc($internship_reg_query)) {
+													$stu_query = "SELECT * FROM `student` WHERE `id` = '{$row['student_id']}'";
+													if (isset($_POST["college"])) {
+														$college = $_POST["college"];
+														$stu_query .= " AND `college_name` = '{$college}'";
+													}
+													$student_query = mysqli_query($conn, $stu_query);
+													if (mysqli_num_rows($student_query) > 0) {
+														$student = mysqli_fetch_assoc($student_query);
+														$check_internship_registration_query = mysqli_query($conn, "SELECT * FROM `student_selected_for_internship` WHERE `student_id`='" . $student["id"] . "' && `internship_id`='$id'");
+														$fetch_check = mysqli_fetch_assoc($check_internship_registration_query);
 
-
+														if (!$fetch_check) {
+															echo "<tr>";
+															echo "<td>" . $i++ . "</td>";
+															echo "<td>STID_" . $student['id'] . "</td>";
+															echo "<td>" .  $student["name"] . "</td>";
+															echo "<td>" .  $student["college_name"] . "</td>";
+															echo "<td>" .  $student["branch"] . "</td>";
+															echo "<td><a href='./viewstudent.php?id=" .  $student["id"] . "' class='btn btn-info'>View</a></td>";
+															echo "<td><a href='allocstudent.php?id=" . $student['id'] . "&internship_id=" . $id . "' class='btn btn-success'>Allocate</a></td>";
+															echo "</tr>";
+														}
+													}
+												}
+											}
+											?>
                                         </tbody>
+
 
                                     </table>
 

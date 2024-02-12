@@ -343,8 +343,8 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Schedule</a></li>
                     <li><a class="bi bi-dot" href="createschedule.php"
                             style="font-size:14px; line-height: 2;">Create</a></li>
-                    <li><a class="bi bi-dot" href="pendingschedule.php"
-                            style="font-size:14px; line-height: 2;">Pending</a></li>
+                    <!-- <li><a class="bi bi-dot" href="pendingschedule.php"
+                            style="font-size:14px; line-height: 2;">Pending</a></li> -->
 
                     <li><a class="bi bi-dot" href="manageschedule.php"
                             style="font-size:14px; line-height: 2;">Manage</a></li>
