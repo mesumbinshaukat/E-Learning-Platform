@@ -101,7 +101,8 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -135,11 +136,12 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
 
                                                     if ($student_query) {
                                                         while ($student = mysqli_fetch_assoc($student_query)) {
-                                                            $check_placement_registration_query = mysqli_query($conn, "SELECT * FROM `student_selected_for_placement` WHERE `student_id`='{$student["id"]}' AND `placement_id`='$id' AND `placement_id` NOT IN (SELECT `placement_id` FROM `student_selected_for_placement` WHERE `student_id`='{$student["id"]}' AND `placement_id`='$id')");
+                                                            $check_placement_registration_query = mysqli_query($conn, "SELECT * FROM `student_selected_for_placement` WHERE `student_id`='{$student["id"]}' AND `placement_id`='$id'");
 
                                                             $fetch_check = mysqli_fetch_assoc($check_placement_registration_query);
 
                                                             if (!$fetch_check) {
+                                                                // Your existing code to display the student information and allocate button
                                                                 echo "<tr>";
                                                                 echo "<td>" . $i++ . "</td>";
                                                                 echo "<td>STID_" . $student['id'] . "</td>";
@@ -150,6 +152,7 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                                                 echo "<td><a href='allocstudent.php?id=" . $student['id'] . "&placement_id=" . $id . "' class='btn btn-success'>Allocate</a></td>";
                                                                 echo "</tr>";
                                                             }
+
                                                         }
                                                     } else {
                                                         // Handle query execution error for student query

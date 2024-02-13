@@ -9,53 +9,45 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
 
+    <title>Placement Registration List</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
 
     <?php include("./style.php"); ?>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body class="ltr main-body app sidebar-mini">
     <?php include("./switcher.php") ?>
+
     <!-- Page -->
     <div class="page">
-
         <div>
-
             <div class="main-header side-header sticky nav nav-item">
-
                 <?php include('./partials/navbar.php'); ?>
-
             </div>
             <!-- /main-header -->
-
             <!-- main-sidebar -->
             <div class="sticky">
                 <?php include('./partials/sidebar.php') ?>
             </div>
             <!-- main-sidebar -->
-
-        </div>
-        <!-- main-content -->
+        </div> <!-- main-content -->
         <div class="main-content app-content">
-
             <!-- container -->
             <div class="main-container container-fluid">
-
-
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Placement List </span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Internship List</span>
                     </div>
-
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Placement</a></li>
@@ -63,144 +55,49 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <li class="breadcrumb-item ">List</li>
                         </ol>
                     </div>
-
                 </div>
-
-
 
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
-
-                                <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                <div class="table-responsive export-table">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
-                                                <th class="border-bottom-0">Date of adding</th>
-                                                <th class="border-bottom-0">Author</th>
+                                                <th class="border-bottom-0">Date of Adding OR Applying</th>
+                                                <th class="border-bottom-0">Role</th>
                                                 <th class="border-bottom-0">Placement Applied ID</th>
                                                 <th class="border-bottom-0">Student Name</th>
-                                                <!--<th class="border-bottom-0">Qualification</th>-->
-
-                                                <th class="border-bottom-0">Role</th>
-
-                                                <th class="border-bottom-0">User status</th>
-
-
-
+                                                <th class="border-bottom-0">Company Name</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2023-03-25 14:04:31</td>
-                                                <td>2023-03-26</td>
-                                                <td>TRSTU_8</td>
-                                                <td>GONDELA MEENA</td>
-                                                <td>demo1111</td>
-                                                <!--<td>internship_title</td>-->
-                                                <!--<td></td>-->
-                                                <!--<td></td>-->
-                                                <td if($row['create_status']==1){ echo "style='color:#ff6700'" }else
-                                                    if($row['create_status']==3){ echo "style='color:#ff0000'" } else
-                                                    if($row['create_status']==4){ echo "style='color:#4aa02c'" } else
-                                                    if($row['create_status']==5){ echo "style='color:#000000'" }>
-                                                    <b>Deleted</b>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>2</td>
-                                                <td>2023-03-25 14:29:01</td>
-                                                <td>2023-03-26</td>
-                                                <td>TRSTU_9</td>
-                                                <td>testing1</td>
-                                                <td>demo1111</td>
-                                                <!--<td>internship_title</td>-->
-                                                <!--<td></td>-->
-                                                <!--<td></td>-->
-                                                <td if($row['create_status']==1){ echo "style='color:#ff6700'" }else
-                                                    if($row['create_status']==3){ echo "style='color:#ff0000'" } else
-                                                    if($row['create_status']==4){ echo "style='color:#4aa02c'" } else
-                                                    if($row['create_status']==5){ echo "style='color:#000000'" }>
-                                                    <b>Deleted</b>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>3</td>
-                                                <td>2023-03-25 14:36:15</td>
-                                                <td>2023-03-26</td>
-                                                <td>TRSTU_10</td>
-                                                <td>TORIKA JAYALAKSHMI</td>
-                                                <td>demo123</td>
-                                                <!--<td>internship_title</td>-->
-                                                <!--<td></td>-->
-                                                <!--<td></td>-->
-                                                <td if($row['create_status']==1){ echo "style='color:#ff6700'" }else
-                                                    if($row['create_status']==3){ echo "style='color:#ff0000'" } else
-                                                    if($row['create_status']==4){ echo "style='color:#4aa02c'" } else
-                                                    if($row['create_status']==5){ echo "style='color:#000000'" }>
-                                                    <b>Deleted</b>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>4</td>
-                                                <td>2023-03-25 14:41:01</td>
-                                                <td>2023-03-26</td>
-                                                <td>TRSTU_12</td>
-                                                <td>testing1</td>
-                                                <td>Business Executive</td>
-                                                <!--<td>internship_title</td>-->
-                                                <!--<td></td>-->
-                                                <!--<td></td>-->
-                                                <td if($row['create_status']==1){ echo "style='color:#ff6700'" }else
-                                                    if($row['create_status']==3){ echo "style='color:#ff0000'" } else
-                                                    if($row['create_status']==4){ echo "style='color:#4aa02c'" } else
-                                                    if($row['create_status']==5){ echo "style='color:#000000'" }>
-                                                    <b>Deleted</b>
-                                                </td>
-                                            </tr>
-                                            <!--       	<tr>-->
-                                            <!--<td>01</td>-->
-                                            <!--	<td>23/11/2022 14:00:23</td>-->
-                                            <!--	<td>Admin</td>-->
-                                            <!--	<td>PLAAPP_001</td>-->
-                                            <!--	<td>Manju Katikala</td>-->
-                                            <!--	<td>M.tech</td>-->
-
-                                            <!--	<td>Tele-Marketing Executive</td>-->
-
-                                            <!--	<td style="color:#4aa02c"><b>Active</b></td>-->
-
-
-
-                                            <!--</tr>-->
-                                            <!--													<tr>-->
-                                            <!--<td>02</td>-->
-                                            <!--	<td>23/11/2022 14:00:23</td>-->
-                                            <!--	<td>Admin</td>-->
-                                            <!--	<td>PLAAPP_002</td>-->
-                                            <!--	<td>Manju Katikala</td>-->
-                                            <!--	<td>M.tech</td>-->
-
-                                            <!--	<td>Tele-Marketing Executive</td>-->
-
-                                            <!--	<td style="color:#ff8400"><b>Removed</b></td>-->
-
-
-
-                                            <!--</tr>-->
-
-
-
-
+                                            <?php
+                                            $placement_list_query = mysqli_query($conn, "SELECT * FROM `placement_applicants`");
+                                            if (mysqli_num_rows($placement_list_query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($placement_list_query)) {
+                                                    $placement_query = mysqli_query($conn, "SELECT * FROM `placement` WHERE `id` = '{$row["job_id"]}'");
+                                                    if (mysqli_num_rows($placement_query) > 0) {
+                                                        $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '$row[student_id]'");
+                                                        $student = mysqli_fetch_assoc($student_query);
+                                                        if (mysqli_num_rows($student_query) > 0) {
+                                                            $placement = mysqli_fetch_assoc($placement_query);
+                                                            echo "<tr>";
+                                                            echo "<td>" . $i++ . "</td>";
+                                                            echo "<td>" . $row['applied_date'] . "</td>";
+                                                            echo "<td>" . $placement['job_role'] . "</td>";
+                                                            echo "<td>PLAID_" . $placement['id'] . "</td>";
+                                                            echo "<td>" . $student['name'] . "</td>";
+                                                            echo "<td>" . $placement['company_name'] . "</td>";
+                                                            echo "</tr>";
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -209,13 +106,27 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
                 </div>
                 <!-- End Row -->
-
             </div>
         </div>
-
     </div>
 
+    </script>
     <?php include("./scripts.php"); ?>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#file-datatable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true
+            });
+        });
+    </script>
 </body>
 
 </html>

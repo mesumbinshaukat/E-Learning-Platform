@@ -106,7 +106,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 														echo "<tr>";
 														echo "<td>" . $i++ . "</td>";
 														echo "<td>" . $placement['added_date'] . "</td>";
-														echo "<td>INTID_" . $placement['id'] . "</td>";
+														echo "<td>PLAID_" . $placement['id'] . "</td>";
 														echo "<td>" . $placement['job_role'] . "</td>";
 														echo "<td>" . $placement['vacancies'] . "</td>";
 														echo "<td>" . $placement['last_date_to_apply'] . "</td>";
@@ -118,7 +118,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         </button>
 
                                                         <div class="dropdown-menu">
-                                                            <a href="selectstudentplacment.php?id=' . $id . '"
+                                                            <a href="selectstudentplacement.php?id=' . $id . '"
                                                                 class="dropdown-item">Add</a>
                                                           
                                                             <a class="btn dropdown-item"
