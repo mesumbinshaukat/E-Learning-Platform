@@ -98,58 +98,41 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                         <label class="tx-12">Sign up</label>
                                         <a href="candidatesignup.php" style="color:#1D71F2">
-                                            <p class="font-weight-bold tx-24">16</p>
+                                            <p class="font-weight-bold tx-24"><?php
+                                                                                $sql = "SELECT * FROM `student` WHERE `created_by` = 'User'";
+                                                                                $result = mysqli_query($conn, $sql);
+                                                                                $fetch = mysqli_fetch_assoc($result);
+                                                                                if ($fetch["created_by"] == "User") {
+                                                                                    $count = mysqli_num_rows($result);
+                                                                                    echo $count;
+                                                                                }
+
+                                                                                ?></p>
                                         </a>
                                     </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Pending</label>
-                                        <a href="pendingstudent.php" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
+
                                     <div class="col border-start text-center">
                                         <label class="tx-12">Total </label>
                                         <a href="studentlist.php" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">5049</p>
+                                            <p class="font-weight-bold tx-24">
+                                                <?php
+                                                $sql = "SELECT * FROM `student`";
+                                                $result = mysqli_query($conn, $sql);
+
+
+                                                $count = mysqli_num_rows($result);
+                                                echo $count;
+
+
+                                                ?>
+                                            </p>
                                         </a>
                                     </div><!-- col -->
 
                                 </div><!-- row -->
 
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <label class="tx-12">Rejected</label>
-                                        <a href="studentlist.php?type=rejected" style="color:#FF0000">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Block</label>
-                                        <a href="studentlist.php?type=block" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">1</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Active</label>
-                                        <a href="studentlist.php?type=active" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">5032</p>
-                                        </a>
-                                    </div><!-- col -->
 
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Delete</label>
-                                        <a href="studentlist.php?type=delete" style="color:#000000">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-
-
-                                </div><!-- row -->
-
-
-                            </div>
                         </div>
                     </div>
 
@@ -164,173 +147,43 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                     <div class="col text-center">
                                         <label class="tx-12">Sign up</label>
                                         <a href="collegesignup.php" style="color:#1D71F2">
-                                            <p class="font-weight-bold tx-24">0</p>
+                                            <p class="font-weight-bold tx-24">
+                                                <?php
+                                                $sql = "SELECT * FROM `college` WHERE `created_by` = 'User'";
+                                                $result = mysqli_query($conn, $sql);
+                                                $fetch = mysqli_fetch_assoc($result);
+                                                if ($fetch["created_by"] == "User") {
+                                                    $count = mysqli_num_rows($result);
+                                                    echo $count;
+                                                }
+                                                ?>
+                                            </p>
                                         </a>
                                     </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Pending</label>
-                                        <a href="pendingcollege.php" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
+
                                     <div class="col border-start text-center">
                                         <label class="tx-12">Total</label>
                                         <a href="collegelist.php" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">55</p>
+                                            <p class="font-weight-bold tx-24">
+                                                <?php
+                                                $sql = "SELECT * FROM `college`";
+                                                $result = mysqli_query($conn, $sql);
+                                                $count = mysqli_num_rows($result);
+                                                echo $count;
+                                                ?>
+                                            </p>
                                         </a>
                                     </div><!-- col -->
 
                                 </div><!-- row -->
 
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <label class="tx-12">Rejected</label>
-                                        <a href="collegelist.php?type=rejected" style="color:#FF0000">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Block</label>
-                                        <a href="collegelist.php?type=block" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Active</label>
-                                        <a href="collegelist.php?type=active" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">55</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Delete</label>
-                                        <a href="collegelist.php?type=delete" style="color:#000000">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
 
-                                </div><!-- row -->
-
-
-                            </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="card-title pb-0  mb-2">Credentials - Company</div>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <label class="tx-12">Sign up</label>
-                                        <a href="companysignup.php" style="color:#1D71F2">
-                                            <p class="font-weight-bold tx-24">9</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Pending</label>
-                                        <a href="pendingcompany.php" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">1</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Total</label>
-                                        <a href="managecompany.php" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">20</p>
-                                        </a>
-                                    </div><!-- col -->
-
-                                </div><!-- row -->
-
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <label class="tx-12">Rejected</label>
-                                        <a href="companylist.php?type=rejected" style="color:#FF0000">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Block</label>
-                                        <a href="companylist.php?type=block" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Active</label>
-                                        <a href="companylist.php?type=active" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">7</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Delete</label>
-                                        <a href="companylist.php?type=delete" style="color:#000000">
-                                            <p class="font-weight-bold tx-24">3</p>
-                                        </a>
-                                    </div><!-- col -->
-
-                                </div><!-- row -->
 
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="card-title pb-0  mb-2">Credentials - College Mentor</div>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-
-
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Total</label>
-                                        <a href="managementor.php" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">14</p>
-                                        </a>
-                                    </div><!-- col -->
-
-                                </div><!-- row -->
-
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <!--										<div class="col text-center">-->
-                                    <!--											<label class="tx-12">Rejected</label>-->
-                                    <!--<a href="mentorlist.php?type=rejected" style="color:#FF0000"><p class="font-weight-bold tx-24">14</p></a>-->
-                                    <!--										</div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Block</label>
-                                        <a href="mentorlist.php?type=block" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Active</label>
-                                        <a href="mentorlist.php?type=active" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">14</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Delete</label>
-                                        <a href="mentorlist.php?type=delete" style="color:#000000">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-
-                                </div><!-- row -->
-
-
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                         <div class="card">
                             <div class="card-header pb-0">
@@ -342,19 +195,31 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                     <div class="col text-center">
                                         <label class="tx-12">Sign up</label>
                                         <a href="trainersignup.php" style="color:#1D71F2">
-                                            <p class="font-weight-bold tx-24">6</p>
+                                            <p class="font-weight-bold tx-24">
+                                                <?php
+                                                $sql = "SELECT * FROM `trainer` WHERE `created_by` = 'user'";
+                                                $result = mysqli_query($conn, $sql);
+                                                $fetch = mysqli_fetch_assoc($result);
+                                                if ($fetch["created_by"] == "user") {
+                                                    $count = mysqli_num_rows($result);
+                                                    echo $count;
+                                                }
+                                                ?>
+                                            </p>
                                         </a>
                                     </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Pending</label>
-                                        <a href="pendingtrainer.php" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
+
                                     <div class="col border-start text-center">
                                         <label class="tx-12">Total</label>
                                         <a href="trainerlist.php" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">43</p>
+                                            <p class="font-weight-bold tx-24">
+                                                <?php
+                                                $sql = "SELECT * FROM `trainer`";
+                                                $result = mysqli_query($conn, $sql);
+                                                $count = mysqli_num_rows($result);
+                                                echo $count;
+                                                ?>
+                                            </p>
                                         </a>
                                     </div><!-- col -->
 
@@ -362,88 +227,10 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                 </div><!-- row -->
 
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <label class="tx-12">Rejected</label>
-                                        <a href="trainerlist.php?type=rejected" style="color:#FF0000">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Block</label>
-                                        <a href="trainerlist.php?type=block" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Active</label>
-                                        <a href="trainerlist.php?type=active" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">34</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Delete</label>
-                                        <a href="trainerlist.php?type=delete" style="color:#000000">
-                                            <p class="font-weight-bold tx-24">3</p>
-                                        </a>
-                                    </div><!-- col -->
-                                </div><!-- row -->
 
-
-                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header pb-0">
-                                <div class="card-title pb-0  mb-2">Credentials - Employee</div>
 
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-
-
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Total</label>
-                                        <a href="manageemployee.php" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">8</p>
-                                        </a>
-                                    </div><!-- col -->
-
-                                </div><!-- row -->
-
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <!--										<div class="col text-center">-->
-                                    <!--											<label class="tx-12">Rejected</label>-->
-                                    <!--<a href="employeelist.php?type=rejected" style="color:#FF0000"><p class="font-weight-bold tx-24">8</p></a>-->
-                                    <!--										</div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Block</label>
-                                        <a href="employeelist.php?type=block" style="color:#FF6700">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Active</label>
-                                        <a href="employeelist.php?type=active" style="color:#4AA02C">
-                                            <p class="font-weight-bold tx-24">8</p>
-                                        </a>
-                                    </div><!-- col -->
-                                    <div class="col border-start text-center">
-                                        <label class="tx-12">Delete</label>
-                                        <a href="employeelist.php?type=delete" style="color:#000000">
-                                            <p class="font-weight-bold tx-24">0</p>
-                                        </a>
-                                    </div><!-- col -->
-                                </div><!-- row -->
-
-
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -460,28 +247,19 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="courselist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courselist.php" style="color:#1d71f2"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Registered</p>
-                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b>18</b></h4>
-                                        </div>
-                                    </a>
-                                    <a href="courselist.php?type=active" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <p class="tx-13 mb-2 font-weight-semibold ">Active</p>
-                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b>18</b></h4>
-                                        </div>
-                                    </a>
-                                    <a href="courselist.php?type=pause" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <p class="tx-13 mb-2 font-weight-semibold ">Paused</p>
-                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b>0</b></h4>
-                                        </div>
-                                    </a>
-                                    <a href="courselist.php?type=delete" style="color:#000000" class="list-group-item list-group-item-action flex-column align-items-start border-0">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <p class="tx-13 mb-2 font-weight-semibold ">Delete</p>
-                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b>0</b></h4>
+                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
+                                                    <?php
+                                                    $sql = "SELECT * FROM `course_registration`";
+                                                    $result = mysqli_query($conn, $sql);
+                                                    $count = mysqli_num_rows($result);
+                                                    echo $count;
+                                                    ?>
+
+                                                </b></h4>
                                         </div>
                                     </a>
 
@@ -496,32 +274,17 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="courseregistrationslist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php" style="color:#1d71f2"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Applied</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>4046</b></h4>
                                         </div>
                                     </a>
-                                    <a href="pendingcourseregistrations.php" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <p class="tx-13 mb-2 font-weight-semibold ">Pending</p>
-                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b>0</b></h4>
-                                        </div>
-                                        <a href="managecourseregistrations.php" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <p class="tx-13 mb-2 font-weight-semibold ">Accepted</p>
-                                                <h4 class=" mb-0 font-weight-semibold  tx-18"><b>3978</b></h4>
-                                            </div>
-                                        </a>
 
-                                    </a>
-                                    <a href="courseregistrationslist.php?type=rejected" style="color:#ff0000" class="list-group-item list-group-item-action flex-column align-items-start border-0">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <p class="tx-13 mb-2 font-weight-semibold ">Rejected</p>
-                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b>12</b></h4>
-                                        </div>
-                                    </a>
-                                    <a href="courseregistrationslist.php?type=delete" style="color:#ff0000" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+
+                                    <a href="courseregistrationslist.php?type=delete" style="color:#ff0000"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Deleted</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>50</b></h4>
@@ -539,19 +302,22 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="managecourseregistrations.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="managecourseregistrations.php" style="color:#1d71f2"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Available</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>3978</b></h4>
                                         </div>
                                     </a>
-                                    <a href="managestudentallocation.php" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="managestudentallocation.php" style="color:#4AA02C"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Allocated</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>3921</b></h4>
                                         </div>
                                     </a>
-                                    <a href="managestudentdeallocation.php" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="managestudentdeallocation.php" style="color:#ff6700"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Unallocated</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>57</b></h4>
@@ -569,31 +335,36 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="batchlist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php" style="color:#1d71f2"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Created</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>52</b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=active" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=active" style="color:#ff6700"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Active</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>16</b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=complete" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=complete" style="color:#4AA02C"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Completed</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>31</b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=delete" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=delete" style="color:#4AA02C"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Deleted</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>5</b></h4>
                                         </div>
                                     </a>
-                                    <a href="allocationstudentlist.php?type=batch" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="allocationstudentlist.php?type=batch" style="color:#ff6700"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Students</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>3980</b></h4>
@@ -625,23 +396,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                     <label class="tx-14">Expected Revenue</label>
 
                                     <a href="managecourseregistrations.php" style="color:#1d71f2">
-                                        <p class="font-weight-bold tx-24">14922500</p>
+                                        <p class="font-weight-bold tx-24">0</p>
                                     </a>
                                 </div>
 
-                                <!-- col -->
-
-
-                                <!--			<div class="col border-start text-center">-->
-                                <!--				<label class="tx-14">Acutal Revenue</label>-->
-                                <!--<a  style="color:#000000"><p class="font-weight-bold tx-24">6364800</p></a>-->
-                                <!--			</div>-->
-                                <!-- col -->
 
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Received college </label>
                                     <a href="paymentslist.php?type=receivedcollege" style="color:#4AA02c">
-                                        <p class="font-weight-bold tx-24">10000</p>
+                                        <p class="font-weight-bold tx-24">0</p>
                                     </a>
                                 </div><!-- col -->
 
@@ -649,7 +412,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Received individuals </label>
                                     <a href="paymentslist.php?type=receivedindividuals" style="color:#4AA02c">
-                                        <p class="font-weight-bold tx-24">2147968289</p>
+                                        <p class="font-weight-bold tx-24">0</p>
                                     </a>
                                 </div><!-- col -->
 
@@ -657,23 +420,18 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Hold </label>
                                     <a href="paymentslist.php?type=hold" style="color:#ff6700">
-                                        <p class="font-weight-bold tx-24"></p>
+                                        <p class="font-weight-bold tx-24">0</p>
                                     </a>
                                 </div><!-- col -->
 
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Remaining</label>
                                     <a href="paymentslist.php?type=remaining" style="color:#ff0000">
-                                        <p class="font-weight-bold tx-24">-2133055789</p>
+                                        <p class="font-weight-bold tx-24">0</p>
                                     </a>
                                 </div><!-- col -->
 
-                                <div class="col border-start text-center">
-                                    <label class="tx-14">Rejected </label>
-                                    <a href="paymentslist.php?type=rejected" style="color:#000000">
-                                        <p class="font-weight-bold tx-24">2147502852</p>
-                                    </a>
-                                </div><!-- col -->
+
 
 
 
@@ -702,12 +460,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <p class="font-weight-bold tx-24">1</p>
                                     </a>
                                 </div><!-- col -->
-                                <div class="col border-start text-center">
-                                    <label class="tx-14">Vacancies</label>
-                                    <a href="managecompanyinternship.php" style="color:#1d71f2">
-                                        <p class="font-weight-bold tx-24">50</p>
-                                    </a>
-                                </div><!-- col -->
+
 
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Applicants</label>
@@ -716,12 +469,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                     </a>
                                 </div><!-- col -->
 
-                                <div class="col border-start text-center">
-                                    <label class="tx-14">Hold</label>
-                                    <a href="pendinginternshipregistrations.php" style="color:#ff6700">
-                                        <p class="font-weight-bold tx-24">2</p>
-                                    </a>
-                                </div><!-- col -->
+
 
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Selected </label>
@@ -729,12 +477,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <p class="font-weight-bold tx-24">9</p>
                                     </a>
                                 </div><!-- col -->
-                                <div class="col border-start text-center">
-                                    <label class="tx-14">Not selected & Deleted </label>
-                                    <a href="internshipregistrationlist.php?type=notselected" style="color:#FF0000">
-                                        <p class="font-weight-bold tx-24">1</p>
-                                    </a>
-                                </div><!-- col -->
+
 
 
 
@@ -763,12 +506,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <p class="font-weight-bold tx-24">0</p>
                                     </a>
                                 </div><!-- col -->
-                                <div class="col border-start text-center">
-                                    <label class="tx-14">Vacancies</label>
-                                    <a href="placementcompanylist.php" style="color:#1d71f2">
-                                        <p class="font-weight-bold tx-24"></p>
-                                    </a>
-                                </div><!-- col -->
 
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Applicants</label>
@@ -777,23 +514,12 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                     </a>
                                 </div><!-- col -->
 
-                                <div class="col border-start text-center">
-                                    <label class="tx-14">Hold</label>
-                                    <a href="pendingplacementsregistrations.php" style="color:#ff6700">
-                                        <p class="font-weight-bold tx-24">0</p>
-                                    </a>
-                                </div><!-- col -->
+
 
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Selected </label>
                                     <a href="placementsregistrationlist.php?type=selected" style="color:#4AA20C">
                                         <p class="font-weight-bold tx-24">0</p>
-                                    </a>
-                                </div><!-- col -->
-                                <div class="col border-start text-center">
-                                    <label class="tx-14">Not selected & Deleted </label>
-                                    <a href="placementsregistrationlist.php?type=notselected" style="color:#FF0000">
-                                        <p class="font-weight-bold tx-24">4</p>
                                     </a>
                                 </div><!-- col -->
 
