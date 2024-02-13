@@ -7,6 +7,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     header('location: ../super-admin_login.php');
     exit();
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 

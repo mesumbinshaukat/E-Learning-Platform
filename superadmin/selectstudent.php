@@ -120,46 +120,81 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                             $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
                                             $id = (int) $id;
 
-                                            $query = "SELECT * FROM `internship_registration` WHERE `internship_id`='$id'";
-                                            $internship_reg_query = mysqli_query($conn, $query);
+                                            if (isset($_GET["type"]) && $_GET["type"] == "course") {
+                                                $query = mysqli_query($conn, "SELECT * FROM `student`");
 
-                                            if ($internship_reg_query) {
-                                                $i = 1;
-                                                while ($row = mysqli_fetch_assoc($internship_reg_query)) {
-                                                    $stu_query = "SELECT * FROM `student` WHERE `id`='{$row['student_id']}'";
-                                                    if (isset($_POST["college"])) {
-                                                        $college = $_POST["college"];
-                                                        $stu_query .= " AND `college_name`='$college'";
-                                                    }
-                                                    $student_query = mysqli_query($conn, $stu_query);
+                                                if ($query) {
+                                                    $i = 1;
 
-                                                    if ($student_query) {
-                                                        while ($student = mysqli_fetch_assoc($student_query)) {
-                                                            $check_internship_registration_query = mysqli_query($conn, "SELECT * FROM `student_selected_for_internship` WHERE `student_id`='{$student["id"]}' AND `internship_id`='$id' AND `internship_id` NOT IN (SELECT `internship_id` FROM `student_selected_for_internship` WHERE `student_id`='{$student["id"]}' AND `internship_id`='$id')");
+                                                    while ($row = mysqli_fetch_assoc($query)) {
+                                                        $query2 = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$row['id']}' AND `course_id` = '$id'");
 
-                                                            $fetch_check = mysqli_fetch_assoc($check_internship_registration_query);
+                                                        if ($query2) {
+                                                            $fetch = mysqli_fetch_assoc($query2);
 
-                                                            if (!$fetch_check) {
+                                                            if (!$fetch) {
                                                                 echo "<tr>";
                                                                 echo "<td>" . $i++ . "</td>";
-                                                                echo "<td>STID_" . $student['id'] . "</td>";
-                                                                echo "<td>" . $student["name"] . "</td>";
-                                                                echo "<td>" . $student["college_name"] . "</td>";
-                                                                echo "<td>" . $student["branch"] . "</td>";
-                                                                echo "<td><a href='./viewstudent.php?id=" . $student["id"] . "' class='btn btn-info'>View</a></td>";
-                                                                echo "<td><a href='allocstudent.php?id=" . $student['id'] . "&internship_id=" . $id . "' class='btn btn-success'>Allocate</a></td>";
+                                                                echo "<td>STID_" . $row['id'] . "</td>";
+                                                                echo "<td>" . $row['name'] . "</td>";
+                                                                echo "<td>" . $row['college_name'] . "</td>";
+                                                                echo "<td>" . $row['branch'] . "</td>";
+                                                                echo "<td><a href='./viewstudent.php?id=" . $row['id'] . "' class='btn btn-info'>View</a></td>";
+                                                                echo "<td><a href='allocstudent.php?id=" . $row['id'] . "&course_id=" . $id . "' class='btn btn-success'>Allocate</a></td>";
                                                                 echo "</tr>";
                                                             }
+                                                        } else {
+                                                            // Handle query execution error for course_registration query
+                                                            echo "Error executing course_registration query: " . mysqli_error($conn);
                                                         }
-                                                    } else {
-                                                        // Handle query execution error for student query
-                                                        echo "Error executing student query: " . mysqli_error($conn);
                                                     }
+                                                } else {
+                                                    // Handle query execution error for student query
+                                                    echo "Error executing student query: " . mysqli_error($conn);
                                                 }
                                             } else {
-                                                // Handle query execution error for internship registration query
-                                                echo "Error executing internship registration query: " . mysqli_error($conn);
+                                                $query = "SELECT * FROM `internship_registration` WHERE `internship_id`='$id'";
+                                                $internship_reg_query = mysqli_query($conn, $query);
+
+                                                if ($internship_reg_query) {
+                                                    $i = 1;
+                                                    while ($row = mysqli_fetch_assoc($internship_reg_query)) {
+                                                        $stu_query = "SELECT * FROM `student` WHERE `id`='{$row['student_id']}'";
+                                                        if (isset($_POST["college"])) {
+                                                            $college = $_POST["college"];
+                                                            $stu_query .= " AND `college_name`='$college'";
+                                                        }
+                                                        $student_query = mysqli_query($conn, $stu_query);
+
+                                                        if ($student_query) {
+                                                            while ($student = mysqli_fetch_assoc($student_query)) {
+                                                                $check_internship_registration_query = mysqli_query($conn, "SELECT * FROM `student_selected_for_internship` WHERE `student_id`='{$student["id"]}' AND `internship_id`='$id' AND `internship_id` NOT IN (SELECT `internship_id` FROM `student_selected_for_internship` WHERE `student_id`='{$student["id"]}' AND `internship_id`='$id')");
+
+                                                                $fetch_check = mysqli_fetch_assoc($check_internship_registration_query);
+
+                                                                if (!$fetch_check) {
+                                                                    echo "<tr>";
+                                                                    echo "<td>" . $i++ . "</td>";
+                                                                    echo "<td>STID_" . $student['id'] . "</td>";
+                                                                    echo "<td>" . $student["name"] . "</td>";
+                                                                    echo "<td>" . $student["college_name"] . "</td>";
+                                                                    echo "<td>" . $student["branch"] . "</td>";
+                                                                    echo "<td><a href='./viewstudent.php?id=" . $student["id"] . "' class='btn btn-info'>View</a></td>";
+                                                                    echo "<td><a href='allocstudent.php?id=" . $student['id'] . "&internship_id=" . $id . "' class='btn btn-success'>Allocate</a></td>";
+                                                                    echo "</tr>";
+                                                                }
+                                                            }
+                                                        } else {
+                                                            // Handle query execution error for student query
+                                                            echo "Error executing student query: " . mysqli_error($conn);
+                                                        }
+                                                    }
+                                                } else {
+                                                    // Handle query execution error for internship registration query
+                                                    echo "Error executing internship registration query: " . mysqli_error($conn);
+                                                }
                                             }
+
                                             ?>
 
                                         </tbody>

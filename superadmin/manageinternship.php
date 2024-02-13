@@ -7,6 +7,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     header('location: ../super-admin_login.php');
     exit();
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 
@@ -24,9 +25,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <?php include("./style.php"); ?>
 
     <style>
-    .dropdown-menu {
-        position: fixed !important;
-    }
+        .dropdown-menu {
+            position: fixed !important;
+        }
     </style>
 </head>
 
@@ -190,16 +191,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <?php include("./scripts.php"); ?>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>
-    $(document).ready(function() {
-        $('#file-datatable').DataTable({
-            paging: true,
-            lengthChange: false,
-            searching: false,
-            ordering: true,
-            info: false,
-            autoWidth: false,
+        $(document).ready(function() {
+            $('#file-datatable').DataTable({
+                paging: true,
+                lengthChange: false,
+                searching: false,
+                ordering: true,
+                info: false,
+                autoWidth: false,
+            });
         });
-    });
     </script>
 </body>
 

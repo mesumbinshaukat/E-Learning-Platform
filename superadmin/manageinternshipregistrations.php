@@ -4,9 +4,10 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +22,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
     <?php include("./style.php"); ?>
     <style>
-    .dropdown-menu {
-        position: fixed !important;
-    }
+        .dropdown-menu {
+            position: fixed !important;
+        }
     </style>
 </head>
 
@@ -76,8 +77,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
 
@@ -94,24 +94,24 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-											$internship_query = mysqli_query($conn, "SELECT * FROM `internship`");
+                                            $internship_query = mysqli_query($conn, "SELECT * FROM `internship`");
 
-											if (mysqli_num_rows($internship_query) > 0) {
-												$i = 1;
-												while ($internship = mysqli_fetch_assoc($internship_query)) {
-													$id = $internship["id"];
-													$internship_registration_query = mysqli_query($conn, "SELECT * FROM `internship_registration` WHERE `internship_id`='$id'");
-													if (mysqli_num_rows($internship_registration_query) > 0) {
-														$fetch = mysqli_fetch_assoc($internship_registration_query);
-														$reg_id = $fetch['id'];
-														echo "<tr>";
-														echo "<td>" . $i++ . "</td>";
-														echo "<td>" . $internship['creation_date'] . "</td>";
-														echo "<td>INTID_" . $internship['id'] . "</td>";
-														echo "<td>" . $internship['internship'] . "</td>";
-														echo "<td>" . $internship['vacancies'] . "</td>";
-														echo "<td>" . $internship['last_date_to_apply'] . "</td>";
-														echo '  <td>
+                                            if (mysqli_num_rows($internship_query) > 0) {
+                                                $i = 1;
+                                                while ($internship = mysqli_fetch_assoc($internship_query)) {
+                                                    $id = $internship["id"];
+                                                    $internship_registration_query = mysqli_query($conn, "SELECT * FROM `internship_registration` WHERE `internship_id`='$id'");
+                                                    if (mysqli_num_rows($internship_registration_query) > 0) {
+                                                        $fetch = mysqli_fetch_assoc($internship_registration_query);
+                                                        $reg_id = $fetch['id'];
+                                                        echo "<tr>";
+                                                        echo "<td>" . $i++ . "</td>";
+                                                        echo "<td>" . $internship['creation_date'] . "</td>";
+                                                        echo "<td>INTID_" . $internship['id'] . "</td>";
+                                                        echo "<td>" . $internship['internship'] . "</td>";
+                                                        echo "<td>" . $internship['vacancies'] . "</td>";
+                                                        echo "<td>" . $internship['last_date_to_apply'] . "</td>";
+                                                        echo '  <td>
                                                     <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
                                                         <button type="button" class="btn btn-info dropdown-toggle"
                                                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -127,11 +127,11 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         </div>
                                                     </div>
                                                 </td>';
-														echo "</tr>";
-													}
-												}
-											}
-											?>
+                                                        echo "</tr>";
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
