@@ -69,7 +69,8 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                     </div>
 
                 </div>
-                <form method="post" action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $_GET["id"] ?>">
+                <?php $type = $_GET["type"] != null ? "&type=" . $_GET["type"] : null; ?>
+                <form method="post" action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $_GET["id"] . $type ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
                             <p><b> College Name</b> </p>
@@ -101,7 +102,8 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -121,8 +123,12 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                             $id = (int) $id;
 
                                             if (isset($_GET["type"]) && $_GET["type"] == "course") {
-                                                $query = mysqli_query($conn, "SELECT * FROM `student`");
-
+                                                $query = "SELECT * FROM `student` WHERE 1=1";
+                                                if (isset($_POST["college"])) {
+                                                    $college = $_POST["college"];
+                                                    $query .= " AND `college_name`='$college'";
+                                                }
+                                                $query = $conn->query($query);
                                                 if ($query) {
                                                     $i = 1;
 
