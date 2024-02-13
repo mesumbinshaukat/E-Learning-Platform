@@ -119,8 +119,8 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Registrations</a></li>
                     <li><a class="bi bi-dot" href="courseregistrations.php"
                             style="font-size:14px; line-height: 2;">Add</a></li>
-                    <li><a class="bi bi-dot" href="pendingcourseregistrations.php"
-                            style="font-size:14px; line-height: 2;">Pending</a></li>
+                    <!-- <li><a class="bi bi-dot" href="pendingcourseregistrations.php"
+                            style="font-size:14px; line-height: 2;">Pending</a></li> -->
                     <li><a class="bi bi-dot" href="managecourseregistrations.php"
                             style="font-size:14px; line-height: 2;">Manage</a></li>
                     <li><a class="bi bi-dot" href="courseregistrationslist.php"
@@ -282,8 +282,7 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Registrations</a></li>
                     <li><a class="bi bi-dot" href="internshipregistrations.php "
                             style="font-size:14px; line-height: 2;">Add</a></li>
-                    <li><a class="bi bi-dot" href="pendinginternshipregistrations.php"
-                            style="font-size:14px; line-height: 2;">Pending</a></li>
+                    <!-- <li><a class="bi bi-dot" href="pendinginternshipregistrations.php" style="font-size:14px; line-height: 2;">Pending</a></li> -->
                     <li><a class="bi bi-dot" href="manageinternshipregistrations.php"
                             style="font-size:14px; line-height: 2;">Manage</a></li>
                     <li><a class="bi bi-dot" href="internshipregistrationlist.php"
@@ -322,8 +321,7 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Registrations</a></li>
                     <li><a class="bi bi-dot" href="placementsregistrations.php"
                             style="font-size:14px; line-height: 2;">Add</a></li>
-                    <li><a class="bi bi-dot" href="pendingplacementsregistrations.php"
-                            style="font-size:14px; line-height: 2;">Pending</a></li>
+                    <!-- <li><a class="bi bi-dot" href="pendingplacementsregistrations.php" style="font-size:14px; line-height: 2;">Pending</a></li> -->
                     <li><a class="bi bi-dot" href="manageplacementsregistrations.php"
                             style="font-size:14px; line-height: 2;">Manage</a></li>
                     <li><a class="bi bi-dot" href="placementsregistrationlist.php"

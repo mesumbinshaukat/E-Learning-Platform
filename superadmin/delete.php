@@ -135,6 +135,17 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     } else {
         echo mysqli_error($conn);
     }
+} elseif (isset($_GET["id"]) && isset($_GET["type"]) && $_GET["type"] == "internshipregistration") {
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `internship_registration` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location:./manageinternshipregistrations.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
 } else {
     if (isset($_SESSION['previous_url'])) {
         header('location: ' . $_SESSION['previous_url'] . '?error=Invalid_Request');
