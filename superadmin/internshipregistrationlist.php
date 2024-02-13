@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 
@@ -76,29 +76,29 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-											$internship_list_query = mysqli_query($conn, "SELECT * FROM `internship_registration`");
-											if (mysqli_num_rows($internship_list_query) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($internship_list_query)) {
-													$internship_query = mysqli_query($conn, "SELECT * FROM `internship` WHERE `id` = '{$row["internship_id"]}'");
-													if (mysqli_num_rows($internship_query) > 0) {
-														$student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '$row[student_id]'");
-														$student = mysqli_fetch_assoc($student_query);
-														if (mysqli_num_rows($student_query) > 0) {
-															$internship = mysqli_fetch_assoc($internship_query);
-															echo "<tr>";
-															echo "<td>" . $i++ . "</td>";
-															echo "<td>" . $row['applied_date'] . "</td>";
-															echo "<td>" . $internship['internship'] . "</td>";
-															echo "<td>INTID_" . $internship['id'] . "</td>";
-															echo "<td>" . $student['name'] . "</td>";
-															echo "<td>" . $internship['company_name'] . "</td>";
-															echo "</tr>";
-														}
-													}
-												}
-											}
-											?>
+                                            $internship_list_query = mysqli_query($conn, "SELECT * FROM `internship_registration`");
+                                            if (mysqli_num_rows($internship_list_query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($internship_list_query)) {
+                                                    $internship_query = mysqli_query($conn, "SELECT * FROM `internship` WHERE `id` = '{$row["internship_id"]}'");
+                                                    if (mysqli_num_rows($internship_query) > 0) {
+                                                        $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '$row[student_id]'");
+                                                        $student = mysqli_fetch_assoc($student_query);
+                                                        if (mysqli_num_rows($student_query) > 0) {
+                                                            $internship = mysqli_fetch_assoc($internship_query);
+                                                            echo "<tr>";
+                                                            echo "<td>" . $i++ . "</td>";
+                                                            echo "<td>" . $row['applied_date'] . "</td>";
+                                                            echo "<td>" . $internship['internship'] . "</td>";
+                                                            echo "<td>INTID_" . $internship['id'] . "</td>";
+                                                            echo "<td>" . $student['name'] . "</td>";
+                                                            echo "<td>" . $internship['company_name'] . "</td>";
+                                                            echo "</tr>";
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
