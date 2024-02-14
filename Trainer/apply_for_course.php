@@ -14,7 +14,7 @@ $trainer_id = $_POST['trainer_id'];
 $insert_query = ($conn->query("INSERT INTO `trainer_applying_for_courses`(`trainer_name`, `trainer_id`, `course_name`, `course_id`) VALUES ('$trainer_name','$trainer_id','$course_name','$course_id')"));
 if($insert_query){
     $_SESSION['message_success'] = true;
-   
+
 }
 else{
     $_SESSION['message_failed'] = true;
@@ -145,12 +145,12 @@ else{
 					
 
     
+					<a href="courselist.php" class="btn btn-success	mt-3 mb-0 mx-3	"><i class="las la-angle-left me-2"></i>Go to Course List</a>
 				</div>
 				<!-- Container closed -->
 			</div>
-</form>
+		</form>
 		
-
 		
 
        

@@ -200,10 +200,10 @@ $fetch_query = mysqli_fetch_array($select_query_result);
                     </div>
                 </div>
             </div>
+            <a href="courselist.php" class="btn btn-success	mt-0 mb-0 mx-3 mb-3"><i class="las la-angle-left me-2"></i>Go to Course List</a>
         </div>
     </div>
     <!-- row closed -->
-
 
 </div>
 <!-- Container closed -->

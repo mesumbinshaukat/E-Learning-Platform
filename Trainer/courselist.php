@@ -120,8 +120,13 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 														<td><?php echo $row['duration_days']?></td>											
 														<td><a href="viewcourse.php?id=<?php echo $row['id']?>" class="btn btn-primary">view</a></td>
 																																										<td>
-																												 <button class="btn btn-info mb-3 shadow"><a href="./apply_for_course.php?id=<?php echo $row['id']?>"><span style="color:#ffffff;">Apply</span></a></button> &nbsp &nbsp 
-
+																																											<?php 
+						$select_applied_course = mysqli_query($conn,"SELECT * FROM `trainer_applying_for_courses` WHERE (trainer_id = '$_COOKIE[trainer_id]') &&course_id = '$row[id]'");
+						if(mysqli_num_rows($select_applied_course) > 0){
+						?>																					<button disabled class="btn btn-success mb-3 shadow mt-3"><span style="color:#ffffff;">Applied</span></button> &nbsp; &nbsp;
+<?php } else {?>
+	<button class="btn btn-info mb-3 shadow mt-3"><a href="./apply_for_course.php?id=<?php echo $row['id']?>"><span style="color:#ffffff;">Apply</span></a></button> &nbsp; &nbsp;
+<?php } ?>
 										   	
 														</td>
 													</tr>
