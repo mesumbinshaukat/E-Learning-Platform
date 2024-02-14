@@ -87,12 +87,13 @@ $Fetching_trainer = mysqli_fetch_assoc($select_trainer);
 										<?php if($Fetching_trainer['pfp'] == null){?>
                                         <img class="br-5" alt="" src="./assets/icons/add-user.png">
 										<?php } else {?>
-											<img class="br-5" alt="" src="./assets/img/<?php echo $Fetching_trainer['pfp']?>">
+											<img class="br-5" alt="" src="../superadmin/assets/img/trainer/<?php echo $Fetching_trainer['pfp']?>">
 											<?php }?>
                                     </span>
                                 </div>
                                 <div class="my-md-auto mt-4 prof-details">
                                     <h4 class="font-weight-semibold ms-md-4 ms-0 mb-3 pb-0"><span style="color:#ff6700">
+                                        <?php echo $Fetching_trainer['username'] ?>
                                     </h4>
 									</p> 
                                     <p class="text-muted ms-md-4 ms-0 mb-3"><span><i
@@ -179,6 +180,7 @@ $Fetching_trainer = mysqli_fetch_assoc($select_trainer);
                                                     </div>
                                                 </div>
                                             </div>
+                                          
                                             <div class="form-group ">
                                                 <div class="row row-sm">
                                                     <div class="col-md-3">
@@ -311,17 +313,17 @@ $Fetching_trainer = mysqli_fetch_assoc($select_trainer);
                                                     </div>
                                                     <a class="btn btn-primary mt-1 mx-2 mb-0"
                                                             style="text-align:right"  target="_blank"
-														href="../superadmin/assets/img/trainer/<?php echo $Fetching_trainer['trainer_document'];?>">Download</a>
+														href="../superadmin/assets/img/trainer/<?php echo $Fetching_trainer['trainer_document'];?>" download="">Download</a>
 
                                                 </div>
                                             </div>
 
                                            
-                                           <a class="btn btn-primary"
-                                                    href="updatetrainerprofile.php?Id=&page=profile">update
-                                                    profile</a>
-
+                                            
                                         </form>
+                                        <a class="btn btn-primary"
+                                                 href="updatetrainerprofile.php?id=<?php echo $Fetching_trainer['id']?>">update
+                                                 profile</a>
                                     </div>
                                 </div>
                             </div>
