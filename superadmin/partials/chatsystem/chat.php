@@ -25,7 +25,6 @@ if(isset($_POST['btnGo'])){
     <link rel="stylesheet" href="./chat.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    
 </head>
 <body>
 

@@ -189,6 +189,7 @@ if(isset($_POST['lc_modalBtn'])){
     </div>
 
     <!-- Modal -->
+    <form onsubmit="return validate_lcmodel_form()" method="post">
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -198,7 +199,6 @@ if(isset($_POST['lc_modalBtn'])){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form onsubmit="return validate_lcmodel_form()" method="post">
       <div class="modal-body">
             <label for="">Username</label>
             <input type="text" class="form-control mb-2" name="lc_username" id="lc_username">
@@ -211,11 +211,11 @@ if(isset($_POST['lc_modalBtn'])){
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <input type="submit" name="lc_modalBtn" class="btn btn-primary"/>
         </div>
-    </form>
     </div>
-  </div>
+</div>
 
 </div>
+</form>
 
 
     <?php include("./partials/footer.php");

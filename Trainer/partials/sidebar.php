@@ -1,10 +1,7 @@
 <aside class="app-sidebar">
 						<div class="main-sidebar-header active">
 							<a class="header-logo active" href="index.php">
-								<img src="assets/img/logowhite.png" class="main-logo  desktop-logo" alt="logo">
-								<img src="assets/img/logoblack.png" class="main-logo  desktop-dark" alt="logo">
-								<img src="assets/img/icon.png" class="main-logo  mobile-logo" alt="logo">
-								<img src="assets/img/icon.png" class="main-logo  mobile-dark" alt="logo">
+							<img src="assets/img/WordPress_blue_logo.svg-min.webp" class="main-logo" alt="logo">
 							</a>
 						</div>
 						<div class="main-sidemenu">

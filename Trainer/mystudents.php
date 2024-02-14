@@ -74,35 +74,6 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 						</div>
  
 					</div>
-									<!--					<div class="form-group col-md-6">-->
-									<!--									 <P><b> Semester</b> </p>-->
-									<!--	<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">-->
-									<!--			<option value="br" selected>All</option>-->
-									<!--			<option value="cz">NONE</option>-->
-									<!--			<option value="de">1ST SEM</option>-->
-									<!--			<option value="pl" >2ND SEM</option>-->
-									<!--			<option value="pl" >3RD SEM</option>-->
-									<!--			<option value="pl" >4TH SEM</option>-->
-									<!--			<option value="pl" >5TH SEM</option>-->
-									<!--			<option value="pl" >6TH SEM</option>-->
-									<!--			<option value="pl" >7TH SEM</option>-->
-									<!--			<option value="pl" >8TH SEM</option>-->
-									<!--		</select>-->
-									<!--</div>-->
-									<!--<div class="form-group col-md-6">-->
-									<!--									 <P><b> Account Type</b> </p>-->
-									<!--	<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">-->
-									<!--			<option value="br" selected>All</option>-->
-									<!--			<option value="cz">None</option>-->
-									<!--			<option value="de">College type</option>-->
-									<!--			<option value="pl" >Individual type</option>-->
-									<!--		</select>-->
-									<!--</div>-->
-
-
-									<!--&nbsp &nbsp	<a href="javascript:void(0);" class="btn btn-success">Search</a>	-->
-         <!--                                      &nbsp &nbsp <a href="javascript:void(0);" class="btn btn-danger">Reset All </a>									-->
-									<!--</div>-->
 									<form method="post">
 					<div class="row row-sm">
 

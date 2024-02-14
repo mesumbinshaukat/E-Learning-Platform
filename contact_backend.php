@@ -2,7 +2,7 @@
 session_start();
 include('./db_connection/connection.php');
 $id = 0;
-$user_type = "anonymous";
+$user_type = "Anonymous";
 if(isset($_POST['sendBtn'])){
     $username = $_POST['username'];
     $email = $_POST['email'];

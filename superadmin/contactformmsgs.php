@@ -20,7 +20,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
-	<title>Live chat</title>
+    <title>Contact Form Messages</title>
 
     <?php include("./style.php"); ?>
 
@@ -404,15 +404,15 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Live Chat</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Contact Form</span>
                     </div>
 
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Chats</a>
+                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Contact</a>
                             </li>
 
-                            <li class="breadcrumb-item ">Live chat </li>
+                            <li class="breadcrumb-item ">Contact Form</li>
                         </ol>
                     </div>
 
@@ -437,70 +437,27 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                                             </tr>
                                         </thead>
-										<?php 
-										 $select_query = mysqli_query($conn,"SELECT * FROM `messages` WHERE message_type = 'Live_Chat' GROUP BY email,username ORDER BY id DESC");
+                                        <?php 
+										 $select_query = mysqli_query($conn,"SELECT * FROM `messages` WHERE (sender_id = 0) && (message_type = 'contact_form') && (user_type = 'Anonymous') ORDER BY id DESC");
 										 $i = 1;
 										 while($row = mysqli_fetch_assoc($select_query)){
 											 ?>
-											 <tr>
+                                        <tr>
                                             <td><?php echo $i++ ?></td>
                                             <td><?php echo $row['username'] ?></td>
                                             <td><?php echo $row['email'] ?></td>
                                             <td><?php echo $row['message'] ?></td>
                                             <td></td>
-                                            <td><a class="btn btn-danger" href="./partials/chatsystem/chat.php?username=<?php echo $row['username'];?>&&email=<?php echo $row['email'];
-											?>">Reply</a></td>
-</tr>
+                                            <td> <button data-toggle="modal" data-target="#exampleModal" class="btn btn-danger">Reply</button> </td>
+                                        </tr>
 
-                                            <?php }?>
+                                        <?php }?>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- End Row -->
-                <!-- <form action="delete_chat.php" method="POST" enctype="multipart/form-data">
-
-					<div class="modal fade" id="upload">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content modal-content-demo">
-								<div class="modal-header">
-									<h6 class="modal-title">Reply</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-								</div>
-								<div class="modal-body">
-									<div class="col-md-12">
-										<div class="form-group">
-											<label for="exampleInputCompanyPhone" style="color:#ff6700"><b>Subject</b></label>
-											<input type="text" class="form-control" readonly id="exampleInputCompanyPhone" disabled value="">
-										</div>
-									</div>
-
-
-									<div class="col-md-12">
-										<div class="form-label">
-											<label for="exampleInputAadhar" style="color:#ff6700"><b>Describe</b></label>
-											<input class="form-control" placeholder="Textarea" name="Describe" required>
-										</div>
-									</div>
-
-									<div class="col-md-12">
-										<div class="form-group">
-											<label for="exampleInputcode">add attachments</label>
-											<input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments" required>
-										</div>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button class="btn ripple btn-success" name="reply" type="submit">reply</button>
-									<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-										Now</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form> -->
-
             </div>
         </div>
 
@@ -515,7 +472,31 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
     </div>
     <!-- End Page -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <label for="">Username</label>
+            <input type="text" class="form-control mb-2" name="lc_username" id="lc_username">
+            <p id="lc_error_username" style="color: red;"></p>
+            <label for="">Email</label>
+            <input type="email" class="form-control" name="lc_email" id="lc_email">
+            <p id="lc_error_email" style="color: red;"></p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input type="submit" name="lc_modalBtn" class="btn btn-primary"/>
+        </div>
+    </div>
+</div>
 
+</div>
     <!-- BACK-TO-TOP -->
     <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
     <?php include("./scripts.php"); ?>

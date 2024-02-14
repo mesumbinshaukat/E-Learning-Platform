@@ -51,13 +51,15 @@
 											</form>
 										</li>
 										<li class="dropdown main-profile-menu nav nav-item nav-link ps-lg-2">
-											<a class="new nav-link profile-user d-flex" href="#" data-bs-toggle="dropdown"><img alt="" src="../images/trainer/profile/" class=""></a>
+											<a class="new nav-link profile-user d-flex" href="#" data-bs-toggle="dropdown"><img alt="" src="assets/icons/add-user.png" class=""></a>
 											<div class="dropdown-menu">
 												<div class="menu-header-content p-3 border-bottom">
 													<div class="d-flex wd-100p">
-														<div class="main-img-user"><img alt="" src="../images/trainer/profile/" class=""></div>
+														<div class="main-img-user"><img alt="" src="assets/icons/add-user.png" class=""></div>
 														<div class="ms-3 my-auto">
-															<h6 class="tx-15 font-weight-semibold mb-0"></h6><span class="dropdown-title-text subtext op-6  tx-12">Trainer</span>
+														<h6 class="tx-15 font-weight-semibold mb-0">
+                                            <?php echo $_COOKIE['trainer_username'] ?></h6><span
+                                            class="dropdown-title-text subtext op-6  tx-12"><?php echo $_COOKIE['trainer_email'] ?></span>
 														</div>
 													</div>
 												</div>
