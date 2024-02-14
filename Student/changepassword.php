@@ -3,52 +3,83 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
     header('location: ../student_login.php');
     exit();
 }
+include('../db_connection/connection.php');
+if (isset($_POST["change_pwd"])) {
+    $student_id = $_COOKIE['student_id'];
+    $old_password = $_POST['oldpassword'];
+    $new_password = $_POST['newpassword'];
+    $confirm_password = $_POST['confirmpassword'];
+
+
+    $query = "SELECT `password` FROM `student` WHERE `id` = '$student_id'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        $current_password_hash = $row['password'];
+
+
+        if (password_verify($old_password, $current_password_hash)) {
+ 
+            if ($new_password === $confirm_password) {
+
+                $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+                
+
+                $update_query = "UPDATE `student` SET `password` = '$new_password_hash' WHERE `id` = '$student_id'";
+                if (mysqli_query($conn, $update_query)) {
+
+                    $_SESSION['success'] = "Password changed successfully";
+                    header('location: dashboard.php');
+                    exit();
+                } else {
+                    echo "Error updating password: " . mysqli_error($conn);
+                }
+            } else {
+                echo "New password and confirm password do not match";
+            }
+        } else {
+
+            echo "Old password is incorrect";
+        }
+    } else {
+
+        echo "Student ID not found";
+    }
+}
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
-
     <!-- Title -->
     <title>Change Password</title>
-
     <?php include("./links.php"); ?>
-
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-
     <!-- Loader -->
-    <div id="global-loader">
+    <!-- <div id="global-loader">
         <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div>
+    </div> -->
     <!-- /Loader -->
-
     <!-- Page -->
     <div class="page">
-
         <div>
             <?php include("./partials/sidebar.php"); ?>
             <!-- main-content -->
-            <!-- main-content -->
             <div class="main-content app-content">
-
                 <!-- container -->
                 <div class="main-container container-fluid">
-
-
                     <!-- breadcrumb -->
                     <div class="breadcrumb-header justify-content-between">
                         <div class="left-content">
-                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Change
-                                Password</span>
+                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Change Password</span>
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
@@ -59,7 +90,6 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                         </div>
                     </div>
                     <!-- /breadcrumb -->
-
                     <!-- row -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
@@ -70,111 +100,40 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <form method="post" name="frmPassword" action="pwd.php">
-
-
-                                        <div class="">
-                                            <div class="row row-xs formgroup-wrapper">
-
-
-
-
-
-
-
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputPassword">Current Password</label>
-                                                        <input type="password" data-pristine-equals="#pwd" data-pristine-equals-message="Passwords don't match" class="form-control" name="oldpassword" id="oldpassword" required />
-                                                    </div>
+                                    <form method="post">
+                                        <div class="row row-xs formgroup-wrapper">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword">Current Password</label>
+                                                    <input type="password" class="form-control" name="oldpassword" id="oldpassword" required />
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputPassword">New Password</label>
-                                                        <input type="password" required data-pristine-required-message="Please Enter a new password" data-pristine-pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/" data-pristine-pattern-message="Minimum 8 characters, at least one uppercase letter, one lowercase letter and one number" class="form-control" name="newpassword" id="newpassword" value="" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputPassword">Re-Enter New Password</label>
-                                                        <input type="password" data-pristine-equals="#pwd" data-pristine-equals-message="Passwords don't match" class="form-control" name="confirmpassword" id="confirmpassword" value="" />
-                                                    </div>
-                                                </div>
-
-
-
-
-
-
-
-
-
-
-
-
                                             </div>
-                                            <button type="submit" class="btn btn-info mt-3 mb-0" name="change_pwd" value="Change Password" onclick="return check()">Change
-                                                password</button>
-                                            <input type="hidden" name="id" id="id" value="" />
-                                            <input type="hidden" name="action" id="change_pwd" value="changepwd" />
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword">New Password</label>
+                                                    <input type="password" class="form-control" name="newpassword" id="newpassword" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword">Re-Enter New Password</label>
+                                                    <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" required />
+                                                </div>
+                                            </div>
                                         </div>
+                                        <button type="submit" class="btn btn-info mt-3 mb-0" name="change_pwd">Change password</button>
+                                    </form>
                                 </div>
-                                </form>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
                 <!-- Container closed -->
             </div>
-
-            <script type="text/javascript">
-                function check() {
-                    var a = document.getElementById('oldpassword').value;
-                    var b = document.getElementById('newpassword').value;
-                    var c = document.getElementById('confirmpassword').value;
-                    if (b != c) {
-                        $(".show_error").find(".alert").html("<p>Password doesnt match</p>");
-                        $(".show_error").show();
-                        return false;
-                    } else if (a != 'Mycompany@123') {
-                        $(".show_error").find(".alert").html("<p>Old password doesnt matched</p>");
-                        $(".show_error").show();
-                        return false;
-                    } else
-                        return true;
-                }
-            </script>
-
-            <div class="modal fade" id="schedule">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content modal-content-demo">
-                        <div class="modal-header">
-                            <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <p> Are you sure you want to change the password??</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn ripple btn-success" type="button">Change</button>
-                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
         <!-- End Page -->
-
         <!-- BACK-TO-TOP -->
         <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
         <?php include("./scripts.php") ?>
 </body>
 

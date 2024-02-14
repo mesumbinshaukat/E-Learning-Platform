@@ -150,7 +150,7 @@ if(isset($_POST['submit'])){
                                         <div class="details col-xl-6 col-lg-12 col-md-12 mt-4 mt-xl-0">
 
                                             <h4 class="product-title mb-1"><b
-                                                    style="color: #ff6700;"><?php echo $array_data['job_role'];?>
+                                                    style="color: #ff6700;"><?php echo $array_data['company_name'];?>
                                                 </b>
                                             </h4>
                                             <p class="text-muted tx-13 mb-1"><?php echo $array_data['company_name'];?>

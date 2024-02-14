@@ -111,7 +111,8 @@ $data = mysqli_fetch_array($run_query);
 
                                         &nbsp
                                         <button class="btn btn-primary mb-3 shadow"><a
-                                                href="../images/students/cv/"><span style="color:#ffffff;">CV
+                                                href="../superadmin/assets/docs/student/cv/<?php echo $data['cv']; ?>"
+                                                 target="_blank" Download><span style="color:#ffffff;">CV
                                                     Download</span></a></button>
 
                                     </div>
@@ -335,7 +336,7 @@ $data = mysqli_fetch_array($run_query);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group ">
+                                                <!-- <div class="form-group ">
                                                     <div class="row row-sm">
                                                         <div class="col-md-3">
                                                             <label class="form-label">Referral Code</label>
@@ -345,8 +346,8 @@ $data = mysqli_fetch_array($run_query);
                                                                 placeholder="Referral Code" value="">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group ">
+                                                </div> -->
+                                                <!-- <div class="form-group ">
                                                     <div class="row row-sm">
                                                         <div class="col-md-3">
                                                             <label class="form-label">Upload Resume</label>
@@ -360,10 +361,10 @@ $data = mysqli_fetch_array($run_query);
 
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <button type="button" class=" btn btn-info mt-3 mb-0"><a
-                                                        href="updatestudentprofile.php?id=&page=profile">Update
-                                                        Profile</a></button>
+                                                </div> -->
+                                                <a  href="updatestudentprofile.php"><button type="button"
+                                                        class="btn btn-primary mt-3 mb-0" name="upload_cv"
+                                                        style="text-align:right">Update Profile</button></a>
                                             </form>
                                         </div>
                                     </div>
