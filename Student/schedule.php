@@ -4,7 +4,7 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 	exit();
 }
 include('../db_connection/connection.php');
-$query = "SELECT * FROM `scheduling_internship`";
+$query = "SELECT * FROM `batches_schedule`";
 $query_run = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
