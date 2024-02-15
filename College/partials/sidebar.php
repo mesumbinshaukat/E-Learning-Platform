@@ -34,7 +34,7 @@
                    <ul class="slide-menu">
                        <li class="side-menu__label1"><a href="javascript:void(0);">Courses</a></li>
                        <li><a class="slide-item" href="registercourse.php">Register</a></li>
-                       <li><a class="slide-item" href="pendingstudents.php">Pending</a></li>
+
                        <li><a class="slide-item" href="managecourses.php">Manage</a></li>
                    </ul>
                </li>
@@ -48,19 +48,6 @@
                            width="24" height="24" viewBox="0 0 24 24"></i>&nbsp
                        &nbsp <span class="side-menu__label">Placements</span></a>
                </li>
-
-               <!-- <li class="slide">
-                   <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i
-                           class="si si-briefcase" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp
-                       &nbsp <span class="side-menu__label">Payments</span><i class="angle fe fe-chevron-right"></i></a>
-                   <ul class="slide-menu">
-                       <li class="side-menu__label1"><a href="javascript:void(0);">Payments</a></li>
-                       <li><a class="slide-item" href="pendingpayments.php">Pending</a></li>
-                       <li><a class="slide-item" href="transactions.php">Transactions</a></li>
-
-                   </ul>
-               </li>
- -->
 
                <li class="slide">
                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-mail"

@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
 }
 ?>
 
@@ -65,43 +65,6 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                     </div>
 
                 </div>
-                <!--	<div class="row row-sm">
-					                 <div class="form-group col-md-3">
-										<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">
-												<option value="br">Filter4</option>
-												<option value="cz">Filter3</option>
-												<option value="de">Filter2</option>
-												<option value="pl" selected>Filter1</option>
-											</select>
-									</div>
-									<div class="form-group col-md-3">
-										<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">
-												<option value="br">Filter4</option>
-												<option value="cz">Filter3</option>
-												<option value="de">Filter2</option>
-												<option value="pl" selected>Filter1</option>
-											</select>
-									</div>
-									<div class="form-group col-md-3">
-										<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">
-												<option value="br">Filter4</option>
-												<option value="cz">Filter3</option>
-												<option value="de">Filter2</option>
-												<option value="pl" selected>Filter1</option>
-											</select>
-									</div>
-																		<div class="form-group col-md-3">
-										<select name="country" class="form-control form-select" data-bs-placeholder="Select Filter">
-												<option value="br">Filter4</option>
-												<option value="cz">Filter3</option>
-												<option value="de">Filter2</option>
-												<option value="pl" selected>Filter1</option>
-											</select>
-									</div>
-
-									&nbsp &nbsp	<a href="javascript:void(0);" class="btn btn-success">Search</a>	
-                                               &nbsp &nbsp <a href="javascript:void(0);" class="btn btn-danger">Reset All </a>									
-									</div> -->
 
                 <br>
                 <br>
@@ -116,398 +79,35 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
-                                                <th class="border-bottom-0">date of adding</th>
+                                                <th class="border-bottom-0">Date of Adding</th>
                                                 <th class="border-bottom-0">Course ID</th>
                                                 <th class="border-bottom-0">Course name</th>
                                                 <th class="border-bottom-0">Price</th>
                                                 <th class="border-bottom-0">Duration</th>
-                                                <th class="border-bottom-0">add student</th>
-
-
-
-
+                                                <th class="border-bottom-0">Add Student</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
 
-
-                                                <td>1</td>
-                                                <td>2023-02-26 15:55:08</td>
-                                                <td>TRCR_5</td>
-                                                <td>Java Script</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=5"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>2</td>
-                                                <td>2023-02-26 16:10:47</td>
-                                                <td>TRCR_6</td>
-                                                <td>Cloud computing </td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=6"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
+                                            <?php
+                                            $sql = mysqli_query($conn, "SELECT * FROM `course`");
+                                            if (mysqli_num_rows($sql) > 0) {
+                                                $i = 0;
+                                                while ($row = mysqli_fetch_array($sql)) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . ++$i . '</td>';
+                                                    echo '<td>' . $row['creation_date'] . '</td>';
+                                                    echo '<td>CRID_' . $row['id'] . '</td>';
+                                                    echo '<td>' . $row['course_name'] . '</td>';
+                                                    echo '<td>' . $row['final_cost'] . '</td>';
+                                                    echo '<td>' . $row['duration_days'] . '</td>';
+                                                    echo '<td><a href="selectstudent.php?id=' . $row['id'] . '&type=course" class="btn-info btn">Add Student</a></td>';
+                                                }
+                                            }
+                                            ?>
 
                                             </tr>
-
-                                            <tr>
-
-
-                                                <td>3</td>
-                                                <td>2023-02-26 16:23:23</td>
-                                                <td>TRCR_7</td>
-                                                <td>My SQL </td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=7"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>4</td>
-                                                <td>2023-02-26 16:38:37</td>
-                                                <td>TRCR_8</td>
-                                                <td>Human resource management </td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=8"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>5</td>
-                                                <td>2023-02-26 16:38:42</td>
-                                                <td>TRCR_9</td>
-                                                <td>US Taxation</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=9"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>6</td>
-                                                <td>2023-02-26 16:41:21</td>
-                                                <td>TRCR_10</td>
-                                                <td>Voice process</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=10"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>7</td>
-                                                <td>2023-02-26 16:48:42</td>
-                                                <td>TRCR_11</td>
-                                                <td>Income Tax</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=11"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>8</td>
-                                                <td>2023-02-26 16:54:25</td>
-                                                <td>TRCR_12</td>
-                                                <td>Non Voice Process</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=12"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>9</td>
-                                                <td>2023-02-26 17:12:19</td>
-                                                <td>TRCR_13</td>
-                                                <td>Transcription</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=13"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>10</td>
-                                                <td>2023-02-26 17:26:41</td>
-                                                <td>TRCR_14</td>
-                                                <td>Translation</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=14"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>11</td>
-                                                <td>2023-02-26 17:39:45</td>
-                                                <td>TRCR_16</td>
-                                                <td>Digital Marketing </td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=16"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>12</td>
-                                                <td>2023-02-26 17:43:15</td>
-                                                <td>TRCR_17</td>
-                                                <td>Tally + GST</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=17"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>13</td>
-                                                <td>2023-05-07 21:59:20</td>
-                                                <td>TRCR_28</td>
-                                                <td>Python</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=28"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>14</td>
-                                                <td>2023-05-07 22:26:23</td>
-                                                <td>TRCR_32</td>
-                                                <td>JAVA</td>
-                                                <td>5400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=32"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>15</td>
-                                                <td>2023-05-07 22:33:22</td>
-                                                <td>TRCR_33</td>
-                                                <td>Web Technologies</td>
-                                                <td>6400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=33"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>16</td>
-                                                <td>2023-05-07 22:54:14</td>
-                                                <td>TRCR_34</td>
-                                                <td>Medical Coding & Transcription</td>
-                                                <td>6400</td>
-                                                <td>90</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=34"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>17</td>
-                                                <td>2023-08-09 13:29:29</td>
-                                                <td>TRCR_38</td>
-                                                <td>Power BI & Tableau</td>
-                                                <td>5400</td>
-                                                <td>60</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=38"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                            <tr>
-
-
-                                                <td>18</td>
-                                                <td>2023-08-09 16:02:47</td>
-                                                <td>TRCR_39</td>
-                                                <td>AI & ML</td>
-                                                <td>2700</td>
-                                                <td>60</td>
-
-
-                                                <td>
-
-                                                    <a href="https://triaright.com/College/selectstudent.php?crid=39"
-                                                        class="btn-info btn">add Student</a>
-
-                                                </td>
-
-
-                                            </tr>
-
 
                                         </tbody>
                                     </table>
@@ -517,11 +117,6 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                     </div>
                 </div>
                 <!-- End Row -->
-
-
-
-
-
 
             </div>
         </div>

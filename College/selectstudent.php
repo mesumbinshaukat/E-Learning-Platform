@@ -4,8 +4,12 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
+}
+if (!isset($_GET["id"]) || empty($_GET["id"])) {
+    header('location:./registercourse.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -43,141 +47,118 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
         </div>
         <!-- main-sidebar -->
 
-    </div>
-
-    <!-- main-content -->
-    <div class="main-content app-content">
-
-        <!-- container -->
-        <div class="main-container container-fluid">
 
 
-            <div class="breadcrumb-header justify-content-between">
-                <div class="right-content">
-                    <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Registration Allocation
-                    </span>
+        <!-- main-content -->
+        <div class="main-content app-content">
+
+            <!-- container -->
+            <div class="main-container container-fluid">
+
+
+                <div class="breadcrumb-header justify-content-between">
+                    <div class="right-content">
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Registration Allocation
+                        </span>
+                    </div>
+
+                    <div class="justify-content-center mt-2">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
+                            <li class="breadcrumb-item ">Registration</li>
+                            <li class="breadcrumb-item ">Add</li>
+                        </ol>
+                    </div>
+
                 </div>
 
-                <div class="justify-content-center mt-2">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
-                        <li class="breadcrumb-item ">registration</li>
-                        <li class="breadcrumb-item ">add</li>
-                    </ol>
-                </div>
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <div class="card custom-card overflow-hidden">
+                            <div class="card-body">
 
-            </div>
+                                <div class="table-responsive  export-table">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-bottom-0">S.no</th>
+                                                <th class="border-bottom-0">Date Of Adding</th>
+                                                <th class="border-bottom-0">ID No</th>
 
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="row row-sm">
-                <div class="col-lg-12">
-                    <div class="card custom-card overflow-hidden">
-                        <div class="card-body">
-
-                            <div class="table-responsive  export-table">
-                                <table id="file-datatable"
-                                    class="table table-bordered text-nowrap key-buttons border-bottom">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-bottom-0">S.no</th>
-                                            <th class="border-bottom-0">date of adding</th>
-                                            <th class="border-bottom-0">ID No</th>
-                                            <th class="border-bottom-0">Author</th>
-                                            <th class="border-bottom-0">Student name</th>
-                                            <th class="border-bottom-0">College</th>
-                                            <th class="border-bottom-0">stream</th>
-                                            <th class="border-bottom-0">District</th>
-                                            <th class="border-bottom-0">View Profile</th>
-                                            <th class="border-bottom-0">Allocate</th>
+                                                <th class="border-bottom-0">Student name</th>
+                                                <th class="border-bottom-0">College</th>
+                                                <th class="border-bottom-0">stream</th>
+                                                <th class="border-bottom-0">District</th>
+                                                <th class="border-bottom-0">View Profile</th>
+                                                <th class="border-bottom-0">Allocate</th>
 
 
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+                                            $id = (int) $id;
+                                            $college_name = $_COOKIE['college_username'];
+                                            $college_query = mysqli_query($conn, "SELECT * FROM `college` WHERE `username` = '$college_name'");
+                                            $college_data = mysqli_fetch_assoc($college_query);
+                                            $college_name_ = $college_data['name'];
 
-                                        ?>
+                                            if (isset($_GET["type"]) && $_GET["type"] == "course") {
+                                                $query = "SELECT * FROM `student` WHERE `college_name`='$college_name_'";
 
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2023-10-03 15:32:21</td>
-                                            <td>TRSTU_5020</td>
-                                            <td>Neha banu</td>
-                                            <td>Neha banu</td>
-                                            <td></td>
-                                            <td>Kadiri</td>
-                                            <td>Sri sathya sai</td>
-                                            <td><a href="https://triaright.com/College/studentprofile.php?id=5020"
-                                                    class="btn-info btn">view</a> </td>
+                                                $query = $conn->query($query);
+                                                if ($query) {
+                                                    $i = 1;
 
-                                            <td>
-                                                <a href="https://triaright.com/College/alloc_student.php?crid=5&amp;id=5020"
-                                                    class="btn-info btn">allocate</a>
-                                            </td>
-                                        </tr>
+                                                    while ($row = mysqli_fetch_assoc($query)) {
+                                                        $query2 = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$row['id']}' AND `course_id` = '$id'");
 
-                                    </tbody>
-                                </table>
+                                                        if ($query2) {
+                                                            $fetch = mysqli_fetch_assoc($query2);
+
+                                                            if (!$fetch) {
+                                                                echo "<tr>";
+                                                                echo "<td>" . $i++ . "</td>";
+                                                                echo "<td>" . $row['creation_date'] . "</td>";
+                                                                echo "<td>STID_" . $row['id'] . "</td>";
+                                                                echo "<td>" . $row['name'] . "</td>";
+                                                                echo "<td>" . $row['college_name'] . "</td>";
+                                                                echo "<td>" . $row['branch'] . "</td>";
+                                                                echo "<td>" . $row['district'] . "</td>";
+                                                                echo "<td><a href='./viewstudent.php?id=" . $row['id'] . "' class='btn btn-info'>View</a></td>";
+                                                                echo "<td><a href='allocstudent.php?id=" . $row['id'] . "&course_id=" . $id . "' class='btn btn-success'>Allocate</a></td>";
+                                                                echo "</tr>";
+                                                            }
+                                                        } else {
+                                                            // Handle query execution error for course_registration query
+                                                            echo "Error executing course_registration query: " . mysqli_error($conn);
+                                                        }
+                                                    }
+                                                } else {
+                                                    // Handle query execution error for student query
+                                                    echo "Error executing student query: " . mysqli_error($conn);
+                                                }
+                                            }
+                                            ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- End Row -->
+
             </div>
-            <!-- End Row -->
-
-
-            <div class="modal fade" id="allocate">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content modal-content-demo">
-                        <div class="modal-header">
-                            <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                    aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <p> Are you sure you want to allocate a student??</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn ripple btn-success" type="button">allocate</button>
-                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="allocate">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content modal-content-demo">
-                        <div class="modal-header">
-                            <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                    aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <p> Are you sure you want to delete a student??</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn ripple btn-success" type="button">allocate</button>
-                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
         </div>
+
     </div>
-
-
     <!-- BACK-TO-TOP -->
-    <a href="selectstudent.php@crid=5.html#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
+    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
     <?php include("./script.php"); ?>
 </body>
 
