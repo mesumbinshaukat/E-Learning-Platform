@@ -8,7 +8,18 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
     exit();
 }
 
+$college_query = "SELECT * FROM college WHERE username = '" . $_COOKIE['college_username'] . "' AND password = '" . $_COOKIE['college_password'] . "'";
+
+$college_result = mysqli_query($conn, $college_query);
+
+$college = mysqli_fetch_assoc($college_result);
+
 if (isset($_POST["submit"])) {
+
+
+    $sender_email = $_COOKIE['college_email'];
+    $sender_name = $_COOKIE['college_username'];
+    $sender_type = "College";
 
     if (isset($_POST["student"]) && !empty($_POST["student"])) {
         $student_email = $_POST["student"];
@@ -36,6 +47,23 @@ if (isset($_POST["submit"])) {
 
                 $student_query = mysqli_query($conn, "SELECT * FROM `student`");
                 if (mysqli_num_rows($student_query) > 0) {
+                    $insert_query = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+                    $insert_query->bind_param("ssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $student_email, $subject, $message, $add_attachments_with_date, $purpose, $recipient_type);
+                    if ($insert_query->execute()) {
+                        if (!empty($add_attachments)) {
+                            move_uploaded_file($add_attachments_tmp, "../superadmin/assets/docs/attachments/" . $add_attachments_with_date);
+                            $_SESSION["attachment"] = $add_attachments_with_date;
+                        }
+                        $_SESSION["college_name"] = $college["name"];
+                        $_SESSION["sender_name"] = $sender_name;
+                        $_SESSION["sender_email"] = $sender_email;
+                        $_SESSION["sending_format"] = $student_email;
+                        $_SESSION["subject"] = $subject;
+                        $_SESSION["message"] = $message;
+                        $_SESSION["purpose"] = $purpose;
+                        $_SESSION["recipient"] = $recipient;
+                        header('location: ./sendmail.php');
+                    }
                 }
             }
 
@@ -47,14 +75,6 @@ if (isset($_POST["submit"])) {
             break;
     }
 }
-
-$college_query = "SELECT * FROM college WHERE username = '" . $_COOKIE['college_username'] . "' AND password = '" . $_COOKIE['college_password'] . "'";
-
-$college_result = mysqli_query($conn, $college_query);
-
-$college = mysqli_fetch_assoc($college_result);
-
-
 
 
 ?>
@@ -106,8 +126,14 @@ $college = mysqli_fetch_assoc($college_result);
                         </div>
 
                     </div>
-
+                    <?php
+                    if (isset($_SESSION["mail_sent"]) && !empty($_SESSION["mail_sent"])) {
+                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>" . $_SESSION['mail_sent'] . "</div> ";
+                        unset($_SESSION["mail_sent"]);
+                    }
+                    ?>
                     <div class="row row-sm">
+
                         <div class="form-group col-md-6">
                             <label for="dropdown">Recipient</label>
                             <select id="dropdown1" onchange="showOptions1()" name="recipient" required class="form-control form-select select2" data-bs-placeholder="Select Country">

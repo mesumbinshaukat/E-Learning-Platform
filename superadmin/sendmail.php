@@ -9,12 +9,12 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
-echo "Before creating PHPMailer instance<br>";
+
 
 // Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
-echo "After creating PHPMailer instance<br>";
+
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
     header('location: ../super-admin_login.php');
