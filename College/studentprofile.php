@@ -4,13 +4,13 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
 }
 
 if (!isset($_GET["id"]) && empty($_GET["id"])) {
-	header("location:./mystudents.php");
-	exit();
+    header("location:./mystudents.php");
+    exit();
 }
 
 $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
@@ -53,12 +53,12 @@ $id = (int) $id;
         <!-- main-content -->
         <div class="main-content app-content">
             <?php
-			$student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '$id'");
+            $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '$id'");
 
-			if (mysqli_num_rows($student_query) > 0) {
-				$student = mysqli_fetch_assoc($student_query);
+            if (mysqli_num_rows($student_query) > 0) {
+                $student = mysqli_fetch_assoc($student_query);
 
-			?>
+            ?>
 
             <!-- container -->
             <div class="main-container container-fluid">
@@ -85,20 +85,20 @@ $id = (int) $id;
                                 <div class="">
                                     <span class="profile-image pos-relative">
                                         <?php
-											if (!empty($student['picture'])) {
-												$student['picture'] = "default.png";
+                                            if (!empty($student['picture'])) {
+                                                $student['picture'] = "default.png";
 
-											?>
+                                            ?>
                                         <img class="br-5" alt="<?php echo $student['name']; ?> - Profile Picture"
                                             src="../superadmin/assets/img/student/<?php echo $student['picture']; ?>">
                                         <?php
-											} else {
+                                            } else {
 
-											?>
+                                            ?>
                                         <img class="br-5" alt="<?php echo $student['name']; ?> - Profile Picture"
                                             src="./assets/img/r1.jpg">
                                         <?php
-											} ?>
+                                            } ?>
                                     </span>
                                 </div>
                                 <div class="my-md-auto mt-4 prof-details">

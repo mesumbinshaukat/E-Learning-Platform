@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
 }
 ?>
 
@@ -69,31 +69,7 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                     </div>
 
                 </div>
-                <!-- <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-					<div class="row row-sm">
-						<div class="form-group col-md-3">
-							<b> <label>Stream</label> </b>
-							<select name="stream" class="form-control form-select" data-bs-placeholder="Select Filter">
-								<option value="">All</option>
-								<?php
-								// $college_streams = mysqli_query($conn, "SELECT `college_streams` FROM `college` WHERE `username` = '{$_COOKIE['college_username']}'");
-								// if (mysqli_num_rows($college_streams) > 0) {
-								// 	while ($row = mysqli_fetch_assoc($college_streams)) {
-								// 		echo "<option value='{$row['college_streams']}'>{$row['college_streams']}</option>";
-								// 	}
-								// }
-								?>
 
-							</select>
-						</div>
-
-						&nbsp &nbsp <button type="submit" class="btn btn-primary" name="search" style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
-					</div>
-				</form> -->
-
-
-                <!-- <br>
-				<br> -->
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
@@ -120,33 +96,33 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                         </thead>
                                         <tbody>
                                             <?php
-											$college_name = $_COOKIE["college_username"];
-											$query = "SELECT * FROM `college` WHERE `username` = '$college_name'";
-											// if (isset($_POST["search"])) {
-											// 	$stream = $_POST["stream"];
-											// 	$query .= " AND `college_streams` = '$stream'";
-											// }
-											$college_query = mysqli_query($conn, $query);
-											$college = mysqli_fetch_assoc($college_query);
-											$student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `college_name` = '{$college["name"]}'");
-											if (mysqli_num_rows($student_query) > 0) {
-												$i = 1;
-												while ($student = mysqli_fetch_assoc($student_query)) {
+                                            $college_name = $_COOKIE["college_username"];
+                                            $query = "SELECT * FROM `college` WHERE `username` = '$college_name'";
+                                            // if (isset($_POST["search"])) {
+                                            // 	$stream = $_POST["stream"];
+                                            // 	$query .= " AND `college_streams` = '$stream'";
+                                            // }
+                                            $college_query = mysqli_query($conn, $query);
+                                            $college = mysqli_fetch_assoc($college_query);
+                                            $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `college_name` = '{$college["name"]}'");
+                                            if (mysqli_num_rows($student_query) > 0) {
+                                                $i = 1;
+                                                while ($student = mysqli_fetch_assoc($student_query)) {
 
-													echo "<tr>";
-													echo "<td>" . $i++ . "</td>";
-													echo "<td>" . $student["creation_date"] . "</td>";
-													echo "<td>STID_" . $student["id"] . "</td>";
-													echo "<td>" . $student["created_by"] . "</td>";
-													echo "<td>" . $student["name"] . "</td>";
-													echo "<td>" . $student["college_name"] . "</td>";
-													echo "<td>" . $college["college_streams"] . "</td>";
-													echo "<td>" . $student["district"] . "</td>";
-													echo "<td><a class='btn btn-info' href='studentprofile.php?id=" . $student["id"] . "'>View</a></td>";
-													echo "</tr>";
-												}
-											}
-											?>
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $student["creation_date"] . "</td>";
+                                                    echo "<td>STID_" . $student["id"] . "</td>";
+                                                    echo "<td>" . $student["created_by"] . "</td>";
+                                                    echo "<td>" . $student["name"] . "</td>";
+                                                    echo "<td>" . $student["college_name"] . "</td>";
+                                                    echo "<td>" . $college["college_streams"] . "</td>";
+                                                    echo "<td>" . $student["district"] . "</td>";
+                                                    echo "<td><a class='btn btn-info' href='studentprofile.php?id=" . $student["id"] . "'>View</a></td>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+                                            ?>
 
                                         </tbody>
                                     </table>
