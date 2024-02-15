@@ -41,7 +41,7 @@
                 </ul>
             </li>
 
-            <li class="side-item side-item-category">Internship management</li>
+            <li class="side-item side-item-category">Batches management</li>
 
             <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="fe fe-layout"

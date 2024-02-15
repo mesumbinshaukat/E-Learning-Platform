@@ -26,7 +26,7 @@ if (isset($_POST["submit"])) {
     $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `id` = '$batch_id'");
     $batch = mysqli_fetch_assoc($batch_query);
 
-    if ($batch["id"] == $batch_id) {
+    if ($batch["id"] == $batch_id) {    
         $batch_name = $batch["batch_name"];
         $insert_query = mysqli_prepare($conn, "INSERT INTO `schedule_batch`(`batch_name`, `batch_id`, `main_topic`, `class_duration`, `date_of_schedule`, `tasks`, `shared_documents`, `topics_covered`, `class_start_timing`, `class_end_time`) VALUES (?,?,?,?,?,?,?,?,?,?)");
         $insert_query->bind_param("ssssssssss", $batch_name, $batch_id, $training_title, $durations, $date_of_training, $tasks, $shared_documents, $topics_to_be_covered, $training_starting_time, $training_ending_time);
