@@ -57,8 +57,8 @@
                        <li class="side-menu__label1"><a href="javascript:void(0);">Chat</a></li>
                        <li><a class="slide-item" href="compose.php">Compose</a></li>
                        <li><a class="slide-item" href="inbox.php">Inbox</a></li>
-                       <li><a class="slide-item" href="outbox.php">Outbox</a></li>
-                       <li><a class="slide-item" href="allmessages.php">All Details</a></li>
+                       <!-- <li><a class="slide-item" href="outbox.php">Outbox</a></li>
+                       <li><a class="slide-item" href="allmessages.php">All Details</a></li> -->
                    </ul>
                </li>
                <li class="slide">

@@ -103,9 +103,39 @@ if (isset($_POST["submit"])) {
                         header('location: ./sendmail.php');
                     }
                 }
+            } else {
+                $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `email` = '{$student_email}'");
+                if (mysqli_num_rows($student_query) > 0) {
+
+                    $student = mysqli_fetch_assoc($student_query);
+
+                    $student_name = $student["name"];
+                    $student_id = (int) $student["id"];
+
+                    $insert_query = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `recipient_name`, `recipient_email`, `recipient_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    $insert_query->bind_param("sssssssssssss", $sender_email, $sender_id, $student_name, $student_email, $student_id, $sender_name, $sender_type, $recipient, $subject, $message, $add_attachments_with_date, $purpose, $recipient_type);
+
+                    if ($insert_query->execute()) {
+                        if (!empty($add_attachments)) {
+                            move_uploaded_file($add_attachments_tmp, "../superadmin/assets/docs/attachments/" . $add_attachments_with_date);
+                            $_SESSION["attachment"] = $add_attachments_with_date;
+                        }
+
+                        $_SESSION["recipient_name"] = $student_name;
+                        $_SESSION["recipient_email"] = $student_email;
+
+                        $_SESSION["sender_name"] = $sender_name;
+                        $_SESSION["sender_email"] = $sender_email;
+                        $_SESSION["sending_format"] = $recipient;
+
+                        $_SESSION["subject"] = $subject;
+                        $_SESSION["message"] = $message;
+                        $_SESSION["purpose"] = $purpose;
+                        $_SESSION["recipient"] = $recipient;
+                        header('location: ./sendmail.php');
+                    }
+                }
             }
-
-
             break;
     }
 }
