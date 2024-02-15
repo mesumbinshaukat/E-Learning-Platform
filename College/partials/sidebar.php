@@ -1,6 +1,6 @@
    <aside class="app-sidebar">
        <div class="main-sidebar-header active">
-           <a class="header-logo active" href="index.php">
+           <a class="header-logo active" href="dashboard.php">
                <img src="../assets/media/Invictus.png" class="main-logo  desktop-logo" alt="logo">
                <img src="../assets/media/Invictus.png" class="main-logo  desktop-dark" alt="logo">
                <img src="../assets/media/Invictus.png" class="main-logo  mobile-logo" alt="logo">

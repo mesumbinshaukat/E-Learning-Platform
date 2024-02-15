@@ -55,11 +55,11 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                 <!-- breadcrumb -->
                 <div class="breadcrumb-header justify-content-between">
                     <div class="left-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1">Internship Details</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1">Placement Details</span>
                     </div>
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Internship</a></li>
+                            <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Placement</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Full Details</li>
                         </ol>
                     </div>
@@ -68,7 +68,7 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                 <?php
                 $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
                 $id = (int)$id;
-                $query = mysqli_query($conn, "SELECT * FROM `internship` WHERE `id` = $id");
+                $query = mysqli_query($conn, "SELECT * FROM `placement` WHERE `id` = $id");
                 if (mysqli_num_rows($query) > 0) {
 
 
@@ -88,7 +88,7 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                                     <div id="Slider" class="carousel slide" data-bs-ride="false">
                                                         <div class="carousel-inner">
                                                             <div class="carousel-item active"><img
-                                                                    src="../superadmin/assets/img/internship/<?php echo $row['main_image'] ?>"
+                                                                    src="../superadmin/assets/img/placement/<?php echo $row['main_image'] ?>"
                                                                     alt="img" class="img-fluid mx-auto d-block">
                                                                 <div class="text-center mt-5 mb-5 btn-list">
                                                                 </div>
@@ -104,7 +104,7 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                     <div class="details col-xl-6 col-lg-12 col-md-12 mt-4 mt-xl-0">
 
                                         <h4 class="product-title mb-1"><b
-                                                style="color: #ff6700;"><?php echo $row['internship'] ?></b>
+                                                style="color: #ff6700;"><?php echo $row['job_role'] ?></b>
                                         </h4>
                                         <p class="text-muted tx-13 mb-1"><?php echo $row["industry"] ?></p>
                                         <br>
@@ -116,23 +116,26 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                         </p>
                                         <p class="card-text tx-15"><span style="color: #13131a;">
                                                 Salary:</span><?php echo $row["salary"] ?></p>
-                                        <p class="card-text tx-15"><span style="color: #13131a;"> Duration
-                                                (Days):</span><?php echo $row["duration_days"] ?></p>
+                                        <p class="card-text tx-15"><span style="color: #13131a;">
+                                                Experience (Years):</span><?php echo $row["years_open_experience"] ?>
+                                        </p>
                                         <p class="card-text tx-15"><span style="color: #13131a;"> Eligibility:
                                             </span><?php echo $row["eligibility"] ?>
                                         </p>
-                                        <p class="card-text tx-15"><span style="color: #13131a;"> Internship
-                                                Type:</span><?php echo $row["internship_category"] ?></p>
+                                        <p class="card-text tx-15"><span style="color: #13131a;"> Work
+                                                Mode:</span><?php echo $row["work_mode"] ?></p>
+                                        <p class="card-text tx-15"><span style="color: #13131a;"> Job
+                                                Type:</span><?php echo $row["job_type"] ?></p>
                                         <p class="card-text tx-15"><span style="color: #13131a;">
                                                 Location:</span><?php echo $row["location"] ?></p>
                                         <p class="card-text tx-15"><span style="color: #13131a;">
-                                                Certification:</span><?php echo $row["certification"] ?></p>
+                                                Experience Level:</span><?php echo $row["experience"] ?></p>
                                         <p class="card-text tx-15"><span style="color: #13131a;">
                                                 Pricing(paid):</span><?php echo $row["salary"] ?></p>
                                         <p class="card-text tx-15"><span style="color: #13131a;">
-                                                Pricing(stifund):</span><?php echo $row["stifund"] ?></p>
+                                                ESI:</span><?php echo $row["esi"] ?></p>
                                         <p class="card-text tx-15"><span style="color: #13131a;">
-                                                Preference:</span><?php echo $row["gender"] ?></p>
+                                                Gender:</span><?php echo $row["gender"] ?></p>
                                         <p class="card-text tx-15"><span style="color: #13131a;">No. of
                                                 Vacancies:</span><?php echo $row["vacancies"] ?></p>
                                         <p class="card-text tx-15"><span style="color: #13131a;">Last Date To
@@ -171,15 +174,15 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                                 <h5 class="mb-2 mt-1 fw-semibold"><span style="color:#ff6700;">Full
                                                         Description :</span></h5>
                                                 <p class="mb-3 tx-13"><span
-                                                        style="line-height:30px"><?php echo $row["full-description"] ?></span>
+                                                        style="line-height:30px"><?php echo $row["full_description"] ?></span>
                                                 </p>
 
                                             </div>
                                             <div class="tab-pane active" id="tab6">
-                                                <h5 class="mb-2 mt-1 fw-semibold"><span style="color:#ff6700;">Pre
-                                                        Requirements :</span></h5>
+                                                <h5 class="mb-2 mt-1 fw-semibold"><span
+                                                        style="color:#ff6700;">Requirements :</span></h5>
                                                 <p class="mb-3 tx-13"><span
-                                                        style="line-height:30px"><?php echo $row["pre-requirements"] ?></span>
+                                                        style="line-height:30px"><?php echo $row["requirements"] ?></span>
                                                 </p>
 
                                             </div>
