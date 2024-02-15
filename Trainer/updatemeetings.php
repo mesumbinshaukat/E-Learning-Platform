@@ -34,16 +34,21 @@ if (isset($_GET['id'])) {
         // Updated code here is similar to the createcourse.php file
 
         // Retrieve updated values
-        $data_of_meeting_link = $_POST['data_of_meeting_link'];
+        $data_of_meeting_link = $_POST['date_of_meeting_link'];
         $Platform = $_POST['Platform'];
         $Meeting_link = mysqli_real_escape_string($conn, $_POST['Meeting_link']);
-      
+        $batch_id = $_POST['batch_id'];
+    
+        $select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+        $fetch_batch = mysqli_fetch_assoc($select_batch);
+        if($fetch_batch['id'] == $batch_id){
+        $batch_name = $fetch_batch['batch_name'];
 
         // Update query
-        $update_query = "UPDATE `batches_meetings` SET `date_of_meeting_link`= ? ,`platform`= ?,`meeting_link`= ? WHERE `id` = ?";
+        $update_query = "UPDATE `batches_meetings` SET `date_of_meeting_link`= ? ,`platform`= ?,`meeting_link`= ?,`batch_id`= ?,`batch_name`= ? WHERE `id` = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
-            "sssi", $data_of_meeting_link, $Platform, $Meeting_link,$id
+            "sssssi", $data_of_meeting_link, $Platform, $Meeting_link, $batch_id, $batch_name,$id
            
         );
 
@@ -57,6 +62,7 @@ if (isset($_GET['id'])) {
 
         mysqli_stmt_close($update_stmt);
     }
+}
 } elseif (!isset($_GET["id"]) || empty($_GET["id"])) {
     echo "<script>alert('Error')</script>";
     if (isset($_SESSION['previous_url'])) {
@@ -127,6 +133,33 @@ if (isset($_GET['id'])) {
             </ol>
         </div>
     </div>
+    <div class="form-group col-md-4">
+                        <select name="batch_id" required class="form-control form-select select2"
+                            data-bs-placeholder="Select Batch">
+                            <?php 
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $sql = mysqli_query($conn,"SELECT * FROM `batches_meetings` WHERE id = '$id'");
+                $fetch_sql = mysqli_fetch_assoc($sql);
+                $selected_batch_id = $fetch_sql['batch_id'];
+          
+        
+      $trainer_id = $_COOKIE['trainer_id'];
+      $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+      if (mysqli_num_rows($batch) > 0) {
+          while ($row = mysqli_fetch_assoc($batch)) {         
+?>
+                            <option value="<?php echo $row['id'] ?>"
+                                <?php if(isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
+                                <?php echo $row['batch_name'] ?></option>
+                            <?php
+             
+          }
+      } 
+    } ?>
+                        </select>
+                    </div>
+                    <br>
        
                         &nbsp &nbsp	<a href="https://meet.google.com/" class="btn btn-success">Create Meet</a>       								
                         &nbsp &nbsp	<a href="https://zoom.us/" class="btn btn-info">Create Zoom</a>       								

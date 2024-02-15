@@ -43,13 +43,20 @@ if (isset($_GET['s_id'])) {
 	$Topics_to_be_covered = $_POST['Topics_to_be_covered'];
 	$Training_Starting_time = $_POST['Training_Starting_time'];
 	$Training_Ending_time = $_POST['Training_Ending_time'];
-      
+    $batch_id = $_POST['batch_id'];
+    if (empty($Shared_Documents_name)) {
+        $Shared_Documents_name = $schedule["shared_documents"];
+    }
+    $select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+    $fetch_batch = mysqli_fetch_assoc($select_batch);
+    if($fetch_batch['id'] == $batch_id){
+    $batch_name = $fetch_batch['batch_name'];
 
         // Update query
-        $update_query = "UPDATE `batches_schedule` SET `date_of_schedule`=?,`main_topic`=?,`class_duration`=?,`tasks`=?,`shared_documents`=?,`topics_to_be_covered`=?,`class_starting_time`=?,`class_ending_time`=? WHERE id = ?";
+        $update_query = "UPDATE `batches_schedule` SET `date_of_schedule`=?,`main_topic`=?,`class_duration`=?,`tasks`=?,`shared_documents`=?,`topics_to_be_covered`=?,`class_starting_time`=?,`class_ending_time`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
-            "ssssssssi",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time,$id
+            "ssssssssssi",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time,$batch_id,$batch_name,$id
            
         );
 
@@ -64,6 +71,7 @@ if (isset($_GET['s_id'])) {
 
         mysqli_stmt_close($update_stmt);
     }
+}
 } elseif (!isset($_GET["s_id"]) || empty($_GET["s_id"])) {
     echo "<script>alert('Error')</script>";
     if (isset($_SESSION['previous_url'])) {
@@ -139,7 +147,32 @@ if (isset($_GET['s_id'])) {
 
 
                     <br>
-
+                    <div class="form-group col-md-4">
+                        <select name="batch_id" required class="form-control form-select select2"
+                            data-bs-placeholder="Select Batch">
+                            <?php 
+            if(isset($_GET['s_id'])){
+                $id = $_GET['s_id'];
+                $sql = mysqli_query($conn,"SELECT * FROM `batches_schedule` WHERE id = '$id'");
+                $fetch_sql = mysqli_fetch_assoc($sql);
+                $selected_batch_id = $fetch_sql['batch_id'];
+          
+        
+      $trainer_id = $_COOKIE['trainer_id'];
+      $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+      if (mysqli_num_rows($batch) > 0) {
+          while ($row = mysqli_fetch_assoc($batch)) {         
+?>
+                            <option value="<?php echo $row['id'] ?>"
+                                <?php if(isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
+                                <?php echo $row['batch_name'] ?></option>
+                            <?php
+             
+          }
+      } 
+    } ?>
+                        </select>
+                    </div>
                     <!-- row -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12">

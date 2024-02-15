@@ -16,7 +16,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 		<meta name="Description" content="">
 		
 		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+		<title>My Students</title>
 
 		<?php 
 	 include('./style.php'); 

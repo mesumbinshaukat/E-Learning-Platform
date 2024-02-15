@@ -37,13 +37,20 @@ if (isset($_GET['r_id'])) {
         $recording_name = $_POST['recording_name'];
         $Date_of_Upload = $_POST['Date_of_Upload'];
         $Driving_link = $_POST['Driving_link'];
-      
+        $batch_id = $_POST['batch_id'];
+        if (empty($shared_documents_name)) {
+            $shared_documents_name = $tasks["shared_documents"];
+        }
+        $select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+        $fetch_batch = mysqli_fetch_assoc($select_batch);
+        if($fetch_batch['id'] == $batch_id){
+        $batch_name = $fetch_batch['batch_name'];
 
         // Update query
-        $update_query = "UPDATE `batches_recording` SET `recording_topic_name`=?,`date_of_upload`=?,`driving_link`=? WHERE id = ?";
+        $update_query = "UPDATE `batches_recording` SET `recording_topic_name`=?,`date_of_upload`=?,`driving_link`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
-            "sssi",$recording_name,$Date_of_Upload,$Driving_link,$id
+            "sssssi",$recording_name,$Date_of_Upload,$Driving_link,$batch_id,$batch_name,$id
         );
 
         if (mysqli_stmt_execute($update_stmt)) {
@@ -56,6 +63,7 @@ if (isset($_GET['r_id'])) {
 
         mysqli_stmt_close($update_stmt);
     }
+}
 } elseif (!isset($_GET["r_id"]) || empty($_GET["r_id"])) {
     echo "<script>alert('Error')</script>";
     if (isset($_SESSION['previous_url'])) {
@@ -135,6 +143,32 @@ if (isset($_GET['r_id'])) {
                 </div>
                 <br>
 
+                <div class="form-group col-md-4">
+                        <select name="batch_id" required class="form-control form-select select2"
+                            data-bs-placeholder="Select Batch">
+                            <?php 
+            if(isset($_GET['r_id'])){
+                $id = $_GET['r_id'];
+                $sql = mysqli_query($conn,"SELECT * FROM `batches_recording` WHERE id = '$id'");
+                $fetch_sql = mysqli_fetch_assoc($sql);
+                $selected_batch_id = $fetch_sql['batch_id'];
+          
+        
+      $trainer_id = $_COOKIE['trainer_id'];
+      $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+      if (mysqli_num_rows($batch) > 0) {
+          while ($row = mysqli_fetch_assoc($batch)) {         
+?>
+                            <option value="<?php echo $row['id'] ?>"
+                                <?php if(isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
+                                <?php echo $row['batch_name'] ?></option>
+                            <?php
+             
+          }
+      } 
+    } ?>
+                        </select>
+                    </div>
 
                 <!-- row -->
                 <div class="row">

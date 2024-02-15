@@ -9,8 +9,13 @@ if(isset($_POST['submitBtn'])){
 	$recording_name = $_POST['recording_name'];
 	$Date_of_Upload = $_POST['Date_of_Upload'];
 	$Driving_link = $_POST['Driving_link'];
-	$insert_query = mysqli_prepare($conn,"INSERT INTO `batches_recording`(`recording_topic_name`, `date_of_upload`, `driving_link`,`trainer_id`) VALUES (?,?,?,?)");
-	$insert_query->bind_param('sssi',$recording_name,$Date_of_Upload,$Driving_link,$_COOKIE['trainer_id']);
+	$batch_id = $_POST['batch_id'];
+	$select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+	$fetch_batch = mysqli_fetch_assoc($select_batch);
+	if($fetch_batch['id'] == $batch_id){
+	$batch_name = $fetch_batch['batch_name'];
+	$insert_query = mysqli_prepare($conn,"INSERT INTO `batches_recording`(`recording_topic_name`, `date_of_upload`, `driving_link`,`batch_id`,`batch_name`) VALUES (?,?,?,?,?)");
+	$insert_query->bind_param('sssss',$recording_name,$Date_of_Upload,$Driving_link,$batch_id,$batch_name);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;	
 		header('location: createrecordings.php');
@@ -19,6 +24,7 @@ if(isset($_POST['submitBtn'])){
 		$_SESSION['message_failed'] = true;
 		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
 	}
+}
 }
 ?>
 <!DOCTYPE html>
@@ -34,7 +40,7 @@ if(isset($_POST['submitBtn'])){
 		<meta name="Description" content="">
 		
 		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+		<title>Create Recordings</title>
 
 		<?php 
 	 include('./style.php'); 
@@ -100,7 +106,7 @@ if(isset($_POST['submitBtn'])){
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Recordings</li>
-								<li class="breadcrumb-item active" aria-current="page">Meetings</li>
+								<li class="breadcrumb-item active" aria-current="page">Create</li>
 							</ol>
 						</div>
 					</div>
@@ -111,7 +117,23 @@ if(isset($_POST['submitBtn'])){
 									</div>
 									<br>
 									
+									<div class="form-group col-md-4">
+                        <select name="batch_id" required class="form-control form-select select2"
+                            data-bs-placeholder="Select Batch">
+                            <?php
+    				  $trainer_id = $_COOKIE['trainer_id'];
+    				  $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+    				  if (mysqli_num_rows($batch) > 0) {
+    				      while ($row = mysqli_fetch_assoc($batch)) {
+    				  ?>
+                            <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
+                            <?php
+    				      }
+    				  }
 
+      						 ?>
+                        </select>
+                    </div>
 					
 					<div class="row">
 						<div class="col-lg-12 col-md-12">

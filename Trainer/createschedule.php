@@ -14,8 +14,13 @@ if(isset($_POST['CreateBtn'])){
 	$Topics_to_be_covered = $_POST['Topics_to_be_covered'];
 	$Training_Starting_time = $_POST['Training_Starting_time'];
 	$Training_Ending_time = $_POST['Training_Ending_time'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_schedule`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`) VALUES (?,?,?,?,?,?,?,?)");
-	$insert_query->bind_param("ssssssssi",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time);
+    $batch_id = $_POST['batch_id'];
+	$select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+	$fetch_batch = mysqli_fetch_assoc($select_batch);
+	if($fetch_batch['id'] == $batch_id){
+	$batch_name = $fetch_batch['batch_name'];
+	$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_schedule`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`, `batch_id`, `batch_name`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+	$insert_query->bind_param("ssssssssss",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time,$batch_id,$batch_name);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;
 		move_uploaded_file($Shared_Documents_tmpname, "./assets/docs/supportive_docs/" . $Shared_Documents_name);
@@ -25,6 +30,7 @@ if(isset($_POST['CreateBtn'])){
 		$_SESSION['message_failed'] = true;
 		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
 	}
+}
 }
 ?>
 
@@ -41,7 +47,7 @@ if(isset($_POST['CreateBtn'])){
     <meta name="Description" content="">
 
     <!-- Title -->
-    <title> TriaRight: The New Era of Learning</title>
+    <title>Create Schedule</title>
 
     <?php 
 	 include('./style.php'); 
@@ -116,27 +122,28 @@ if(isset($_POST['CreateBtn'])){
                         </div>
                     </div>
 
-                    <div class="row row-sm">
 
-<div class="form-group col-md-4">
-    <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-        <?php
-        $trainer_id = $_COOKIE['trainer_id'];
-        $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE `trainer_id` = '$trainer_id'");
-        if (mysqli_num_rows($batch) > 0) {
-            while ($row = mysqli_fetch_assoc($batch)) {
-        ?>
-                <option value="<?= $row['id'] ?>"><?= $row['batch_name'] ?></option>
-        <?php
-            }
-        }
+                    <div class="form-group col-md-4">
+                        <select name="batch_id" required class="form-control form-select select2"
+                            data-bs-placeholder="Select Batch">
+                            <?php
+    				  $trainer_id = $_COOKIE['trainer_id'];
+    				  $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+    				  if (mysqli_num_rows($batch) > 0) {
+    				      while ($row = mysqli_fetch_assoc($batch)) {
+    				  ?>
+                            <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
+                            <?php
+    				      }
+    				  }
 
-        ?>
-    </select>
-</div>
+      						 ?>
+                        </select>
+                    </div>
 
-</div>
-                    <br>
+
+                  
+                   
 
                     <!-- row -->
                     <div class="row">

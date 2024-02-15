@@ -1,161 +1,174 @@
 <?php 
+include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
 	header('location: ../trainer_login.php');
 	exit();
 }
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
-	
+
 <!DOCTYPE html>
 <html lang="en">
-	
-	
+
+
 
 <head>
 
-		<meta charset="UTF-8">
-		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="Description" content="">
-		
-		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="">
 
-		<?php 
-	 include('./style.php'); 
-	  ?>
+    <!-- Title -->
+    <title> Manage Documentation</title>
+    <?php include("./style.php"); ?>
 
-	</head>
+</head>
 
-	<body class="ltr main-body app sidebar-mini">
+<body class="ltr main-body app sidebar-mini">
 
-	<?php 
+    <?php 
 	 include('./switcher.php'); 
 	  ?>
 
-		<!-- Loader -->
-		<div id="global-loader">
-			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div>
-		<!-- /Loader -->
+    <!-- Loader -->
+    <!-- <div id="global-loader">
+        <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
+    </div> -->
+    <!-- /Loader -->
 
-		<!-- Page -->
-		<div class="page">
+    <!-- Page -->
+    <div class="page">
 
-			<div>
+        <div>
 
-               <div class="main-header side-header sticky nav nav-item">
-			   <?php include('./partials/navbar.php')?>
-				</div>
-				<!-- /main-header -->
+            <div class="main-header side-header sticky nav nav-item">
+                <?php include('./partials/navbar.php')?>
+            </div>
+            <!-- /main-header -->
 
-				 <!-- main-sidebar -->
- 				<div class="sticky">
-				 <?php include('./partials/sidebar.php')?>
-				</div>
-				<!-- main-sidebar -->
+            <!-- main-sidebar -->
+            <div class="sticky">
+                <?php include('./partials/sidebar.php')?>
+            </div>
+            <!-- main-sidebar -->
 
-			</div>			<form action="managedocumentation1.php" method="POST" enctype="multipart/form-data">
+        </div>
+        <form method="POST" enctype="multipart/form-data">
 
-			<!-- main-content -->
-			<!-- main-content -->
-			<div class="main-content app-content">
+            <!-- main-content -->
+            <!-- main-content -->
+            <div class="main-content app-content">
 
-				<!-- container -->
-				<div class="main-container container-fluid">
+                <!-- container -->
+                <div class="main-container container-fluid">
 
-                    
-					<!-- breadcrumb -->
-					<div class="breadcrumb-header justify-content-between">
-						<div class="left-content">
-						  <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Documentations</span>
-						</div>
-						<div class="justify-content-center mt-2">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Documentations</li>
-								<li class="breadcrumb-item active" aria-current="page">Manage</li>
-							</ol>
-						</div>
-					</div>
-					<!-- /breadcrumb -->
-					
-										<!-- <div class="row row-sm">
-					                 <div class="form-group col-md-4">
-										<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Course">
-											<option value="">Course1</option>
-											<option value="">Course2</option>
-											<option value="">Course3</option>
-											<option value="">Course4</option>
-											<option value="" selected>Course5</option>
-										</select>
-									</div>
-									<div class="form-group col-md-4">
-									<select name="country" class="form-control form-select select2" data-bs-placeholder="Select Trainer">
-											<option value="">Trainer1</option>
-											<option value="">Trainer2</option>
-											<option value="">Trainer3</option>
-											<option value="">Trainer4</option>
-											<option value="" selected>Trainer5</option>
-										</select>
-									</div> -->
-									
-								<div class="form-group col-md-4">
-	                               <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-										
-										</select>
-                                               								
-									
 
-								<button type="submit" name="submit" class="btn btn-info mt-3 mb-0" style="text-align:right">submit</button>
-									</div>
-									</div>
-									</div>
+                    <div class="breadcrumb-header justify-content-between">
+                        <div class="right-content">
+                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Documentation </span>
+                        </div>
 
-								</div>
-							</div>
-						</div>
-					</div>
-					
+                        <div class="justify-content-center mt-2">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">batches management</a>
+                                </li>
+                                <li class="breadcrumb-item ">Documentation</li>
+                                <li class="breadcrumb-item ">Manage</li>
+                            </ol>
+                        </div>
 
-    
-				</div>
-				<!-- Container closed -->
-			</div>
-</form>
+                    </div>
 
-		  <!-- <div class="modal fade" id="schedule">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content modal-content-demo">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                    <p> Are you sure you want to add task?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn ripple btn-success" type="button">Create</button>
-                                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not Now</button>
+
+                    <div class="row row-sm">
+                        <div class="col-lg-12">
+                            <div class="card custom-card overflow-hidden">
+                                <div class="card-body">
+
+                                    <div class="table-responsive  export-table">
+                                        <table id="file-datatable"
+                                            class="table table-bordered text-nowrap key-buttons border-bottom">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-bottom-0">S.No</th>
+                                                    <th class="border-bottom-0">Date of Adding</th>
+                                                    <th class="border-bottom-0">Description</th>
+                                                    <th class="border-bottom-0">Document</th>
+                                                    <th class="border-bottom-0">Additional Information</th>
+                                                    <th class="border-bottom-0">Batch Name</th>
+
+                                                    <th class="border-bottom-0">Actions</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+				$doc_query = mysqli_query($conn, "SELECT * FROM `batches_documentation`");
+				if (mysqli_num_rows($doc_query) > 0) {
+					$i = 1;
+					while ($row = mysqli_fetch_assoc($doc_query)) {
+
+						echo "<tr>";
+						echo "<td>" . $i++ . "</td>";
+						echo "<td>" . $row['date_of_documentation'] . "</td>";
+						echo "<td>" . $row['description'] . "</td>";?>
+						<td> <a href="./assets/docs/supportive_docs/<?php echo $row['shared_documents']?>"
+						class='btn btn-info' download="">Download</a> </td>
+						<?php
+						echo "<td>" . $row['additional_information'] . "</td>";
+						echo "<td>" . $row['batch_name'] . "</td>";
+						echo "<td>
+				
+								<a href='updatedocumentation.php?doc_id=" . $row['id'] . "'
+									class='btn btn-info'>update</a>
+					</td>
+					</tr>";
+					}
+				} else {
+				
+					echo "No Documentation found";
+				
+				}
+				?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+            </div>
 
-            
-            <!-- Footer opened -->
-			
-			<!-- Footer closed -->
+    </div>
+    </div>
+    </div>
+    </div>
 
-		</div>
-		<!-- End Page -->
 
-        <!-- BACK-TO-TOP -->
-		<a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
-		<?php 
+    </div>
+    <!-- Container closed -->
+    </div>
+    </form>
+
+
+
+    </div>
+    <!-- End Page -->
+
+    <!-- BACK-TO-TOP -->
+    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
+
+    <?php 
 	 include('./script.php'); 
 	  ?>
-    </body>
+
+</body>
 
 <!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
+
 </html>

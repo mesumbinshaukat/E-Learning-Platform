@@ -9,8 +9,14 @@ if(isset($_POST['submitBtn'])){
 	$Performer_of_the_day = $_POST['Performer_of_the_day'];
 	$Topics_Covered = $_POST['Topics_Covered'];
 	$Overall_Feedback = $_POST['Overall_Feedback'];
-	$insert_query = mysqli_prepare($conn,"INSERT INTO `batches_summary`(`date_of_summary`, `performer_of_day`, `topics_covered`, `overall_feedback`, `trainer_id`) VALUES (?,?,?,?,?)");
-	$insert_query->bind_param("ssssi",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback,$_COOKIE['trainer_id']);
+	$batch_id = $_POST['batch_id'];
+
+	$select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+	$fetch_batch = mysqli_fetch_assoc($select_batch);
+	if($fetch_batch['id'] == $batch_id){
+	$batch_name = $fetch_batch['batch_name'];
+	$insert_query = mysqli_prepare($conn,"INSERT INTO `batches_summary`(`date_of_summary`, `performer_of_day`, `topics_covered`, `overall_feedback`, `batch_id`,`batch_name`) VALUES (?,?,?,?,?,?)");
+	$insert_query->bind_param("ssssss",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback,$batch_id,$batch_name);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;
 		header('location: createsummary.php');
@@ -19,6 +25,7 @@ if(isset($_POST['submitBtn'])){
 		$_SESSION['message_failed'] = true;
 		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
 	}
+}
 }
 ?>
 	
@@ -106,7 +113,23 @@ if(isset($_POST['submitBtn'])){
                                                								
 									</div>
 									<br>
-									
+									<div class="form-group col-md-4">
+                        <select name="batch_id" required class="form-control form-select select2"
+                            data-bs-placeholder="Select Batch">
+                            <?php
+    				  $trainer_id = $_COOKIE['trainer_id'];
+    				  $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+    				  if (mysqli_num_rows($batch) > 0) {
+    				      while ($row = mysqli_fetch_assoc($batch)) {
+    				  ?>
+                            <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
+                            <?php
+    				      }
+    				  }
+
+      						 ?>
+                        </select>
+                    </div>			
 
 					<!-- row -->
 					<div class="row">
