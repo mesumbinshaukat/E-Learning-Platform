@@ -355,7 +355,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 					<div class="justify-content-center mt-2">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">internship management</a>
+							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">batches management</a>
 							</li>
 							<li class="breadcrumb-item ">Certification</li>
 							<li class="breadcrumb-item ">Upload</li>

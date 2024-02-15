@@ -371,7 +371,7 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                             <div class="card-icon mb-4">
                                 <img src="./assets/Icons/internship.png" alt="icon" width="60" class="img-fluid">
                             </div>
-                            <h2 class="h5">Internship Management Software</h2>
+                            <h2 class="h5">batches management Software</h2>
                             <p class="mb-0">We are here with IMS with extended functionalities beyond the expectations.
                             </p>
                         </div>

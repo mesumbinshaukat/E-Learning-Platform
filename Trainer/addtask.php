@@ -1,9 +1,12 @@
 <?php 
+include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
 	header('location: ../trainer_login.php');
 	exit();
 }
+
 ?>	
+  
 <!DOCTYPE html>
 <html lang="en">
 	
@@ -16,7 +19,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 		<meta name="Description" content="">
 		
 		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+		<title>Add Task</title>
 
   
 		<?php 
@@ -68,7 +71,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 						</div>
 						<div class="justify-content-center mt-2">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+								<li class="breadcrumb-item"><a href="javascript:void(0);">Batches Management</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Task</li>
 								<li class="breadcrumb-item active" aria-current="page">Create</li>
 							</ol>
@@ -78,13 +81,13 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 								
 					<div class="form-group col-md-4">
     <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
-        <?php
+	<?php
         $trainer_id = $_COOKIE['trainer_id'];
-        $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE `trainer_id` = '$trainer_id'");
+        $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
         if (mysqli_num_rows($batch) > 0) {
             while ($row = mysqli_fetch_assoc($batch)) {
         ?>
-                <option value="<?= $row['id'] ?>"><?= $row['batch_name'] ?></option>
+                <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
         <?php
             }
         }

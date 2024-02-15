@@ -9,7 +9,7 @@ if(isset($_POST['submitBtn'])){
 	$Performer_of_the_day = $_POST['Performer_of_the_day'];
 	$Topics_Covered = $_POST['Topics_Covered'];
 	$Overall_Feedback = $_POST['Overall_Feedback'];
-	$insert_query = mysqli_prepare($conn,"INSERT INTO `internship_summary`(`date_of_summary`, `performer_of_day`, `topics_covered`, `overall_feedback`, `trainer_id`) VALUES (?,?,?,?,?)");
+	$insert_query = mysqli_prepare($conn,"INSERT INTO `batches_summary`(`date_of_summary`, `performer_of_day`, `topics_covered`, `overall_feedback`, `trainer_id`) VALUES (?,?,?,?,?)");
 	$insert_query->bind_param("ssssi",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback,$_COOKIE['trainer_id']);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;
@@ -95,7 +95,7 @@ if(isset($_POST['submitBtn'])){
 						</div>
 						<div class="justify-content-center mt-2">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+								<li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Summary</li>
 								<li class="breadcrumb-item active" aria-current="page">Create</li>
 							</ol>

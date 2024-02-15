@@ -8,7 +8,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 if (isset($_GET["id"])) {
     $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $sql = "DELETE FROM `internship_meetings` WHERE `id`='$id'";
+    $sql = "DELETE FROM `batches_meetings` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header("location: managemeetings.php");
@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
  elseif (isset($_GET["s_id"])) {
     $id = filter_var($_GET["s_id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $sql = "DELETE FROM `scheduling_internship` WHERE `id`='$id'";
+    $sql = "DELETE FROM `batches_schedule` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header("location: manageschedule.php");
@@ -33,7 +33,7 @@ if (isset($_GET["id"])) {
 elseif (isset($_GET["summary_id"])) {
     $id = filter_var($_GET["summary_id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $sql = "DELETE FROM `internship_summary` WHERE `id`='$id'";
+    $sql = "DELETE FROM `batches_summary` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header("location: managesummary.php");
@@ -46,7 +46,7 @@ elseif (isset($_GET["summary_id"])) {
 elseif (isset($_GET["r_id"])) {
     $id = filter_var($_GET["r_id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $sql = "DELETE FROM `internship_recording` WHERE `id`='$id'";
+    $sql = "DELETE FROM `batches_recording` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header("location: managerecordings.php");

@@ -11,7 +11,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 if (isset($_GET['summary_id'])) {
     $id = filter_var($_GET['summary_id'], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $query = "SELECT * FROM `internship_summary` WHERE `id` = '$id'";
+    $query = "SELECT * FROM `batches_summary` WHERE `id` = '$id'";
     $run = mysqli_query($conn, $query);
     if (!$run) {
         if (isset($_SESSION['previous_url'])) {
@@ -41,7 +41,7 @@ if (isset($_GET['summary_id'])) {
       
 
         // Update query
-        $update_query = "UPDATE `internship_summary` SET `date_of_summary`=?,`performer_of_day`=?,`topics_covered`=?,`overall_feedback`=? WHERE id = ?";
+        $update_query = "UPDATE `batches_summary` SET `date_of_summary`=?,`performer_of_day`=?,`topics_covered`=?,`overall_feedback`=? WHERE id = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
             "ssssi",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback,$id   
@@ -123,7 +123,7 @@ if (isset($_GET['summary_id'])) {
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Summary</li>
                                 <li class="breadcrumb-item active" aria-current="page">Update</li>
                             </ol>

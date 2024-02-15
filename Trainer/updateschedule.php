@@ -11,7 +11,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 if (isset($_GET['s_id'])) {
     $id = filter_var($_GET['s_id'], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $query = "SELECT * FROM `scheduling_internship` WHERE `id` = '$id'";
+    $query = "SELECT * FROM `batches_schedule` WHERE `id` = '$id'";
     $run = mysqli_query($conn, $query);
     if (!$run) {
         if (isset($_SESSION['previous_url'])) {
@@ -46,7 +46,7 @@ if (isset($_GET['s_id'])) {
       
 
         // Update query
-        $update_query = "UPDATE `scheduling_internship` SET `date_of_schedule`=?,`main_topic`=?,`class_duration`=?,`tasks`=?,`shared_documents`=?,`topics_to_be_covered`=?,`class_starting_time`=?,`class_ending_time`=? WHERE id = ?";
+        $update_query = "UPDATE `batches_schedule` SET `date_of_schedule`=?,`main_topic`=?,`class_duration`=?,`tasks`=?,`shared_documents`=?,`topics_to_be_covered`=?,`class_starting_time`=?,`class_ending_time`=? WHERE id = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
             "ssssssssi",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time,$id
@@ -130,7 +130,7 @@ if (isset($_GET['s_id'])) {
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Schedule</li>
                                 <li class="breadcrumb-item active" aria-current="page">Update</li>
                             </ol>

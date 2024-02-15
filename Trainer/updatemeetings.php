@@ -11,7 +11,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $query = "SELECT * FROM `internship_meetings` WHERE `id` = '$id'";
+    $query = "SELECT * FROM `batches_meetings` WHERE `id` = '$id'";
     $run = mysqli_query($conn, $query);
     if (!$run) {
         if (isset($_SESSION['previous_url'])) {
@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
       
 
         // Update query
-        $update_query = "UPDATE `internship_meetings` SET `date_of_meeting_link`= ? ,`platform`= ?,`meeting_link`= ? WHERE `id` = ?";
+        $update_query = "UPDATE `batches_meetings` SET `date_of_meeting_link`= ? ,`platform`= ?,`meeting_link`= ? WHERE `id` = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
             "sssi", $data_of_meeting_link, $Platform, $Meeting_link,$id
@@ -121,7 +121,7 @@ if (isset($_GET['id'])) {
         </div>
         <div class="justify-content-center mt-2">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Meetings</li>
                 <li class="breadcrumb-item active" aria-current="page">Update</li>
             </ol>

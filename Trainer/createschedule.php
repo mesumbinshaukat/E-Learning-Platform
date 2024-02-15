@@ -14,7 +14,7 @@ if(isset($_POST['CreateBtn'])){
 	$Topics_to_be_covered = $_POST['Topics_to_be_covered'];
 	$Training_Starting_time = $_POST['Training_Starting_time'];
 	$Training_Ending_time = $_POST['Training_Ending_time'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `scheduling_internship`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`) VALUES (?,?,?,?,?,?,?,?)");
+	$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_schedule`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`) VALUES (?,?,?,?,?,?,?,?)");
 	$insert_query->bind_param("ssssssssi",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;
@@ -109,7 +109,7 @@ if(isset($_POST['CreateBtn'])){
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Schedule</li>
                                 <li class="breadcrumb-item active" aria-current="page">Create</li>
                             </ol>
