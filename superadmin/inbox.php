@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 
@@ -24,32 +24,32 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
     <style>
-    /* Custom Pagination Styles */
-    .dataTables_paginate {
-        text-align: center;
-        margin-top: 20px;
-    }
+        /* Custom Pagination Styles */
+        .dataTables_paginate {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-    .paginate_button {
-        cursor: pointer;
-        margin: 0 5px;
-        padding: 5px 10px;
-        border: 1px solid #ddd;
-        background-color: #fff;
-        color: #333;
-        border-radius: 3px;
-        transition: background-color 0.3s ease;
-    }
+        .paginate_button {
+            cursor: pointer;
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            color: #333;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
 
-    .paginate_button:hover {
-        background-color: #eee;
-    }
+        .paginate_button:hover {
+            background-color: #eee;
+        }
 
-    .paginate_button.current {
-        background-color: #007bff;
-        color: #fff;
-        border: 1px solid #007bff;
-    }
+        .paginate_button.current {
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+        }
     </style>
 </head>
 
@@ -105,10 +105,12 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             <tr>
                                                 <th>S.no</th>
                                                 <th>Login type</th>
-                                                <th>User id</th>
+                                                <th>Sender id</th>
                                                 <th>Username</th>
                                                 <th>Subject</th>
                                                 <th>Purpose</th>
+                                                <th>Recipient Type</th>
+                                                <th>Sending Format</th>
                                                 <th>Description</th>
                                                 <th>Attachment</th>
                                                 <th>Reply</th>
@@ -117,49 +119,51 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-											$query = mysqli_query($conn, "SELECT * FROM `mail`");
-											if (mysqli_num_rows($query) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($query)) {
-											?>
-                                            <tr>
-                                                <td><?php echo $i; ?></td>
-                                                <td><?php echo $row['sender_type']; ?></td>
-                                                <td><?php echo $row['sender_id']; ?></td>
-                                                <td><?php echo $row['sender_name']; ?></td>
-                                                <td><?php echo $row['subject']; ?></td>
-                                                <td><?php echo $row['purpose']; ?></td>
-                                                <td><?php echo $row['message']; ?></td>
-                                                <td>
-                                                    <a download="" target="_blank"
-                                                        href="./assets/docs/attachments/<?php echo $row['attachment']; ?>"
-                                                        class="btn btn-info">Download</a>
-                                                </td>
-                                                <?php
-														if ($row["sender_type"] === "Admin") {
-														?>
-                                                <td><button class="btn btn-info" disabled>You Are The Sender</button>
-                                                </td>
-                                                <?php
-														} else {
-															if (!empty($row["reply_staus"])) {
-															?>
-                                                <td><a class="btn btn-info">Reply</a></td>
-                                                <?php
-															} else {
-															?>
-                                                <td><a class="btn btn-info">Replied</a></td>
-                                                <?php
-															}
-														}
-														?>
-                                                <td><?php echo $row['sending_date']; ?></td>
-                                            </tr>
+                                            $query = mysqli_query($conn, "SELECT * FROM `mail`");
+                                            if (mysqli_num_rows($query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                            ?>
+                                                    <tr>
+                                                        <td><?php echo $i; ?></td>
+                                                        <td><?php echo $row['sender_type']; ?></td>
+                                                        <td><?php echo $row['sender_id']; ?></td>
+                                                        <td><?php echo $row['sender_name']; ?></td>
+                                                        <td><?php echo $row['subject']; ?></td>
+                                                        <td><?php echo $row['purpose']; ?></td>
+                                                        <td><?php echo $row['recipient_type']; ?></td>
+                                                        <td><?php echo $row['sending_format']; ?></td>
+                                                        <td><?php echo $row['message']; ?></td>
+                                                        <td>
+                                                            <a download="" target="_blank" href="./assets/docs/attachments/<?php echo $row['attachment']; ?>" class="btn btn-info">Download</a>
+                                                        </td>
+                                                        <?php
+                                                        if ($row["sender_type"] === "Admin") {
+                                                        ?>
+                                                            <td><button class="btn btn-info" disabled>You Are The Sender</button>
+                                                            </td>
+                                                            <?php
+                                                        } else {
+                                                            if (empty($row["reply_staus"]) || $row["reply_status"] !== "Replied") {
+                                                            ?>
+                                                                <td><a class="btn btn-info text-light">Reply</a></td>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <td>
+                                                                    <button class="btn btn-info" disabled>Replied</button>
+                                                                </td>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <td><?php echo $row['sending_date']; ?></td>
+                                                    </tr>
                                             <?php
-													$i++;
-												}
-											}
-											?>
+                                                    $i++;
+                                                }
+                                            }
+                                            ?>
 
                                         </tbody>
                                     </table>
@@ -179,16 +183,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <!-- Add DataTables JS -->
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>
-    $(document).ready(function() {
-        $('#file-datatable').DataTable({
-            paging: true,
-            lengthChange: false,
-            searching: false,
-            ordering: true,
-            info: false,
-            autoWidth: false,
+        $(document).ready(function() {
+            $('#file-datatable').DataTable({
+                paging: true,
+                lengthChange: false,
+                searching: false,
+                ordering: true,
+                info: false,
+                autoWidth: false,
+            });
         });
-    });
     </script>
 </body>
 

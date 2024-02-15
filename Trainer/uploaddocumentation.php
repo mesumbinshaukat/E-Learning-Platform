@@ -63,7 +63,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 						</div>
 						<div class="justify-content-center mt-2">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+								<li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Documentation</li>
 								<li class="breadcrumb-item active" aria-current="page">Upload</li>
 							</ol>

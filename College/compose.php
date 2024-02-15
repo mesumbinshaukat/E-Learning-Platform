@@ -4,9 +4,59 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
 }
+
+if (isset($_POST["submit"])) {
+
+    if (isset($_POST["student"]) && !empty($_POST["student"])) {
+        $student_email = $_POST["student"];
+    }
+
+
+    $recipient = $_POST["recipient"];
+    $subject = $_POST["subject"];
+    $purpose = $_POST["purpose"];
+    $message = $_POST["message"];
+
+    if (isset($_FILES["add_attachments"]) && !empty($_FILES["add_attachments"]["name"])) {
+        $add_attachments = $_FILES["add_attachments"]["name"];
+        $add_attachments_with_date = $recipient . date('Y-m-d-H-s') . $add_attachments;
+        $add_attachments_tmp = $_FILES["add_attachments"]["tmp_name"];
+    } else {
+        $add_attachments_with_date = "";
+    }
+
+    switch ($recipient) {
+        case "Student":
+            $recipient_type = "Student";
+
+            if ($student_email == "All") {
+
+                $student_query = mysqli_query($conn, "SELECT * FROM `student`");
+                if (mysqli_num_rows($student_query) > 0) {
+                }
+            }
+
+
+            break;
+
+        case "Admin":
+            $recipient_type = "Superadmin";
+            break;
+    }
+}
+
+$college_query = "SELECT * FROM college WHERE username = '" . $_COOKIE['college_username'] . "' AND password = '" . $_COOKIE['college_password'] . "'";
+
+$college_result = mysqli_query($conn, $college_query);
+
+$college = mysqli_fetch_assoc($college_result);
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +93,6 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
         <form action="" method="POST" enctype="multipart/form-data">
 
             <!-- main-content -->
-            <!-- main-content -->
             <div class="main-content app-content">
 
                 <!-- container -->
@@ -60,11 +109,10 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
 
                     <div class="row row-sm">
                         <div class="form-group col-md-6">
-                            <label for="dropdown">Receipant</label>
-                            <select id="dropdown1" onchange="showOptions1()" name="Receipant" required
-                                class="form-control form-select select2" data-bs-placeholder="Select Country">
-                                <option value="superadmin">Super Admin</option>
-                                <option value="CollegeMentor">College-Mentor</option>
+                            <label for="dropdown">Recipient</label>
+                            <select id="dropdown1" onchange="showOptions1()" name="recipient" required class="form-control form-select select2" data-bs-placeholder="Select Country">
+                                <option value="Superadmin">Super Admin</option>
+
                                 <option value="Student">Student</option>
                             </select>
                         </div>
@@ -72,44 +120,39 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
 
                         <div class="form-group col-md-4" id="optionsDiv">
                             <label for="exampleInputAadhar" hidden>User ID</label>
-                            <select name="User_ID" hidden required class="form-control form-select select2"
-                                data-bs-placeholder="Select Country">
+                            <select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
                                 <option value="ALL"></option>
                             </select>
                         </div>
 
                         <script>
-                        function showOptions1() {
-                            var harsha = document.getElementById("dropdown1").value;
-                            if (harsha === "Student") {
+                            function showOptions1() {
+                                var harsha = document.getElementById("dropdown1").value;
+                                if (harsha === "Student") {
 
-                                document.getElementById("optionsDiv").innerHTML = `
+                                    document.getElementById("optionsDiv").innerHTML = `
 
 <label for="exampleInputAadhar">User ID</label>
-<select name="User_ID" required class="form-control form-select select2" data-bs-placeholder="Select Country">
-	
+<select name="student" required class="form-control form-select select2" data-bs-placeholder="Select Student">
+<option value='All'>All</option>
+	<?php
+    $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `college_name` = '{$college['name']}'");
+    while ($student = mysqli_fetch_assoc($student_query)) {
+        echo "<option value='{$student['email']}'>{$student['name']} | STID_{$student['id']} | Username : {$student['username']}</option>";
+    }
+    ?>
 </select>
 
 `;
-                            } else if (harsha === "CollegeMentor") {
-
-                                document.getElementById("optionsDiv").innerHTML = `
-
-<label for="exampleInputAadhar">User ID</label>
-<select name="User_ID" required class="form-control form-select select2" data-bs-placeholder="Select Country">
-	
-</select>
-
-`;
-                            } else {
-                                document.getElementById("optionsDiv").innerHTML = `
+                                } else {
+                                    document.getElementById("optionsDiv").innerHTML = `
 			<label for="exampleInputAadhar" hidden>User ID</label>
 			<select name="User_ID" required hidden class="form-control form-select select2" data-bs-placeholder="Select Country">
-			<option value="ALL">ALL</option>
+			<option value="">ALL</option>
 			</select>
 			`;
+                                }
                             }
-                        }
                         </script>
 
 
@@ -129,19 +172,14 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputCompanyPhone"
-                                                        style="color:#ff6700"><b>Subject</b></label>
-                                                    <input type="text" class="form-control"
-                                                        id="exampleInputCompanyPhone" placeholder="Enter Subject"
-                                                        name="Subject" required>
+                                                    <label for="exampleInputCompanyPhone" style="color:#ff6700"><b>Subject</b></label>
+                                                    <input type="text" class="form-control" id="exampleInputCompanyPhone" placeholder="Enter Subject" name="subject" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputAadhar"
-                                                        style="color:#ff6700"><b>Purpose</b></label>
-                                                    <select name="Purpose" class="form-control form-select select2"
-                                                        data-bs-placeholder="Select Country" required>
+                                                    <label for="exampleInputAadhar" style="color:#ff6700"><b>Purpose</b></label>
+                                                    <select name="purpose" class="form-control form-select select2" data-bs-placeholder="Select Country" required>
                                                         <option value="query">query</option>
                                                         <option value="feedback">feedback</option>
                                                         <option value="issue">issue</option>
@@ -151,34 +189,18 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-label">
-                                                    <label for="exampleInputAadhar"
-                                                        style="color:#ff6700"><b>Describe</b></label>
-                                                    <input class="form-control" placeholder="Textarea" name="Describe"
-                                                        required>
+                                                    <label for="exampleInputAadhar" style="color:#ff6700"><b>Describe</b></label>
+                                                    <input class="form-control" placeholder="Textarea" name="message" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="exampleInputcode">add attachments</label>
-                                                    <input type="file" class="form-control" id="exampleInputcode"
-                                                        placeholder="" name="add_attachments" required>
+                                                    <label for="exampleInputcode">Add Attachments</label>
+                                                    <input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments" required>
                                                 </div>
                                             </div>
-
-
-
-
-
-
-
-
-
-
-
-                                            <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0"
-                                                data-bs-target="#send" data-bs-toggle="modal"
-                                                style="text-align:right">send</button>
+                                            <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0" style="text-align:right">send</button>
                                         </div>
                                     </div>
                                 </div>

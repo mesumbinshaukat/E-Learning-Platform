@@ -9,7 +9,7 @@ if(isset($_POST['submitBtn'])){
 	$date_of_meeting_link = $_POST['date_of_meeting_link'];
 	$Platform = $_POST['Platform'];
 	$Meeting_link = $_POST['Meeting_link'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `internship_meetings`(`date_of_meeting_link`, `platform`, `meeting_link`,`trainer_id`) VALUES (?,?,?,?)");
+	$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_meetings`(`date_of_meeting_link`, `platform`, `meeting_link`,`trainer_id`) VALUES (?,?,?,?)");
 	$insert_query->bind_param('sssi',$date_of_meeting_link,$Platform,$Meeting_link,$_COOKIE['trainer_id']);
 	if($insert_query->execute()){
 		$_SESSION['message_success'] = true;
@@ -98,7 +98,7 @@ if(isset($_POST['submitBtn'])){
 						</div>
 						<div class="justify-content-center mt-2">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+								<li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Schedule</li>
 								<li class="breadcrumb-item active" aria-current="page">Meetings</li>
 							</ol>

@@ -55,7 +55,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship Management</a></li>
+                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">batches management</a></li>
                             <li class="breadcrumb-item ">Summary</li>
                             <li class="breadcrumb-item ">List</li>
                         </ol>
@@ -84,7 +84,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
                                         </thead>
                                         <tbody>
                                             <?php
-											$meetings = mysqli_query($conn, "SELECT * FROM `internship_summary`");
+											$meetings = mysqli_query($conn, "SELECT * FROM `batches_summary`");
 											if (mysqli_num_rows($meetings) > 0) {
 												$i = 1;
 												while ($row = mysqli_fetch_assoc($meetings)) {

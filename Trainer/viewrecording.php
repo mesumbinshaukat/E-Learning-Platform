@@ -20,7 +20,7 @@ if (!isset($_GET['r_id']) && empty($_GET['r_id'])) {
 }
 $id = filter_var(isset($_GET['r_id']), FILTER_SANITIZE_NUMBER_INT);
 $id = (int) $id;
-$query = mysqli_query($conn, "SELECT * FROM `internship_recording` WHERE `id` = '$id'");
+$query = mysqli_query($conn, "SELECT * FROM `batches_recording` WHERE `id` = '$id'");
 if (mysqli_num_rows($query) == 0) {
     if (isset($_SESSION['previous_url'])) {
         header('Location: ' . $_SESSION['previous_url']);
@@ -87,7 +87,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Recordings</li>
                                 <li class="breadcrumb-item active" aria-current="page">View</li>
                             </ol>
@@ -165,7 +165,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Internship Management</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Recording</li>
                                 <li class="breadcrumb-item active" aria-current="page">View</li>
                             </ol>

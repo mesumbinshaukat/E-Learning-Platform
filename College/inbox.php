@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
 }
 ?>
 
@@ -19,6 +19,37 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
     <?php include("./style.php") ?>
+    <!-- Add DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+    <style>
+        /* Custom Pagination Styles */
+        .dataTables_paginate {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .paginate_button {
+            cursor: pointer;
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            color: #333;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        .paginate_button:hover {
+            background-color: #eee;
+        }
+
+        .paginate_button.current {
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+        }
+    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -56,7 +87,7 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
 
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">internship management</a>
+                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship management</a>
                             </li>
                             <li class="breadcrumb-item ">Chats</li>
                             <li class="breadcrumb-item ">Inbox</li>
@@ -66,34 +97,116 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                 </div>
 
                 <div class="row row-sm">
+                    <?php
+                    if (isset($_SESSION["mail_sent"]) && !empty($_SESSION["mail_sent"])) {
+                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>" . $_SESSION['mail_sent'] . "</div> ";
+                        unset($_SESSION["mail_sent"]);
+                    }
+                    ?>
+
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
-
-                                <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                <div class="table-responsive export-table">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons">
                                         <thead>
                                             <tr>
-                                                <th class="border-bottom-0">S.no</th>
-                                                <th class="border-bottom-0">login type</th>
-                                                <th class="border-bottom-0">user id</th>
-                                                <th class="border-bottom-0">username</th>
-                                                <th class="border-bottom-0">Subject</th>
-                                                <th class="border-bottom-0">purpose</th>
-                                                <th class="border-bottom-0">description</th>
-                                                <th class="border-bottom-0">Attachment</th>
-                                                <th class="border-bottom-0">Reply</th>
-                                                <th class="border-bottom-0">date and time</th>
-
-
-
-
+                                                <th>S.no</th>
+                                                <th>Login type</th>
+                                                <th>Sender id</th>
+                                                <th>Username</th>
+                                                <th>Subject</th>
+                                                <th>Purpose</th>
+                                                <th>Recipient Type</th>
+                                                <th>Sending Format</th>
+                                                <th>Message</th>
+                                                <th>Attachment</th>
+                                                <th>Reply</th>
+                                                <th>Date and time</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                            $college_query = mysqli_query($conn, "SELECT * FROM `college` WHERE `username` = '" . $_COOKIE['college_username'] . "' AND `password` = '" . $_COOKIE['college_password'] . "'");
+                                            $row_ = mysqli_fetch_assoc($college_query);
+                                            $query = mysqli_query($conn, "SELECT * FROM `mail` WHERE `recipient_id` = '" . $row_['id'] . "' AND `recipient_name` = '" . $row_['name'] . "'");
+                                            if (mysqli_num_rows($query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                            ?>
+                                                    <tr>
+                                                        <td><?php echo $i; ?></td>
+                                                        <td><?php echo $row['sender_type']; ?></td>
+                                                        <td><?php echo $row['sender_id']; ?></td>
+                                                        <td><?php echo $row['sender_name']; ?></td>
+                                                        <td><?php echo $row['subject']; ?></td>
+                                                        <td><?php echo $row['purpose']; ?></td>
+                                                        <td><?php echo $row['recipient_type']; ?></td>
+                                                        <td><?php echo $row['sending_format']; ?></td>
+                                                        <td><?php echo $row['message']; ?></td>
+                                                        <td>
+                                                            <a download="" target="_blank" href="../superadmin/assets/docs/attachments/<?php echo $row['attachment']; ?>" class="btn btn-info">Download</a>
+                                                        </td>
+                                                        <?php
+                                                        if ($row["sender_type"] === "College") {
+                                                        ?>
+                                                            <td><button class="btn btn-info" disabled>You Are The Sender</button>
+                                                            </td>
+                                                            <?php
+                                                        } else {
+                                                            if (empty($row["reply_status"]) || $row["reply_status"] !== "Replied") {
+                                                            ?>
+                                                                <td><a class="btn btn-success text-light" data-bs-toggle="modal" data-bs-target="#reply_<?php echo $i; ?>">Reply</a>
+                                                                </td>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="reply_<?php echo $i; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                                                    Reply</h1>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form action="reply.php" method="POST">
+                                                                                    <input type="hidden" name="recipient_id" value="<?php echo $row['sender_id']; ?>">
+                                                                                    <input type="hidden" name="recipient_name" value="<?php echo $row['sender_name']; ?>">
+                                                                                    <input type="hidden" name="sender_email" value="<?php echo $row['sender_email']; ?>">
+                                                                                    <input type="hidden" name="college_id" value="<?php echo $row_['id']; ?>">
+                                                                                    <input type="hidden" name="subject" value="<?php echo $row['subject']; ?>">
+                                                                                    <input type="hidden" name="sender_id" value="<?php echo $row_['id']; ?>">
+                                                                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                                                    <div class="mb-3">
 
+                                                                                        <label class="form-label">Message</label>
+                                                                                        <textarea class="form-control" name="message" required></textarea>
+                                                                                    </div>
+                                                                                    <button type="submit" class="btn btn-primary">Reply</button>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <td><button class="btn btn-info text-light" disabled>Replied</button>
+                                                                </td>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <td><?php echo $row['sending_date']; ?></td>
+                                                    </tr>
+                                            <?php
+                                                    $i++;
+                                                }
+                                            }
+                                            ?>
 
                                         </tbody>
                                     </table>
@@ -104,91 +217,6 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                 </div>
                 <!-- End Row -->
 
-                <div class="modal fade" id="upload">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">Select your cateogry</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputCompanyPhone"
-                                            style="color:#ff6700"><b>Subject</b></label>
-                                        <input type="text" class="form-control" id="exampleInputCompanyPhone"
-                                            placeholder="Enter Subject">
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-12">
-                                    <div class="form-label">
-                                        <label for="exampleInputAadhar" style="color:#ff6700"><b>Describe</b></label>
-                                        <textarea class="form-control" placeholder="Textarea"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputcode">add attachments</label>
-                                        <input type="file" class="form-control" id="exampleInputcode" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">reply</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="reject">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to reject a schedule??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Reject</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="Unblock">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close"
-                                    class="btn-close" data-bs-dismiss="modal" type="button"><span
-                                        aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to Unblock a employee??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Unblock</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
         </div>
 
@@ -197,7 +225,19 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
     <!-- BACK-TO-TOP -->
     <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
     <?php include("./script.php"); ?>
-
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#file-datatable').DataTable({
+                paging: true,
+                lengthChange: false,
+                searching: false,
+                ordering: true,
+                info: false,
+                autoWidth: false,
+            });
+        });
+    </script>
 </body>
 
 </html>

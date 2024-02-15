@@ -8,7 +8,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
     exit();
 }
 
-if (!isset($_GET['id']) && empty($_GET['id'])) {
+if (!isset($_GET['task_id']) && empty($_GET['task_id'])) {
     if (isset($_SESSION['previous_url'])) {
         header('Location: ' . $_SESSION['previous_url']);
         exit();
@@ -18,9 +18,9 @@ if (!isset($_GET['id']) && empty($_GET['id'])) {
         exit();
     }
 }
-$id = filter_var(isset($_GET['id']), FILTER_SANITIZE_NUMBER_INT);
+$id = filter_var(isset($_GET['task_id']), FILTER_SANITIZE_NUMBER_INT);
 $id = (int) $id;
-$query = mysqli_query($conn, "SELECT * FROM `batches_meetings` WHERE `id` = '$id'");
+$query = mysqli_query($conn, "SELECT * FROM `batches_tasks` WHERE `id` = '$id'");
 if (mysqli_num_rows($query) == 0) {
     if (isset($_SESSION['previous_url'])) {
         header('Location: ' . $_SESSION['previous_url']);
@@ -31,7 +31,7 @@ if (mysqli_num_rows($query) == 0) {
         exit();
     }
 }
-$fetch_meeting_details = mysqli_fetch_assoc($query);
+$fetch_tasks_details = mysqli_fetch_assoc($query);
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
@@ -46,7 +46,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
 
-    <title>View Meetings</title>
+    <title>View Tasks</title>
 
     <?php include("./style.php"); ?>
 </head>
@@ -82,12 +82,12 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="left-content">
-          <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> View Meetings</span>
+          <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> View Tasks</span>
         </div>
         <div class="justify-content-center mt-2">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Meetings</li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Batches Management</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tasks</li>
                 <li class="breadcrumb-item active" aria-current="page">View</li>
             </ol>
         </div>

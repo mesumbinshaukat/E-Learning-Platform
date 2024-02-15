@@ -74,7 +74,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 		<div class="justify-content-center mt-2">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship Management</a></li>
+				<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">batches management</a></li>
 				<li class="breadcrumb-item ">Schedule</li>
 				<li class="breadcrumb-item ">Manage</li>
 			</ol>
@@ -107,7 +107,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 							</thead>
 							<tbody>
 								<?php
-								$meeting_query = mysqli_query($conn, "SELECT * FROM `scheduling_internship`");
+								$meeting_query = mysqli_query($conn, "SELECT * FROM `batches_schedule`");
 								if (mysqli_num_rows($meeting_query) > 0) {
 									$i = 1;
 									while ($row = mysqli_fetch_assoc($meeting_query)) {
