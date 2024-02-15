@@ -75,6 +75,33 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
         <section class="section">
             <div class="container">
                 <div class="row align-items-center justify-content-lg-between justify-content-sm-center">
+                    <?php
+                    $select = mysqli_query($conn, "SELECT * FROM `home_section_one`");
+                    if (mysqli_num_rows($select) > 0) {
+                        $row = mysqli_fetch_assoc($select);
+                    ?>
+                    <div class="col-md-6 col-lg-6 mb-4 mb-md-4 mb-lg-0">
+                        <div class="hero-slider-content">
+                            <h1 class="display-2 pt-5"><?php echo $row['heading_one']; ?>
+                            </h1>
+                            <p class="lead"><?php echo $row['paragraph']; ?></p>
+                            <a href="./jobs.php" class="btn btn-secondary mt-3">Jobs</a>
+                            <a href="./internships.php" class="btn btn-secondary mt-3">Internships</a>
+                            <a href="./courses.php" class="btn btn-secondary mt-3">Courses</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-5">
+                        <div>
+
+                            <img class="pt-5" src="./superadmin/assets/img/home/<?php echo $row['image']; ?>"
+                                alt="<?php echo $row['image']; ?>">
+
+                        </div>
+                    </div>
+                    <?php
+
+                    } else {
+                    ?>
                     <div class="col-md-6 col-lg-6 mb-4 mb-md-4 mb-lg-0">
                         <div class="hero-slider-content">
                             <h1 class="display-2 pt-5">Welcome to <br> E-Learning Platform
@@ -94,12 +121,12 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
                     <div class="col-md-6 col-lg-5">
                         <div>
 
-                            <img class="pt-5"
-                                src="https://worldoftech.company/wp-content/uploads/2023/10/site24x71112.webp"
+                            <img class="pt-5" src="./assets/media/business-people-board-room-meeting.jpg"
                                 alt="github logo">
 
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </section>

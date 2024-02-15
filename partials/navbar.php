@@ -2,10 +2,21 @@
     <nav class="navbar navbar-expand-lg navbar-light navbar-theme-white fixed-top headroom">
         <div class="container position-relative">
             <a class="navbar-brand mr-lg-3" href="./index.php">
-                <img class="navbar-brand-dark img-fluid"
-                    src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
-                <img class="navbar-brand-light img-fluid"
-                    src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp" alt="menuimage">
+
+                <?php
+                $select = mysqli_query($conn, "SELECT * FROM `home_section_one`");
+                if (mysqli_num_rows($select) > 0) {
+                    $row = mysqli_fetch_assoc($select);
+                    echo ' <img class="navbar-brand-dark img-fluid" src="./superadmin/assets/img/home/' . $row['nav_logo'] . '" alt="Logo">';
+                    echo ' <img class="navbar-brand-light img-fluid" src="./superadmin/assets/img/home/' . $row['nav_logo'] . '" alt="Logo">';
+                } else {
+
+                ?>
+                <img class="navbar-brand-dark img-fluid" src="./assets/media/Invictus.png/" alt="Logo">
+                <img class="navbar-brand-light img-fluid" src="./assets/media/Invictus.png/" alt="Logo">
+
+                <?php } ?>
+
 
             </a>
             <div class="navbar-toggler d-lg-none d-flex align-items-center ml-2" type="button" data-toggle="collapse"
@@ -18,8 +29,17 @@
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a href="./index.php">
-                                <img src="https://worldoftech.company/wp-content/uploads/2024/01/download-min.webp"
-                                    alt="menuimage">
+                                <?php
+                                $select = mysqli_query($conn, "SELECT * FROM `home_section_one`");
+                                if (mysqli_num_rows($select) > 0) {
+                                    $row = mysqli_fetch_assoc($select);
+                                    echo ' <img src="./superadmin/assets/img/home/' . $row['nav_logo'] . '" alt="Logo">';
+                                } else {
+
+                                ?>
+                                <img src="./assets/media/Invictus.png/" alt="Logo">
+
+                                <?php } ?>
                             </a>
                         </div>
                         <div class="col-6 collapse-close d-lg-none">

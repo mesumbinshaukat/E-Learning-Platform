@@ -64,7 +64,7 @@ if (isset($_POST['createBtn'])) {
 
 <?php
 if (isset($_SESSION['message_success'])) {
-    echo "<script>toastr.success('Placement Added!')</script>";
+    echo "<script>toastr.success('Testimonial Added!')</script>";
     session_destroy();
 }
 if (isset($_SESSION['message_failed'])) {

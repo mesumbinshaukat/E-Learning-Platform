@@ -454,7 +454,13 @@
                 </ul>
             </li>
 
-            <li class="side-item side-item-category">Testimonial</li>
+            <li class="side-item side-item-category">Site Customization</li>
+            <li class="slide">
+                <a class="side-menu__item" data-bs-toggle="slide" href="home_custom.php"><i class="bi bi-house-check"
+                        width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span class="side-menu__label">Home
+                        Page</span></a>
+
+            </li>
             <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="bi bi-star"
                         width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span
