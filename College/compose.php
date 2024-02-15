@@ -16,7 +16,7 @@ $college = mysqli_fetch_assoc($college_result);
 
 if (isset($_POST["submit"])) {
 
-
+    $sender_id = (int) $college["id"];
     $sender_email = $_COOKIE['college_email'];
     $sender_name = $_COOKIE['college_username'];
     $sender_type = "College";
@@ -40,6 +40,44 @@ if (isset($_POST["submit"])) {
     }
 
     switch ($recipient) {
+        case "Superadmin":
+            $recipient_type = "Admin";
+
+            $admin = mysqli_query($conn, "SELECT * FROM `superadmin`");
+
+            if (mysqli_num_rows($admin) > 0) {
+
+                $admin = mysqli_fetch_assoc($admin);
+
+                $admin_email = $admin["email"];
+                $admin_name = $admin["username"];
+                $admin_id = (int) $admin["id"];
+
+                $insert_query = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `recipient_name`, `recipient_email`, `recipient_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                $insert_query->bind_param("sssssssssssss", $sender_email, $sender_id, $admin_name, $admin_email, $admin_id, $sender_name, $sender_type, $recipient, $subject, $message, $add_attachments_with_date, $purpose, $recipient_type);
+
+                if ($insert_query->execute()) {
+                    if (!empty($add_attachments)) {
+                        move_uploaded_file($add_attachments_tmp, "../superadmin/assets/docs/attachments/" . $add_attachments_with_date);
+                        $_SESSION["attachment"] = $add_attachments_with_date;
+                    }
+
+                    $_SESSION["recipient_name"] = $admin_name;
+                    $_SESSION["recipient_email"] = $admin_email;
+
+                    $_SESSION["sender_name"] = $sender_name;
+                    $_SESSION["sender_email"] = $sender_email;
+                    $_SESSION["sending_format"] = $recipient;
+
+                    $_SESSION["subject"] = $subject;
+                    $_SESSION["message"] = $message;
+                    $_SESSION["purpose"] = $purpose;
+                    $_SESSION["recipient"] = $recipient;
+                    header('location: ./sendmail.php');
+                }
+            }
+
+            break;
         case "Student":
             $recipient_type = "Student";
 
@@ -68,10 +106,6 @@ if (isset($_POST["submit"])) {
             }
 
 
-            break;
-
-        case "Admin":
-            $recipient_type = "Superadmin";
             break;
     }
 }
@@ -223,7 +257,7 @@ if (isset($_POST["submit"])) {
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode">Add Attachments</label>
-                                                    <input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments" required>
+                                                    <input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments">
                                                 </div>
                                             </div>
                                             <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0" style="text-align:right">send</button>

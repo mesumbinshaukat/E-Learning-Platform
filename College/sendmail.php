@@ -29,7 +29,10 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
     $purpose = $_SESSION["purpose"];
     $sender_email = $_SESSION["sender_email"];
     $sender_name = $_SESSION["sender_name"];
-    $college_name = $_SESSION["college_name"];
+    if (isset($_SESSION["college_name"]) && !empty($_SESSION["college_name"])) {
+
+        $college_name = $_SESSION["college_name"];
+    }
 
 
     //Create an instance; passing `true` enables exceptions
