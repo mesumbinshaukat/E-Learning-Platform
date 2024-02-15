@@ -7,10 +7,27 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
     header('location: ../student_login.php');
     exit();
 }
-
 $query = "SELECT * FROM `student`";
-
 $run_query = mysqli_query($conn, $query);
+$id = $_COOKIE['student_id'];
+
+$course = "SELECT * FROM `course_registration` WHERE `student_id` = '$id'";
+$course_run = mysqli_query($conn, $course);
+$course_count = mysqli_num_rows($course_run);
+
+$internship = "SELECT * FROM `internship_registration` WHERE `student_id` = '$id'";
+$internship_run = mysqli_query($conn , $internship);
+$internship_count = mysqli_num_rows($internship_run);
+
+$placement = "SELECT * FROM `placement_applicants` WHERE `student_id` = '$id'";
+$placement_run = mysqli_query($conn , $placement);
+$placement_count = mysqli_num_rows($placement_run);
+
+$colleges = "SELECT * FROM `college`";
+$colleges_run = mysqli_query($conn , $colleges);
+
+$trainers = "SELECT * FROM `trainer`";
+$trainers_run = mysqli_query($conn ,$trainers);
 
 ?>
 
@@ -103,15 +120,15 @@ $run_query = mysqli_query($conn, $query);
                                     <div class="row">
                                         <div class="col text-center">
                                             <label class="tx-12">Courses</label>
-                                            <p class="font-weight-bold tx-20">18</p>
+                                            <p class="font-weight-bold tx-20"><?php echo $course_count; ?></p>
                                         </div><!-- col -->
                                         <div class="col border-start text-center">
                                             <label class="tx-12">Internships</label>
-                                            <p class="font-weight-bold tx-20">1</p>
+                                            <p class="font-weight-bold tx-20"><?php echo $internship_count; ?></p>
                                         </div><!-- col -->
                                         <div class="col border-start text-center">
                                             <label class="tx-12">Placements</label>
-                                            <p class="font-weight-bold tx-20">0</p>
+                                            <p class="font-weight-bold tx-20"><?php echo $placement_count; ?></p>
                                         </div><!-- col -->
 
                                     </div><!-- row -->
@@ -128,11 +145,17 @@ $run_query = mysqli_query($conn, $query);
                                         </div><!-- col -->
                                         <div class="col border-start text-center">
                                             <label class="tx-12">Colleges</label>
-                                            <p class="font-weight-bold tx-20">55</p>
+                                            <p class="font-weight-bold tx-20"><?php if ($colleges_run) {
+                                                                                    $college_count = mysqli_num_rows($colleges_run);
+                                                                                    echo $college_count;
+                                                                                } ?></p>
                                         </div><!-- col -->
                                         <div class="col border-start text-center">
                                             <label class="tx-12">Trainers</label>
-                                            <p class="font-weight-bold tx-20">43</p>
+                                            <p class="font-weight-bold tx-20"><?php if ($trainers_run) {
+                                                                                    $trainer_count = mysqli_num_rows($trainers_run);
+                                                                                    echo $trainer_count;
+                                                                                } ?></p>
                                         </div><!-- col -->
 
                                     </div><!-- row -->

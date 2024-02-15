@@ -133,7 +133,7 @@ $query_run = mysqli_query($conn, $query);
                                                 <div class="row">
 
 
-                                                    <button class="btn btn-primary mb-3 shadow"><a
+                                                    <!-- <button class="btn btn-primary mb-3 shadow"><a
                                                             href="schedule.php?batch_id=57"><span
                                                                 style="color:#ffffff;">Schedule</span></a></button>
                                                     &nbsp &nbsp
@@ -155,7 +155,7 @@ $query_run = mysqli_query($conn, $query);
                                                     &nbsp
                                                     <button class="btn btn-primary mb-3 shadow"><a
                                                             href="documentations.php?batch_id=57"><span
-                                                                style="color:#ffffff;">Documentations</span></a></button>
+                                                                style="color:#ffffff;">Documentations</span></a></button> -->
                                                     &nbsp &nbsp
                                                 </div>
 
