@@ -56,3 +56,16 @@ elseif (isset($_GET["r_id"])) {
     }
 
 }
+elseif (isset($_GET["task_id"])) {
+    $id = filter_var($_GET["task_id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `batches_tasks` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location: managetask.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
+
+}
