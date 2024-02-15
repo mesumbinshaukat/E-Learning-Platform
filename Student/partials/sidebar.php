@@ -61,8 +61,8 @@
                             <li class="side-menu__label1"><a href="javascript:void(0);">Courses</a></li>
                             <li><a class="slide-item" href="courseregister.php">List</a></li>
                             <li><a class="slide-item" href="courseregistration.php">Registrations</a></li>
-                            <li><a class="slide-item" href="coursetransactions.php">Transactactions</a></li>
-                            <li><a class="slide-item" href="coursepayments.php">Payments</a></li>
+                            <!-- <li><a class="slide-item" href="coursetransactions.php">Transactactions</a></li>
+                            <li><a class="slide-item" href="coursepayments.php">Payments</a></li> -->
                         </ul>
                     </li>
                     <li class="slide">

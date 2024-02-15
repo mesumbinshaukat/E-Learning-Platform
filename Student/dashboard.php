@@ -35,12 +35,6 @@ $run_query = mysqli_query($conn, $query);
 
 <body class="ltr main-body app sidebar-mini">
 
-    <!-- Loader -->
-    <div id="global-loader">
-        <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div>
-    <!-- /Loader -->
-
     <!-- Page -->
     <div class="page">
 
