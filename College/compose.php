@@ -4,9 +4,17 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
 }
+
+$college_query = "SELECT * FROM college WHERE username = '" . $_COOKIE['college_username'] . "' AND password = '" . $_COOKIE['college_password'] . "'";
+
+$college_result = mysqli_query($conn, $college_query);
+
+$college = mysqli_fetch_assoc($college_result);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +72,7 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                             <select id="dropdown1" onchange="showOptions1()" name="Receipant" required
                                 class="form-control form-select select2" data-bs-placeholder="Select Country">
                                 <option value="superadmin">Super Admin</option>
-                                <option value="CollegeMentor">College-Mentor</option>
+
                                 <option value="Student">Student</option>
                             </select>
                         </div>
@@ -86,18 +94,8 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                 document.getElementById("optionsDiv").innerHTML = `
 
 <label for="exampleInputAadhar">User ID</label>
-<select name="User_ID" required class="form-control form-select select2" data-bs-placeholder="Select Country">
-	
-</select>
-
-`;
-                            } else if (harsha === "CollegeMentor") {
-
-                                document.getElementById("optionsDiv").innerHTML = `
-
-<label for="exampleInputAadhar">User ID</label>
-<select name="User_ID" required class="form-control form-select select2" data-bs-placeholder="Select Country">
-	
+<select name="student" required class="form-control form-select select2" data-bs-placeholder="Select Student">
+	<?php  ?>
 </select>
 
 `;
@@ -165,17 +163,6 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                                         placeholder="" name="add_attachments" required>
                                                 </div>
                                             </div>
-
-
-
-
-
-
-
-
-
-
-
                                             <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0"
                                                 data-bs-target="#send" data-bs-toggle="modal"
                                                 style="text-align:right">send</button>

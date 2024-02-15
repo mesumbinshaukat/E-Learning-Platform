@@ -247,8 +247,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="courselist.php" style="color:#1d71f2"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courselist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Registered</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -274,8 +273,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="courseregistrationslist.php" style="color:#1d71f2"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Applied</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b><?php
@@ -288,8 +286,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                     </a>
 
 
-                                    <a href="courseregistrationslist.php?type=delete" style="color:#ff0000"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php?type=delete" style="color:#ff0000" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Deleted</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -314,8 +311,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="managecourseregistrations.php" style="color:#1d71f2"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="managecourseregistrations.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Allocated</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -341,8 +337,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="batchlist.php" style="color:#1d71f2"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Created</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -355,8 +350,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 </b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=active" style="color:#ff6700"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=active" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Active</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -369,8 +363,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 </b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=complete" style="color:#4AA02C"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=complete" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Completed</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -383,8 +376,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 </b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=delete" style="color:#4AA02C"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=delete" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Deleted</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -478,7 +470,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                 <div class="col text-center">
                                     <label class="tx-14">Listed</label>
-                                    <a href="internshipcompanylist.php" style="color:#1d71f2">
+                                    <a href="internshiplist.php" style="color:#1d71f2">
                                         <p class="font-weight-bold tx-24">
                                             <?php
                                             $sql = "SELECT * FROM `internship`";
@@ -492,7 +484,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                 </div><!-- col -->
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Companies</label>
-                                    <a style="color:#1d71f2" href="managecompanyinternship.php">
+                                    <a style="color:#1d71f2" href="internshiplist.php">
                                         <p class="font-weight-bold tx-24">
                                             <?php
                                             $sql = "SELECT DISTINCT `company_name` FROM `internship`";
@@ -523,16 +515,16 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                 <div class="col border-start text-center">
                                     <label class="tx-14">Selected </label>
-                                    <a href="internshipregistrationlist.php?type=selected" style="color:#4AA20C">
-                                        <p class="font-weight-bold tx-24">
-                                            <?php
-                                            $sql = "SELECT * FROM `student_selected_for_internship`";
-                                            $result = mysqli_query($conn, $sql);
-                                            $count = mysqli_num_rows($result);
-                                            echo $count;
-                                            ?>
-                                        </p>
-                                    </a>
+
+                                    <p class="font-weight-bold tx-24" style="color:#4AA20C">
+                                        <?php
+                                        $sql = "SELECT * FROM `student_selected_for_internship`";
+                                        $result = mysqli_query($conn, $sql);
+                                        $count = mysqli_num_rows($result);
+                                        echo $count;
+                                        ?>
+                                    </p>
+
                                 </div><!-- col -->
 
 
