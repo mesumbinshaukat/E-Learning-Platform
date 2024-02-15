@@ -1,7 +1,7 @@
 <aside class="app-sidebar">
     <div class="main-sidebar-header active">
         <a class="header-logo active" href="./dashboard.php">
-            <img src="assets/img/WordPress_blue_logo.svg-min.webp" class="main-logo" alt="logo">
+            <img src="../assets/media/Invictus.png" class="main-logo" alt="logo">
 
 
         </a>
@@ -404,7 +404,8 @@
                     <li><a class="bi bi-dot" href="inbox.php" style="font-size:14px; line-height: 2;">Inbox</a></li>
                     <li><a class="bi bi-dot" href="livechat.php" style="font-size:14px; line-height: 2;">Live Chat
                             Messages</a></li>
-                    <li><a class="bi bi-dot" href="contactformmsgs.php" style="font-size:14px; line-height: 2;">Contact Form
+                    <li><a class="bi bi-dot" href="contactformmsgs.php" style="font-size:14px; line-height: 2;">Contact
+                            Form
                             Messages</a></li>
 
 

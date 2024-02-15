@@ -1,5 +1,5 @@
  <!-- FAVICON -->
- <link rel="icon" href="./assets/img/icon.png" type="image/x-icon" />
+ <link rel="icon" href="../assets/media/Invictus.png" type="image/x-icon" />
 
  <!-- ICONS CSS -->
  <link href="./assets/plugins/icons/icons.css" rel="stylesheet">
