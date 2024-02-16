@@ -81,6 +81,19 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <select name="course_name" class="form-control form-select"
                                 data-bs-placeholder="Select Filter">
 
+                                <option value="" selected="selected">ALL</option>
+                                <?php
+                                $query = "SELECT DISTINCT `course_name`,`course_id` FROM `certificate`";
+                                $result = mysqli_query($conn, $query);
+
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <option value="<?= $row['course_id'] ?>"><?= $row['course_name'] ?>
+                                </option>
+                                <?php
+                                }
+                                ?>
+
                             </select>
                         </div>
 
@@ -101,23 +114,43 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
-                                                <th class="border-bottom-0">Batch ID</th>
-                                                <th class="border-bottom-0">Trainer Name</th>
+                                                <th class="border-bottom-0">Student ID</th>
+                                                <th class="border-bottom-0">Student Name</th>
                                                 <th class="border-bottom-0">Course Name</th>
-                                                <th class="border-bottom-0">Batch Name</th>
-                                                <th class="border-bottom-0">view students</th>
+                                                <th class="border-bottom-0">Course Id</th>
+                                                <th class="border-bottom-0">View students</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>TRSTBA_40</td>
-                                                <td>Tiruvidhula Naga Sai Priyanka</td>
-                                                <td>JAVA</td>
-                                                <td>Java Fullstack Batch 1 2M & 6M</td>
-                                                <td><a href="uploadedcertificate.php?id=40"
-                                                        class="btn btn-info">view</a></td>
-                                            </tr>
+                                            <?php
+                                            $certificate = "SELECT * FROM `certificate` WHERE 1=1";
+
+                                            if (isset($_POST["course_name"]) && !empty($_POST["course_name"])) {
+                                                $certificate .= " AND `course_id` = '" . $_POST["course_name"] . "'";
+                                            }
+                                            $run_certificate = mysqli_query($conn, $certificate);
+                                            if (mysqli_num_rows($run_certificate) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_array($run_certificate)) {
+
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i . "</td>";
+                                                    echo "<td>STID_" . $row['student_id'] . "</td>";
+                                                    echo "<td>" . $row['student_name'] . "</td>";
+                                                    $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '{$row['student_id']}'");
+                                                    $student_row = mysqli_fetch_array($student_query);
+
+                                                    echo "<td>" . $student_row['college_name'] . "</td>";
+                                                    echo "<td>" . $row['course_name'] . "</td>";
+                                                    echo "<td><a href='./assets/docs/certificate/" . $row['certificate'] . "' download='' class='btn btn-info'>View</a></td>";
+                                                    echo "</tr>";
+                                                    $i++;
+                                                }
+                                            }
+
+
+                                            ?>
+
                                         </tbody>
                                     </table>
                                 </div>

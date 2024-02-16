@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -76,16 +76,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                                 <option value="" selected="selected">ALL</option>
                                 <?php
-								$query = "SELECT DISTINCT `batchtrainer_name` FROM `batch`";
-								$result = mysqli_query($conn, $query);
+                                $query = "SELECT DISTINCT `batchtrainer_name` FROM `batch`";
+                                $result = mysqli_query($conn, $query);
 
-								while ($row = mysqli_fetch_assoc($result)) {
-								?>
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
                                 <option value="<?= $row['batchtrainer_name'] ?>"><?= $row['batchtrainer_name'] ?>
                                 </option>
                                 <?php
-								}
-								?>
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
@@ -96,15 +96,15 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                                 <option value="" selected="selected">ALL</option>
                                 <?php
-								$query = "SELECT DISTINCT `batchcourse_name` FROM `batch`";
-								$result = mysqli_query($conn, $query);
+                                $query = "SELECT DISTINCT `batchcourse_name` FROM `batch`";
+                                $result = mysqli_query($conn, $query);
 
-								while ($row = mysqli_fetch_assoc($result)) {
-								?>
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
                                 <option value="<?= $row['batchcourse_name'] ?>"><?= $row['batchcourse_name'] ?></option>
                                 <?php
-								}
-								?>
+                                }
+                                ?>
 
                             </select>
                         </div>
@@ -137,34 +137,34 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         <tbody>
 
                                             <?php
-											$select_batch = "SELECT * FROM `batch` WHERE 1=1";
+                                            $select_batch = "SELECT * FROM `batch` WHERE 1=1";
 
-											if (isset($_POST["trainer_name"]) && !empty($_POST["trainer_name"])) {
-												$select_batch .= " AND `batchtrainer_name` = '" . $_POST["trainer_name"] . "'";
-											}
-											if (isset($_POST["course_name"]) && !empty($_POST["course_name"])) {
-												$select_batch .= " AND `batchcourse_name` = '" . $_POST["course_name"] . "'";
-											}
+                                            if (isset($_POST["trainer_name"]) && !empty($_POST["trainer_name"])) {
+                                                $select_batch .= " AND `batchtrainer_name` = '" . $_POST["trainer_name"] . "'";
+                                            }
+                                            if (isset($_POST["course_name"]) && !empty($_POST["course_name"])) {
+                                                $select_batch .= " AND `batchcourse_name` = '" . $_POST["course_name"] . "'";
+                                            }
 
-											$run_batch_query = mysqli_query($conn, $select_batch);
-											if (mysqli_num_rows($run_batch_query) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_array($run_batch_query)) {
+                                            $run_batch_query = mysqli_query($conn, $select_batch);
+                                            if (mysqli_num_rows($run_batch_query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_array($run_batch_query)) {
 
-													echo "<tr>";
-													echo "<td>" . $i . "</td>";
-													echo "<td>BATID_" . $row['id'] . "</td>";
-													echo "<td>" . $row['batchtrainer_name'] . "</td>";
-													echo "<td>" . $row['batchcourse_name'] . "</td>";
-													echo "<td>" . $row['batch_name'] . "</td>";
-													echo "<td><a href='studentcertificate.php?crid=" . $row['course_id'] . "&coursename=" . $row['batchcourse_name'] . "' class='btn btn-info'>View</a></td>";
-													echo "</tr>";
-													$i++;
-												}
-											}
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i . "</td>";
+                                                    echo "<td>BATID_" . $row['id'] . "</td>";
+                                                    echo "<td>" . $row['batchtrainer_name'] . "</td>";
+                                                    echo "<td>" . $row['batchcourse_name'] . "</td>";
+                                                    echo "<td>" . $row['batch_name'] . "</td>";
+                                                    echo "<td><a href='studentcertificate.php?crid=" . $row['course_id'] . "&coursename=" . $row['batchcourse_name'] . "' class='btn btn-info'>Upload</a></td>";
+                                                    echo "</tr>";
+                                                    $i++;
+                                                }
+                                            }
 
 
-											?>
+                                            ?>
 
                                         </tbody>
                                     </table>

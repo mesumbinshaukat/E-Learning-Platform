@@ -126,106 +126,109 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                                 <th>Date and time</th>
                                             </tr>
                                         </thead>
+                                        <tbody>
+                                            <?php
+                                            $college_name = $_COOKIE["college_username"];
+                                            $college_password = $_COOKIE["college_password"];
 
-                                        <?php
-                                        $college_name = $_COOKIE["college_username"];
-                                        $college_password = $_COOKIE["college_password"];
+                                            $college_query = "SELECT * FROM `college` WHERE `username` = '$college_name' AND `password` = '$college_password'";
+                                            $college_result = mysqli_query($conn, $college_query);
+                                            $fetch = mysqli_fetch_assoc($college_result);
 
-                                        $college_query = "SELECT * FROM `college` WHERE `username` = '$college_name' AND `password` = '$college_password'";
-                                        $college_result = mysqli_query($conn, $college_query);
-                                        $fetch = mysqli_fetch_assoc($college_result);
+                                            $sql = "SELECT * FROM `mail` WHERE (`sender_type` = 'College' OR `sender_type` = 'Admin' OR `sender_type`='Student') AND (`sender_email`='" . $fetch["email"] . "' OR `recipient_email`='" . $fetch["email"] . "') OR (`sender_type` = 'College' AND `recipient_email`='" . $fetch["email"] . "')";
 
-                                        $sql = "SELECT * FROM `mail` WHERE `sender_type` = 'College' OR `sender_type` = 'Admin' OR `sender_type`='Student' AND `sender_id` = '" . $fetch["id"] . "'";
-                                        $query = mysqli_query($conn, $sql);
+                                            $query = mysqli_query($conn, $sql);
+                                            if (!$conn) {
+                                                die("Connection failed: " . mysqli_connect_error());
+                                            }
 
-                                        if (mysqli_num_rows($query) > 0) {
-                                            $i = 1;
-                                            while ($row = mysqli_fetch_assoc($query)) {
-                                                echo "<tr>";
-                                                echo "<td>{$i}</td>";
-                                                echo "<td>SEID_{$row['sender_id']}</td>";
-                                                echo "<td>{$row['sender_name']}</td>";
-                                                echo "<td>{$row['subject']}</td>";
-                                                echo "<td>{$row['purpose']}</td>";
-                                                echo "<td>{$row['recipient_name']}</td>";
-                                                echo "<td>{$row['recipient_type']}</td>";
-                                                echo "<td>{$row['sending_format']}</td>";
-                                                echo "<td>{$row['message']}</td>";
-                                                echo "<td><a href='../superadmin/assets/docs/attachments/{$row['attachment']}' class='btn btn-primary' download=''>Download</a></td>";
+                                            if (mysqli_num_rows($query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                    echo "<tr>";
+                                                    echo "<td>{$i}</td>";
+                                                    echo "<td>SEID_{$row['sender_id']}</td>";
+                                                    echo "<td>{$row['sender_name']}</td>";
+                                                    echo "<td>{$row['subject']}</td>";
+                                                    echo "<td>{$row['purpose']}</td>";
+                                                    echo "<td>{$row['recipient_name']}</td>";
+                                                    echo "<td>{$row['recipient_type']}</td>";
+                                                    echo "<td>{$row['sending_format']}</td>";
+                                                    echo "<td>{$row['message']}</td>";
+                                                    echo "<td><a href='../superadmin/assets/docs/attachments/{$row['attachment']}' class='btn btn-primary' download=''>Download</a></td>";
 
-                                                if ($row["sender_type"] === "College") {
-                                        ?>
-                                        <td><button class="btn btn-info" disabled>You Are The Sender</button></td>
-                                        <?php
-                                                } else {
-                                                    if (empty($row["reply_status"]) || $row["reply_status"] !== "Replied") {
-                                                    ?>
-                                        <td><a class="btn btn-success text-light" data-bs-toggle="modal"
-                                                data-bs-target="#reply_<?php echo $i; ?>">Reply</a></td>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="reply_<?php echo $i; ?>" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                                                            Reply</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="reply.php" method="POST">
-                                                            <input type="hidden" name="recipient_id"
-                                                                value="<?php echo $row['sender_id']; ?>">
-                                                            <input type="hidden" name="recipient_name"
-                                                                value="<?php echo $row['sender_name']; ?>">
-                                                            <input type="hidden" name="sender_email"
-                                                                value="<?php echo $row['sender_email']; ?>">
-                                                            <input type="hidden" name="college_id"
-                                                                value="<?php echo $fetch["id"]; ?>">
-                                                            <input type="hidden" name="subject"
-                                                                value="<?php echo $row['subject']; ?>">
-                                                            <input type="hidden" name="sender_id"
-                                                                value="<?php echo $fetch["id"]; ?>">
-                                                            <input type="hidden" name="id"
-                                                                value="<?php echo $row['id']; ?>">
-                                                            <div class="mb-3">
+                                                    if ($row["sender_type"] === "College") {
+                                            ?>
+                                            <td><button class="btn btn-info" disabled>You Are The Sender</button></td>
+                                            <?php
+                                                    } else {
+                                                        if (empty($row["reply_status"]) || $row["reply_status"] !== "Replied") {
+                                                        ?>
+                                            <td><a class="btn btn-success text-light" data-bs-toggle="modal"
+                                                    data-bs-target="#reply_<?php echo $i; ?>">Reply</a></td>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="reply_<?php echo $i; ?>"
+                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                                Reply</h1>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="reply.php" method="POST">
+                                                                <input type="hidden" name="recipient_id"
+                                                                    value="<?php echo $row['sender_id']; ?>">
+                                                                <input type="hidden" name="recipient_name"
+                                                                    value="<?php echo $row['sender_name']; ?>">
+                                                                <input type="hidden" name="sender_email"
+                                                                    value="<?php echo $row['sender_email']; ?>">
+                                                                <input type="hidden" name="college_id"
+                                                                    value="<?php echo $fetch["id"]; ?>">
+                                                                <input type="hidden" name="subject"
+                                                                    value="<?php echo $row['subject']; ?>">
+                                                                <input type="hidden" name="sender_id"
+                                                                    value="<?php echo $fetch["id"]; ?>">
+                                                                <input type="hidden" name="id"
+                                                                    value="<?php echo $row['id']; ?>">
+                                                                <div class="mb-3">
 
-                                                                <label class="form-label">Message</label>
-                                                                <textarea class="form-control" name="message"
-                                                                    required></textarea>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary">Reply</button>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
+                                                                    <label class="form-label">Message</label>
+                                                                    <textarea class="form-control" name="message"
+                                                                        required></textarea>
+                                                                </div>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Reply</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <?php
-                                                    } else {
-                                                    ?>
-                                        <td><button class="btn btn-info text-light" disabled>Replied</button></td>
-                                        <?php
+                                            <?php
+                                                        } else {
+                                                        ?>
+                                            <td><button class="btn btn-info text-light" disabled>Replied</button></td>
+                                            <?php
+                                                        }
                                                     }
+
+                                                    echo "<td>{$row['sending_date']}</td>";
+                                                    echo "</tr>";
+                                                    $i++;
                                                 }
-
-                                                echo "<td>{$row['sending_date']}</td>";
-                                                echo "</tr>";
-                                                $i++;
                                             }
-                                        } else {
-                                            echo "No Data Found";
-                                        }
-                                        ?>
+                                            ?>
 
 
-
+                                        </tbody>
 
                                     </table>
                                 </div>
