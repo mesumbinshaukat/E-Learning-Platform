@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
     } else {
         $shared_documents = $_FILES["shared_documents"]["name"];
         $shared_documents_temp_name = $_FILES["shared_documents"]["tmp_name"];
-        $shared_documents_folder = "./assets/docs/shared_document/" . $shared_documents;
+        $shared_documents_folder = "../Trainer/assets/docs/shared_document/" . $shared_documents;
     }
 
 
@@ -40,7 +40,7 @@ if (isset($_POST["submit"])) {
     if ($batch["id"] == $batch_id) {
         $id = $_POST["current_id"];
         $batch_name = $batch["batch_name"];
-        $insert_query = mysqli_prepare($conn, "UPDATE `schedule_batch` SET `batch_name`=?,`batch_id`=?,`main_topic`=?,`class_duration`=?,`date_of_schedule`=?,`tasks`=?,`shared_documents`=?,`topics_covered`=?,`class_start_timing`=?,`class_end_time`=? WHERE `id` = ?");
+        $insert_query = mysqli_prepare($conn, "UPDATE `batches_schedule` SET `batch_name`=?,`batch_id`=?,`main_topic`=?,`class_duration`=?,`date_of_schedule`=?,`tasks`=?,`shared_documents`=?,`topics_covered`=?,`class_starting_timing`=?,`class_ending_time`=? WHERE `id` = ?");
         $insert_query->bind_param("ssssssssssi", $batch_name, $batch_id, $training_title, $durations, $date_of_training, $tasks, $shared_documents, $topics_to_be_covered, $training_starting_time, $training_ending_time, $id);
         if ($insert_query->execute()) {
             if (!empty($shared_documents)) {
@@ -236,8 +236,8 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Class Starting time</label>
                                                     <input name="training_starting_time" class="form-control"
-                                                        id="start-date" placeholder="" type="datetime-local"
-                                                        value="<?php echo $fetch['class_start_timing'] ?>" required>
+                                                        id="start-date" placeholder="" type="time"
+                                                        value="<?php echo $fetch['class_starting_timing'] ?>" required>
                                                 </div>
                                             </div>
 
@@ -246,14 +246,14 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Class Ending time </label>
                                                     <input name="training_ending_time" class="form-control"
-                                                        id="end-date" placeholder="" type="datetime-local"
-                                                        value="<?php echo $fetch['class_end_time'] ?>" required>
+                                                        id="end-date" placeholder="" type="time"
+                                                        value="<?php echo $fetch['class_ending_time'] ?>" required>
                                                 </div>
                                             </div>
                                             <input type="hidden" name="old_doc"
                                                 value="<?php echo $fetch['shared_documents'] ?>">
 
-                                            <script>
+                                            <!-- <script>
                                             function checkDateRange() {
                                                 const startDate = new Date(document.getElementById("start-date").value);
                                                 const endDate = new Date(document.getElementById("end-date").value);
@@ -267,7 +267,7 @@ if (isset($_POST["submit"])) {
                                                     return false;
                                                 }
                                             }
-                                            </script>
+                                            </script> -->
 
                                         </div>
                                         <button type="submit" name="submit" onclick="return checkDateRange()"

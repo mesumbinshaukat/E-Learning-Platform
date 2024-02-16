@@ -104,7 +104,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">Date Of Schedule </th>
                                                 <th class="border-bottom-0">Starting Time</th>
                                                 <th class="border-bottom-0">Duration</th>
-                                                <th class="border-bottom-0">Created Date</th>
                                                 <th class="border-bottom-0">Update</th>
 
                                             </tr>
@@ -112,7 +111,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         <tbody>
 
                                             <?php
-                                            $query = "SELECT * FROM `schedule_batch` WHERE 1=1";
+                                            $query = "SELECT * FROM `batches_schedule` WHERE 1=1";
 
 
 
@@ -133,9 +132,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         echo "<td>" . $fetch["batch_name"] . "</td>";
                                                         echo "<td>" . $fetch["batchtrainer_name"] . "</td>";
                                                         echo "<td>" . $row["date_of_schedule"] . "</td>";
-                                                        echo "<td>" . $row["class_start_timing"] . "</td>";
+                                                        echo "<td>" . $row["class_starting_time"] . "</td>";
                                                         echo "<td>" . $row["class_duration"] . "</td>";
-                                                        echo "<td>" . $row["added_date"] . "</td>";
+                                                       
                                                         echo "<td><a href='./update_schedule.php?id=" . $row["id"] . "' class='btn btn-info'>Update</a></td>";
                                                         echo "</tr>";
                                                     }
