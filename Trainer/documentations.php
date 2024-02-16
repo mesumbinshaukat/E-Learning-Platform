@@ -1,3 +1,15 @@
+<?php 
+
+
+include('../db_connection/connection.php');
+
+if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
+    header('location: ../trainer_login.php');
+    exit();
+}
+$id = $_GET['id'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +64,7 @@
                 <!-- breadcrumb -->
                 <div class="breadcrumb-header justify-content-between">
                     <div class="left-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">MY Documentations</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Documentations</span>
                     </div>
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
@@ -70,11 +82,17 @@
                         <div class="row">
                           
                             <div class="col-xl-2 col-md-4 col-sm-6">
+
+                            <?php 
+                $select_query = mysqli_query($conn,"SELECT * FROM `batches_documentation` WHERE batch_id = '$id'");
+                if(mysqli_num_rows($select_query) > 0){
+                while($row = mysqli_fetch_assoc($select_query)){
+                ?>
                                 <div class="card p-0 ">
                                     <div class="card-body pt-0 text-center">
                                         <div class="file-manger-icon">
                                             <a target="_blank"
-                                                href="https://triaright.com/images/documentations/Shared_Documents/655af474a6d01JAVA&#32;PROGRAMS.docx">
+                                                href="./assets/docs/supportive_docs/<?php echo $row['shared_documents'] ?>" download="">
                                                 <img src="https://triaright.com/Trainer/assets/img/files/file.png"
                                                     alt="img" class="br-7">
                                         </div>
@@ -82,6 +100,11 @@
                                         <span class="text-muted">2023-11-20 11:23:56</span></a>
                                     </div>
                                 </div>
+                                <?php }} else {?>
+                                    <div>
+                                <h3 class="me-2">No Documentation Found</h3>
+                            </div>
+                                <?php }?>
                             </div>
 
                         </div>
