@@ -29,7 +29,7 @@ if (isset($_POST['loginBtn'])) {
         $fetch_password = $fetch_details['password'];
         $fetch_email = $fetch_details['email'];
         $fetch_id = $fetch_details['id'];
-        
+
         if (password_verify($password, $fetch_password) && $username == $fetch_username) {
             setcookie("trainer_username", $fetch_username, time() + (86400 * 30), "/");
             setcookie("trainer_password", $fetch_password, time() + (86400 * 30), "/");
@@ -52,18 +52,17 @@ if (isset($_POST['loginBtn'])) {
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trainer Log-In</title>
     <?php
-    include("links.php")
+    include("links.php");
     ?>
-
 </head>
 
 <body>
-
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
@@ -75,14 +74,16 @@ if (isset($_POST['loginBtn'])) {
     }
 
     ?>
+
     <div class="main">
 
         <!--login section start-->
-        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center" style="background: url(./assets/background/abstract-design-purple-flowing-lines.jpg)no-repeat center bottom / cover">
+        <section
+            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-7 col-lg-6">
-                        <div class="hero-content-left text-white">
+                        <div class="hero-content-left text-dark">
                             <h1 class="display-2">Welcome<br> Trainer !</h1>
                             <p class="lead">
                                 Expereince your dashboard at more ease and security
@@ -106,10 +107,9 @@ if (isset($_POST['loginBtn'])) {
                                                 <i class="bi bi-envelope"></i>
                                             </div>
 
-                                            <input type="text" class="form-control" name="trainer_username" placeholder="Enter Username" required value="">
+                                            <input type="text" class="form-control" name="trainer_username"
+                                                placeholder="Enter Username" required value="">
                                             <span class="error"></span><br>
-
-
                                         </div>
                                     </div>
                                     <!-- Password -->
@@ -128,15 +128,15 @@ if (isset($_POST['loginBtn'])) {
                                             <div class="input-icon">
                                                 <i class="bi bi-lock"></i>
                                             </div>
-
-                                            <input type="password" name="trainer_password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" name="trainer_password" class="form-control"
+                                                placeholder="Enter your password">
                                             <span class="error"></span><br>
-
                                         </div>
                                     </div>
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary mt-4 mb-3" name="loginBtn">Sign
+                                    <button class="btn btn-block btn-secondary mt-4 mb-3" type="submit"
+                                        name="loginBtn">Sign
                                         in</button>
                                     <span class="error"></span>
 
@@ -152,9 +152,6 @@ if (isset($_POST['loginBtn'])) {
 
 
     </div>
-
 </body>
-
-
 
 </html>

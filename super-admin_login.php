@@ -6,7 +6,7 @@ if (isset($_COOKIE['superadmin_username']) && isset($_COOKIE['superadmin_passwor
     header('location: ./superadmin/dashboard.php');
     exit();
 }
-if (isset($_POST['sign_in'])) {
+if (isset($_POST['loginBtn'])) {
 
 
     $email = $_POST['email'];
@@ -50,20 +50,20 @@ if (isset($_POST['sign_in'])) {
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Super-Admin Log-In</title>
     <?php
-    include("links.php")
+    include("links.php");
     ?>
-
 </head>
 
 <body>
-
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
@@ -80,12 +80,11 @@ if (isset($_POST['sign_in'])) {
 
         <!--login section start-->
         <section
-            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center"
-            style="background: url(./assets/background/abstract-design-purple-flowing-lines.jpg)no-repeat center bottom / cover">
+            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-7 col-lg-6">
-                        <div class="hero-content-left text-white">
+                        <div class="hero-content-left text-dark">
                             <h1 class="display-2">Welcome<br> Super-Admin !</h1>
                             <p class="lead">
                                 Expereince your dashboard at more ease and security
@@ -112,8 +111,6 @@ if (isset($_POST['sign_in'])) {
                                             <input type="email" class="form-control" name="email"
                                                 placeholder="Enter Email" required value="">
                                             <span class="error"></span><br>
-
-
                                         </div>
                                     </div>
                                     <!-- Password -->
@@ -122,22 +119,25 @@ if (isset($_POST['sign_in'])) {
                                             <div class="col">
                                                 <label class="font-weight-bold">Password</label>
                                             </div>
-
+                                            <!--<div class="col-auto">
+                                                <a href="password-reset.html" class="form-text small text-muted">
+                                                    Forgot password?
+                                                </a>
+                                            </div> -->
                                         </div>
                                         <div class="input-group input-group-merge">
                                             <div class="input-icon">
                                                 <i class="bi bi-lock"></i>
                                             </div>
-
                                             <input type="password" name="password" class="form-control"
                                                 placeholder="Enter your password">
                                             <span class="error"></span><br>
-
                                         </div>
                                     </div>
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary mt-4 mb-3" name="sign_in">Sign
+                                    <button class="btn btn-block btn-secondary mt-4 mb-3" type="submit"
+                                        name="loginBtn">Sign
                                         in</button>
                                     <span class="error"></span>
 
@@ -153,9 +153,6 @@ if (isset($_POST['sign_in'])) {
 
 
     </div>
-
 </body>
-
-
 
 </html>
