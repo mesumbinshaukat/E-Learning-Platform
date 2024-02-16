@@ -2,16 +2,15 @@
 session_start();
 
 include('../db_connection/connection.php');
-
-if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-    header('location: ../trainer_login.php');
-    exit();
+if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
+	header('location: ../super-admin_login.php');
+	exit();
 }
 
-if (isset($_GET['r_id'])) {
-    $id = filter_var($_GET['r_id'], FILTER_SANITIZE_NUMBER_INT);
+if (isset($_GET['summary_id'])) {
+    $id = filter_var($_GET['summary_id'], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $query = "SELECT * FROM `batches_recording` WHERE `id` = '$id'";
+    $query = "SELECT * FROM `batches_summary` WHERE `id` = '$id'";
     $run = mysqli_query($conn, $query);
     if (!$run) {
         if (isset($_SESSION['previous_url'])) {
@@ -23,10 +22,10 @@ if (isset($_GET['r_id'])) {
             exit();
         }
     }
-    $recording = mysqli_fetch_assoc($run);
+    $summary = mysqli_fetch_assoc($run);
 
     if (!$id) {
-        echo "Recording not found!";
+        echo "Summary not found!";
         exit();
     }
 
@@ -34,9 +33,10 @@ if (isset($_GET['r_id'])) {
         // Updated code here is similar to the createcourse.php file
 
         // Retrieve updated values
-        $recording_name = $_POST['recording_name'];
-        $Date_of_Upload = $_POST['Date_of_Upload'];
-        $Driving_link = $_POST['Driving_link'];
+        $Date_of_Summary = $_POST['Date_of_Summary'];
+        $Performer_of_the_day = $_POST['Performer_of_the_day'];
+        $Topics_Covered = $_POST['Topics_Covered'];
+        $Overall_Feedback = $_POST['Overall_Feedback'];
         $batch_id = $_POST['batch_id'];
         $select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
         $fetch_batch = mysqli_fetch_assoc($select_batch);
@@ -44,15 +44,15 @@ if (isset($_GET['r_id'])) {
         $batch_name = $fetch_batch['batch_name'];
 
         // Update query
-        $update_query = "UPDATE `batches_recording` SET `recording_topic_name`=?,`date_of_upload`=?,`driving_link`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
+        $update_query = "UPDATE `batches_summary` SET `date_of_summary`=?,`performer_of_day`=?,`topics_covered`=?,`overall_feedback`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
-            "sssssi",$recording_name,$Date_of_Upload,$Driving_link,$batch_id,$batch_name,$id
+            "ssssssi",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback,$batch_id,$batch_name,$id
         );
 
         if (mysqli_stmt_execute($update_stmt)) {
             session_destroy();
-            header("location: managerecordings.php");
+            header("location: managesummary.php");
             exit();
         } else {
             echo mysqli_error($conn);
@@ -61,7 +61,7 @@ if (isset($_GET['r_id'])) {
         mysqli_stmt_close($update_stmt);
     }
 }
-} elseif (!isset($_GET["r_id"]) || empty($_GET["r_id"])) {
+} elseif (!isset($_GET["summary_id"]) || empty($_GET["summary_id"])) {
     echo "<script>alert('Error')</script>";
     if (isset($_SESSION['previous_url'])) {
         header('Location: ' . $_SESSION['previous_url']);
@@ -82,7 +82,7 @@ if (isset($_GET['r_id'])) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
-    <title>Update Recording</title>
+    <title>Update Summary</title>
 
     <?php include("./style.php"); ?>
 </head>
@@ -123,18 +123,17 @@ if (isset($_GET['r_id'])) {
                     <div class="breadcrumb-header justify-content-between">
                         <div class="left-content">
                             <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Update
-                                Recordings</span>
+                                Summary</span>
                         </div>
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">batches management</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Recordings</li>
+                                <li class="breadcrumb-item active" aria-current="page">Summary</li>
                                 <li class="breadcrumb-item active" aria-current="page">Update</li>
                             </ol>
                         </div>
                     </div>
-
-
+                    <!-- /breadcrumb -->
 
 
                 </div>
@@ -144,15 +143,15 @@ if (isset($_GET['r_id'])) {
                         <select name="batch_id" required class="form-control form-select select2"
                             data-bs-placeholder="Select Batch">
                             <?php 
-            if(isset($_GET['r_id'])){
-                $id = $_GET['r_id'];
-                $sql = mysqli_query($conn,"SELECT * FROM `batches_recording` WHERE id = '$id'");
+            if(isset($_GET['summary_id'])){
+                $id = $_GET['summary_id'];
+                $sql = mysqli_query($conn,"SELECT * FROM `batches_summary` WHERE id = '$id'");
                 $fetch_sql = mysqli_fetch_assoc($sql);
                 $selected_batch_id = $fetch_sql['batch_id'];
           
         
-      $trainer_id = $_COOKIE['trainer_id'];
-      $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+  
+      $batch = mysqli_query($conn, "SELECT * FROM `batch`");
       if (mysqli_num_rows($batch) > 0) {
           while ($row = mysqli_fetch_assoc($batch)) {         
 ?>
@@ -166,7 +165,6 @@ if (isset($_GET['r_id'])) {
     } ?>
                         </select>
                     </div>
-
                 <!-- row -->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
@@ -176,41 +174,48 @@ if (isset($_GET['r_id'])) {
 
                                 <div class="">
                                     <div class="row row-xs formgroup-wrapper">
+
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputDOB">Recording Topic Name</label>
-                                                <input class="form-control" placeholder="enter the recording name"
-                                                    type="text" name="recording_name" value="<?php echo $recording['recording_topic_name']?>" required>
+                                                <label for="exampleInputDOB">Date of Summary</label>
+                                                <input class="form-control" name="Date_of_Summary" id="dateMask"
+                                                    placeholder="MM/DD/YYYY" type="date"
+                                                    value="<?php echo $summary['date_of_summary']?>" required>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputDOB">Date of Upload</label>
-                                                <input class="form-control" id="dateMask" placeholder="MM/DD/YYYY"
-                                                    type="date" name="Date_of_Upload" value="<?php echo $recording['date_of_upload']?>" required>
+                                                <label for="exampleInputAadhar">Performer of the day</label>
+                                                <input type="text" name="Performer_of_the_day" class="form-control"
+                                                    id="exampleInputPersonalPhone"
+                                                    value="<?php echo $summary['performer_of_day']?>"
+                                                    placeholder="Enter candidate name" required>
                                             </div>
                                         </div>
-
-
-
-
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputcode">Driving link</label>
-                                                <input type="text" class="form-control" id="exampleInputcode"
-                                                    placeholder="Enter driving link" value="<?php echo $recording['driving_link']?>" name="Driving_link" required>
+                                                <label for="exampleInputAadhar">Topics Covered</label>
+                                                <input type="text" name="Topics_Covered" class="form-control"
+                                                    id="exampleInputAadhar"
+                                                    value="<?php echo $summary['topics_covered']?>"
+                                                    placeholder="Topics List" required>
                                             </div>
-                                        </div> <br>
-
-
-
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputAadhar">Overall Feedback</label>
+                                                <input type="text" name="Overall_Feedback" class="form-control"
+                                                    id="exampleInputAadhar" placeholder="Feedback"
+                                                    value="<?php echo $summary['overall_feedback']?>" required>
+                                            </div>
+                                        </div>
 
 
                                     </div>
                                     <button type="submit" name="UpdateBtn" class="btn btn-info mt-3 mb-0"
                                         data-bs-target="#schedule" data-bs-toggle="modal"
-                                        style="text-align:right">Update Recording</button>
+                                        style="text-align:right">Update Summary</button>
                                 </div>
                             </div>
                         </div>
@@ -230,7 +235,7 @@ if (isset($_GET['r_id'])) {
 
 
     <!-- JS -->
-    <?php include('./script.php'); ?>
+    <?php include('./scripts.php'); ?>
 
 
 </body>

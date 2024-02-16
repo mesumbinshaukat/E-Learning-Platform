@@ -157,7 +157,57 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     } else {
         echo mysqli_error($conn);
     }
-} else {
+}
+elseif(isset($_GET["m_id"])) {
+    $id = filter_var($_GET["m_id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `batches_meetings` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location: managemeetings.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
+} elseif (isset($_GET["summary_id"])) {
+    $id = filter_var($_GET["summary_id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `batches_summary` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location: managesummary.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
+
+}elseif (isset($_GET["r_id"])) {
+    $id = filter_var($_GET["r_id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `batches_recording` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location: managerecordings.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
+
+}
+elseif (isset($_GET["task_id"])) {
+    $id = filter_var($_GET["task_id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `batches_tasks` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("location: managetask.php");
+        exit();
+    } else {
+        echo mysqli_error($conn);
+    }
+
+}
+else {
     if (isset($_SESSION['previous_url'])) {
         header('location: ' . $_SESSION['previous_url'] . '?error=Invalid_Request');
         exit();

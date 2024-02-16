@@ -2,10 +2,9 @@
 session_start();
 
 include('../db_connection/connection.php');
-
-if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-    header('location: ../trainer_login.php');
-    exit();
+if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
+	header('location: ../super-admin_login.php');
+	exit();
 }
 
 if (isset($_GET['r_id'])) {
@@ -151,8 +150,8 @@ if (isset($_GET['r_id'])) {
                 $selected_batch_id = $fetch_sql['batch_id'];
           
         
-      $trainer_id = $_COOKIE['trainer_id'];
-      $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+    
+      $batch = mysqli_query($conn, "SELECT * FROM `batch`");
       if (mysqli_num_rows($batch) > 0) {
           while ($row = mysqli_fetch_assoc($batch)) {         
 ?>
@@ -230,7 +229,7 @@ if (isset($_GET['r_id'])) {
 
 
     <!-- JS -->
-    <?php include('./script.php'); ?>
+    <?php include('./scripts.php'); ?>
 
 
 </body>
