@@ -1,3 +1,16 @@
+<?php 
+
+
+include('../db_connection/connection.php');
+
+if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
+    header('location: ../trainer_login.php');
+    exit();
+}
+$id = $_GET['id'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +65,7 @@
                 <!-- breadcrumb -->
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">MY Meetings</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Meetings</span>
                     </div>
 
                     <div class="justify-content-center mt-2">
@@ -69,29 +82,39 @@
                 <!-- row -->
                 <div class="row row-sm">
                     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                        <?php 
+                        $select_query = mysqli_query($conn,"SELECT * FROM `batches_meetings` WHERE batch_id = '$id'");
+                        if(mysqli_num_rows($select_query) > 0){
+                        while($row = mysqli_fetch_assoc($select_query)){
+                        ?>
                         <div class="card primary-custom-card1">
                             <div class="card-body">
                                 <div class="row">
 
                                     <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12">
                                         <div class="text-justified align-items-center">
-                                            <h4 class="product-title mb-1"><b style="color: #ff6700;">2023-09-29</b>
+                                            <h4 class="product-title mb-1"><b style="color: #ff6700;"><?php echo $row['date_of_meeting_link']?></b>
                                             </h4>
                                             <p class="text-muted tx-13 mb-1">Meetings</p>
                                             <br>
-                                            <p class="card-text tx-16"><span style="color: #13131a;"><b> Platform
-                                                        :</b></span>&nbsp Microsoft_Teams</p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;"><b> meet link
-                                                        :</b></span><a target="_blank"
-                                                    href="https://teams.microsoft.com/l/meetup-join/19:bGYS1GqT2m2VDvyNivFJhx1qA2MnSQf1EsPW1RpjVb01@thread.tacv2/1695965413252?context=%7B%22Tid%22:%22cde72f17-6844-4c3e-947c-5155c05a6352%22,%22Oid%22:%224e2b39"
+                                            <p class="card-text tx-16"><span style="color: #13131a;"><b> Platform:</b></span>&nbsp; <?php echo $row['platform']?></p>
+                                            <p class="card-text tx-15"><span style="color: #13131a;"><b> Meet link :</b></span>
+                                                        <a target="_blank"
+                                                    href="<?php echo $row['meeting_link']?>"
                                                     class="btn btn-info"> Click Here</a></p>
-                                            <p class="card-text tx-15"><span style="color: #13131a;"><b>Additional
-                                                        information :</b></span>&nbsp NA</p>
+
+                                            <p class="card-text tx-15"><span style="color: #13131a;"><b>Batch name:</b></span>&nbsp; <?php echo $row['batch_name']?></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php }} else {?>
+<div>
+                            <h3 class="me-2">No Meetings Found</h3>
+                            </div>
+                        <?php }?>
+
                     </div>
                     
                 </div>

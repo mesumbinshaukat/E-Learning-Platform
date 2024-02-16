@@ -86,9 +86,17 @@ $fetch_student = mysqli_fetch_assoc($select_student);
                             <div class="card-body d-md-flex">
                                 <div class="">
                                     <span class="profile-image pos-relative">
-                                        <img class="br-5" alt=""
+                                        <?php 
+                                        if($fetch_student['picture'] == null){
+                                        ?>
+                                         <img class="br-5" alt=""
+                                            src="./assets/icons/add-user.png">
+                                            <?php 
+                                        }else{?>
+                                            <img class="br-5" alt=""
                                             src="../Student/assets/img/profile/<?php echo $fetch_student['picture']?>">
-
+                                      <?php  }
+                                        ?>
                                     </span>
                                 </div>
                                 <div class="my-md-auto mt-4 prof-details">

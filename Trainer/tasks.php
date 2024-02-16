@@ -1,3 +1,15 @@
+<?php 
+
+
+include('../db_connection/connection.php');
+
+if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
+    header('location: ../trainer_login.php');
+    exit();
+}
+$id = $_GET['id'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +62,7 @@
                 <!-- breadcrumb -->
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">MY Tasks</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Tasks</span>
                     </div>
 
                     <div class="justify-content-center mt-2">
@@ -64,110 +76,62 @@
                 </div>
                 <!-- /breadcrumb -->
 
+
                 <!-- row -->
                 <div class="row row-sm">
                     <div class="col-sm-12 col-lg-6">
+                    <?php 
+                $select_query = mysqli_query($conn,"SELECT * FROM `batches_tasks` WHERE batch_id = '$id'");
+                if(mysqli_num_rows($select_query)>0){
+                while($row = mysqli_fetch_assoc($select_query)){
+                ?>
                         <div class="card primary-custom-card1">
                             <div class="card-body">
                                 <div class="row">
 
                                     <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12">
                                         <div class="text-justified align-items-center">
-                                            <h4 class="product-title mb-1"><b style="color: #ff6700;">2023-10-11</b>
+                                            <h4 class="product-title mb-1"><b style="color: #ff6700;"><?php echo $row['task_end_date']?></b>
                                             </h4>
                                             <p class="text-muted tx-13 mb-1">Tasks</p>
                                             <br>
                                             <h5 class="mb-2 tx-18 font-weight-semibold text-dark"><span
                                                     style="color:#1D71F2;"><b>Task Details</b></SPAN></h5>
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Name
-                                                        of Task: </b></span>java Programs 1</p>
+                                                        of Task: </b></span><?php echo $row['task_name']?></p>
                                             <p class="mb-1 tx-15 mb-3 text-muted"> <span
-                                                    style="color:#000000;"><b>Allocate type: </b></span>All </p>
+                                                    style="color:#000000;"><b>Allocate type: </b></span><?php echo $row['allocated_students_type']?> </p>
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Task
-                                                        End time: </b></span> 2023-10-11</p>
+                                                        End Date: </b></span> <?php echo $row['task_end_date']?></p>
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Description: </b></span> Java Practice
-                                                Programs</p>
+                                                    style="color:#000000;"><b>Description: </b></span> <?php echo $row['task_description']?></p>
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Additional information: </b></span> NA</p>
+                                                    style="color:#000000;"><b>Batch Name: </b></span> <?php echo $row['batch_name']?></p>
+                                            
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Shared
                                                         Documents: </b></span>
-                                                <a target="_blank"
-                                                    href="https://triaright.com/images/task/Shared_Documents/6524f26e3957fJava&#32;Programs&#32;on&#32;Operators.txt">
+                                                        <br>
+                                                <a target="_blank" download=""
+                                                    href="./assets/docs/supportive_docs/<?php echo $row['shared_documents']?>" >
                                                     <button class="btn btn-info mt-3 mb-0"
                                                         type="button">Download</button></a>
                                             </p>
-                                            <h5 class="mb-2 tx-18 font-weight-semibold text-dark"><span
-                                                    style="color:#1D71F2;"><b>Your Work</b></SPAN></h5>
-                                            <br>
-
-                                            <h4 style="color:green;">TASK SUBMITTED</h4>
-
-                                            <br>
-                                            <h5 class="mb-2 tx-18 font-weight-semibold text-dark"><span
-                                                    style="color:#1D71F2;"><b>Remarks from Trainer</b></SPAN></h5>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Comment:</b></span> </p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"> <span
-                                                    style="color:#000000;"><b>Marks: </b></span></p>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php }} else {?>
+                            <div>
+                                <h3 class="me-2">No Tasks Found</h3>
+                            </div>
+                            <?php }?>
                     </div>
                     <!-- row closed -->
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="card primary-custom-card1">
-                            <div class="card-body">
-                                <div class="row">
-
-                                    <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12">
-                                        <div class="text-justified align-items-center">
-                                            <h4 class="product-title mb-1"><b style="color: #ff6700;">2023-10-15</b>
-                                            </h4>
-                                            <p class="text-muted tx-13 mb-1">Tasks</p>
-                                            <br>
-                                            <h5 class="mb-2 tx-18 font-weight-semibold text-dark"><span
-                                                    style="color:#1D71F2;"><b>Task Details</b></SPAN></h5>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Name
-                                                        of Task: </b></span>Java Programs</p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"> <span
-                                                    style="color:#000000;"><b>Allocate type: </b></span>All </p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Task
-                                                        End time: </b></span> 2023-10-15</p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Description: </b></span> Java Practice
-                                                Programs</p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Additional information: </b></span> NA</p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Shared
-                                                        Documents: </b></span>
-                                                <a target="_blank"
-                                                    href="https://triaright.com/images/task/Shared_Documents/6528ee21b24e5Java&#32;Pratice&#32;Programs(Task-2).txt">
-                                                    <button class="btn btn-info mt-3 mb-0"
-                                                        type="button">Download</button></a>
-                                            </p>
-                                            <h5 class="mb-2 tx-18 font-weight-semibold text-dark"><span
-                                                    style="color:#1D71F2;"><b>Your Work</b></SPAN></h5>
-                                            <br>
-
-                                            <h4 style="color:green;">TASK SUBMITTED</h4>
-
-                                            <br>
-                                            <h5 class="mb-2 tx-18 font-weight-semibold text-dark"><span
-                                                    style="color:#1D71F2;"><b>Remarks from Trainer</b></SPAN></h5>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Comment:</b></span> </p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"> <span
-                                                    style="color:#000000;"><b>Marks: </b></span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                 
                     </div>
-                  
+
 
                     <!-- row closed -->
 

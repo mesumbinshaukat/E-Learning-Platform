@@ -1,3 +1,12 @@
+<?php 
+include('../db_connection/connection.php');
+	if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
+    header('location: ../trainer_login.php');
+    exit();
+}
+$id = $_GET['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +62,7 @@
                 <!-- breadcrumb -->
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">MY Schedule</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Schedule</span>
                     </div>
 
                     <div class="justify-content-center mt-2">
@@ -70,45 +79,43 @@
                 <!-- row -->
                 <div class="row row-sm">
                     <div class="col-sm-12 col-lg-6">
+                <?php 
+                $select_query = mysqli_query($conn,"SELECT * FROM `batches_schedule` WHERE batch_id = '$id'");
+                if(mysqli_num_rows($select_query)>0){
+                while($row = mysqli_fetch_assoc($select_query)){
+                ?>
                         <div class="card primary-custom-card1">
                             <div class="card-body">
                                 <div class="row">
 
                                     <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12">
                                         <div class="text-justified align-items-center">
-                                            <h4 class="product-title mb-1"><b style="color: #ff6700;">2023-09-29</b>
+                                            <h4 class="product-title mb-1"><b style="color: #ff6700;"><?php echo $row['date_of_schedule'];?></b>
                                             </h4>
                                             <p class="text-muted tx-13 mb-1">Schedule</p>
                                             <br>
                                             <h5 class="mb-2 tx-18 font-weight-semibold text-dark"><span
-                                                    style="color:#1D71F2;">Introduction of java</SPAN></h5>
+                                                    style="color:#1D71F2;"><?php echo $row['main_topic'];?></span></h5>
 
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Tasks:</b></span> No</p>
+                                                    style="color:#000000;"><b>Tasks:</b></span> <?php echo $row['tasks'];?></p>
                                             <p class="mb-1 tx-15 mb-3 text-muted"> <span
-                                                    style="color:#000000;"><b>Duration:</b></span>2</p>
+                                                    style="color:#000000;"><b>Duration:</b></span> <?php echo $row['class_duration'];?> Hour</p>
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Starting time:</b></span>2023-09-29
-                                                11:00:00</p>
+                                                    style="color:#000000;"><b>Starting time:</b></span> <?php echo $row['class_starting_time'];?></p>
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Ending
-                                                        time:</b></span>2023-09-29 13:00:00</p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>On-Hand Expereince%:</b></span>90</p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Teaching Expereince%:</b></span> 100</p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Concepts to have idea:</b></span> NA</p>
+                                                        time:</b></span> <?php echo $row['class_ending_time'];?></p>
+                                       
+                                        
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Topics
-                                                        Covered:</b></span> Introduction of java</p>
+                                                        Covered:</b></span> <?php echo $row['topics_to_be_covered'];?></p>
+                                            <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Batch Name:</b></span> <?php echo $row['batch_name'];?></p>
 
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>About
-                                                        the Training:</b></span> NA</p>
-                                            <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                    style="color:#000000;"><b>Additional information:</b></span> NA</p>
                                             <p class="mb-1 tx-15 mb-3 text-muted"><span style="color:#000000;"><b>Shared
                                                         Documents:</b></span>
+                                                        <br>
                                                 <a target="_blank"
-                                                    href="https://triaright.com/images/schedule/Shared_Documents/65168f4f6e96ejava&#32;introduction.docx">
+                                                    href="./assets/docs/supportive_docs/<?php echo $row['shared_documents'];?>" download="">
                                                     <button class="btn btn-info mt-3 mb-0"
                                                         type="button">Download</button></a>
                                             </p>
@@ -117,8 +124,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                 
+                        <?php }} else {?>
+                            <div>
+                                <h3 class="me-2">No Schedule Found</h3>
+                            </div>
+                            <?php }?>
+                        </div>
+
                 </div>
                 <!-- row closed -->
 
