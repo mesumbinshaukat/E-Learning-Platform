@@ -69,7 +69,10 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                     </div>
 
                 </div>
-                <?php $type = $_GET["type"] != null ? "&type=" . $_GET["type"] : null; ?>
+                <?php
+                if (isset($_GET["type"]) && !empty($_GET["type"])) {
+                    $type = $_GET["type"] != null ? "&type=" . $_GET["type"] : null;
+                ?>
                 <form method="post" action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $_GET["id"] . $type ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
@@ -78,13 +81,13 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                             <select name="college" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <?php
-                                $query = mysqli_query($conn, "SELECT DISTINCT `college_name` FROM `student`");
-                                if (mysqli_num_rows($query) > 0) {
-                                    while ($row = mysqli_fetch_assoc($query)) {
-                                        echo '<option value="' . $row["college_name"] . '">' . $row["college_name"] . '</option>';
+                                    $query = mysqli_query($conn, "SELECT DISTINCT `college_name`, `college_id` FROM `student`");
+                                    if (mysqli_num_rows($query) > 0) {
+                                        while ($row = mysqli_fetch_assoc($query)) {
+                                            echo '<option value="' . $row["college_id"] . '">' . $row["college_name"] . '</option>';
+                                        }
                                     }
-                                }
-                                ?>
+                                    ?>
 
                             </select>
                         </div>
@@ -94,6 +97,40 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
 
                     </div>
                 </form>
+
+                <?php
+                } else {
+                ?>
+
+                <form method="post" action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $_GET["id"] ?>">
+                    <div class="row row-sm">
+                        <div class="form-group col-md-4">
+                            <p><b> College Name</b> </p>
+
+                            <select name="college" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected="selected">All</option>
+                                <?php
+                                    $query = mysqli_query($conn, "SELECT DISTINCT `college_name`, `college_id` FROM `student`");
+                                    if (mysqli_num_rows($query) > 0) {
+                                        while ($row = mysqli_fetch_assoc($query)) {
+                                            echo '<option value="' . $row["college_id"] . '">' . $row["college_name"] . '</option>';
+                                        }
+                                    }
+                                    ?>
+
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Filter</button>
+
+                    </div>
+                </form>
+
+                <?php
+                }
+                ?>
+
                 <br>
                 <br>
                 <div class="row row-sm">
@@ -124,9 +161,9 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
 
                                             if (isset($_GET["type"]) && $_GET["type"] == "course") {
                                                 $query = "SELECT * FROM `student` WHERE 1=1";
-                                                if (isset($_POST["college"])) {
+                                                if (isset($_POST["college"]) && !empty($_POST["college"])) {
                                                     $college = $_POST["college"];
-                                                    $query .= " AND `college_name`='$college'";
+                                                    $query .= " AND `college_id`='$college'";
                                                 }
                                                 $query = $conn->query($query);
                                                 if ($query) {
@@ -166,9 +203,9 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                                     $i = 1;
                                                     while ($row = mysqli_fetch_assoc($internship_reg_query)) {
                                                         $stu_query = "SELECT * FROM `student` WHERE `id`='{$row['student_id']}'";
-                                                        if (isset($_POST["college"])) {
+                                                        if (isset($_POST["college"]) && !empty($_POST["college"])) {
                                                             $college = $_POST["college"];
-                                                            $stu_query .= " AND `college_name`='$college'";
+                                                            $stu_query .= " AND `college_id`='$college'";
                                                         }
                                                         $student_query = mysqli_query($conn, $stu_query);
 

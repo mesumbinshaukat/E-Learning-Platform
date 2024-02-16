@@ -104,10 +104,10 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
                                             $college_name = $_COOKIE['college_username'];
                                             $college_query = mysqli_query($conn, "SELECT * FROM `college` WHERE `username` = '$college_name'");
                                             $college_data = mysqli_fetch_assoc($college_query);
-                                            $college_name_ = $college_data['name'];
+                                            $college_id = $college_data['id'];
 
                                             if (isset($_GET["type"]) && $_GET["type"] == "course") {
-                                                $query = "SELECT * FROM `student` WHERE `college_name`='$college_name_'";
+                                                $query = "SELECT * FROM `student` WHERE `college_id`='$college_id'";
 
                                                 $query = $conn->query($query);
                                                 if ($query) {

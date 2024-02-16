@@ -26,7 +26,7 @@ if (isset($_POST["create"])) {
     $stream = filter_var($_POST['stream'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $semester = filter_var($_POST['semester'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $account_type = filter_var($_POST['account_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $institution_name = filter_var($_POST['institution_name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $institution_id = (int) filter_var($_POST['institution_name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $student_username = filter_var($_POST['student_username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -48,10 +48,16 @@ if (isset($_POST["create"])) {
         exit();
     }
 
+    if ($institution_id != "None") {
+        $college_query = mysqli_query($conn, "SELECT * FROM `college` WHERE `id` = $institution_id");
+        $fetch = mysqli_fetch_assoc($college_query);
+        $institution_name = $fetch['name'];
+        $institution_id = $fetch['id'];
+    }
 
-    $query = mysqli_prepare($conn, "INSERT INTO `student`(`name`, `contact_number`, `email`, `username`, `internship`, `password`, `gender`, `address`, `alternate_contact_number`, `state`, `district`, `dob`, `pin_code`, `qualification`, `branch`, `semester`, `account_type`, `college_name`, `cv`, `created_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $query = mysqli_prepare($conn, "INSERT INTO `student`(`name`, `contact_number`, `email`, `username`, `internship`, `password`, `gender`, `address`, `alternate_contact_number`, `state`, `district`, `dob`, `pin_code`, `qualification`, `branch`, `semester`, `account_type`, `college_name`, `cv`, `created_by`, `college_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-    $query->bind_param("ssssssssssssssssssss", $student_name, $phone_number, $mail_id, $student_username, $intership_term, $password_hash, $gender, $address, $alternative_phone_number, $state, $district, $date_of_birth, $pincode, $qualification, $stream, $semester, $account_type, $institution_name, $cv, $created_by);
+    $query->bind_param("sssssssssssssssssssss", $student_name, $phone_number, $mail_id, $student_username, $intership_term, $password_hash, $gender, $address, $alternative_phone_number, $state, $district, $date_of_birth, $pincode, $qualification, $stream, $semester, $account_type, $institution_name, $cv, $created_by, $institution_id);
 
     if ($query->execute()) {
         if (move_uploaded_file($upload_cv_tmp, $upload_cv_path)) {
@@ -362,7 +368,7 @@ if (isset($_POST["create"])) {
                                                     <option value="None">None</option>
                                                     <?php if (mysqli_num_rows($college_query) > 0) {
                                                         while ($row = mysqli_fetch_assoc($college_query)) {
-                                                            echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                                                            echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
                                                         }
                                                     } ?>
                                                 </select>

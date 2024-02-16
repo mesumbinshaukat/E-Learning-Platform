@@ -74,7 +74,7 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                 $sql = "SELECT * FROM course";
                                 $result = mysqli_query($conn, $sql);
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<option value="' . $row['course_name'] . '">' . $row['course_name'] . '</option>';
+                                    echo '<option value="' . $row['id'] . '">' . $row['course_name'] . '</option>';
                                 }
                                 ?>
                             </select>
@@ -114,9 +114,16 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                             $college_name = $_COOKIE['college_username'];
                                             $college_query = mysqli_query($conn, "SELECT * FROM `college` WHERE `username` = '$college_name'");
                                             $college_data = mysqli_fetch_assoc($college_query);
-                                            $college_name_ = $college_data['name'];
+                                            $college_id = $college_data['id'];
 
-                                            $query = mysqli_query($conn, "SELECT * FROM `course_registration`");
+                                            $course_reg_query = "SELECT * FROM `course_registration` WHERE 1=1";
+
+                                            if (isset($_POST["name_of_the_course"]) && !empty($_POST["name_of_the_course"])) {
+                                                $name_of_the_course = $_POST["name_of_the_course"];
+                                                $course_reg_query .= " AND `course_id` = $name_of_the_course";
+                                            }
+
+                                            $query = mysqli_query($conn, $course_reg_query);
 
                                             $i = 1;
 
@@ -125,7 +132,7 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                                     $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '{$row['student_id']}'");
                                                     if (mysqli_num_rows($student_query) > 0) {
                                                         $student_data = mysqli_fetch_assoc($student_query);
-                                                        if ($student_data["college_name"] == $college_name_) {
+                                                        if ($student_data["college_id"] == $college_id) {
                                                             $course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'");
                                                             $course_data = mysqli_fetch_assoc($course_query);
                                                             echo "<tr>";
@@ -138,9 +145,9 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                                             echo "<td>" . $student_data['account_type'] . "</td>";
                                                             $trainer_alloc_course = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `course_id` = '{$row['course_id']}'");
                                                             if (mysqli_num_rows($trainer_alloc_course) > 0) {
-                                                                echo "<td>Allocated</td>";
+                                                                echo "<td class='text-success fw-bold'>Allocated</td>";
                                                             } else {
-                                                                echo "<td>Not Allocated</td>";
+                                                                echo "<td class='text-danger fw-bold'>Not Allocated</td>";
                                                             }
                                                             echo "</tr>";
                                                             $i++;
@@ -148,52 +155,7 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                                     }
                                                 }
                                             }
-
-
-                                            //                                     $query = "SELECT s.*, c.course_name, cr.added_date, atc.course_id as allocated_course
-                                            //   FROM `student` s
-                                            //   LEFT JOIN `course_registration` cr ON s.id = cr.student_id
-                                            //   LEFT JOIN `course` c ON cr.course_id = c.id
-                                            //   LEFT JOIN `allocate_trainer_course` atc ON cr.course_id = atc.course_id
-                                            //   WHERE s.`college_name`='$college_name_'
-                                            //   AND cr.course_id IS NOT NULL"; // Add condition to fetch only registered students
-
-                                            //                                     if (isset($_POST['name_of_the_course']) && !empty($_POST['name_of_the_course'])) {
-                                            //                                         $course_name = $_POST['name_of_the_course'];
-                                            //                                         $query .= " AND c.`course_name` = '{$course_name}'";
-                                            //                                     }
-
-                                            //                                     $query = $conn->query($query);
-
-                                            //                                     if ($query) {
-                                            //                                         $i = 1;
-
-                                            //                                         while ($row = mysqli_fetch_assoc($query)) {
-                                            //                                             echo "<tr>";
-                                            //                                             echo "<td>" . $i++ . "</td>";
-                                            //                                             echo "<td>" . $row['added_date'] . "</td>";
-                                            //                                             echo "<td>STID_" . $row['id'] . "</td>";
-                                            //                                             echo "<td>" . $row['name'] . "</td>";
-                                            //                                             echo "<td>" . $row['college_name'] . "</td>";
-                                            //                                             echo "<td>" . $row['course_name'] . "</td>";
-                                            //                                             echo "<td>" . $row['branch'] . "</td>";
-
-                                            //                                             if ($row['allocated_course']) {
-                                            //                                                 echo "<td>Allocated</td>";
-                                            //                                             } else {
-                                            //                                                 echo "<td>Not Allocated</td>";
-                                            //                                             }
-
-                                            //                                             echo "</tr>";
-                                            //                                         }
-                                            //                                     } else {
-                                            //                                         // Handle query execution error
-                                            //                                         echo "Error executing query: " . mysqli_error($conn);
-                                            //                                     }
                                             ?>
-
-
-
                                         </tbody>
                                     </table>
                                 </div>

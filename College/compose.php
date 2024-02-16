@@ -200,7 +200,8 @@ if (isset($_POST["submit"])) {
 
                         <div class="form-group col-md-6">
                             <label for="dropdown">Recipient</label>
-                            <select id="dropdown1" onchange="showOptions1()" name="recipient" required class="form-control form-select select2" data-bs-placeholder="Select Country">
+                            <select id="dropdown1" onchange="showOptions1()" name="recipient" required
+                                class="form-control form-select select2" data-bs-placeholder="Select Country">
                                 <option value="Superadmin">Super Admin</option>
 
                                 <option value="Student">Student</option>
@@ -210,23 +211,24 @@ if (isset($_POST["submit"])) {
 
                         <div class="form-group col-md-4" id="optionsDiv">
                             <label for="exampleInputAadhar" hidden>User ID</label>
-                            <select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
+                            <select name="User_ID" hidden required class="form-control form-select select2"
+                                data-bs-placeholder="Select Country">
                                 <option value="ALL"></option>
                             </select>
                         </div>
 
                         <script>
-                            function showOptions1() {
-                                var harsha = document.getElementById("dropdown1").value;
-                                if (harsha === "Student") {
+                        function showOptions1() {
+                            var harsha = document.getElementById("dropdown1").value;
+                            if (harsha === "Student") {
 
-                                    document.getElementById("optionsDiv").innerHTML = `
+                                document.getElementById("optionsDiv").innerHTML = `
 
 <label for="exampleInputAadhar">User ID</label>
 <select name="student" required class="form-control form-select select2" data-bs-placeholder="Select Student">
 <option value='All'>All</option>
 	<?php
-    $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `college_name` = '{$college['name']}'");
+    $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `college_id` = '{$college['id']}'");
     while ($student = mysqli_fetch_assoc($student_query)) {
         echo "<option value='{$student['email']}'>{$student['name']} | STID_{$student['id']} | Username : {$student['username']}</option>";
     }
@@ -234,15 +236,15 @@ if (isset($_POST["submit"])) {
 </select>
 
 `;
-                                } else {
-                                    document.getElementById("optionsDiv").innerHTML = `
+                            } else {
+                                document.getElementById("optionsDiv").innerHTML = `
 			<label for="exampleInputAadhar" hidden>User ID</label>
 			<select name="User_ID" required hidden class="form-control form-select select2" data-bs-placeholder="Select Country">
 			<option value="">ALL</option>
 			</select>
 			`;
-                                }
                             }
+                        }
                         </script>
 
 
@@ -262,14 +264,19 @@ if (isset($_POST["submit"])) {
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputCompanyPhone" style="color:#ff6700"><b>Subject</b></label>
-                                                    <input type="text" class="form-control" id="exampleInputCompanyPhone" placeholder="Enter Subject" name="subject" required>
+                                                    <label for="exampleInputCompanyPhone"
+                                                        style="color:#ff6700"><b>Subject</b></label>
+                                                    <input type="text" class="form-control"
+                                                        id="exampleInputCompanyPhone" placeholder="Enter Subject"
+                                                        name="subject" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputAadhar" style="color:#ff6700"><b>Purpose</b></label>
-                                                    <select name="purpose" class="form-control form-select select2" data-bs-placeholder="Select Country" required>
+                                                    <label for="exampleInputAadhar"
+                                                        style="color:#ff6700"><b>Purpose</b></label>
+                                                    <select name="purpose" class="form-control form-select select2"
+                                                        data-bs-placeholder="Select Country" required>
                                                         <option value="query">query</option>
                                                         <option value="feedback">feedback</option>
                                                         <option value="issue">issue</option>
@@ -279,18 +286,22 @@ if (isset($_POST["submit"])) {
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-label">
-                                                    <label for="exampleInputAadhar" style="color:#ff6700"><b>Describe</b></label>
-                                                    <input class="form-control" placeholder="Textarea" name="message" required>
+                                                    <label for="exampleInputAadhar"
+                                                        style="color:#ff6700"><b>Describe</b></label>
+                                                    <input class="form-control" placeholder="Textarea" name="message"
+                                                        required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode">Add Attachments</label>
-                                                    <input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments">
+                                                    <input type="file" class="form-control" id="exampleInputcode"
+                                                        placeholder="" name="add_attachments">
                                                 </div>
                                             </div>
-                                            <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0" style="text-align:right">send</button>
+                                            <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0"
+                                                style="text-align:right">send</button>
                                         </div>
                                     </div>
                                 </div>

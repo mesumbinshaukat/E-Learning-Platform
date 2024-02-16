@@ -104,7 +104,7 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                             // }
                                             $college_query = mysqli_query($conn, $query);
                                             $college = mysqli_fetch_assoc($college_query);
-                                            $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `college_name` = '{$college["name"]}'");
+                                            $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `college_id` = '{$college["id"]}'");
                                             if (mysqli_num_rows($student_query) > 0) {
                                                 $i = 1;
                                                 while ($student = mysqli_fetch_assoc($student_query)) {

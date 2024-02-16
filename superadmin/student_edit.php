@@ -44,7 +44,7 @@ if (isset($_POST["update"])) {
     $stream = filter_var($_POST['stream'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $semester = filter_var($_POST['semester'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $account_type = filter_var($_POST['account_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $institution_name = filter_var($_POST['institution_name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $institution_id = filter_var($_POST['institution_name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $student_username = filter_var($_POST['student_username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     if (empty($password)) {
@@ -54,7 +54,12 @@ if (isset($_POST["update"])) {
     }
     $intership_term = filter_var($_POST['intership_term'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $created_by = "Admin";
-
+    if ($institution_id != "None") {
+        $college_query = mysqli_query($conn, "SELECT * FROM `college` WHERE `id` = $institution_id");
+        $fetch = mysqli_fetch_assoc($college_query);
+        $institution_name = $fetch['name'];
+        $institution_id = $fetch['id'];
+    }
 
 
     if (!empty($_FILES['upload_cv']['name'])) {
@@ -81,9 +86,9 @@ if (isset($_POST["update"])) {
         }
     }
 
-    $query = mysqli_prepare($conn, "UPDATE `student` SET `name`=?,`contact_number`=?,`email`=?,`username`=?,`internship`=?,`password`=?,`gender`=?,`address`=?,`alternate_contact_number`=?,`state`=?,`district`=?,`dob`=?,`pin_code`=?,`qualification`=?,`branch`=?,`semester`=?,`account_type`=?,`college_name`=? WHERE `id` = $id");
+    $query = mysqli_prepare($conn, "UPDATE `student` SET `name`=?,`contact_number`=?,`email`=?,`username`=?,`internship`=?,`password`=?,`gender`=?,`address`=?,`alternate_contact_number`=?,`state`=?,`district`=?,`dob`=?,`pin_code`=?,`qualification`=?,`branch`=?,`semester`=?,`account_type`=?,`college_name`=?, `college_id`=? WHERE `id` = $id");
 
-    $query->bind_param("ssssssssssssssssss", $student_name, $phone_number, $mail_id, $student_username, $intership_term, $password_hash, $gender, $address, $alternative_phone_number, $state, $district, $date_of_birth, $pincode, $qualification, $stream, $semester, $account_type, $institution_name);
+    $query->bind_param("sssssssssssssssssss", $student_name, $phone_number, $mail_id, $student_username, $intership_term, $password_hash, $gender, $address, $alternative_phone_number, $state, $district, $date_of_birth, $pincode, $qualification, $stream, $semester, $account_type, $institution_name, $institution_id);
 
     if ($query->execute()) {
         $_SESSION['success'] = "Student created successfully";
@@ -629,13 +634,13 @@ if (isset($_POST["update"])) {
 
                                                             switch ($fetch_student['institution_name']) {
                                                                 case $row['name']:
-                                                                    echo '<option value="' . $row['name'] . '" selected>' . $row['name'] . '</option>';
+                                                                    echo '<option value="' . $row['id'] . '" selected>' . $row['name'] . '</option>';
                                                                     break;
                                                                 case $row["name"] != $fetch_student['institution_name']:
-                                                                    echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                                                                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
                                                                     break;
                                                                 default:
-                                                                    echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                                                                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
                                                             }
                                                         }
                                                     } ?>
@@ -756,8 +761,6 @@ if (isset($_POST["update"])) {
 
     </div>
     <!-- End Page -->
-
-
 
     <?php include("./scripts.php"); ?>
 </body>

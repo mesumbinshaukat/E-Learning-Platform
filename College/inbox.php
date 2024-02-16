@@ -135,7 +135,7 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                         $college_result = mysqli_query($conn, $college_query);
                                         $fetch = mysqli_fetch_assoc($college_result);
 
-                                        $sql = "SELECT * FROM `mail` WHERE (`sender_email` = '" . $fetch["email"] . "' AND `sender_id` = '" . $fetch["id"] . "') OR (`recipient_email` = '" . $fetch["email"] . "' AND `recipient_id` = '" . $fetch["id"] . "')";
+                                        $sql = "SELECT * FROM `mail` WHERE `sender_type` = 'College' OR `sender_type` = 'Admin' OR `sender_type`='Student' AND `sender_id` = '" . $fetch["id"] . "'";
                                         $query = mysqli_query($conn, $sql);
 
                                         if (mysqli_num_rows($query) > 0) {
