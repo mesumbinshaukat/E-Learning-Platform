@@ -19,7 +19,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 		<meta name="Description" content="">
 		
 		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+		<title>Course List</title>
 
 		<?php 
 	 include('./style.php'); 
@@ -34,9 +34,9 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	  ?>
 
 		<!-- Loader -->
-		<div id="global-loader">
+		<!-- <div id="global-loader">
 			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div>
+		</div> -->
 		<!-- /Loader -->
 
 		<!-- Page -->
@@ -81,7 +81,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
                                                								
 									</div> -->
 									
-<br>																		
+																		
 <br>	
 						<div class="row row-sm">
 							<div class="col-lg-12">

@@ -1,4 +1,5 @@
 <?php 
+include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
 	header('location: ../trainer_login.php');
 	exit();
@@ -17,7 +18,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 		<meta name="Description" content="">
 		
 		<!-- Title -->
-		<title> TriaRight: The New Era of Learning</title>
+		<title>Dashboard</title>
 
 		<?php 
 	 include('./style.php'); 
@@ -31,9 +32,9 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 	  ?>
 
 		<!-- Loader -->
-		<div id="global-loader">
+		<!-- <div id="global-loader">
 			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div>
+		</div> -->
 		<!-- /Loader -->
 
 		<!-- Page -->
@@ -79,12 +80,19 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 									<div class="row">
 										<div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
 											<div class="prime-card"><img class="img-fluid" src="assets/img/reg.gif" alt=""></div>
-										</div>
+</div>
 										<div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
 											<div class="text-justified align-items-center">
-												<h2 class="text-dark font-weight-semibold mb-3 mt-2">Hi <span style="color:#ff6700"></span>, Welcome to <span class="text-primary">TriaRight</span></h2>
+												<h2 class="text-dark font-weight-semibold mb-3 mt-2">Hi <span style="color:#ff6700"><?php
+												 if(isset($_COOKIE['trainer_username'])) {
+												$username = $_COOKIE['trainer_username'];
+												 $select_trainername = mysqli_query($conn,"SELECT * FROM `trainer` WHERE username = '$username' ");
+												 $fetch_trainername = mysqli_fetch_assoc($select_trainername);
+												 echo $fetch_trainername['name'];
+												 }
+												?></span>, Welcome to <span class="text-primary">Invictus Solutions</span></h2>
 												<p class="text-dark tx-15 mb-2 lh-3">Thankyou for choosing us, We are delighted that you have joined us and we look forward you provide a wealth of resources and information that will help candidates to succeed in their academic journey.</p>
-												<p class="font-weight-semibold tx-12 mb-4" style="color:#ff6700">For any queries, contact us through support chat or mail us at info@triaright.com </p> 
+												<p class="font-weight-semibold tx-12 mb-4" style="color:#ff6700">For any queries, contact us through support chat or mail us at info@invictussolutions.com </p> 
 											<!--	<button class="btn btn-primary mb-3 shadow"><a href="registerstudent0.html"><span style="color:#ffffff;">Complete Registration</span></a></button> -->
 											</div>
 										</div>

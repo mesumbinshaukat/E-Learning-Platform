@@ -48,7 +48,7 @@ if (isset($_GET['summary_id'])) {
         $update_query = "UPDATE `batches_summary` SET `date_of_summary`=?,`performer_of_day`=?,`topics_covered`=?,`overall_feedback`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
-            "ssssssi",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback,$batch_id,$batch_name,$id   
+            "ssssssi",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback,$batch_id,$batch_name,$id
         );
 
         if (mysqli_stmt_execute($update_stmt)) {

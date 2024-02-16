@@ -111,7 +111,8 @@ else{
 								<div class="card-body">
 									
 									<?php 
-                                    $select_trainer_name = ($conn->query("SELECT * FROM `trainer` WHERE `username` = '$_COOKIE[trainer_username]'"))->fetch_assoc();
+									$un = $_COOKIE['trainer_username'];
+                                    $select_trainer_name = ($conn->query("SELECT * FROM `trainer` WHERE `username` = '$un'"))->fetch_assoc();
                                     ?>
 
 									<div class="">
@@ -145,7 +146,7 @@ else{
 					
 
     
-					<a href="courselist.php" class="btn btn-success	mt-3 mb-0 mx-3	"><i class="las la-angle-left me-2"></i>Go to Course List</a>
+					<a href="courselist.php" class="btn btn-success	mt-3 mb-0 mx-3	"><i class="las la-angle-left pe-2"></i>Go to Course List</a>
 				</div>
 				<!-- Container closed -->
 			</div>
