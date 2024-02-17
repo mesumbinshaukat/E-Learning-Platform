@@ -89,7 +89,7 @@ if (isset($_POST["submit"])) {
 			} else if ($sending_format === "Batches") {
 				$insert_query_college = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `batch_id`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 				$recipient_type = "Trainer";
-				$insert_query_college->bind_param("ssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $batch_id, $recipient_type);
+				$insert_query_college->bind_param("sssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $sending_format, $subject, $message, $add_attachments_with_date, $purpose, $batch_id, $recipient_type);
 				if ($insert_query_college->execute()) {
 					if (!empty($add_attachments)) {
 						move_uploaded_file($add_attachments_tmp, "./assets/docs/attachments/" . $add_attachments_with_date);
@@ -206,87 +206,90 @@ if (isset($_POST["submit"])) {
 <html lang="en">
 
 <head>
-	<title>Compose</title>
-	<meta charset="UTF-8">
-	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="Description" content="">
-	<?php include("./style.php"); ?>
+    <title>Compose</title>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="">
+    <?php include("./style.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-	<?php include("./switcher.php"); ?>
+    <?php include("./switcher.php"); ?>
 
-	<!-- Page -->
-	<div class="page">
-		<div>
-			<div class="main-header side-header sticky nav nav-item">
-				<?php include('./partials/navbar.php'); ?>
-			</div>
-			<!-- /main-header -->
+    <!-- Page -->
+    <div class="page">
+        <div>
+            <div class="main-header side-header sticky nav nav-item">
+                <?php include('./partials/navbar.php'); ?>
+            </div>
+            <!-- /main-header -->
 
-			<!-- main-sidebar -->
-			<div class="sticky">
-				<?php include('./partials/sidebar.php'); ?>
-			</div>
-			<!-- main-sidebar -->
+            <!-- main-sidebar -->
+            <div class="sticky">
+                <?php include('./partials/sidebar.php'); ?>
+            </div>
+            <!-- main-sidebar -->
 
-		</div>
-		<form action="" method="POST" enctype="multipart/form-data">
-			<!-- main-content -->
-			<div class="main-content app-content">
-				<!-- container -->
-				<div class="main-container container-fluid">
-					<!-- breadcrumb -->
-					<div class="breadcrumb-header justify-content-between">
-						<div class="left-content">
-							<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Compose Mail</span>
-						</div>
-					</div>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <!-- main-content -->
+            <div class="main-content app-content">
+                <!-- container -->
+                <div class="main-container container-fluid">
+                    <!-- breadcrumb -->
+                    <div class="breadcrumb-header justify-content-between">
+                        <div class="left-content">
+                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700"> Compose Mail</span>
+                        </div>
+                    </div>
 
-					<?php
+                    <?php
 					if (isset($_SESSION["mail_sent"]) && !empty($_SESSION["mail_sent"])) {
 						echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>" . $_SESSION['mail_sent'] . "</div> ";
 						unset($_SESSION["mail_sent"]);
 					}
 					?>
 
-					<div class="card">
-						<div class="card-body">
-							<div class="row row-sm">
-								<div class="form-group col-md-6">
-									<label for="dropdown">Recipient</label>
-									<select id="dropdown1" onchange="showOptions1()" name="recipient" required class="form-control form-select select2" data-bs-placeholder="Select Country">
-										<option value="College">College</option>
-										<option value="Trainer">Trainer</option>
-										<option value="Student">Student</option>
-									</select>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="dropdown">Sending format</label>
-									<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">
-										<option value="All">All</option>
-										<option value="Individuals">Individuals</option>
-										<option id="batch" style="display:none;" value="Batches">Batches</option>
-									</select>
-								</div>
-								<div class="form-group col-md-12" id="optionsDiv">
-									<label for="exampleInputAadhar" hidden>User ID</label>
-									<select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
-										<option value="ALL"></option>
-									</select>
-								</div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row row-sm">
+                                <div class="form-group col-md-6">
+                                    <label for="dropdown">Recipient</label>
+                                    <select id="dropdown1" onchange="showOptions1()" name="recipient" required
+                                        class="form-control form-select select2" data-bs-placeholder="Select Country">
+                                        <option value="College">College</option>
+                                        <option value="Trainer">Trainer</option>
+                                        <option value="Student">Student</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="dropdown">Sending format</label>
+                                    <select id="dropdown" onchange="showOptions1()" name="sending_format" required
+                                        class="form-control form-select select2" data-bs-placeholder="Select Country">
+                                        <option value="All">All</option>
+                                        <option value="Individuals">Individuals</option>
+                                        <option id="batch" style="display:none;" value="Batches">Batches</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12" id="optionsDiv">
+                                    <label for="exampleInputAadhar" hidden>User ID</label>
+                                    <select name="User_ID" hidden required class="form-control form-select select2"
+                                        data-bs-placeholder="Select Country">
+                                        <option value="ALL"></option>
+                                    </select>
+                                </div>
 
-								<script>
-									function showOptions1() {
-										var recipientValue = document.getElementById("dropdown1").value;
-										var sendingFormatValue = document.getElementById("dropdown").value;
+                                <script>
+                                function showOptions1() {
+                                    var recipientValue = document.getElementById("dropdown1").value;
+                                    var sendingFormatValue = document.getElementById("dropdown").value;
 
-										if (recipientValue === "Student") {
-											document.getElementById("batch").style.display = "unset";
+                                    if (recipientValue === "Student") {
+                                        document.getElementById("batch").style.display = "unset";
 
-											if (sendingFormatValue === "Individuals") {
-												document.getElementById("optionsDiv").innerHTML = `
+                                        if (sendingFormatValue === "Individuals") {
+                                            document.getElementById("optionsDiv").innerHTML = `
                                                 <label for="exampleInputAadhar">User ID</label>
                                                 <select name="student_id" required class="form-control form-select select2" data-bs-placeholder="Select Student">
                                                     <?php
@@ -301,8 +304,8 @@ if (isset($_POST["submit"])) {
 													?>
                                                 </select>
                                             `;
-											} else if (sendingFormatValue === "Batches") {
-												document.getElementById("optionsDiv").innerHTML = `
+                                        } else if (sendingFormatValue === "Batches") {
+                                            document.getElementById("optionsDiv").innerHTML = `
                                                 <div class="form-group col-md-6">
                                                     <label for="exampleInputAadhar">Select batch</label>
                                                     <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
@@ -320,15 +323,15 @@ if (isset($_POST["submit"])) {
                                                     </select>
                                                 </div>
                                             `;
-											} else {
-												document.getElementById("optionsDiv").innerHTML = "";
-											}
-										} else if (recipientValue === "College") {
-											document.getElementById("batch").style.display = "none";
+                                        } else {
+                                            document.getElementById("optionsDiv").innerHTML = "";
+                                        }
+                                    } else if (recipientValue === "College") {
+                                        document.getElementById("batch").style.display = "none";
 
-											var selectedOption = document.getElementById("dropdown").value;
-											if (selectedOption === "Individuals") {
-												document.getElementById("optionsDiv").innerHTML = `
+                                        var selectedOption = document.getElementById("dropdown").value;
+                                        if (selectedOption === "Individuals") {
+                                            document.getElementById("optionsDiv").innerHTML = `
                                                 <label for="exampleInputAadhar">College ID</label>
                                                 <select name="college_id" required class="form-control form-select select2" data-bs-placeholder="Select Country">
                                                     <?php
@@ -343,27 +346,27 @@ if (isset($_POST["submit"])) {
 													?>
                                                 </select>
                                             `;
-											} else if (selectedOption === "batches") {
-												document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">
+                                        } else if (selectedOption === "batches") {
+                                            document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">
                                                     <option value="All">All</option>
                                                     <option value="Individuals">Individuals</option>
                                                     <option id="batch" style="display:none;" value="Batches">batches</option>
                                                 </select>`;
-												document.getElementById("optionsDiv").innerHTML = "";
-											} else {
-												document.getElementById("optionsDiv").innerHTML = `
+                                            document.getElementById("optionsDiv").innerHTML = "";
+                                        } else {
+                                            document.getElementById("optionsDiv").innerHTML = `
                                                 <label for="exampleInputAadhar" hidden>User ID</label>
                                                 <select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
                                                     <option value="ALL"></option>
                                                 </select>
                                                 `;
-											}
-										} else if (recipientValue === "Trainer") {
-											document.getElementById("batch").style.display = "none";
+                                        }
+                                    } else if (recipientValue === "Trainer") {
+                                        document.getElementById("batch").style.display = "none";
 
-											var selectedOption = document.getElementById("dropdown").value;
-											if (selectedOption === "Individuals") {
-												document.getElementById("optionsDiv").innerHTML = `
+                                        var selectedOption = document.getElementById("dropdown").value;
+                                        if (selectedOption === "Individuals") {
+                                            document.getElementById("optionsDiv").innerHTML = `
                                                 <label for="exampleInputAadhar">User ID</label>
                                                 <select name="trainer_id" required class="form-control form-select select2" data-bs-placeholder="Select Trainer">
                                                     <?php
@@ -378,79 +381,88 @@ if (isset($_POST["submit"])) {
 													?>
                                                 </select>
                                             `;
-											} else if (selectedOption === "batches") {
-												document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">                                           
+                                        } else if (selectedOption === "batches") {
+                                            document.getElementById("dropdown").innerHTML = `<select id="dropdown" onchange="showOptions1()" name="sending_format" required class="form-control form-select select2" data-bs-placeholder="Select Country">                                           
                                                     <option value="All">All</option>
                                                     <option value="Individuals">Individuals</option>
                                                     <option id="batch" style="display:none;" value="batches">batches</option>
                                                 </select>`;
-												document.getElementById("optionsDiv").innerHTML = "";
-											} else {
-												document.getElementById("optionsDiv").innerHTML = `
+                                            document.getElementById("optionsDiv").innerHTML = "";
+                                        } else {
+                                            document.getElementById("optionsDiv").innerHTML = `
                                                 <label for="exampleInputAadhar" hidden>User ID</label>
                                                 <select name="User_ID" hidden required class="form-control form-select select2" data-bs-placeholder="Select Country">
                                                     <option value="ALL"></option>
                                                 </select>
                                                 `;
-											}
-										} else {
-											document.getElementById("batch").style.display = "none";
-										}
-									}
-								</script>
-							</div>
+                                        }
+                                    } else {
+                                        document.getElementById("batch").style.display = "none";
+                                    }
+                                }
+                                </script>
+                            </div>
 
-							<!-- row -->
-							<div class="row">
-								<div class="col-lg-12 col-md-12">
-									<div class="">
-										<div class="row row-xs formgroup-wrapper">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputCompanyPhone" style="color:#ff6700"><b>Subject</b></label>
-													<input type="text" class="form-control" id="exampleInputCompanyPhone" placeholder="Enter Subject" name="subject" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label for="exampleInputAadhar" style="color:#ff6700"><b>Purpose</b></label>
-													<select name="purpose" class="form-control form-select select2" data-bs-placeholder="Select Country" required>
-														<option value="query">query</option>
-														<option value="feedback">feedback</option>
-														<option value="issue">issue</option>
-														<option value="General">General</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-label">
-													<label for="exampleInputAadhar" style="color:#ff6700"><b>Message</b></label>
-													<input class="form-control" placeholder="Textarea" name="message" required>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label for="exampleInputcode">add attachments</label>
-													<input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments">
-												</div>
-											</div>
-											<button type="submit" name="submit" class="btn btn-primary mt-3 mb-0" style="text-align:right">Send
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Container closed -->
-			</div>
-		</form>
-	</div>
+                            <!-- row -->
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="">
+                                        <div class="row row-xs formgroup-wrapper">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputCompanyPhone"
+                                                        style="color:#ff6700"><b>Subject</b></label>
+                                                    <input type="text" class="form-control"
+                                                        id="exampleInputCompanyPhone" placeholder="Enter Subject"
+                                                        name="subject" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputAadhar"
+                                                        style="color:#ff6700"><b>Purpose</b></label>
+                                                    <select name="purpose" class="form-control form-select select2"
+                                                        data-bs-placeholder="Select Country" required>
+                                                        <option value="query">query</option>
+                                                        <option value="feedback">feedback</option>
+                                                        <option value="issue">issue</option>
+                                                        <option value="General">General</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-label">
+                                                    <label for="exampleInputAadhar"
+                                                        style="color:#ff6700"><b>Message</b></label>
+                                                    <input class="form-control" placeholder="Textarea" name="message"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputcode">add attachments</label>
+                                                    <input type="file" class="form-control" id="exampleInputcode"
+                                                        placeholder="" name="add_attachments">
+                                                </div>
+                                            </div>
+                                            <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0"
+                                                style="text-align:right">Send
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container closed -->
+            </div>
+        </form>
+    </div>
 
-	<!-- End Page -->
+    <!-- End Page -->
 
-	<?php include("./scripts.php"); ?>
+    <?php include("./scripts.php"); ?>
 
 </body>
 
