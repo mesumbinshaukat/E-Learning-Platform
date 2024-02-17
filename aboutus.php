@@ -8,7 +8,7 @@ include("./db_connection/connection.php");
 <html lang="en">
 
 <head>
-    <title></title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
@@ -19,6 +19,11 @@ include("./db_connection/connection.php");
     include("links.php")
 
     ?>
+    <style>
+    p {
+        text-align: justify !important;
+    }
+    </style>
 </head>
 
 <body>
@@ -124,8 +129,8 @@ include("./db_connection/connection.php");
                         </div>
                     </div>
                     <div class="col-12 col-lg-5">
-                        <h2>TriaRight: The New Era of Learning</h2>
-                        <p class="lead">TriaRight Solutions is the only platform where you can make learn, be an Intern
+                        <h2>Invictus: The New Era of Learning</h2>
+                        <p class="lead">Invictus Solutions is the only platform where you can make learn, be an Intern
                             and
                             Become an Employee.</p>
 

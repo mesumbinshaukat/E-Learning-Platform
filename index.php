@@ -23,6 +23,10 @@ $testimony = mysqli_query($conn, "SELECT * FROM `testimonials`");
     include("links.php")
     ?>
     <style>
+    p {
+        text-align: justify !important;
+    }
+
     .owl-carousel {
         display: flex;
         flex-wrap: nowrap;

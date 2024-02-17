@@ -13,6 +13,11 @@ $select_internships = mysqli_query($conn, "SELECT * FROM `internship`");
     include("links.php")
 
     ?>
+    <style>
+    p {
+        text-align: justify !important;
+    }
+    </style>
 </head>
 
 <body>

@@ -16,7 +16,9 @@ $select_courses = mysqli_query($conn, "SELECT * FROM `course`");
 
     ?>
     <style>
-
+    p {
+        text-align: justify !important;
+    }
     </style>
 </head>
 

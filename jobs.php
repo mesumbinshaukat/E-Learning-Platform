@@ -15,6 +15,11 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
     include("links.php")
 
     ?>
+    <style>
+    p {
+        text-align: justify !important;
+    }
+    </style>
 </head>
 
 <body>
