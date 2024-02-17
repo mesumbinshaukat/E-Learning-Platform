@@ -125,14 +125,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                     <!-- row -->
 
-                    <?php
-                    if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) {
-                        echo "<script>toastr.success('Internship Added!')</script>";
-                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>" . $_SESSION['message_success'] . "</div> ";
-                        session_destroy();
-                    }
-
-                    ?>
 
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
@@ -145,7 +137,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             <div class="control-group form-group">
                                                 <label class="form-label">Company Name</label>
                                                 <input type="text" class="form-control" name="company_name"
-                                                    placeholder="Course Name" required>
+                                                    placeholder="Company Name" required>
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Internship Title</label>
@@ -340,6 +332,13 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <!-- End Page -->
 
     <?php include("./scripts.php"); ?>
+    <?php if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) { ?>
+    <script>
+    // Displaying a success message
+    toastr.success('Internship Added!');
+    </script>
+
+    <?php } ?>
 </body>
 
 </html>

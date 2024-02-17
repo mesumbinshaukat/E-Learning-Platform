@@ -56,12 +56,12 @@
 	    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
+
+
 	<!-- Toastr Alert -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-
 	<!-- JQUERY JS -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
 	<!-- Toastr Alert -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
