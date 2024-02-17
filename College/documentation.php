@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -21,11 +21,6 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-    <!-- main-sidebar -->
-    <div class="sticky">
-        <?php include("./partials/navbar.php") ?>
-    </div>
-    <!-- main-sidebar -->
 
     <!-- Page -->
     <div class="page">
@@ -33,58 +28,100 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
         <div>
 
             <div class="main-header side-header sticky nav nav-item">
-                <?php include("./partials/sidebar.php"); ?>
+                <?php include("./partials/navbar.php") ?>
             </div>
             <!-- /main-header -->
 
-
-            <!-- main-content -->
-            <div class="main-content app-content">
-
-                <!-- container -->
-                <div class="main-container container-fluid">
-
-
-                    <!-- breadcrumb -->
-                    <div class="breadcrumb-header justify-content-between">
-                        <div class="left-content">
-                            <span class="main-content-title mg-b-0 mg-b-lg-1">Documentations</span>
-                        </div>
-                        <div class="justify-content-center mt-2">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">File Manager</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Documentations</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <!-- /breadcrumb -->
-
-                    <!-- row -->
-                    <div class="row">
-
-                        <div class="col-lg-12 col-xl-12">
-
-                            <div class="row">
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- End Row -->
-
-
-                </div>
-                <!-- Container closed -->
+            <!-- main-sidebar -->
+            <div class="sticky">
+                <?php include("./partials/sidebar.php"); ?>
             </div>
+            <!-- main-sidebar -->
 
         </div>
-        <!-- Container closed -->
+
+        <!-- main-content -->
+        <div class="main-content app-content">
+
+            <!-- container -->
+            <div class="main-container container-fluid">
+
+
+                <div class="breadcrumb-header justify-content-between">
+                    <div class="right-content">
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Course
+                            Documentation</span>
+                    </div>
+
+                    <div class="justify-content-center mt-2">
+                        <ol class="breadcrumb">
+
+                            <li class="breadcrumb-item ">Course</li>
+                            <li class="breadcrumb-item ">Documentation</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <div class="card custom-card overflow-hidden">
+                            <div class="card-body">
+
+                                <div class="table-responsive  export-table">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-bottom-0">S.No</th>
+                                                <th class="border-bottom-0">Date of Adding</th>
+                                                <th class="border-bottom-0">Description</th>
+                                                <th class="border-bottom-0">Document</th>
+                                                <th class="border-bottom-0">Additional Information</th>
+                                                <th class="border-bottom-0">Batch Name</th>
+
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $doc_query = mysqli_query($conn, "SELECT * FROM `batches_documentation`");
+                                            if (mysqli_num_rows($doc_query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($doc_query)) {
+
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $row['date_of_documentation'] . "</td>";
+                                                    echo "<td>" . $row['description'] . "</td>"; ?>
+                                            <td> <a href="../Trainer/assets/docs/supportive_docs/<?php echo $row['shared_documents'] ?>"
+                                                    class="btn btn-info" download="">Download</a> </td>
+                                            <?php
+                                                    echo "<td>" . $row['additional_information'] . "</td>";
+                                                    echo "<td>" . $row['batch_name'] . "</td>";
+
+
+                                                    echo "</tr>";
+                                                }
+                                            } else {
+
+                                                echo "No Documentation found";
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+
+            </div>
+        </div>
+
     </div>
-    <!-- main-content closed -->
-
-    <!-- Sidebar-right-->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
     <?php include("./script.php"); ?>
 </body>
 
