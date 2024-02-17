@@ -140,6 +140,10 @@
     text-align: center;
 
 }
+
+p {
+    text-align: center !important;
+}
 </style>
 
 <script src="./assets/js/jquery-3.5.1.min.js"></script>

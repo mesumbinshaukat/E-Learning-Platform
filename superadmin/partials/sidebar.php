@@ -274,7 +274,7 @@
                 </ul>
             </li>
 
-            <li class="slide">
+            <!-- <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="bi bi-list"
                         width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span
                         class="side-menu__label">Registrations</span><i class="angle bi bi-chevron-right"></i></a>
@@ -282,7 +282,7 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Registrations</a></li>
                     <li><a class="bi bi-dot" href="internshipregistrations.php "
                             style="font-size:14px; line-height: 2;">Add</a></li>
-                    <!-- <li><a class="bi bi-dot" href="pendinginternshipregistrations.php" style="font-size:14px; line-height: 2;">Pending</a></li> -->
+                   
                     <li><a class="bi bi-dot" href="manageinternshipregistrations.php"
                             style="font-size:14px; line-height: 2;">Manage</a></li>
                     <li><a class="bi bi-dot" href="internshipregistrationlist.php"
@@ -290,7 +290,7 @@
 
 
                 </ul>
-            </li>
+            </li> -->
 
             <li class="side-item side-item-category">Placements</li>
 
@@ -331,7 +331,7 @@
                 </ul>
             </li>
 
-            <li class="side-item side-item-category">batches management</li>
+            <li class="side-item side-item-category">internship management</li>
 
             <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i

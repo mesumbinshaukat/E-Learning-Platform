@@ -10,8 +10,7 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
             <div class="row">
                 <div class="col-sm-6 col-lg-4 mb-4">
                     <a class="footer-brand mr-lg-5 d-flex" href="./index.php">
-                        <img src="https://techbloggers.co/wp-content/uploads/2023/08/youtube-banner2048px-1152px.png"
-                            class="mr-3" alt="Footer logo">
+                        <img src="./assets/media/Invictus.png" class="mr-3" alt="Footer logo">
                     </a>
                     <p class="my-4">
                     <h5>Our Online Presence</h5>
@@ -103,10 +102,10 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <p class="copyright pb-0 mb-0">Copyrights ©E-Learning 2024. All
                             Rights Reserved By
-                            <a href="https://worldoftech.company" target="_blank">Mesum Bin Shaukat</a> &nbsp
+                            <a href="#" target="_blank">Invictus</a> &nbsp
                         </p>
-                        <p class="copyright pb-0 mb-0"> Developed By <a href="https://worldoftech.company"
-                                target="_blank">World Of Tech</a> </p>
+                        <!-- <p class="copyright pb-0 mb-0"> Developed By <a href="#"
+                                target="_blank">World Of Tech</a> </p> -->
                     </div>
                 </div>
             </div>

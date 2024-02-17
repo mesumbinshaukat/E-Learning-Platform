@@ -99,8 +99,8 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Chats</a></li>
                     <li><a class="slide-item" href="compose.php">Compose</a></li>
                     <li><a class="slide-item" href="inbox.php">Inbox</a></li>
-                    <li><a class="slide-item" href="outbox.php">Outbox</a></li>
-                    <li><a class="slide-item" href="message.php">All Details</a></li>
+                    <!-- <li><a class="slide-item" href="outbox.php">Outbox</a></li>
+                    <li><a class="slide-item" href="message.php">All Details</a></li> -->
 
                 </ul>
             </li>

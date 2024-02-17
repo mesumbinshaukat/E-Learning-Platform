@@ -45,12 +45,12 @@ if (isset($_POST["create"])) {
 
 
     if ($query->execute()) {
-        $_SESSION['message_success'] = true;
+        $_SESSION['message_success'] = "Working";
         move_uploaded_file($main_image_tmp, "./assets/img/internship/" . $main_image);
         move_uploaded_file($inner_image_tmp, "./assets/img/internship/" . $inner_image);
         header("location: addinternship.php");
     } else {
-        $_SESSION['message_failed'] = true;
+        $_SESSION['message_failed'] = "Fill Correct Details.";
         $_SESSION["err_msg"] = "Fill Correct Details.";
     }
 }
@@ -75,16 +75,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 <body class="ltr main-body app sidebar-mini">
 
-    <?php
-    if (isset($_SESSION['message_success'])) {
-        echo "<script>toastr.success('Internship Added!')</script>";
-        session_destroy();
-    }
-    if (isset($_SESSION['message_failed'])) {
-        echo "<script>toastr.error('Fill Correct Details!')</script>";
-        session_destroy();
-    }
-    ?>
+
 
     <?php include("./switcher.php"); ?>
 
@@ -133,6 +124,16 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     <!-- /row -->
 
                     <!-- row -->
+
+                    <?php
+                    if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) {
+                        echo "<script>toastr.success('Internship Added!')</script>";
+                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>" . $_SESSION['message_success'] . "</div> ";
+                        session_destroy();
+                    }
+
+                    ?>
+
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
@@ -143,15 +144,18 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <section>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Company Name</label>
-                                                <input type="text" class="form-control" name="company_name" placeholder="Course Name" required>
+                                                <input type="text" class="form-control" name="company_name"
+                                                    placeholder="Course Name" required>
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Internship Title</label>
-                                                <input type="text" class="form-control" name="internship_title" placeholder="Title" required>
+                                                <input type="text" class="form-control" name="internship_title"
+                                                    placeholder="Title" required>
                                             </div>
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Industry</label>
-                                                <select class="form-control form-select select2" name="industry" data-bs-placeholder="Select Stream" required>
+                                                <select class="form-control form-select select2" name="industry"
+                                                    data-bs-placeholder="Select Stream" required>
                                                     <option value="Information Technology">Information Technology
                                                     </option>
                                                     <option value="Non IT">Non IT</option>
@@ -165,12 +169,14 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Duration(Days)</label>
-                                                <input type="number" class="form-control" name="duration" placeholder="Duration(Days)" required>
+                                                <input type="number" class="form-control" name="duration"
+                                                    placeholder="Duration(Days)" required>
                                             </div>
 
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Eligibility</label>
-                                                <select class="form-control form-select select2" name="eligibility" data-bs-placeholder="Select Eligibility" required>
+                                                <select class="form-control form-select select2" name="eligibility"
+                                                    data-bs-placeholder="Select Eligibility" required>
                                                     <option value="Under Graduate">Under Graduate</option>
                                                     <option value="Graduate">Graduate</option>
                                                     <option value="Post Graduate">Post Graduate</option>
@@ -182,11 +188,14 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Location</label>
-                                                <input type="" class="form-control" name="location" placeholder="Enter Location" required>
+                                                <input type="" class="form-control" name="location"
+                                                    placeholder="Enter Location" required>
                                             </div>
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Internship Category</label>
-                                                <select class="form-control form-select select2" name="internship_category" data-bs-placeholder="Select Category" required>
+                                                <select class="form-control form-select select2"
+                                                    name="internship_category" data-bs-placeholder="Select Category"
+                                                    required>
                                                     <option value="Virtual">Virtual</option>
                                                     <option value="Offline">Offline</option>
                                                     <option value="Hybrid (Dual)">Hybrid (Dual)</option>
@@ -195,7 +204,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             </div>
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Preferred For</label>
-                                                <select class="form-control form-select select2" name="preferred_for" data-bs-placeholder="Select Eligibility" required>
+                                                <select class="form-control form-select select2" name="preferred_for"
+                                                    data-bs-placeholder="Select Eligibility" required>
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                     <option value="Both">Both</option>
@@ -203,18 +213,21 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Number of Vacancies</label>
-                                                <input type="number" class="form-control" name="number_of_vacancies" placeholder="Vacancies Count" required>
+                                                <input type="number" class="form-control" name="number_of_vacancies"
+                                                    placeholder="Vacancies Count" required>
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Last Date to apply</label>
-                                                <input type="date" class="form-control" name="last_date_to_apply" placeholder="DD/MM/YYYY" required>
+                                                <input type="date" class="form-control" name="last_date_to_apply"
+                                                    placeholder="DD/MM/YYYY" required>
                                             </div>
 
 
 
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Certification</label>
-                                                <select class="form-control form-select select2" name="certification" data-bs-placeholder="Yes/No" required>
+                                                <select class="form-control form-select select2" name="certification"
+                                                    data-bs-placeholder="Yes/No" required>
                                                     <option value="Yes">Yes</option>
                                                     <option value="No">No</option>
 
@@ -228,18 +241,21 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                             <label class="form-label">Full Description</label>
                                             <div class="form-label">
-                                                <input type="text" class="form-control" placeholder="Textarea" name="full_description" required>
+                                                <input type="text" class="form-control" placeholder="Textarea"
+                                                    name="full_description" required>
                                             </div>
 
 
                                             <label class="form-label"> pre-Requirements</label>
                                             <div class="form-label">
-                                                <input type="text" class="form-control" placeholder="Textarea" name="pre_requirements" required>
+                                                <input type="text" class="form-control" placeholder="Textarea"
+                                                    name="pre_requirements" required>
                                             </div>
 
                                             <label class="form-label">additional information</label>
                                             <div class="form-label">
-                                                <input type="text" class="form-control" placeholder="Textarea" name="additional_information" required>
+                                                <input type="text" class="form-control" placeholder="Textarea"
+                                                    name="additional_information" required>
                                             </div>
 
                                         </section>
@@ -247,7 +263,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <section>
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Internship type</label>
-                                                <select class="form-control form-select select2" name="internship_type" data-bs-placeholder="Internship Type" required>
+                                                <select class="form-control form-select select2" name="internship_type"
+                                                    data-bs-placeholder="Internship Type" required>
                                                     <option value="Paid">Paid</option>
                                                     <option value="Free">Free</option>
                                                     <option value="Stipend">Stipend</option>
@@ -255,16 +272,19 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Enter Value (if paid)</label>
-                                                <input type="number" class="form-control" name="enter_value_ifpaid" placeholder="0,000/-">
+                                                <input type="number" class="form-control" name="enter_value_ifpaid"
+                                                    placeholder="0,000/-">
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Enter Value (if stifund)</label>
-                                                <input type="number" class="form-control" name="enter_value_ifstifund" placeholder="0,000/-">
+                                                <input type="number" class="form-control" name="enter_value_ifstifund"
+                                                    placeholder="0,000/-">
                                             </div>
 
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Food Allowances</label>
-                                                <select class="form-control form-select select2" name="food_allowances" data-bs-placeholder="Yes/No" required>
+                                                <select class="form-control form-select select2" name="food_allowances"
+                                                    data-bs-placeholder="Yes/No" required>
                                                     <option value="Yes">Yes</option>
                                                     <option value="No">No</option>
 
@@ -273,7 +293,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Transport Allowances</label>
-                                                <select class="form-control form-select select2" name="transport_allowances" data-bs-placeholder="Yes/No" required>
+                                                <select class="form-control form-select select2"
+                                                    name="transport_allowances" data-bs-placeholder="Yes/No" required>
                                                     <option value="Yes">Yes</option>
                                                     <option value="No">No</option>
 
@@ -286,15 +307,19 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                             <div class="control-group form-group">
                                                 <label class="form-label">Main Image (1200px*800px)</label>
-                                                <input type="file" class="form-control" name="main_image" placeholder="Choose File" required width="540" height="300">
+                                                <input type="file" class="form-control" name="main_image"
+                                                    placeholder="Choose File" required width="540" height="300">
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Inner image (600px*600px)</label>
-                                                <input type="file" class="form-control" name="inner_image" placeholder="Choose File" required width="540" height="300">
+                                                <input type="file" class="form-control" name="inner_image"
+                                                    placeholder="Choose File" required width="540" height="300">
                                             </div>
 
                                         </section>
-                                        <button type="submit" name="create" value="create" class="btn btn-primary mt-3 mb-0" style="text-align:right" onclick="return check()">Create</button>
+                                        <button type="submit" name="create" value="create"
+                                            class="btn btn-primary mt-3 mb-0" style="text-align:right"
+                                            onclick="return check()">Create</button>
 
                                     </div>
                                 </div>
