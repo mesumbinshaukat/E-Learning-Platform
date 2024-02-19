@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-	header('location: ../college_login.php');
-	exit();
+    header('location: ../college_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -31,12 +31,12 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
             </div>
             <!-- /main-header -->
 
-            <!-- main-sidebar -->
+
             <!-- main-sidebar -->
             <div class="sticky">
                 <?php include("./partials/sidebar.php"); ?>
             </div>
-            <!-- main-sidebar -->
+
 
         </div>
         <!-- main-content -->
@@ -71,16 +71,21 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                     <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
                                         <div class="text-justified align-items-center">
                                             <h2 class="text-dark font-weight-semibold mb-3 mt-2">Hi <span
-                                                    style="color:#ff6700"></span>, Welcome to <span
-                                                    class="text-primary">TriaRight</span></h2>
+                                                    style="color:#ff6700"></span>, <span
+                                                    class="text-primary"><?php
+                                                                                                                                                                    if (isset($_COOKIE['college_username'])) {
+                                                                                                                                                                        echo $_COOKIE['college_username'];
+                                                                                                                                                                    }
+                                                                                                                                                                    ?></span>
+                                            </h2>
                                             <p class="text-dark tx-15 mb-2 lh-3">Thankyou for choosing us, We are
                                                 delighted that you have joined us and we look forward to providing
                                                 candidates with a wealth of resources and information that will help
                                                 candidates succeed in their academic journey.</p>
                                             <p class="font-weight-semibold tx-12 mb-4" style="color:#ff6700">For any
                                                 queries, contact us through support chat or mail us at
-                                                info@triaright.com </p>
-                                            <!--		<button class="btn btn-primary mb-3 shadow"><a href="registerstudent0.php"><span style="color:#ffffff;">Complete Registration</span></a></button>-->
+                                                info@demo.com </p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -97,15 +102,30 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                 <div class="row">
                                     <div class="col text-center">
                                         <label class="tx-12">Courses</label>
-                                        <p class="font-weight-bold tx-20">18</p>
+                                        <p cla ss="font-weight-bold tx-20">
+                                            <?php
+                                            $course_query = mysqli_query($conn, "SELECT * FROM `course`");
+                                            echo mysqli_num_rows($course_query);
+                                            ?>
+                                        </p>
                                     </div><!-- col -->
                                     <div class="col border-start text-center">
                                         <label class="tx-12">Internships</label>
-                                        <p class="font-weight-bold tx-20">1</p>
+                                        <p class="font-weight-bold tx-20">
+                                            <?php
+                                            $internship_query = mysqli_query($conn, "SELECT * FROM `internship`");
+                                            echo mysqli_num_rows($internship_query);
+                                            ?>
+                                        </p>
                                     </div><!-- col -->
                                     <div class="col border-start text-center">
                                         <label class="tx-12">Placements</label>
-                                        <p class="font-weight-bold tx-20">0</p>
+                                        <p class="font-weight-bold tx-20">
+                                            <?php
+                                            $placement_query = mysqli_query($conn, "SELECT * FROM `placement`");
+                                            echo mysqli_num_rows($placement_query);
+                                            ?>
+                                        </p>
                                     </div><!-- col -->
 
                                 </div><!-- row -->
@@ -114,16 +134,32 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col text-center">
-                                        <label class="tx-12">Register students</label>
-                                        <p class="font-weight-bold tx-20">5065</p>
+                                        <label class="tx-12">Registered Students</label>
+                                        <p class="font-weight-bold tx-20">
+                                            <?php
+                                            $student_query = mysqli_query($conn, "SELECT * FROM `student`");
+                                            echo mysqli_num_rows($student_query);
+
+                                            ?>
+                                        </p>
                                     </div><!-- col -->
                                     <div class="col border-start text-center">
                                         <label class="tx-12">Colleges</label>
-                                        <p class="font-weight-bold tx-20">57</p>
+                                        <p class="font-weight-bold tx-20">
+                                            <?php
+                                            $college_query = mysqli_query($conn, "SELECT * FROM `college`");
+                                            echo mysqli_num_rows($college_query);
+                                            ?>
+                                        </p>
                                     </div><!-- col -->
                                     <div class="col border-start text-center">
                                         <label class="tx-12">Trainers</label>
-                                        <p class="font-weight-bold tx-20">43</p>
+                                        <p class="font-weight-bold tx-20">
+                                            <?php
+                                            $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer`");
+                                            echo mysqli_num_rows($trainer_query);
+                                            ?>
+                                        </p>
                                     </div><!-- col -->
 
                                 </div><!-- row -->
@@ -141,9 +177,9 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                             <img class="card-img-top w-100" src="assets/img/1.png" alt="">
                             <div class="card-body">
                                 <h4 class="card-title mb-3">Courses</h4>
-                                <p class="card-text">minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat.</p>
-                                <a class="btn btn-primary btn-Block" href="blog.php">View Courses</a>
+                                <p class="card-text">These are the currently available courses. Learn more about our
+                                    courses.</p>
+                                <a class="btn btn-primary btn-Block" href="./registercourse.php">View Courses</a>
                             </div>
                         </div>
                     </div>
@@ -152,9 +188,8 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                             <img class="card-img-top w-100" src="assets/img/1.png" alt="">
                             <div class="card-body">
                                 <h4 class="card-title mb-3">Internships</h4>
-                                <p class="card-text">minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat.</p>
-                                <a class="btn btn-primary btn-Block" href="blog.php">View Internships</a>
+                                <p class="card-text">Are you willing to participate in internships? Then join us. </p>
+                                <a class="btn btn-primary btn-Block" href="./internships.php">View Internships</a>
                             </div>
                         </div>
                     </div>
@@ -163,9 +198,9 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                             <img class="card-img-top w-100" src="assets/img/1.png" alt="">
                             <div class="card-body">
                                 <h4 class="card-title mb-3">Placements</h4>
-                                <p class="card-text">minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat.</p>
-                                <a class="btn btn-primary btn-Block" href="blog.php">View Placements</a>
+                                <p class="card-text">Are you interested in getting placed? Then check out your desired
+                                    placement. </p>
+                                <a class="btn btn-primary btn-Block" href="./placements.php">View Placements</a>
                             </div>
                         </div>
                     </div>

@@ -11,23 +11,23 @@ $query = "SELECT * FROM `student`";
 $run_query = mysqli_query($conn, $query);
 $id = $_COOKIE['student_id'];
 
-$course = "SELECT * FROM `course_registration` WHERE `student_id` = '$id'";
+$course = "SELECT * FROM `course`";
 $course_run = mysqli_query($conn, $course);
 $course_count = mysqli_num_rows($course_run);
 
-$internship = "SELECT * FROM `internship_registration` WHERE `student_id` = '$id'";
-$internship_run = mysqli_query($conn , $internship);
+$internship = "SELECT * FROM `internship`";
+$internship_run = mysqli_query($conn, $internship);
 $internship_count = mysqli_num_rows($internship_run);
 
-$placement = "SELECT * FROM `placement_applicants` WHERE `student_id` = '$id'";
-$placement_run = mysqli_query($conn , $placement);
+$placement = "SELECT * FROM `placement`";
+$placement_run = mysqli_query($conn, $placement);
 $placement_count = mysqli_num_rows($placement_run);
 
 $colleges = "SELECT * FROM `college`";
-$colleges_run = mysqli_query($conn , $colleges);
+$colleges_run = mysqli_query($conn, $colleges);
 
 $trainers = "SELECT * FROM `trainer`";
-$trainers_run = mysqli_query($conn ,$trainers);
+$trainers_run = mysqli_query($conn, $trainers);
 
 ?>
 
@@ -59,7 +59,7 @@ $trainers_run = mysqli_query($conn ,$trainers);
 
             <?php include("./partials/sidebar.php"); ?>
 
-            <!-- main-content -->
+
             <!-- main-content -->
             <div class="main-content app-content">
 
@@ -101,7 +101,7 @@ $trainers_run = mysqli_query($conn ,$trainers);
                                                     succeed in your academic journey.</p>
                                                 <p class="font-weight-semibold tx-12 mb-4" style="color:#ff6700">For any
                                                     queries, contact us through support chat or mail us at
-                                                    info@mesum.online</p>
+                                                    info@demo.online</p>
 
                                             </div>
                                         </div>
