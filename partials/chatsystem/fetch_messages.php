@@ -3,8 +3,8 @@
 $username = $_COOKIE['lc_username'];
 $email = $_COOKIE['lc_email'];
 
-$pdo = new PDO("mysql:host=localhost;dbname=e-learning", "root", "");
-// $pdo = new PDO("mysql:host=127.0.0.1:3306;dbname=u797177118_E_learning", "u797177118_root", "elearningPlatform123");
+// $pdo = new PDO("mysql:host=localhost;dbname=e-learning", "root", "");
+$pdo = new PDO("mysql:host=127.0.0.1:3306;dbname=u797177118_E_learning", "u797177118_root", "elearningPlatform123");
 $stmt = $pdo->query("SELECT * FROM messages WHERE (username = '$username') && (email = '$email') && (message_type = 'Live_Chat') ORDER BY id");
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $message = htmlspecialchars($row['message']);
