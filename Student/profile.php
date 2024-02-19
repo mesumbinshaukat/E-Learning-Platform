@@ -1,12 +1,12 @@
 <?php
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
-	header('location: ../student_login.php');
-	exit();
+    header('location: ../student_login.php');
+    exit();
 }
 include('../db_connection/connection.php');
 $id = $_COOKIE["student_id"];
 $select_query = "SELECT * FROM `student` WHERE `id` = $id";
-$run_query = mysqli_query($conn , $select_query );
+$run_query = mysqli_query($conn, $select_query);
 $data = mysqli_fetch_array($run_query);
 
 
@@ -28,13 +28,6 @@ $data = mysqli_fetch_array($run_query);
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-
-
-    <!-- Loader -->
-    <div id="global-loader">
-        <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div>
-    <!-- /Loader -->
 
     <!-- Page -->
     <div class="page">
@@ -68,17 +61,16 @@ $data = mysqli_fetch_array($run_query);
                                 <div class="card-body d-md-flex">
                                     <div class="">
                                         <span class="profile-image pos-relative">
-                                            <?php 
-                                              if($data['picture'] == ""){
+                                            <?php
+                                            if ($data['picture'] == "") {
                                                 echo "<img class='br-5' src='assets/img/profile/user.png'>";
-                                              }
-                                              else{?>
+                                            } else { ?>
 
                                             <img class='br-5' alt=''
                                                 src='assets/img/profile/<?php echo $data['picture']; ?>'>
 
                                             <?php }
-                                            
+
                                             ?>
 
 
@@ -112,7 +104,7 @@ $data = mysqli_fetch_array($run_query);
                                         &nbsp
                                         <button class="btn btn-primary mb-3 shadow"><a
                                                 href="../superadmin/assets/docs/student/cv/<?php echo $data['cv']; ?>"
-                                                 target="_blank" Download><span style="color:#ffffff;">CV
+                                                target="_blank" Download><span style="color:#ffffff;">CV
                                                     Download</span></a></button>
 
                                     </div>
@@ -362,7 +354,7 @@ $data = mysqli_fetch_array($run_query);
                                                         </div>
                                                     </div>
                                                 </div> -->
-                                                <a  href="updatestudentprofile.php"><button type="button"
+                                                <a href="updatestudentprofile.php"><button type="button"
                                                         class="btn btn-primary mt-3 mb-0" name="upload_cv"
                                                         style="text-align:right">Update Profile</button></a>
                                             </form>

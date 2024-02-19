@@ -1,8 +1,39 @@
 <?php
 session_start();
+
+include("../db_connection/connection.php");
+
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
     header('location: ../student_login.php');
     exit();
+}
+
+
+
+// Fetch required data before rendering HTML
+$trainerOptions = "";
+$student_id = $_COOKIE['student_id'];
+$course_registration_query = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$student_id}'");
+if (!$course_registration_query) {
+    die("Error in SQL query: " . mysqli_error($conn));
+}
+
+if (mysqli_num_rows($course_registration_query) > 0) {
+    while ($row = mysqli_fetch_assoc($course_registration_query)) {
+        $student_allocate_query = mysqli_query($conn, "SELECT * FROM `student_allocate` WHERE `student_id` = '{$row['student_id']}' AND `course_id` = '{$row['course_id']}'");
+        if (mysqli_num_rows($student_allocate_query) > 0) {
+            $fetch_allocate_id = mysqli_fetch_assoc($student_allocate_query)['allocate_id'];
+            $trainer_allocate_course_query = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `id` = '{$fetch_allocate_id}'");
+            if (mysqli_num_rows($trainer_allocate_course_query) > 0) {
+                $fetch_trainer_id = mysqli_fetch_assoc($trainer_allocate_course_query)['trainer_id'];
+                $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$fetch_trainer_id}'");
+                $trainer = mysqli_fetch_assoc($trainer_query);
+                $trainerOptions .= "<option value='{$trainer['email']}'>{$trainer['name']} | TID_{$trainer['id']} | Username : {$trainer['username']}</option>";
+            } else {
+                echo "Error in SQL query: " . mysqli_error($conn);
+            }
+        }
+    }
 }
 
 ?>
@@ -61,26 +92,8 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                             <div class="form-group col-md-4" id="optionsDiv" style="display:none">
                                 <label for="exampleInputAadhar">User ID</label>
                                 <select name="User_ID" required class="form-select">
-                                    <option value="ALL"></option>
-                                    <?php
-                                    $student_id = $_COOKIE['student_id'];
-                                    $course_registration_query = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$student_id}'");
-                                    if (mysqli_num_rows($course_registration_query) > 0) {
-                                        while ($row = mysqli_fetch_assoc($course_registration_query)) {
-                                            $student_allocate_query = mysqli_query($conn, "SELECT * FROM `student_allocate` WHERE `student_id` = '{$row['student_id']}' AND `course_id` = '{$row['course_id']}'");
-                                            if (mysqli_num_rows($student_allocate_query) > 0) {
-                                                $fetch_allocate_id = mysqli_fetch_assoc($student_allocate_query)['allocate_id'];
-                                                $trainer_allocate_course_query = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `allocate_id` = '{$fetch_allocate_id}'");
-                                                if (mysqli_num_rows($trainer_allocate_course_query) > 0) {
-                                                    $fetch_trainer_id = mysqli_fetch_assoc($trainer_allocate_course_query)['trainer_id'];
-                                                    $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$fetch_trainer_id}'");
-                                                    $trainer = mysqli_fetch_assoc($trainer_query);
-                                                    echo "<option value='{$trainer['email']}'>{$trainer['name']} | TID_{$trainer['id']} | Username : {$trainer['username']}</option>";
-                                                }
-                                            }
-                                        }
-                                    }
-                                    ?>
+
+                                    <?php echo $trainerOptions; ?>
                                 </select>
                             </div>
 
@@ -158,6 +171,11 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
             } else {
                 document.getElementById("optionsDiv").style.display = "none";
 
+            }
+            if (type.value == "Superadmin") {
+                document.getElementById("optionsDiv").style.display = "none";
+            } else {
+                document.getElementById("optionsDiv").style.display = "block";
             }
 
         }
