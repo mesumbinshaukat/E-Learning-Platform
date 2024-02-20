@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
@@ -157,8 +158,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     } else {
         echo mysqli_error($conn);
     }
-}
-elseif(isset($_GET["m_id"])) {
+} elseif (isset($_GET["m_id"])) {
     $id = filter_var($_GET["m_id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
     $sql = "DELETE FROM `batches_meetings` WHERE `id`='$id'";
@@ -180,8 +180,7 @@ elseif(isset($_GET["m_id"])) {
     } else {
         echo mysqli_error($conn);
     }
-
-}elseif (isset($_GET["r_id"])) {
+} elseif (isset($_GET["r_id"])) {
     $id = filter_var($_GET["r_id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
     $sql = "DELETE FROM `batches_recording` WHERE `id`='$id'";
@@ -192,9 +191,7 @@ elseif(isset($_GET["m_id"])) {
     } else {
         echo mysqli_error($conn);
     }
-
-}
-elseif (isset($_GET["task_id"])) {
+} elseif (isset($_GET["task_id"])) {
     $id = filter_var($_GET["task_id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
     $sql = "DELETE FROM `batches_tasks` WHERE `id`='$id'";
@@ -205,9 +202,21 @@ elseif (isset($_GET["task_id"])) {
     } else {
         echo mysqli_error($conn);
     }
-
-}
-else {
+} elseif (isset($_GET["id"]) && isset($_GET["type"]) && $_GET["type"] == "course_category") {
+    $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) $id;
+    $sql = "DELETE FROM `course_category` WHERE `id`='$id'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        $_SESSION["success"] = "Category deleted successfully";
+        header("location: managecategory.php");
+        exit();
+    } else {
+        $_SESSION["error"] = "Something went wrong";
+        header("location: managecategory.php");
+        exit();
+    }
+} else {
     if (isset($_SESSION['previous_url'])) {
         header('location: ' . $_SESSION['previous_url'] . '?error=Invalid_Request');
         exit();
