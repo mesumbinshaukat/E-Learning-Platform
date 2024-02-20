@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -77,30 +77,32 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">date of adding</th>
                                                 <th class="border-bottom-0">Course ID</th>
                                                 <th class="border-bottom-0">Course name</th>
+                                                <th class="border-bottom-0">Category</th>
                                                 <th class="border-bottom-0">Price</th>
                                                 <th class="border-bottom-0">Duration</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-											$course_query = mysqli_query($conn, "SELECT * FROM `course`");
-											if (mysqli_num_rows($course_query) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($course_query)) {
+                                            $course_query = mysqli_query($conn, "SELECT * FROM `course`");
+                                            if (mysqli_num_rows($course_query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($course_query)) {
 
-													echo "<tr>";
-													echo "<td>" . $i++ . "</td>";
-													echo "<td>" . $row['creation_date'] . "</td>";
-													echo "<td>CRID_" . $row['id'] . "</td>";
-													echo "<td>" . $row['course_name'] . "</td>";
-													echo "<td>" . $row['final_cost'] . "</td>";
-													echo "<td>" . $row['duration_days'] . " days</td>";
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $row['creation_date'] . "</td>";
+                                                    echo "<td>CRID_" . $row['id'] . "</td>";
+                                                    echo "<td>" . $row['course_name'] . "</td>";
+                                                    echo "<td>" . $row['course_category_name'] . "</td>";
+                                                    echo "<td>" . $row['final_cost'] . "</td>";
+                                                    echo "<td>" . $row['duration_days'] . " days</td>";
                                                     echo "</tr>";
-												}
-											} else {
-												echo "No data found";
-											}
-											?>
+                                                }
+                                            } else {
+                                                echo "No data found";
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

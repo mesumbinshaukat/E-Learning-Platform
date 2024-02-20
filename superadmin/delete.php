@@ -45,10 +45,13 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `course` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Course deleted successfully";
         header("location: managecourse.php");
         exit();
     } else {
-        echo mysqli_error($conn);
+        $_SESSION["error"] = "Something went wrong";
+        header("location: managecourse.php");
+        exit();
     }
 } elseif (isset($_GET["type"]) && isset($_GET["id"]) && $_GET["type"] == "stream") {
     $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);

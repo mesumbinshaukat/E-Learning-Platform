@@ -26,6 +26,10 @@ if (isset($_POST['create'])) {
     $pre_requirements = mysqli_real_escape_string($conn, $_POST['pre_requirements']);
     $additional_information = mysqli_real_escape_string($conn, $_POST['additional_information']);
     $course_type = mysqli_real_escape_string($conn, $_POST['course_type']);
+    $course_category_id = (int) $_POST['course_category_id'];
+    $course_category_query = mysqli_query($conn, "SELECT * FROM `course_category` WHERE `id` = '$course_category_id'");
+    $course_category = mysqli_fetch_assoc($course_category_query);
+    $course_category_name = $course_category['category_name'];
     $original_cost = $_POST['original_cost'];
     $discount = $_POST['discount'];
     $final_cost = $_POST['final_cost'];
@@ -36,20 +40,24 @@ if (isset($_POST['create'])) {
     $image2_name = $_FILES['image2']['name'];
     $image2_tmp = $_FILES['image2']['tmp_name'];
 
-    $query = mysqli_prepare($conn, "INSERT INTO `course`(`course_name`, `stream_name`, `posting_category`, `provider_name_company`, `training_type`, `offline_address`, `duration_days`, `last_date_to_apply`, `hours_per_day`, `certification`, `slots`, `course_description`, `topics_covered`, `benefits_of_course`, `pre_requirements`, `additional_info`, `course_type`, `original_cost`, `discount_percentage`, `final_cost`, `main_image`, `inner_image`, `image_two`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($query, "sssssssssssssssssssssss", $course_name, $stream, $posting_category, $provider_name, $training_type, $offline_address, $duration, $last_date, $hours_perday, $certifications, $no_of_slots, $course_description, $topics_covered, $benefits, $pre_requirements, $additional_information, $course_type, $original_cost, $discount, $final_cost, $main_image_name, $inner_image_name, $image2_name);
+    $query = mysqli_prepare($conn, "INSERT INTO `course`(`course_name`, `stream_name`, `posting_category`, `provider_name_company`, `training_type`, `offline_address`, `duration_days`, `last_date_to_apply`, `hours_per_day`, `certification`, `slots`, `course_description`, `topics_covered`, `benefits_of_course`, `pre_requirements`, `additional_info`, `course_type`, `original_cost`, `discount_percentage`, `final_cost`, `main_image`, `inner_image`, `image_two`, `course_category_name`, `course_category_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($query, "sssssssssssssssssssssssss", $course_name, $stream, $posting_category, $provider_name, $training_type, $offline_address, $duration, $last_date, $hours_perday, $certifications, $no_of_slots, $course_description, $topics_covered, $benefits, $pre_requirements, $additional_information, $course_type, $original_cost, $discount, $final_cost, $main_image_name, $inner_image_name, $image2_name, $course_category_name, $course_category_id);
 
 
     if (mysqli_stmt_execute($query)) {
+        $_SESSION["success"] = "Course created successfully!";
 
         move_uploaded_file($main_image_tmp, "./assets/img/course/" . $main_image_name);
         move_uploaded_file($inner_image_tmp, "./assets/img/course/" . $inner_image_name);
         move_uploaded_file($image2_tmp, "./assets/img/course/" . $image2_name);
+
         header("location: createcourse.php");
+        exit();
     } else {
-        echo mysqli_error($conn);
+        $_SESSION['error'] = "Something went wrong!";
+        header("location: createcourse.php");
+        exit();
     }
-    mysqli_stmt_close($query);
 }
 ?>
 
@@ -163,7 +171,31 @@ if (isset($_POST['create'])) {
                                                 </select>
                                             </div>
                                             <div class="control-group form-group mb-2">
-                                                <label class="form-label">Posting category <span
+                                                <label class="form-label">Course Category<span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
+                                                        style="color:red;font-size: 90%;">*</span><span
+                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <select class="form-control form-select select2"
+                                                    name="course_category_id" data-bs-placeholder="Course Category"
+                                                    required>
+                                                    <?php
+                                                    $select_query = mysqli_query($conn, "SELECT * FROM `course_category`");
+                                                    if (mysqli_num_rows($select_query) > 0) {
+
+                                                        while ($i = mysqli_fetch_assoc($select_query)) {
+
+                                                    ?>
+                                                    <option value="<?php echo $i["id"] ?>">
+                                                        <?php echo $i["category_name"] ?>
+                                                    </option>
+                                                    <?php }
+                                                    }
+                                                    ?>
+
+                                                </select>
+                                            </div>
+                                            <div class="control-group form-group mb-2">
+                                                <label class="form-label">Posting Category <span
                                                         style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
                                                         style="color:red;font-size: 90%;">*</span><span
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
@@ -388,14 +420,19 @@ if (isset($_POST['create'])) {
             <!-- main-content closed -->
         </form>
 
-
-
-
-
     </div>
     <!-- End Page -->
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

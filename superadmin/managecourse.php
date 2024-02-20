@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 // Store the current URL in the session
@@ -84,6 +84,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                                 <th class="border-bottom-0">Course ID</th>
                                                 <th class="border-bottom-0">Course name</th>
+                                                <th class="border-bottom-0">Category</th>
                                                 <th class="border-bottom-0"> Final price</th>
                                                 <th class="border-bottom-0">Duration(Days)</th>
                                                 <th class="border-bottom-0">Actions</th>
@@ -93,23 +94,24 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         </thead>
                                         <tbody>
                                             <?php
-											$course_query = mysqli_query($conn, "SELECT * FROM `course`");
-											if (mysqli_num_rows($course_query) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($course_query)) {
+                                            $course_query = mysqli_query($conn, "SELECT * FROM `course`");
+                                            if (mysqli_num_rows($course_query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($course_query)) {
 
-													echo "<tr>";
-													echo "<td>" . $i++ . "</td>";
-													echo "<td>" . $row['creation_date'] . "</td>";
-													echo "<td>CRID_" . $row['id'] . "</td>";
-													echo "<td>" . $row['course_name'] . "</td>";
-													echo "<td>" . $row['final_cost'] . "</td>";
-													echo "<td>" . $row['duration_days'] . "</td>";
-													echo "<td>
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $row['creation_date'] . "</td>";
+                                                    echo "<td>CRID_" . $row['id'] . "</td>";
+                                                    echo "<td>" . $row['course_name'] . "</td>";
+                                                    echo "<td>" . $row['course_category_name'] . "</td>";
+                                                    echo "<td>" . $row['final_cost'] . "</td>";
+                                                    echo "<td>" . $row['duration_days'] . "</td>";
+                                                    echo "<td>
                                                     <div class='col-sm-6 col-md-15 mg-t-10 mg-sm-t-0'>
                                                         <button type='button' class='btn btn-info dropdown-toggle'
                                                             data-bs-toggle='dropdown' aria-expanded='false'>
-                                                            <i class='fe fe-more-horizontal'></i>
+                                                            <i class='bi bi-three-dots'></i>
                                                         </button>
 
                                                         <div class='dropdown-menu'>
@@ -124,11 +126,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                         </div>
                                                     </div>
                                                 </td>";
-												}
-											} else {
-												echo "No data found";
-											}
-											?>
+                                                }
+                                            } else {
+                                                echo "No data found";
+                                            }
+                                            ?>
 
                                         </tbody>
                                     </table>
@@ -145,6 +147,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 
 </body>
 

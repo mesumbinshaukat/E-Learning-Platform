@@ -413,7 +413,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                 <div class="row">
 
 
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                         <div class="card">
                             <div class="card-header pb-0">
                                 <div class="card-title pb-0  mb-2">Internships</div>
@@ -493,7 +493,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         </div>
                     </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                         <div class="card">
                             <div class="card-header pb-0">
                                 <div class="card-title pb-0  mb-2">Placements</div>
@@ -562,6 +562,62 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                 </div><!-- col -->
 
 
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <div class="card-title pb-0  mb-2">Enquiries</div>
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="col text-center">
+                                    <label class="tx-14">User Queries</label>
+                                    <a href="contactformmsgs.php" style="color:#1d71f2">
+                                        <p class="font-weight-bold tx-24">
+                                            <?php
+                                            $sql = "SELECT * FROM `messages` WHERE `user_type` = 'Anonymous'";
+                                            $result = mysqli_query($conn, $sql);
+
+                                            $count = mysqli_num_rows($result);
+                                            echo $count;
+
+                                            ?>
+
+                                        </p>
+                                    </a>
+                                </div><!-- col -->
+                                <div class="col border-start text-center">
+                                    <label class="tx-14">Live Chats</label>
+                                    <a style="color:#1d71f2" href="livechat.php">
+                                        <p class=" font-weight-bold tx-24">
+                                            <?php
+                                            $sql = "SELECT * FROM `messages` WHERE `user_type` = 'Admin'";
+                                            $result = mysqli_query($conn, $sql);
+                                            $count = mysqli_num_rows($result);
+                                            echo $count;
+                                            ?>
+                                        </p>
+                                    </a>
+                                </div><!-- col -->
+
+                                <div class="col border-start text-center">
+                                    <label class="tx-14">Mails</label>
+                                    <a href="inbox.php" style="color:#000000">
+                                        <p class="font-weight-bold tx-24">
+                                            <?php
+                                            $sql = "SELECT * FROM `mail`";
+                                            $result = mysqli_query($conn, $sql);
+                                            $count = mysqli_num_rows($result);
+                                            echo $count;
+                                            ?>
+                                        </p>
+                                    </a>
+                                </div><!-- col -->
 
                             </div>
 

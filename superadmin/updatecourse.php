@@ -54,12 +54,34 @@ if (isset($_GET['id'])) {
         $original_cost = $_POST['original_cost'];
         $discount = $_POST['discount'];
         $final_cost = $_POST['final_cost'];
-        $main_image_name = $_FILES['main_image']['name'];
-        $main_image_tmp = $_FILES['main_image']['tmp_name'];
-        $inner_image_name = $_FILES['inner_image']['name'];
-        $inner_image_tmp = $_FILES['inner_image']['tmp_name'];
+
         $image2_name = $_FILES['image2']['name'];
         $image2_tmp = $_FILES['image2']['tmp_name'];
+        $course_category_id = (int) $_POST['course_category_id'];
+        $course_category_query = mysqli_query($conn, "SELECT * FROM `course_category` WHERE `id` = '$course_category_id'");
+        $course_category = mysqli_fetch_assoc($course_category_query);
+        $course_category_name = $course_category['category_name'];
+
+        if (!isset($_FILES['main_image']['name']) || empty($_FILES['main_image']['name'])) {
+            $main_image_name = $_POST['main_image_old'];
+        } else {
+            $main_image_name = $_FILES['main_image']['name'];
+            $main_image_tmp = $_FILES['main_image']['tmp_name'];
+        }
+
+        if (!isset($_FILES['inner_image']['name']) || empty($_FILES['inner_image']['name'])) {
+            $inner_image_name = $_POST['inner_image_old'];
+        } else {
+            $inner_image_name = $_FILES['inner_image']['name'];
+            $inner_image_tmp = $_FILES['inner_image']['tmp_name'];
+        }
+
+        if (!isset($_FILES['image2']['name']) || empty($_FILES['image2']['name'])) {
+            $image2_name = $_POST['image2_old'];
+        } else {
+            $image2_name = $_FILES['image2']['name'];
+            $image2_tmp = $_FILES['image2']['tmp_name'];
+        }
 
         // Update query
         $update_query = "UPDATE `course` SET
@@ -68,11 +90,10 @@ if (isset($_GET['id'])) {
             `hours_per_day` = ?, `certification` = ?, `slots` = ?, `course_description` = ?, `topics_covered` = ?,
             `benefits_of_course` = ?, `pre_requirements` = ?, `additional_info` = ?, `course_type` = ?,
             `original_cost` = ?, `discount_percentage` = ?, `final_cost` = ?, `main_image` = ?, `inner_image` = ?,
-            `image_two` = ?
-            WHERE `id` = ?";
+            `image_two` = ? , `course_category_name` = ?, `course_category_id` = ? WHERE `id` = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
         $update_stmt->bind_param(
-            "sssssssssssssssssssssssi",
+            "sssssssssssssssssssssssssi",
             $course_name,
             $stream,
             $posting_category,
@@ -96,21 +117,34 @@ if (isset($_GET['id'])) {
             $main_image_name,
             $inner_image_name,
             $image2_name,
+            $course_category_name,
+            $course_category_id,
             $id
         );
 
         if (mysqli_stmt_execute($update_stmt)) {
-            move_uploaded_file($main_image_tmp, "./assets/img/course/" . $main_image_name);
-            move_uploaded_file($inner_image_tmp, "./assets/img/course/" . $inner_image_name);
-            move_uploaded_file($image2_tmp, "./assets/img/course/" . $image2_name);
+            if (isset($_FILES['main_image']['name']) && !empty($_FILES['main_image']['name'])) {
+                move_uploaded_file($main_image_tmp, "./assets/img/course/" . $main_image_name);
+            }
+
+            if (isset($_FILES['inner_image']['name']) && !empty($_FILES['inner_image']['name'])) {
+                move_uploaded_file($inner_image_tmp, "./assets/img/course/" . $inner_image_name);
+            }
+
+            if (isset($_FILES['image2']['name']) && !empty($_FILES['image2']['name'])) {
+                move_uploaded_file($image2_tmp, "./assets/img/course/" . $image2_name);
+            }
+
             session_destroy();
+            session_start();
+            $_SESSION["success"] = "Course updated successfully!";
             header("location: managecourse.php");
             exit();
         } else {
-            echo mysqli_error($conn);
+            $_SESSION['error'] = "Something went wrong!";
+            header("location: managecourse.php");
+            exit();
         }
-
-        mysqli_stmt_close($update_stmt);
     }
 } elseif (!isset($_GET["id"]) || empty($_GET["id"])) {
     echo "<script>alert('Error')</script>";
@@ -237,6 +271,34 @@ if (isset($_GET['id'])) {
                                                     } ?>
                                                 </select>
                                             </div>
+
+                                            <div class="control-group form-group mb-2">
+                                                <label class="form-label">Course Category<span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
+                                                        style="color:red;font-size: 90%;">*</span><span
+                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <select class="form-control form-select select2"
+                                                    name="course_category_id" data-bs-placeholder="Course Category"
+                                                    required>
+                                                    <?php
+                                                    $select_query = mysqli_query($conn, "SELECT * FROM `course_category`");
+                                                    if (mysqli_num_rows($select_query) > 0) {
+
+                                                        while ($i = mysqli_fetch_assoc($select_query)) {
+
+                                                    ?>
+                                                    <option value="<?php echo $i["id"] ?>" <?php if (isset($course["course_category_id"]) && $i["id"] == $course["course_category_id"]) {
+                                                                                                        echo "selected";
+                                                                                                    } ?>>
+                                                        <?php echo $i["category_name"] ?>
+                                                    </option>
+                                                    <?php }
+                                                    }
+                                                    ?>
+
+                                                </select>
+                                            </div>
+
                                             <div class="control-group form-group mb-2">
                                                 <label class="form-label">Posting category <span
                                                         style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
@@ -509,32 +571,41 @@ if (isset($_GET['id'])) {
 
                                             <div class="control-group form-group">
                                                 <label class="form-label">Main Image<span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Leave It Empty If You
+                                                        Want The Old/Recent Image</span> <span
                                                         style="color:red;font-size: 90%;">*</span><span
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="file" class="form-control" name="main_image"
                                                     placeholder="Choose File"
-                                                    value="<?php echo $course["main_image"] ?>" width="540" height="300"
-                                                    required>
+                                                    value="<?php echo $course["main_image"] ?>" width="540"
+                                                    height="300">
+                                                <input type="hidden" name="main_image_old"
+                                                    value="<?php echo $course["main_image"]; ?>">
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">Inner image<span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Leave It Empty If You
+                                                        Want The Old/Recent Image</span> <span
                                                         style="color:red;font-size: 90%;">*</span><span
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="file" class="form-control" name="inner_image"
                                                     placeholder="Choose File"
                                                     value="<?php echo $course["inner_image"] ?>" width="540"
-                                                    height="300" required>
+                                                    height="300">
+                                                <input type="hidden" name="inner_image_old"
+                                                    value="<?php echo $course["inner_image"]; ?>">
                                             </div>
                                             <div class="control-group form-group">
                                                 <label class="form-label">image 2<span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
+                                                        style="color:#D3D3D3;font-size: 90%;">(Leave It Empty If You
+                                                        Want The Old/Recent Image</span> <span
                                                         style="color:red;font-size: 90%;">*</span><span
                                                         style="color:#D3D3D3;font-size: 90%;">)</span></label>
                                                 <input type="file" class="form-control" name="image2"
                                                     placeholder="Choose File" value="<?php echo $course["image_two"] ?>"
-                                                    width="540" height="300" required>
+                                                    width="540" height="300">
+                                                <input type="hidden" name="image2_old"
+                                                    value="<?php echo $course["image_two"]; ?>">
                                             </div>
                                         </section>
                                         <button name="update" value="submit" type="submit"
