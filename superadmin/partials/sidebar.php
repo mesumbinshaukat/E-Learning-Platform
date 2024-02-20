@@ -110,6 +110,23 @@
 
                 </ul>
             </li>
+            <li class="slide">
+                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="bi bi-copy"
+                        width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span class="side-menu__label">Course
+                        Category</span><i class="angle bi bi-chevron-right"></i></a>
+                <ul class="slide-menu">
+                    <li class="side-menu__label1"><a href="javascript:void(0);">Create</a></li>
+                    <li><a class="bi bi-dot" href="createcategory.php"
+                            style="font-size:14px; line-height: 2;">Create</a>
+                    </li>
+                    <li><a class="bi bi-dot" href="managecategory.php"
+                            style="font-size:14px; line-height: 2;">Manage</a>
+                    </li>
+                    <li><a class="bi bi-dot" href="categorylist.php" style="font-size:14px; line-height: 2;">List</a>
+                    </li>
+
+                </ul>
+            </li>
 
             <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i

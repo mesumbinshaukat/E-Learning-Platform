@@ -386,8 +386,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                     <a href="batchlist.php?type=delete" style="color:#4AA02C"
                                         class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <p class="tx-13 mb-2 font-weight-semibold ">Deleted</p>
-                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
+                                            <p class="tx-13 mb-2 font-weight-semibold text-danger">Deleted</p>
+                                            <h4 class=" mb-0 font-weight-semibold text-danger tx-18"><b>
                                                     <?php
                                                     $sql = "SELECT * FROM `batch` WHERE `status` = 'Deleted'";
                                                     $result = mysqli_query($conn, $sql);

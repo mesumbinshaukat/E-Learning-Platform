@@ -47,7 +47,7 @@ $select_jobs = mysqli_query($conn, "SELECT * FROM `placement`");
                         <div>
 
                             <img class="fancy-radius img-fluid"
-                                src="https://techbloggers.co/wp-content/uploads/2023/10/modern-equipped-computer-lab-1-min.jpg"
+                                src="./assets/media/digital-cloud-data-storage-digital-concept-cloudscape-digital-online-service-global-network-database-backup-computer-infrastructure-technology-solution.jpg"
                                 alt="modern desk">
 
                         </div>
