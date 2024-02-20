@@ -4,9 +4,14 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 	exit();
 }
 include('../db_connection/connection.php');
-$query = "SELECT * FROM `batches_schedule`";
+$stud_id = $_COOKIE['student_id'];
+$query = "SELECT *
+FROM ((batches_schedule
+INNER JOIN batch ON batches_schedule.batch_id = batch.id)
+INNER JOIN course_registration ON batch.course_id = course_registration.course_id) WHERE student_id = '$stud_id'";
 $query_run = mysqli_query($conn, $query);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,132 +24,115 @@ $query_run = mysqli_query($conn, $query);
     <meta name="Description" content="">
 
     <!-- Title -->
-    <title>TriaRight: The New Era of Learning</title>
+    <title>Schedules</title>
 
-	<?php include("./links.php"); ?>
-
+    <?php include("./links.php"); ?>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
     <!-- Loader -->
-    <div id="global-loader">
-        <img src="https://triaright.com/Student/assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div>
+    <!-- <div id="global-loader">
+        <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
+    </div> -->
     <!-- /Loader -->
 
     <!-- Page -->
     <div class="page">
 
         <div>
-		<?php include("./partials/sidebar.php"); ?>
-            <!-- main-content -->
+
+            <?php include("./partials/sidebar.php"); ?>
             <div class="main-content app-content">
 
                 <!-- container -->
                 <div class="main-container container-fluid">
 
 
-                    <!-- breadcrumb -->
                     <div class="breadcrumb-header justify-content-between">
-                        <div class="right-content">
-                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">MY Schedule</span>
-                        </div>
+
 
                         <div class="justify-content-center mt-2">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
-                                <li class="breadcrumb-item ">Schedule</li>
 
+                                <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Schedules</span>
                             </ol>
                         </div>
 
                     </div>
-                    <!-- /breadcrumb -->
 
-                    <!-- row -->
-                    <div class="row row-sm">
-
-					<?php if(mysqli_num_rows($query_run) == 0) {
-                    echo "<h2>No Schedules!</h2>";
+                    <?php if(mysqli_num_rows($query_run) == 0) {
+                    echo "<h2>No Schedules found!</h2>";
                 } else {
                     while ($data = mysqli_fetch_array($query_run)) { ?>
-
-
-
-                        <div class="col-sm-12 col-lg-6">
+                    <div class="row row-sm">
+                        <div class="col-sm-12 col-lg-12">
                             <div class="card primary-custom-card1">
                                 <div class="card-body">
                                     <div class="row">
-
-                                        <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                             <div class="text-justified align-items-center">
-                                                <h4 class="product-title mb-1"><b style="color: #ff6700;"><?php echo $data['date_of_schedule']; ?></b>
+                                                <h4 class="product-title mb-1"><b
+                                                        style="color: #ff6700;"><?php echo $data['date_of_schedule']; ?></b>
                                                 </h4>
-                                                <p class="text-muted tx-13 mb-1">Schedule</p>
+                                                <!-- <p class="text-muted tx-13 mb-1">Non IT</p> -->
                                                 <br>
-                                                <h5 class="mb-2 tx-18 font-weight-semibold text-dark"><span
-                                                        style="color:#1D71F2;"><?php echo $data['main_topic']; ?></SPAN></h5>
 
-                                                <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                        style="color:#000000;"><b>Tasks: &nbsp;</b></span> <?php echo $data['tasks']; ?></p>
-                                                <p class="mb-1 tx-15 mb-3 text-muted"> <span
-                                                        style="color:#000000;"><b>Duration: &nbsp;</b></span>&nbsp;<?php echo $data['class_duration']; ?></p>
-                                                <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                        style="color:#000000;"><b>Starting time: &nbsp;</b></span><?php echo $data['class_starting_time']; ?></p>
-                                                <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                        style="color:#000000;"><b>Ending time: &nbsp;</b></span><?php echo $data['class_ending_time']; ?></p>
 
-                                                <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                        style="color:#000000;"><b>Topics Covered: &nbsp;</b></span><?php echo $data['topics_to_be_covered']; ?></p>
 
-                                                
-                                                <p class="mb-1 tx-15 mb-3 text-muted"><span
-                                                        style="color:#000000;"><b>Shared Documents:</b></span>
-                                                    <a href="../superadmin/assets/docs/shared_document/<?php echo $data['shared_documents']; ?>" download="../superadmin/assets/docs/shared_document/<?php echo $data['shared_documents']; ?>">
-                                                        <button class="btn btn-info mt-3 mb-0"
-                                                            type="button">Download</button></a>
+
+                                                <p class="card-text tx-15"><span style="color: #13131a;">Topic
+                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                    <?php echo $data['main_topic'];?>
                                                 </p>
+                                                <p class="card-text tx-15"><span style="color: #13131a;"> Class Duration
+                                                        &nbsp
+                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                    <?php echo $data['class_duration'];?></p>
+                                                <p class="card-text tx-15"><span style="color: #13131a;"> Tasks   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                    <?php echo $data['tasks'];?></p>
+                                                    <p class="card-text tx-15"><span style="color: #13131a;"> Topics Covered   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                    <?php echo $data['topics_to_be_covered'];?></p>
+                                                    <p class="card-text tx-15"><span style="color: #13131a;"> Starting Time  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                    <?php echo $data['class_starting_time'];?></p>
+                                                    <p class="card-text tx-15"><span style="color: #13131a;"> Ending Time  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                    <?php echo $data['class_ending_time'];?></p>
+                                                <p class="card-text tx-15"><span style="color: #13131a;"> Batch Name
+                                                        &nbsp
+                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                    <?php echo $data['batch_name'];?></p>
+                                                    <p class="card-text tx-15"><span style="color: #13131a;"> Download Documents
+                                                        &nbsp
+                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+
+														<button class="btn btn-primary mb-3 shadow"><a
+                                                            href="../superadmin/assets/docs/shared_document/<?php echo $data['shared_documents']; ?>" Download><span
+                                                                style="color:#ffffff;">Download</span></a></button>
+														</p>
+                                                
+
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-<?php } }?>
-
                     </div>
-                    <!-- row closed -->
-
-
-                </div>
-                <!-- Container closed -->
-            </div>
-            <!-- main-content closed -->
-
-            <!-- Sidebar-right-->
+                    <?php } }
+                ?>
 
 
 
-            <div class="main-footer">
-                <div class="container-fluid pd-t-0-f ht-100p">
-                    Copyright © 2023 <a href="https://triaright.com/Student/www.triaright.com"
-                        class="text-primary">triaright</a>. Designed with <span class="fa fa-heart text-danger"></span>
-                    by <a href="http://www.mycompany.co.in"> my company</a> . All rights reserved
+
+                    <!-- Container closed -->
                 </div>
             </div>
-            <!-- Footer closed -->
+            <!-- End Page -->
 
-        </div>
-        <!-- End Page -->
+            <!-- BACK-TO-TOP -->
+            <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
-        <!-- BACK-TO-TOP -->
-        <a href="schedule.php@batch_id=5.html#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-        <!-- JQUERY JS -->
-		<?php include("./scripts.php") ?>
-
+            <?php include("./scripts.php") ?>
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/profile-notifications by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:39 GMT -->
 
 </html>

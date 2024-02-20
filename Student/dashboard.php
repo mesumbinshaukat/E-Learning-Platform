@@ -176,7 +176,7 @@ $trainers_run = mysqli_query($conn, $trainers);
 
                                         <div class="card-body pt-0 text-center">
 
-                                            <a class="file-manger-icon" href="mycourses.php">
+                                            <a class="file-manger-icon" href="schedule.php">
                                                 <img src="assets/icons/schedule.png" alt="img" class="br-7" />
                                             </a>
                                             <h6 class="mb-1 font-weight-semibold">Schedule</h6>
@@ -189,7 +189,7 @@ $trainers_run = mysqli_query($conn, $trainers);
 
                                         <div class="card-body pt-0 text-center">
 
-                                            <a class="file-manger-icon" href="mycourses.php">
+                                            <a class="file-manger-icon" href="meetings.php">
                                                 <img src="assets/icons/meeting.png" alt="img" class="br-7" />
                                             </a>
                                             <h6 class="mb-1 font-weight-semibold">Meetings</h6>
@@ -202,7 +202,7 @@ $trainers_run = mysqli_query($conn, $trainers);
 
                                         <div class="card-body pt-0 text-center">
 
-                                            <a class="file-manger-icon" href="mycourses.php">
+                                            <a class="file-manger-icon" href="summary.php">
                                                 <img src="assets/icons/summary.png" alt="img" class="br-7" />
                                             </a>
                                             <h6 class="mb-1 font-weight-semibold">Summary</h6>
@@ -215,7 +215,7 @@ $trainers_run = mysqli_query($conn, $trainers);
 
                                         <div class="card-body pt-0 text-center">
 
-                                            <a class="file-manger-icon" href="mycourses.php">
+                                            <a class="file-manger-icon" href="tasks.php">
                                                 <img src="assets/icons/task-list.png" alt="img" class="br-7" />
                                             </a>
                                             <h6 class="mb-1 font-weight-semibold">Tasks</h6>
@@ -228,7 +228,7 @@ $trainers_run = mysqli_query($conn, $trainers);
 
                                         <div class="card-body pt-0 text-center">
 
-                                            <a class="file-manger-icon" href="mycourses.php">
+                                            <a class="file-manger-icon" href="recordings.php">
                                                 <img src="assets/icons/video-recording.png" alt="img" class="br-7" />
                                             </a>
                                             <h6 class="mb-1 font-weight-semibold">Recordings</h6>
