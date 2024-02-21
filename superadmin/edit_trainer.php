@@ -3,6 +3,17 @@ session_start();
 
 include('../db_connection/connection.php');
 
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
     header('location: ../super-admin_login.php');
     exit();
@@ -26,8 +37,8 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
     $Personal_Phone_Number = $_POST["Personal_Phone_Number"];
     $Personal_Mail_id = $_POST["Personal_Mail_id"];
     $Date_Of_Birth = $_POST["Date_Of_Birth"];
-    $Password = $_POST["Password"];
-    $hash_pass = password_hash($Password, PASSWORD_DEFAULT);
+    $password = $_POST["Password"];
+    $hash_pass = password_hash($password, PASSWORD_DEFAULT);
     $created_by = $trainer["created_by"];
     $Aadhar_Card_No = $_POST["Aadhar_Card_No"];
     $Pan_Card_No = $_POST["Pan_Card_No"];
@@ -58,9 +69,20 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
     if (empty($password)) {
         $hash_pass = $trainer["password"];
     }
-    $query = mysqli_prepare($conn, "UPDATE `trainer` SET `name`=?,`contact_number`=?,`email`=?,`password`=?,`username`=?,`dob`=?,`aadhar_card_number`=?,`aadhar_card_picture`=?,`pan_card_number`=?,`pan_card_picture`=?,`date_of_joining`=?,`qualification`=?,`experience`=?,`organization_name`=?,`designation`=?,`trainer_document`=?,`created_by`=? WHERE `id`='$id'");
 
-    $query->bind_param("sssssssssssssssss", $Trainer_Name, $Personal_Phone_Number, $Personal_Mail_id, $hash_pass, $Trainer_Username, $Date_Of_Birth, $Aadhar_Card_No, $Upload_Aadhar_Card, $Pan_Card_No, $Upload_Pan_Card, $Date_Of_joining, $Qualification, $Any_Experience, $Previous_Current_Organization_name, $Designation, $Trainer_Documents, $created_by);
+    if (!empty($_POST["Password"])) {
+        function encrypt_Password($password, $key)
+        {
+            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+            return base64_encode($iv . openssl_encrypt($password, 'aes-256-cbc', $key, 0, $iv));
+        }
+
+        $encryptedPassword = encrypt_Password($_POST['Password'], $key);
+    }
+
+    $query = mysqli_prepare($conn, "UPDATE `trainer` SET `name`=?,`contact_number`=?,`email`=?,`password`=?,`username`=?,`dob`=?,`aadhar_card_number`=?,`aadhar_card_picture`=?,`pan_card_number`=?,`pan_card_picture`=?,`date_of_joining`=?,`qualification`=?,`experience`=?,`organization_name`=?,`designation`=?,`trainer_document`=?,`created_by`=?, `hashed_password`=? WHERE `id`='$id'");
+
+    $query->bind_param("ssssssssssssssssss", $Trainer_Name, $Personal_Phone_Number, $Personal_Mail_id, $hash_pass, $Trainer_Username, $Date_Of_Birth, $Aadhar_Card_No, $Upload_Aadhar_Card, $Pan_Card_No, $Upload_Pan_Card, $Date_Of_joining, $Qualification, $Any_Experience, $Previous_Current_Organization_name, $Designation, $Trainer_Documents, $created_by, $encryptedPassword);
 
     if ($query->execute()) {
         move_uploaded_file($Upload_Aadhar_Card_Tmp, "./assets/img/trainer/" . $Upload_Aadhar_Card);
@@ -68,15 +90,16 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
         move_uploaded_file($Trainer_Documents_Tmp, "./assets/docs/trainer/" . $Trainer_Documents);
         $_SESSION["success"] = "Trainer Edited Successfully";
         header('location:edit_trainer.php');
+        exit();
     } else {
         $_SESSION["error"] = "Something went wrong";
         header('location:edit_trainer.php');
+        exit();
     }
 }
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -226,11 +249,8 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputQualification">Aadhar Card No <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="number" required class="form-control" name="Aadhar_Card_No"
+                                                <label for="exampleInputQualification">Aadhar Card No</label>
+                                                <input type="number" class="form-control" name="Aadhar_Card_No"
                                                     value="<?php echo $aadhar_card_number; ?>"
                                                     id="exampleInputQualification"
                                                     placeholder="Enter Aadhar Card Number">
@@ -238,34 +258,25 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputcode">Upload Aadhar Card <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="file" required class="form-control"
-                                                    name="Upload_Aadhar_Card" id="exampleInputcode" placeholder="">
+                                                <label for="exampleInputcode">Upload Aadhar Card </label>
+                                                <input type="file" class="form-control" name="Upload_Aadhar_Card"
+                                                    id="exampleInputcode" placeholder="">
                                                 <img src="./assets/img/trainer/<?php echo $aadhar_card_picture; ?>"
                                                     alt="Aadhar Card Picture">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputAadhar">PAN Card No <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="text" required class="form-control" name="Pan_Card_No"
+                                                <label for="exampleInputAadhar">PAN Card No</label>
+                                                <input type="text" class="form-control" name="Pan_Card_No"
                                                     id="exampleInputAadhar" placeholder="Enter Pan Card Number"
                                                     value="<?php echo $pan_card_number; ?>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputcode"> Upload PAN Card <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="file" required class="form-control" id="exampleInputcode"
+                                                <label for="exampleInputcode"> Upload PAN Card </label>
+                                                <input type="file" class="form-control" id="exampleInputcode"
                                                     name="Upload_Pan_Card" placeholder="">
                                                 <img src="./assets/img/trainer/<?php echo $pan_card_picture; ?>"
                                                     alt="Pan Card Picture">
@@ -273,12 +284,9 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputUserName">Date of joining <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input class="form-control" required name="Date_Of_joining"
-                                                    id="dateMask" placeholder="YYYY/MM/DD"
+                                                <label for="exampleInputUserName">Date of joining </label>
+                                                <input class="form-control" name="Date_Of_joining" id="dateMask"
+                                                    placeholder="YYYY/MM/DD"
                                                     value="<?php echo $date_of_joining ? $date_of_joining : date('Y-m-d'); ?>"
                                                     type="date">
                                             </div>
@@ -286,11 +294,8 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputQualification">Qualification <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="text" required class="form-control" name="Qualification"
+                                                <label for="exampleInputQualification">Qualification </label>
+                                                <input type="text" class="form-control" name="Qualification"
                                                     id="exampleInputQualification" value="<?php echo $qualification; ?>"
                                                     placeholder="Enter qualification">
                                             </div>
@@ -298,13 +303,9 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputExperience">Any Experience <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <select class="form-control form-select select2" required
-                                                    name="Any_Experience" id="exampleInputExperience"
-                                                    data-bs-placeholder="Enter Experience">
+                                                <label for="exampleInputExperience">Any Experience</label>
+                                                <select class="form-control form-select select2" name="Any_Experience"
+                                                    id="exampleInputExperience" data-bs-placeholder="Enter Experience">
                                                     <?php if (!empty($any_experience)) {
                                                             ?>
                                                     <option value="<?php echo $any_experience; ?>">Default:
@@ -316,15 +317,11 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
                                             </div>
                                         </div>
 
-
-
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputUserName">Previous/Current Organisation Name
-                                                    <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="text" required class="form-control"
+                                                <label for="exampleInputUserName">Previous/Current Organization Name
+                                                </label>
+                                                <input type="text" class="form-control"
                                                     name="Previous/Current_Organization_name" id="exampleInputUserName"
                                                     value="<?php echo $organization_name; ?>"
                                                     placeholder="Enter Company Name">
@@ -333,11 +330,8 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputUserName">Designation <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="text" required class="form-control" name="Designation"
+                                                <label for="exampleInputUserName">Designation</label>
+                                                <input type="text" class="form-control" name="Designation"
                                                     id="exampleInputDesignation" value="<?php echo $designation; ?>"
                                                     placeholder="Enter Designation">
                                             </div>
@@ -346,12 +340,9 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputcode"> Trainer Documents <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span>
-                                                    <span style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="file" class="form-control" required
-                                                    name="Trainer_Documents" id="exampleInputcode" placeholder="">
+                                                <label for="exampleInputcode">Trainer Documents</label>
+                                                <input type="file" class="form-control" name="Trainer_Documents"
+                                                    id="exampleInputcode" placeholder="">
                                                 <a class="text-danger"
                                                     href="./assets/docs/trainer/<?php echo $trainer_document; ?>"
                                                     download=""><?php echo $trainer_document; ?></a>
@@ -393,7 +384,7 @@ if (isset($_POST["submit"]) && isset($_GET["id"])) {
 
                                         <button type="submit" name="submit" value="submit"
                                             class="btn btn-primary mt-3 mb-0" onclick="return check()"
-                                            style="text-align:right">Generate</button>
+                                            style="text-align:right">Update</button>
                                     </div>
 
                                 </div>

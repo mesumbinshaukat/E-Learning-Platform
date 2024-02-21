@@ -16,14 +16,14 @@ if (isset($_POST['sign_in'])) {
             setcookie("college_username", $username, time() + (86400 * 30), "/");
             setcookie("college_password", $row['password'], time() + (86400 * 30), "/");
             setcookie("college_email", $row['email'], time() + (86400 * 30), "/");
-            header("Location: ./College/dashboard.php");
+            header("location: ./College/dashboard.php");
             exit();
         }
     }
 }
 
 if (isset($_COOKIE['college_username']) && isset($_COOKIE['college_password'])) {
-    header("Location: ../College/dashboard.php");
+    header("Location: ./College/dashboard.php");
     exit();
 }
 ?>
@@ -56,8 +56,7 @@ if (isset($_COOKIE['college_username']) && isset($_COOKIE['college_password'])) 
     <div class="main">
 
         <!--login section start-->
-        <section
-            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
+        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-md-7 col-lg-6">
@@ -85,8 +84,7 @@ if (isset($_COOKIE['college_username']) && isset($_COOKIE['college_password'])) 
                                                 <i class="bi bi-envelope"></i>
                                             </div>
 
-                                            <input type="text" class="form-control" name="college_username"
-                                                placeholder="Enter your username" required value="">
+                                            <input type="text" class="form-control" name="college_username" placeholder="Enter your username" required value="">
                                             <span class="error"></span><br>
                                         </div>
                                     </div>
@@ -106,15 +104,13 @@ if (isset($_COOKIE['college_username']) && isset($_COOKIE['college_password'])) 
                                             <div class="input-icon">
                                                 <i class="bi bi-lock"></i>
                                             </div>
-                                            <input type="password" name="password" class="form-control"
-                                                placeholder="Enter your password">
+                                            <input type="password" name="password" class="form-control" placeholder="Enter your password">
                                             <span class="error"></span><br>
                                         </div>
                                     </div>
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary mt-4 mb-3" type="submit"
-                                        name="sign_in">Sign
+                                    <button class="btn btn-block btn-secondary mt-4 mb-3" type="submit" name="sign_in">Sign
                                         in</button>
                                     <span class="error"></span>
 

@@ -279,7 +279,31 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Applied</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b><?php
+                                                                                                $sql = "SELECT * FROM `course_registration` ";
+                                                                                                $result = mysqli_query($conn, $sql);
+                                                                                                $count = mysqli_num_rows($result);
+                                                                                                echo $count;
+                                                                                                ?></b></h4>
+                                        </div>
+                                    </a>
+                                    <a href="courseregistrationslist.php" style="color:#4AA02C"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <p class="tx-13 mb-2 font-weight-semibold ">Active</p>
+                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b><?php
                                                                                                 $sql = "SELECT * FROM `course_registration` WHERE `status` = 'Active'";
+                                                                                                $result = mysqli_query($conn, $sql);
+                                                                                                $count = mysqli_num_rows($result);
+                                                                                                echo $count;
+                                                                                                ?></b></h4>
+                                        </div>
+                                    </a>
+                                    <a href="courseregistrationslist.php" style="color:#b9bf00"
+                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <p class="tx-13 mb-2 font-weight-semibold ">Pending</p>
+                                            <h4 class=" mb-0 font-weight-semibold  tx-18"><b><?php
+                                                                                                $sql = "SELECT * FROM `course_registration` WHERE `status` = 'Pending'";
                                                                                                 $result = mysqli_query($conn, $sql);
                                                                                                 $count = mysqli_num_rows($result);
                                                                                                 echo $count;

@@ -17,12 +17,15 @@ if (isset($_POST["submit"])) {
     $query = mysqli_prepare($conn, "INSERT INTO `stream`(`stream_name`, `stream_location`, `image`) VALUES (?,?,?)");
     $query->bind_param("sss", $name, $location, $image_name);
     if ($query->execute()) {
-        $_SESSION['message_success'] = true;
+        $_SESSION['message_success'] = "Stream Added Successfully";
         move_uploaded_file($image_tmp, "./assets/img/stream/" . $image_name);
         header("location: addstreams.php");
+        exit();
     } else {
-        $_SESSION['message_failed'] = true;
+        $_SESSION['message_failed'] = "Fill Correct Details.";
         $_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
+        header("location: addstreams.php");
+        exit();
     }
 }
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
@@ -48,17 +51,16 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <?php include("./switcher.php"); ?>
 
     <?php
-    if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-        echo "<script>toastr.success('Stream Added Successfully')</script>";
-        session_destroy();
+    if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) {
+        echo "<script>toastr.success('{$_SESSION["message_success"]}')</script>";
     }
     ?>
 
     <?php
-    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+    if (isset($_SESSION['message_failed']) && !empty($_SESSION['message_failed'])) {
         echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-        session_destroy();
     }
+    session_destroy();
     ?>
 
     <!-- Page -->
@@ -117,7 +119,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputAadhar">Stream Location</label>
-                                                    <select name="location" class="form-control form-select select2" data-bs-placeholder="Enter Stream">
+                                                    <select name="location" class="form-control form-select select2"
+                                                        data-bs-placeholder="Enter Stream">
                                                         <option value="courses">Courses</option>
                                                         <option value="internship">Internship</option>
                                                         <option value="placements">Placements</option>
@@ -128,13 +131,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputPersonalPhone">Stream Name</label>
-                                                    <input name="name" type="text" class="form-control" id="exampleInputPersonalPhone" placeholder="Enter stream name">
+                                                    <input name="name" type="text" class="form-control"
+                                                        id="exampleInputPersonalPhone" placeholder="Enter stream name">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode">Upload Image</label>
-                                                    <input type="file" class="form-control" id="exampleInputcode" name="image" placeholder="" required width="540" height="300">
+                                                    <input type="file" class="form-control" id="exampleInputcode"
+                                                        name="image" placeholder="" required width="540" height="300">
                                                 </div>
                                             </div>
 
@@ -143,7 +148,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
                                         </div>
-                                        <button type="submit" value="submit" name="submit" class="btn btn-info mt-3 mb-0" style="text-align:right">Add Stream</button>
+                                        <button type="submit" value="submit" name="submit"
+                                            class="btn btn-info mt-3 mb-0" style="text-align:right">Add Stream</button>
                                     </div>
                                 </div>
                             </div>

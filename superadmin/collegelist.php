@@ -3,18 +3,30 @@ session_start();
 
 include('../db_connection/connection.php');
 
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
     header('location: ../super-admin_login.php');
     exit();
 }
 
-if (isset($_GET["error"])) {
-    // Sanitize the value using htmlspecialchars
-    $error = htmlspecialchars($_GET["error"], ENT_QUOTES, 'UTF-8');
-
-    // Store the sanitized value in the session
-    $_SESSION["error"] = $error;
+function decryptPassword($encryptedPassword, $key)
+{
+    $data = base64_decode($encryptedPassword);
+    $iv = substr($data, 0, openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = substr($data, openssl_cipher_iv_length('aes-256-cbc'));
+    return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
 }
+
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
@@ -30,13 +42,17 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
     <?php include("./style.php"); ?>
 
+    <style>
+    .pointer {
+        cursor: pointer !important;
+    }
+    </style>
+
 </head>
 
 <body class="ltr main-body app sidebar-mini">
     <?php include("./switcher.php"); ?>
-    <?php if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
-        echo "<script>toastr.alert('" . $_SESSION["error"] . "')</script>";
-    } ?>
+
     <!-- Page -->
     <div class="page">
 
@@ -95,7 +111,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             echo "<option value='" . $row["affiliated_university"] . "'>" . $row["affiliated_university"] . "</option>";
                                         }
                                     }
-                                    session_destroy();
                                 }
                                 ?>
 
@@ -118,7 +133,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             echo "<option value='" . $row["district"] . "'>" . $row["district"] . "</option>";
                                         }
                                     }
-                                    session_destroy();
                                 }
                                 ?>
 
@@ -145,6 +159,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 <th class="border-bottom-0">Date of adding</th>
                                                 <th class="border-bottom-0">College ID</th>
                                                 <th class="border-bottom-0">College Name</th>
+                                                <th class="border-bottom-0">Password</th>
                                                 <th class="border-bottom-0">Representative Name</th>
                                                 <th class="border-bottom-0">District</th>
                                                 <th class="border-bottom-0">Affliate Univerity Board</th>
@@ -183,6 +198,28 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                     echo "<td>" . $row["creation_date"] . "</td>";
                                                     echo "<td>COL_" . $row["id"] . "</td>";
                                                     echo "<td>" . $row["name"] . "</td>";
+                                                    $decryptedPassword = decryptPassword($row["hashed_password"], $key);
+                                                    echo "<td class='pointer'>
+            <i class='bi bi-eye show-password' id='show-password-" . $row["id"] . "' data-id='show_password_" . $row["id"] . "' title='Show Password'></i>
+            <span class='password' id='password_" . $row["id"] . "' style='display:none;'>" . $decryptedPassword . "</span>
+            <i class='bi bi-eye-slash hide-password' id='hide-password-" . $row["id"] . "' data-id='hide_password_" . $row["id"] . "' style='display:none;' title='Hide Password'></i>
+        </td>";
+
+                                                    echo '
+            <script>
+                document.querySelector("#show-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "block";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "inline-block";
+                });
+
+                document.querySelector("#hide-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "inline-block";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "none";
+                });
+            </script>
+        ';
                                                     echo "<td>" . $row["representative_name"] . "</td>";
                                                     echo "<td>" . $row["district"] . "</td>";
                                                     echo "<td>" . $row["affiliated_university"] . "</td>";
@@ -197,9 +234,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             }
 
                                             ?>
-
-                                            >
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -220,7 +254,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
     <?php include("./scripts.php"); ?>
 
-
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

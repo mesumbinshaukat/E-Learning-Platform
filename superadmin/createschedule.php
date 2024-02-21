@@ -26,12 +26,17 @@ if (isset($_POST["submit"])) {
     $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `id` = '$batch_id'");
     $batch = mysqli_fetch_assoc($batch_query);
 
-    if ($batch["id"] == $batch_id) {    
+    if ($batch["id"] == $batch_id) {
         $batch_name = $batch["batch_name"];
         $insert_query = mysqli_prepare($conn, "INSERT INTO `batches_schedule`(`batch_name`, `batch_id`, `main_topic`, `class_duration`, `date_of_schedule`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`) VALUES (?,?,?,?,?,?,?,?,?,?)");
         $insert_query->bind_param("ssssssssss", $batch_name, $batch_id, $training_title, $durations, $date_of_training, $tasks, $shared_documents, $topics_to_be_covered, $training_starting_time, $training_ending_time);
         if ($insert_query->execute()) {
+            $_SESSION["success"] = "Batch scheduled successfully";
             move_uploaded_file($shared_documents_temp_name, $shared_documents_folder);
+            header("location:./createschedule.php");
+            exit();
+        } else {
+            $_SESSION["error"] = "Something went wrong";
             header("location:./createschedule.php");
             exit();
         }
@@ -104,13 +109,14 @@ if (isset($_POST["submit"])) {
                     <div class="row row-sm">
 
                         <div class="form-group col-md-4">
-                            <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
+                            <select name="batch_id" required class="form-control form-select select2"
+                                data-bs-placeholder="Select Batch">
                                 <?php
                                 $batch = mysqli_query($conn, "SELECT * FROM `batch`");
                                 if (mysqli_num_rows($batch) > 0) {
                                     while ($row = mysqli_fetch_assoc($batch)) {
                                 ?>
-                                        <option value="<?= $row['id'] ?>"><?= $row['batch_name'] ?></option>
+                                <option value="<?= $row['id'] ?>"><?= $row['batch_name'] ?></option>
                                 <?php
                                     }
                                 }
@@ -136,14 +142,17 @@ if (isset($_POST["submit"])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputDOB">Date of Schedule </label>
-                                                    <input class="form-control" name="date_of_training" id="dateMask" placeholder="MM/DD/YYYY" type="date" required>
+                                                    <input class="form-control" name="date_of_training" id="dateMask"
+                                                        placeholder="MM/DD/YYYY" type="date" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputPersonalPhone"> Main Topic </label>
-                                                    <input type="text" class="form-control" name="training_title" id="exampleInputPersonalPhone" placeholder="Enter Main Topic" required>
+                                                    <input type="text" class="form-control" name="training_title"
+                                                        id="exampleInputPersonalPhone" placeholder="Enter Main Topic"
+                                                        required>
                                                 </div>
                                             </div>
 
@@ -151,14 +160,16 @@ if (isset($_POST["submit"])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode">Class Duration</label>
-                                                    <input type="number" class="form-control" min="1" name="durations" id="exampleInputcode" placeholder="Enter Duration" required>
+                                                    <input type="number" class="form-control" min="1" name="durations"
+                                                        id="exampleInputcode" placeholder="Enter Duration" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputAadhar">Tasks</label>
-                                                    <select name="tasks" class="form-control form-select select2" data-bs-placeholder="Select Batch" required>
+                                                    <select name="tasks" class="form-control form-select select2"
+                                                        data-bs-placeholder="Select Batch" required>
                                                         <option value="Yes">Yes</option>
                                                         <option value="No">No</option>
                                                     </select>
@@ -168,7 +179,8 @@ if (isset($_POST["submit"])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode"> Shared Documents</label>
-                                                    <input type="file" name="shared_documents" class="form-control" id="exampleInputcode" placeholder="" required>
+                                                    <input type="file" name="shared_documents" class="form-control"
+                                                        id="exampleInputcode" placeholder="" required>
                                                 </div>
                                             </div>
 
@@ -177,7 +189,8 @@ if (isset($_POST["submit"])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputAadhar">Topics to be covered</label>
-                                                    <input type="text" name="topics_to_be_covered" class="form-control" id="exampleInputAadhar" placeholder="Topics List" required>
+                                                    <input type="text" name="topics_to_be_covered" class="form-control"
+                                                        id="exampleInputAadhar" placeholder="Topics List" required>
                                                 </div>
                                             </div>
 
@@ -185,14 +198,16 @@ if (isset($_POST["submit"])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Class Starting time</label>
-                                                    <input name="training_starting_time" class="form-control" id="start-date" placeholder="" type="time" required>
+                                                    <input name="training_starting_time" class="form-control"
+                                                        id="start-date" placeholder="" type="time" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Class Ending time </label>
-                                                    <input name="training_ending_time" class="form-control" id="end-date" placeholder="" type="time" required>
+                                                    <input name="training_ending_time" class="form-control"
+                                                        id="end-date" placeholder="" type="time" required>
                                                     <div id="message" style="color:red"></div>
                                                 </div>
                                             </div>
@@ -214,7 +229,8 @@ if (isset($_POST["submit"])) {
                                             </script> -->
 
                                         </div>
-                                        <button type="submit" name="submit" onclick="return checkDateRange()" class="btn btn-info mt-3 mb-0" style="text-align:right">Schedule</button>
+                                        <button type="submit" name="submit" onclick="return checkDateRange()"
+                                            class="btn btn-info mt-3 mb-0" style="text-align:right">Schedule</button>
                                     </div>
                                 </div>
                             </div>
@@ -234,6 +250,16 @@ if (isset($_POST["submit"])) {
     <!-- End Page -->
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

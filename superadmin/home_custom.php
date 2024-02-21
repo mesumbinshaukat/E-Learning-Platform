@@ -20,10 +20,12 @@ if (isset($_POST["customize"])) {
     $insert_query->bind_param("ssss", $logo, $heading_one, $paragraph, $image);
 
     if ($insert_query->execute()) {
+        $_SESSION["success"] = "Home Customized Successfully";
         move_uploaded_file($logo_tmp, "./assets/img/home/" . $logo);
         move_uploaded_file($image_tmp, "./assets/img/home/" . $image);
 
         header('location: home_custom.php');
+        exit();
     }
 }
 if (isset($_POST["modify"])) {
@@ -54,6 +56,7 @@ if (isset($_POST["modify"])) {
 
     if ($update_query->execute()) {
         // Upload new logo if provided
+        $_SESSION["success"] = "Home Customized Successfully";
         if (!empty($logo_tmp) && $logo_tmp !== $fetch["nav_logo"]) {
             move_uploaded_file($logo_tmp, "./assets/img/home/" . $logo);
         }
@@ -64,6 +67,11 @@ if (isset($_POST["modify"])) {
         }
 
         header('location: home_custom.php');
+        exit();
+    } else {
+        $_SESSION["error"] = "Something went wrong";
+        header('location: home_custom.php');
+        exit();
     }
 }
 
@@ -262,6 +270,16 @@ if (isset($_POST["modify"])) {
     <!-- End Page -->
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

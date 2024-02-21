@@ -17,9 +17,26 @@ if (isset($_GET["error"])) {
     // Store the sanitized value in the session
     $_SESSION["error"] = $error;
 }
+
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
+function decryptPassword($encryptedPassword, $key)
+{
+    $data = base64_decode($encryptedPassword);
+    $iv = substr($data, 0, openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = substr($data, openssl_cipher_iv_length('aes-256-cbc'));
+    return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +51,11 @@ if (isset($_GET["error"])) {
     <title>Trainer Sign Up - Registrations</title>
 
     <?php include("./style.php"); ?>
-
+    <style>
+    .pointer {
+        cursor: pointer;
+    }
+    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -93,7 +114,8 @@ if (isset($_GET["error"])) {
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -118,20 +140,50 @@ if (isset($_GET["error"])) {
                                                     if ($row["created_by"] == "user") {
                                             ?>
 
-                                                        <tr>
-                                                            <td><?php echo $i++; ?></td>
-                                                            <td><?php echo $row['creation_date']; ?></td>
-                                                            <td>REG_<?php echo $row['id']; ?></td>
-                                                            <td><?php echo $row['name']; ?></td>
-                                                            <td><?php echo $row['contact_number']; ?></td>
-                                                            <td><?php echo $row['username']; ?></td>
-                                                            <td><?php echo $row['password']; ?></td>
-                                                            <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
-                                                            </td>
-                                                            <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>" class="btn btn-warning">Edit</a></td>
-                                                        </tr>
-
+                                            <tr>
+                                                <td><?php echo $i++; ?></td>
+                                                <td><?php echo $row['creation_date']; ?></td>
+                                                <td>REG_<?php echo $row['id']; ?></td>
+                                                <td><?php echo $row['name']; ?></td>
+                                                <td><?php echo $row['contact_number']; ?></td>
+                                                <td><?php echo $row['username']; ?></td>
                                                 <?php
+
+                                                            $decryptedPassword = decryptPassword($row["hashed_password"], $key);
+
+
+                                                            echo "<td class='pointer'>
+            <i class='bi bi-eye show-password' id='show-password-" . $row["id"] . "' data-id='show_password_" . $row["id"] . "' title='Show Password'></i>
+            <span class='password' id='password_" . $row["id"] . "' style='display:none;'>" . $decryptedPassword . "</span>
+            <i class='bi bi-eye-slash hide-password' id='hide-password-" . $row["id"] . "' data-id='hide_password_" . $row["id"] . "' style='display:none;' title='Hide Password'></i>
+        </td>";
+
+                                                            echo '
+            <script>
+                document.querySelector("#show-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "block";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "inline-block";
+                });
+
+                document.querySelector("#hide-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "inline-block";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "none";
+                });
+            </script>
+        ';
+
+                                                            ?>
+                                                <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer"
+                                                        class="btn btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
+                                                </td>
+                                                <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>"
+                                                        class="btn btn-warning">Edit</a></td>
+                                            </tr>
+
+                                            <?php
                                                     }
                                                 }
                                             } else { ?>
@@ -147,59 +199,22 @@ if (isset($_GET["error"])) {
                 </div>
                 <!-- End Row -->
 
-
-                <div class="modal fade" id="delete">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to delete a trainer?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">Accept</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal fade" id="unblock">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">confirmation Notification</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p> Are you sure you want to unblock a employee??</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-success" type="button">unblock</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Not
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
         </div>
 
     </div>
 
-
-
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+
+    ?>
 </body>
 
 </html>

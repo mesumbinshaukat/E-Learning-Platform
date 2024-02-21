@@ -1,31 +1,33 @@
-<?php 
+<?php
+session_start();
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
-if(isset($_POST['submitBtn'])){
-	$date_of_meeting_link = $_POST['date_of_meeting_link'];
-	$Platform = $_POST['Platform'];
-	$Meeting_link = $_POST['Meeting_link'];
-	$batch_id = $_POST['batch_id'];
+if (isset($_POST['submitBtn'])) {
+    $date_of_meeting_link = $_POST['date_of_meeting_link'];
+    $Platform = $_POST['Platform'];
+    $Meeting_link = $_POST['Meeting_link'];
+    $batch_id = $_POST['batch_id'];
 
-	$select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
-	$fetch_batch = mysqli_fetch_assoc($select_batch);
-	if($fetch_batch['id'] == $batch_id){
-	$batch_name = $fetch_batch['batch_name'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_meetings`(`date_of_meeting_link`, `platform`, `meeting_link`,`batch_id`,`batch_name`) VALUES (?,?,?,?,?)");
-	$insert_query->bind_param('sssss',$date_of_meeting_link,$Platform,$Meeting_link,$batch_id,$batch_name);
-	if($insert_query->execute()){
-		$_SESSION['message_success'] = true;
-		header("location:createmeetings.php");
-	}
-	else{
-		$_SESSION['message_failed'] = true;
-		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
-	}
-}
+    $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
+    $fetch_batch = mysqli_fetch_assoc($select_batch);
+    if ($fetch_batch['id'] == $batch_id) {
+        $batch_name = $fetch_batch['batch_name'];
+        $insert_query = mysqli_prepare($conn, "INSERT INTO `batches_meetings`(`date_of_meeting_link`, `platform`, `meeting_link`,`batch_id`,`batch_name`) VALUES (?,?,?,?,?)");
+        $insert_query->bind_param('sssss', $date_of_meeting_link, $Platform, $Meeting_link, $batch_id, $batch_name);
+        if ($insert_query->execute()) {
+            $_SESSION['success'] = "Meeting Scheduled Successfully";
+            header("location:createmeetings.php");
+            exit();
+        } else {
+            $_SESSION['error'] = "Unexpected Error.";
+            header("location:createmeetings.php");
+            exit();
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -41,37 +43,17 @@ if(isset($_POST['submitBtn'])){
     <!-- Title -->
     <title>Create Meetings</title>
 
-    <?php 
-	 include('./style.php'); 
-	  ?>
+    <?php
+    include('./style.php');
+    ?>
 
 </head>
 
 <body class="ltr main-body app sidebar-mini">
 
-    <?php 
-	 include('./switcher.php'); 
-	  ?>
-
-
     <?php
-	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-		echo "<script>toastr.success('Meeting Scheduled Successfully')</script>";
-		session_destroy();
-	}
-	?>
-
-    <?php
-	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-		session_destroy();
-	}
-	?>
-    <!-- Loader -->
-    <!-- <div id="global-loader">
-			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div> -->
-    <!-- /Loader -->
+    include('./switcher.php');
+    ?>
 
     <!-- Page -->
     <div class="page">
@@ -79,12 +61,12 @@ if(isset($_POST['submitBtn'])){
         <div>
 
             <div class="main-header side-header sticky nav nav-item">
-                <?php include('./partials/navbar.php')?>
+                <?php include('./partials/navbar.php') ?>
             </div>
             <!-- /main-header -->
             <!-- main-sidebar -->
             <div class="sticky">
-                <?php include('./partials/sidebar.php')?>
+                <?php include('./partials/sidebar.php') ?>
             </div>
             <!-- main-sidebar -->
 
@@ -119,16 +101,16 @@ if(isset($_POST['submitBtn'])){
                         <select name="batch_id" required class="form-control form-select select2"
                             data-bs-placeholder="Select Batch">
                             <?php
-		$batch = mysqli_query($conn, "SELECT * FROM `batch`");
-		if (mysqli_num_rows($batch) > 0) {
-			while ($row = mysqli_fetch_assoc($batch)) {
-		?>
+                            $batch = mysqli_query($conn, "SELECT * FROM `batch`");
+                            if (mysqli_num_rows($batch) > 0) {
+                                while ($row = mysqli_fetch_assoc($batch)) {
+                            ?>
                             <option value="<?= $row['id'] ?>"><?= $row['batch_name'] ?></option>
                             <?php
-			}
-		}
+                                }
+                            }
 
-		?>
+                            ?>
                         </select>
                     </div>
 
@@ -201,8 +183,8 @@ if(isset($_POST['submitBtn'])){
 
             </div>
             <!-- Container closed -->
+        </form>
     </div>
-    </form>
 
 
     <div class="modal fade" id="schedule">
@@ -224,21 +206,20 @@ if(isset($_POST['submitBtn'])){
         </div>
     </div>
 
+    <?php
+    include('./scripts.php');
+    ?>
 
 
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <?php 
-	 include('./scripts.php'); 
-	  ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 
 </html>

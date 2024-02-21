@@ -42,11 +42,13 @@ if (isset($_POST['update'])) {
             move_uploaded_file($picture_tmp, "./assets/img/testimonial/" . $picture);
         }
 
-        $_SESSION['message_success'] = true;
+        $_SESSION['success'] = "Testimonial Updated Successfully.";
         header('location: manage_testimony.php');
+        exit();
     } else {
-        $_SESSION['message_failed'] = true;
-        $_SESSION["err_msg"] = "Failed to update. Fill correct details.";
+        $_SESSION["error"] = "Failed to update.";
+        header('location: manage_testimony.php');
+        exit();
     }
 }
 
@@ -61,40 +63,29 @@ $id = (int) $id;
 <head>
     <title>Update Testimonial</title>
     <style>
-        .range-container {
-            display: flex;
-            align-items: center;
-        }
+    .range-container {
+        display: flex;
+        align-items: center;
+    }
 
-        .range-label {
-            margin-right: 10px;
-            font-size: 14px;
-            color: #333;
-        }
+    .range-label {
+        margin-right: 10px;
+        font-size: 14px;
+        color: #333;
+    }
 
-        .range-value {
-            font-size: 16px;
-            color: #007bff;
-        }
+    .range-value {
+        font-size: 16px;
+        color: #007bff;
+    }
 
-        .form-range {
-            width: 80%;
-            margin-top: 10px;
-        }
+    .form-range {
+        width: 80%;
+        margin-top: 10px;
+    }
     </style>
     <?php include("./style.php"); ?>
 </head>
-
-<?php
-if (isset($_SESSION['message_success'])) {
-    echo "<script>toastr.success('Placement Updated!')</script>";
-    session_destroy();
-}
-if (isset($_SESSION['message_failed'])) {
-    echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-    session_destroy();
-}
-?>
 
 <body class="ltr main-body app sidebar-mini">
     <?php include("./switcher.php"); ?>
@@ -144,29 +135,41 @@ if (isset($_SESSION['message_failed'])) {
                                             if (mysqli_num_rows($query) > 0) {
                                                 $row = mysqli_fetch_array($query);
                                             ?>
-                                                <div class="control-group form-group">
-                                                    <label class="form-label">Student Name</label>
-                                                    <input type="text" name="student_name" class="form-control required" placeholder="Student Name" value="<?php echo $row['name']; ?>" required>
-                                                </div>
-                                                <div class="control-group form-group">
-                                                    <label class="form-label">Message</label>
-                                                    <input type="text" name="message" class="form-control required" placeholder="Message" value="<?php echo $row['message']; ?>" required>
-                                                </div>
-                                                <div class=" range-container">
-                                                    <label class="range-label">Rating:</label>
-                                                    <span id="rangeValue" class="range-value"><?php echo $row['rating']; ?></span>
-                                                </div>
-                                                <div class="control-group form-group">
-                                                    <input type="range" min="1" max="5" name="rating" class="form-range required" placeholder="Rating" step="0.5" required value="<?php echo $row['rating']; ?>" oninput="updateRangeValue(this.value)">
-                                                </div>
-                                                <div class="control-group form-group mb-2">
-                                                    <label class="form-label">Picture</label>
-                                                    <input type="file" name="picture" class="form-control" placeholder="Picture">
-                                                    <img src="./assets/img/testimonial/<?php echo $row['picture']; ?>" alt="<?php echo $row['picture']; ?>" width="120px">
-                                                </div>
+                                            <div class="control-group form-group">
+                                                <label class="form-label">Student Name</label>
+                                                <input type="text" name="student_name" class="form-control required"
+                                                    placeholder="Student Name" value="<?php echo $row['name']; ?>"
+                                                    required>
+                                            </div>
+                                            <div class="control-group form-group">
+                                                <label class="form-label">Message</label>
+                                                <input type="text" name="message" class="form-control required"
+                                                    placeholder="Message" value="<?php echo $row['message']; ?>"
+                                                    required>
+                                            </div>
+                                            <div class=" range-container">
+                                                <label class="range-label">Rating:</label>
+                                                <span id="rangeValue"
+                                                    class="range-value"><?php echo $row['rating']; ?></span>
+                                            </div>
+                                            <div class="control-group form-group">
+                                                <input type="range" min="1" max="5" name="rating"
+                                                    class="form-range required" placeholder="Rating" step="0.5" required
+                                                    value="<?php echo $row['rating']; ?>"
+                                                    oninput="updateRangeValue(this.value)">
+                                            </div>
+                                            <div class="control-group form-group mb-2">
+                                                <label class="form-label">Picture</label>
+                                                <input type="file" name="picture" class="form-control"
+                                                    placeholder="Picture">
+                                                <img src="./assets/img/testimonial/<?php echo $row['picture']; ?>"
+                                                    alt="<?php echo $row['picture']; ?>" width="120px">
+                                            </div>
                                         </section>
-                                        <button name="update" value="submit" type="submit" class="btn btn-primary mt-3 mb-0" onclick="return check()" style="text-align:right">Update</button>
-                                    <?php } ?>
+                                        <button name="update" value="submit" type="submit"
+                                            class="btn btn-primary mt-3 mb-0" onclick="return check()"
+                                            style="text-align:right">Update</button>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -182,9 +185,9 @@ if (isset($_SESSION['message_failed'])) {
     <!-- End Page -->
     <?php include("./scripts.php"); ?>
     <script>
-        function updateRangeValue(value) {
-            document.getElementById('rangeValue').textContent = value;
-        }
+    function updateRangeValue(value) {
+        document.getElementById('rangeValue').textContent = value;
+    }
     </script>
 </body>
 

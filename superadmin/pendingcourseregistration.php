@@ -8,6 +8,23 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+
+if (isset($_POST["submit"])) {
+    $id = $_POST["id"];
+    $sql = "UPDATE `course_registration` SET `status`='Active' WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    if (mysqli_stmt_execute($stmt)) {
+        $_SESSION["success"] = "Student Registration Accepted.";
+        header("location: pendingcourseregistration.php");
+        exit();
+    } else {
+        $_SESSION["error"] = "Something went wrong. Please try again.";
+        header("location: pendingcourseregistration.php");
+        exit();
+    }
+}
+
 ?>
 
 
@@ -16,7 +33,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
 <head>
-    <title>Manage Course Registration</title>
+    <title>Pending Course Registration</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,7 +82,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
                             <li class="breadcrumb-item ">Registrations</li>
-                            <li class="breadcrumb-item ">Manage</li>
+                            <li class="breadcrumb-item ">Pending</li>
                         </ol>
                     </div>
 
@@ -165,7 +182,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                             $student_query .= " AND `branch` = '$branches'";
                                                         }
                                                         $student = mysqli_query($conn, $student_query);
-                                                        if (mysqli_num_rows($student) > 0 && $row["status"] == "Active") {
+                                                        if (mysqli_num_rows($student) > 0 && $row["status"] == "Pending") {
                                                             $student = mysqli_fetch_assoc($student);
                                                             echo "<tr>";
                                                             echo "<td>" . $i++ . "</td>";
@@ -182,7 +199,13 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                         </button>
 
                                                         <div class="dropdown-menu">
+                                                        <form method="POST">
+                                                        <input type="hidden" name="id" value="' . $row['id'] . '">
+                                                        <input type="submit" name="submit" value="Accept" class="btn dropdown-item">
+                                                        </form>
+                                                     
                                                             <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=delete">Delete</a>
+                                                            
                                                         </div><!-- dropdown-menu -->
                                                     </div>
                                                 </td>';
@@ -209,6 +232,16 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     </div>
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 
 </body>
 

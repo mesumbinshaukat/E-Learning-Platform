@@ -16,6 +16,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["internship_id"]) &
 	$query = mysqli_prepare($conn, "INSERT INTO `student_selected_for_internship`(`student_id`, `internship_id`) VALUES (?,?)");
 	$query->bind_param("ss", $id, $internship_id);
 	if ($query->execute()) {
+		$_SESSION["success"] = "Student Allocated Successfully.";
 		header("location:./selectstudent.php?id=" . $internship_id);
 		exit();
 	}
@@ -27,6 +28,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["internship_id"]) &
 	$query = mysqli_prepare($conn, "INSERT INTO `student_selected_for_placement`(`student_id`, `placement_id`) VALUES (?,?)");
 	$query->bind_param("ss", $id, $placement_id);
 	if ($query->execute()) {
+		$_SESSION["success"] = "Student Allocated Successfully.";
 		header("location:./selectstudentplacement.php?id=" . $placement_id);
 		exit();
 	}
@@ -38,6 +40,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["internship_id"]) &
 	$query = mysqli_prepare($conn, "INSERT INTO `course_registration`(`course_id`, `student_id`) VALUES (?,?)");
 	$query->bind_param("ii", $course_id, $id);
 	if ($query->execute()) {
+		$_SESSION["success"] = "Student Allocated Successfully.";
 		header("location:./selectstudent.php?id=" . $course_id . "&type=course");
 		exit();
 	}

@@ -8,6 +8,23 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+
+if (isset($_POST["submit"])) {
+    $id = $_POST["id"];
+    $sql = "UPDATE `internship_registration` SET `status`='Active' WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    if (mysqli_stmt_execute($stmt)) {
+        $_SESSION["success"] = "Student Registration Accepted.";
+        header("location: pendinginternshipregistrations.php");
+        exit();
+    } else {
+        $_SESSION["error"] = "Something went wrong. Please try again.";
+        header("location: pendinginternshipregistrations.php");
+        exit();
+    }
+}
+
 ?>
 
 
@@ -16,7 +33,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
 <head>
-    <title>Manage Course Registration</title>
+    <title>Pending Internship Registration</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,15 +74,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Course
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Internship
                             Registrations </span>
                     </div>
 
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
+                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship</a></li>
                             <li class="breadcrumb-item ">Registrations</li>
-                            <li class="breadcrumb-item ">Manage</li>
+                            <li class="breadcrumb-item ">Pending</li>
                         </ol>
                     </div>
 
@@ -91,26 +108,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </select>
 
                         </div>
-                        <div class="form-group col-md-3">
-                            <P> <b>Branch</b> </p>
-
-                            <select name="branches" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
-                                <option value="" selected>All</option>
-                                <?php $branch_query = mysqli_query($conn, "SELECT DISTINCT `branch` FROM `student`");
-                                if (mysqli_num_rows($branch_query) > 0) {
-                                    while ($row = mysqli_fetch_assoc($branch_query)) {
-                                ?>
-                                <option value="<?= $row['branch'] ?>"><?= $row['branch'] ?></option>
-                                <?php
-                                    }
-                                }
-                                ?>
-
-                            </select>
-                        </div>
-
-
 
                         &nbsp &nbsp <button type="submit" class="btn btn-primary"
                             style="height:40px;width:100px;margin-top:35px">Search</button>
@@ -135,59 +132,56 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 <th class="border-bottom-0">Student name</th>
                                                 <th class="border-bottom-0">College name</th>
 
-                                                <th class="border-bottom-0">Branch</th>
-                                                <th class="border-bottom-0">Course Name</th>
+                                                <th class="border-bottom-0">Internship</th>
 
-                                                <th class="border-bottom-0">Date of adding</th>
+                                                <th class="border-bottom-0">Applied Date</th>
                                                 <th class="border-bottom-0">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = "SELECT * FROM `course_registration`";
 
-                                            $result = $conn->query($sql);
+                                            $result = mysqli_query($conn, "SELECT * FROM `internship_registration`");
+
                                             if (mysqli_num_rows($result) > 0) {
                                                 $i = 1;
-                                                while ($row = $result->fetch_assoc()) {
-                                                    $course_query = "SELECT * FROM `course` WHERE `id` = '$row[course_id]'";
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $student = "SELECT * FROM `student` WHERE `id` = '{$row['student_id']}'";
 
-                                                    $course = mysqli_query($conn, $course_query);
-                                                    if (mysqli_num_rows($course) > 0) {
-                                                        $course = mysqli_fetch_array($course);
-                                                        $student_query = "SELECT * FROM `student` WHERE `id` = '$row[student_id]'";
-                                                        if (isset($_POST['college']) && !empty($_POST['college'])) {
-                                                            $college = $_POST['college'];
-                                                            $student_query .= " AND `college_name` = '$college'";
-                                                        }
-                                                        if (isset($_POST['branches']) && !empty($_POST['branches'])) {
-                                                            $branches = $_POST['branches'];
-                                                            $student_query .= " AND `branch` = '$branches'";
-                                                        }
-                                                        $student = mysqli_query($conn, $student_query);
-                                                        if (mysqli_num_rows($student) > 0 && $row["status"] == "Active") {
-                                                            $student = mysqli_fetch_assoc($student);
-                                                            echo "<tr>";
-                                                            echo "<td>" . $i++ . "</td>";
-                                                            echo "<td>STID_" . $student['id'] . "</td>";
-                                                            echo "<td>" . $student['name'] . "</td>";
-                                                            echo "<td>" . $student['college_name'] . "</td>";
-                                                            echo "<td>" . $student['branch'] . "</td>";
-                                                            echo "<td>" . $course['course_name'] . "</td>";
-                                                            echo "<td>" . $row['added_date'] . "</td>";
-                                                            echo '<td>
-                                                    <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
+                                                    if (isset($_POST["college"]) && !empty($_POST["college"])) {
+                                                        $student .= " AND `college_name` = '{$_POST["college"]}'";
+                                                    }
+
+                                                    $student_query = mysqli_query($conn, $student);
+
+                                                    $internship_query = mysqli_query($conn, "SELECT * FROM `internship` WHERE `id` = '{$row['internship_id']}'");
+
+                                                    if (mysqli_num_rows($student_query) > 0 && mysqli_num_rows($internship_query) > 0 && $row['status'] == "Pending") {
+                                                        $fetch = mysqli_fetch_assoc($student_query);
+                                                        $fetch2 = mysqli_fetch_assoc($internship_query);
+
+                                                        echo '<tr>
+                                                        <td>' . $i++ . '</td>
+                                                        <td>' . $fetch['id'] . '</td>
+                                                        <td>' . $fetch['name'] . '</td>
+                                                        <td>' . $fetch['college_name'] . '</td>
+                                                        <td>' . $fetch2['internship'] . '</td>
+                                                        <td>' . $row['applied_date'] . '</td>
+                                                        <td> <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
                                                         <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                             <i class="bi bi-three-dots"></i>
                                                         </button>
 
                                                         <div class="dropdown-menu">
+                                                        <form method="POST">
+                                                        <input type="hidden" name="id" value="' . $row['id'] . '">
+                                                        <input type="submit" name="submit" value="Accept" class="btn dropdown-item">
+                                                        </form>
+                                                     
                                                             <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=delete">Delete</a>
+                                                            
                                                         </div><!-- dropdown-menu -->
-                                                    </div>
-                                                </td>';
-                                                            echo "</tr>";
-                                                        }
+                                                    </div> </td> </tr>';
                                                     }
                                                 }
                                             }
@@ -209,6 +203,16 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     </div>
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 
 </body>
 

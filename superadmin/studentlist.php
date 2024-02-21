@@ -4,12 +4,32 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 // Store the current URL in the session
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
+function decryptPassword($encryptedPassword, $key)
+{
+    $data = base64_decode($encryptedPassword);
+    $iv = substr($data, 0, openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = substr($data, openssl_cipher_iv_length('aes-256-cbc'));
+    return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +45,12 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <meta name="Description" content="">
 
     <?php include("./style.php"); ?>
+
+    <style>
+    .pointer {
+        cursor: pointer;
+    }
+    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -83,12 +109,12 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                 <option value="" selected="selected">All</option>
                                 <option value="None">None</option>
                                 <?php
-								$query = "SELECT * FROM `college`";
-								$result = mysqli_query($conn, $query);
-								while ($row = mysqli_fetch_assoc($result)) {
-									echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
-								}
-								?>
+                                $query = "SELECT * FROM `college`";
+                                $result = mysqli_query($conn, $query);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                                }
+                                ?>
 
                             </select>
                         </div>
@@ -142,6 +168,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 <th class="border-bottom-0">ID No</th>
                                                 <th class="border-bottom-0">Created By</th>
                                                 <th class="border-bottom-0">Student name</th>
+                                                <th class="border-bottom-0">Password</th>
+
                                                 <th class="border-bottom-0">College</th>
                                                 <th class="border-bottom-0">stream</th>
                                                 <th class="border-bottom-0">District</th>
@@ -155,44 +183,66 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         </thead>
                                         <tbody>
                                             <?php
-											$query = "SELECT * FROM `student` WHERE 1=1";
-											if (!empty($_POST['Semester'])) {
-												$Semester = mysqli_real_escape_string($conn, $_POST['Semester']);
-												$query .= " AND `semester` = '$Semester'";
-											}
-											if (!empty($_POST['institution_name'])) {
-												$college_name = mysqli_real_escape_string($conn, $_POST['institution_name']);
-												$query .= " AND `college_name` = '$college_name'";
-											}
-											if (!empty($_POST['account_type'])) {
-												$account_type = mysqli_real_escape_string($conn, $_POST['account_type']);
-												$query .= " AND `account_type` = '$account_type'";
-											}
+                                            $query = "SELECT * FROM `student` WHERE 1=1";
+                                            if (!empty($_POST['Semester'])) {
+                                                $Semester = mysqli_real_escape_string($conn, $_POST['Semester']);
+                                                $query .= " AND `semester` = '$Semester'";
+                                            }
+                                            if (!empty($_POST['institution_name'])) {
+                                                $college_name = mysqli_real_escape_string($conn, $_POST['institution_name']);
+                                                $query .= " AND `college_name` = '$college_name'";
+                                            }
+                                            if (!empty($_POST['account_type'])) {
+                                                $account_type = mysqli_real_escape_string($conn, $_POST['account_type']);
+                                                $query .= " AND `account_type` = '$account_type'";
+                                            }
 
-											$result = mysqli_query($conn, $query);
-											if (mysqli_num_rows($result) > 0) { ?>
+                                            $result = mysqli_query($conn, $query);
+                                            if (mysqli_num_rows($result) > 0) { ?>
                                             <tr>
                                                 <?php
-													$i = 1;
-													while ($row = mysqli_fetch_assoc($result)) {
+                                                    $i = 1;
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                        echo "<tr>";
+                                                        echo "<td>" . $i . "</td>";
+                                                        echo "<td>" . $row['creation_date'] . "</td>";
+                                                        echo "<td>STID_" . $row['id'] . "</td>";
+                                                        echo "<td>" . $row['created_by'] . "</td>";
+                                                        echo "<td>" . $row['name'] . "</td>";
+                                                        $decryptedPassword = decryptPassword($row["hashed_password"], $key);
 
 
+                                                        echo "<td class='pointer'>
+            <i class='bi bi-eye show-password' id='show-password-" . $row["id"] . "' data-id='show_password_" . $row["id"] . "' title='Show Password'></i>
+            <span class='password' id='password_" . $row["id"] . "' style='display:none;'>" . $decryptedPassword . "</span>
+            <i class='bi bi-eye-slash hide-password' id='hide-password-" . $row["id"] . "' data-id='hide_password_" . $row["id"] . "' style='display:none;' title='Hide Password'></i>
+        </td>";
 
-														echo "<tr>";
-														echo "<td>" . $i . "</td>";
-														echo "<td>" . $row['creation_date'] . "</td>";
-														echo "<td>STID_" . $row['id'] . "</td>";
-														echo "<td>" . $row['created_by'] . "</td>";
-														echo "<td>" . $row['name'] . "</td>";
-														echo "<td>" . $row['college_name'] . "</td>";
-														echo "<td>" . $row['branch'] . "</td>";
-														echo "<td>" . $row['district'] . "</td>";
-														echo "<td><a class='btn btn-danger' href='./delete.php?id=" . $row['id'] . "&user=student'>Delete</a></td>";
-														echo "<td><a href='student_edit.php?id=" . $row['id'] . "' class='btn btn-info'>Update</a></td>";
-														echo "</tr>";
-														$i++;
-													}
-													?>
+                                                        echo '
+            <script>
+                document.querySelector("#show-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "block";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "inline-block";
+                });
+
+                document.querySelector("#hide-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "inline-block";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "none";
+                });
+            </script>
+        ';
+
+                                                        echo "<td>" . $row['college_name'] . "</td>";
+                                                        echo "<td>" . $row['branch'] . "</td>";
+                                                        echo "<td>" . $row['district'] . "</td>";
+                                                        echo "<td><a class='btn btn-danger' href='./delete.php?id=" . $row['id'] . "&user=student'>Delete</a></td>";
+                                                        echo "<td><a href='student_edit.php?id=" . $row['id'] . "' class='btn btn-info'>Update</a></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                    }
+                                                    ?>
 
                                             </tr>
 
@@ -213,6 +263,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <!-- Container closed -->
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 
 </body>
 

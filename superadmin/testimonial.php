@@ -20,11 +20,14 @@ if (isset($_POST['createBtn'])) {
 
     if ($query->execute()) {
         move_uploaded_file($picture_tmp, "./assets/img/testimonial/" . $picture);
-        $_SESSION['message_success'] = true;
+        $_SESSION['success'] = "Testimonial Added Successfully.";
         header('location: testimonial.php');
+        exit();
     } else {
-        $_SESSION['message_failed'] = true;
-        $_SESSION["err_msg"] = "Fill Correct Details.";
+
+        $_SESSION["error"] = "Fill Correct Details.";
+        header("location: testimonial.php");
+        exit();
     }
 }
 
@@ -62,36 +65,7 @@ if (isset($_POST['createBtn'])) {
 
 </head>
 
-<?php
-if (isset($_SESSION['message_success'])) {
-    echo "<script>toastr.success('Testimonial Added!')</script>";
-    session_destroy();
-}
-if (isset($_SESSION['message_failed'])) {
-    echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-    session_destroy();
-}
-
-?>
-
 <body class="ltr main-body app sidebar-mini">
-
-    <?php
-    if (isset($_SESSION['message_success'])) {
-        echo "<script>toastr.success('Placement Added!')</script>";
-        session_destroy();
-    }
-    ?>
-
-    <?php
-    if (isset($_SESSION['message_failed'])) {
-        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-        session_destroy();
-    }
-    ?>
-    <?php include("./switcher.php"); ?>
-
-
 
 
     <!-- Page -->
@@ -215,6 +189,16 @@ if (isset($_SESSION['message_failed'])) {
         document.getElementById('rangeValue').textContent = value;
     }
     </script>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

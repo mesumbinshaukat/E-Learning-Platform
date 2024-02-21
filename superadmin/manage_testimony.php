@@ -110,7 +110,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                             <a href="update_testimonial.php?id=' . $id . '" class="dropdown-item">Update</a>
                                                           
                                                            
-                                                            <a class="btn dropdown-item" href="./delete.php?id='. $id .'&type=testimony">Delete</a>
+                                                            <a class="btn dropdown-item" href="./delete.php?id=' . $id . '&type=testimony">Delete</a>
 
                                                         </div><!-- dropdown-menu -->
                                                     </div>
@@ -135,6 +135,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     </div>
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

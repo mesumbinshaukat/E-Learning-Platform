@@ -3,6 +3,17 @@ session_start();
 
 include('../db_connection/connection.php');
 
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
     header('location: ../super-admin_login.php');
     exit();
@@ -76,27 +87,41 @@ if (isset($_POST["update"])) {
             $query->bind_param("s", $cv);
 
             if (!$query->execute()) {
-                echo "Error updating CV: " . $query->error;
+                $_SESSION["error"] = "Something went wrong. Please try again.";
+                header("Location: ./studentlist.php");
                 exit();
             }
         } else {
             // Handle file upload error if needed
-            echo "File upload failed!";
+            $_SESSION["error"] = "File upload failed!";
+            header("Location: ./studentlist.php");
             exit();
         }
     }
 
-    $query = mysqli_prepare($conn, "UPDATE `student` SET `name`=?,`contact_number`=?,`email`=?,`username`=?,`internship`=?,`password`=?,`gender`=?,`address`=?,`alternate_contact_number`=?,`state`=?,`district`=?,`dob`=?,`pin_code`=?,`qualification`=?,`branch`=?,`semester`=?,`account_type`=?,`college_name`=?, `college_id`=? WHERE `id` = $id");
+    if (!empty($_POST["password"])) {
+        function encrypt_Password($password, $key)
+        {
+            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+            return base64_encode($iv . openssl_encrypt($password, 'aes-256-cbc', $key, 0, $iv));
+        }
 
-    $query->bind_param("sssssssssssssssssss", $student_name, $phone_number, $mail_id, $student_username, $intership_term, $password_hash, $gender, $address, $alternative_phone_number, $state, $district, $date_of_birth, $pincode, $qualification, $stream, $semester, $account_type, $institution_name, $institution_id);
+        $encryptedPassword = encrypt_Password($_POST['password'], $key);
+    }
+
+    $query = mysqli_prepare($conn, "UPDATE `student` SET `name`=?,`contact_number`=?,`email`=?,`username`=?,`internship`=?,`password`=?,`gender`=?,`address`=?,`alternate_contact_number`=?,`state`=?,`district`=?,`dob`=?,`pin_code`=?,`qualification`=?,`branch`=?,`semester`=?,`account_type`=?,`college_name`=?, `college_id`=?, `hashed_password`=? WHERE `id` = $id");
+
+    $query->bind_param("ssssssssssssssssssss", $student_name, $phone_number, $mail_id, $student_username, $intership_term, $password_hash, $gender, $address, $alternative_phone_number, $state, $district, $date_of_birth, $pincode, $qualification, $stream, $semester, $account_type, $institution_name, $institution_id, $encryptedPassword);
 
     if ($query->execute()) {
-        $_SESSION['success'] = "Student created successfully";
+        $_SESSION['success'] = "Student edited successfully";
         header('location: studentlist.php');
+        exit();
     } else {
         echo "Error creating student: " . $query->error;
         $_SESSION['error'] = "Something went wrong";
-        header('location: student_edit.php');
+        header('location: studentlist.php');
+        exit();
     }
 }
 ?>
@@ -197,25 +222,7 @@ if (isset($_POST["update"])) {
                         </div>
                     </div>
                     <!-- /breadcrumb -->
-                    <?php if (isset($_SESSION['success'])) { ?>
-                    <div class="container-sm w-50 d-flex justify-content-center">
-                        <div class="alert alert-success" role="alert">
-                            <?php echo $_SESSION['success']; ?>
-                        </div>
 
-                    </div>
-                    <?php unset($_SESSION['success']); ?>
-                    <?php session_destroy();
-                    } else if (isset($_SESSION['error'])) { ?>
-                    <div class="container-sm w-50 d-flex justify-content-center">
-                        <div class="alert alert-success" role="alert">
-                            <?php echo $_SESSION['error']; ?>
-                        </div>
-
-                    </div>
-                    <?php unset($_SESSION['error']);
-                        session_destroy();
-                    } ?>
                     <!-- row -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
@@ -632,11 +639,11 @@ if (isset($_POST["update"])) {
                                                     <?php if (mysqli_num_rows($college_query) > 0) {
                                                         while ($row = mysqli_fetch_assoc($college_query)) {
 
-                                                            switch ($fetch_student['institution_name']) {
+                                                            switch ($fetch_student['college_name']) {
                                                                 case $row['name']:
                                                                     echo '<option value="' . $row['id'] . '" selected>' . $row['name'] . '</option>';
                                                                     break;
-                                                                case $row["name"] != $fetch_student['institution_name']:
+                                                                case $row["name"] != $fetch_student['college_name']:
                                                                     echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
                                                                     break;
                                                                 default:

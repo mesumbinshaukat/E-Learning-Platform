@@ -33,6 +33,19 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 <body class="ltr main-body app sidebar-mini">
     <?php include("./switcher.php") ?>
 
+    <?php
+    if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) {
+        echo "<script>toastr.success('{$_SESSION["message_success"]}')</script>";
+    }
+    ?>
+
+    <?php
+    if (isset($_SESSION['message_failed']) && !empty($_SESSION['message_failed'])) {
+        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+    }
+
+    ?>
+
     <!-- Page -->
     <div class="page">
 
@@ -169,6 +182,16 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

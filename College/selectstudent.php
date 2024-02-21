@@ -158,8 +158,18 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
 
     </div>
     <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
+
     <?php include("./script.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

@@ -3,6 +3,26 @@ session_start();
 
 include('../db_connection/connection.php');
 
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
+function decryptPassword($encryptedPassword, $key)
+{
+    $data = base64_decode($encryptedPassword);
+    $iv = substr($data, 0, openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = substr($data, openssl_cipher_iv_length('aes-256-cbc'));
+    return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
+}
+
+
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
     header('location: ../super-admin_login.php');
     exit();
@@ -122,23 +142,31 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                         <td>
                                                             <?php echo $row['username']; ?>
                                                         </td>
-                                                        <td title="Click To See Full Hashed Password">
-                                                            <span id="password-short">
-                                                                <?php
+                                                        <?php
+                                                        $decryptedPassword = decryptPassword($row["hashed_password"], $key);
+                                                        echo "<td class='pointer'>
+            <i class='bi bi-eye show-password' id='show-password-" . $row["id"] . "' data-id='show_password_" . $row["id"] . "' title='Show Password'></i>
+            <span class='password' id='password_" . $row["id"] . "' style='display:none;'>" . $decryptedPassword . "</span>
+            <i class='bi bi-eye-slash hide-password' id='hide-password-" . $row["id"] . "' data-id='hide_password_" . $row["id"] . "' style='display:none;' title='Hide Password'></i>
+        </td>";
 
-                                                                $limit = 10;
-                                                                $password = $row['password'];
-                                                                $limit_password = substr($password, 0, $limit);
-                                                                echo $limit_password . '...';
+                                                        echo '
+            <script>
+                document.querySelector("#show-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "block";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "inline-block";
+                });
 
-                                                                ?>
-                                                            </span>
+                document.querySelector("#hide-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "inline-block";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "none";
+                });
+            </script>
+        ';
 
-                                                            <span id="password-long" style="display: none">
-                                                                <?php echo $row['password']; ?>
-
-                                                            </span>
-                                                        </td>
+                                                        ?>
 
 
                                                         <td>
@@ -167,13 +195,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     </div>
     <!-- Container closed -->
 
-    <script>
-        document.querySelector("#password-short").addEventListener("click", () => {
-            document.querySelector("#password-short").style.display = "none";
-            document.querySelector("#password-long").style.display = "block";
-            document.querySelector("#password-long").parentElement.removeAttribute("title");
-        });
-    </script>
+
 
     <?php include("./scripts.php"); ?>
 

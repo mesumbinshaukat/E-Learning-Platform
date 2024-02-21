@@ -4,11 +4,31 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 // Store the current URL in the session
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
+function decryptPassword($encryptedPassword, $key)
+{
+    $data = base64_decode($encryptedPassword);
+    $iv = substr($data, 0, openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = substr($data, openssl_cipher_iv_length('aes-256-cbc'));
+    return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +44,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <meta name="Description" content="">
 
     <?php include("./style.php"); ?>
-
+    <style>
+    .pointer {
+        cursor: pointer;
+    }
+    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -119,37 +143,60 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         </thead>
                                         <tbody>
                                             <?php
-											$query = "SELECT * FROM `student` WHERE 1=1";
-											if (!empty($_POST['intership_term'])) {
-												$internship = mysqli_real_escape_string($conn, $_POST['intership_term']);
-												$query .= " AND `internship` = '$internship'";
-											}
+                                            $query = "SELECT * FROM `student` WHERE 1=1";
+                                            if (!empty($_POST['intership_term'])) {
+                                                $internship = mysqli_real_escape_string($conn, $_POST['intership_term']);
+                                                $query .= " AND `internship` = '$internship'";
+                                            }
 
-											$result = mysqli_query($conn, $query);
-											if (mysqli_num_rows($result) > 0) { ?>
+                                            $result = mysqli_query($conn, $query);
+                                            if (mysqli_num_rows($result) > 0) { ?>
                                             <tr>
                                                 <?php
-													$i = 1;
-													while ($row = mysqli_fetch_assoc($result)) {
-														if ($row["created_by"] == "User") {
+                                                    $i = 1;
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                        if ($row["created_by"] == "User") {
+
+                                                            echo "<tr>";
+                                                            echo "<td>" . $i . "</td>";
+                                                            echo "<td>" . $row['creation_date'] . "</td>";
+                                                            echo "<td>" . $row['username'] . "</td>";
+                                                            echo "<td>" . $row['name'] . "</td>";
+                                                            echo "<td>" . $row['username'] . "</td>";
+                                                            $decryptedPassword = decryptPassword($row["hashed_password"], $key);
 
 
-															echo "<tr>";
-															echo "<td>" . $i . "</td>";
-															echo "<td>" . $row['creation_date'] . "</td>";
-															echo "<td>" . $row['username'] . "</td>";
-															echo "<td>" . $row['name'] . "</td>";
-															echo "<td>" . $row['username'] . "</td>";
-															echo "<td>" . $row['password'] . "</td>";
-															echo "<td>" . $row['internship'] . "</td>";
-															echo "<td>" . $row['contact_number'] . "</td>";
-															echo "<td><a class='btn btn-danger' href='./delete.php?id=" . $row['id'] . "&user=student'>Delete</a></td>";
-															echo "<td><a href='student_edit.php?id=" . $row['id'] . "' class='btn btn-info'>update</a></td>";
-															echo "</tr>";
-															$i++;
-														}
-													}
-													?>
+                                                            echo "<td class='pointer'>
+            <i class='bi bi-eye show-password' id='show-password-" . $row["id"] . "' data-id='show_password_" . $row["id"] . "' title='Show Password'></i>
+            <span class='password' id='password_" . $row["id"] . "' style='display:none;'>" . $decryptedPassword . "</span>
+            <i class='bi bi-eye-slash hide-password' id='hide-password-" . $row["id"] . "' data-id='hide_password_" . $row["id"] . "' style='display:none;' title='Hide Password'></i>
+        </td>";
+
+                                                            echo '
+            <script>
+                document.querySelector("#show-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "block";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "inline-block";
+                });
+
+                document.querySelector("#hide-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "inline-block";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "none";
+                });
+            </script>
+        ';
+
+                                                            echo "<td>" . $row['internship'] . "</td>";
+                                                            echo "<td>" . $row['contact_number'] . "</td>";
+                                                            echo "<td><a class='btn btn-danger' href='./delete.php?id=" . $row['id'] . "&user=student'>Delete</a></td>";
+                                                            echo "<td><a href='student_edit.php?id=" . $row['id'] . "' class='btn btn-info'>update</a></td>";
+                                                            echo "</tr>";
+                                                            $i++;
+                                                        }
+                                                    }
+                                                    ?>
 
                                             </tr>
 
@@ -174,6 +221,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

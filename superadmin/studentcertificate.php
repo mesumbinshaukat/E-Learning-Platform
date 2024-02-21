@@ -23,8 +23,14 @@
 		$run_query->bind_param("isiss", $id, $name, $crid, $coursename, $certificate);
 
 		if ($run_query->execute()) {
+			$_SESSION["success"] = "Certificate Uploaded Successfully";
 			move_uploaded_file($certificate_temp, "./assets/docs/certificate/" . $certificate);
 			header('location: ./studentcertificate.php?crid=' . $crid . '&coursename=' . $coursename);
+			exit();
+		} else {
+			$_SESSION["error"] = "Something went wrong";
+			header('location: ./studentcertificate.php?crid=' . $crid . '&coursename=' . $coursename);
+			exit();
 		}
 	}
 
@@ -40,78 +46,79 @@
 
 
  <head>
- 	<title>Upload Student Certificate</title>
- 	<meta charset="UTF-8">
- 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
- 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	<meta name="Description" content="">
+     <title>Upload Student Certificate</title>
+     <meta charset="UTF-8">
+     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="Description" content="">
 
 
- 	<?php include("./style.php") ?>
+     <?php include("./style.php") ?>
  </head>
 
  <body class="ltr main-body app sidebar-mini">
- 	<?php include("./switcher.php") ?>
- 	<!-- Page -->
- 	<div class="page">
+     <?php include("./switcher.php") ?>
+     <!-- Page -->
+     <div class="page">
 
- 		<div>
+         <div>
 
- 			<div class="main-header side-header sticky nav nav-item">
- 				<?php include("./partials/navbar.php") ?>
- 			</div>
- 			<!-- /main-header -->
+             <div class="main-header side-header sticky nav nav-item">
+                 <?php include("./partials/navbar.php") ?>
+             </div>
+             <!-- /main-header -->
 
- 			<!-- main-sidebar -->
- 			<div class="sticky">
- 				<?php include("./partials/sidebar.php") ?>
- 			</div>
- 			<!-- main-sidebar -->
+             <!-- main-sidebar -->
+             <div class="sticky">
+                 <?php include("./partials/sidebar.php") ?>
+             </div>
+             <!-- main-sidebar -->
 
- 		</div> <!-- main-content -->
- 		<div class="main-content app-content">
+         </div> <!-- main-content -->
+         <div class="main-content app-content">
 
- 			<!-- container -->
- 			<div class="main-container container-fluid">
+             <!-- container -->
+             <div class="main-container container-fluid">
 
 
- 				<div class="breadcrumb-header justify-content-between">
- 					<div class="right-content">
- 						<span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Upload Certificates
- 						</span>
- 					</div>
+                 <div class="breadcrumb-header justify-content-between">
+                     <div class="right-content">
+                         <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Upload Certificates
+                         </span>
+                     </div>
 
- 					<div class="justify-content-center mt-2">
- 						<ol class="breadcrumb">
- 							<li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship Management</a>
- 							</li>
- 							<li class="breadcrumb-item ">Certification</li>
- 							<li class="breadcrumb-item ">Upload</li>
- 						</ol>
- 					</div>
+                     <div class="justify-content-center mt-2">
+                         <ol class="breadcrumb">
+                             <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Internship Management</a>
+                             </li>
+                             <li class="breadcrumb-item ">Certification</li>
+                             <li class="breadcrumb-item ">Upload</li>
+                         </ol>
+                     </div>
 
- 				</div>
+                 </div>
 
- 				<div class="row row-sm">
- 					<div class="col-lg-12">
- 						<div class="card custom-card overflow-hidden">
- 							<div class="card-body">
+                 <div class="row row-sm">
+                     <div class="col-lg-12">
+                         <div class="card custom-card overflow-hidden">
+                             <div class="card-body">
 
- 								<div class="table-responsive  export-table">
- 									<table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
- 										<thead>
- 											<tr>
- 												<th class="border-bottom-0">S.no</th>
- 												<th class="border-bottom-0">Student Id</th>
- 												<th class="border-bottom-0">Student Name</th>
- 												<th class="border-bottom-0">College Name</th>
- 												<th class="border-bottom-0">Full Info.</th>
- 												<th class="border-bottom-0">Upload </th>
- 											</tr>
- 										</thead>
- 										<tbody>
+                                 <div class="table-responsive  export-table">
+                                     <table id="file-datatable"
+                                         class="table table-bordered text-nowrap key-buttons border-bottom">
+                                         <thead>
+                                             <tr>
+                                                 <th class="border-bottom-0">S.no</th>
+                                                 <th class="border-bottom-0">Student Id</th>
+                                                 <th class="border-bottom-0">Student Name</th>
+                                                 <th class="border-bottom-0">College Name</th>
+                                                 <th class="border-bottom-0">Full Info.</th>
+                                                 <th class="border-bottom-0">Upload </th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
 
- 											<?php
+                                             <?php
 												$id = filter_var($_GET['crid'], FILTER_SANITIZE_NUMBER_INT);
 												$id = (int) $id;
 
@@ -171,27 +178,32 @@ Upload Certiticate</button>
 
 												?>
 
- 										</tbody>
- 									</table>
- 								</div>
- 							</div>
- 						</div>
- 					</div>
- 				</div>
- 				<!-- End Row -->
+                                         </tbody>
+                                     </table>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- End Row -->
 
 
 
- 			</div>
- 			<!-- Container closed -->
- 		</div>
- 		<!-- main-content closed -->
+             </div>
+             <!-- Container closed -->
+         </div>
 
- 		<!-- Sidebar-right-->
+         <?php include("./scripts.php") ?>
 
-
-
- 		<?php include("./scripts.php") ?>
+         <?php
+			if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+				echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+			}
+			if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+				echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+			}
+			session_destroy();
+			?>
  </body>
 
  </html>

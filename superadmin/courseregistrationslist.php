@@ -76,7 +76,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                 if (mysqli_num_rows($college) > 0) {
                                     while ($row = mysqli_fetch_assoc($college)) {
                                 ?>
-                                        <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
                                 <?php
                                     }
                                 }
@@ -89,13 +89,14 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                         <div class="form-group col-md-3">
                             <P> <b>Branch</b> </p>
 
-                            <select name="branches" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="branches" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected>All</option>
                                 <?php $branch_query = mysqli_query($conn, "SELECT DISTINCT `branch` FROM `student`");
                                 if (mysqli_num_rows($branch_query) > 0) {
                                     while ($row = mysqli_fetch_assoc($branch_query)) {
                                 ?>
-                                        <option value="<?= $row['branch'] ?>"><?= $row['branch'] ?></option>
+                                <option value="<?= $row['branch'] ?>"><?= $row['branch'] ?></option>
                                 <?php
                                     }
                                 }
@@ -104,7 +105,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             </select>
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary" style="height:40px;width:100px;margin-top:35px">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
+                            style="height:40px;width:100px;margin-top:35px">Search</button>
 
                     </div>
                 </form>
@@ -117,7 +119,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -171,8 +174,10 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                             echo "<td>" . $row['added_date'] . "</td>";
                                                             if ($row['status'] == "Active") {
                                                                 echo "<td class='text-success fw-bold'>Active</td>";
-                                                            } else {
+                                                            } else if ($row['status'] == "Deleted") {
                                                                 echo "<td class='text-danger fw-bold'>Deleted</td>";
+                                                            } else if ($row['status'] == "Pending") {
+                                                                echo "<td class='text-warning fw-bold'>Pending</td>";
                                                             }
                                                             echo "</tr>";
                                                         }

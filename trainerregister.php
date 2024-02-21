@@ -2,6 +2,24 @@
 session_start();
 include('./db_connection/connection.php');
 
+require __DIR__ . '/vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
+function encrypt_Password($password, $key)
+{
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    return base64_encode($iv . openssl_encrypt($password, 'aes-256-cbc', $key, 0, $iv));
+}
+
+
 if (isset($_POST['RegisterBtn'])) {
     $regex_email = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
     $trainer_name = $_POST['Trainer_Name'];
@@ -18,20 +36,29 @@ if (isset($_POST['RegisterBtn'])) {
     $created_by = "user";
 
 
+    $encryptedPassword = encrypt_Password($_POST['Password'], $key);
+
+
     if (preg_match($regex_email, $trainer_email) == 1) {
         if ($fetched_email == null) {
-            $insert_query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`, `ip`, `created_by`) VALUES (?,?,?,?,?,?,?)");
-            $insert_query->bind_param("sssssss", $trainer_name, $trainer_phoneno, $trainer_email, $hash_pass, $trainer_username, $ip, $created_by);
+            $insert_query = mysqli_prepare($conn, "INSERT INTO `trainer`(`name`, `contact_number`, `email`, `password`, `username`, `ip`, `created_by`, `hashed_password`) VALUES (?,?,?,?,?,?,?,?)");
+            $insert_query->bind_param("ssssssss", $trainer_name, $trainer_phoneno, $trainer_email, $hash_pass, $trainer_username, $ip, $created_by, $encryptedPassword);
             if ($insert_query->execute()) {
 
-                $_SESSION['message_success'] = true;
+                $_SESSION['message_success'] = "Registered Successfully";
+                header("location: trainerregister.php");
+                exit();
             } else {
                 $_SESSION['message_failed'] = true;
                 $_SESSION["err_msg"] = "Database Error, Unable to register.";
+                header("location: trainerregister.php");
+                exit();
             }
         } else {
             $_SESSION['message_failed'] = true;
             $_SESSION["err_msg"] = "Email is Already Registered.";
+            header("location: trainerregister.php");
+            exit();
         }
     } else {
 
@@ -55,22 +82,7 @@ if (isset($_POST['RegisterBtn'])) {
 </head>
 
 <body>
-    <script>
-    <?php
-        if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-        ?>
-    toastr.success('Registration Successful')
-    <?php
-            session_destroy();
-        }
-        ?>
-    </script>
-    <?php
-    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-        session_destroy();
-    }
-    ?>
+
     <section>
         <?php include("./partials/navbar.php"); ?>
     </section>
@@ -81,6 +93,24 @@ if (isset($_POST['RegisterBtn'])) {
         <section
             class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
             <div class="container">
+
+                <?php
+                if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) {
+                ?>
+                <div class="alert alert-success">
+                    Registration Successful
+                </div>
+                <?php
+                    // session_destroy();
+                } else if (isset($_SESSION['message_failed']) && !empty($_SESSION['message_failed'])) {
+                ?>
+                <div class="alert alert-danger">
+                    <?php echo $_SESSION["err_msg"]; ?>
+                </div>
+                <?php
+                }
+                session_destroy();
+                ?>
                 <div class="row align-items-center justify-content-between">
 
                     <div class="col-md-5 col-lg-15">
