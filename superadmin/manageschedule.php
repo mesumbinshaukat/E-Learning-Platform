@@ -99,7 +99,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
                                                 <th class="border-bottom-0">ID No</th>
-                                                <th class="border-bottom-0">Training Title </th>
+                                                <th class="border-bottom-0">Main Topic</th>
+                                                <th class="border-bottom-0">Batch Name</th>
                                                 <th class="border-bottom-0">Trainer Name</th>
                                                 <th class="border-bottom-0">Date Of Schedule </th>
                                                 <th class="border-bottom-0">Starting Time</th>
@@ -124,17 +125,18 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         $query2 .= " AND `batchtrainer_name` = '" . $_POST['trainer_name'] . "'";
                                                     }
                                                     $trainer_batch_query = mysqli_query($conn, $query2);
-                                                    if (mysqli_num_rows($trainer_batch_query) > 0) {
+                                                    if (mysqli_num_rows($trainer_batch_query) > 0 && $row["status"] == "Active") {
                                                         $fetch = mysqli_fetch_assoc($trainer_batch_query);
                                                         echo "<tr>";
                                                         echo "<td>" . $i++ . "</td>";
+                                                        echo "<td>SCHID_" . $row["id"] . "</td>";
                                                         echo "<td>" . $row["main_topic"] . "</td>";
                                                         echo "<td>" . $fetch["batch_name"] . "</td>";
                                                         echo "<td>" . $fetch["batchtrainer_name"] . "</td>";
                                                         echo "<td>" . $row["date_of_schedule"] . "</td>";
                                                         echo "<td>" . $row["class_starting_time"] . "</td>";
                                                         echo "<td>" . $row["class_duration"] . "</td>";
-                                                       
+
                                                         echo "<td><a href='./update_schedule.php?id=" . $row["id"] . "' class='btn btn-info'>Update</a></td>";
                                                         echo "</tr>";
                                                     }
@@ -161,6 +163,16 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     </div>
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

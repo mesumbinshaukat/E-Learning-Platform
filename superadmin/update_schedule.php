@@ -46,10 +46,13 @@ if (isset($_POST["submit"])) {
             if (!empty($shared_documents)) {
                 move_uploaded_file($shared_documents_temp_name, $shared_documents_folder);
             }
+            $_SESSION["success"] = "Schedule updated successfully";
             header("location:./manageschedule.php");
             exit();
         } else {
-            die(mysqli_error($conn));
+            $_SESSION["error"] = "Something went wrong. Please try again.";
+            header("location:./manageschedule.php");
+            exit();
         }
     }
 }

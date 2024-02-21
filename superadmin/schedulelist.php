@@ -104,8 +104,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">Date Of Schedule </th>
                                                 <th class="border-bottom-0">Starting Time</th>
                                                 <th class="border-bottom-0">Duration</th>
-
-
+                                                <th class="border-bottom-0">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -134,7 +133,17 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         echo "<td>" . $row["date_of_schedule"] . "</td>";
                                                         echo "<td>" . $row["class_starting_time"] . "</td>";
                                                         echo "<td>" . $row["class_duration"] . "</td>";
-                                                       
+                                                        switch ($row["status"]) {
+                                                            case "Active":
+                                                                echo "<td><span class='badge badge-success'>" . $row["status"] . "</span></td>";
+                                                                break;
+                                                            case "Rejected":
+                                                                echo "<td><span class='badge badge-danger'>" . $row["status"] . "</span></td>";
+                                                                break;
+                                                            case "Pending":
+                                                                echo "<td><span class='badge badge-warning'>" . $row["status"] . "</span></td>";
+                                                                break;
+                                                        }
                                                     }
                                                 }
                                             }

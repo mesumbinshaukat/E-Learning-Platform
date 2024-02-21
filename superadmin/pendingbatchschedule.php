@@ -9,22 +9,37 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 }
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["accept"])) {
     $id = $_POST["id"];
-    $sql = "UPDATE `internship_registration` SET `status`='Active' WHERE id = ?";
+    $sql = "UPDATE `batches_schedule` SET `status`='Active' WHERE id = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $id);
     if (mysqli_stmt_execute($stmt)) {
-        $_SESSION["success"] = "Student Registration Accepted.";
-        header("location: pendinginternshipregistrations.php");
+        $_SESSION["success"] = "Batch Schedule Accepted.";
+        header("location: pendingbatchschedule.php");
         exit();
     } else {
         $_SESSION["error"] = "Something went wrong. Please try again.";
-        header("location: pendinginternshipregistrations.php");
+        header("location: pendingbatchschedule.php");
         exit();
     }
 }
 
+if (isset($_POST["reject"])) {
+    $id = $_POST["id"];
+    $sql = "UPDATE `batches_schedule` SET `status`='Rejected' WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    if (mysqli_stmt_execute($stmt)) {
+        $_SESSION["success"] = "Batch Schedule Rejected.";
+        header("location: pendingbatchschedule.php");
+        exit();
+    } else {
+        $_SESSION["error"] = "Something went wrong. Please try again.";
+        header("location: pendingbatchschedule.php");
+        exit();
+    }
+}
 ?>
 
 
@@ -87,31 +102,25 @@ if (isset($_POST["submit"])) {
                     </div>
 
                 </div>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
-                            <P><b> College</b> </p>
-                            <select name="college" class="form-control form-select" data-bs-placeholder="Select Filter">
-                                <option value="" selected>All</option>
+                            <b> <label>Trainer name</label> </b>
+                            <select name="trainer_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="">ALL</option>
                                 <?php
-                                $college = mysqli_query($conn, "SELECT * FROM `college`");
-                                if (mysqli_num_rows($college) > 0) {
-                                    while ($row = mysqli_fetch_assoc($college)) {
-                                ?>
-                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
-                                <?php
-                                    }
+                                $query = mysqli_query($conn, "SELECT * FROM `trainer`");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    echo "<option value='" . $row['username'] . "'>" . $row['name'] . "</option>";
                                 }
                                 ?>
 
-
                             </select>
-
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
-                            style="height:40px;width:100px;margin-top:35px">Search</button>
-
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search"
+                            style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
                     </div>
                 </form>
                 <br>
@@ -130,8 +139,8 @@ if (isset($_POST["submit"])) {
                                                 <th class="border-bottom-0">Date Of Adding</th>
                                                 <th class="border-bottom-0">ID No</th>
                                                 <th class="border-bottom-0">Trainer Name</th>
-                                                <th class="border-bottom-0">date of schedule</th>
-                                                <th class="border-bottom-0">update</th>
+                                                <th class="border-bottom-0">Date Of Schedule</th>
+                                                <th class="border-bottom-0">Update</th>
                                                 <th class="border-bottom-0">Accept</th>
                                                 <th class="border-bottom-0">Reject</th>
                                             </tr>
@@ -139,11 +148,35 @@ if (isset($_POST["submit"])) {
                                         <tbody>
                                             <?php
 
-                                            $result = mysqli_query($conn, "SELECT * FROM `batches_schedule`");
+                                            $query = "SELECT * FROM `batches_schedule` WHERE 1=1";
+
+                                            if (isset($_POST['trainer_name']) && !empty($_POST['trainer_name'])) {
+                                                $query .= " AND `trainer_username` = '" . $_POST['trainer_name'] . "'";
+                                            }
+
+                                            $result = mysqli_query($conn, $query);
 
                                             if (mysqli_num_rows($result) > 0) {
                                                 $i = 1;
                                                 while ($row = mysqli_fetch_assoc($result)) {
+                                                    if ($row['status'] == "Pending") {
+                                                        echo "<tr>";
+                                                        echo "<td>" . $i++ . "</td>";
+                                                        echo "<td>" . $row['added_date'] . "</td>";
+                                                        echo "<td>TRID_" . $row['trainer_id'] . "</td>";
+                                                        echo "<td>" . $row['trainer_username'] . "</td>";
+                                                        echo "<td>" . $row['date_of_schedule'] . "</td>";
+                                                        echo "<td><a href='./update_schedule.php?id=" . $row["id"] . "' class='btn btn-info'>Update</a></td>";
+                                                        echo "<form method='post'>
+                                                    <input type='hidden' name='id' value='" . $row['id'] . "'>
+                                                    <td><button type='submit' name='accept' class='btn btn-success'>Accept</button></td>
+                                                    </form>";
+                                                        echo "<form method='post'>
+                                                    <input type='hidden' name='id' value='" . $row['id'] . "'>
+                                                    <td><button type='submit' name='reject' class='btn btn-danger'>Reject</button></td>
+                                                    </form>";
+                                                        echo "</tr>";
+                                                    }
                                                 }
                                             }
 

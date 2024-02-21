@@ -87,14 +87,11 @@ $trainers_run = mysqli_query($conn, $trainers);
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
-                                            <div class="prime-card"><img class="img-fluid"
-                                                    src="assets/icons/classroom.gif" alt=""></div>
+                                            <div class="prime-card"><img class="img-fluid" src="assets/icons/classroom.gif" alt=""></div>
                                         </div>
                                         <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
                                             <div class="text-justified align-items-center">
-                                                <h2 class="text-dark font-weight-semibold mb-3 mt-2">Hi <span
-                                                        style="color:#ff6700"></span>, Welcome to <span
-                                                        class="text-primary">E-Learning Platform</span></h2>
+                                                <h2 class="text-dark font-weight-semibold mb-3 mt-2">Hi <span style="color:#ff6700"></span>, Welcome to <span class="text-primary">E-Learning Platform</span></h2>
                                                 <p class="text-dark tx-15 mb-2 lh-3">Thankyou for choosing us, We are
                                                     delighted that you have joined us and we look forward to providing
                                                     you with a wealth of resources and information that will help you
@@ -241,7 +238,7 @@ $trainers_run = mysqli_query($conn, $trainers);
 
                                         <div class="card-body pt-0 text-center">
 
-                                            <a class="file-manger-icon" href="mycourses.php">
+                                            <a class="file-manger-icon" href="documentation.php">
                                                 <img src="assets/icons/archive.png" alt="img" class="br-7" />
                                             </a>
                                             <h6 class="mb-1 font-weight-semibold">Documents</h6>

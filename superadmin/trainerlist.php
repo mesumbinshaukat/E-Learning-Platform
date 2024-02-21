@@ -8,7 +8,14 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 
-$select_query = mysqli_query($conn, "SELECT * FROM `trainer`");
+$query_t = "SELECT * FROM `trainer` WHERE 1=1";
+
+if (isset($_POST["trainer_name"]) && !empty($_POST["trainer_name"])) {
+    $trainer_name = $_POST["trainer_name"];
+    $query_t .= " AND `username` = '$trainer_name'";
+}
+$select_query = mysqli_query($conn, $query_t);
+
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -45,9 +52,9 @@ function decryptPassword($encryptedPassword, $key)
 
     <?php include("./style.php"); ?>
     <style>
-    .pointer {
-        cursor: pointer;
-    }
+        .pointer {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -97,6 +104,25 @@ function decryptPassword($encryptedPassword, $key)
 
                 </div>
 
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <div class="row row-sm">
+                        <div class="form-group col-md-3">
+                            <b> <label>Trainer name</label> </b>
+                            <select name="trainer_name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="">ALL</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT * FROM `trainer`");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    echo "<option value='" . $row['username'] . "'>" . $row['name'] . "</option>";
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search" style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
+                    </div>
+                </form>
 
                 <div class="row row-sm">
                     <div class="col-lg-12">
@@ -104,8 +130,7 @@ function decryptPassword($encryptedPassword, $key)
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
@@ -130,13 +155,13 @@ function decryptPassword($encryptedPassword, $key)
                                                 while ($row = mysqli_fetch_assoc($select_query)) {
                                             ?>
 
-                                            <tr>
-                                                <td><?php echo $i++; ?></td>
-                                                <td><?php echo $row['username']; ?></td>
-                                                <td><?php echo $row['email']; ?></td>
-                                                <td>ID_<?php echo $row['id']; ?></td>
-                                                <td><?php echo $row['name']; ?></td>
-                                                <?php
+                                                    <tr>
+                                                        <td><?php echo $i++; ?></td>
+                                                        <td><?php echo $row['username']; ?></td>
+                                                        <td><?php echo $row['email']; ?></td>
+                                                        <td>ID_<?php echo $row['id']; ?></td>
+                                                        <td><?php echo $row['name']; ?></td>
+                                                        <?php
 
                                                         $decryptedPassword = decryptPassword($row["hashed_password"], $key);
 
@@ -164,18 +189,15 @@ function decryptPassword($encryptedPassword, $key)
         ';
 
                                                         ?>
-                                                <td><?php echo $row['qualification'] ?? null; ?></td>
-                                                <td><?php echo $row['experience'] ?? null; ?></td>
-                                                <td style=color:#4aa02c> <b> Active <b></td>
-                                                <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer"
-                                                        class="btn btn-danger"
-                                                        onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
-                                                </td>
-                                                <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>"
-                                                        class="btn btn-warning">Edit</a></td>
-                                            </tr>
+                                                        <td><?php echo $row['qualification'] ?? null; ?></td>
+                                                        <td><?php echo $row['experience'] ?? null; ?></td>
+                                                        <td style=color:#4aa02c> <b> Active <b></td>
+                                                        <td><a href="delete.php?id=<?php echo $row['id']; ?>&user=trainer" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
+                                                        </td>
+                                                        <td><a href="edit_trainer.php?id=<?php echo $row['id']; ?>" class="btn btn-warning">Edit</a></td>
+                                                    </tr>
 
-                                            <?php
+                                                <?php
                                                 }
                                             } else { ?>
                                             <?php echo "No data found";
