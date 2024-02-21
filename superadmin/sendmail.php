@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 session_start();
 include('../db_connection/connection.php');
 
@@ -43,7 +43,7 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
         }
 
         // Content
-        setupMailContent($mail, $recipient_subject, $recipient_message);
+        // setupMailContent($mail, $recipient_subject, $recipient_message);
 
         if ($mail->send()) {
             session_destroy();
@@ -66,7 +66,7 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
 
 function setupMailServer($mail)
 {
-    $mail->SMTPDebug = 3; // Enable verbose debug output
+    // $mail->SMTPDebug = 3; // Enable verbose debug output
     $mail->isSMTP(); // Send using SMTP
     $mail->Host = 'smtp.gmail.com';  // Set the SMTP server to send through
     $mail->SMTPAuth = true;  // Enable SMTP authentication

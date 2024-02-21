@@ -8,31 +8,73 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
     exit();
 }
 
+if (isset($_POST["submit"])) {
+    $recipient = $_POST["recipient"];
+    $subject = $_POST["subject"];
+    $message = $_POST["message"];
+    $purpose = $_POST["purpose"];
+    if (isset($_FILES["add_attachments"]["name"]) && !empty($_FILES["add_attachments"]["name"])) {
+        $add_attachments = $_FILES["add_attachments"]["name"];
+        $add_attachments_tmp = $_FILES["add_attachments"]["tmp_name"];
+    } else {
+        $add_attachments = "";
+    }
 
+    switch ($recipient) {
+        case "Superadmin":
 
-// Fetch required data before rendering HTML
-$trainerOptions = "";
-$student_id = $_COOKIE['student_id'];
-$course_registration_query = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$student_id}'");
-if (!$course_registration_query) {
-    die("Error in SQL query: " . mysqli_error($conn));
-}
+            break;
+        case "Trainer":
+            $trainer_email = $_POST["User_ID"];
+            $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `email` ='$trainer_email'");
+            if (mysqli_num_rows($trainer_query) > 0) {
+                $student_id = (int) $_COOKIE["student_id"];
+                $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` ='$student_id'");
+                if (mysqli_num_rows($student_query) > 0) {
+                    $student = mysqli_fetch_assoc($student_query);
+                    $trainer = mysqli_fetch_assoc($trainer_query);
+                    $sender_email = $student["email"];
+                    $sender_name = $student["name"];
+                    $sender_id = $student["id"];
+                    $sender_type = "Student";
+                    $recipient_id = $trainer["id"];
+                    $recipient_name = $trainer["name"];
+                    $recipient_email = $trainer["email"];
+                    $sending_format = "Individuals";
 
-if (mysqli_num_rows($course_registration_query) > 0) {
-    while ($row = mysqli_fetch_assoc($course_registration_query)) {
-        $student_allocate_query = mysqli_query($conn, "SELECT * FROM `student_allocate` WHERE `student_id` = '{$row['student_id']}' AND `course_id` = '{$row['course_id']}'");
-        if (mysqli_num_rows($student_allocate_query) > 0) {
-            $fetch_allocate_id = mysqli_fetch_assoc($student_allocate_query)['allocate_id'];
-            $trainer_allocate_course_query = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `id` = '{$fetch_allocate_id}'");
-            if (mysqli_num_rows($trainer_allocate_course_query) > 0) {
-                $fetch_trainer_id = mysqli_fetch_assoc($trainer_allocate_course_query)['trainer_id'];
-                $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$fetch_trainer_id}'");
-                $trainer = mysqli_fetch_assoc($trainer_query);
-                $trainerOptions .= "<option value='{$trainer['email']}'>{$trainer['name']} | TID_{$trainer['id']} | Username : {$trainer['username']}</option>";
+                    $mail_query = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    $mail_query->bind_param("sssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $recipient_email, $recipient_id, $recipient_name, $sending_format, $subject, $message, $add_attachments, $purpose, $recipient);
+                    if ($mail_query->execute()) {
+                        if (!empty($add_attachments)) {
+                            move_uploaded_file($add_attachments_tmp, "../superadmin/assets/docs/attachments/" . $add_attachments);
+                        }
+
+                        $_SESSION["attachment"] = $add_attachments;
+                        $_SESSION["sending_format"] = $sending_format;
+                        $_SESSION["recipient_name"] = $recipient_name;
+                        $_SESSION["recipient_email"] = $recipient_email;
+                        $_SESSION["recipient"] = $recipient;
+                        $_SESSION["purpose"] = $purpose;
+                        $_SESSION["subject"] = $subject;
+                        $_SESSION["message"] = $message;
+
+                        header('location: ./sendmail.php');
+                        exit();
+                    } else {
+                        $_SESSION["error"] = "Something went wrong";
+                        header('location: ./compose.php');
+                        exit();
+                    }
+                } else {
+                    $_SESSION["error"] = "Sender Student Not Found";
+                    header('location: ./compose.php');
+                    exit();
+                }
             } else {
-                echo "Error in SQL query: " . mysqli_error($conn);
+                $_SESSION["error"] = "Trainer Email Not Found";
+                header('location: ./compose.php');
+                exit();
             }
-        }
     }
 }
 
@@ -40,7 +82,6 @@ if (mysqli_num_rows($course_registration_query) > 0) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
 
@@ -83,17 +124,21 @@ if (mysqli_num_rows($course_registration_query) > 0) {
                         <div class="row row-sm">
                             <div class="form-group col-md-6">
                                 <label for="dropdown">Recipient</label>
-                                <select id="dropdown1" onchange="showOptions1()" name="recipient" required
-                                    class="form-select">
+                                <select id="dropdown1" onchange="showOptions1()" name="recipient" required class="form-select">
                                     <option value="Superadmin">Super Admin</option>
-                                    <option value="Student">Trainer</option>
+                                    <option value="Trainer">Trainer</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4" id="optionsDiv" style="display:none">
                                 <label for="exampleInputAadhar">User ID</label>
                                 <select name="User_ID" required class="form-select">
+                                    <?php
+                                    $trainer = mysqli_query($conn, "SELECT * FROM `trainer`");
+                                    while ($row = mysqli_fetch_assoc($trainer)) {
+                                        echo "<option value='{$row['email']}'>{$row['username']}</option>";
+                                    }
 
-                                    <?php echo $trainerOptions; ?>
+                                    ?>
                                 </select>
                             </div>
 
@@ -107,17 +152,13 @@ if (mysqli_num_rows($course_registration_query) > 0) {
                                             <div class="row row-xs formgroup-wrapper">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="exampleInputCompanyPhone"
-                                                            style="color: #ff6700"><b>Subject</b></label>
-                                                        <input type="text" class="form-control"
-                                                            id="exampleInputCompanyPhone" placeholder="Enter Subject"
-                                                            name="subject" required>
+                                                        <label for="exampleInputCompanyPhone" style="color: #ff6700"><b>Subject</b></label>
+                                                        <input type="text" class="form-control" id="exampleInputCompanyPhone" placeholder="Enter Subject" name="subject" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="exampleInputAadhar"
-                                                            style="color: #ff6700"><b>Purpose</b></label>
+                                                        <label for="exampleInputAadhar" style="color: #ff6700"><b>Purpose</b></label>
                                                         <select name="purpose" class="form-select" required>
                                                             <option value="query">query</option>
                                                             <option value="feedback">feedback</option>
@@ -128,21 +169,17 @@ if (mysqli_num_rows($course_registration_query) > 0) {
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-label">
-                                                        <label for="exampleInputAadhar"
-                                                            style="color: #ff6700"><b>Describe</b></label>
-                                                        <input class="form-control" placeholder="Textarea"
-                                                            name="message" required>
+                                                        <label for="exampleInputAadhar" style="color: #ff6700"><b>Describe</b></label>
+                                                        <input class="form-control" placeholder="Textarea" name="message" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="exampleInputcode">Add Attachments</label>
-                                                        <input type="file" class="form-control" id="exampleInputcode"
-                                                            placeholder="" name="add_attachments">
+                                                        <input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments">
                                                     </div>
                                                 </div>
-                                                <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0"
-                                                    style="text-align: right">send</button>
+                                                <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0" style="text-align: right">send</button>
                                             </div>
                                         </div>
                                     </div>
@@ -164,22 +201,32 @@ if (mysqli_num_rows($course_registration_query) > 0) {
 
         <?php include("./scripts.php") ?>
         <script>
-        function showOptions1() {
-            var type = document.getElementById("dropdown1");
-            if (type.value == "Student") {
-                document.getElementById("optionsDiv").style.display = "block";
-            } else {
-                document.getElementById("optionsDiv").style.display = "none";
+            function showOptions1() {
+                var type = document.getElementById("dropdown1");
+                if (type.value == "Student") {
+                    document.getElementById("optionsDiv").style.display = "block";
+                } else {
+                    document.getElementById("optionsDiv").style.display = "none";
+                }
+                if (type.value == "Superadmin") {
+                    document.getElementById("optionsDiv").style.display = "none";
+                } else {
+                    document.getElementById("optionsDiv").style.display = "block";
+                }
 
             }
-            if (type.value == "Superadmin") {
-                document.getElementById("optionsDiv").style.display = "none";
-            } else {
-                document.getElementById("optionsDiv").style.display = "block";
-            }
-
-        }
         </script>
+
+
+        <?php
+        if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+            echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+        }
+        if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+            echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+        }
+        session_destroy();
+        ?>
 </body>
 
 </html>
