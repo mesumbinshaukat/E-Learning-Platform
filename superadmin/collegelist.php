@@ -19,13 +19,13 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 
-if (isset($_GET["error"])) {
-    // Sanitize the value using htmlspecialchars
-    $error = htmlspecialchars($_GET["error"], ENT_QUOTES, 'UTF-8');
+// if (isset($_GET["error"])) {
+//     // Sanitize the value using htmlspecialchars
+//     $error = htmlspecialchars($_GET["error"], ENT_QUOTES, 'UTF-8');
 
-    // Store the sanitized value in the session
-    $_SESSION["error"] = $error;
-}
+//     // Store the sanitized value in the session
+//     $_SESSION["error"] = $error;
+// }
 
 function decryptPassword($encryptedPassword, $key)
 {
@@ -51,7 +51,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <?php include("./style.php"); ?>
 
     <style>
-        #pointer {
+        .pointer {
             cursor: pointer !important;
         }
     </style>
@@ -60,9 +60,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 <body class="ltr main-body app sidebar-mini">
     <?php include("./switcher.php"); ?>
-    <?php if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
-        echo "<script>toastr.alert('" . $_SESSION["error"] . "')</script>";
-    } ?>
+
     <!-- Page -->
     <div class="page">
 
@@ -120,7 +118,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             echo "<option value='" . $row["affiliated_university"] . "'>" . $row["affiliated_university"] . "</option>";
                                         }
                                     }
-                                    session_destroy();
                                 }
                                 ?>
 
@@ -142,7 +139,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             echo "<option value='" . $row["district"] . "'>" . $row["district"] . "</option>";
                                         }
                                     }
-                                    session_destroy();
                                 }
                                 ?>
 
@@ -266,53 +262,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
     <?php include("./scripts.php"); ?>
 
-
-    <!-- <script>
-    document.querySelectorAll('.show-password').forEach(function(element) {
-        element.addEventListener('click', function() {
-            var id = this.getAttribute('data-id');
-            var passwordElement = document.querySelector('.password[data-id="' + id + '"]');
-            var showPasswordElement = document.querySelector('.show-password[data-id="' + id + '"]');
-            var hidePasswordElement = document.querySelector('.hide-password[data-id="' + id + '"]');
-
-            if (passwordElement) {
-                passwordElement.style.display = 'inline';
-            }
-
-            if (showPasswordElement) {
-                showPasswordElement.style.display = 'none';
-            }
-
-            if (hidePasswordElement) {
-                hidePasswordElement.style.display = 'inline';
-            }
-        });
-    });
-
-    document.querySelectorAll('.hide-password').forEach(function(element) {
-        element.addEventListener('click', function() {
-            var id = this.getAttribute('data-id');
-            var passwordElement = document.querySelector('.password[data-id="' + id + '"]');
-            var showPasswordElement = document.querySelector('.show-password[data-id="' + id + '"]');
-            var hidePasswordElement = document.querySelector('.hide-password[data-id="' + id + '"]');
-
-            if (passwordElement) {
-                passwordElement.style.display = 'none';
-            }
-
-            if (showPasswordElement) {
-                showPasswordElement.style.display = 'inline';
-            }
-
-            if (hidePasswordElement) {
-                hidePasswordElement.style.display = 'none';
-            }
-        });
-    });
-    </script> -->
-
-
-
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>

@@ -12,6 +12,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `trainer` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Trainer deleted successfully";
         header("location: trainersignup.php");
         exit();
     } else {
@@ -23,6 +24,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `college` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "College deleted successfully";
         header("location: collegelist.php");
         exit();
     } else {
@@ -34,6 +36,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `student` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Student deleted successfully";
         header("location: studentlist.php");
         exit();
     } else {
@@ -59,6 +62,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `stream` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Stream deleted successfully";
         if (isset($_SESSION['previous_url'])) {
             header('Location: ' . $_SESSION['previous_url']);
             exit();
@@ -76,6 +80,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `allocate_trainer_course` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Allocated trainer deleted.";
         if (isset($_SESSION['previous_url'])) {
             header('location: ' . $_SESSION['previous_url']);
             exit();
@@ -94,6 +99,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `student_allocate` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Allocated student deleted.";
         if (isset($_SESSION['previous_url'])) {
             header('location: ' . $_SESSION['previous_url']);
             exit();
@@ -112,6 +118,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `testimonials` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Testimony deleted successfully";
         header("location:./manage_testimony.php");
         exit();
     } else {
@@ -123,6 +130,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `internship` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Internship deleted successfully";
         header("location:./manageinternship.php");
         exit();
     } else {
@@ -134,6 +142,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `placement` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Placement deleted successfully";
         header("location:./manageplacements.php");
         exit();
     } else {
@@ -145,6 +154,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `internship_registration` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Applicant deleted successfully";
         header("location:./manageinternshipregistrations.php");
         exit();
     } else {
@@ -156,6 +166,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `placement_applicants` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Applicant deleted successfully";
         header("location:./manageplacementsregistrations.php");
         exit();
     } else {
@@ -167,6 +178,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `batches_meetings` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Meeting deleted successfully";
         header("location: managemeetings.php");
         exit();
     } else {
@@ -178,6 +190,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `batches_summary` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Summary deleted successfully";
         header("location: managesummary.php");
         exit();
     } else {
@@ -189,6 +202,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `batches_recording` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Recording deleted successfully";
         header("location: managerecordings.php");
         exit();
     } else {
@@ -200,6 +214,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
     $sql = "DELETE FROM `batches_tasks` WHERE `id`='$id'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
+        $_SESSION["success"] = "Task deleted successfully";
         header("location: managetask.php");
         exit();
     } else {
