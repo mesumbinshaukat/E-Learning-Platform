@@ -24,8 +24,15 @@ if (isset($_POST["update"])) {
     $id = (int) $id;
     $location = $_POST["location"];
     $name = $_POST["name"];
-    $image_name = $_FILES["image"]["name"];
-    $image_tmp = $_FILES["image"]["tmp_name"];
+
+    if (isset($_FILES["image"]["name"]) && !empty($_FILES["image"]["name"])) {
+        $image_name = $_FILES["image"]["name"];
+        $image_tmp = $_FILES["image"]["tmp_name"];
+    } else {
+        $image_name = $_POST["old_image"];
+    }
+
+
 
     if (empty($image_name)) {
         $query = mysqli_prepare($conn, "UPDATE `stream` SET `stream_name`=?,`stream_location`=? WHERE `id`='$id'");
@@ -42,12 +49,17 @@ if (isset($_POST["update"])) {
     $query = mysqli_prepare($conn, "UPDATE `stream` SET `stream_name`=?,`stream_location`=?,`image`=? WHERE `id`='$id'");
     $query->bind_param("sss", $name, $location, $image_name);
     if ($query->execute()) {
-        $_SESSION['message_success'] = true;
-        move_uploaded_file($image_tmp, "./assets/img/stream/" . $image_name);
+        $_SESSION['message_success'] = "Stream Updated Successfully";
+        if (isset($_FILES["image"]["name"]) && !empty($_FILES["image"]["name"])) {
+            move_uploaded_file($image_tmp, "./assets/img/stream/" . $image_name);
+        }
         header("location: managestreams.php");
+        exit();
     } else {
-        $_SESSION['message_failed'] = true;
+        $_SESSION['message_failed'] = "Fill Correct Details.";
         $_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
+        header("location: managestreams.php");
+        exit();
     }
 }
 ?>
@@ -71,19 +83,6 @@ if (isset($_POST["update"])) {
 
     <?php include("./switcher.php"); ?>
 
-    <?php
-    if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-        echo "<script>toastr.success('Stream Updated Successfully')</script>";
-        session_destroy();
-    }
-    ?>
-
-    <?php
-    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-        session_destroy();
-    }
-    ?>
 
     <!-- Page -->
     <div class="page">
@@ -193,6 +192,9 @@ if (isset($_POST["update"])) {
                                                         name="image" placeholder="" width="540" height="300">
                                                     <img src="./assets/img/stream/<?php echo $fetch['image']; ?>">
                                                     <p class="text-danger">Leave It Empty If You Want This Image.</p>
+
+                                                    <input type="hidden" name="old_image"
+                                                        value="<?php echo $fetch['image']; ?>">
                                                 </div>
                                             </div>
 

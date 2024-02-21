@@ -68,7 +68,7 @@ if (isset($_GET["user"]) && isset($_GET["id"]) && $_GET["user"] == "trainer") {
             exit();
         } else {
             // Fallback redirection if previous_url is not set
-            header('Location: ./dashboard.php');
+            header('Location: ./managestreams.php');
             exit();
         }
     } else {
