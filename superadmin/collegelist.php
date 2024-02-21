@@ -3,6 +3,17 @@ session_start();
 
 include('../db_connection/connection.php');
 
+require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
     header('location: ../super-admin_login.php');
     exit();
@@ -15,6 +26,15 @@ if (isset($_GET["error"])) {
     // Store the sanitized value in the session
     $_SESSION["error"] = $error;
 }
+
+function decryptPassword($encryptedPassword, $key)
+{
+    $data = base64_decode($encryptedPassword);
+    $iv = substr($data, 0, openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = substr($data, openssl_cipher_iv_length('aes-256-cbc'));
+    return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
+}
+
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
@@ -29,6 +49,12 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <meta name="Description" content="">
 
     <?php include("./style.php"); ?>
+
+    <style>
+        #pointer {
+            cursor: pointer !important;
+        }
+    </style>
 
 </head>
 
@@ -80,8 +106,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
                             <P><b> Affliated University</b> </p>
-                            <select name="affiliated_university" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
+                            <select name="affiliated_university" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="" selected>
                                     None
                                 </option>
@@ -103,8 +128,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         </div>
                         <div class="form-group col-md-4">
                             <P><b>District</b> </p>
-                            <select name="district" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
+                            <select name="district" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="" selected>
                                     None
                                 </option>
@@ -137,14 +161,14 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
                                                 <th class="border-bottom-0">Date of adding</th>
                                                 <th class="border-bottom-0">College ID</th>
                                                 <th class="border-bottom-0">College Name</th>
+                                                <th class="border-bottom-0">Password</th>
                                                 <th class="border-bottom-0">Representative Name</th>
                                                 <th class="border-bottom-0">District</th>
                                                 <th class="border-bottom-0">Affliate Univerity Board</th>
@@ -183,6 +207,28 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                     echo "<td>" . $row["creation_date"] . "</td>";
                                                     echo "<td>COL_" . $row["id"] . "</td>";
                                                     echo "<td>" . $row["name"] . "</td>";
+                                                    $decryptedPassword = decryptPassword($row["hashed_password"], $key);
+                                                    echo "<td class='pointer'>
+            <i class='bi bi-eye show-password' id='show-password-" . $row["id"] . "' data-id='show_password_" . $row["id"] . "' title='Show Password'></i>
+            <span class='password' id='password_" . $row["id"] . "' style='display:none;'>" . $decryptedPassword . "</span>
+            <i class='bi bi-eye-slash hide-password' id='hide-password-" . $row["id"] . "' data-id='hide_password_" . $row["id"] . "' style='display:none;' title='Hide Password'></i>
+        </td>";
+
+                                                    echo '
+            <script>
+                document.querySelector("#show-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "block";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "inline-block";
+                });
+
+                document.querySelector("#hide-password-' . $row["id"] . '").addEventListener("click", function() {
+                    document.querySelector("#password_' . $row["id"] . '").style.display = "none";
+                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "inline-block";
+                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "none";
+                });
+            </script>
+        ';
                                                     echo "<td>" . $row["representative_name"] . "</td>";
                                                     echo "<td>" . $row["district"] . "</td>";
                                                     echo "<td>" . $row["affiliated_university"] . "</td>";
@@ -198,7 +244,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                             ?>
 
-                                            >
+
 
                                         </tbody>
                                     </table>
@@ -219,6 +265,52 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
     <?php include("./scripts.php"); ?>
+
+
+    <!-- <script>
+    document.querySelectorAll('.show-password').forEach(function(element) {
+        element.addEventListener('click', function() {
+            var id = this.getAttribute('data-id');
+            var passwordElement = document.querySelector('.password[data-id="' + id + '"]');
+            var showPasswordElement = document.querySelector('.show-password[data-id="' + id + '"]');
+            var hidePasswordElement = document.querySelector('.hide-password[data-id="' + id + '"]');
+
+            if (passwordElement) {
+                passwordElement.style.display = 'inline';
+            }
+
+            if (showPasswordElement) {
+                showPasswordElement.style.display = 'none';
+            }
+
+            if (hidePasswordElement) {
+                hidePasswordElement.style.display = 'inline';
+            }
+        });
+    });
+
+    document.querySelectorAll('.hide-password').forEach(function(element) {
+        element.addEventListener('click', function() {
+            var id = this.getAttribute('data-id');
+            var passwordElement = document.querySelector('.password[data-id="' + id + '"]');
+            var showPasswordElement = document.querySelector('.show-password[data-id="' + id + '"]');
+            var hidePasswordElement = document.querySelector('.hide-password[data-id="' + id + '"]');
+
+            if (passwordElement) {
+                passwordElement.style.display = 'none';
+            }
+
+            if (showPasswordElement) {
+                showPasswordElement.style.display = 'inline';
+            }
+
+            if (hidePasswordElement) {
+                hidePasswordElement.style.display = 'none';
+            }
+        });
+    });
+    </script> -->
+
 
 
 </body>

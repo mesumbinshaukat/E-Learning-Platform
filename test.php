@@ -36,3 +36,5 @@ echo 'Encrypted Password: ' . $encryptedPassword . PHP_EOL;
 $decryptedPassword = decryptPassword($encryptedPassword, $key);
 
 echo 'Decrypted Password: ' . $decryptedPassword . PHP_EOL;
+
+echo __DIR__;

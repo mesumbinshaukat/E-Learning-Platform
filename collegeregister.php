@@ -23,7 +23,8 @@ if (isset($_POST['submit'])) {
 
     function encrypt_Password($password, $key)
     {
-        return base64_encode(openssl_encrypt($password, 'aes-256-cbc', $key, 0, $key));
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+        return base64_encode($iv . openssl_encrypt($password, 'aes-256-cbc', $key, 0, $iv));
     }
 
     $encryptedPassword = encrypt_Password($_POST['password'], $key);
@@ -76,23 +77,22 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
         <!--sign up section start-->
 
-        <section
-            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
+        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
             <div class="container">
 
                 <?php
                 if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) {
                 ?>
-                <div class="alert alert-success">
-                    Registration Successful
-                </div>
+                    <div class="alert alert-success">
+                        Registration Successful
+                    </div>
                 <?php
                     // session_destroy();
                 } else if (isset($_SESSION['message_failed']) && !empty($_SESSION['message_failed'])) {
                 ?>
-                <div class="alert alert-danger">
-                    Error, Unable to register
-                </div>
+                    <div class="alert alert-danger">
+                        Error, Unable to register
+                    </div>
                 <?php
                 }
                 session_destroy();
@@ -119,8 +119,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" name="college_name" class="form-control"
-                                                placeholder="Enter your college name" required>
+                                            <input type="text" name="college_name" class="form-control" placeholder="Enter your college name" required>
 
                                         </div>
                                     </div>
@@ -133,9 +132,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" maxlength="10" pattern=[0-9]{1}[0-9]{9}
-                                                name="phone_number" class="form-control" placeholder="1234567890"
-                                                required max="9999999999" min="1000000000">
+                                            <input type="text" maxlength="10" pattern=[0-9]{1}[0-9]{9} name="phone_number" class="form-control" placeholder="1234567890" required max="9999999999" min="1000000000">
                                         </div>
                                     </div>
 
@@ -148,8 +145,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="email" name="college_mail_id" class="form-control"
-                                                placeholder="name@address.com" required>
+                                            <input type="email" name="college_mail_id" class="form-control" placeholder="name@address.com" required>
                                         </div>
                                     </div>
 
@@ -161,8 +157,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" name="college_username" class="form-control"
-                                                placeholder="Enter College name" required minlength=8 maxlenght=16>
+                                            <input type="text" name="college_username" class="form-control" placeholder="Enter College name" required minlength=8 maxlenght=16>
                                         </div>
                                     </div>
 
@@ -174,8 +169,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="password" name="password" class="form-control" id='password'
-                                                placeholder="Enter your password" required>
+                                            <input type="password" name="password" class="form-control" id='password' placeholder="Enter your password" required>
                                         </div>
                                     </div>
 
@@ -187,33 +181,31 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="password" class="form-control" id='retypepassword'
-                                                placeholder="Re-Enter your password" required>
+                                            <input type="password" class="form-control" id='retypepassword' placeholder="Re-Enter your password" required>
                                         </div>
                                     </div>
 
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="submit"
-                                        value="submit" type="submit" onclick="return check()">
+                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="submit" value="submit" type="submit" onclick="return check()">
                                         Register
                                     </button>
                                 </form>
                                 <script type="text/javascript">
-                                function check() {
-                                    var b = document.getElementById('password').value;
-                                    var c = document.getElementById('retypepassword').value;
-                                    if (b != c) {
-                                        alert('Password doesnt match');
-                                        return false;
-                                    } else
-                                        return true;
-                                }
+                                    function check() {
+                                        var b = document.getElementById('password').value;
+                                        var c = document.getElementById('retypepassword').value;
+                                        if (b != c) {
+                                            alert('Password doesnt match');
+                                            return false;
+                                        } else
+                                            return true;
+                                    }
                                 </script>
 
                             </div>
                             <div class="card-footer bg-soft text-center border-top px-md-5"><small>Already
-                                    registered?</small>
-                                <a href="college_login.php" class="small"> Login</a>
+                                    registered? </small>
+                                <a href="college_login.php" class="small">Login</a>
                             </div>
                         </div>
                     </div>
