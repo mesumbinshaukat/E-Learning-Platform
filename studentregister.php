@@ -1,6 +1,25 @@
 <?php
 session_start();
 include('./db_connection/connection.php');
+
+require __DIR__ . '/vendor/autoload.php';
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Access the secret key
+$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
+
+$key = $secretKey;
+
+function encrypt_Password($password, $key)
+{
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    return base64_encode($iv . openssl_encrypt($password, 'aes-256-cbc', $key, 0, $iv));
+}
+
+
 if (isset($_POST['submitbtn'])) {
     $regex_email = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
     $student_name = $_POST['student_name'];
@@ -11,13 +30,14 @@ if (isset($_POST['submitbtn'])) {
     $password = $_POST['password'];
     $hash_pass = password_hash($password, PASSWORD_DEFAULT);
 
+    $encryptedPassword = encrypt_Password($_POST['password'], $key);
 
     if (preg_match($regex_email, $student_email) == 1) {
-        $insert_query = mysqli_prepare($conn, "INSERT INTO `student`( `name`, `contact_number`, `email`, `username`, `internship`, `password`) VALUES (?,?,?,?,?,?)");
-        $insert_query->bind_param("ssssss", $student_name, $student_phoneno, $student_email, $student_username, $intership_term, $hash_pass);
+        $insert_query = mysqli_prepare($conn, "INSERT INTO `student`( `name`, `contact_number`, `email`, `username`, `internship`, `password`, `hashed_password`) VALUES (?,?,?,?,?,?,?)");
+        $insert_query->bind_param("sssssss", $student_name, $student_phoneno, $student_email, $student_username, $intership_term, $hash_pass, $encryptedPassword);
 
         if ($insert_query->execute()) {
-            $_SESSION['message_success'] = true;
+            $_SESSION['message_success'] = "Successfully registered";
         } else {
             $_SESSION['message_failed'] = true;
             $_SESSION["err_msg"] = "Database Error, Unable to register.";
@@ -48,18 +68,18 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 <body>
     <script>
-        <?php
-        if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+    <?php
+        if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) {
         ?>
-            toastr.success('Registration Successful')
-        <?php
-            session_destroy();
-        } else if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+    toastr.success('<?php echo $_SESSION["message_success"]; ?>')
+    <?php
+            // session_destroy();
+        } else if (isset($_SESSION['message_failed']) && !empty($_SESSION['message_failed'])) {
         ?>
-            toastr.error(<?php echo $_SESSION["err_msg"]; ?>)
-        <?php
-            session_destroy();
+    toastr.error(<?php echo $_SESSION["err_msg"]; ?>)
+    <?php
         }
+        session_destroy();
         ?>
     </script>
     <section>
@@ -70,7 +90,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
         <!--sign up section start-->
 
-        <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
+        <section
+            class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
 
@@ -93,7 +114,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" name="student_name" class="form-control" placeholder="Enter your name" required>
+                                            <input type="text" name="student_name" class="form-control"
+                                                placeholder="Enter your name" required>
                                         </div>
                                     </div>
 
@@ -105,7 +127,9 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" maxlength="10" pattern=[0-9]{1}[0-9]{9} name="phone_number" class="form-control" placeholder="1234567890" required>
+                                            <input type="text" maxlength="10" pattern=[0-9]{1}[0-9]{9}
+                                                name="phone_number" class="form-control" placeholder="1234567890"
+                                                required>
 
                                         </div>
                                     </div>
@@ -119,7 +143,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="email" name="mail_id" class="form-control" placeholder="name@address.com" required>
+                                            <input type="email" name="mail_id" class="form-control"
+                                                placeholder="name@address.com" required>
                                         </div>
                                     </div>
 
@@ -131,12 +156,14 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="text" name="student_username" class="form-control" placeholder="Enter username" required minlength=8 maxlength=16 required>
+                                            <input type="text" name="student_username" class="form-control"
+                                                placeholder="Enter username" required minlength=8 maxlength=16 required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputQualification">Internship Term </label>
-                                        <select class="form-control form-select select2" name="intership_term" data-bs-placeholder="select Internship Term" required>
+                                        <select class="form-control form-select select2" name="intership_term"
+                                            data-bs-placeholder="select Internship Term" required>
                                             <option value="short_term">Short Term</option>
                                             <option value="long_term">Long Term</option>
                                         </select>
@@ -151,7 +178,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="password" name="password" class="form-control" id='password' placeholder="Enter your password" minlength=8 maxlength=10 required>
+                                            <input type="password" name="password" class="form-control" id='password'
+                                                placeholder="Enter your password" minlength=8 maxlength=10 required>
                                         </div>
                                     </div>
 
@@ -163,30 +191,27 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <!-- Input group -->
                                         <div class="input-group input-group-merge">
 
-                                            <input type="password" class="form-control" id='retypepassword' placeholder="Re-Enter your password" minlength=8 maxlength=10 required>
+                                            <input type="password" class="form-control" id='retypepassword'
+                                                placeholder="Re-Enter your password" minlength=8 maxlength=10 required>
                                         </div>
                                     </div>
 
-                                    <!-- <div>
-                                        <input type="checkbox" name="checkbox" id="send_newsletter" required />
-                                        By clicking Agree and Join, you agree to the TriaRight <a href="useragreement.html"> User Agreement</a> and <a href="privacypolicy.html"> Privacy policy</a>
-                                    </div> -->
-
                                     <!-- Submit -->
-                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="submitbtn" value="submit" type="submit" onclick="return check()">
+                                    <button class="btn btn-block btn-secondary border-radius mt-4 mb-3" name="submitbtn"
+                                        value="submit" type="submit" onclick="return check()">
                                         Register
                                     </button>
                                 </form>
                                 <script type="text/javascript">
-                                    function check() {
-                                        var b = document.getElementById('password').value;
-                                        var c = document.getElementById('retypepassword').value;
-                                        if (b != c) {
-                                            alert('Password doesnt match');
-                                            return false;
-                                        } else
-                                            return true;
-                                    }
+                                function check() {
+                                    var b = document.getElementById('password').value;
+                                    var c = document.getElementById('retypepassword').value;
+                                    if (b != c) {
+                                        alert('Password doesnt match');
+                                        return false;
+                                    } else
+                                        return true;
+                                }
                                 </script>
 
                             </div>

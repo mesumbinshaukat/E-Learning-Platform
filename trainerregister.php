@@ -35,8 +35,6 @@ if (isset($_POST['RegisterBtn'])) {
     $hash_pass = password_hash($password, PASSWORD_DEFAULT);
     $created_by = "user";
 
-    $key = $secretKey; // Change this to a strong secret key
-
 
     $encryptedPassword = encrypt_Password($_POST['Password'], $key);
 

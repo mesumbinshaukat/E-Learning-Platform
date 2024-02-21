@@ -44,6 +44,11 @@ function decryptPassword($encryptedPassword, $key)
     <title>Trainers List</title>
 
     <?php include("./style.php"); ?>
+    <style>
+    .pointer {
+        cursor: pointer;
+    }
+    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
