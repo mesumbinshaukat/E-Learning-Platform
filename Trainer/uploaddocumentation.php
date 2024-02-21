@@ -1,39 +1,40 @@
-<?php 
+<?php
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-	header('location: ../trainer_login.php');
-	exit();
+    header('location: ../trainer_login.php');
+    exit();
 }
-if(isset($_POST['submitBtn'])){
-	$description = $_POST['description'];
-	$additional_information = $_POST['additional_information'];
-	$shared_documents_name = $_FILES['shared_documents']['name'];
-	$shared_documents_tmp = $_FILES['shared_documents']['tmp_name'];
-	$date_of_documentation = $_POST['date_of_documentation'];
-	$batch_id = $_POST['batch_id'];
+if (isset($_POST['submitBtn'])) {
+    $description = $_POST['description'];
+    $additional_information = $_POST['additional_information'];
+    $shared_documents_name = $_FILES['shared_documents']['name'];
+    $shared_documents_tmp = $_FILES['shared_documents']['tmp_name'];
+    $date_of_documentation = $_POST['date_of_documentation'];
+    $batch_id = $_POST['batch_id'];
 
-	$select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
-	$fetch_batch = mysqli_fetch_assoc($select_batch);
-	if($fetch_batch['id'] == $batch_id){
-	$batch_name = $fetch_batch['batch_name'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_documentation`(`shared_documents`, `description`, `additional_information`, `date_of_documentation`, `batch_id`, `batch_name`) VALUES (?,?,?,?,?,?)");
-	$insert_query->bind_param('ssssss',$shared_documents_name,$description,$additional_information,$date_of_documentation,$batch_id,$batch_name);
+    $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
+    $fetch_batch = mysqli_fetch_assoc($select_batch);
+    if ($fetch_batch['id'] == $batch_id) {
+        $batch_name = $fetch_batch['batch_name'];
+        $insert_query = mysqli_prepare($conn, "INSERT INTO `batches_documentation`(`shared_documents`, `description`, `additional_information`, `date_of_documentation`, `batch_id`, `batch_name`) VALUES (?,?,?,?,?,?)");
+        $insert_query->bind_param('ssssss', $shared_documents_name, $description, $additional_information, $date_of_documentation, $batch_id, $batch_name);
 
-	if($insert_query->execute()){
-		move_uploaded_file($shared_documents_tmp, "./assets/docs/supportive_docs/".$shared_documents_name);
-		$_SESSION['message_success'] = true;
-		header("location:uploaddocumentation.php");
-	}
-	else{
-		$_SESSION['message_failed'] = true;
-		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
-	}
-}
-else{
-	$_SESSION['message_failed'] = true;
-	$_SESSION["err_msg"] = "Something went wrong";
-}
+        if ($insert_query->execute()) {
+            move_uploaded_file($shared_documents_tmp, "./assets/docs/supportive_docs/" . $shared_documents_name);
+            $_SESSION['success'] = "Documentation Uploaded Successfully.";
+            header("location:uploaddocumentation.php");
+            exit();
+        } else {
+            $_SESSION["error"] = "Unexpected Error.";
+            header("location:uploaddocumentation.php");
+            exit();
+        }
+    } else {
+        $_SESSION["error"] = "Something went wrong";
+        header("location:uploaddocumentation.php");
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -49,29 +50,29 @@ else{
 
     <!-- Title -->
     <title>Add Documentation</title>
-    <?php 
-	 include('./style.php'); 
-	  ?>
+    <?php
+    include('./style.php');
+    ?>
 
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-<?php
-	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-		echo "<script>toastr.success('Documentation Uploaded Successfully')</script>";
-		session_destroy();
-	}
-	?>
+    <?php
+    if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
+        echo "<script>toastr.success('Documentation Uploaded Successfully')</script>";
+        session_destroy();
+    }
+    ?>
 
     <?php
-	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-		session_destroy();
-	}
-	?>
-    <?php 
-	 include('./switcher.php'); 
-	  ?>
+    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
+        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
+        session_destroy();
+    }
+    ?>
+    <?php
+    include('./switcher.php');
+    ?>
 
 
     <!-- Page -->
@@ -80,13 +81,13 @@ else{
         <div>
 
             <div class="main-header side-header sticky nav nav-item">
-                <?php include('./partials/navbar.php')?>
+                <?php include('./partials/navbar.php') ?>
             </div>
             <!-- /main-header -->
 
             <!-- main-sidebar -->
             <div class="sticky">
-                <?php include('./partials/sidebar.php')?>
+                <?php include('./partials/sidebar.php') ?>
             </div>
             <!-- main-sidebar -->
 
@@ -123,17 +124,17 @@ else{
                     <select name="batch_id" required class="form-control form-select select2"
                         data-bs-placeholder="Select Batch">
                         <?php
-    				  $trainer_id = $_COOKIE['trainer_id'];
-    				  $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
-    				  if (mysqli_num_rows($batch) > 0) {
-    				      while ($row = mysqli_fetch_assoc($batch)) {
-    				  ?>
+                        $trainer_id = $_COOKIE['trainer_id'];
+                        $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+                        if (mysqli_num_rows($batch) > 0) {
+                            while ($row = mysqli_fetch_assoc($batch)) {
+                        ?>
                         <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
                         <?php
-    				      }
-    				  }
+                            }
+                        }
 
-      						 ?>
+                        ?>
                     </select>
                 </div>
                 <!-- row -->
@@ -189,25 +190,25 @@ else{
 
 
             </div>
-            <!-- Container closed -->
+        </form>
+        <!-- Container closed -->
     </div>
 
-    </form>
+    <?php
+    include('./script.php');
+    ?>
 
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <?php 
-	 include('./script.php'); 
-	  ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 
 </body>
 
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 
 </html>

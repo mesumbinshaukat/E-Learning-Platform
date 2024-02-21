@@ -1,39 +1,40 @@
-<?php 
+<?php
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-	header('location: ../trainer_login.php');
-	exit();
+    header('location: ../trainer_login.php');
+    exit();
 }
-if(isset($_POST['submitBtn'])){
-	$task_name = $_POST['task_name'];
-	$allocated_students_type = $_POST['allocated_students_type'];
-	$task_description = $_POST['task_description'];
-	$task_end_date = $_POST['task_end_date'];
-	$shared_documents_name = $_FILES['shared_documents']['name'];
-	$shared_documents_tmp = $_FILES['shared_documents']['tmp_name'];
-	$batch_id = $_POST['batch_id'];
+if (isset($_POST['submitBtn'])) {
+    $task_name = $_POST['task_name'];
+    $allocated_students_type = $_POST['allocated_students_type'];
+    $task_description = $_POST['task_description'];
+    $task_end_date = $_POST['task_end_date'];
+    $shared_documents_name = $_FILES['shared_documents']['name'];
+    $shared_documents_tmp = $_FILES['shared_documents']['tmp_name'];
+    $batch_id = $_POST['batch_id'];
 
-	$select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
-	$fetch_batch = mysqli_fetch_assoc($select_batch);
-	if($fetch_batch['id'] == $batch_id){
-	$batch_name = $fetch_batch['batch_name'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_tasks`(`task_name`, `allocated_students_type`, `task_description`, `task_end_date`, `shared_documents`, `batch_id`, `batch_name`) VALUES (?,?,?,?,?,?,?)");
-	$insert_query->bind_param('sssssss',$task_name,$allocated_students_type,$task_description,$task_end_date,$shared_documents_name,$batch_id,$batch_name);
+    $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
+    $fetch_batch = mysqli_fetch_assoc($select_batch);
+    if ($fetch_batch['id'] == $batch_id) {
+        $batch_name = $fetch_batch['batch_name'];
+        $insert_query = mysqli_prepare($conn, "INSERT INTO `batches_tasks`(`task_name`, `allocated_students_type`, `task_description`, `task_end_date`, `shared_documents`, `batch_id`, `batch_name`) VALUES (?,?,?,?,?,?,?)");
+        $insert_query->bind_param('sssssss', $task_name, $allocated_students_type, $task_description, $task_end_date, $shared_documents_name, $batch_id, $batch_name);
 
-	if($insert_query->execute()){
-		move_uploaded_file($shared_documents_tmp, "./assets/docs/supportive_docs/".$shared_documents_name);
-		$_SESSION['message_success'] = true;
-		header("location:addtask.php");
-	}
-	else{
-		$_SESSION['message_failed'] = true;
-		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
-	}
-}
-else{
-	$_SESSION['message_failed'] = true;
-	$_SESSION["err_msg"] = "Something went wrong";
-}
+        if ($insert_query->execute()) {
+            move_uploaded_file($shared_documents_tmp, "./assets/docs/supportive_docs/" . $shared_documents_name);
+            $_SESSION['success'] = "Task Created Successfully.";
+            header("location:addtask.php");
+            exit();
+        } else {
+            $_SESSION['error'] = "Unexpected Error.";
+            header("location:addtask.php");
+            exit();
+        }
+    } else {
+        $_SESSION["error"] = "Something went wrong";
+        header("location:addtask.php");
+        exit();
+    }
 }
 
 ?>
@@ -53,32 +54,13 @@ else{
     <title>Add Task</title>
 
 
-    <?php 
-		include('./style.php');
-		?>
+    <?php
+    include('./style.php');
+    ?>
 
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-<?php
-	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-		echo "<script>toastr.success('Task Created Successfully')</script>";
-		session_destroy();
-	}
-	?>
-
-    <?php
-	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-		session_destroy();
-	}
-	?>
-
-    <!-- Loader -->
-    <!-- <div id="global-loader">
-			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div> -->
-    <!-- /Loader -->
 
     <!-- Page -->
     <div class="page">
@@ -86,13 +68,13 @@ else{
         <div>
 
             <div class="main-header side-header sticky nav nav-item">
-                <?php include('./partials/navbar.php')?>
+                <?php include('./partials/navbar.php') ?>
             </div>
             <!-- /main-header -->
 
             <!-- main-sidebar -->
             <div class="sticky">
-                <?php include('./partials/sidebar.php')?>
+                <?php include('./partials/sidebar.php') ?>
             </div>
             <!-- main-sidebar -->
 
@@ -126,17 +108,17 @@ else{
                         <select name="batch_id" required class="form-control form-select select2"
                             data-bs-placeholder="Select Batch">
                             <?php
-    				  $trainer_id = $_COOKIE['trainer_id'];
-    				  $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
-    				  if (mysqli_num_rows($batch) > 0) {
-    				      while ($row = mysqli_fetch_assoc($batch)) {
-    				  ?>
+                            $trainer_id = $_COOKIE['trainer_id'];
+                            $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+                            if (mysqli_num_rows($batch) > 0) {
+                                while ($row = mysqli_fetch_assoc($batch)) {
+                            ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
                             <?php
-    				      }
-    				  }
+                                }
+                            }
 
-      						 ?>
+                            ?>
                         </select>
                     </div>
 
@@ -152,7 +134,7 @@ else{
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputDOB">Name of the Task</label>
-                                                  
+
                                                     <input class="form-control" id="dateMask" placeholder="Name"
                                                         type="text" name="task_name" required>
                                                 </div>
@@ -197,12 +179,11 @@ else{
                                             </div>
 
 
-                                           
+
 
 
                                         </div>
                                         <button type="submit" name="submitBtn" class="btn btn-info mt-3 mb-0"
-                               
                                             style="text-align:right">Add Task</button>
                                     </div>
                                 </div>
@@ -214,27 +195,21 @@ else{
                 </div>
             </div>
 
-    </div>
-    </div>
-    </div>
+        </form>
     </div>
 
+    <?php include('./script.php') ?>
 
-
-    </div>
-    <!-- Container closed -->
-    </div>
-    </form>
-
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
-<?php include('./script.php')?>
 
 </html>
