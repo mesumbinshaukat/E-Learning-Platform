@@ -9,7 +9,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +33,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
             <div class="main-header side-header sticky nav nav-item">
                 <?php include('./partials/navbar.php'); ?>
             </div>
-            <!-- /main-header -->
+
             <!-- main-sidebar -->
             <div class="sticky">
                 <?php include('./partials/sidebar.php') ?>
@@ -72,6 +71,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">Internship Applied ID</th>
                                                 <th class="border-bottom-0">Student Name</th>
                                                 <th class="border-bottom-0">Company Name</th>
+                                                <th class="border-bottom-0">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -93,6 +93,17 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                             echo "<td>INTID_" . $internship['id'] . "</td>";
                                                             echo "<td>" . $student['name'] . "</td>";
                                                             echo "<td>" . $internship['company_name'] . "</td>";
+                                                            switch ($row['status']) {
+                                                                case "Active":
+                                                                    echo "<td><span class='badge badge-success'>Active</span></td>";
+                                                                    break;
+                                                                case "Pending":
+                                                                    echo "<td><span class='badge badge-warning'>Pending</span></td>";
+                                                                    break;
+                                                                case "Deleted":
+                                                                    echo "<td><span class='badge badge-danger'>Deleted</span></td>";
+                                                                    break;
+                                                            }
                                                             echo "</tr>";
                                                         }
                                                     }

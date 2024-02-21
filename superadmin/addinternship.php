@@ -45,13 +45,15 @@ if (isset($_POST["create"])) {
 
 
     if ($query->execute()) {
-        $_SESSION['message_success'] = "Working";
+        $_SESSION['success'] = "Internship Added Successfully.";
         move_uploaded_file($main_image_tmp, "./assets/img/internship/" . $main_image);
         move_uploaded_file($inner_image_tmp, "./assets/img/internship/" . $inner_image);
         header("location: addinternship.php");
+        exit();
     } else {
-        $_SESSION['message_failed'] = "Fill Correct Details.";
-        $_SESSION["err_msg"] = "Fill Correct Details.";
+        $_SESSION['error'] = "Fill Correct Details.";
+        header("location: addinternship.php");
+        exit();
     }
 }
 
@@ -332,13 +334,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <!-- End Page -->
 
     <?php include("./scripts.php"); ?>
-    <?php if (isset($_SESSION['message_success']) && !empty($_SESSION['message_success'])) { ?>
-    <script>
-    // Displaying a success message
-    toastr.success('Internship Added!');
-    </script>
-
-    <?php } ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
 </html>
