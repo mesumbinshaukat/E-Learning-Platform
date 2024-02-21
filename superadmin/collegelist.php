@@ -19,14 +19,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 
-// if (isset($_GET["error"])) {
-//     // Sanitize the value using htmlspecialchars
-//     $error = htmlspecialchars($_GET["error"], ENT_QUOTES, 'UTF-8');
-
-//     // Store the sanitized value in the session
-//     $_SESSION["error"] = $error;
-// }
-
 function decryptPassword($encryptedPassword, $key)
 {
     $data = base64_decode($encryptedPassword);
@@ -51,9 +43,9 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <?php include("./style.php"); ?>
 
     <style>
-        .pointer {
-            cursor: pointer !important;
-        }
+    .pointer {
+        cursor: pointer !important;
+    }
     </style>
 
 </head>
@@ -104,7 +96,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
                             <P><b> Affliated University</b> </p>
-                            <select name="affiliated_university" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="affiliated_university" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected>
                                     None
                                 </option>
@@ -125,7 +118,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         </div>
                         <div class="form-group col-md-4">
                             <P><b>District</b> </p>
-                            <select name="district" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="district" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected>
                                     None
                                 </option>
@@ -157,7 +151,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
@@ -239,9 +234,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             }
 
                                             ?>
-
-
-
                                         </tbody>
                                     </table>
                                 </div>
