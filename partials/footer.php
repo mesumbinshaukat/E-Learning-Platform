@@ -85,26 +85,17 @@ $l_query = mysqli_query($conn, "SELECT * FROM `latest_course`");
                 <div class="col-sm-6 col-lg-2">
                     <h5 class="mb-4">Get Started!</h5>
                     <ul class="links-vertical">
-                        <h6>Register</h6>
+
                         <li>
-                            <a href="./studentregister.php">Student Register</a>
+                            <a href="./studentregister.php" target="_blank">Student Register</a>
                         </li>
                         <li>
-                            <a href="./collegeregister.php">College Register</a>
+                            <a href="./collegeregister.php" target="_blank">College Register</a>
                         </li>
                         <li class="mb-lg-2">
-                            <a href="./trainerregister.php">Trainer Register</a>
+                            <a href="./trainerregister.php" target="_blank">Trainer Register</a>
                         </li>
-                        <h6 class="mt-lg-1">Log In</h6>
-                        <li>
-                            <a href="./student_login.php">Student Log In</a>
-                        </li>
-                        <li>
-                            <a href="./college_login.php">College Log In</a>
-                        </li>
-                        <li>
-                            <a href="./trainer_login.php">Trainer Log In</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>

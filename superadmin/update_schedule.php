@@ -121,7 +121,7 @@ if (isset($_POST["submit"])) {
                     $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
                     $id = (int) $id;
 
-                    $query = mysqli_query($conn, "SELECT * FROM `schedule_batch` WHERE `id` = '$id'");
+                    $query = mysqli_query($conn, "SELECT * FROM `batches_schedule` WHERE `id` = '$id'");
                     if (mysqli_num_rows($query) > 0) {
                         $fetch = mysqli_fetch_assoc($query);
 
@@ -226,8 +226,8 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group">
                                                     <label for="exampleInputAadhar">Topics to be covered</label>
                                                     <input type="text" name="topics_to_be_covered" class="form-control"
-                                                        value="<?= $fetch['topics_covered'] ?>" id="exampleInputAadhar"
-                                                        placeholder="Topics List" required>
+                                                        value="<?php echo $fetch['topics_to_be_covered'] ?>"
+                                                        id="exampleInputAadhar" placeholder="Topics List" required>
                                                 </div>
                                             </div>
 
@@ -237,7 +237,7 @@ if (isset($_POST["submit"])) {
                                                     <label for="exampleInputUserName">Class Starting time</label>
                                                     <input name="training_starting_time" class="form-control"
                                                         id="start-date" placeholder="" type="time"
-                                                        value="<?php echo $fetch['class_starting_timing'] ?>" required>
+                                                        value="<?php echo $fetch['class_starting_time']; ?>" required>
                                                 </div>
                                             </div>
 
@@ -246,8 +246,8 @@ if (isset($_POST["submit"])) {
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Class Ending time </label>
                                                     <input name="training_ending_time" class="form-control"
-                                                        id="end-date" placeholder="" type="time"
-                                                        value="<?php echo $fetch['class_ending_time'] ?>" required>
+                                                        id="end-date" placeholder="" type="text" required
+                                                        value="<?php echo $fetch['class_ending_time'] ?>">
                                                 </div>
                                             </div>
                                             <input type="hidden" name="old_doc"

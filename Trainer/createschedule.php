@@ -1,36 +1,41 @@
-<?php 
+<?php
+session_start();
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-	header('location: ../trainer_login.php');
-	exit();
+    header('location: ../trainer_login.php');
+    exit();
 }
-if(isset($_POST['CreateBtn'])){
-	$scheduled_date = $_POST['scheduled_date'];
-	$main_topic = $_POST['main_topic'];
-	$Duration = $_POST['Duration'];
-	$tasks = $_POST['tasks'];
-	$Shared_Documents_name = $_FILES['Shared_Documents']['name'];
-	$Shared_Documents_tmpname = $_FILES['Shared_Documents']['tmp_name'];
-	$Topics_to_be_covered = $_POST['Topics_to_be_covered'];
-	$Training_Starting_time = $_POST['Training_Starting_time'];
-	$Training_Ending_time = $_POST['Training_Ending_time'];
+if (isset($_POST['CreateBtn'])) {
+    $scheduled_date = $_POST['scheduled_date'];
+    $main_topic = $_POST['main_topic'];
+    $Duration = $_POST['Duration'];
+    $tasks = $_POST['tasks'];
+    $Shared_Documents_name = $_FILES['Shared_Documents']['name'];
+    $Shared_Documents_tmpname = $_FILES['Shared_Documents']['tmp_name'];
+    $Topics_to_be_covered = $_POST['Topics_to_be_covered'];
+    $Training_Starting_time = $_POST['Training_Starting_time'];
+    $Training_Ending_time = $_POST['Training_Ending_time'];
     $batch_id = $_POST['batch_id'];
-	$select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
-	$fetch_batch = mysqli_fetch_assoc($select_batch);
-	if($fetch_batch['id'] == $batch_id){
-	$batch_name = $fetch_batch['batch_name'];
-	$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_schedule`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`, `batch_id`, `batch_name`) VALUES (?,?,?,?,?,?,?,?,?,?)");
-	$insert_query->bind_param("ssssssssss",$scheduled_date,$main_topic,$Duration,$tasks,$Shared_Documents_name,$Topics_to_be_covered,$Training_Starting_time,$Training_Ending_time,$batch_id,$batch_name);
-	if($insert_query->execute()){
-		$_SESSION['message_success'] = true;
-		move_uploaded_file($Shared_Documents_tmpname, "./assets/docs/supportive_docs/" . $Shared_Documents_name);
-		header("location:createschedule.php");
-	}
-	else{
-		$_SESSION['message_failed'] = true;
-		$_SESSION["err_msg"] = "Unexpected Error. Please fill the correct details according to the required format.";
-	}
-}
+    $status = "Pending";
+    $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
+    $fetch_batch = mysqli_fetch_assoc($select_batch);
+    $trainer_id = (int) $_COOKIE['trainer_id'];
+    $trainer_username = $_COOKIE['trainer_username'];
+    if ($fetch_batch['id'] == $batch_id) {
+        $batch_name = $fetch_batch['batch_name'];
+        $insert_query = mysqli_prepare($conn, "INSERT INTO `batches_schedule`( `date_of_schedule`, `main_topic`, `class_duration`, `tasks`, `shared_documents`, `topics_to_be_covered`, `class_starting_time`, `class_ending_time`, `batch_id`, `batch_name`, `status`, `trainer_id`, `trainer_username`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $insert_query->bind_param("sssssssssssss", $scheduled_date, $main_topic, $Duration, $tasks, $Shared_Documents_name, $Topics_to_be_covered, $Training_Starting_time, $Training_Ending_time, $batch_id, $batch_name, $status, $trainer_id, $trainer_username);
+        if ($insert_query->execute()) {
+            $_SESSION['success'] = "Schedule Created Successfully.";
+            move_uploaded_file($Shared_Documents_tmpname, "./assets/docs/supportive_docs/" . $Shared_Documents_name);
+            header("location:createschedule.php");
+            exit();
+        } else {
+            $_SESSION['error'] = "Unexpected Error.";
+            header("location:createschedule.php");
+            exit();
+        }
+    }
 }
 ?>
 
@@ -49,37 +54,18 @@ if(isset($_POST['CreateBtn'])){
     <!-- Title -->
     <title>Create Schedule</title>
 
-    <?php 
-	 include('./style.php'); 
-	  ?>
+    <?php
+    include('./style.php');
+    ?>
 
 
 </head>
 
 <body class="ltr main-body app sidebar-mini">
 
-    <?php 
-	 include('./switcher.php'); 
-	  ?>
-
-<?php
-	if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-		echo "<script>toastr.success('Schedule Created Successfully')</script>";
-		session_destroy();
-	}
-	?>
-
     <?php
-	if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-		echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-		session_destroy();
-	}
-	?>
-    <!-- Loader -->
-    <!-- <div id="global-loader">
-        <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div> -->
-    <!-- /Loader -->
+    include('./switcher.php');
+    ?>
 
     <!-- Page -->
     <div class="page">
@@ -87,17 +73,19 @@ if(isset($_POST['CreateBtn'])){
         <div>
 
             <div class="main-header side-header sticky nav nav-item">
-                <?php include('./partials/navbar.php')?>
+                <?php include('./partials/navbar.php') ?>
             </div>
             <!-- /main-header -->
 
             <!-- main-sidebar -->
             <div class="sticky">
-                <?php include('./partials/sidebar.php')?>
+                <?php include('./partials/sidebar.php') ?>
             </div>
             <!-- main-sidebar -->
 
         </div>
+
+
         <form action="" method="POST" enctype="multipart/form-data">
             <!-- main-content -->
             <!-- main-content -->
@@ -127,23 +115,23 @@ if(isset($_POST['CreateBtn'])){
                         <select name="batch_id" required class="form-control form-select select2"
                             data-bs-placeholder="Select Batch">
                             <?php
-    				  $trainer_id = $_COOKIE['trainer_id'];
-    				  $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
-    				  if (mysqli_num_rows($batch) > 0) {
-    				      while ($row = mysqli_fetch_assoc($batch)) {
-    				  ?>
+                            $trainer_id = $_COOKIE['trainer_id'];
+                            $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+                            if (mysqli_num_rows($batch) > 0) {
+                                while ($row = mysqli_fetch_assoc($batch)) {
+                            ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
                             <?php
-    				      }
-    				  }
+                                }
+                            }
 
-      						 ?>
+                            ?>
                         </select>
                     </div>
 
 
-                  
-                   
+
+
 
                     <!-- row -->
                     <div class="row">
@@ -244,7 +232,7 @@ if(isset($_POST['CreateBtn'])){
                                             }
                                             </script> -->
 
-                                        
+
                                         </div>
                                         <button type="submit" name="CreateBtn" onclick="return checkDateRange()"
                                             class="btn btn-info mt-3 mb-0" data-bs-target="#schedule"
@@ -263,7 +251,7 @@ if(isset($_POST['CreateBtn'])){
         </form>
 
 
-     
+
 
     </div>
     <!-- End Page -->
@@ -272,11 +260,21 @@ if(isset($_POST['CreateBtn'])){
     <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
     <!-- JQUERY JS -->
-    <?php 
-	 include('./script.php'); 
-	  ?>
+    <?php
+    include('./script.php');
+
+    ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 </body>
 
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 
 </html>
