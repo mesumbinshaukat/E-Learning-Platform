@@ -136,8 +136,8 @@
                     <li class="side-menu__label1"><a href="javascript:void(0);">Registrations</a></li>
                     <li><a class="bi bi-dot" href="courseregistrations.php"
                             style="font-size:14px; line-height: 2;">Add</a></li>
-                    <!-- <li><a class="bi bi-dot" href="pendingcourseregistrations.php"
-                            style="font-size:14px; line-height: 2;">Pending</a></li> -->
+                    <li><a class="bi bi-dot" href="pendingcourseregistration.php"
+                            style="font-size:14px; line-height: 2;">Pending</a></li>
                     <li><a class="bi bi-dot" href="managecourseregistrations.php"
                             style="font-size:14px; line-height: 2;">Manage</a></li>
                     <li><a class="bi bi-dot" href="courseregistrationslist.php"
