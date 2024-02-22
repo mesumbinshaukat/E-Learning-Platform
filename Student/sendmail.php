@@ -1,7 +1,7 @@
 <?php
+session_start();
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
-session_start();
 include('../db_connection/connection.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -43,8 +43,8 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
 
         $mail->setFrom($_COOKIE["superadmin_email"], $_COOKIE["superadmin_username"]);
 
-        if (!empty($attachment) && file_exists('./assets/docs/attachments/' . $attachment)) {
-            $mail->addAttachment('./assets/docs/attachments/' . $attachment, $purpose);
+        if (!empty($attachment) && file_exists('../superadmin/assets/docs/attachments/' . $attachment)) {
+            $mail->addAttachment('../superadmin/assets/docs/attachments/' . $attachment, $purpose);
         }
 
         $mail->addAddress($recipient_email, $recipient_name);     //Add a recipient

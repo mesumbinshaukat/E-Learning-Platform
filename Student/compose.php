@@ -22,6 +22,46 @@ if (isset($_POST["submit"])) {
 
     switch ($recipient) {
         case "Superadmin":
+            $admin_query = mysqli_query($conn, "SELECT * FROM `superadmin`");
+            if (mysqli_num_rows($admin_query) > 0) {
+                $admin = mysqli_fetch_assoc($admin_query);
+                $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` ='$student_id'");
+                if (mysqli_num_rows($student_query) > 0) {
+                    $student = mysqli_fetch_assoc($student_query);
+                    $sender_email = $student["email"];
+                    $sender_name = $student["name"];
+                    $sender_id = $student["id"];
+                    $sender_type = "Student";
+                    $recipient_id = $admin["id"];
+                    $recipient_name = $admin["username"];
+                    $recipient_email = $admin["email"];
+                    $sending_format = "Individuals";
+
+                    $mail_query = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `sending_format`, `subject`, `message`, `attachment`, `purpose`, `recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    $mail_query->bind_param("sssssssssssss", $sender_email, $sender_id, $sender_name, $sender_type, $recipient_email, $recipient_id, $recipient_name, $sending_format, $subject, $message, $add_attachments, $purpose, $recipient);
+                    if ($mail_query->execute()) {
+                        if (!empty($add_attachments)) {
+                            move_uploaded_file($add_attachments_tmp, "../superadmin/assets/docs/attachments/" . $add_attachments);
+                        }
+
+                        $_SESSION["attachment"] = $add_attachments;
+                        $_SESSION["sending_format"] = $sending_format;
+                        $_SESSION["recipient_name"] = $recipient_name;
+                        $_SESSION["recipient_email"] = $recipient_email;
+                        $_SESSION["recipient"] = $recipient;
+                        $_SESSION["purpose"] = $purpose;
+                        $_SESSION["subject"] = $subject;
+                        $_SESSION["message"] = $message;
+
+                        header('location: ./sendmail.php');
+                        exit();
+                    } else {
+                        $_SESSION["error"] = "Something went wrong";
+                        header('location: ./compose.php');
+                        exit();
+                    }
+                }
+            }
 
             break;
         case "Trainer":
