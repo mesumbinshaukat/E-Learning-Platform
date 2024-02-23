@@ -19,8 +19,9 @@ if (isset($_POST['createBtn'])) {
     $query->bind_param("ssss", $student_name, $picture, $message, $rating);
 
     if ($query->execute()) {
+        $_SESSION["success"] = "Testimonial Added Successfully.";
         move_uploaded_file($picture_tmp, "./assets/img/testimonial/" . $picture);
-        $_SESSION['success'] = "Testimonial Added Successfully.";
+
         header('location: testimonial.php');
         exit();
     } else {
@@ -40,26 +41,26 @@ if (isset($_POST['createBtn'])) {
 <head>
     <title>Add Testimonial</title>
     <style>
-    .range-container {
-        display: flex;
-        align-items: center;
-    }
+        .range-container {
+            display: flex;
+            align-items: center;
+        }
 
-    .range-label {
-        margin-right: 10px;
-        font-size: 14px;
-        color: #333;
-    }
+        .range-label {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #333;
+        }
 
-    .range-value {
-        font-size: 16px;
-        color: #007bff;
-    }
+        .range-value {
+            font-size: 16px;
+            color: #007bff;
+        }
 
-    .form-range {
-        width: 80%;
-        margin-top: 10px;
-    }
+        .form-range {
+            width: 80%;
+            margin-top: 10px;
+        }
     </style>
     <?php include("./style.php"); ?>
 
@@ -122,48 +123,29 @@ if (isset($_POST['createBtn'])) {
                                         <h3>Create</h3>
                                         <section>
                                             <div class="control-group form-group">
-                                                <label class="form-label">Student Name<span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
-                                                        style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <label class="form-label">Student Name<span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
 
-                                                <input type="text" name="student_name" class="form-control required"
-                                                    placeholder="Student Name" required>
+                                                <input type="text" name="student_name" class="form-control required" placeholder="Student Name" required>
                                             </div>
                                             <div class="control-group form-group">
-                                                <label class="form-label">Message <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
-                                                        style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="text" name="message" class="form-control required"
-                                                    placeholder="Message" required>
+                                                <label class="form-label">Message <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <input type="text" name="message" class="form-control required" placeholder="Message" required>
                                             </div>
 
                                             <div class="range-container">
-                                                <label class="range-label">Rating:</label><span
-                                                    style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
-                                                    style="color:red;font-size: 90%;">*</span><span
-                                                    style="color:#D3D3D3;font-size: 90%;">)</span>
+                                                <label class="range-label">Rating:</label><span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span>
                                                 <span id="rangeValue" class="range-value">3.0</span>
                                             </div>
                                             <div class="control-group form-group">
-                                                <input type="range" min="1" max="5" name="rating"
-                                                    class="form-range required" placeholder="Rating" step="0.5" required
-                                                    oninput="updateRangeValue(this.value)">
+                                                <input type="range" min="1" max="5" name="rating" class="form-range required" placeholder="Rating" step="0.5" required oninput="updateRangeValue(this.value)">
                                             </div>
                                             <div class="control-group form-group mb-2">
-                                                <label class="form-label">Picture <span
-                                                        style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span
-                                                        style="color:red;font-size: 90%;">*</span><span
-                                                        style="color:#D3D3D3;font-size: 90%;">)</span></label>
-                                                <input type="file" name="picture" class="form-control required"
-                                                    placeholder="Picture" required>
+                                                <label class="form-label">Picture <span style="color:#D3D3D3;font-size: 90%;">(Mandatory</span> <span style="color:red;font-size: 90%;">*</span><span style="color:#D3D3D3;font-size: 90%;">)</span></label>
+                                                <input type="file" name="picture" class="form-control required" placeholder="Picture" required>
                                             </div>
 
                                         </section>
-                                        <button name="createBtn" value="submit" type="submit"
-                                            class="btn btn-primary mt-3 mb-0" onclick="return check()"
-                                            style="text-align:right">Create</button>
+                                        <button name="createBtn" value="submit" type="submit" class="btn btn-primary mt-3 mb-0" onclick="return check()" style="text-align:right">Create</button>
                                     </div>
                                 </div>
                             </div>
@@ -185,9 +167,9 @@ if (isset($_POST['createBtn'])) {
     <?php include("./scripts.php"); ?>
 
     <script>
-    function updateRangeValue(value) {
-        document.getElementById('rangeValue').textContent = value;
-    }
+        function updateRangeValue(value) {
+            document.getElementById('rangeValue').textContent = value;
+        }
     </script>
 
     <?php

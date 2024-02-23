@@ -1,17 +1,19 @@
 <?php
+session_start();
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
-	header('location: ../student_login.php');
-	exit();
+    header('location: ../student_login.php');
+    exit();
 }
 $select_query = "SELECT * FROM `course`";
-$run_query = mysqli_query($conn , $select_query );
+$run_query = mysqli_query($conn, $select_query);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
+    $_SESSION["success"] = "Registered Successfully";
     $stud_id = $_POST["stud_id"];
     $course_id = $_POST["course_id"];
     $query = "INSERT INTO `course_registration`(`course_id`, `student_id`) VALUES ('$course_id','$stud_id')";
-    $run_query = mysqli_query($conn , $query);
+    $run_query = mysqli_query($conn, $query);
     header("location:courseregister.php");
 }
 
@@ -19,7 +21,6 @@ if(isset($_POST['submit'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
 
@@ -35,13 +36,6 @@ if(isset($_POST['submit'])){
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-
-
-    <!-- Loader -->
-    <!-- <div id="global-loader">
-        <img src="https://triaright.com/Student/assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div> -->
-    <!-- /Loader -->
 
     <!-- Page -->
     <div class="page">
@@ -81,71 +75,64 @@ if(isset($_POST['submit'])){
                     <div class="row row-sm">
 
                         <?php
-                            while ($data = mysqli_fetch_array($run_query)) {
-                            ?>
+                        while ($data = mysqli_fetch_array($run_query)) {
+                        ?>
 
-                        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                            <div class="carousel slide" data-bs-ride="carousel" id="carouselExample3">
-                                <ol class="carousel-indicators">
-                                    <li class="active" data-bs-slide-to="0" data-bs-target="#carouselExample3"></li>
-                                    <li data-bs-slide-to="1" data-bs-target="#carouselExample3"></li>
+                            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                <div class="carousel slide" data-bs-ride="carousel" id="carouselExample3">
+                                    <ol class="carousel-indicators">
+                                        <li class="active" data-bs-slide-to="0" data-bs-target="#carouselExample3"></li>
+                                        <li data-bs-slide-to="1" data-bs-target="#carouselExample3"></li>
 
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img alt="img" class="d-block w-100"
-                                            src="../superadmin/assets/img/course/<?php echo $data['main_image'];?>"
-                                            width="300" height="300">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img alt="img" class="d-block w-100"
-                                            src="../superadmin/assets/img/course/<?php echo $data['image_two'];?>"
-                                            width="300" height="300">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3"><span
-                                            style="font-size:20px; color:#1d71f2; text-transform:none;"><?php echo $data['course_name'];?></span>
-                                    </h4>
-                                    <p class="card-text"><span style="color: #ff6700; font-size:15px;">Due Date
-                                            :</span><span style="font-size:15px;">
-                                            <?php echo $data['last_date_to_apply']?> </p>
-                                    <p class="card-text"><span style="color: #ff6700; font-size:15px;">Author
-                                            :</span><span style="font-size:15px;">
-                                            <?php echo $data['provider_name_company']?> </p>
-                                    <p class="card-text"><span style="color: #ff6700; font-size:15px;">Date of posting
-                                            :</span><span style="font-size:15px;"> <?php echo $data['creation_date']?>
-                                    </p>
-                                    <a class="btn btn-primary btn-block"
-                                        href="coursedetails1.php?courseid=<?php echo $data['id']?>">Read More</a>
-                                    <form method="post">
-                                        <input type="hidden" value="<?php echo $data["id"] ?>" name="course_id">
-                                        <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>" name="stud_id">
-
-
-                                        <div class="text-center  mt-4">
-                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `course_id` = {$data['id']} "); 
-                                                                if(mysqli_num_rows($query_check) > 0){
-                                                                    echo "<input value='Already Registered' disabled class='btn btn-primary btn-block'>";
-                                                                }else{
-
-                                                                
-                                                            ?>
-                                            <input type="submit" class="btn btn-primary btn-block" value="Apply"
-                                                name="submit" id="submit_btn" />
-
-                                            <?php }?>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img alt="img" class="d-block w-100" src="../superadmin/assets/img/course/<?php echo $data['main_image']; ?>" width="300" height="300">
                                         </div>
-                                    </form>
+                                        <div class="carousel-item">
+                                            <img alt="img" class="d-block w-100" src="../superadmin/assets/img/course/<?php echo $data['image_two']; ?>" width="300" height="300">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3"><span style="font-size:20px; color:#1d71f2; text-transform:none;"><?php echo $data['course_name']; ?></span>
+                                        </h4>
+                                        <p class="card-text"><span style="color: #ff6700; font-size:15px;">Due Date
+                                                :</span><span style="font-size:15px;">
+                                                <?php echo $data['last_date_to_apply'] ?> </p>
+                                        <p class="card-text"><span style="color: #ff6700; font-size:15px;">Author
+                                                :</span><span style="font-size:15px;">
+                                                <?php echo $data['provider_name_company'] ?> </p>
+                                        <p class="card-text"><span style="color: #ff6700; font-size:15px;">Date of posting
+                                                :</span><span style="font-size:15px;"> <?php echo $data['creation_date'] ?>
+                                        </p>
+                                        <a class="btn btn-primary btn-block" href="coursedetails1.php?courseid=<?php echo $data['id'] ?>">Read More</a>
+                                        <form method="post">
+                                            <input type="hidden" value="<?php echo $data["id"] ?>" name="course_id">
+                                            <input type="hidden" value="<?php echo $_COOKIE["student_id"] ?>" name="stud_id">
 
 
+                                            <div class="text-center  mt-4">
+                                                <?php $query_check = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `course_id` = {$data['id']} ");
+                                                if (mysqli_num_rows($query_check) > 0) {
+                                                    echo "<input value='Already Registered' disabled class='btn btn-primary btn-block'>";
+                                                } else {
+
+
+                                                ?>
+                                                    <input type="submit" class="btn btn-primary btn-block" value="Apply" name="submit" id="submit_btn" />
+
+                                                <?php } ?>
+                                            </div>
+                                        </form>
+
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <?php }?>
+                        <?php } ?>
 
 
 
@@ -157,23 +144,20 @@ if(isset($_POST['submit'])){
         </div>
     </div>
 
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
-
-
-
-
-
-
-
     <!-- BACK-TO-TOP -->
-    <a href="viewcourses1.php@course=Information&#32;Technology.html#top" id="back-to-top"><i
-            class="las la-arrow-up"></i></a>
+    <a href="viewcourses1.php@course=Information&#32;Technology.html#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
     <?php include("./scripts.php") ?>
 
-</body>
 
-<!-- Mirrored from laravel8.spruko.com/nowa/table-data by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:58 GMT -->
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
+</body>
 
 </html>

@@ -39,29 +39,36 @@ if (isset($_GET['summary_id'])) {
         $Topics_Covered = $_POST['Topics_Covered'];
         $Overall_Feedback = $_POST['Overall_Feedback'];
         $batch_id = $_POST['batch_id'];
-        $select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+        $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
         $fetch_batch = mysqli_fetch_assoc($select_batch);
-        if($fetch_batch['id'] == $batch_id){
-        $batch_name = $fetch_batch['batch_name'];
+        if ($fetch_batch['id'] == $batch_id) {
+            $batch_name = $fetch_batch['batch_name'];
 
-        // Update query
-        $update_query = "UPDATE `batches_summary` SET `date_of_summary`=?,`performer_of_day`=?,`topics_covered`=?,`overall_feedback`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
-        $update_stmt = mysqli_prepare($conn, $update_query);
-        $update_stmt->bind_param(
-            "ssssssi",$Date_of_Summary,$Performer_of_the_day,$Topics_Covered,$Overall_Feedback,$batch_id,$batch_name,$id
-        );
+            // Update query
+            $update_query = "UPDATE `batches_summary` SET `date_of_summary`=?,`performer_of_day`=?,`topics_covered`=?,`overall_feedback`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
+            $update_stmt = mysqli_prepare($conn, $update_query);
+            $update_stmt->bind_param(
+                "ssssssi",
+                $Date_of_Summary,
+                $Performer_of_the_day,
+                $Topics_Covered,
+                $Overall_Feedback,
+                $batch_id,
+                $batch_name,
+                $id
+            );
 
-        if (mysqli_stmt_execute($update_stmt)) {
-            session_destroy();
-            header("location: managesummary.php");
-            exit();
-        } else {
-            echo mysqli_error($conn);
+            if (mysqli_stmt_execute($update_stmt)) {
+                $_SESSION['success'] = "Summary updated successfully!";
+                header("location: managesummary.php");
+                exit();
+            } else {
+                $_SESSION["error"] = "Something went wrong. Please try again.";
+                header("location: managesummary.php");
+                exit();
+            }
         }
-
-        mysqli_stmt_close($update_stmt);
     }
-}
 } elseif (!isset($_GET["summary_id"]) || empty($_GET["summary_id"])) {
     echo "<script>alert('Error')</script>";
     if (isset($_SESSION['previous_url'])) {
@@ -141,31 +148,31 @@ if (isset($_GET['summary_id'])) {
                 <br>
 
                 <div class="form-group col-md-4">
-                        <select name="batch_id" required class="form-control form-select select2"
-                            data-bs-placeholder="Select Batch">
-                            <?php 
-            if(isset($_GET['summary_id'])){
-                $id = $_GET['summary_id'];
-                $sql = mysqli_query($conn,"SELECT * FROM `batches_summary` WHERE id = '$id'");
-                $fetch_sql = mysqli_fetch_assoc($sql);
-                $selected_batch_id = $fetch_sql['batch_id'];
-          
-        
-      $trainer_id = $_COOKIE['trainer_id'];
-      $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
-      if (mysqli_num_rows($batch) > 0) {
-          while ($row = mysqli_fetch_assoc($batch)) {         
-?>
-                            <option value="<?php echo $row['id'] ?>"
-                                <?php if(isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
-                                <?php echo $row['batch_name'] ?></option>
-                            <?php
-             
-          }
-      } 
-    } ?>
-                        </select>
-                    </div>
+                    <select name="batch_id" required class="form-control form-select select2"
+                        data-bs-placeholder="Select Batch">
+                        <?php
+                        if (isset($_GET['summary_id'])) {
+                            $id = $_GET['summary_id'];
+                            $sql = mysqli_query($conn, "SELECT * FROM `batches_summary` WHERE id = '$id'");
+                            $fetch_sql = mysqli_fetch_assoc($sql);
+                            $selected_batch_id = $fetch_sql['batch_id'];
+
+
+                            $trainer_id = $_COOKIE['trainer_id'];
+                            $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+                            if (mysqli_num_rows($batch) > 0) {
+                                while ($row = mysqli_fetch_assoc($batch)) {
+                        ?>
+                        <option value="<?php echo $row['id'] ?>"
+                            <?php if (isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
+                            <?php echo $row['batch_name'] ?></option>
+                        <?php
+
+                                }
+                            }
+                        } ?>
+                    </select>
+                </div>
                 <!-- row -->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
@@ -181,7 +188,7 @@ if (isset($_GET['summary_id'])) {
                                                 <label for="exampleInputDOB">Date of Summary</label>
                                                 <input class="form-control" name="Date_of_Summary" id="dateMask"
                                                     placeholder="MM/DD/YYYY" type="date"
-                                                    value="<?php echo $summary['date_of_summary']?>" required>
+                                                    value="<?php echo $summary['date_of_summary'] ?>" required>
                                             </div>
                                         </div>
 
@@ -190,7 +197,7 @@ if (isset($_GET['summary_id'])) {
                                                 <label for="exampleInputAadhar">Performer of the day</label>
                                                 <input type="text" name="Performer_of_the_day" class="form-control"
                                                     id="exampleInputPersonalPhone"
-                                                    value="<?php echo $summary['performer_of_day']?>"
+                                                    value="<?php echo $summary['performer_of_day'] ?>"
                                                     placeholder="Enter candidate name" required>
                                             </div>
                                         </div>
@@ -199,7 +206,7 @@ if (isset($_GET['summary_id'])) {
                                                 <label for="exampleInputAadhar">Topics Covered</label>
                                                 <input type="text" name="Topics_Covered" class="form-control"
                                                     id="exampleInputAadhar"
-                                                    value="<?php echo $summary['topics_covered']?>"
+                                                    value="<?php echo $summary['topics_covered'] ?>"
                                                     placeholder="Topics List" required>
                                             </div>
                                         </div>
@@ -208,7 +215,7 @@ if (isset($_GET['summary_id'])) {
                                                 <label for="exampleInputAadhar">Overall Feedback</label>
                                                 <input type="text" name="Overall_Feedback" class="form-control"
                                                     id="exampleInputAadhar" placeholder="Feedback"
-                                                    value="<?php echo $summary['overall_feedback']?>" required>
+                                                    value="<?php echo $summary['overall_feedback'] ?>" required>
                                             </div>
                                         </div>
 
@@ -223,22 +230,11 @@ if (isset($_GET['summary_id'])) {
                     </div>
                 </div>
 
-
-
             </div>
             <!-- Container closed -->
+        </form>
     </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
-    </form>
-    </div>
-
-
-    <!-- JS -->
     <?php include('./script.php'); ?>
-
-
 </body>
 
 </html>

@@ -1,49 +1,58 @@
 <?php
+session_start();
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
-	header('location: ../student_login.php');
-	exit();
+    header('location: ../student_login.php');
+    exit();
 }
 include('../db_connection/connection.php');
 $id = $_COOKIE["student_id"];
 $select_query = "SELECT * FROM `student` WHERE `id` = $id";
-$run_query = mysqli_query($conn , $select_query );
+$run_query = mysqli_query($conn, $select_query);
 $data = mysqli_fetch_array($run_query);
 
-if(isset($_POST['updatebtn'])) {
-	$names = $_POST['student_name'];
-	$usernames = $_POST['student_user_name'];
-	$genders = $_POST['gender'];
-	$dobs  = $_POST['date_of_birth'];
-	$phones  = $_POST['phone_number'];
-	$alt_phones  = $_POST['alternative_phone_number'];
-	$mails  = $_POST['mail_id'];
-	$addresses = $_POST['address'];
-	$districts = $_POST['district'];
-	$states = $_POST['state'];
-	$pincodes  = $_POST['pincode'];
-	$qualifications = $_POST['qualification'];
-	$sems = $_POST['semester'];
-	$branchs = $_POST['branch'];
-	$types = $_POST['account_type'];
-	$insts = $_POST['institution_name'];
+if (isset($_POST['updatebtn'])) {
+    $names = $_POST['student_name'];
+    $usernames = $_POST['student_user_name'];
+    $genders = $_POST['gender'];
+    $dobs  = $_POST['date_of_birth'];
+    $phones  = $_POST['phone_number'];
+    $alt_phones  = $_POST['alternative_phone_number'];
+    $mails  = $_POST['mail_id'];
+    $addresses = $_POST['address'];
+    $districts = $_POST['district'];
+    $states = $_POST['state'];
+    $pincodes  = $_POST['pincode'];
+    $qualifications = $_POST['qualification'];
+    $sems = $_POST['semester'];
+    $branchs = $_POST['branch'];
+    $types = $_POST['account_type'];
+    $insts = $_POST['institution_name'];
 
-	$user_profile = $_FILES['upload_profile']['name']. date('Y-m-d-H-s');
+    $user_profile = $_FILES['upload_profile']['name'] . date('Y-m-d-H-s');
     $profile_tmp = $_FILES['upload_profile']['tmp_name'];
     $img_path = './assets/img/profile/' . $user_profile;
-    move_uploaded_file($profile_tmp,$img_path);
+    move_uploaded_file($profile_tmp, $img_path);
 
 
-	$user_cv = $_FILES['upload_cv']['name']. date('Y-m-d-H-s');
+    $user_cv = $_FILES['upload_cv']['name'] . date('Y-m-d-H-s');
     $cv_tmp = $_FILES['upload_cv']['tmp_name'];
     $cv_path = '../superadmin/assets/docs/student/cv/' . $user_cv;
-	move_uploaded_file($cv_tmp,$cv_path);
+    move_uploaded_file($cv_tmp, $cv_path);
 
     $update_query = "UPDATE `student` SET `name`='$names',`contact_number`='$phones',`email`='$mails',`username`='$usernames',`picture`='$user_profile',`gender`='$genders',`address`='$addresses',`alternate_contact_number`='$alt_phones',`state`='$states',`district`='$districts',`dob`='$dobs',`pin_code`='$pincodes',`qualification`='$qualifications',`branch`='$branchs',`semester`='$sems',`account_type`='$types',`college_name`='$insts',`cv`='$user_cv' WHERE `id` = $id";
 
 
-	$update_query_run = mysqli_query($conn, $update_query);
-    header("location: profile.php");
+    $update_query_run = mysqli_query($conn, $update_query);
 
+    if ($update_query_run) {
+        $_SESSION["success"] = "Profile Updated Successfully";
+        header("location: profile.php");
+        exit();
+    } else {
+        $_SESSION["error"] = "Something went wrong. Please try again.";
+        header("location: profile.php");
+        exit();
+    }
 }
 
 
@@ -104,51 +113,40 @@ if(isset($_POST['updatebtn'])) {
                                 <div class="card-body d-md-flex">
                                     <div class="">
                                         <span class="profile-image pos-relative">
-                                            <?php 
-                                              if($data['picture'] == ""){
+                                            <?php
+                                            if ($data['picture'] == "") {
                                                 echo "<img class='br-5' src='assets/img/profile/user.png'>";
-                                              }
-                                              else{?>
+                                            } else { ?>
 
-                                            <img class='br-5' alt=''
-                                                src='assets/img/profile/<?php echo $data['picture']; ?>'>
+                                                <img class='br-5' alt='' src='assets/img/profile/<?php echo $data['picture']; ?>'>
 
                                             <?php }
-                                            
+
                                             ?>
 
 
                                         </span>
                                     </div>
                                     <div class="my-md-auto mt-4 prof-details">
-                                        <h4 class="font-weight-semibold ms-md-4 ms-0 mb-3 pb-0"> <span
-                                                style="color:#ff6700"></h4>
+                                        <h4 class="font-weight-semibold ms-md-4 ms-0 mb-3 pb-0"> <span style="color:#ff6700"></h4>
                                         <!--<p class="tx-13 text-muted ms-md-4 ms-0 mb-2 pb-2 ">
 										<span class="me-3"><i class="far fa-address-card me-2"></i>Gender
 										</span>
 										<span class="me-3"><i class="fa fa-taxi me-2"></i>DD/MM/YYYY</span>
 										
 									</p> -->
-                                        <p class="text-muted ms-md-4 ms-0 mb-3"><span><i
-                                                    class="fa fa-phone me-2"></i></span><span
-                                                class="font-weight-semibold me-2">Phone:
+                                        <p class="text-muted ms-md-4 ms-0 mb-3"><span><i class="fa fa-phone me-2"></i></span><span class="font-weight-semibold me-2">Phone:
                                                 <?php echo $data['contact_number']; ?></span></span>
                                         </p>
-                                        <p class="text-muted ms-md-4 ms-0 mb-3"><span><i
-                                                    class="fa fa-envelope me-2"></i></span><span
-                                                class="font-weight-semibold me-2">Email:
+                                        <p class="text-muted ms-md-4 ms-0 mb-3"><span><i class="fa fa-envelope me-2"></i></span><span class="font-weight-semibold me-2">Email:
                                                 <?php echo $data['email']; ?></span></span>
                                         </p>
-                                        <p class="text-muted ms-md-4 ms-0 mb-3"><span><i
-                                                    class="far fa-flag me-2"></i></span><span
-                                                class="font-weight-semibold me-2">Address:
+                                        <p class="text-muted ms-md-4 ms-0 mb-3"><span><i class="far fa-flag me-2"></i></span><span class="font-weight-semibold me-2">Address:
                                                 <?php echo $data['address']; ?></span></span>
                                         </p>
 
                                         &nbsp
-                                        <button class="btn btn-primary mb-3 shadow"><a
-                                                href="../superadmin/assets/docs/student/cv/<?php echo $data['cv']; ?>"
-                                                target="_blank" Download><span style="color:#ffffff;">CV
+                                        <button class="btn btn-primary mb-3 shadow"><a href="../superadmin/assets/docs/student/cv/<?php echo $data['cv']; ?>" target="_blank" Download><span style="color:#ffffff;">CV
                                                     Download</span></a></button>
 
                                     </div>
@@ -191,9 +189,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Student Name</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Student Name" name="student_name"
-                                                                    value="<?php echo $data['name']; ?>" required>
+                                                                <input type="text" class="form-control" placeholder="Student Name" name="student_name" value="<?php echo $data['name']; ?>" required>
 
                                                             </div>
                                                         </div>
@@ -204,10 +200,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Username</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Student Username"
-                                                                    name="student_user_name"
-                                                                    value="<?php echo $data['username']; ?>" required>
+                                                                <input type="text" class="form-control" placeholder="Student Username" name="student_user_name" value="<?php echo $data['username']; ?>" required>
 
                                                             </div>
                                                         </div>
@@ -219,8 +212,7 @@ if(isset($_POST['updatebtn'])) {
                                                             </div>
                                                             <div class="col-md-9">
 
-                                                                <select name="gender" required class="form-control"
-                                                                    data-bs-placeholder="<?php echo $data['gender']; ?>">
+                                                                <select name="gender" required class="form-control" data-bs-placeholder="<?php echo $data['gender']; ?>">
 
                                                                     <option value="male">Male
                                                                     </option>
@@ -241,9 +233,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Date of Birth</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="date" class="form-control"
-                                                                    placeholder="DD/MM/YYYY" name="date_of_birth"
-                                                                    value="<?php echo $data['dob']; ?>" required>
+                                                                <input type="date" class="form-control" placeholder="DD/MM/YYYY" name="date_of_birth" value="<?php echo $data['dob']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -253,10 +243,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Phone Number</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="Number" class="form-control"
-                                                                    placeholder="10 Digit Number" name="phone_number"
-                                                                    value="<?php echo $data['contact_number']; ?>"
-                                                                    required>
+                                                                <input type="Number" class="form-control" placeholder="10 Digit Number" name="phone_number" value="<?php echo $data['contact_number']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -267,11 +254,7 @@ if(isset($_POST['updatebtn'])) {
                                                                     Number</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="number" class="form-control"
-                                                                    placeholder="10 Digit Number"
-                                                                    name="alternative_phone_number"
-                                                                    value="<?php echo $data['alternate_contact_number']; ?>"
-                                                                    required>
+                                                                <input type="number" class="form-control" placeholder="10 Digit Number" name="alternative_phone_number" value="<?php echo $data['alternate_contact_number']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -282,9 +265,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Email ID</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="mail" class="form-control"
-                                                                    placeholder="Email" name="mail_id"
-                                                                    value="<?php echo $data['email']; ?>" required>
+                                                                <input type="mail" class="form-control" placeholder="Email" name="mail_id" value="<?php echo $data['email']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -294,8 +275,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Address</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control" name="address"
-                                                                    value="<?php echo $data['address']; ?>" required>
+                                                                <input type="text" class="form-control" name="address" value="<?php echo $data['address']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -305,9 +285,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">District</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="District" name="district"
-                                                                    value="<?php echo $data['district']; ?>" required>
+                                                                <input type="text" class="form-control" placeholder="District" name="district" value="<?php echo $data['district']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -317,9 +295,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">State</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="State" name="state"
-                                                                    value="<?php echo $data['state']; ?>" required>
+                                                                <input type="text" class="form-control" placeholder="State" name="state" value="<?php echo $data['state']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -329,9 +305,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Pincode</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="number" class="form-control"
-                                                                    placeholder="Pincode" name="pincode"
-                                                                    value="<?php echo $data['pin_code']; ?>" required>
+                                                                <input type="number" class="form-control" placeholder="Pincode" name="pincode" value="<?php echo $data['pin_code']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -341,10 +315,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Qualification</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <select name="qualification" required
-                                                                    class="form-control"
-                                                                    data-bs-placeholder="<?php echo $data['qualification']; ?>"
-                                                                    required>
+                                                                <select name="qualification" required class="form-control" data-bs-placeholder="<?php echo $data['qualification']; ?>" required>
 
                                                                     <option value="10th" selected="selected">10th
                                                                     </option>
@@ -369,9 +340,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Semester</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <select name="semester" required class="form-control"
-                                                                    required
-                                                                    data-bs-placeholder="<?php echo $data['semester']; ?>">
+                                                                <select name="semester" required class="form-control" required data-bs-placeholder="<?php echo $data['semester']; ?>">
 
                                                                     <option value="1stsem">1st sem</option>
                                                                     <option value="2ndsem">2nd sem</option>
@@ -397,9 +366,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Branch/Stream</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Branch/Stream" name="branch"
-                                                                    value="<?php echo $data['branch']; ?>" required>
+                                                                <input type="text" class="form-control" placeholder="Branch/Stream" name="branch" value="<?php echo $data['branch']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -411,10 +378,7 @@ if(isset($_POST['updatebtn'])) {
                                                                     Type</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <select name="account_type" required
-                                                                    class="form-control"
-                                                                    data-bs-placeholder="<?php echo $data['account_type']; ?>"
-                                                                    required>
+                                                                <select name="account_type" required class="form-control" data-bs-placeholder="<?php echo $data['account_type']; ?>" required>
 
                                                                     <option value="college">college</option>
                                                                     <option value="individual">
@@ -435,10 +399,7 @@ if(isset($_POST['updatebtn'])) {
                                                                 <label class="form-label">Institutions</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="Institutions" name="institution_name"
-                                                                    value="<?php echo $data['college_name']; ?>"
-                                                                    required>
+                                                                <input type="text" class="form-control" placeholder="Institutions" name="institution_name" value="<?php echo $data['college_name']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -463,8 +424,7 @@ if(isset($_POST['updatebtn'])) {
                                                             </div>
                                                             <div class="col-md-9">
 
-                                                                <input type="file" class="form-control" name="upload_cv"
-                                                                    value="<?php echo $data['cv']; ?>" required>
+                                                                <input type="file" class="form-control" name="upload_cv" value="<?php echo $data['cv']; ?>" required>
 
 
                                                             </div>
@@ -477,17 +437,14 @@ if(isset($_POST['updatebtn'])) {
                                                                     Picture</label>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <input type="file" class="form-control"
-                                                                    name="upload_profile"
-                                                                    value="<?php echo $data['picture']; ?>" required>
+                                                                <input type="file" class="form-control" name="upload_profile" value="<?php echo $data['picture']; ?>" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <!-- <button class="btn btn-primary mb-3 shadow"><a href="" data-bs-target="#apply" data-bs-toggle="modal"><span style="color:#ffffff;">Update profile</span></a></button>  -->
 
 
-                                                    <input type="submit" class="btn btn-success mt-3 mb-0"
-                                                        style="text-align:right" value="Update" name="updatebtn" />
+                                                    <input type="submit" class="btn btn-success mt-3 mb-0" style="text-align:right" value="Update" name="updatebtn" />
                                                     &nbsp
                                                     &nbsp
 

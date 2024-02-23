@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
     header('location: ../student_login.php');
     exit();
@@ -395,6 +396,15 @@ $data = mysqli_fetch_array($run_query);
 
             <?php include("./scripts.php") ?>
 
+            <?php
+            if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+                echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+            }
+            if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+                echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+            }
+            session_destroy();
+            ?>
 </body>
 
 </html>

@@ -1,9 +1,9 @@
-<?php 
+<?php
 session_start();
-include('../db_connection/connection.php');	
+include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-	header('location: ../trainer_login.php');
-	exit();
+    header('location: ../trainer_login.php');
+    exit();
 }
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
@@ -23,23 +23,17 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <!-- Title -->
     <title> Manage Summary </title>
 
-    <?php 
-	 include('./style.php'); 
-	  ?>
+    <?php
+    include('./style.php');
+    ?>
 
 </head>
 
 <body class="ltr main-body app sidebar-mini">
 
-    <?php 
-	 include('./switcher.php'); 
-	  ?>
-
-    <!-- Loader -->
-    <!-- <div id="global-loader">
-			<img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-		</div> -->
-    <!-- /Loader -->
+    <?php
+    include('./switcher.php');
+    ?>
 
     <!-- Page -->
     <div class="page">
@@ -47,13 +41,13 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
         <div>
 
             <div class="main-header side-header sticky nav nav-item">
-                <?php include('./partials/navbar.php')?>
+                <?php include('./partials/navbar.php') ?>
             </div>
             <!-- /main-header -->
 
             <!-- main-sidebar -->
             <div class="sticky">
-                <?php include('./partials/sidebar.php')?>
+                <?php include('./partials/sidebar.php') ?>
             </div>
             <!-- main-sidebar -->
 
@@ -106,18 +100,18 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         </thead>
                                         <tbody>
                                             <?php
-								$meeting_query = mysqli_query($conn, "SELECT * FROM `batches_summary`");
-								if (mysqli_num_rows($meeting_query) > 0) {
-									$i = 1;
-									while ($row = mysqli_fetch_assoc($meeting_query)) {
+                                            $meeting_query = mysqli_query($conn, "SELECT * FROM `batches_summary`");
+                                            if (mysqli_num_rows($meeting_query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($meeting_query)) {
 
-										echo "<tr>";
-										echo "<td>" . $i++ . "</td>";
-										echo "<td>" . $row['date_of_summary'] . "</td>";
-										echo "<td>" . $row['performer_of_day'] . "</td>";
-										echo "<td>" . $row['topics_covered'] . "</td>";
-										echo "<td>" . $row['overall_feedback'] . "</td>";
-										echo "<td>
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $row['date_of_summary'] . "</td>";
+                                                    echo "<td>" . $row['performer_of_day'] . "</td>";
+                                                    echo "<td>" . $row['topics_covered'] . "</td>";
+                                                    echo "<td>" . $row['overall_feedback'] . "</td>";
+                                                    echo "<td>
 										<div class='col-sm-6 col-md-15 mg-t-10 mg-sm-t-0'>
 											<button type='button' class='btn btn-info dropdown-toggle'
 												data-bs-toggle='dropdown' aria-expanded='false'>
@@ -134,13 +128,12 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 										</div>
 									</td>
 									</tr>";
-									}
-								} else {
-								
-									echo "No Summary found";
-								
-								}
-								?>
+                                                }
+                                            } else {
+
+                                                echo "No Summary found";
+                                            }
+                                            ?>
 
                                         </tbody>
                                     </table>
@@ -159,9 +152,20 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
 
     <!-- JQUERY JS -->
-    <?php 
-	 include('./script.php'); 
-	  ?>
+    <?php
+    include('./script.php');
+    ?>
+
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    ?>
 
 </body>
 

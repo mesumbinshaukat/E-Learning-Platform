@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 if (isset($_GET['task_id'])) {
@@ -44,29 +44,36 @@ if (isset($_GET['task_id'])) {
         if (empty($shared_documents_name)) {
             $shared_documents_name = $tasks["shared_documents"];
         }
-        $select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+        $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
         $fetch_batch = mysqli_fetch_assoc($select_batch);
-        if($fetch_batch['id'] == $batch_id){
-        $batch_name = $fetch_batch['batch_name'];
-        // Update query
-        $update_query = "UPDATE `batches_tasks` SET `task_name`=?,`allocated_students_type`=?,`task_description`=?,`task_end_date`=?,`shared_documents`=?,`batch_id`=?,`batch_name`=? WHERE id = '$id'";
-        $update_stmt = mysqli_prepare($conn, $update_query);
-        $update_stmt->bind_param(
-            "sssssss",$task_name,$allocated_students_type,$task_description,$task_end_date,$shared_documents_name,$batch_id,$batch_name  
-        );
+        if ($fetch_batch['id'] == $batch_id) {
+            $batch_name = $fetch_batch['batch_name'];
+            // Update query
+            $update_query = "UPDATE `batches_tasks` SET `task_name`=?,`allocated_students_type`=?,`task_description`=?,`task_end_date`=?,`shared_documents`=?,`batch_id`=?,`batch_name`=? WHERE id = '$id'";
+            $update_stmt = mysqli_prepare($conn, $update_query);
+            $update_stmt->bind_param(
+                "sssssss",
+                $task_name,
+                $allocated_students_type,
+                $task_description,
+                $task_end_date,
+                $shared_documents_name,
+                $batch_id,
+                $batch_name
+            );
 
-        if (mysqli_stmt_execute($update_stmt)) {    
-            session_destroy();
-            move_uploaded_file($shared_documents_tmp, "../Trainer/assets/docs/supportive_docs/".$shared_documents_name);
-            header("location: managetask.php");
-            exit();
-        } else {
-            echo mysqli_error($conn);
+            if (mysqli_stmt_execute($update_stmt)) {
+                $_SESSION["success"] = "Task updated successfully";
+                move_uploaded_file($shared_documents_tmp, "../Trainer/assets/docs/supportive_docs/" . $shared_documents_name);
+                header("location: managetask.php");
+                exit();
+            } else {
+                $_SESSION["error"] = "Something went wrong. Please try again.";
+                header("location: managetask.php");
+                exit();
+            }
         }
-
-        mysqli_stmt_close($update_stmt);
     }
-}
 } elseif (!isset($_GET["task_id"]) || empty($_GET["task_id"])) {
     echo "<script>alert('Error')</script>";
     if (isset($_SESSION['previous_url'])) {
@@ -141,28 +148,26 @@ if (isset($_GET['task_id'])) {
 
 
                     <div class="form-group col-md-4">
-                        <select name="batch_id" required class="form-control form-select select2"
-                            data-bs-placeholder="Select Batch">
-                            <?php 
-            if(isset($_GET['task_id'])){
-                $id = $_GET['task_id'];
-                $sql = mysqli_query($conn,"SELECT * FROM `batches_tasks` WHERE id = '$id'");
-                $fetch_sql = mysqli_fetch_assoc($sql);
-                $selected_batch_id = $fetch_sql['batch_id'];
-          
-     
-      $batch = mysqli_query($conn, "SELECT * FROM `batch`");
-      if (mysqli_num_rows($batch) > 0) {
-          while ($row = mysqli_fetch_assoc($batch)) {         
-?>
-                            <option value="<?php echo $row['id'] ?>"
-                                <?php if(isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
-                                <?php echo $row['batch_name'] ?></option>
+                        <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
                             <?php
-             
-          }
-      } 
-    } ?>
+                            if (isset($_GET['task_id'])) {
+                                $id = $_GET['task_id'];
+                                $sql = mysqli_query($conn, "SELECT * FROM `batches_tasks` WHERE id = '$id'");
+                                $fetch_sql = mysqli_fetch_assoc($sql);
+                                $selected_batch_id = $fetch_sql['batch_id'];
+
+
+                                $batch = mysqli_query($conn, "SELECT * FROM `batch`");
+                                if (mysqli_num_rows($batch) > 0) {
+                                    while ($row = mysqli_fetch_assoc($batch)) {
+                            ?>
+                                        <option value="<?php echo $row['id'] ?>" <?php if (isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
+                                            <?php echo $row['batch_name'] ?></option>
+                            <?php
+
+                                    }
+                                }
+                            } ?>
                         </select>
                     </div>
 
@@ -179,24 +184,19 @@ if (isset($_GET['task_id'])) {
                                                 <div class="form-group">
                                                     <label for="exampleInputDOB">Name of the Task</label>
 
-                                                    <input class="form-control" id="dateMask" placeholder="Name"
-                                                        type="text" value="<?php echo $tasks['task_name']?>"
-                                                        name="task_name" required>
+                                                    <input class="form-control" id="dateMask" placeholder="Name" type="text" value="<?php echo $tasks['task_name'] ?>" name="task_name" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="dropdown">allocated Students Type</label>
-                                                    <select id="dropdown" onchange="showOptions1()"
-                                                        class="form-control form-select select2"
-                                                        data-bs-placeholder="Select Batch"
-                                                        name="allocated_students_type" required>
-                                                        <?php if($tasks['allocated_students_type'] == "All") {?>
-                                                        <option value="All" selected>All</option>
-                                                        <option value="Individual">Individual</option>
-                                                        <?php } else {?>
-                                                        <option value="All">All</option>
-                                                        <option value="Individual" selected>Individual</option>
+                                                    <select id="dropdown" onchange="showOptions1()" class="form-control form-select select2" data-bs-placeholder="Select Batch" name="allocated_students_type" required>
+                                                        <?php if ($tasks['allocated_students_type'] == "All") { ?>
+                                                            <option value="All" selected>All</option>
+                                                            <option value="Individual">Individual</option>
+                                                        <?php } else { ?>
+                                                            <option value="All">All</option>
+                                                            <option value="Individual" selected>Individual</option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
@@ -206,18 +206,13 @@ if (isset($_GET['task_id'])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode">Task Description</label>
-                                                    <input type="text" class="form-control" id="exampleInputcode"
-                                                        placeholder="Task Description"
-                                                        value="<?php echo $tasks['task_description']?>"
-                                                        name="task_description" required>
+                                                    <input type="text" class="form-control" id="exampleInputcode" placeholder="Task Description" value="<?php echo $tasks['task_description'] ?>" name="task_description" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputUserName">Task End Date</label>
-                                                    <input class="form-control" id="dateMask" placeholder="" type="date"
-                                                        name="task_end_date"
-                                                        value="<?php echo $tasks['task_end_date']?>" required>
+                                                    <input class="form-control" id="dateMask" placeholder="" type="date" name="task_end_date" value="<?php echo $tasks['task_end_date'] ?>" required>
                                                 </div>
                                             </div>
 
@@ -226,8 +221,7 @@ if (isset($_GET['task_id'])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputcode"> Shared Document</label>
-                                                    <input type="file" class="form-control" id="exampleInputcode"
-                                                        placeholder="" name="shared_documents">
+                                                    <input type="file" class="form-control" id="exampleInputcode" placeholder="" name="shared_documents">
 
 
                                                 </div>
@@ -237,21 +231,13 @@ if (isset($_GET['task_id'])) {
                                                 <div class="form-group">
                                                     <label for="exampleInputcode">Current Shared Document</label>
                                                     <br>
-                                                    <a href="../Trainer/assets/docs/supportive_docs/<?php echo $tasks['shared_documents']?>"
-                                                        target="_blank" download=""
-                                                        class="btn btn-primary mx-2">Download</a>
+                                                    <a href="../Trainer/assets/docs/supportive_docs/<?php echo $tasks['shared_documents'] ?>" target="_blank" download="" class="btn btn-primary mx-2">Download</a>
 
 
                                                 </div>
                                             </div>
-
-
-
-
-
                                         </div>
-                                        <button type="submit" name="UpdateBtn" class="btn btn-info mt-3 mb-0"
-                                            style="text-align:right">Update Task</button>
+                                        <button type="submit" name="UpdateBtn" class="btn btn-info mt-3 mb-0" style="text-align:right">Update Task</button>
                                     </div>
                                 </div>
                             </div>
@@ -262,13 +248,8 @@ if (isset($_GET['task_id'])) {
                 </div>
             </div>
             <!-- Container closed -->
+        </form>
     </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
-    </form>
-    </div>
-
 
     <!-- JS -->
     <?php include('./scripts.php'); ?>
