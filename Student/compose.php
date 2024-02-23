@@ -25,6 +25,7 @@ if (isset($_POST["submit"])) {
             $admin_query = mysqli_query($conn, "SELECT * FROM `superadmin`");
             if (mysqli_num_rows($admin_query) > 0) {
                 $admin = mysqli_fetch_assoc($admin_query);
+                $student_id = (int) $_COOKIE["student_id"];
                 $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` ='$student_id'");
                 if (mysqli_num_rows($student_query) > 0) {
                     $student = mysqli_fetch_assoc($student_query);
@@ -164,7 +165,8 @@ if (isset($_POST["submit"])) {
                         <div class="row row-sm">
                             <div class="form-group col-md-6">
                                 <label for="dropdown">Recipient</label>
-                                <select id="dropdown1" onchange="showOptions1()" name="recipient" required class="form-select">
+                                <select id="dropdown1" onchange="showOptions1()" name="recipient" required
+                                    class="form-select">
                                     <option value="Superadmin">Super Admin</option>
                                     <option value="Trainer">Trainer</option>
                                 </select>
@@ -192,13 +194,17 @@ if (isset($_POST["submit"])) {
                                             <div class="row row-xs formgroup-wrapper">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="exampleInputCompanyPhone" style="color: #ff6700"><b>Subject</b></label>
-                                                        <input type="text" class="form-control" id="exampleInputCompanyPhone" placeholder="Enter Subject" name="subject" required>
+                                                        <label for="exampleInputCompanyPhone"
+                                                            style="color: #ff6700"><b>Subject</b></label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputCompanyPhone" placeholder="Enter Subject"
+                                                            name="subject" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="exampleInputAadhar" style="color: #ff6700"><b>Purpose</b></label>
+                                                        <label for="exampleInputAadhar"
+                                                            style="color: #ff6700"><b>Purpose</b></label>
                                                         <select name="purpose" class="form-select" required>
                                                             <option value="query">query</option>
                                                             <option value="feedback">feedback</option>
@@ -209,17 +215,21 @@ if (isset($_POST["submit"])) {
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-label">
-                                                        <label for="exampleInputAadhar" style="color: #ff6700"><b>Describe</b></label>
-                                                        <input class="form-control" placeholder="Textarea" name="message" required>
+                                                        <label for="exampleInputAadhar"
+                                                            style="color: #ff6700"><b>Describe</b></label>
+                                                        <input class="form-control" placeholder="Textarea"
+                                                            name="message" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="exampleInputcode">Add Attachments</label>
-                                                        <input type="file" class="form-control" id="exampleInputcode" placeholder="" name="add_attachments">
+                                                        <input type="file" class="form-control" id="exampleInputcode"
+                                                            placeholder="" name="add_attachments">
                                                     </div>
                                                 </div>
-                                                <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0" style="text-align: right">send</button>
+                                                <button type="submit" name="submit" class="btn btn-primary mt-3 mb-0"
+                                                    style="text-align: right">send</button>
                                             </div>
                                         </div>
                                     </div>
@@ -241,20 +251,20 @@ if (isset($_POST["submit"])) {
 
         <?php include("./scripts.php") ?>
         <script>
-            function showOptions1() {
-                var type = document.getElementById("dropdown1");
-                if (type.value == "Student") {
-                    document.getElementById("optionsDiv").style.display = "block";
-                } else {
-                    document.getElementById("optionsDiv").style.display = "none";
-                }
-                if (type.value == "Superadmin") {
-                    document.getElementById("optionsDiv").style.display = "none";
-                } else {
-                    document.getElementById("optionsDiv").style.display = "block";
-                }
-
+        function showOptions1() {
+            var type = document.getElementById("dropdown1");
+            if (type.value == "Student") {
+                document.getElementById("optionsDiv").style.display = "block";
+            } else {
+                document.getElementById("optionsDiv").style.display = "none";
             }
+            if (type.value == "Superadmin") {
+                document.getElementById("optionsDiv").style.display = "none";
+            } else {
+                document.getElementById("optionsDiv").style.display = "block";
+            }
+
+        }
         </script>
 
 
@@ -267,6 +277,7 @@ if (isset($_POST["submit"])) {
         }
         session_destroy();
         ?>
+
 </body>
 
 </html>

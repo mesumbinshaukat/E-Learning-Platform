@@ -138,9 +138,9 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                             $sql = "SELECT * FROM `mail` WHERE (`sender_type` = 'College' OR `sender_type` = 'Admin' OR `sender_type`='Student') AND (`sender_email`='" . $fetch["email"] . "' OR `recipient_email`='" . $fetch["email"] . "') OR (`sender_type` = 'College' AND `recipient_email`='" . $fetch["email"] . "')";
 
                                             $query = mysqli_query($conn, $sql);
-                                            if (!$conn) {
-                                                die("Connection failed: " . mysqli_connect_error());
-                                            }
+                                            // if (!$conn) {
+                                            //     die("Connection failed: " . mysqli_connect_error());
+                                            // }
 
                                             if (mysqli_num_rows($query) > 0) {
                                                 $i = 1;
@@ -194,6 +194,8 @@ if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])
                                                                     value="<?php echo $fetch["id"]; ?>">
                                                                 <input type="hidden" name="id"
                                                                     value="<?php echo $row['id']; ?>">
+                                                                <input type="hidden" name="recipient_type"
+                                                                    value="<?php echo $row['recipient_type']; ?>">
                                                                 <div class="mb-3">
 
                                                                     <label class="form-label">Message</label>
