@@ -74,6 +74,21 @@
 
                 </ul>
             </li>
+            <li class="slide">
+                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i
+                        class="bi bi-info-circle" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp &nbsp <span
+                        class="side-menu__label">More Details</span><i class="angle bi bi-chevron-right"></i></a>
+                <ul class="slide-menu">
+                    <li class="side-menu__label1"><a href="javascript:void(0);">More Details</a></li>
+                    <li><a class="bi bi-dot" href="student.php" style="font-size:14px; line-height: 2;">Student</a>
+                    </li>
+                    <li><a class="bi bi-dot" href="college.php" style="font-size:14px; line-height: 2;">College</a></li>
+
+                    <li><a class="bi bi-dot" href="trainer.php" style="font-size:14px; line-height: 2;">Trainer</a>
+                    </li>
+
+                </ul>
+            </li>
 
 
 

@@ -11,25 +11,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 // Store the current URL in the session
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
-require __DIR__ . '/../vendor/autoload.php';
-
-// Load environment variables from .env
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
-$dotenv->load();
-
-// Access the secret key
-$secretKey = $_ENV['SECRET_KEY'] ?: 'HE!!O123';
-
-$key = $secretKey;
-
-function decryptPassword($encryptedPassword, $key)
-{
-    $data = base64_decode($encryptedPassword);
-    $iv = substr($data, 0, openssl_cipher_iv_length('aes-256-cbc'));
-    $encrypted = substr($data, openssl_cipher_iv_length('aes-256-cbc'));
-    return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -38,19 +19,13 @@ function decryptPassword($encryptedPassword, $key)
 
 <head>
 
-    <title>Student List</title>
+    <title>Student Details</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="Description" content="">
 
     <?php include("./style.php"); ?>
-
-    <style>
-        .pointer {
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -104,7 +79,8 @@ function decryptPassword($encryptedPassword, $key)
 
 
 
-                            <select name="institution_name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="institution_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <option value="None">None</option>
                                 <?php
@@ -119,7 +95,8 @@ function decryptPassword($encryptedPassword, $key)
                         </div>
                         <div class="form-group col-md-3">
                             <P><b> Semester</b> </p>
-                            <select name="Semester" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="Semester" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <option value="Not Required">None</option>
                                 <option value="1stSem">1st Sem</option>
@@ -134,7 +111,8 @@ function decryptPassword($encryptedPassword, $key)
                         </div>
                         <div class="form-group col-md-3">
                             <P><b> Account Type</b> </p>
-                            <select name="account_type" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="account_type" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <option value="None">None</option>
 
@@ -143,7 +121,8 @@ function decryptPassword($encryptedPassword, $key)
                             </select>
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary" style="height:40px;width:100px;margin-top:35px">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
+                            style="height:40px;width:100px;margin-top:35px">Search</button>
 
                     </div>
                 </form>
@@ -155,24 +134,17 @@ function decryptPassword($encryptedPassword, $key)
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
-                                                <th class="border-bottom-0">Date Of Adding</th>
-                                                <th class="border-bottom-0">ID No</th>
-                                                <th class="border-bottom-0">Created By</th>
-                                                <th class="border-bottom-0">Student name</th>
-                                                <th class="border-bottom-0">Password</th>
-
-                                                <th class="border-bottom-0">College</th>
-                                                <th class="border-bottom-0">stream</th>
-                                                <th class="border-bottom-0">District</th>
-
-                                                <th class="border-bottom-0">Delete</th>
-                                                <th class="border-bottom-0">Edit</th>
-
-
+                                                <th class="border-bottom-0">Name</th>
+                                                <th class="border-bottom-0">Address</th>
+                                                <th class="border-bottom-0">Contact Number</th>
+                                                <th class="border-bottom-0">Alternate Contact Number</th>
+                                                <th class="border-bottom-0">Gender</th>
+                                                <th class="border-bottom-0">CV</th>
 
                                             </tr>
                                         </thead>
@@ -194,52 +166,24 @@ function decryptPassword($encryptedPassword, $key)
 
                                             $result = mysqli_query($conn, $query);
                                             if (mysqli_num_rows($result) > 0) { ?>
-                                                <tr>
-                                                    <?php
+                                            <tr>
+                                                <?php
                                                     $i = 1;
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                         echo "<tr>";
                                                         echo "<td>" . $i . "</td>";
-                                                        echo "<td>" . $row['creation_date'] . "</td>";
-                                                        echo "<td>STID_" . $row['id'] . "</td>";
-                                                        echo "<td>" . $row['created_by'] . "</td>";
                                                         echo "<td>" . $row['name'] . "</td>";
-                                                        $decryptedPassword = decryptPassword($row["hashed_password"], $key);
-
-
-                                                        echo "<td class='pointer'>
-            <i class='bi bi-eye show-password' id='show-password-" . $row["id"] . "' data-id='show_password_" . $row["id"] . "' title='Show Password'></i>
-            <span class='password' id='password_" . $row["id"] . "' style='display:none;'>" . $decryptedPassword . "</span>
-            <i class='bi bi-eye-slash hide-password' id='hide-password-" . $row["id"] . "' data-id='hide_password_" . $row["id"] . "' style='display:none;' title='Hide Password'></i>
-        </td>";
-
-                                                        echo '
-            <script>
-                document.querySelector("#show-password-' . $row["id"] . '").addEventListener("click", function() {
-                    document.querySelector("#password_' . $row["id"] . '").style.display = "block";
-                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "none";
-                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "inline-block";
-                });
-
-                document.querySelector("#hide-password-' . $row["id"] . '").addEventListener("click", function() {
-                    document.querySelector("#password_' . $row["id"] . '").style.display = "none";
-                    document.querySelector("#show-password-' . $row["id"] . '").style.display = "inline-block";
-                    document.querySelector("#hide-password-' . $row["id"] . '").style.display = "none";
-                });
-            </script>
-        ';
-
-                                                        echo "<td>" . $row['college_name'] . "</td>";
-                                                        echo "<td>" . $row['branch'] . "</td>";
-                                                        echo "<td>" . $row['district'] . "</td>";
-                                                        echo "<td><a class='btn btn-danger' href='./delete.php?id=" . $row['id'] . "&user=student'>Delete</a></td>";
-                                                        echo "<td><a href='student_edit.php?id=" . $row['id'] . "' class='btn btn-info'>Update</a></td>";
+                                                        echo "<td>" . $row['address'] . "</td>";
+                                                        echo "<td>" . $row['contact_number'] . "</td>";
+                                                        echo "<td>" . $row['alternate_contact_number'] . "</td>";
+                                                        echo "<td>" . $row['gender'] . "</td>";
+                                                        echo "<td><a href='./assets/docs/student/cv/" . $row['cv'] . "' class='btn btn-primary' download=''>Download</a></td>";
                                                         echo "</tr>";
                                                         $i++;
                                                     }
                                                     ?>
 
-                                                </tr>
+                                            </tr>
 
                                             <?php } ?>
                                         </tbody>
