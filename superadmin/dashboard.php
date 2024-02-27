@@ -38,9 +38,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
         echo "<script>alert('" . $error . "');</script>";
     }
     ?>
-    <?php if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
-        echo "<script>toastr.alert('" . $_SESSION["error"] . "')</script>";
-    } ?>
+
     <?php include("./switcher.php") ?>
     <!-- Page -->
     <div class="page">
@@ -247,8 +245,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="courselist.php" style="color:#1d71f2"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courselist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Registered</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -274,8 +271,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="courseregistrationslist.php" style="color:#1d71f2"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Applied</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b><?php
@@ -286,8 +282,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                                                 ?></b></h4>
                                         </div>
                                     </a>
-                                    <a href="courseregistrationslist.php" style="color:#4AA02C"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Active</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b><?php
@@ -298,8 +293,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                                                 ?></b></h4>
                                         </div>
                                     </a>
-                                    <a href="courseregistrationslist.php" style="color:#b9bf00"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php" style="color:#b9bf00" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Pending</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b><?php
@@ -312,8 +306,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                     </a>
 
 
-                                    <a href="courseregistrationslist.php?type=delete" style="color:#ff0000"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="courseregistrationslist.php?type=delete" style="color:#ff0000" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Deleted</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -338,8 +331,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="managecourseregistrations.php" style="color:#1d71f2"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="managecourseregistrations.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Allocated</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -365,8 +357,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </div>
                             <div class="card-body p-0">
                                 <div class="list-group projects-list border-0">
-                                    <a href="batchlist.php" style="color:#1d71f2"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php" style="color:#1d71f2" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Created</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -379,8 +370,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 </b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=active" style="color:#ff6700"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=active" style="color:#ff6700" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Active</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -393,8 +383,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 </b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=complete" style="color:#4AA02C"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=complete" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold ">Completed</p>
                                             <h4 class=" mb-0 font-weight-semibold  tx-18"><b>
@@ -407,8 +396,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 </b></h4>
                                         </div>
                                     </a>
-                                    <a href="batchlist.php?type=delete" style="color:#4AA02C"
-                                        class="list-group-item list-group-item-action flex-column align-items-start border-0">
+                                    <a href="batchlist.php?type=delete" style="color:#4AA02C" class="list-group-item list-group-item-action flex-column align-items-start border-0">
                                         <div class="d-flex w-100 justify-content-between">
                                             <p class="tx-13 mb-2 font-weight-semibold text-danger">Deleted</p>
                                             <h4 class=" mb-0 font-weight-semibold text-danger tx-18"><b>
@@ -656,6 +644,19 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
                 <?php include("./scripts.php"); ?>
+                <?php
+                if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+                    echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+                } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+                    echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+                }
+                session_destroy();
+                // if (session_destroy()) {
+                //     session_start();
+                //     $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+                // }
+
+                ?>
 
 </body>
 

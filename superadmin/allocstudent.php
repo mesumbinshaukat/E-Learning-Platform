@@ -46,6 +46,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["internship_id"]) &
 	}
 } else {
 	$error = "Invalid Request";
+	$_SESSION["error"] = $error;
 	header("location:./dashboard.php?error=" . $error . "");
 	exit();
 }

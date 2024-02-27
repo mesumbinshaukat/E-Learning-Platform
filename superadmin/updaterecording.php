@@ -3,8 +3,8 @@ session_start();
 
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 if (isset($_GET['r_id'])) {
@@ -37,31 +37,39 @@ if (isset($_GET['r_id'])) {
         $Date_of_Upload = $_POST['Date_of_Upload'];
         $Driving_link = $_POST['Driving_link'];
         $batch_id = $_POST['batch_id'];
-        $select_batch = mysqli_query($conn,"SELECT * FROM `batch` WHERE id = '$batch_id'");
+        $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
         $fetch_batch = mysqli_fetch_assoc($select_batch);
-        if($fetch_batch['id'] == $batch_id){
-        $batch_name = $fetch_batch['batch_name'];
+        if ($fetch_batch['id'] == $batch_id) {
+            $batch_name = $fetch_batch['batch_name'];
 
-        // Update query
-        $update_query = "UPDATE `batches_recording` SET `recording_topic_name`=?,`date_of_upload`=?,`driving_link`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
-        $update_stmt = mysqli_prepare($conn, $update_query);
-        $update_stmt->bind_param(
-            "sssssi",$recording_name,$Date_of_Upload,$Driving_link,$batch_id,$batch_name,$id
-        );
+            // Update query
+            $update_query = "UPDATE `batches_recording` SET `recording_topic_name`=?,`date_of_upload`=?,`driving_link`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
+            $update_stmt = mysqli_prepare($conn, $update_query);
+            $update_stmt->bind_param(
+                "sssssi",
+                $recording_name,
+                $Date_of_Upload,
+                $Driving_link,
+                $batch_id,
+                $batch_name,
+                $id
+            );
 
-        if (mysqli_stmt_execute($update_stmt)) {
-            session_destroy();
-            header("location: managerecordings.php");
-            exit();
-        } else {
-            echo mysqli_error($conn);
+            if (mysqli_stmt_execute($update_stmt)) {
+                session_destroy();
+                $_SESSION["success"] = "Recording updated successfully!";
+                header("location: managerecordings.php");
+                exit();
+            } else {
+                $_SESSION["error"] = "Error updating recording.";
+                header("location: managerecordings.php");
+                exit();
+            }
         }
-
-        mysqli_stmt_close($update_stmt);
     }
-}
 } elseif (!isset($_GET["r_id"]) || empty($_GET["r_id"])) {
-    echo "<script>alert('Error')</script>";
+
+    $_SESSION["error"] = "Recording not found!";
     if (isset($_SESSION['previous_url'])) {
         header('Location: ' . $_SESSION['previous_url']);
         exit();
@@ -132,39 +140,35 @@ if (isset($_GET['r_id'])) {
                             </ol>
                         </div>
                     </div>
-
-
-
-
                 </div>
                 <br>
 
                 <div class="form-group col-md-4">
-                        <select name="batch_id" required class="form-control form-select select2"
-                            data-bs-placeholder="Select Batch">
-                            <?php 
-            if(isset($_GET['r_id'])){
-                $id = $_GET['r_id'];
-                $sql = mysqli_query($conn,"SELECT * FROM `batches_recording` WHERE id = '$id'");
-                $fetch_sql = mysqli_fetch_assoc($sql);
-                $selected_batch_id = $fetch_sql['batch_id'];
-          
-        
-    
-      $batch = mysqli_query($conn, "SELECT * FROM `batch`");
-      if (mysqli_num_rows($batch) > 0) {
-          while ($row = mysqli_fetch_assoc($batch)) {         
-?>
-                            <option value="<?php echo $row['id'] ?>"
-                                <?php if(isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
-                                <?php echo $row['batch_name'] ?></option>
-                            <?php
-             
-          }
-      } 
-    } ?>
-                        </select>
-                    </div>
+                    <select name="batch_id" required class="form-control form-select select2"
+                        data-bs-placeholder="Select Batch">
+                        <?php
+                        if (isset($_GET['r_id'])) {
+                            $id = $_GET['r_id'];
+                            $sql = mysqli_query($conn, "SELECT * FROM `batches_recording` WHERE id = '$id'");
+                            $fetch_sql = mysqli_fetch_assoc($sql);
+                            $selected_batch_id = $fetch_sql['batch_id'];
+
+
+
+                            $batch = mysqli_query($conn, "SELECT * FROM `batch`");
+                            if (mysqli_num_rows($batch) > 0) {
+                                while ($row = mysqli_fetch_assoc($batch)) {
+                        ?>
+                        <option value="<?php echo $row['id'] ?>"
+                            <?php if (isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
+                            <?php echo $row['batch_name'] ?></option>
+                        <?php
+
+                                }
+                            }
+                        } ?>
+                    </select>
+                </div>
 
                 <!-- row -->
                 <div class="row">
@@ -179,7 +183,8 @@ if (isset($_GET['r_id'])) {
                                             <div class="form-group">
                                                 <label for="exampleInputDOB">Recording Topic Name</label>
                                                 <input class="form-control" placeholder="enter the recording name"
-                                                    type="text" name="recording_name" value="<?php echo $recording['recording_topic_name']?>" required>
+                                                    type="text" name="recording_name"
+                                                    value="<?php echo $recording['recording_topic_name'] ?>" required>
                                             </div>
                                         </div>
 
@@ -187,7 +192,8 @@ if (isset($_GET['r_id'])) {
                                             <div class="form-group">
                                                 <label for="exampleInputDOB">Date of Upload</label>
                                                 <input class="form-control" id="dateMask" placeholder="MM/DD/YYYY"
-                                                    type="date" name="Date_of_Upload" value="<?php echo $recording['date_of_upload']?>" required>
+                                                    type="date" name="Date_of_Upload"
+                                                    value="<?php echo $recording['date_of_upload'] ?>" required>
                                             </div>
                                         </div>
 
@@ -198,7 +204,9 @@ if (isset($_GET['r_id'])) {
                                             <div class="form-group">
                                                 <label for="exampleInputcode">Driving link</label>
                                                 <input type="text" class="form-control" id="exampleInputcode"
-                                                    placeholder="Enter driving link" value="<?php echo $recording['driving_link']?>" name="Driving_link" required>
+                                                    placeholder="Enter driving link"
+                                                    value="<?php echo $recording['driving_link'] ?>" name="Driving_link"
+                                                    required>
                                             </div>
                                         </div> <br>
 
@@ -215,23 +223,27 @@ if (isset($_GET['r_id'])) {
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
-            <!-- Container closed -->
-    </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
-    </form>
-    </div>
 
+
+        </form>
+    </div>
 
     <!-- JS -->
     <?php include('./scripts.php'); ?>
 
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
 
+    ?>
 </body>
 
 </html>

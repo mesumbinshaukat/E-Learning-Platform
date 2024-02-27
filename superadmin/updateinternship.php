@@ -55,6 +55,7 @@ if (isset($_POST["Update"])) {
     $update_query = mysqli_prepare($conn, "UPDATE `internship` SET `internship`=?,`company_name`=?,`industry`=?,`duration_days`=?,`eligibility`=?,`location`=?,`internship_category`=?,`gender`=?,`vacancies`=?,`last_date_to_apply`=?,`certification`=?,`full-description`=?,`pre-requirements`=?,`additional_info`=?,`internship_type`=?,`salary`=?,`stifund`=?,`food_allowances`=?,`transport_allowances`=?,`main_image`=?,`inner_image`=? WHERE `id`=?");
     $update_query->bind_param("sssssssssssssssssssssi", $internship, $company_name, $industry, $duration, $eligibility, $location, $category, $gender, $vacancies, $last_date_to_apply, $certification, $full_description, $pre_requirements, $additional_info, $internship_type, $salary, $stifund, $food_allowances, $transport_allowances, $main_image, $inner_image, $id);
     if ($update_query->execute()) {
+        $_SESSION["success"] = "Updated Successfully.";
         if ($main_image != $main_image_old) {
             move_uploaded_file($main_image_tmp, "./assets/img/internship/" . $main_image);
         }
@@ -63,6 +64,7 @@ if (isset($_POST["Update"])) {
         }
 
         header('location: ./manageinternship.php');
+        exit();
     }
 }
 ?>

@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -93,24 +93,24 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-											$placement_query = mysqli_query($conn, "SELECT * FROM `placement`");
+                                            $placement_query = mysqli_query($conn, "SELECT * FROM `placement`");
 
-											if (mysqli_num_rows($placement_query) > 0) {
-												$i = 1;
-												while ($placement = mysqli_fetch_assoc($placement_query)) {
-													$id = $placement["id"];
-													$placement_registration_query = mysqli_query($conn, "SELECT * FROM `placement_applicants` WHERE `job_id`='$id'");
-													if (mysqli_num_rows($placement_registration_query) > 0) {
-														$fetch = mysqli_fetch_assoc($placement_registration_query);
-														$reg_id = $fetch['id'];
-														echo "<tr>";
-														echo "<td>" . $i++ . "</td>";
-														echo "<td>" . $placement['added_date'] . "</td>";
-														echo "<td>PLAID_" . $placement['id'] . "</td>";
-														echo "<td>" . $placement['job_role'] . "</td>";
-														echo "<td>" . $placement['vacancies'] . "</td>";
-														echo "<td>" . $placement['last_date_to_apply'] . "</td>";
-														echo '  <td>
+                                            if (mysqli_num_rows($placement_query) > 0) {
+                                                $i = 1;
+                                                while ($placement = mysqli_fetch_assoc($placement_query)) {
+                                                    $id = $placement["id"];
+                                                    $placement_registration_query = mysqli_query($conn, "SELECT * FROM `placement_applicants` WHERE `job_id`='$id'");
+                                                    if (mysqli_num_rows($placement_registration_query) > 0) {
+                                                        $fetch = mysqli_fetch_assoc($placement_registration_query);
+                                                        $reg_id = $fetch['id'];
+                                                        echo "<tr>";
+                                                        echo "<td>" . $i++ . "</td>";
+                                                        echo "<td>" . $placement['added_date'] . "</td>";
+                                                        echo "<td>PLAID_" . $placement['id'] . "</td>";
+                                                        echo "<td>" . $placement['job_role'] . "</td>";
+                                                        echo "<td>" . $placement['vacancies'] . "</td>";
+                                                        echo "<td>" . $placement['last_date_to_apply'] . "</td>";
+                                                        echo '  <td>
                                                     <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
                                                         <button type="button" class="btn btn-info dropdown-toggle"
                                                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -126,11 +126,11 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                         </div>
                                                     </div>
                                                 </td>';
-														echo "</tr>";
-													}
-												}
-											}
-											?>
+                                                        echo "</tr>";
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -147,6 +147,18 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     </div>
 
     <?php include("./scripts.php"); ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+
+    ?>
 </body>
 
 

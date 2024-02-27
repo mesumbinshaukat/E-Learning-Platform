@@ -1,8 +1,8 @@
-<?php 
+<?php
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
@@ -27,9 +27,9 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 <body class="ltr main-body app sidebar-mini">
 
-    <?php 
-	 include('./switcher.php'); 
-	  ?>
+    <?php
+    include('./switcher.php');
+    ?>
 
     <!-- Loader -->
     <!-- <div id="global-loader">
@@ -43,13 +43,13 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
         <div>
 
             <div class="main-header side-header sticky nav nav-item">
-                <?php include('./partials/navbar.php')?>
+                <?php include('./partials/navbar.php') ?>
             </div>
             <!-- /main-header -->
 
             <!-- main-sidebar -->
             <div class="sticky">
-                <?php include('./partials/sidebar.php')?>
+                <?php include('./partials/sidebar.php') ?>
             </div>
             <!-- main-sidebar -->
 
@@ -66,7 +66,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                     <div class="breadcrumb-header justify-content-between">
                         <div class="right-content">
-                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Documentation </span>
+                            <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Documentation
+                            </span>
                         </div>
 
                         <div class="justify-content-center mt-2">
@@ -104,33 +105,32 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             </thead>
                                             <tbody>
                                                 <?php
-				$doc_query = mysqli_query($conn, "SELECT * FROM `batches_documentation`");
-				if (mysqli_num_rows($doc_query) > 0) {
-					$i = 1;
-					while ($row = mysqli_fetch_assoc($doc_query)) {
+                                                $doc_query = mysqli_query($conn, "SELECT * FROM `batches_documentation`");
+                                                if (mysqli_num_rows($doc_query) > 0) {
+                                                    $i = 1;
+                                                    while ($row = mysqli_fetch_assoc($doc_query)) {
 
-						echo "<tr>";
-						echo "<td>" . $i++ . "</td>";
-						echo "<td>" . $row['date_of_documentation'] . "</td>";
-						echo "<td>" . $row['description'] . "</td>";?>
-						<td> <a href="../Trainer/assets/docs/supportive_docs/<?php echo $row['shared_documents']?>"
-						class='btn btn-info' download="">Download</a> </td>
-						<?php
-						echo "<td>" . $row['additional_information'] . "</td>";
-						echo "<td>" . $row['batch_name'] . "</td>";
-						echo "<td>
+                                                        echo "<tr>";
+                                                        echo "<td>" . $i++ . "</td>";
+                                                        echo "<td>" . $row['date_of_documentation'] . "</td>";
+                                                        echo "<td>" . $row['description'] . "</td>"; ?>
+                                                <td> <a href="../Trainer/assets/docs/supportive_docs/<?php echo $row['shared_documents'] ?>"
+                                                        class='btn btn-info' download="">Download</a> </td>
+                                                <?php
+                                                        echo "<td>" . $row['additional_information'] . "</td>";
+                                                        echo "<td>" . $row['batch_name'] . "</td>";
+                                                        echo "<td>
 				
 								<a href='updatedocumentation.php?doc_id=" . $row['id'] . "'
 									class='btn btn-info'>update</a>
 					</td>
 					</tr>";
-					}
-				} else {
-				
-					echo "No Documentation found";
-				
-				}
-				?>
+                                                    }
+                                                } else {
+
+                                                    echo "No Documentation found";
+                                                }
+                                                ?>
 
                                             </tbody>
                                         </table>
@@ -142,33 +142,26 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     <!-- End Row -->
                 </div>
             </div>
+        </form>
 
     </div>
-    </div>
-    </div>
-    </div>
 
 
+    <?php
+    include('./scripts.php');
+    ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
 
-    </div>
-    <!-- Container closed -->
-    </div>
-    </form>
-
-
-
-    </div>
-    <!-- End Page -->
-
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="las la-arrow-up"></i></a>
-
-    <?php 
-	 include('./scripts.php'); 
-	  ?>
-
+    ?>
 </body>
-
-<!-- Mirrored from laravel8.spruko.com/nowa/emptypage by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 16:32:40 GMT -->
 
 </html>

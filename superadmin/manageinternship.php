@@ -25,9 +25,9 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <?php include("./style.php"); ?>
 
     <style>
-        .dropdown-menu {
-            position: fixed !important;
-        }
+    .dropdown-menu {
+        position: fixed !important;
+    }
     </style>
 </head>
 
@@ -191,17 +191,29 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <?php include("./scripts.php"); ?>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#file-datatable').DataTable({
-                paging: true,
-                lengthChange: false,
-                searching: false,
-                ordering: true,
-                info: false,
-                autoWidth: false,
-            });
+    $(document).ready(function() {
+        $('#file-datatable').DataTable({
+            paging: true,
+            lengthChange: false,
+            searching: false,
+            ordering: true,
+            info: false,
+            autoWidth: false,
         });
+    });
     </script>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+
+    ?>
 </body>
 
 </html>
