@@ -89,6 +89,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 <th class="border-bottom-0">Trainer Name</th>
                                                 <th class="border-bottom-0">Qualification</th>
                                                 <th class="border-bottom-0">Experience</th>
+                                                <th class="border-bottom-0">Details</th>
 
                                                 <th class="border-bottom-0">User status</th>
 
@@ -109,6 +110,9 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 <td><?php echo $row['name']; ?></td>
                                                 <td><?php echo $row['qualification']; ?></td>
                                                 <td><?php echo $row['experience']; ?></td>
+                                                <td><a href="./view_trainer.php?id=<?php echo $row['id']; ?>"
+                                                        class="btn btn-info">Details</a></td>
+
                                                 <td>
                                                     <a href="allocatetrainercourse.php?id=<?php echo $row['id']; ?>"
                                                         class="btn btn-info">Allocate</a>
