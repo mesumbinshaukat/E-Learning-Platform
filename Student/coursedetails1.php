@@ -1,19 +1,19 @@
 <?php
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
-	header('location: ../student_login.php');
-	exit();
+    header('location: ../student_login.php');
+    exit();
 }
 $id = $_GET['courseid'];
 $select_query = "SELECT * FROM `course` WHERE `id` = $id";
-$run_query = mysqli_query($conn , $select_query );
+$run_query = mysqli_query($conn, $select_query);
 $array_data = mysqli_fetch_array($run_query);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $stud_id = $_POST["stud_id"];
     $course_id = $_POST["course_id"];
     $query = "INSERT INTO `course_registration`(`course_id`, `student_id`) VALUES ('$course_id','$stud_id')";
-    $run_query = mysqli_query($conn , $query);
+    $run_query = mysqli_query($conn, $query);
     $check = true;
 }
 
@@ -126,22 +126,22 @@ if(isset($_POST['submit'])){
                                                     <form method="post">
                                                         <input type="hidden" value="<?php echo $array_data["id"] ?>"
                                                             name="course_id">
-                                                        <input type="hidden" value="<?php echo $_COOKIE["student_id"]?>"
-                                                            name="stud_id">
+                                                        <input type="hidden"
+                                                            value="<?php echo $_COOKIE["student_id"] ?>" name="stud_id">
 
 
                                                         <div class="text-center  mt-4">
-                                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `course_id` = {$array_data['id']} "); 
-                                                                if(mysqli_num_rows($query_check) > 0){
-                                                                    echo "<input value='Already Registered' disabled class='btn ripple btn-primary me-2'>";
-                                                                }else{
+                                                            <?php $query_check = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id` = '{$_COOKIE['student_id']}' AND `course_id` = {$array_data['id']} ");
+                                                            if (mysqli_num_rows($query_check) > 0) {
+                                                                echo "<input value='Already Registered' disabled class='btn ripple btn-primary me-2'>";
+                                                            } else {
 
-                                                                
+
                                                             ?>
                                                             <input type="submit" class="btn ripple btn-primary me-2"
                                                                 value="Register" name="submit" id="submit_btn" />
 
-                                                            <?php }?>
+                                                            <?php } ?>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -150,7 +150,7 @@ if(isset($_POST['submit'])){
                                         <div class="details col-xl-6 col-lg-12 col-md-12 mt-4 mt-xl-0">
 
                                             <h4 class="product-title mb-1"><b
-                                                    style="color: #ff6700;"><?php echo $array_data['course_name'];?>
+                                                    style="color: #ff6700;"><?php echo $array_data['course_name']; ?>
                                                 </b>
                                             </h4>
                                             <!-- <p class="text-muted tx-13 mb-1">Information Technology</p> -->
@@ -160,37 +160,37 @@ if(isset($_POST['submit'])){
 
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Provider Name
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['provider_name_company'];?>
+                                                <?php echo $array_data['provider_name_company']; ?>
                                             </p>
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Course Type &nbsp
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['course_type'];?></p>
+                                                <?php echo $array_data['course_type']; ?></p>
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Duration (Hrs)
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['duration_days'];?></p>
+                                                <?php echo $array_data['duration_days']; ?></p>
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Hours/day &nbsp
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['hours_per_day'];?></p>
+                                                <?php echo $array_data['hours_per_day']; ?></p>
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Training Type
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['training_type'];?></p>
+                                                <?php echo $array_data['training_type']; ?></p>
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Certification
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['certification'];?>
+                                                <?php echo $array_data['certification']; ?>
                                             </p>
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Orginal Price
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['original_cost'];?>/-
+                                                <?php echo $array_data['original_cost']; ?>/-
                                             </p>
                                             <p class="card-text tx-15"><span style="color: #13131a;"> Discount Price
                                                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
-                                                <?php echo $array_data['final_cost'];?>/-</p>
+                                                <?php echo $array_data['final_cost']; ?>/-</p>
                                             <p class="card-text tx-15"><span style="color: #13131a;">Number of
                                                     seats &nbsp &nbsp &nbsp &nbsp &nbsp:</span>&nbsp &nbsp
-                                                <?php echo $array_data['slots'];?></p>
+                                                <?php echo $array_data['slots']; ?></p>
                                             <p class="card-text tx-15"><span style="color: #13131a;">Last date to apply
                                                     &nbsp &nbsp :</span>&nbsp &nbsp &nbsp
-                                                <?php echo $array_data['last_date_to_apply'];?></p>
+                                                <?php echo $array_data['last_date_to_apply']; ?></p>
 
                                         </div>
                                     </div>
@@ -198,11 +198,11 @@ if(isset($_POST['submit'])){
                             </div>
                         </div>
                     </div>
-                    <?php if(isset($check) && $check === true){?>
+                    <?php if (isset($check) && $check === true) { ?>
                     <div class="alert alert-success" role="alert" id="alert">
                         You're Registered for this Course!
                     </div>
-                    <?php }?>
+                    <?php } ?>
                     <div class="row row-sm">
                         <div class="col-lg-12 col-md-12">
                             <div class="card productdesc">
@@ -229,7 +229,7 @@ if(isset($_POST['submit'])){
                                                     <h5 class="mb-2 mt-1 fw-semibold"><span
                                                             style="color:#ff6700;">Course Description :</span></h5>
                                                     <p class="mb-3 tx-13"><span
-                                                            style="line-height:30px"><span><?php echo $array_data['course_description'];?></span>
+                                                            style="line-height:30px"><span><?php echo $array_data['course_description']; ?></span>
                                                     </p>
 
                                                 </div>
@@ -237,7 +237,7 @@ if(isset($_POST['submit'])){
                                                     <h5 class="mb-2 mt-1 fw-semibold"><span
                                                             style="color:#ff6700;">Topics Covered :</span></h5>
                                                     <p class="mb-3 tx-13"><span
-                                                            style="line-height:30px"><?php echo $array_data['topics_covered'];?></span>
+                                                            style="line-height:30px"><?php echo $array_data['topics_covered']; ?></span>
                                                     </p>
 
                                                 </div>
@@ -245,7 +245,7 @@ if(isset($_POST['submit'])){
                                                     <h5 class="mb-2 mt-1 fw-semibold"><span
                                                             style="color:#ff6700;">Benefits of Courses :</span></h5>
                                                     <p class="mb-3 tx-13"><span
-                                                            style="line-height:30px"><?php echo $array_data['benefits_of_course'];?></span>
+                                                            style="line-height:30px"><?php echo $array_data['benefits_of_course']; ?></span>
                                                     </p>
 
                                                 </div>
@@ -253,7 +253,7 @@ if(isset($_POST['submit'])){
                                                     <h5 class="mb-2 mt-1 fw-semibold"><span
                                                             style="color:#ff6700;">Pre-Requirements :</span></h5>
                                                     <p class="mb-3 tx-14"><span
-                                                            style="line-height:30px"><?php echo $array_data['pre_requirements'];?></span>
+                                                            style="line-height:30px"><?php echo $array_data['pre_requirements']; ?></span>
                                                     </p>
 
                                                 </div>

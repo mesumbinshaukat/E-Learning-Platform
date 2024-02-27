@@ -7,7 +7,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     header('location: ../super-admin_login.php');
     exit();
 }
-$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+
 ?>
 
 
@@ -16,7 +16,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
 
 <head>
-    <title>Manage Course Registration</title>
+    <title>Manage Student Batch</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,15 +57,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Course
-                            Registrations </span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Manage Student
+                            Batch </span>
                     </div>
 
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Courses</a></li>
-                            <li class="breadcrumb-item ">Registrations</li>
-                            <li class="breadcrumb-item ">Manage</li>
+                            <li class="breadcrumb-item tx-14"><a href="javascript:void(0);">Manage</a></li>
+                            <li class="breadcrumb-item ">Student</li>
+                            <li class="breadcrumb-item ">Batch</li>
                         </ol>
                     </div>
 
@@ -138,7 +138,9 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 <th class="border-bottom-0">Branch</th>
                                                 <th class="border-bottom-0">Course Name</th>
 
-                                                <th class="border-bottom-0">Date of adding</th>
+                                                <th class="border-bottom-0">Date Of Registration</th>
+                                                <th class="border-bottom-0">Status</th>
+
                                                 <th class="border-bottom-0">Action</th>
                                             </tr>
                                         </thead>
@@ -165,28 +167,55 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                             $student_query .= " AND `branch` = '$branches'";
                                                         }
                                                         $student = mysqli_query($conn, $student_query);
-                                                        if (mysqli_num_rows($student) > 0 && $row["status"] == "Active") {
+                                                        if (mysqli_num_rows($student) > 0) {
                                                             $student = mysqli_fetch_assoc($student);
-                                                            echo "<tr>";
-                                                            echo "<td>" . $i++ . "</td>";
-                                                            echo "<td>STID_" . $student['id'] . "</td>";
-                                                            echo "<td>" . $student['name'] . "</td>";
-                                                            echo "<td>" . $student['college_name'] . "</td>";
-                                                            echo "<td>" . $student['branch'] . "</td>";
-                                                            echo "<td>" . $course['course_name'] . "</td>";
-                                                            echo "<td>" . $row['added_date'] . "</td>";
-                                                            echo '<td>
+                                                            $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `course_id` = '$row[course_id]'");
+                                                            if (mysqli_num_rows($batch_query) > 0) {
+                                                                $batch = mysqli_fetch_assoc($batch_query);
+                                                                // while () {
+                                                                if ($batch['course_id'] == $row['course_id']) {
+                                                                    echo "<tr>";
+                                                                    echo "<td>" . $i++ . "</td>";
+                                                                    echo "<td>STID_" . $student['id'] . "</td>";
+                                                                    echo "<td>" . $student['name'] . "</td>";
+                                                                    echo "<td>" . $student['college_name'] . "</td>";
+                                                                    echo "<td>" . $student['branch'] . "</td>";
+                                                                    echo "<td>" . $course['course_name'] . "</td>";
+                                                                    echo "<td>" . $row['added_date'] . "</td>";
+                                                                    echo "<td>" . $row['status'] . "</td>";
+                                                                    echo '<td>
                                                     <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
                                                         <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                             <i class="bi bi-three-dots"></i>
                                                         </button>
+';
 
-                                                        <div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=delete">Delete</a>
-                                                        </div><!-- dropdown-menu -->
+                                                                    switch ($row["status"]) {
+                                                                        case "Active":
+                                                                            echo '<div class="dropdown-menu">
+                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=delete">De-Allocate</a>
+                                                        </div>';
+                                                                            break;
+                                                                        case "Pending":
+                                                                            echo '<div class="dropdown-menu">
+                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=active">Allocate</a>
+                                                        </div>';
+                                                                            break;
+                                                                        case "Deleted":
+                                                                            echo '<div class="dropdown-menu">
+                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=active">Allocate</a>
+                                                        </div>';
+                                                                            break;
+                                                                    }
+
+                                                                    echo '
+                                                        
                                                     </div>
                                                 </td>';
-                                                            echo "</tr>";
+                                                                    echo "</tr>";
+                                                                    // }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -209,6 +238,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     </div>
 
     <?php include("./scripts.php"); ?>
+
     <?php
     if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
         echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
@@ -216,8 +246,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
     session_destroy();
-
+    // session_start();
+    $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    // echo "<script>toastr.success('" . $_SESSION["previous_url"] . "')</script>"
     ?>
+
 </body>
 
 </html>

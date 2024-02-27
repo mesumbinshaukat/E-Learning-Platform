@@ -1,7 +1,7 @@
 <?php
 if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])) {
-	header('location: ../student_login.php');
-	exit();
+    header('location: ../student_login.php');
+    exit();
 }
 
 ?>
@@ -23,12 +23,6 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-
-    <!-- Loader -->
-    <div id="global-loader">
-        <img src="assets/img/preloader.svg" class="loader-img" alt="Loader">
-    </div>
-    <!-- /Loader -->
 
     <!-- Page -->
     <div class="page">
@@ -63,47 +57,70 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                         <div class="col-sm-12 col-lg-12">
                             <div class="card primary-custom-card1">
                                 <div class="card-body">
+                                    <?php
+                                    $id = (int) $_COOKIE["student_id"];
+                                    $course_registration_query = mysqli_query($conn, "SELECT * FROM `course_registration` WHERE `student_id`='$id'");
+                                    if (mysqli_num_rows($course_registration_query) > 0) {
+                                        while ($row = mysqli_fetch_array($course_registration_query)) {
+
+                                            $course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '$row[course_id]'");
+
+                                            if (mysqli_num_rows($course_query) > 0) {
+                                                $course = mysqli_fetch_array($course_query);
+
+
+                                    ?>
                                     <div class="row">
                                         <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
                                             <div class="prime-card1">
-                                                <img class="img-fluid" src="assets/img/s2.jpg" alt="">
+                                                <img class="img-fluid"
+                                                    src="../superadmin/assets/img/course/<?php echo $course['main_image']; ?>"
+                                                    alt="">
                                             </div>
                                         </div>
                                         <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
                                             <div class="text-justified align-items-center">
-                                                <h4 class="product-title mb-1"><b style="color: #ff6700;">Python</b>
+                                                <h4 class="product-title mb-1"><b
+                                                        style="color: #ff6700;"><?php echo $course['course_name']; ?></b>
                                                 </h4>
                                                 <p class="text-muted tx-13 mb-1"></p>
                                                 <br>
                                                 <p class="card-text tx-16"><span style="color: #13131a;"><b> Provider
-                                                            Name :</b></span>&nbsp Triaright</p>
+                                                            Name
+                                                            :</b></span>&nbsp<?php echo $course['provider_name_company']; ?>
+                                                </p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"><b> Course Fee
-                                                            :</b></span>&nbsp5400</p>
+                                                            :</b></span>&nbsp <?php echo $course['final_cost']; ?></p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"><b>Cateogry
-                                                            :</b></span>&nbsp Individual</p>
-                                                <p class="card-text tx-15"><span style="color: #13131a;"><b>Payment
-                                                            :</b></span>&nbsp College</p>
+                                                            :</b></span>&nbsp
+                                                    <?php echo $course['course_category_name']; ?></p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"><b>Status
-                                                            :</b></span>&nbsp Pending payments</p>
+                                                            :</b></span>&nbsp
+                                                    <?php echo $row['status']; ?></p>
+
                                                 <div class="row">
-                                                    <button class="btn btn-danger mb-3 shadow"><a
+                                                    <!-- <button class="btn btn-danger mb-3 shadow"><a
                                                             href="../superadmin/connection_files/manage/student_login_removecourse.php?crid=28&sid="><span
                                                                 style="color:#ffffff;">Remove</span></a></button> &nbsp
-                                                    &nbsp
-                                                    <button class="btn btn-info mb-3 shadow"><a
-                                                            href="coursedetails1.php?details=28"><span
-                                                                style="color:#ffffff;">View More</span></a></button>
+                                                    &nbsp -->
+                                                    <a class="btn btn-info mb-3 shadow"
+                                                        href="coursedetails1.php?courseid=<?php echo $row['course_id'] ?>"><span
+                                                            style="color:#ffffff;">View More</span></a>
                                                     &nbsp &nbsp
-                                                    <button class="btn btn-primary mb-3 shadow"><a
+                                                    <!-- <button class="btn btn-primary mb-3 shadow"><a
                                                             href="makereferalcodestatus.php?crid=28"><span
                                                                 style="color:#ffffff;">Make payment</span></a></button>
-                                                    &nbsp &nbsp
+                                                    &nbsp &nbsp -->
 
 
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <?php
+                                            }
+                                        }
+                                    } ?>
                                 </div>
                             </div>
                         </div>

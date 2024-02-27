@@ -212,6 +212,9 @@
 
                     <li><a class="bi bi-dot" href="managebatch.php" style="font-size:14px; line-height: 2;">Manage</a>
                     </li>
+                    <li><a class="bi bi-dot" href="student_manage_batch.php"
+                            style="font-size:14px; line-height: 2;">Manage Student</a>
+                    </li>
                     <li><a class="bi bi-dot" href="batchlist.php" style="font-size:14px; line-height: 2;">List</a></li>
 
                 </ul>
