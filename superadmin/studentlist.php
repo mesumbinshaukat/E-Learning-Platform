@@ -47,9 +47,9 @@ function decryptPassword($encryptedPassword, $key)
     <?php include("./style.php"); ?>
 
     <style>
-        .pointer {
-            cursor: pointer;
-        }
+    .pointer {
+        cursor: pointer;
+    }
     </style>
 </head>
 
@@ -104,7 +104,8 @@ function decryptPassword($encryptedPassword, $key)
 
 
 
-                            <select name="institution_name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="institution_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <option value="None">None</option>
                                 <?php
@@ -119,7 +120,8 @@ function decryptPassword($encryptedPassword, $key)
                         </div>
                         <div class="form-group col-md-3">
                             <P><b> Semester</b> </p>
-                            <select name="Semester" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="Semester" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <option value="Not Required">None</option>
                                 <option value="1stSem">1st Sem</option>
@@ -134,7 +136,8 @@ function decryptPassword($encryptedPassword, $key)
                         </div>
                         <div class="form-group col-md-3">
                             <P><b> Account Type</b> </p>
-                            <select name="account_type" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="account_type" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <option value="None">None</option>
 
@@ -143,7 +146,8 @@ function decryptPassword($encryptedPassword, $key)
                             </select>
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary" style="height:40px;width:100px;margin-top:35px">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
+                            style="height:40px;width:100px;margin-top:35px">Search</button>
 
                     </div>
                 </form>
@@ -155,7 +159,8 @@ function decryptPassword($encryptedPassword, $key)
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -194,8 +199,8 @@ function decryptPassword($encryptedPassword, $key)
 
                                             $result = mysqli_query($conn, $query);
                                             if (mysqli_num_rows($result) > 0) { ?>
-                                                <tr>
-                                                    <?php
+                                            <tr>
+                                                <?php
                                                     $i = 1;
                                                     while ($row = mysqli_fetch_assoc($result)) {
                                                         echo "<tr>";
@@ -239,7 +244,7 @@ function decryptPassword($encryptedPassword, $key)
                                                     }
                                                     ?>
 
-                                                </tr>
+                                            </tr>
 
                                             <?php } ?>
                                         </tbody>
@@ -265,7 +270,11 @@ function decryptPassword($encryptedPassword, $key)
     } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    session_destroy();
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+
     ?>
 
 </body>

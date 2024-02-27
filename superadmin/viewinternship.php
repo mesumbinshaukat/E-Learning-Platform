@@ -4,13 +4,13 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 if (!isset($_GET["id"])) {
-	header('location: ./manageinternship.php');
-	exit();
+    header('location: ./manageinternship.php');
+    exit();
 }
 ?>
 
@@ -76,14 +76,14 @@ if (!isset($_GET["id"])) {
                         <div class="card">
                             <div class="card-body">
                                 <?php
-								$id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-								$id = (int) $id;
-								$sql = "SELECT * FROM `internship` WHERE `id` = $id";
-								$result = mysqli_query($conn, $sql);
-								if (mysqli_num_rows($result) > 0) {
-									$fetch = mysqli_fetch_assoc($result);
+                                $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+                                $id = (int) $id;
+                                $sql = "SELECT * FROM `internship` WHERE `id` = $id";
+                                $result = mysqli_query($conn, $sql);
+                                if (mysqli_num_rows($result) > 0) {
+                                    $fetch = mysqli_fetch_assoc($result);
 
-								?>
+                                ?>
                                 <div id="wizard3">
                                     <h3>Overview</h3>
                                     <section>
@@ -228,11 +228,21 @@ if (!isset($_GET["id"])) {
         </div>
         <!-- main-content closed -->
 
-
-
     </div>
     <!-- End Page -->
     <?php include("./scripts.php") ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+
+    ?>
 </body>
 
 </html>

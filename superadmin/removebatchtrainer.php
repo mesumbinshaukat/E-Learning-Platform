@@ -19,11 +19,13 @@ if (isset($_POST["remove"])) {
     $update_query->bind_param("ssss", $status, $batch_id, $course_id, $trainer_id);
 
     if ($update_query->execute()) {
+        $_SESSION["success"] = "Batch Trainer Removed Successfully";
         header('location: ./removebatchtrainer.php?trainer_id=' . $trainer_id . '&course_id=' . $course_id . '&batch_id=' . $batch_id);
         exit();
     } else {
-        $error = $update_query->error;
-        echo $error;
+        $_SESSION["error"] = "Something went wrong. Please try again";
+        header("location:./removebatchtrainer.php?trainer_id=' . $trainer_id . '&course_id=' . $course_id . '&batch_id=' . $batch_id");
+        exit();
     }
 }
 
@@ -96,7 +98,8 @@ if (!isset($_GET["trainer_id"]) && !isset($_GET["course_id"]) && !isset($_GET["b
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
@@ -165,7 +168,18 @@ if (!isset($_GET["trainer_id"]) && !isset($_GET["course_id"]) && !isset($_GET["b
     </div>
 
     <?php include("./scripts.php"); ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
 
+    ?>
 </body>
 
 </html>

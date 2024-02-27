@@ -86,10 +86,14 @@ if (isset($_POST["update"])) {
             $query = mysqli_prepare($conn, "UPDATE `student` SET `cv`=? WHERE `id` = $id");
             $query->bind_param("s", $cv);
 
-            if (!$query->execute()) {
+            if ($query->execute()) {
+                $_SESSION["success"] = "CV uploaded successfully.";
+                // header("Location: ./studentlist.php");
+                // exit();
+            } else {
                 $_SESSION["error"] = "Something went wrong. Please try again.";
-                header("Location: ./studentlist.php");
-                exit();
+                // header("Location: ./studentlist.php");
+                // exit();
             }
         } else {
             // Handle file upload error if needed
@@ -169,28 +173,6 @@ if (isset($_POST["update"])) {
                 <?php include('./partials/navbar.php'); ?>
 
             </div>
-
-            <?php
-
-            if (isset($_SESSION['error'])) {
-                echo "
-        <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-        <strong>Error!</strong> Something went wrong
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>
-        ";
-                unset($_SESSION['error']);
-            } elseif (isset($_SESSION['success'])) {
-                echo "
-        <div class='alert alert-success alert-dismissible fade show' role='alert'>
-        <strong>Success!</strong> Student created successfully
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>
-        ";
-                unset($_SESSION['success']);
-            }
-
-            ?>
 
             <!-- main-sidebar -->
             <div class="sticky">
@@ -770,6 +752,18 @@ if (isset($_POST["update"])) {
     <!-- End Page -->
 
     <?php include("./scripts.php"); ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+
+    ?>
 </body>
 
 </html>

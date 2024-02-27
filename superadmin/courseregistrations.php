@@ -74,7 +74,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
@@ -136,7 +137,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
         session_start();
         $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     }
-    // echo "<script>toastr.success('" . $_SESSION["previous_url"] . "')</script>"
+    
     ?>
 
 </body>

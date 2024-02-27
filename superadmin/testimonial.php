@@ -194,11 +194,14 @@ if (isset($_POST['createBtn'])) {
     <?php
     if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
         echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
-    }
-    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    session_destroy();
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+
     ?>
 </body>
 

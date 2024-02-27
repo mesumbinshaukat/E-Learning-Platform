@@ -245,10 +245,11 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    session_destroy();
-    // session_start();
-    $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
-    // echo "<script>toastr.success('" . $_SESSION["previous_url"] . "')</script>"
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+
     ?>
 
 </body>
