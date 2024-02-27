@@ -33,15 +33,15 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
     try {
         $mail->SMTPDebug = 0; // Enable verbose debug output
         $mail->isSMTP(); // Send using SMTP
-        $mail->Host = 'smtp.gmail.com';  // Set the SMTP server to send through
+        $mail->Host = 'smtp.hostinger.com';  // Set the SMTP server to send through
         $mail->SMTPAuth = true;  // Enable SMTP authentication
-        $mail->Username = 'soccer.club.techwiz@gmail.com';  // SMTP username
-        $mail->Password = 'nohbegvnrivjfhlc';  // SMTP password
+        $mail->Username = 'info@commencers.in';  // SMTP username
+        $mail->Password = '4QkqWkfQf<P.';  // SMTP password
         $mail->SMTPSecure = 'ssl'; // Enable implicit TLS encryption
         $mail->Port = 465; // TCP port to connect to
         $mail->Debugoutput = 'html'; // Output debug information as HTML     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-        $mail->setFrom($_COOKIE["superadmin_email"], $_COOKIE["superadmin_username"]);
+        $mail->setFrom("info@commencers.in", $_COOKIE["superadmin_username"]);
 
         if (!empty($attachment) && file_exists('../superadmin/assets/docs/attachments/' . $attachment)) {
             $mail->addAttachment('../superadmin/assets/docs/attachments/' . $attachment, $purpose);

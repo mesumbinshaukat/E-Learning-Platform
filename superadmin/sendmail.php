@@ -35,7 +35,7 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
         setupMailServer($mail);
 
         // Recipients
-        $mail->setFrom($_COOKIE["superadmin_email"], $_COOKIE["superadmin_username"]);
+        $mail->setFrom("info@commencers.in", $_COOKIE["superadmin_username"]);
         addRecipients($mail);
         if (isset($_SESSION["attachment"])) {
             // Attachments
@@ -43,7 +43,7 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
         }
 
         // Content
-        // setupMailContent($mail, $recipient_subject, $recipient_message);
+        setupMailContent($mail, $recipient_subject, $recipient_message);
 
         if ($mail->send()) {
             session_destroy();
@@ -66,12 +66,12 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
 
 function setupMailServer($mail)
 {
-    // $mail->SMTPDebug = 3; // Enable verbose debug output
+    $mail->SMTPDebug = 2; // Enable verbose debug output
     $mail->isSMTP(); // Send using SMTP
-    $mail->Host = 'smtp.gmail.com';  // Set the SMTP server to send through
+    $mail->Host = 'smtp.hostinger.com';  // Set the SMTP server to send through
     $mail->SMTPAuth = true;  // Enable SMTP authentication
-    $mail->Username = 'soccer.club.techwiz@gmail.com';  // SMTP username
-    $mail->Password = 'nohbegvnrivjfhlc';  // SMTP password
+    $mail->Username = 'info@commencers.in';  // SMTP username
+    $mail->Password = '4QkqWkfQf<P.';  // SMTP password
     $mail->SMTPSecure = 'ssl'; // Enable implicit TLS encryption
     $mail->Port = 465; // TCP port to connect to
     $mail->Debugoutput = 'html'; // Output debug information as HTML
@@ -123,7 +123,7 @@ function addRecipients($mail)
         if (!empty($recipient_email) && !empty($recipient_name)) {
             $mail->addAddress($recipient_email, $recipient_name);
         } else {
-            $mail->addAddress("masumbinshaukat786@gmail.com", "Mesum Bin Shaukat");
+            $mail->addAddress("admin@commencers.in", "Info Admin");
         }
     }
 }

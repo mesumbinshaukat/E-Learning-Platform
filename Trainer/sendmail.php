@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 session_start();
 include('../db_connection/connection.php');
 
@@ -27,7 +27,9 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
     }
     $recipient_subject = $_SESSION["subject"];
     $recipient_message = $_SESSION["message"];
-    $attachment = $_SESSION["attachment"];
+    if (isset($_SESSION["attachment"]) && !empty($_SESSION["attachment"])) {
+        $attachment = $_SESSION["attachment"];
+    }
     $purpose = $_SESSION["purpose"];
     $sender_email = $_SESSION["sender_email"];
     $sender_name = $_SESSION["sender_name"];
@@ -43,10 +45,10 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
         //Server settings
         $mail->SMTPDebug = 0; //Enable verbose debug output
         $mail->isSMTP(); //Send using SMTP
-        $mail->Host = 'smtp.gmail.com';  //Set the SMTP server to send through
+        $mail->Host = 'smtp.hostinger.com';  //Set the SMTP server to send through
         $mail->SMTPAuth = true;  //Enable SMTP authentication
-        $mail->Username = 'soccer.club.techwiz@gmail.com';  //SMTP username
-        $mail->Password = 'nohbegvnrivjfhlc';  //SMTP password
+        $mail->Username = 'info@commencers.in';  //SMTP username
+        $mail->Password = '4QkqWkfQf<P.';  //SMTP password
         $mail->SMTPSecure = 'ssl'; //Enable implicit TLS encryption
         $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         $mail->Debugoutput = 'html'; // Output debug information as HTML
@@ -57,13 +59,13 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
             // echo "After creating PHPMailer instance<br>";
         }
 
-        $mail->setFrom($sender_email, $sender_name);
+        $mail->setFrom("info@commencers.in", $sender_name);
         //Recipients
         if (!empty($recipient_email) && !empty($recipient_name)) {
             $mail->addAddress($recipient_email, $recipient_name);     //Add a recipient
 
         } else {
-            $mail->addAddress("masumbinshaukat786@gmail.com", "Mesum Bin Shaukat");
+            $mail->addAddress("admin@commencers.in", "Info Admin");
         }
 
 
