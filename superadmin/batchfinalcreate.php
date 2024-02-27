@@ -48,13 +48,18 @@ if (isset($_POST["create"])) {
 			$created_by
 		);
 		if ($query->execute()) {
+			$_SESSION["success"] = "Batch Created Successfully.";
 			header('location: ./createbatch.php');
 			exit();
 		} else {
-			$error = $query->error;
+			$_SESSION["error"] = "Something went wrong.";
+			header('location: ./createbatch.php');
+			exit();
 		}
 	} else {
-		$error = mysqli_error($conn);
+		$_SESSION["error"] = "Something went wrong.";
+		header('location: ./createbatch.php');
+		exit();
 	}
 }
 

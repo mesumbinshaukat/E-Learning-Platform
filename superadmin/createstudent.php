@@ -476,6 +476,19 @@ if (isset($_POST["create"])) {
 
 
     <?php include("./scripts.php"); ?>
+
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    // session_start();
+    $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    // echo "<script>toastr.success('" . $_SESSION["previous_url"] . "')</script>"
+    ?>
+
 </body>
 
 </html>

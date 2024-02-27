@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
@@ -94,44 +94,44 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         </thead>
                                         <tbody>
                                             <?php
-											$alloc_trainer = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course`");
+                                            $alloc_trainer = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course`");
 
-											if (mysqli_num_rows($alloc_trainer) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($alloc_trainer)) {
-													$trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$row['trainer_id']}'");
+                                            if (mysqli_num_rows($alloc_trainer) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($alloc_trainer)) {
+                                                    $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$row['trainer_id']}'");
 
-													if (mysqli_num_rows($trainer_query) > 0) {
-														$trainer = mysqli_fetch_assoc($trainer_query);
-														$course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'");
+                                                    if (mysqli_num_rows($trainer_query) > 0) {
+                                                        $trainer = mysqli_fetch_assoc($trainer_query);
+                                                        $course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'");
 
-														if (mysqli_num_rows($course_query) > 0) {
-															$course = mysqli_fetch_assoc($course_query);
-															echo "<tr>";
-															echo "<td>{$i}</td>";
-															echo "<td>{$row['created_date']}</td>";
-															echo "<td>TRID_{$row['trainer_id']}</td>";
-															echo "<td>{$trainer['name']}</td>";
-															echo "<td>{$course['course_name']}</td>";
+                                                        if (mysqli_num_rows($course_query) > 0) {
+                                                            $course = mysqli_fetch_assoc($course_query);
+                                                            echo "<tr>";
+                                                            echo "<td>{$i}</td>";
+                                                            echo "<td>{$row['created_date']}</td>";
+                                                            echo "<td>TRID_{$row['trainer_id']}</td>";
+                                                            echo "<td>{$trainer['name']}</td>";
+                                                            echo "<td>{$course['course_name']}</td>";
 
-															$batch_alloc_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `trainer_id` = '{$trainer['id']}'");
+                                                            $batch_alloc_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `trainer_id` = '{$trainer['id']}'");
 
-															$count = 0;
-															while ($fetch_batch_alloc = mysqli_fetch_assoc($batch_alloc_query)) {
-																// Check if allocate_id and course_id match
-																if ($fetch_batch_alloc['trainer_id'] == $trainer['id'] && $course["id"] == $fetch_batch_alloc["course_id"]) {
-																	++$count;
-																}
-															}
+                                                            $count = 0;
+                                                            while ($fetch_batch_alloc = mysqli_fetch_assoc($batch_alloc_query)) {
+                                                                // Check if allocate_id and course_id match
+                                                                if ($fetch_batch_alloc['trainer_id'] == $trainer['id'] && $course["id"] == $fetch_batch_alloc["course_id"]) {
+                                                                    ++$count;
+                                                                }
+                                                            }
 
-															echo "<td>{$count}</td>";
-															echo "<td><a href='batchfinalcreate.php?id={$row['trainer_id']}&crid={$row['course_id']}' class='btn btn-info'>Create</a></td>";
-														}
-													}
-													$i++;
-												}
-											}
-											?>
+                                                            echo "<td>{$count}</td>";
+                                                            echo "<td><a href='batchfinalcreate.php?id={$row['trainer_id']}&crid={$row['course_id']}' class='btn btn-info'>Create</a></td>";
+                                                        }
+                                                    }
+                                                    $i++;
+                                                }
+                                            }
+                                            ?>
 
                                         </tbody>
                                     </table>
@@ -147,6 +147,17 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     </div>
 
     <?php include("./scripts.php"); ?>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    session_destroy();
+    // session_start();
+    $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    // echo "<script>toastr.success('" . $_SESSION["previous_url"] . "')</script>"
+    ?>
 
 </body>
 

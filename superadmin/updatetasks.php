@@ -14,6 +14,7 @@ if (isset($_GET['task_id'])) {
     $query = "SELECT * FROM `batches_tasks` WHERE `id` = '$id'";
     $run = mysqli_query($conn, $query);
     if (!$run) {
+        $_SESSION["error"] = "Something went wrong. Please try again.";
         if (isset($_SESSION['previous_url'])) {
             header('Location: ' . $_SESSION['previous_url']);
             exit();

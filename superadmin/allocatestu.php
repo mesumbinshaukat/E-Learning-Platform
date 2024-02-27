@@ -31,16 +31,26 @@ if (!empty($_GET["allocateid"]) || !empty($_GET["crid"]) || !empty($_GET["stuid"
 
     if ($query->execute()) {
         if (isset($_SESSION['previous_url'])) {
+            $_SESSION["success"] = "Student Allocated Successfully.";
             header('location: ' . $_SESSION['previous_url']);
             exit();
         } else {
+            $_SESSION["success"] = "Student Allocated Successfully.";
             // Fallback redirection if previous_url is not set
             $error = "Invalid Id";
             header("location:alloc.php?error=" . $error . "");
             exit();
         }
     } else {
-        echo mysqli_error($conn);
+        if (isset($_SESSION['previous_url'])) {
+            $_SESSION["error"] = "Something went wrong.";
+            header('location: ' . $_SESSION['previous_url']);
+            exit();
+        } else {
+            $_SESSION["error"] = "Something went wrong.";
+            header("location:alloc.php");
+            exit();
+        }
     }
 } else {
     if (isset($_SESSION['previous_url'])) {
