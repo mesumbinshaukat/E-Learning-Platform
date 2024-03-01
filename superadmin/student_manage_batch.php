@@ -246,8 +246,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
     if (session_destroy()) {
-        session_start();
-        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+        // if (session_start()) {
+            $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+        // }
     }
 
     ?>
