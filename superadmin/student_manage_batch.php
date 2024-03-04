@@ -7,7 +7,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     header('location: ../super-admin_login.php');
     exit();
 }
-
+$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 ?>
 
 
@@ -81,7 +81,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                 if (mysqli_num_rows($college) > 0) {
                                     while ($row = mysqli_fetch_assoc($college)) {
                                 ?>
-                                        <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
                                 <?php
                                     }
                                 }
@@ -94,13 +94,14 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                         <div class="form-group col-md-3">
                             <P> <b>Branch</b> </p>
 
-                            <select name="branches" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="branches" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected>All</option>
                                 <?php $branch_query = mysqli_query($conn, "SELECT DISTINCT `branch` FROM `student`");
                                 if (mysqli_num_rows($branch_query) > 0) {
                                     while ($row = mysqli_fetch_assoc($branch_query)) {
                                 ?>
-                                        <option value="<?= $row['branch'] ?>"><?= $row['branch'] ?></option>
+                                <option value="<?= $row['branch'] ?>"><?= $row['branch'] ?></option>
                                 <?php
                                     }
                                 }
@@ -111,7 +112,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
 
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary" style="height:40px;width:100px;margin-top:35px">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
+                            style="height:40px;width:100px;margin-top:35px">Search</button>
 
                     </div>
                 </form>
@@ -123,7 +125,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -171,6 +174,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                                 $batch = mysqli_fetch_assoc($batch_query);
                                                                 // while () {
                                                                 if ($batch['course_id'] == $row['course_id']) {
+                                                                    $student_batch_query = mysqli_query($conn, "SELECT * FROM `batch_student` WHERE `batch_id` = '{$batch['id']}'");
+                                                                   
+                                                                    
                                                                     echo "<tr>";
                                                                     echo "<td>" . $i++ . "</td>";
                                                                     echo "<td>STID_" . $student['id'] . "</td>";
@@ -190,17 +196,17 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                                     switch ($row["status"]) {
                                                                         case "Active":
                                                                             echo '<div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=delete">De-Allocate</a>
+                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=delete&batch_id=' . $batch['id'] . '">De-Allocate</a>
                                                         </div>';
                                                                             break;
                                                                         case "Pending":
                                                                             echo '<div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '">Allocate</a>
+                                                            <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Allocate</a>
                                                         </div>';
                                                                             break;
                                                                         case "Deleted":
                                                                             echo '<div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=active">Re-Allocate</a>
+                                                            <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Re-Allocate</a>
                                                         </div>';
                                                                             break;
                                                                     }
@@ -210,7 +216,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                     </div>
                                                 </td>';
                                                                     echo "</tr>";
-                                                                    // }
+                                                                    
                                                                 }
                                                             }
                                                         }
@@ -242,10 +248,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    if (session_destroy()) {
-        // if (session_start()) {
+    if (session_unset()) {
+
         $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
-        // }
     }
 
     ?>
