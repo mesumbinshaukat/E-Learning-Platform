@@ -145,7 +145,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) && !isset($_GET['course_id']) || e
     } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    if (session_destroy()) {
+    if (session_unset()) {
         session_start();
         $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     }
