@@ -135,7 +135,13 @@
                         <a class="side-menu__item" data-bs-toggle="slide" href="profile.php"><i class="fe fe-user"
                                 width="24" height="24" viewBox="0 0 24 24"></i>&nbsp
                             &nbsp <span class="side-menu__label">Profile</span></a>
+                    </li>
+                    <li class="slide">
 
+                        <a class="side-menu__item" data-bs-toggle="slide" href="batch.php"><i class="fe fe-layers"
+                                width="24" height="24" viewBox="0 0 24 24"></i>&nbsp
+                            &nbsp <span class="side-menu__label">My Batches</span></a>
+                    </li>
                     <li class="slide">
                         <a class="side-menu__item" data-bs-toggle="slide" href="changepassword.php"><i
                                 class="fe fe-lock" width="24" height="24" viewBox="0 0 24 24"></i>&nbsp
