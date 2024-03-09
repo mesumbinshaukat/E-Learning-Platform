@@ -112,7 +112,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) && !isset($_GET['course_id']) || e
                                                 <td><?php echo $batch['batchcourse_name']; ?></td>
                                                 <td><?php echo $batch['batchtrainer_name']; ?></td>
                                                 <td><?php echo $batch['session_slot']; ?></td>
-                                                <td><a href="change_status.php?id=<?php echo $batch['id']; ?>&student_id=<?php echo $student_id; ?>&course_id=<?php echo $course_id; ?>'"
+                                                <td><a href="alloc_student.php?id=<?php echo $batch['id']; ?>&student_id=<?php echo $student_id; ?>&course_id=<?php echo $course_id; ?>'"
                                                         class="btn btn-primary">Allocate</td>
                                             </tr>
                                             <?php
