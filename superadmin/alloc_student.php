@@ -18,12 +18,14 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["student_id"]) && !
     $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `id` = '$id' ");
     $batch = mysqli_fetch_assoc($batch_query);
     $status = "Active";
+    $course_id = (int) $_GET["course_id"];
 
     $query_batch = mysqli_prepare($conn, "INSERT INTO `batch_student`(`student_id`, `student_name`, `batch_id`, `batch_name`, `batch_course_name`, `batch_trainer_name`, `status`) VALUES (?,?,?,?,?,?,?)");
-    $query_course = mysqli_prepare($conn, "UPDATE `course_registration` SET `status`=? WHERE `course_id`='$id' AND `student_id`='$student_id'");
+    $query_course = mysqli_query($conn, "UPDATE `course_registration` SET `status`='$status' WHERE `course_id`='$course_id' AND `student_id`='$student_id'");
     mysqli_stmt_bind_param($query_batch, "issssss", $student_id, $student["name"], $id, $batch["batch_name"], $batch["batchcourse_name"], $batch["batchtrainer_name"], $status);
-    mysqli_stmt_bind_param($query_course, "s", $status);
-    if (mysqli_stmt_execute($query_batch) && mysqli_stmt_execute($query_course)) {
+
+    // mysqli_stmt_bind_param($query_course, "s", $status);
+    if (mysqli_stmt_execute($query_batch) && $query_course) {
         if (isset($_SESSION['previous_url'])) {
             $_SESSION["success"] = "Allocated Batch.";
             header('location: ' . $_SESSION['previous_url']);

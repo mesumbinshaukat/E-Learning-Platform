@@ -189,12 +189,17 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                     echo "<td>CRID_" . $row['course_id'] . "</td>";
                                                                     echo "<td>" . $course['course_name'] . "</td>";
                                                                     echo "<td>" . $row['added_date'] . "</td>";
-                                                                    // if (!empty($student_batch['status']) && $student_batch['status'] == "Active") {
-                                                                    //     echo "<td><span class='badge badge-success'>Active</span></td>";
-                                                                    // } else {
-                                                                    //     echo "<td><span class='badge badge-warning'>Pending</span></td>";
-                                                                    // }
-                                                                    echo "<td>" . $row['status'] . "</td>";
+                                                                    switch ($row["status"]) {
+                                                                        case "Active":
+                                                                            echo "<td><span class='badge badge-success fw-bold'>Active</span></td>";
+                                                                            break;
+                                                                        case "Pending":
+                                                                            echo "<td><span class='badge badge-warning text-dark fw-bold'>Pending</span></td>";
+                                                                            break;
+                                                                        case "Deleted":
+                                                                            echo "<td><span class='badge badge-danger fw-bold'>Deleted</span></td>";
+                                                                            break;
+                                                                    }
                                                                     echo '<td>
                                                     <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
                                                         <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
