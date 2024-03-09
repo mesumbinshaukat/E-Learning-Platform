@@ -4,13 +4,13 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 
 if (isset($_GET["error"])) {
-	$error = $_GET["error"];
-	echo "<script>alert('$error')</script>";
+    $error = $_GET["error"];
+    echo "<script>toastr.error('$error')</script>";
 }
 
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
@@ -96,36 +96,36 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <tbody>
 
                                             <?php
-											$id = filter_var($_GET["crid"], FILTER_SANITIZE_NUMBER_INT);
-											$id = (int) $id;
-											$query_allocate = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `course_id` = '$id'");
+                                            $id = filter_var($_GET["crid"], FILTER_SANITIZE_NUMBER_INT);
+                                            $id = (int) $id;
+                                            $query_allocate = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course` WHERE `course_id` = '$id'");
 
-											if (mysqli_num_rows($query_allocate) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($query_allocate)) {
-													$course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'");
-													$course_row = mysqli_fetch_assoc($course_query);
-													$trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$row['trainer_id']}'");
-													$trainer_row = mysqli_fetch_assoc($trainer_query);
-													if (mysqli_num_rows($trainer_query) > 0) {
-														$trainer_name = $trainer_row['name'];
-														echo "<tr>";
-														echo "<td>{$i}</td>";
-														echo "<td>{$row['course_id']}</td>";
-														echo "<td>{$row['trainer_id']}</td>";
-														echo "<td>{$trainer_row['name']}</td>";
-														echo "<td>{$course_row['course_name']}</td>";
-														echo "<td><a href='./coursestudentallocation.php?type=allocate&id={$row['id']}&crid={$row['course_id']}&tid={$row['trainer_id']}' class='btn btn-info'>Allocate</a></td>";
-														echo "</tr>";
-														$i++;
-													} else {
-														$trainer_name = "Not Available";
-													}
-												}
-											} else {
-												echo "No Data Found";
-											}
-											?>
+                                            if (mysqli_num_rows($query_allocate) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($query_allocate)) {
+                                                    $course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'");
+                                                    $course_row = mysqli_fetch_assoc($course_query);
+                                                    $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$row['trainer_id']}'");
+                                                    $trainer_row = mysqli_fetch_assoc($trainer_query);
+                                                    if (mysqli_num_rows($trainer_query) > 0) {
+                                                        $trainer_name = $trainer_row['name'];
+                                                        echo "<tr>";
+                                                        echo "<td>{$i}</td>";
+                                                        echo "<td>{$row['course_id']}</td>";
+                                                        echo "<td>{$row['trainer_id']}</td>";
+                                                        echo "<td>{$trainer_row['name']}</td>";
+                                                        echo "<td>{$course_row['course_name']}</td>";
+                                                        echo "<td><a href='./coursestudentallocation.php?type=allocate&id={$row['id']}&crid={$row['course_id']}&tid={$row['trainer_id']}' class='btn btn-info'>Allocate</a></td>";
+                                                        echo "</tr>";
+                                                        $i++;
+                                                    } else {
+                                                        $trainer_name = "Not Available";
+                                                    }
+                                                }
+                                            } else {
+                                                echo "No Data Found";
+                                            }
+                                            ?>
 
 
                                         </tbody>
@@ -143,16 +143,18 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     <!-- Container closed -->
     <?php include("./scripts.php") ?>
     <?php
-	if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
-		echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
-	} else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
-		echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
-	}
-	session_destroy();
-	// session_start();
-	$_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
-	// echo "<script>toastr.success('" . $_SESSION["previous_url"] . "')</script>"
-	?>
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_destroy()) {
+        session_start();
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+
+    // echo "<script>toastr.success('" . $_SESSION["previous_url"] . "')</script>"
+    ?>
 
 </body>
 

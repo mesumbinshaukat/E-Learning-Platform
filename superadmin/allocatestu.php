@@ -37,8 +37,8 @@ if (!empty($_GET["allocateid"]) || !empty($_GET["crid"]) || !empty($_GET["stuid"
         } else {
             $_SESSION["success"] = "Student Allocated Successfully.";
             // Fallback redirection if previous_url is not set
-            $error = "Invalid Id";
-            header("location:alloc.php?error=" . $error . "");
+
+            header("location:alloc.php?crid=" . $crid . "");
             exit();
         }
     } else {
