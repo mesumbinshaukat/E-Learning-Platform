@@ -175,7 +175,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                 $batch = mysqli_fetch_assoc($batch_query);
                                                                 // while () {
                                                                 if ($batch['course_id'] == $row['course_id']) {
-                                                                    $student_batch_query = mysqli_query($conn, "SELECT * FROM `batch_student` WHERE `batch_id` = '{$batch['id']}'");
+                                                                    $student_batch_query = mysqli_query($conn, "SELECT * FROM `batch_student` WHERE `batch_id` = '{$batch['id']}' AND `student_id` = '{$student['id']}'");
                                                                     // if (mysqli_num_rows($student_batch_query) > 0) {
                                                                     $student_batch = mysqli_fetch_assoc($student_batch_query);
 
@@ -189,11 +189,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                     echo "<td>CRID_" . $row['course_id'] . "</td>";
                                                                     echo "<td>" . $course['course_name'] . "</td>";
                                                                     echo "<td>" . $row['added_date'] . "</td>";
-                                                                    switch ($student_batch["status"]) {
-                                                                        case "Active":
-                                                                            echo "<td><span class='badge badge-success'>Active</span></td>";
-                                                                            break;
-                                                                    }
+                                                                    // if (!empty($student_batch['status']) && $student_batch['status'] == "Active") {
+                                                                    //     echo "<td><span class='badge badge-success'>Active</span></td>";
+                                                                    // } else {
+                                                                    //     echo "<td><span class='badge badge-warning'>Pending</span></td>";
+                                                                    // }
                                                                     echo "<td>" . $row['status'] . "</td>";
                                                                     echo '<td>
                                                     <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
