@@ -270,8 +270,7 @@ function decryptPassword($encryptedPassword, $key)
     } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    if (session_destroy()) {
-        session_start();
+    if (session_unset()) {
         $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     }
 
