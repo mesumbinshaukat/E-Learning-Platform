@@ -148,17 +148,27 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <tbody>
                                             <?php
                                             $sql = "SELECT * FROM `course_registration`";
+                                            // $studentBatch = mysqli_query($conn, "SELECT * FROM `batch_student`");
 
                                             $result = $conn->query($sql);
+                                            // $arr = [];
+                                            // if (mysqli_num_rows($studentBatch) > 0) {
+                                            //     while ($i = mysqli_fetch_assoc($studentBatch)) {
+                                            //         echo $i["id"] . ") " . $i["batch_name"] . "<br>";
+                                            //         $arr = array_merge($arr, [$i["id"]]);
+                                            //     }
+                                            // }
+
                                             if (mysqli_num_rows($result) > 0) {
                                                 $i = 1;
                                                 while ($row = $result->fetch_assoc()) {
+
                                                     $course_query = "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'";
 
                                                     $course = mysqli_query($conn, $course_query);
                                                     if (mysqli_num_rows($course) > 0) {
                                                         $course = mysqli_fetch_array($course);
-                                                        $student_query = "SELECT * FROM `student` WHERE `id` = '$row[student_id]'";
+                                                        $student_query = "SELECT * FROM `student` WHERE `id` = '{$row['student_id']}'";
                                                         if (isset($_POST['college']) && !empty($_POST['college'])) {
                                                             $college = $_POST['college'];
                                                             $student_query .= " AND `college_name` = '$college'";
@@ -170,86 +180,144 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                         $student = mysqli_query($conn, $student_query);
                                                         if (mysqli_num_rows($student) > 0) {
                                                             $student = mysqli_fetch_assoc($student);
-                                                            $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `course_id` = '{$row['course_id']}'");
+                                                            $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `course_id` = '{$course['id']}'");
+
                                                             if (mysqli_num_rows($batch_query) > 0) {
-                                                                $batch = mysqli_fetch_assoc($batch_query);
-                                                                // while () {
-                                                                if ($batch['course_id'] == $row['course_id']) {
-                                                                    $student_batch_query = mysqli_query($conn, "SELECT * FROM `batch_student`");
-                                                                    // if (mysqli_num_rows($student_batch_query) > 0) {
-                                                                    $student_batch = mysqli_fetch_assoc($student_batch_query);
+                                                                $u_id = 0;
+                                                                while ($batch = mysqli_fetch_assoc($batch_query)) {
+                                                                    if ($batch['course_id'] == $row['course_id']) {
+                                                                        $student_batch_query = mysqli_query($conn, "SELECT * FROM `batch_student` WHERE `batch_name` = '{$batch['batch_name']}' AND `student_id` = '{$student['id']}' AND `batch_id` = '{$batch['id']}'");
+
+                                                                        // if (mysqli_num_rows($student_batch_query) > 0) {
+                                                                        $student_batch = mysqli_fetch_assoc($student_batch_query);
+                                                                        if (isset($student_batch) && isset($batch) && $batch['id'] == $student_batch['batch_id'] && $batch["id"] == $student_batch['batch_id'] && $batch["batch_name"] == $student_batch['batch_name']) {
+
+                                                                            echo "<tr>";
+                                                                            echo "<td>" . $i++ . "</td>";
+                                                                            echo "<td>STID_" . $student['id'] . "</td>";
+                                                                            echo "<td>" . $student['name'] . "</td>";
+                                                                            echo "<td>" . $student['college_name'] . "</td>";
+                                                                            echo "<td>" . $student['branch'] . "</td>";
+                                                                            echo "<td>CRID_" . $row['course_id'] . "</td>";
+                                                                            echo "<td>" . $course['course_name'] . "</td>";
+                                                                            echo "<td>" . $row['added_date'] . "</td>";
+                                                                            switch ($row["status"]) {
+                                                                                case "Active":
+                                                                                    echo "<td><span class='badge badge-success fw-bold'>Active</span></td>";
+                                                                                    break;
+                                                                                case "Pending":
+                                                                                    echo "<td><span class='badge badge-warning text-dark fw-bold'>Pending</span></td>";
+                                                                                    break;
+                                                                                case "Deleted":
+                                                                                    echo "<td><span class='badge badge-danger fw-bold'>Deleted</span></td>";
+                                                                                    break;
+                                                                            }
+                                                                            echo '<td>
+                                                                                                <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
+                                                                                                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                                        <i class="bi bi-three-dots"></i>
+                                                                                                    </button>
+                                            ';
+
+                                                                            switch ($row["status"]) {
+                                                                                case "Active":
+
+                                                                                    echo '<div class="dropdown-menu">';
+
+                                                                                    echo '<a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>';
 
 
-                                                                    echo "<tr>";
-                                                                    echo "<td>" . $i++ . "</td>";
-                                                                    echo "<td>STID_" . $student['id'] . "</td>";
-                                                                    echo "<td>" . $student['name'] . "</td>";
-                                                                    echo "<td>" . $student['college_name'] . "</td>";
-                                                                    echo "<td>" . $student['branch'] . "</td>";
-                                                                    echo "<td>CRID_" . $row['course_id'] . "</td>";
-                                                                    echo "<td>" . $course['course_name'] . "</td>";
-                                                                    echo "<td>" . $row['added_date'] . "</td>";
-                                                                    switch ($row["status"]) {
-                                                                        case "Active":
-                                                                            echo "<td><span class='badge badge-success fw-bold'>Active</span></td>";
-                                                                            break;
-                                                                        case "Pending":
-                                                                            echo "<td><span class='badge badge-warning text-dark fw-bold'>Pending</span></td>";
-                                                                            break;
-                                                                        case "Deleted":
-                                                                            echo "<td><span class='badge badge-danger fw-bold'>Deleted</span></td>";
-                                                                            break;
-                                                                    }
-                                                                    echo '<td>
-                                                    <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
-                                                        <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <i class="bi bi-three-dots"></i>
-                                                        </button>
-';
+                                                                                    echo '</div>';
+                                                                                    break;
+                                                                                case "Pending":
+                                                                                    if (isset($student_batch) && $course["id"] == $batch["course_id"] && $batch["batchcourse_name"] == $student_batch["batch_course_name"]) {
+                                                                                        echo '<div class="dropdown-menu">
+                                                                                                       <a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>
 
-                                                                    switch ($row["status"]) {
-                                                                        case "Active":
-                                                                            echo '<div class="dropdown-menu">';
-                                                                            if (mysqli_num_rows($student_batch_query) > 0) {
-                                                                                while ($student_batch = mysqli_fetch_assoc($student_batch_query)) {
-                                                                                    if ($student_batch['batch_id'] == $batch['id'] && $student_batch['student_id'] == $student['id']) {
-                                                                                        echo '<span class="dropdown-item-text">Batch ID: ' . $student_batch['id'] . '</span>';
+                                                                                                    </div>';
+                                                                                    } else {
+
+                                                                                        echo '<div class="dropdown-menu">
+                                                                                                            <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Allocate</a>
+                                                                                                        </div>';
                                                                                     }
-                                                                                }
-                                                                                echo '<a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>';
-                                                                            } else {
-                                                                                // echo '<span class="dropdown-item-text">No Batch ID</span>';
-                                                                                echo '<a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>';
+                                                                                    break;
+                                                                                case "Deleted":
+                                                                                    echo '<div class="dropdown-menu">
+                                                                                                        <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Re-Allocate</a>
+                                                                                                    </div>';
+                                                                                    break;
                                                                             }
-                                                                            echo '</div>';
-                                                                            break;
-                                                                        case "Pending":
-                                                                            if (isset($student_batch) && $course["id"] == $batch["course_id"] && $batch["batchcourse_name"] == $student_batch["batch_course_name"]) {
-                                                                                echo '<div class="dropdown-menu">
-                                                           <a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>
 
-                                                        </div>';
-                                                                            } else {
+                                                                            echo '
 
-                                                                                echo '<div class="dropdown-menu">
-                                                                <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Allocate</a>
-                                                            </div>';
+                                                                                                </div>
+                                                                                            </td>';
+                                                                            echo "</tr>";
+                                                                        }
+                                                                        if ($batch["course_id"] == $row["course_id"] && $row["status"] != "Active" && $row["status"] != "Deleted" && $student["id"] != $u_id) {
+                                                                            $u_id = $student["id"];
+                                                                            echo "<tr>";
+                                                                            echo "<td>" . $i++ . "</td>";
+                                                                            echo "<td>STID_" . $student['id'] . "</td>";
+                                                                            echo "<td>" . $student['name'] . "</td>";
+                                                                            echo "<td>" . $student['college_name'] . "</td>";
+                                                                            echo "<td>" . $student['branch'] . "</td>";
+                                                                            echo "<td>CRID_" . $row['course_id'] . "</td>";
+                                                                            echo "<td>" . $course['course_name'] . "</td>";
+                                                                            echo "<td>" . $row['added_date'] . "</td>";
+                                                                            switch ($row["status"]) {
+                                                                                case "Active":
+                                                                                    echo "<td><span class='badge badge-success fw-bold'>Active</span></td>";
+                                                                                    break;
+                                                                                case "Pending":
+                                                                                    echo "<td><span class='badge badge-warning text-dark fw-bold'>Pending</span></td>";
+                                                                                    break;
+                                                                                case "Deleted":
+                                                                                    echo "<td><span class='badge badge-danger fw-bold'>Deleted</span></td>";
+                                                                                    break;
                                                                             }
-                                                                            break;
-                                                                        case "Deleted":
-                                                                            echo '<div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Re-Allocate</a>
-                                                        </div>';
-                                                                            break;
+                                                                            echo '<td>
+                                                                                                <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
+                                                                                                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                                        <i class="bi bi-three-dots"></i>
+                                                                                                    </button>
+                                            ';
+
+                                                                            switch ($row["status"]) {
+
+                                                                                case "Pending":
+                                                                                    if (isset($student_batch) && $course["id"] == $batch["course_id"] && $batch["batchcourse_name"] == $student_batch["batch_course_name"]) {
+                                                                                        echo '<div class="dropdown-menu">
+                                                                                                       <a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>
+
+                                                                                                    </div>';
+                                                                                    } else {
+
+                                                                                        echo '<div class="dropdown-menu">
+                                                                                                            <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Allocate</a>
+                                                                                                        </div>';
+                                                                                    }
+                                                                                    break;
+                                                                                case "Deleted":
+                                                                                    echo '<div class="dropdown-menu">
+                                                                                                        <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Re-Allocate</a>
+                                                                                                    </div>';
+                                                                                    break;
+                                                                            }
+
+                                                                            echo '
+
+                                                                                                </div>
+                                                                                            </td>';
+                                                                            echo "</tr>";
+                                                                        }
                                                                     }
-
-                                                                    echo '
-                                                        
-                                                    </div>
-                                                </td>';
-                                                                    echo "</tr>";
-                                                                    // }
                                                                 }
+
+
+                                                                // while () {
+
                                                             }
                                                         }
                                                     }
