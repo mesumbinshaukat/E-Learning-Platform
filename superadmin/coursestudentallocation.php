@@ -197,10 +197,10 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 while ($student = mysqli_fetch_assoc($student_query)) {
                                                     $std_all_query = mysqli_query($conn, "SELECT * FROM `student_allocate` WHERE `course_id` = '$crid' AND `allocate_id` = '$id' AND `student_id` = '{$student['id']}'");
 
-                                                    if (!empty($student['college_name']) && $student["college_name"] != "None") {
-                                                        $course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '$crid'");
-                                                        $course = mysqli_fetch_assoc($course_query);
-                                                        echo '<tr>
+                                                    // if (!empty($student['college_name']) && $student["college_name"] != "None") {
+                                                    $course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '$crid'");
+                                                    $course = mysqli_fetch_assoc($course_query);
+                                                    echo '<tr>
                                                         <td>' . $i . '</td>
                                                         <td>CRID_' . $crid . '</td>
                                                         <td>' . $student["name"] . '</td>
@@ -208,15 +208,15 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                         <td>' . $course["course_name"] . '</td>
                                                         <td><a href="./viewstudent.php?id=' . $student["id"] . '" class="btn btn-info">View</a>
                                                         </td>';
-                                                        if (mysqli_num_rows($std_all_query) > 0) {
-                                                            $fetch_std_all = mysqli_fetch_assoc($std_all_query);
-                                                            echo '<td><a href="./delete.php?id=' . $fetch_std_all["id"] . '&type=student_unallocate" class="btn btn-danger">Unallocate</a></td></tr>';
-                                                        } else {
-                                                            echo '<td> <a href="./allocatestu.php?crid=' . $crid . '&allocateid=' . $id . '&stuid=' . $student["id"] . '" class="btn btn-success">Allocate</a></td>
+                                                    if (mysqli_num_rows($std_all_query) > 0) {
+                                                        $fetch_std_all = mysqli_fetch_assoc($std_all_query);
+                                                        echo '<td><a href="./delete.php?id=' . $fetch_std_all["id"] . '&type=student_unallocate" class="btn btn-danger">Unallocate</a></td></tr>';
+                                                    } else {
+                                                        echo '<td> <a href="./allocatestu.php?crid=' . $crid . '&allocateid=' . $id . '&stuid=' . $student["id"] . '" class="btn btn-success">Allocate</a></td>
                                                             </tr>';
-                                                        }
-                                                        $i++;
                                                     }
+                                                    $i++;
+                                                    // }
                                                 }
                                             }
                                             ?>

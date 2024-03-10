@@ -240,7 +240,8 @@ if (isset($_POST["submit"])) {
     if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    session_destroy();
+    // session_destroy();
+    session_unset();
     ?>
 
 </body>

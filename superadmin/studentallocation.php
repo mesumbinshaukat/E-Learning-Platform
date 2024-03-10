@@ -112,11 +112,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             <td><a href="alloc.php?crid=' . $crid . '" class="btn btn-info">Allocate</a></td>
                                         </tr>
                                         ';
-                                                    } else {
-                                                        echo 'No Allocated Course';
                                                     }
                                                     $i++;
                                                 }
+                                            } else {
+                                                echo '<tr><td colspan="7" class="text-center">No records found</td></tr>';
                                             }
                                             ?>
 
@@ -142,8 +142,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    if (session_destroy()) {
-        session_start();
+    if (session_unset()) {
         $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     }
 
