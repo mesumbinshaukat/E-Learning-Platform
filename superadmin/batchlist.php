@@ -110,6 +110,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">S.No</th>
                                                 <th class="border-bottom-0">Batch adding</th>
                                                 <th class="border-bottom-0">Batch ID</th>
+                                                <th class="border-bottom-0">Batch Name</th>
                                                 <th class="border-bottom-0">Trainer name</th>
                                                 <th class="border-bottom-0">Course name</th>
 
@@ -127,7 +128,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                     echo "<tr>";
                                                     echo "<td>" . $i++ . "</td>";
                                                     echo "<td>" . $data['created_date'] . "</td>";
-                                                    echo "<td>" . $data['id'] . "</td>";
+                                                    echo "<td>BATID_" . $data['id'] . "</td>";
+                                                    echo "<td>" . $data['batch_name'] . "</td>";
                                                     echo "<td>" . $data['batchtrainer_name'] . "</td>";
                                                     echo "<td>" . $data['batchcourse_name'] . "</td>";
                                             ?>

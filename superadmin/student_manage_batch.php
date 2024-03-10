@@ -153,7 +153,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             if (mysqli_num_rows($result) > 0) {
                                                 $i = 1;
                                                 while ($row = $result->fetch_assoc()) {
-                                                    $course_query = "SELECT * FROM `course` WHERE `id` = '$row[course_id]'";
+                                                    $course_query = "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'";
 
                                                     $course = mysqli_query($conn, $course_query);
                                                     if (mysqli_num_rows($course) > 0) {
@@ -170,12 +170,12 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                         $student = mysqli_query($conn, $student_query);
                                                         if (mysqli_num_rows($student) > 0) {
                                                             $student = mysqli_fetch_assoc($student);
-                                                            $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `course_id` = '$row[course_id]'");
+                                                            $batch_query = mysqli_query($conn, "SELECT * FROM `batch` WHERE `course_id` = '{$row['course_id']}'");
                                                             if (mysqli_num_rows($batch_query) > 0) {
                                                                 $batch = mysqli_fetch_assoc($batch_query);
                                                                 // while () {
                                                                 if ($batch['course_id'] == $row['course_id']) {
-                                                                    $student_batch_query = mysqli_query($conn, "SELECT * FROM `batch_student` WHERE `batch_id` = '{$batch['id']}' AND `student_id` = '{$student['id']}'");
+                                                                    $student_batch_query = mysqli_query($conn, "SELECT * FROM `batch_student`");
                                                                     // if (mysqli_num_rows($student_batch_query) > 0) {
                                                                     $student_batch = mysqli_fetch_assoc($student_batch_query);
 
@@ -209,14 +209,25 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                                                     switch ($row["status"]) {
                                                                         case "Active":
-                                                                            echo '<div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $batch['id'] . '">De-Allocate</a>
-                                                        </div>';
+                                                                            echo '<div class="dropdown-menu">';
+                                                                            if (mysqli_num_rows($student_batch_query) > 0) {
+                                                                                while ($student_batch = mysqli_fetch_assoc($student_batch_query)) {
+                                                                                    if ($student_batch['batch_id'] == $batch['id'] && $student_batch['student_id'] == $student['id']) {
+                                                                                        echo '<span class="dropdown-item-text">Batch ID: ' . $student_batch['id'] . '</span>';
+                                                                                    }
+                                                                                }
+                                                                                echo '<a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>';
+                                                                            } else {
+                                                                                // echo '<span class="dropdown-item-text">No Batch ID</span>';
+                                                                                echo '<a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>';
+                                                                            }
+                                                                            echo '</div>';
                                                                             break;
                                                                         case "Pending":
                                                                             if (isset($student_batch) && $course["id"] == $batch["course_id"] && $batch["batchcourse_name"] == $student_batch["batch_course_name"]) {
                                                                                 echo '<div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $batch['id'] . '">De-Allocate</a>
+                                                           <a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $student_batch['id'] . '">De-Allocate</a>
+
                                                         </div>';
                                                                             } else {
 

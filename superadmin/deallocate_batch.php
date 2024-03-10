@@ -11,7 +11,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 if (isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["type"]) && !empty($_GET["type"]) && $_GET["type"] == "delete" && isset($_GET["batch_id"]) && !empty($_GET["batch_id"])) {
     $id = filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT);
     $id = (int) $id;
-    $batch_id = filter_var($_GET["batch_id"], FILTER_SANITIZE_NUMBER_INT);
+    // $batch_id = filter_var($_GET["batch_id"], FILTER_SANITIZE_NUMBER_INT);
+    $batch_id = 3;
     $batch_id = (int) $batch_id;
     $status = "Deleted";
     $query = mysqli_prepare($conn, "UPDATE `course_registration` SET `status`=? WHERE `id`=?");
