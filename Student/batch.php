@@ -71,8 +71,8 @@ $query_run = mysqli_query($conn, $query);
 
                                         <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
                                             <div class="text-justified align-items-center">
-                                                <h4 class="product-title mb-1"><b
-                                                        style="color: #ff6700;"><?php echo $data['batch_name']; ?></b>
+                                                <h4 class="product-title mb-1"><b style="color: #ff6700;">Batch Name -:
+                                                        <?php echo $data['batch_name']; ?></b>
                                                 </h4>
 
                                                 <br>
@@ -109,7 +109,7 @@ $query_run = mysqli_query($conn, $query);
                                                 </p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Shift
                                                         :</span>&nbsp &nbsp
-                                                    <?php echo $row['session_slot']; ?>/</p>
+                                                    <?php echo $row['session_slot']; ?></p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;">Status
                                                         :</span>&nbsp &nbsp
                                                     <?php
