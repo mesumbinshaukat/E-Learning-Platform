@@ -4,8 +4,8 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
     exit();
 }
 include('../db_connection/connection.php');
-$stud_id = $_COOKIE['student_id'];
-$query = "SELECT * FROM 'batch_student' WHERE `student_id` =  '$stud_id'";
+$stud_id = (int) $_COOKIE['student_id'];
+$query = "SELECT * FROM `batch_student` WHERE `student_id` = '$stud_id'";
 
 
 $query_run = mysqli_query($conn, $query);
@@ -81,39 +81,37 @@ $query_run = mysqli_query($conn, $query);
 
 
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Batch Status
-                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                        :</span>&nbsp &nbsp
                                                     <?php echo $row['status']; ?>
                                                 </p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Batch Id
-                                                        &nbsp
-                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                        :</span>&nbsp &nbsp
                                                     BATID_<?php echo $data['batch_id']; ?></p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Batch Course
-                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                        :</span>&nbsp &nbsp
                                                     <?php echo $data['batch_course_name']; ?></p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Batch Trainer
                                                         Name
-                                                        &nbsp
-                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                        :</span>&nbsp &nbsp
                                                     <?php echo $data['batch_trainer_name']; ?></p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Class Duration
-                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                        :</span>&nbsp &nbsp
                                                     <?php echo $row['class_duration']; ?></p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Batch Starting
                                                         Date
-                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                        :</span>&nbsp &nbsp
                                                     <?php echo $row['batch_starting_date']; ?>
                                                 </p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Batch Ending
                                                         Date
-                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                        :</span>&nbsp &nbsp
                                                     <?php echo $row['batch_ending_date']; ?>
                                                 </p>
                                                 <p class="card-text tx-15"><span style="color: #13131a;"> Shift
-                                                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp :</span>&nbsp &nbsp
+                                                        :</span>&nbsp &nbsp
                                                     <?php echo $row['session_slot']; ?>/</p>
-                                                <p class="card-text tx-15"><span style="color: #13131a;">Status &nbsp
-                                                        &nbsp &nbsp &nbsp &nbsp:</span>&nbsp &nbsp
+                                                <p class="card-text tx-15"><span style="color: #13131a;">Status
+                                                        :</span>&nbsp &nbsp
                                                     <?php
                                                             switch ($data['status']) {
                                                                 case "Active":

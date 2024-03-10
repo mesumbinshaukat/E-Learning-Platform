@@ -14,7 +14,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && isset($_GET["type"]) && !empty(
     $batch_id = (int) $batch_id;
     $status = "Deleted";
     $query = mysqli_prepare($conn, "UPDATE `course_registration` SET `status`=? WHERE `id`=?");
-    $query_batch = mysqli_prepare($conn, "UPDATE `batch_student` SET `status`=? WHERE `batch_id`=?");
+    $query_batch = mysqli_prepare($conn, "UPDATE `batch_student` SET `status`=? WHERE `id`=?");
     mysqli_stmt_bind_param($query, "si", $status, $batch_id);
     mysqli_stmt_bind_param($query, "si", $status, $id);
     if (mysqli_stmt_execute($query) && mysqli_stmt_execute($query_batch)) {
