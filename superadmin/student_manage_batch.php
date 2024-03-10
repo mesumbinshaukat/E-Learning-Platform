@@ -210,13 +210,13 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                     switch ($row["status"]) {
                                                                         case "Active":
                                                                             echo '<div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=delete&batch_id=' . $batch['id'] . '">De-Allocate</a>
+                                                            <a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $batch['id'] . '">De-Allocate</a>
                                                         </div>';
                                                                             break;
                                                                         case "Pending":
                                                                             if (isset($student_batch) && $course["id"] == $batch["course_id"] && $batch["batchcourse_name"] == $student_batch["batch_course_name"]) {
                                                                                 echo '<div class="dropdown-menu">
-                                                            <a class="btn dropdown-item" href="change_status.php?id=' . $row['id'] . '&type=delete&batch_id=' . $batch['id'] . '">De-Allocate</a>
+                                                            <a class="btn dropdown-item" href="deallocate_batch.php?id=' . $row['id'] . '&type=delete&batch_id=' . $batch['id'] . '">De-Allocate</a>
                                                         </div>';
                                                                             } else {
 
