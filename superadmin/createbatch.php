@@ -75,25 +75,24 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-bottom-0">S.no</th>
-                                                <th class="border-bottom-0">Date of adding</th>
-                                                <th class="border-bottom-0">Trainer ID</th>
-                                                <th class="border-bottom-0">Trainer Name</th>
-                                                <th class="border-bottom-0">Course name</th>
-                                                <th class="border-bottom-0">Total Allocated</th>
+                
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                        <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom dataTable no-footer dtr-inline collapsed" role="grid" aria-describedby="file-datatable_info" style="width: 605px;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-bottom-0">S.no</th>
+                                                    <th class="border-bottom-0">Date of adding</th>
+                                                    <th class="border-bottom-0">Trainer ID</th>
+                                                    <th class="border-bottom-0">Trainer Name</th>
+                                                    <th class="border-bottom-0">Course name</th>
+                                                    <th class="border-bottom-0">Total Allocated</th>
 
-                                                <th class="border-bottom-0">Create</th>
-
-
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
+                                                    <th class="border-bottom-0">Create</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                                             $alloc_trainer = mysqli_query($conn, "SELECT * FROM `allocate_trainer_course`");
 
                                             if (mysqli_num_rows($alloc_trainer) > 0) {
@@ -133,8 +132,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                             }
                                             ?>
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
