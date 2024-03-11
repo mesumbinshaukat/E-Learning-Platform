@@ -246,7 +246,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                                     break;
                                                                                 case "Deleted":
                                                                                     echo '<div class="dropdown-menu">
-                                                                                                        <a class="btn dropdown-item" href="reallocate_batch.php?id=' . $student_batch['id'] . '&course_id=' . $row['course_id'] . '&student_id=' . $student['id'] . '&batch_id=' . $student_batch['id'] . '" title="It will reactivate the current batch for the corresponding student.">Re-Activate</a>
+                                                                                                        <a class="btn dropdown-item" href="reactivate.php?id=' . $student_batch['id'] . '&student_id=' . $student['id'] . '&course_id=' . $row['course_id'] . '" title="It will reactivate the current batch for the corresponding student.">Re-Activate</a>
                                                                                                         
                                                                                                         <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '&batch_id=' . $student_batch['id'] . '&type=reallocate" title="Re-Allocate student to a new batch.">Re-Allocate</a>
                                                                                                     </div>';
