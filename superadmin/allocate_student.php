@@ -112,8 +112,21 @@ if (!isset($_GET['id']) || empty($_GET['id']) && !isset($_GET['course_id']) || e
                                                 <td><?php echo $batch['batchcourse_name']; ?></td>
                                                 <td><?php echo $batch['batchtrainer_name']; ?></td>
                                                 <td><?php echo $batch['session_slot']; ?></td>
+                                                <?php
+                                                            if (isset($_GET["type"]) && $_GET["type"] == "reallocate" && isset($_GET["batch_id"])) {
+                                                                $bat_id = (int) $_GET["batch_id"];
+                                                            ?>
+
+                                                <td><a href="reallocate_batch.php?id=<?php echo $batch['id']; ?>&student_id=<?php echo $student_id; ?>&course_id=<?php echo $course_id; ?>&batch_id=<?php echo $bat_id; ?>"
+                                                        class="btn btn-primary">Allocate</td>
+                                                <?php
+                                                            } else {
+
+
+                                                            ?>
                                                 <td><a href="alloc_student.php?id=<?php echo $batch['id']; ?>&student_id=<?php echo $student_id; ?>&course_id=<?php echo $course_id; ?>"
                                                         class="btn btn-primary">Allocate</td>
+                                                <?php } ?>
                                             </tr>
                                             <?php
                                                         $i++;
@@ -145,7 +158,7 @@ if (!isset($_GET['id']) || empty($_GET['id']) && !isset($_GET['course_id']) || e
     } else if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    session_unset()
+    session_unset();
 
     // $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 

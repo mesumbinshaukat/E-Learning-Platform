@@ -130,7 +130,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
-
+                                                <th class="border-bottom-0">Batch Name</th>
                                                 <th class="border-bottom-0">ID No</th>
                                                 <th class="border-bottom-0">Student name</th>
                                                 <th class="border-bottom-0">College name</th>
@@ -184,6 +184,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                                             if (mysqli_num_rows($batch_query) > 0) {
                                                                 $u_id = 0;
+                                                                $u_crid = 0;
                                                                 while ($batch = mysqli_fetch_assoc($batch_query)) {
                                                                     if ($batch['course_id'] == $row['course_id']) {
                                                                         $student_batch_query = mysqli_query($conn, "SELECT * FROM `batch_student` WHERE `batch_name` = '{$batch['batch_name']}' AND `student_id` = '{$student['id']}' AND `batch_id` = '{$batch['id']}'");
@@ -194,6 +195,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                                                             echo "<tr>";
                                                                             echo "<td>" . $i++ . "</td>";
+                                                                            echo "<td class='text-success fw-bold'>" . $batch['batch_name'] . "</td>";
                                                                             echo "<td>STID_" . $student['id'] . "</td>";
                                                                             echo "<td>" . $student['name'] . "</td>";
                                                                             echo "<td>" . $student['college_name'] . "</td>";
@@ -244,7 +246,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                                     break;
                                                                                 case "Deleted":
                                                                                     echo '<div class="dropdown-menu">
-                                                                                                        <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Re-Allocate</a>
+                                                                                                        <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '&batch_id=' . $student_batch['id'] . '&type=reallocate">Re-Allocate</a>
                                                                                                     </div>';
                                                                                     break;
                                                                             }
@@ -255,10 +257,12 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                                             </td>';
                                                                             echo "</tr>";
                                                                         }
-                                                                        if ($batch["course_id"] == $row["course_id"] && $row["status"] != "Active" && $row["status"] != "Deleted" && $student["id"] != $u_id) {
+                                                                        if ($batch["course_id"] == $row["course_id"] && $row["status"] != "Active" && $row["status"] != "Deleted" && $student["id"] != $u_id && $row["course_id"] != $u_crid) {
                                                                             $u_id = $student["id"];
+                                                                            $u_crid = $row["course_id"];
                                                                             echo "<tr>";
                                                                             echo "<td>" . $i++ . "</td>";
+                                                                            echo "<td class='text-danger fw-bold'>Batch Not Allocated</td>";
                                                                             echo "<td>STID_" . $student['id'] . "</td>";
                                                                             echo "<td>" . $student['name'] . "</td>";
                                                                             echo "<td>" . $student['college_name'] . "</td>";
@@ -298,11 +302,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                                                                             <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Allocate</a>
                                                                                                         </div>';
                                                                                     }
-                                                                                    break;
-                                                                                case "Deleted":
-                                                                                    echo '<div class="dropdown-menu">
-                                                                                                        <a class="btn dropdown-item" href="allocate_student.php?id=' . $row['student_id'] . '&course_id=' . $row['course_id'] . '">Re-Allocate</a>
-                                                                                                    </div>';
                                                                                     break;
                                                                             }
 
