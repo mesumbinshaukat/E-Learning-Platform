@@ -62,7 +62,77 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
 
                 </div>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <div class="row row-sm">
 
+                        <div class="form-group col-md-4">
+                            <P><b>Course Category</b> </p>
+                            <select name="category" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="" selected>
+                                    All
+                                </option>
+                                <?php
+                                $query_cat = "SELECT DISTINCT `course_category_name` FROM `course`";
+                                $result_cat = mysqli_query($conn, $query_cat);
+                                if (mysqli_num_rows($result_cat) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result_cat)) {
+
+
+                                        echo "<option value='" . $row["course_category_name"] . "'>" . $row["course_category_name"] . "</option>";
+                                    }
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <P><b>Course Price</b> </p>
+                            <select name="price" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>
+                                    All
+                                </option>
+                                <?php
+                                $query_p = "SELECT DISTINCT `final_cost` FROM `course`";
+                                $result = mysqli_query($conn, $query_p);
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+
+
+                                        echo "<option value='" . $row["final_cost"] . "'>" . $row["final_cost"] . "</option>";
+                                    }
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <P><b>Course Duration</b> </p>
+                            <select name="duration" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="" selected>
+                                    All
+                                </option>
+                                <?php
+                                $query_d = "SELECT DISTINCT `duration_days` FROM `course`";
+                                $result_d = mysqli_query($conn, $query_d);
+                                if (mysqli_num_rows($result_d) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result_d)) {
+
+
+                                        echo "<option value='" . $row["duration_days"] . "'>" . $row["duration_days"] . "</option>";
+                                    }
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+
+                </form>
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
@@ -84,10 +154,27 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $course_query = mysqli_query($conn, "SELECT * FROM `course`");
-                                            if (mysqli_num_rows($course_query) > 0) {
+                                            $course_query = "SELECT * FROM `course` WHERE 1=1";
+
+                                            if (isset($_POST['category']) && !empty($_POST['category'])) {
+                                                $category = $_POST['category'];
+                                                $course_query .= " AND `course_category_name` = '$category'";
+                                            }
+
+                                            if (isset($_POST['price']) && !empty($_POST['price'])) {
+                                                $price = $_POST['price'];
+                                                $course_query .= " AND `final_cost` = '$price'";
+                                            }
+
+                                            if (isset($_POST['duration']) && !empty($_POST['duration'])) {
+                                                $duration = $_POST['duration'];
+                                                $course_query .= " AND `duration_days` = '$duration'";
+                                            }
+
+                                            $course_query_run = mysqli_query($conn, $course_query);
+                                            if (mysqli_num_rows($course_query_run) > 0) {
                                                 $i = 1;
-                                                while ($row = mysqli_fetch_assoc($course_query)) {
+                                                while ($row = mysqli_fetch_assoc($course_query_run)) {
 
                                                     echo "<tr>";
                                                     echo "<td>" . $i++ . "</td>";
@@ -111,12 +198,6 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
                 </div>
                 <!-- End Row -->
-
-
-
-
-
-
             </div>
         </div>
 

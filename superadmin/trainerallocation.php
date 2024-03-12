@@ -68,7 +68,55 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     </div>
 
                 </div>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <div class="row row-sm">
 
+                        <div class="form-group col-md-4">
+                            <P><b>Qualification</b> </p>
+                            <select name="qualification" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="" selected>
+                                    All
+                                </option>
+                                <?php
+                                $query_cat = "SELECT DISTINCT `qualification` FROM `trainer`";
+                                $result_cat = mysqli_query($conn, $query_cat);
+                                if (mysqli_num_rows($result_cat) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result_cat)) {
+                                        if (!empty($row["qualification"]) && $row["qualification"] != '') {
+                                            echo "<option value='" . $row["qualification"] . "'>" . $row["qualification"] . "</option>";
+                                        }
+                                    }
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <P><b>Added Date</b> </p>
+                            <select name="date" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>
+                                    All
+                                </option>
+                                <?php
+                                $query_p = "SELECT DISTINCT `creation_date` FROM `trainer`";
+                                $result = mysqli_query($conn, $query_p);
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+
+
+                                        echo "<option value='" . $row["creation_date"] . "'>" . $row["creation_date"] . "</option>";
+                                    }
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+
+                </form>
 
                 <br>
                 <br>
@@ -99,7 +147,21 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $query = mysqli_query($conn, "SELECT * FROM `trainer`");
+                                            $trainer_query = "SELECT * FROM `trainer` WHERE 1=1";
+
+                                            if (isset($_POST['qualification']) && !empty($_POST['qualification'])) {
+                                                $qualification = $_POST['qualification'];
+                                                $trainer_query .= " AND `qualification` = '{$qualification}'";
+                                            }
+
+                                            if (isset($_POST['date']) && !empty($_POST['date'])) {
+                                                $date = $_POST['date'];
+                                                $trainer_query .= " AND `creation_date` = '{$date}'";
+                                            }
+
+                                            $query = mysqli_query($conn, $trainer_query);
+
+
                                             if (mysqli_num_rows($query) > 0) {
                                                 $i = 1;
                                                 while ($row = mysqli_fetch_array($query)) { ?>
