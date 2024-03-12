@@ -8,7 +8,12 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     exit();
 }
 
-$select_query = "SELECT * FROM `stream`";
+$select_query = "SELECT * FROM `stream` WHERE 1=1";
+
+if (isset($_POST['location'])) {
+    $location = $_POST['location'];
+    $select_query .= " AND `stream_location` LIKE '$location%'";
+}
 
 $select_query_run = mysqli_query($conn, $select_query);
 $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
@@ -86,7 +91,36 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     </div>
 
                 </div>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <div class="row row-sm">
 
+                        <div class="form-group col-md-4">
+                            <P><b>Stream Location / Category</b> </p>
+                            <select name="location" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="" selected>
+                                    All
+                                </option>
+                                <?php
+                                $query = "SELECT DISTINCT `stream_location` FROM `stream`";
+                                $result = mysqli_query($conn, $query);
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+
+
+                                        echo "<option value='" . $row["stream_location"] . "'>" . $row["stream_location"] . "</option>";
+                                    }
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+
+                </form>
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">

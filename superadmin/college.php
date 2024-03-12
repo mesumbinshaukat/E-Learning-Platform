@@ -118,6 +118,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
+
                 </form>
                 <br>
                 <br>
@@ -166,7 +167,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                     echo "<td>" . $row["representative_contact_number"] . "</td>";
                                                     echo "<td>" . $row["representative_email"] . "</td>";
                                                     echo "<td>" . $row["college_code"] . "</td>";
-                                                   
+
                                                     echo "</tr>";
                                                     $i++;
                                                 }
