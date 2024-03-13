@@ -96,6 +96,47 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </select>
                         </div>
 
+                        <div class="form-group col-md-3">
+                            <b> <label>Trainer Name</label> </b>
+
+                            <select name="trainer_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+
+                                <option value="" selected="selected">ALL</option>
+                                <?php
+                                $query = "SELECT * FROM `trainer`";
+                                $result = mysqli_query($conn, $query);
+
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <option value="<?= $row['id'] ?>"><?= $row['name'] ?>
+                                </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <b> <label>Course Name</label> </b>
+
+                            <select name="course_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+
+                                <option value="" selected="selected">ALL</option>
+                                <?php
+                                $query = "SELECT * FROM `course`";
+                                $result = mysqli_query($conn, $query);
+
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <option value="<?= $row['id'] ?>"><?= $row['course_name'] ?>
+                                </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+
 
                         &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search"
                             style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
@@ -141,11 +182,19 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                         if (mysqli_num_rows($trainer_alloc_query) > 0) {
                                                             $id = $std_alloc['id'];
                                                             $tr = mysqli_fetch_assoc($trainer_alloc_query);
-                                                            $trainer_query = mysqli_query($conn, "SELECT * FROM `trainer` WHERE `id` = '{$tr['trainer_id']}'");
+                                                            $tr_query_select = "SELECT * FROM `trainer` WHERE `id` = '{$tr['trainer_id']}'";
+                                                            if (isset($_POST["trainer_name"]) && !empty($_POST["trainer_name"])) {
+                                                                $tr_query_select = "SELECT * FROM `trainer` WHERE `id` = '" . $_POST["trainer_name"] . "'";
+                                                            }
+                                                            $trainer_query = mysqli_query($conn, $tr_query_select);
 
                                                             if (mysqli_num_rows($trainer_query) > 0) {
                                                                 $trainer = mysqli_fetch_assoc($trainer_query);
-                                                                $course_query = mysqli_query($conn, "SELECT * FROM `course` WHERE `id` = '{$std_alloc['course_id']}'");
+                                                                $cr_query = "SELECT * FROM `course` WHERE `id` = '{$std_alloc['course_id']}'";
+                                                                if (isset($_POST["course_name"]) && !empty($_POST["course_name"])) {
+                                                                    $cr_query = "SELECT * FROM `course` WHERE `id` = '" . $_POST["course_name"] . "'";
+                                                                }
+                                                                $course_query = mysqli_query($conn, $cr_query);
 
                                                                 if (mysqli_num_rows($course_query) > 0) {
                                                                     $course = mysqli_fetch_assoc($course_query);

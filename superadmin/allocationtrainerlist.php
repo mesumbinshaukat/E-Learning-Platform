@@ -95,7 +95,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                     <div class="row row-sm">
                         <div class="form-group col-md-4">
                             <b> <label>Courses</label> </b>
-                            <select name="course_name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="course_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <?php
                                 $course = mysqli_query($conn, "SELECT * FROM `course`");
@@ -112,7 +113,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         </div>
                         <div class="form-group col-md-4">
                             <b> <label>Trainer</label> </b>
-                            <select name="trainer_name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="trainer_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="" selected="selected">All</option>
                                 <?php
                                 $trainer = mysqli_query($conn, "SELECT * FROM `trainer`");
@@ -128,7 +130,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             </select>
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary" style="height:40px;width:100px;margin-top:35px">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
+                            style="height:40px;width:100px;margin-top:35px">Search</button>
                     </div>
                 </form>
                 <br>
@@ -139,7 +142,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -151,7 +155,7 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 <th class="border-bottom-0">Course name</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+
                                         <tbody>
                                             <?php
                                             if (mysqli_num_rows($allocation_query) > 0) {

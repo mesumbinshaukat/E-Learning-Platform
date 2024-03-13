@@ -69,31 +69,59 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
 
                 </div>
-                <!-- <form method="post">
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
                             <b> <label>Course Name</label> </b>
 
-                            </select><select name="course_name" class="form-control form-select" data-bs-placeholder="Select Filter">
-                               
+                            <select name="course_name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>All</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT * FROM `course`");
+                                if (mysqli_num_rows($query) > 0) {
+                                    while ($row = mysqli_fetch_assoc($query)) {
+                                        echo "<option value='" . $row["id"] . "'>" . $row["course_name"] . "</option>";
+                                    }
+                                }
+                                ?>
+
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <b> <label>Trainer</label> </b>
-                            <select name="trainer_name" class="form-control form-select" data-bs-placeholder="Select Filter">                              
+                            <select name="trainer_name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>All</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT * FROM `trainer`");
+                                if (mysqli_num_rows($query) > 0) {
+                                    while ($row = mysqli_fetch_assoc($query)) {
+                                        echo "<option value='" . $row["id"] . "'>" . $row["name"] . "</option>";
+                                    }
+                                }
+                                ?>
+
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <P><b> Status</b> </p>
-                            <select name="user_status" class="form-control form-select" data-bs-placeholder="Select Filter">
-                               
+                            <select name="batch_status" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>All</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT DISTINCT `status` FROM `batch`");
+                                if (mysqli_num_rows($query) > 0) {
+                                    while ($row = mysqli_fetch_assoc($query)) {
+                                        echo "<option value='" . $row["status"] . "'>" . $row["status"] . "</option>";
+                                    }
+                                }
+                                ?>
+
                             </select>
                         </div>
 
                         &nbsp &nbsp <button type="submit" class="btn btn-primary" style="height:40px;width:100px;margin-top:35px">Search</button>
-                      
+
                     </div>
-                </form> -->
+                </form>
 
                 <br>
                 <br>
@@ -103,8 +131,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -119,7 +146,20 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $select_query = "SELECT * FROM `batch`";
+                                            $select_query = "SELECT * FROM `batch` WHERE 1=1";
+                                            if (isset($_POST['batch_status']) && !empty($_POST['batch_status'])) {
+                                                $batch_status = $_POST['batch_status'];
+                                                $select_query .= " AND status = '$batch_status'";
+                                            }
+                                            if (isset($_POST['course_name']) && !empty($_POST['course_name'])) {
+                                                $course_name = $_POST['course_name'];
+                                                $select_query .= " AND course_id = '$course_name'";
+                                            }
+                                            if (isset($_POST['trainer_name']) && !empty($_POST['trainer_name'])) {
+                                                $trainer_name = $_POST['trainer_name'];
+                                                $select_query .= " AND trainer_id = '$trainer_name'";
+                                            }
+                                            $select_query .= " ORDER BY id ASC";
                                             $result = mysqli_query($conn, $select_query);
                                             if (mysqli_num_rows($result) > 0) {
                                                 $i = 1;
@@ -133,8 +173,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                     echo "<td>" . $data['batchtrainer_name'] . "</td>";
                                                     echo "<td>" . $data['batchcourse_name'] . "</td>";
                                             ?>
-                                            <td>
-                                                <?php switch ($data['status']) {
+                                                    <td>
+                                                        <?php switch ($data['status']) {
                                                             case "Active":
                                                                 echo "<span class='badge badge-primary'>Active</span>";
                                                                 break;
@@ -150,7 +190,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                             default:
                                                                 echo "<span class='badge badge-warning'>Pending</span>";
                                                         } ?>
-                                            </td>
+                                                    </td>
                                             <?php
 
                                                 }

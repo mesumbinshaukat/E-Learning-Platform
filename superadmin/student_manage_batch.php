@@ -109,6 +109,23 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                             </select>
                         </div>
+                        <div class="form-group col-md-3">
+                            <P> <b>Course</b> </p>
+
+                            <select name="course" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>All</option>
+                                <?php $branch_query = mysqli_query($conn, "SELECT DISTINCT `batchcourse_name`, `course_id` FROM `batch`");
+                                if (mysqli_num_rows($branch_query) > 0) {
+                                    while ($row = mysqli_fetch_assoc($branch_query)) {
+                                ?>
+                                <option value="<?= $row['course_id'] ?>"><?= $row['batchcourse_name'] ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+
+                            </select>
+                        </div>
 
 
 
@@ -165,6 +182,11 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
 
                                                     $course_query = "SELECT * FROM `course` WHERE `id` = '{$row['course_id']}'";
 
+                                                    if (isset($_POST['course']) && !empty($_POST['course'])) {
+                                                        $course_id = $_POST['course'];
+                                                        $course_query = "SELECT * FROM `course` WHERE `id` = '$course_id'";
+                                                    }
+                                                    
                                                     $course = mysqli_query($conn, $course_query);
                                                     if (mysqli_num_rows($course) > 0) {
                                                         $course = mysqli_fetch_array($course);
