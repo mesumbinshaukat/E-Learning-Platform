@@ -3,8 +3,8 @@
 
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -49,7 +49,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Documentation List</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Documentation
+                            List</span>
                     </div>
 
                     <div class="justify-content-center mt-2">
@@ -61,7 +62,32 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
 
                 </div>
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <div class="row row-sm">
+                        <div class="form-group col-md-3">
+                            <b> <label>Trainer name</label> </b>
+                            <select name="trainer_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="">ALL</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT * FROM `batches_documentation`");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    if (!empty($row['batch_id'])) {
+                                        $batch_id = $row['batch_id'];
+                                        $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE `id` = '$batch_id'");
+                                        $batch_name = mysqli_fetch_assoc($batch);
+                                        echo "<option value='" . $batch_name['id'] . "'>" . $batch_name['batchtrainer_name'] . "</option>";
+                                    }
+                                }
+                                ?>
 
+                            </select>
+                        </div>
+
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search"
+                            style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
+                    </div>
+                </form>
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
@@ -85,30 +111,34 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-				$doc_query = mysqli_query($conn, "SELECT * FROM `batches_documentation`");
-				if (mysqli_num_rows($doc_query) > 0) {
-					$i = 1;
-					while ($row = mysqli_fetch_assoc($doc_query)) {
+                                            $query = "SELECT * FROM `batches_documentation` WHERE 1=1";
+                                            if(isset($_POST["trainer_name"]) && !empty($_POST["trainer_name"])){
+                                                $trainer_name = $_POST["trainer_name"];
+                                                $query .= " AND `batch_id` = '$trainer_name'";
+                                            }
+                                            $doc_query = mysqli_query($conn, $query);
+                                            if (mysqli_num_rows($doc_query) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($doc_query)) {
 
-						echo "<tr>";
-						echo "<td>" . $i++ . "</td>";
-						echo "<td>" . $row['date_of_documentation'] . "</td>";
-						echo "<td>" . $row['description'] . "</td>";?>
-                          <td> <a href="../Trainer/assets/docs/supportive_docs/<?php echo $row['shared_documents']?>"
-                                  class="btn btn-info" download="">Download</a> </td>
-                          <?php
-						echo "<td>" . $row['additional_information'] . "</td>";
-						echo "<td>" . $row['batch_name'] . "</td>";
-					
-				
-					echo "</tr>";
-					}
-				} else {
-				
-					echo "No Documentation found";
-				
-				}
-				?>
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $row['date_of_documentation'] . "</td>";
+                                                    echo "<td>" . $row['description'] . "</td>"; ?>
+                                            <td> <a href="../Trainer/assets/docs/supportive_docs/<?php echo $row['shared_documents'] ?>"
+                                                    class="btn btn-info" download="">Download</a> </td>
+                                            <?php
+                                                    echo "<td>" . $row['additional_information'] . "</td>";
+                                                    echo "<td>" . $row['batch_name'] . "</td>";
+
+
+                                                    echo "</tr>";
+                                                }
+                                            } else {
+
+                                                echo "No Documentation found";
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

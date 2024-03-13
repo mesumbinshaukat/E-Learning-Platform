@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
@@ -36,6 +37,7 @@ if (isset($_POST['submitBtn'])) {
         exit();
     }
 }
+$_SESSION["previous_url"] = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,23 +59,10 @@ if (isset($_POST['submitBtn'])) {
 </head>
 
 <body class="ltr main-body app sidebar-mini">
-    <?php
-    if (isset($_SESSION['message_success']) && $_SESSION['message_success'] == true) {
-        echo "<script>toastr.success('Documentation Uploaded Successfully')</script>";
-        session_destroy();
-    }
-    ?>
 
-    <?php
-    if (isset($_SESSION['message_failed']) && $_SESSION['message_failed'] == true) {
-        echo "<script>toastr.error('" . $_SESSION["err_msg"] . "')</script>";
-        session_destroy();
-    }
-    ?>
     <?php
     include('./switcher.php');
     ?>
-
 
     <!-- Page -->
     <div class="page">
@@ -205,9 +194,13 @@ if (isset($_POST['submitBtn'])) {
     if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    session_destroy();
+    if (session_unset()) {
+        $_SESSION["previous_url"] = $_SERVER['REQUEST_URI'];
+    }
     ?>
-
+    <script>
+    toastr.success('Hello world!')
+    </script>
 </body>
 
 

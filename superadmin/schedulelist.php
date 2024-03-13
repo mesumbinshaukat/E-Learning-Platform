@@ -53,7 +53,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Batch List</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Batch Schedule
+                            List</span>
                     </div>
 
                     <div class="justify-content-center mt-2">
@@ -70,7 +71,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
                             <b> <label>Trainer name</label> </b>
-                            <select name="trainer_name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <select name="trainer_name" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
                                 <option value="">ALL</option>
                                 <?php
                                 $query = mysqli_query($conn, "SELECT * FROM `trainer`");
@@ -81,8 +83,36 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
                             </select>
                         </div>
+                        <div class="form-group col-md-3">
+                            <b> <label>Duration</label> </b>
+                            <select name="duration" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="">ALL</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT DISTINCT `class_duration` FROM `batches_schedule` ORDER BY `class_duration` ASC");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    echo "<option value='" . $row['class_duration'] . "'>" . $row['class_duration'] . "</option>";
+                                }
+                                ?>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search" style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <b> <label>Status</label> </b>
+                            <select name="status" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="">ALL</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT DISTINCT `status` FROM `batches_schedule` ORDER BY `status` ASC");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    echo "<option value='" . $row['status'] . "'>" . $row['status'] . "</option>";
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search"
+                            style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
                     </div>
                 </form>
 
@@ -94,7 +124,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
@@ -112,7 +143,13 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             <?php
                                             $query = "SELECT * FROM `batches_schedule` WHERE 1=1";
 
+                                            if (isset($_POST['duration']) && !empty($_POST['duration'])) {
+                                                $query .= " AND `class_duration` = '" . $_POST['duration'] . "'";
+                                            }
 
+                                            if (isset($_POST['status']) && !empty($_POST['status'])) {
+                                                $query .= " AND `status` = '" . $_POST['status'] . "'";
+                                            }
 
                                             $scheduled_batch_query = mysqli_query($conn, $query);
                                             if (mysqli_num_rows($scheduled_batch_query) > 0) {

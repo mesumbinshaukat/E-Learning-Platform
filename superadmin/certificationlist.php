@@ -73,7 +73,7 @@
                      <div class="row row-sm">
 
                          <div class="form-group col-md-3">
-                             <b> <label>Course name</label> </b>
+                             <b> <label>Course Name</label> </b>
 
                              <select name="course_name" class="form-control form-select"
                                  data-bs-placeholder="Select Filter">
@@ -88,6 +88,30 @@
                                  <option value="<?= $row['course_id'] ?>"><?= $row['course_name'] ?>
                                  </option>
                                  <?php
+                                    }
+                                    ?>
+
+                             </select>
+                         </div>
+                         <div class="form-group col-md-3">
+                             <b> <label>College Name</label> </b>
+
+                             <select name="college_name" class="form-control form-select"
+                                 data-bs-placeholder="Select Filter">
+
+                                 <option value="" selected="selected">ALL</option>
+                                 <?php
+                                    $query = "SELECT DISTINCT `college_name` FROM `student`";
+                                    $result = mysqli_query($conn, $query);
+
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        if (!empty($row['college_name'])) {
+
+                                    ?>
+                                 <option value="<?= $row['college_name'] ?>"><?= $row['college_name'] ?>
+                                 </option>
+                                 <?php
+                                        }
                                     }
                                     ?>
 
@@ -126,23 +150,32 @@
                                                 if (isset($_POST["course_name"]) && !empty($_POST["course_name"])) {
                                                     $certificate .= " AND `course_id` = '" . $_POST["course_name"] . "'";
                                                 }
+
                                                 $run_certificate = mysqli_query($conn, $certificate);
                                                 if (mysqli_num_rows($run_certificate) > 0) {
                                                     $i = 1;
                                                     while ($row = mysqli_fetch_array($run_certificate)) {
-
+                                                        $std_query = "SELECT * FROM `student` WHERE `id` = '{$row['student_id']}'";
+                                                        if (isset($_POST["college_name"]) && !empty($_POST["college_name"])) {
+                                                            $std_query = "SELECT * FROM `student` WHERE `college_name` = '{$_POST["college_name"]}'";
+                                                        }
+                                                        
+                                                        $student_query = mysqli_query($conn, $std_query);
+                                                        $student_row = mysqli_fetch_array($student_query);
+                                                        
+                                                        if($student_row['id'] == $row['student_id']){
+                                                    
                                                         echo "<tr>";
                                                         echo "<td>" . $i . "</td>";
                                                         echo "<td>STID_" . $row['student_id'] . "</td>";
                                                         echo "<td>" . $row['student_name'] . "</td>";
-                                                        $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '{$row['student_id']}'");
-                                                        $student_row = mysqli_fetch_array($student_query);
 
                                                         echo "<td>" . $student_row['college_name'] . "</td>";
                                                         echo "<td>" . $row['course_name'] . "</td>";
                                                         echo "<td>" . $row['uploaded_date'] . "</td>";
                                                         echo "</tr>";
                                                         $i++;
+                                                        }
                                                     }
                                                 }
 

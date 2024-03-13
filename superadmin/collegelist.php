@@ -140,7 +140,8 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search"
+                            style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
                     </div>
                 </form>
                 <br>
