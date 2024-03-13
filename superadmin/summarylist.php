@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -62,7 +62,48 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
 
                 </div>
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <div class="row row-sm">
+                        <div class="form-group col-md-3">
+                            <b> <label>Trainer Name</label> </b>
+                            <select name="name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="">All</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT * FROM `batches_recording`");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    if (!empty($row['batch_id'])) {
+                                        $batch_id = $row['batch_id'];
+                                        $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE `id` = '$batch_id'");
+                                        $batch_name = mysqli_fetch_assoc($batch);
+                                        echo "<option value='" . $batch_name['id'] . "'>" . $batch_name['batchtrainer_name'] . "</option>";
+                                    }
+                                }
+                                ?>
 
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <b> <label>Recording</label> </b>
+                            <select name="recording" class="form-control form-select"
+                                data-bs-placeholder="Select Filter">
+                                <option value="">All</option>
+
+                                <?php
+                                $query = mysqli_query($conn, "SELECT DISTINCT `date_of_upload` FROM `batches_recording`");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    if (!empty($row['date_of_upload'])) {
+                                        echo "<option value='" . $row['date_of_upload'] . "'>" . $row['date_of_upload'] . "</option>";
+                                    }
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search"
+                            style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
+                    </div>
+                </form>
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
@@ -73,35 +114,35 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
-											<th class="border-bottom-0">S.No</th>
-									<th class="border-bottom-0">Date of Summary</th>
-									<th class="border-bottom-0">Performer of the day</th>
-									<th class="border-bottom-0">Topics to be Covered </th>
-									<th class="border-bottom-0">Overall Feedback</th>
-		
-                                    
+                                                <th class="border-bottom-0">S.No</th>
+                                                <th class="border-bottom-0">Date of Summary</th>
+                                                <th class="border-bottom-0">Performer of the day</th>
+                                                <th class="border-bottom-0">Topics to be Covered </th>
+                                                <th class="border-bottom-0">Overall Feedback</th>
+
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-											$meetings = mysqli_query($conn, "SELECT * FROM `batches_summary`");
-											if (mysqli_num_rows($meetings) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($meetings)) {
+                                            $meetings = mysqli_query($conn, "SELECT * FROM `batches_summary`");
+                                            if (mysqli_num_rows($meetings) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($meetings)) {
 
-													echo "<tr>";
-													echo "<td>" . $i++ . "</td>";
-										echo "<td>" . $row['date_of_summary'] . "</td>";
-										echo "<td>" . $row['performer_of_day'] . "</td>";
-										echo "<td>" . $row['topics_covered'] . "</td>";
-										echo "<td>" . $row['overall_feedback'] . "</td>";
-												
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $row['date_of_summary'] . "</td>";
+                                                    echo "<td>" . $row['performer_of_day'] . "</td>";
+                                                    echo "<td>" . $row['topics_covered'] . "</td>";
+                                                    echo "<td>" . $row['overall_feedback'] . "</td>";
+
                                                     echo "</tr>";
-												}
-											} else {
-												echo "No Summary found";
-											}
-											?>
+                                                }
+                                            } else {
+                                                echo "No Summary found";
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

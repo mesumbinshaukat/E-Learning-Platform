@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-	header('location: ../super-admin_login.php');
-	exit();
+    header('location: ../super-admin_login.php');
+    exit();
 }
 ?>
 
@@ -22,20 +22,20 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <meta name="Description" content="">
     <?php include("./style.php"); ?>
     <style>
-    .dropdown-menu {
-        position: fixed !important;
-        /* or 'fixed', depending on your layout */
-        transform: translate3d(0, 0, 0);
-    }
+        .dropdown-menu {
+            position: fixed !important;
+            /* or 'fixed', depending on your layout */
+            transform: translate3d(0, 0, 0);
+        }
     </style>
 </head>
 
 <body class="ltr main-body app sidebar-mini">
 
     <?php
-	include("./switcher.php");
+    include("./switcher.php");
 
-	?>
+    ?>
     <!-- Page -->
     <div class="page">
 
@@ -77,77 +77,39 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                     </div>
 
                 </div>
-                <!-- <form method="post">
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
-                            <b> <label>Course</label> </b>
-
-                            </select><select name="course_name" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
-                                <option value="All" selected="selected">All</option>
-                                <option value="Medical Coding">Medical Coding</option>
-                                <option value="Digital Marketing">Digital Marketing</option>
-                                <option value="JAVA">JAVA</option>
-                                <option value="Python">Python</option>
-                                <option value="Cloud computing">Cloud computing</option>
-                                <option value="Web Technologies">Web Technologies</option>
-                                <option value="Tally">Tally</option>
-                                <option value="US Taxation">US Taxation</option>
-                                <option value="Human resource management">Human resource management</option>
-                                <option value="AI ">AI </option>
-                                <option value="Power BI ">Power BI </option>
-                                <option value="My SQL ">My SQL </option>
-                                <option value="Tally   GST">Tally GST</option>
-                                <option value="Voice process">Voice process</option>
+                            <b> <label>Trainer Name</label> </b>
+                            <select name="name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="">All</option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT Distinct `batchtrainer_name`, `trainer_id` FROM `batch`");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    echo "<option value='" . $row['batchtrainer_name'] . "'>" . $row['batchtrainer_name'] . "</option>";
+                                }
+                                ?>
 
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <b> <label>Trainer</label> </b>
-                            <select name="trainer_name" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
+                            <b> <label>Course</label> </b>
+                            <select name="course" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="">All</option>
 
-
-                                <option value="All" selected="selected">All</option>
-                                <option value="Nandamuru Koteswara Rao">Nandamuru Koteswara Rao</option>
-                                <option value="M Sandeep Kumar">M Sandeep Kumar</option>
-                                <option value="Uma Kiran V">Uma Kiran V</option>
-                                <option value="V Bala Tripura Sunadri">V Bala Tripura Sunadri</option>
-                                <option value="SRIKANTH ">SRIKANTH </option>
-                                <option value="Nikhil Chakka">Nikhil Chakka</option>
-                                <option value="Shaik Ashraf rahil">Shaik Ashraf rahil</option>
-                                <option value="Senthan M S V S">Senthan M S V S</option>
-                                <option value="Shiva Krishna">Shiva Krishna</option>
-                                <option value="saitejaswi kolliboina">saitejaswi kolliboina</option>
-                                <option value="Vasundhara">Vasundhara</option>
-                                <option value="Narender">Narender</option>
-                                <option value="Madhu Varshini">Madhu Varshini</option>
-                                <option value="Saieshwari Gogu">Saieshwari Gogu</option>
-                                <option value="tirdhala ashok">tirdhala ashok</option>
-                                <option value="G Venkatesh">G Venkatesh</option>
-                                <option value="Mekanaboyina Venkata murali Krishna">Mekanaboyina Venkata murali Krishna
-                                </option>
-                                <option value="Ramu">Ramu</option>
-                                <option value="Madanu Augustin">Madanu Augustin</option>
-                                <option value="Akhila V">Akhila V</option>
-                                <option value="vijay kumar sampathi">vijay kumar sampathi</option>
-                                <option value="Tiruvidhula Naga Sai Priyanka">Tiruvidhula Naga Sai Priyanka</option>
-                                <option value="Srinivas Yerrravelli	">Srinivas Yerrravelli </option>
-                                <option value="Srinivas Yerrravelli">Srinivas Yerrravelli</option>
-                                <option value="Shanti Kiran">Shanti Kiran</option>
-                                <option value="K Bharath Kumar">K Bharath Kumar</option>
-                                <option value="demotrainer">demotrainer</option>
-                                <option value="V Bala Tripura Sunadri	">V Bala Tripura Sunadri </option>
-                                <option value="Kishore Kumar ">Kishore Kumar </option>
+                                <?php
+                                $query = mysqli_query($conn, "SELECT DISTINCT `batchcourse_name`, `course_id` FROM `batch`");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    echo "<option value='" . $row['batchcourse_name'] . "'>" . $row['batchcourse_name'] . "</option>";
+                                }
+                                ?>
 
                             </select>
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
-                            style="height:40px;width:100px;margin-top:35px">Search</button>
-                        
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" name="search" style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
                     </div>
-                </form> -->
+                </form>
 
                 <br>
                 <br>
@@ -157,8 +119,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -178,33 +139,42 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-											$batch_query = mysqli_query($conn, "SELECT * FROM `batch`");
-											if (mysqli_num_rows($batch_query) > 0) {
-												$i = 1;
+                                            $bat = "SELECT * FROM `batch` WHERE 1=1";
+                                            if (isset($_POST['name']) && !empty($_POST['name'])) {
+                                                $name = $_POST['name'];
+                                                $bat .= " AND `batchtrainer_name` = '$name'";
+                                            }
+                                            if (isset($_POST['course']) && !empty($_POST['course'])) {
+                                                $course = $_POST['course'];
+                                                $bat .= " AND `batchcourse_name` = '$course'";
+                                            }
+                                            $batch_query = mysqli_query($conn, $bat);
+                                            if (mysqli_num_rows($batch_query) > 0) {
+                                                $i = 1;
 
-												// Array to store unique combinations of course and trainer
-												$unique_combinations = array();
+                                                // Array to store unique combinations of course and trainer
+                                                $unique_combinations = array();
 
-												while ($batch_row = mysqli_fetch_assoc($batch_query)) {
-													if ($batch_row["status"] === "Active" || ($batch_row["status"] === "Removed" && $batch_row["status"] !== "Completed")) {
-														$course_name = $batch_row['batchcourse_name'];
-														$trainer_name = $batch_row['batchtrainer_name'];
+                                                while ($batch_row = mysqli_fetch_assoc($batch_query)) {
+                                                    if ($batch_row["status"] === "Active" || ($batch_row["status"] === "Removed" && $batch_row["status"] !== "Completed")) {
+                                                        $course_name = $batch_row['batchcourse_name'];
+                                                        $trainer_name = $batch_row['batchtrainer_name'];
 
-														// Check if the combination of course and trainer is unique
-														$combination_key = $course_name . "_" . $trainer_name;
-														if (!in_array($combination_key, $unique_combinations)) {
-															echo "<tr>";
-															echo "<td>" . $i++ . "</td>";
-															echo "<td>" . $batch_row['created_date'] . "</td>";
-															echo "<td>BID_" . $batch_row['id'] . "</td>";
-															echo "<td>" . $trainer_name . "</td>";
-															echo "<td>" . $course_name . "</td>";
+                                                        // Check if the combination of course and trainer is unique
+                                                        $combination_key = $course_name . "_" . $trainer_name;
+                                                        if (!in_array($combination_key, $unique_combinations)) {
+                                                            echo "<tr>";
+                                                            echo "<td>" . $i++ . "</td>";
+                                                            echo "<td>" . $batch_row['created_date'] . "</td>";
+                                                            echo "<td>BID_" . $batch_row['id'] . "</td>";
+                                                            echo "<td>" . $trainer_name . "</td>";
+                                                            echo "<td>" . $course_name . "</td>";
 
-															// Count the occurrences of the current combination of course and trainer
-															$count = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `batch` WHERE `batchcourse_name` = '$course_name' AND `batchtrainer_name` = '$trainer_name' AND `status` = 'Active'"));
-															echo "<td>{$count}</td>";
+                                                            // Count the occurrences of the current combination of course and trainer
+                                                            $count = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `batch` WHERE `batchcourse_name` = '$course_name' AND `batchtrainer_name` = '$trainer_name' AND `status` = 'Active'"));
+                                                            echo "<td>{$count}</td>";
 
-															echo '<td>
+                                                            echo '<td>
                         <div class="col-sm-6 col-md-15 mg-t-10 mg-sm-t-0">
                             <button type="button" class="btn btn-info dropdown-toggle"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -220,17 +190,17 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                         </div>
                     </td>';
 
-															// Add the combination of course and trainer to the unique combinations array
-															$unique_combinations[] = $combination_key;
+                                                            // Add the combination of course and trainer to the unique combinations array
+                                                            $unique_combinations[] = $combination_key;
 
-															echo "</tr>";
-														}
-													}
-												}
-											} else {
-												echo '<tr><td colspan="7">No Record Found</td></tr>';
-											}
-											?>
+                                                            echo "</tr>";
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                echo '<tr><td colspan="7">No Record Found</td></tr>';
+                                            }
+                                            ?>
                                         </tbody>
 
 

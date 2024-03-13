@@ -4,8 +4,8 @@ session_start();
 include('../db_connection/connection.php');
 
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-	header('location: ../trainer_login.php');
-	exit();
+    header('location: ../trainer_login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 
 
 <head>
-    <title>Schedule List</title>
+    <title>Recording List</title>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,38 +69,37 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
-											<th class="border-bottom-0">S.No</th>
-									<th class="border-bottom-0">Recording Topic Name</th>
-									<th class="border-bottom-0">Date of Upload</th>
-									<th class="border-bottom-0">Driving Link</th>
-		
-                                    
+                                                <th class="border-bottom-0">S.No</th>
+                                                <th class="border-bottom-0">Recording Topic Name</th>
+                                                <th class="border-bottom-0">Date of Upload</th>
+                                                <th class="border-bottom-0">Driving Link</th>
+
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-											$recordings = mysqli_query($conn, "SELECT * FROM `batches_recording`");
-											if (mysqli_num_rows($recordings) > 0) {
-												$i = 1;
-												while ($row = mysqli_fetch_assoc($recordings)) {
+                                            $recordings = mysqli_query($conn, "SELECT * FROM `batches_recording`");
+                                            if (mysqli_num_rows($recordings) > 0) {
+                                                $i = 1;
+                                                while ($row = mysqli_fetch_assoc($recordings)) {
 
-													echo "<tr>";
-													echo "<td>" . $i++ . "</td>";
-										echo "<td>" . $row['recording_topic_name'] . "</td>";
-										echo "<td>" . $row['date_of_upload'] . "</td>";
-										echo "<td>" . $row['driving_link'] . "</td>";
-										
-												
+                                                    echo "<tr>";
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . $row['recording_topic_name'] . "</td>";
+                                                    echo "<td>" . $row['date_of_upload'] . "</td>";
+                                                    echo "<td>" . $row['driving_link'] . "</td>";
+
+
                                                     echo "</tr>";
-												}
-											} else {
-												echo "No Recording found";
-											}
-											?>
+                                                }
+                                            } else {
+                                                echo "No Recording found";
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
