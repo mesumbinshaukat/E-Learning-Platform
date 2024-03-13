@@ -90,7 +90,7 @@ if (isset($_POST["submit"])) {
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
-                            <P><b> College</b> </p>
+                            <p><b> College</b> </p>
                             <select name="college" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="" selected>All</option>
                                 <?php
@@ -98,7 +98,26 @@ if (isset($_POST["submit"])) {
                                 if (mysqli_num_rows($college) > 0) {
                                     while ($row = mysqli_fetch_assoc($college)) {
                                 ?>
-                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                        <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+
+
+                            </select>
+
+                        </div>
+                        <div class="form-group col-md-3">
+                            <p><b>Internship / Role</b> </p>
+                            <select name="role" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>All</option>
+                                <?php
+                                $college = mysqli_query($conn, "SELECT * FROM `internship`");
+                                if (mysqli_num_rows($college) > 0) {
+                                    while ($row = mysqli_fetch_assoc($college)) {
+                                ?>
+                                        <option value="<?= $row['id'] ?>"><?= $row['internship'] ?></option>
                                 <?php
                                     }
                                 }
@@ -109,8 +128,7 @@ if (isset($_POST["submit"])) {
 
                         </div>
 
-                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
-                            style="height:40px;width:100px;margin-top:35px">Search</button>
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary" style="height:40px;width:100px;margin-top:35px">Search</button>
 
                     </div>
                 </form>
@@ -122,8 +140,7 @@ if (isset($_POST["submit"])) {
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
@@ -141,7 +158,13 @@ if (isset($_POST["submit"])) {
                                         <tbody>
                                             <?php
 
-                                            $result = mysqli_query($conn, "SELECT * FROM `internship_registration`");
+                                            $reg_query = "SELECT * FROM `internship_registration` WHERE 1=1";
+
+                                            if (isset($_POST["role"]) && !empty($_POST["role"])) {
+                                                $reg_query .= " AND `internship_id` = '{$_POST["role"]}'";
+                                            }
+
+                                            $result = mysqli_query($conn, $reg_query);
 
                                             if (mysqli_num_rows($result) > 0) {
                                                 $i = 1;

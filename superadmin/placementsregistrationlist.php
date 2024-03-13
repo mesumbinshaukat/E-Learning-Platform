@@ -22,7 +22,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <meta name="Description" content="">
 
     <?php include("./style.php"); ?>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css"> -->
 </head>
 
 <body class="ltr main-body app sidebar-mini">
@@ -46,7 +46,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
             <div class="main-container container-fluid">
                 <div class="breadcrumb-header justify-content-between">
                     <div class="right-content">
-                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Internship List</span>
+                        <span class="main-content-title mg-b-0 mg-b-lg-1" style="color:#ff6700">Placement List</span>
                     </div>
                     <div class="justify-content-center mt-2">
                         <ol class="breadcrumb">
@@ -56,13 +56,78 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                         </ol>
                     </div>
                 </div>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                    <div class="row row-sm">
+                        <div class="form-group col-md-3">
+                            <p><b> College</b> </p>
+                            <select name="college" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>All</option>
+                                <?php
+                                $college = mysqli_query($conn, "SELECT * FROM `college`");
+                                if (mysqli_num_rows($college) > 0) {
+                                    while ($row = mysqli_fetch_assoc($college)) {
+                                ?>
+                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
 
+
+                            </select>
+
+                        </div>
+                        <div class="form-group col-md-3">
+                            <p><b>Placement / Role</b> </p>
+                            <select name="role" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>All</option>
+                                <?php
+                                $college = mysqli_query($conn, "SELECT * FROM `placement`");
+                                if (mysqli_num_rows($college) > 0) {
+                                    while ($row = mysqli_fetch_assoc($college)) {
+                                ?>
+                                <option value="<?= $row['id'] ?>"><?= $row['job_role'] ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+
+
+                            </select>
+
+                        </div>
+                        <div class="form-group col-md-3">
+                            <p><b>Company</b> </p>
+                            <select name="company" class="form-control form-select" data-bs-placeholder="Select Filter">
+                                <option value="" selected>All</option>
+                                <?php
+                                $college = mysqli_query($conn, "SELECT DISTINCT `company_name` FROM `placement`");
+                                if (mysqli_num_rows($college) > 0) {
+                                    while ($row = mysqli_fetch_assoc($college)) {
+                                ?>
+                                <option value="<?= $row['company_name'] ?>"><?= $row['company_name'] ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+
+
+                            </select>
+
+                        </div>
+
+                        &nbsp &nbsp <button type="submit" class="btn btn-primary"
+                            style="height:40px;width:100px;margin-top:35px">Search</button>
+
+                    </div>
+                </form>
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
                                 <div class="table-responsive export-table">
-                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable"
+                                        class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.no</th>
@@ -75,13 +140,28 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $placement_list_query = mysqli_query($conn, "SELECT * FROM `placement_applicants`");
+                                            $plac_query = "SELECT * FROM `placement_applicants` WHERE 1=1";
+                                            if (isset($_POST["role"]) && !empty($_POST["role"])) {
+                                                $role = (int) $_POST["role"];
+                                                $plac_query .= " AND `job_id` = '$role'";
+                                            }
+
+                                            $placement_list_query = mysqli_query($conn, $plac_query);
                                             if (mysqli_num_rows($placement_list_query) > 0) {
                                                 $i = 1;
                                                 while ($row = mysqli_fetch_assoc($placement_list_query)) {
-                                                    $placement_query = mysqli_query($conn, "SELECT * FROM `placement` WHERE `id` = '{$row["job_id"]}'");
+                                                    $placement_q = "SELECT * FROM `placement` WHERE `id` = '{$row["job_id"]}'";
+                                                    if(isset($_POST["company"]) && !empty($_POST["company"])){
+                                                        $placement_q .= " AND `company_name` = '{$_POST["company"]}'";
+                                                    }
+                                                    $placement_query = mysqli_query($conn, $placement_q);
                                                     if (mysqli_num_rows($placement_query) > 0) {
-                                                        $student_query = mysqli_query($conn, "SELECT * FROM `student` WHERE `id` = '$row[student_id]'");
+                                                        $std_query = "SELECT * FROM `student` WHERE `id` = '{$row['student_id']}'";
+                                                        if (isset($_POST["college"]) && !empty($_POST["college"])) {
+                                                            $std_query = "SELECT * FROM `student` WHERE `college_name` = '{$_POST["college"]}' AND `id` = '{$row['student_id']}'";
+                                                        }
+
+                                                        $student_query = mysqli_query($conn, $std_query);
                                                         $student = mysqli_fetch_assoc($student_query);
                                                         if (mysqli_num_rows($student_query) > 0) {
                                                             $placement = mysqli_fetch_assoc($placement_query);
@@ -112,7 +192,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
 
     </script>
     <?php include("./scripts.php"); ?>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -126,7 +206,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                 "responsive": true
             });
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

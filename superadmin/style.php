@@ -65,3 +65,13 @@
 	    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<!-- Toastr Alert -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+	<style>
+.dataTables_filter input::placeholder {
+    color: black !important;
+}
+
+.dataTables_filter input {
+    border: solid 1px grey !important;
+}
+	</style>
