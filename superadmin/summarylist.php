@@ -119,8 +119,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <th class="border-bottom-0">Performer of the day</th>
                                                 <th class="border-bottom-0">Topics to be Covered </th>
                                                 <th class="border-bottom-0">Overall Feedback</th>
-
-
+                                                <th class="border-bottom-0">Overall Attendance</th>
+                                                <th class="border-bottom-0">Added Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -136,7 +136,8 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                     echo "<td>" . $row['performer_of_day'] . "</td>";
                                                     echo "<td>" . $row['topics_covered'] . "</td>";
                                                     echo "<td>" . $row['overall_feedback'] . "</td>";
-
+                                                    echo "<td>" . $row['attendance'] . "</td>";
+                                                    echo "<td>" . $row['added_date'] . "</td>";
                                                     echo "</tr>";
                                                 }
                                             } else {
