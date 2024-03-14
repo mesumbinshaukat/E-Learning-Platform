@@ -73,13 +73,14 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
                                         class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
-											<th class="border-bottom-0">S.No</th>
-									<th class="border-bottom-0">Date of Summary</th>
-									<th class="border-bottom-0">Performer of the day</th>
-									<th class="border-bottom-0">Topics to be Covered </th>
-									<th class="border-bottom-0">Overall Feedback</th>
-		
-                                    
+                                                <th class="border-bottom-0">S.No</th>
+                                                <th class="border-bottom-0">Date of Summary</th>
+                                                <th class="border-bottom-0">Performer of the day</th>
+                                                <th class="border-bottom-0">Topics to be Covered </th>
+                                                <th class="border-bottom-0">Overall Feedback</th>
+                                                <th class="border-bottom-0">Overall Attendance</th>
+                                                <th class="border-bottom-0">Date</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -95,6 +96,8 @@ if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])
 										echo "<td>" . $row['performer_of_day'] . "</td>";
 										echo "<td>" . $row['topics_covered'] . "</td>";
 										echo "<td>" . $row['overall_feedback'] . "</td>";
+										echo "<td>" . $row['attendance'] . "</td>";
+										echo "<td>" . $row['added_date'] . "</td>";
 												
                                                     echo "</tr>";
 												}

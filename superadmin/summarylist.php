@@ -65,17 +65,14 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="row row-sm">
                         <div class="form-group col-md-3">
-                            <b> <label>Trainer Name</label> </b>
-                            <select name="name" class="form-control form-select" data-bs-placeholder="Select Filter">
+                            <b> <label>Batch Name</label> </b>
+                            <select name="batch" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="">All</option>
                                 <?php
-                                $query = mysqli_query($conn, "SELECT * FROM `batches_recording`");
+                                $query = mysqli_query($conn, "SELECT DISTINCT `batch_name` FROM `batches_summary`");
                                 while ($row = mysqli_fetch_assoc($query)) {
-                                    if (!empty($row['batch_id'])) {
-                                        $batch_id = $row['batch_id'];
-                                        $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE `id` = '$batch_id'");
-                                        $batch_name = mysqli_fetch_assoc($batch);
-                                        echo "<option value='" . $batch_name['id'] . "'>" . $batch_name['batchtrainer_name'] . "</option>";
+                                    if (!empty($row['batch_name'])) {
+                                        echo "<option value='" . $row['batch_name'] . "'>" . $row['batch_name'] . "</option>";
                                     }
                                 }
                                 ?>
@@ -83,16 +80,15 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <b> <label>Recording</label> </b>
-                            <select name="recording" class="form-control form-select"
-                                data-bs-placeholder="Select Filter">
+                            <b> <label>Date Of Summary</label> </b>
+                            <select name="date" class="form-control form-select" data-bs-placeholder="Select Filter">
                                 <option value="">All</option>
 
                                 <?php
-                                $query = mysqli_query($conn, "SELECT DISTINCT `date_of_upload` FROM `batches_recording`");
+                                $query = mysqli_query($conn, "SELECT DISTINCT `date_of_summary` FROM `batches_summary`");
                                 while ($row = mysqli_fetch_assoc($query)) {
-                                    if (!empty($row['date_of_upload'])) {
-                                        echo "<option value='" . $row['date_of_upload'] . "'>" . $row['date_of_upload'] . "</option>";
+                                    if (!empty($row['date_of_summary'])) {
+                                        echo "<option value='" . $row['date_of_summary'] . "'>" . $row['date_of_summary'] . "</option>";
                                     }
                                 }
                                 ?>
@@ -104,6 +100,7 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                             style="height:40px;width:100px;margin-top:35px" value="search">Search</button>
                     </div>
                 </form>
+
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card custom-card overflow-hidden">
@@ -116,6 +113,9 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
                                                 <th class="border-bottom-0">Date of Summary</th>
+                                                <th class="border-bottom-0">Summary Id</th>
+                                                <th class="border-bottom-0">Batch Id</th>
+                                                <th class="border-bottom-0">Batch Name</th>
                                                 <th class="border-bottom-0">Performer of the day</th>
                                                 <th class="border-bottom-0">Topics to be Covered </th>
                                                 <th class="border-bottom-0">Overall Feedback</th>
@@ -125,18 +125,29 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $meetings = mysqli_query($conn, "SELECT * FROM `batches_summary`");
-                                            if (mysqli_num_rows($meetings) > 0) {
+                                            $query_sum = "SELECT * FROM `batches_summary` WHERE 1=1";
+                                            if(isset($_POST["batch"]) && !empty($_POST["batch"])){
+                                                $query_sum .= " AND batch_name = '" . $_POST["batch"] . "'";
+                                            }
+                                            if(isset($_POST["date"]) && !empty($_POST["date"])){
+                                                $query_sum .= " AND date_of_summary = '" . $_POST["date"] . "'";
+                                            }
+                                            $query_sum .= " ORDER BY `id` ASC";
+                                            $summ = mysqli_query($conn, $query_sum);
+                                            if (mysqli_num_rows($summ) > 0) {
                                                 $i = 1;
-                                                while ($row = mysqli_fetch_assoc($meetings)) {
+                                                while ($row = mysqli_fetch_assoc($summ)) {
 
                                                     echo "<tr>";
                                                     echo "<td>" . $i++ . "</td>";
                                                     echo "<td>" . $row['date_of_summary'] . "</td>";
+                                                    echo "<td>SUMID_" . $row['id'] . "</td>";
+                                                    echo "<td>BATID_" . $row['batch_id'] . "</td>";
+                                                    echo "<td>" . $row['batch_name'] . "</td>";
                                                     echo "<td>" . $row['performer_of_day'] . "</td>";
                                                     echo "<td>" . $row['topics_covered'] . "</td>";
                                                     echo "<td>" . $row['overall_feedback'] . "</td>";
-                                                    echo "<td>" . $row['attendance'] . "</td>";
+                                                    echo "<td>" . $row['attendance'] . "%</td>";
                                                     echo "<td>" . $row['added_date'] . "</td>";
                                                     echo "</tr>";
                                                 }

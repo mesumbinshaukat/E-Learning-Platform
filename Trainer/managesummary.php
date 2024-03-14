@@ -84,15 +84,18 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                             <div class="card-body">
 
                                 <div class="table-responsive  export-table">
-                                    <table id="file-datatable"
-                                        class="table table-bordered text-nowrap key-buttons border-bottom">
+                                    <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">S.No</th>
                                                 <th class="border-bottom-0">Date of Summary</th>
+                                                <th class="border-bottom-0">Summary Id</th>
+
+                                                <th class="border-bottom-0">Batch Name</th>
                                                 <th class="border-bottom-0">Performer of the day</th>
                                                 <th class="border-bottom-0">Topics to be Covered </th>
                                                 <th class="border-bottom-0">Overall Feedback</th>
+                                                <th class="border-bottom-0">Overall Attendance</th>
 
                                                 <th class="border-bottom-0">Actions</th>
 
@@ -100,7 +103,14 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $meeting_query = mysqli_query($conn, "SELECT * FROM `batches_summary`");
+                                            $batch = "SELECT * FROM `batches_summary` WHERE 1=1";
+                                            if (isset($_POST["batch"]) && !empty($_POST["batch"])) {
+                                                $batch .= " AND `batch_name` = '" . $_POST["batch"] . "'";
+                                            }
+                                            if (isset($_POST["date"]) && !empty($_POST["date"])) {
+                                                $batch .= " AND `date_of_summary` = '" . $_POST["date"] . "'";
+                                            }
+                                            $meeting_query = mysqli_query($conn, $batch);
                                             if (mysqli_num_rows($meeting_query) > 0) {
                                                 $i = 1;
                                                 while ($row = mysqli_fetch_assoc($meeting_query)) {
@@ -108,14 +118,17 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                     echo "<tr>";
                                                     echo "<td>" . $i++ . "</td>";
                                                     echo "<td>" . $row['date_of_summary'] . "</td>";
+                                                    echo "<td>SUMID_" . $row['id'] . "</td>";
+                                                    echo "<td>" . $row['batch_name'] . "</td>";
                                                     echo "<td>" . $row['performer_of_day'] . "</td>";
                                                     echo "<td>" . $row['topics_covered'] . "</td>";
                                                     echo "<td>" . $row['overall_feedback'] . "</td>";
+                                                    echo "<td>" . $row['attendance'] . "%</td>";
                                                     echo "<td>
 										<div class='col-sm-6 col-md-15 mg-t-10 mg-sm-t-0'>
 											<button type='button' class='btn btn-info dropdown-toggle'
 												data-bs-toggle='dropdown' aria-expanded='false'>
-												<i class='fe fe-more-horizontal'></i>
+												<i class='bi bi-three-dots'></i>
 											</button>
 
 											<div class='dropdown-menu'>
@@ -134,7 +147,6 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
                                                 echo "No Summary found";
                                             }
                                             ?>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -164,7 +176,10 @@ $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
     if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    session_destroy();
+    if (session_unset()) {
+
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
     ?>
 
 </body>

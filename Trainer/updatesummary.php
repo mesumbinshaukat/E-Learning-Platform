@@ -39,22 +39,24 @@ if (isset($_GET['summary_id'])) {
         $Topics_Covered = $_POST['Topics_Covered'];
         $Overall_Feedback = $_POST['Overall_Feedback'];
         $batch_id = $_POST['batch_id'];
+        $Attendance = (int) $_POST['Attendance'];
         $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
         $fetch_batch = mysqli_fetch_assoc($select_batch);
         if ($fetch_batch['id'] == $batch_id) {
             $batch_name = $fetch_batch['batch_name'];
 
             // Update query
-            $update_query = "UPDATE `batches_summary` SET `date_of_summary`=?,`performer_of_day`=?,`topics_covered`=?,`overall_feedback`=?,`batch_id`=?,`batch_name`=? WHERE id = ?";
+            $update_query = "UPDATE `batches_summary` SET `date_of_summary`=?,`performer_of_day`=?,`topics_covered`=?,`overall_feedback`=?,`batch_id`=?,`batch_name`=?, `attendance`=? WHERE id = ?";
             $update_stmt = mysqli_prepare($conn, $update_query);
             $update_stmt->bind_param(
-                "ssssssi",
+                "ssssssii",
                 $Date_of_Summary,
                 $Performer_of_the_day,
                 $Topics_Covered,
                 $Overall_Feedback,
                 $batch_id,
                 $batch_name,
+                $Attendance,
                 $id
             );
 
@@ -148,8 +150,7 @@ if (isset($_GET['summary_id'])) {
                 <br>
 
                 <div class="form-group col-md-4">
-                    <select name="batch_id" required class="form-control form-select select2"
-                        data-bs-placeholder="Select Batch">
+                    <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
                         <?php
                         if (isset($_GET['summary_id'])) {
                             $id = $_GET['summary_id'];
@@ -163,9 +164,8 @@ if (isset($_GET['summary_id'])) {
                             if (mysqli_num_rows($batch) > 0) {
                                 while ($row = mysqli_fetch_assoc($batch)) {
                         ?>
-                        <option value="<?php echo $row['id'] ?>"
-                            <?php if (isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
-                            <?php echo $row['batch_name'] ?></option>
+                                    <option value="<?php echo $row['id'] ?>" <?php if (isset($selected_batch_id) && $selected_batch_id == $row['id']) echo "selected"; ?>>
+                                        <?php echo $row['batch_name'] ?></option>
                         <?php
 
                                 }
@@ -186,44 +186,38 @@ if (isset($_GET['summary_id'])) {
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputDOB">Date of Summary</label>
-                                                <input class="form-control" name="Date_of_Summary" id="dateMask"
-                                                    placeholder="MM/DD/YYYY" type="date"
-                                                    value="<?php echo $summary['date_of_summary'] ?>" required>
+                                                <input class="form-control" name="Date_of_Summary" id="dateMask" placeholder="MM/DD/YYYY" type="date" value="<?php echo $summary['date_of_summary'] ?>" required>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputAadhar">Performer of the day</label>
-                                                <input type="text" name="Performer_of_the_day" class="form-control"
-                                                    id="exampleInputPersonalPhone"
-                                                    value="<?php echo $summary['performer_of_day'] ?>"
-                                                    placeholder="Enter candidate name" required>
+                                                <input type="text" name="Performer_of_the_day" class="form-control" id="exampleInputPersonalPhone" value="<?php echo $summary['performer_of_day'] ?>" placeholder="Enter candidate name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputAadhar">Topics Covered</label>
-                                                <input type="text" name="Topics_Covered" class="form-control"
-                                                    id="exampleInputAadhar"
-                                                    value="<?php echo $summary['topics_covered'] ?>"
-                                                    placeholder="Topics List" required>
+                                                <input type="text" name="Topics_Covered" class="form-control" id="exampleInputAadhar" value="<?php echo $summary['topics_covered'] ?>" placeholder="Topics List" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputAadhar">Overall Feedback</label>
-                                                <input type="text" name="Overall_Feedback" class="form-control"
-                                                    id="exampleInputAadhar" placeholder="Feedback"
-                                                    value="<?php echo $summary['overall_feedback'] ?>" required>
+                                                <input type="text" name="Overall_Feedback" class="form-control" id="exampleInputAadhar" placeholder="Feedback" value="<?php echo $summary['overall_feedback'] ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputAadhar">Overall Attendance</label>
+                                                <input type="number" name="Attendance" class="form-control" id="exampleInputAadhar" placeholder="Attendance" value="<?php echo $summary['attendance'] ?>" required>
                                             </div>
                                         </div>
 
 
                                     </div>
-                                    <button type="submit" name="UpdateBtn" class="btn btn-info mt-3 mb-0"
-                                        data-bs-target="#schedule" data-bs-toggle="modal"
-                                        style="text-align:right">Update Summary</button>
+                                    <button type="submit" name="UpdateBtn" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Update Summary</button>
                                 </div>
                             </div>
                         </div>

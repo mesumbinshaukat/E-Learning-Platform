@@ -1,33 +1,35 @@
 <?php
+session_start();
 include('../db_connection/connection.php');
 if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
-	header('location: ../trainer_login.php');
-	exit();
+    header('location: ../trainer_login.php');
+    exit();
 }
 if (isset($_POST['submitBtn'])) {
-	$Date_of_Summary = $_POST['Date_of_Summary'];
-	$Performer_of_the_day = $_POST['Performer_of_the_day'];
-	$Topics_Covered = $_POST['Topics_Covered'];
-	$Overall_Feedback = $_POST['Overall_Feedback'];
-	$batch_id = $_POST['batch_id'];
+    $Date_of_Summary = $_POST['Date_of_Summary'];
+    $Performer_of_the_day = $_POST['Performer_of_the_day'];
+    $Topics_Covered = $_POST['Topics_Covered'];
+    $Overall_Feedback = $_POST['Overall_Feedback'];
+    $batch_id = $_POST['batch_id'];
+    $Attendance = (int) $_POST['Attendance'];
 
-	$select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
-	$fetch_batch = mysqli_fetch_assoc($select_batch);
-	if ($fetch_batch['id'] == $batch_id) {
-		$batch_name = $fetch_batch['batch_name'];
-		$insert_query = mysqli_prepare($conn, "INSERT INTO `batches_summary`(`date_of_summary`, `performer_of_day`, `topics_covered`, `overall_feedback`, `batch_id`,`batch_name`) VALUES (?,?,?,?,?,?)");
-		$insert_query->bind_param("ssssss", $Date_of_Summary, $Performer_of_the_day, $Topics_Covered, $Overall_Feedback, $batch_id, $batch_name);
-		if ($insert_query->execute()) {
-			$_SESSION['success'] = "Summary Created Successfully";
-			header('location: createsummary.php');
-			exit();
-		} else {
+    $select_batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE id = '$batch_id'");
+    $fetch_batch = mysqli_fetch_assoc($select_batch);
+    if ($fetch_batch['id'] == $batch_id) {
+        $batch_name = $fetch_batch['batch_name'];
+        $insert_query = mysqli_prepare($conn, "INSERT INTO `batches_summary`(`date_of_summary`, `performer_of_day`, `topics_covered`, `overall_feedback`, `batch_id`,`batch_name`, `attendance`) VALUES (?,?,?,?,?,?,?)");
+        $insert_query->bind_param("ssssssi", $Date_of_Summary, $Performer_of_the_day, $Topics_Covered, $Overall_Feedback, $batch_id, $batch_name, $Attendance);
+        if ($insert_query->execute()) {
+            $_SESSION['success'] = "Summary Created Successfully";
+            header('location: createsummary.php');
+            exit();
+        } else {
 
-			$_SESSION["error"] = "Unexpected Error.";
-			header("location: createsummary.php");
-			exit();
-		}
-	}
+            $_SESSION["error"] = "Unexpected Error.";
+            header("location: createsummary.php");
+            exit();
+        }
+    }
 }
 ?>
 
@@ -45,16 +47,16 @@ if (isset($_POST['submitBtn'])) {
     <title>Create Summary</title>
 
     <?php
-	include('./style.php');
-	?>
+    include('./style.php');
+    ?>
 
 </head>
 
 <body class="ltr main-body app sidebar-mini">
 
     <?php
-	include('./switcher.php');
-	?>
+    include('./switcher.php');
+    ?>
 
     <!-- Page -->
     <div class="page">
@@ -103,20 +105,19 @@ if (isset($_POST['submitBtn'])) {
                 </div>
                 <br>
                 <div class="form-group col-md-4">
-                    <select name="batch_id" required class="form-control form-select select2"
-                        data-bs-placeholder="Select Batch">
+                    <select name="batch_id" required class="form-control form-select select2" data-bs-placeholder="Select Batch">
                         <?php
-						$trainer_id = $_COOKIE['trainer_id'];
-						$batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
-						if (mysqli_num_rows($batch) > 0) {
-							while ($row = mysqli_fetch_assoc($batch)) {
-						?>
-                        <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
+                        $trainer_id = $_COOKIE['trainer_id'];
+                        $batch = mysqli_query($conn, "SELECT * FROM `batch` WHERE trainer_id = '$trainer_id'");
+                        if (mysqli_num_rows($batch) > 0) {
+                            while ($row = mysqli_fetch_assoc($batch)) {
+                        ?>
+                                <option value="<?php echo $row['id'] ?>"><?php echo $row['batch_name'] ?></option>
                         <?php
-							}
-						}
+                            }
+                        }
 
-						?>
+                        ?>
                     </select>
                 </div>
 
@@ -133,38 +134,38 @@ if (isset($_POST['submitBtn'])) {
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputDOB">Date of Summary</label>
-                                                <input class="form-control" name="Date_of_Summary" id="dateMask"
-                                                    placeholder="MM/DD/YYYY" type="date" required>
+                                                <input class="form-control" name="Date_of_Summary" id="dateMask" placeholder="MM/DD/YYYY" type="date" required>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputAadhar">Performer of the day</label>
-                                                <input type="text" name="Performer_of_the_day" class="form-control"
-                                                    id="exampleInputPersonalPhone" placeholder="Enter candidate name"
-                                                    required>
+                                                <input type="text" name="Performer_of_the_day" class="form-control" id="exampleInputPersonalPhone" placeholder="Enter candidate name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputAadhar">Topics Covered</label>
-                                                <input type="text" name="Topics_Covered" class="form-control"
-                                                    id="exampleInputAadhar" placeholder="Topics List" required>
+                                                <input type="text" name="Topics_Covered" class="form-control" id="exampleInputAadhar" placeholder="Topics List" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputAadhar">Overall Feedback</label>
-                                                <input type="text" name="Overall_Feedback" class="form-control"
-                                                    id="exampleInputAadhar" placeholder="Feedback" required>
+                                                <input type="text" name="Overall_Feedback" class="form-control" id="exampleInputAadhar" placeholder="Feedback" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputAadhar">Overall Attendance</label>
+                                                <input type="number" name="Attendance" class="form-control" id="exampleInputAadhar" placeholder="Attendance" required>
                                             </div>
                                         </div>
 
 
                                     </div>
-                                    <button type="submit" name="submitBtn" class="btn btn-info mt-3 mb-0"
-                                        data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Add
+                                    <button type="submit" name="submitBtn" class="btn btn-info mt-3 mb-0" data-bs-target="#schedule" data-bs-toggle="modal" style="text-align:right">Add
                                         Summary</button>
                                 </div>
                             </div>
@@ -182,18 +183,21 @@ if (isset($_POST['submitBtn'])) {
 
     <!-- JQUERY JS -->
     <?php
-	include('./script.php');
-	?>
+    include('./script.php');
+    ?>
 
     <?php
-	if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
-		echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
-	}
-	if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
-		echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
-	}
-	session_destroy();
-	?>
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_unset()) {
+
+        $_SESSION['previous_url'] = $_SERVER['REQUEST_URI'];
+    }
+    ?>
 
 </body>
 
