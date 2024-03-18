@@ -15,8 +15,8 @@ $mail = new PHPMailer(true);
 
 
 
-if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
-    header('location: ../super-admin_login.php');
+if (!isset($_COOKIE['trainer_username']) && !isset($_COOKIE['trainer_password'])) {
+    header('location: ../trainer_login.php');
     exit();
 }
 
@@ -25,7 +25,7 @@ if (isset($_POST["recipient_id"]) && isset($_POST["sender_email"])) {
     $subject = $_POST["subject"];
     $recipient_id = $_POST["recipient_id"];
     $recipient_name = $_POST["recipient_name"];
-    $recipient_type = "Admin";
+    $recipient_type = $_POST["recipient_type"];
     $recipient_email = $_POST["sender_email"];
     $message = $_POST["message"];
     $sender_id = $_POST["sender_id"];
@@ -56,7 +56,7 @@ if (isset($_POST["recipient_id"]) && isset($_POST["sender_email"])) {
         $mail->AltBody = strip_tags($message);
 
 
-        $mail->addReplyTo($_COOKIE['superadmin_email'], $_COOKIE['superadmin_username']);
+        $mail->addReplyTo($_COOKIE['trainer_email'], $_COOKIE['trainer_username']);
 
         if ($mail->send()) {
             $update_status = mysqli_prepare($conn, "UPDATE `mail` SET `reply_status` = 'Replied' WHERE `id` = ?");
@@ -65,10 +65,10 @@ if (isset($_POST["recipient_id"]) && isset($_POST["sender_email"])) {
 
             $insert_query = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `subject`, `message`, `purpose`,`recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
-            $sender_type = "Admin";
+            $sender_type = "Trainer";
 
-            $sender_email = $_COOKIE['superadmin_email'];
-            $sender_name = $_COOKIE['superadmin_username'];
+            $sender_email = $_COOKIE['trainer_email'];
+            $sender_name = $_COOKIE['trainer_username'];
             $purpose = "Reply To:" . $subject;
 
 

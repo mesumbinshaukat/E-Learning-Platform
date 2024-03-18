@@ -133,10 +133,14 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 <td><?php echo $row['recipient_type']; ?></td>
                                                 <td><?php echo $row['sending_format']; ?></td>
                                                 <td><?php echo $row['message']; ?></td>
-                                                <td>
-                                                    <a download="" target="_blank"
-                                                        href="./assets/docs/attachments/<?php echo $row['attachment']; ?>"
-                                                        class="btn btn-info">Download</a>
+                                                <td><?php
+                                                            if (!empty($row['attachment'])) {
+                                                                echo '<a download="" target="_blank" href="./assets/docs/attachments/' . $row['attachment'] . '" class="btn btn-info">Download</a>';
+                                                            } else {
+                                                                echo "No Attachment";
+                                                            }
+                                                            ?>
+
                                                 </td>
                                                 <?php
                                                         if ($row["sender_type"] === "Admin") {
