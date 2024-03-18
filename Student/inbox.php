@@ -59,8 +59,7 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
                                 <div class="card-body">
 
                                     <div class="table-responsive  export-table">
-                                        <table id="file-datatable"
-                                            class="table table-bordered text-nowrap key-buttons border-bottom">
+                                        <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom">
                                             <thead>
                                                 <tr>
                                                     <th class="border-bottom-0">S.no</th>
@@ -104,68 +103,52 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
 
                                                         if ($row["sender_type"] === "Student") {
                                                 ?>
-                                                <td><button class="btn btn-info" disabled>You Are The Sender</button>
-                                                </td>
-                                                <?php
+                                                            <td><button class="btn btn-info" disabled>You Are The Sender</button>
+                                                            </td>
+                                                            <?php
                                                         } else {
                                                             if (empty($row["reply_status"]) || $row["reply_status"] !== "Replied") {
                                                             ?>
-                                                <td><a class="btn btn-success text-light" data-bs-toggle="modal"
-                                                        data-bs-target="#reply_<?php echo $i; ?>">Reply</a></td>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="reply_<?php echo $i; ?>"
-                                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                    <div
-                                                        class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                                                                    Reply</h1>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="reply.php" method="POST">
-                                                                    <input type="hidden" name="recipient_id"
-                                                                        value="<?php echo $row['sender_id']; ?>">
-                                                                    <input type="hidden" name="recipient_name"
-                                                                        value="<?php echo $row['sender_name']; ?>">
-                                                                    <input type="hidden" name="sender_email"
-                                                                        value="<?php echo $row['sender_email']; ?>">
-                                                                    <input type="hidden" name="student_id"
-                                                                        value="<?php echo $fetch["id"]; ?>">
-                                                                    <input type="hidden" name="subject"
-                                                                        value="<?php echo $row['subject']; ?>">
-                                                                    <input type="hidden" name="sender_id"
-                                                                        value="<?php echo $fetch["id"]; ?>">
-                                                                    <input type="hidden" name="id"
-                                                                        value="<?php echo $row['id']; ?>">
-                                                                    <input type="hidden" name="recipient_type"
-                                                                        value="<?php echo $row['recipient_type']; ?>">
-                                                                    <div class="mb-3">
+                                                                <td><a class="btn btn-success text-light" data-bs-toggle="modal" data-bs-target="#reply_<?php echo $i; ?>">Reply</a></td>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="reply_<?php echo $i; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                                                    Reply</h1>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form action="reply.php" method="POST">
+                                                                                    <input type="hidden" name="recipient_id" value="<?php echo $row['sender_id']; ?>">
+                                                                                    <input type="hidden" name="recipient_name" value="<?php echo $row['sender_name']; ?>">
+                                                                                    <input type="hidden" name="sender_email" value="<?php echo $row['sender_email']; ?>">
+                                                                                    <input type="hidden" name="student_id" value="<?php echo $fetch["id"]; ?>">
+                                                                                    <input type="hidden" name="subject" value="<?php echo $row['subject']; ?>">
+                                                                                    <input type="hidden" name="sender_id" value="<?php echo $fetch["id"]; ?>">
+                                                                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                                                    <input type="hidden" name="recipient_type" value="<?php echo $row['recipient_type']; ?>">
+                                                                                    <div class="mb-3">
 
-                                                                        <label class="form-label">Message</label>
-                                                                        <textarea class="form-control" name="message"
-                                                                            required></textarea>
+                                                                                        <label class="form-label">Message</label>
+                                                                                        <textarea class="form-control" name="message" required></textarea>
+                                                                                    </div>
+                                                                                    <button type="submit" class="btn btn-primary">Reply</button>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Reply</button>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <?php
+                                                                </div>
+                                                            <?php
                                                             } else {
                                                             ?>
-                                                <td><button class="btn btn-info text-light" disabled>Replied</button>
-                                                </td>
+                                                                <td><button class="btn btn-info text-light" disabled>Replied</button>
+                                                                </td>
                                                 <?php
                                                             }
                                                         }
@@ -203,7 +186,9 @@ if (!isset($_COOKIE['student_username']) && !isset($_COOKIE['student_password'])
     if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
         echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
     }
-    session_destroy();
+    if (session_unset()) {
+        $_SESSION["previous_url"] = $_SERVER['REQUEST_URI'];
+    }
     ?>
 </body>
 

@@ -15,8 +15,8 @@ $mail = new PHPMailer(true);
 
 
 
-if (!isset($_COOKIE['college_username']) && !isset($_COOKIE['college_password'])) {
-    header('location: ../college_login.php');
+if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_password'])) {
+    header('location: ../super-admin_login.php');
     exit();
 }
 
@@ -25,12 +25,11 @@ if (isset($_POST["recipient_id"]) && isset($_POST["sender_email"])) {
     $subject = $_POST["subject"];
     $recipient_id = $_POST["recipient_id"];
     $recipient_name = $_POST["recipient_name"];
+    $recipient_type = $_POST["recipient_type"];
     $recipient_email = $_POST["sender_email"];
-    $college_id = $_POST["college_id"];
     $message = $_POST["message"];
     $sender_id = $_POST["sender_id"];
     $id = $_POST["id"];
-    $recipient_type = $_POST["recipient_type"];
 
     //Create an instance; passing `true` enables exceptions
 
@@ -57,7 +56,7 @@ if (isset($_POST["recipient_id"]) && isset($_POST["sender_email"])) {
         $mail->AltBody = strip_tags($message);
 
 
-        $mail->addReplyTo($_COOKIE['college_email'], $_COOKIE['college_username']);
+        $mail->addReplyTo($_COOKIE['student_email'], $_COOKIE['student_username']);
 
         if ($mail->send()) {
             $update_status = mysqli_prepare($conn, "UPDATE `mail` SET `reply_status` = 'Replied' WHERE `id` = ?");
@@ -66,10 +65,10 @@ if (isset($_POST["recipient_id"]) && isset($_POST["sender_email"])) {
 
             $insert_query = mysqli_prepare($conn, "INSERT INTO `mail`(`sender_email`, `sender_id`, `sender_name`, `sender_type`, `recipient_email`, `recipient_id`, `recipient_name`, `subject`, `message`, `purpose`,`recipient_type`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
-            $sender_type = "College";
+            $sender_type = "Admin";
 
-            $sender_email = $_COOKIE['college_email'];
-            $sender_name = $_COOKIE['college_username'];
+            $sender_email = $_COOKIE['student_email'];
+            $sender_name = $_COOKIE['student_username'];
             $purpose = "Reply To:" . $subject;
 
 
@@ -85,14 +84,13 @@ if (isset($_POST["recipient_id"]) && isset($_POST["sender_email"])) {
                 $subject,
                 $message,
                 $purpose,
-
                 $recipient_type
             );
             $insert_query->execute();
-            session_destroy();
-            session_start();
+            session_unset();
 
-            $_SESSION["mail_sent"] = "Successfully sent!";
+
+            $_SESSION["success"] = "Successfully sent!";
             header('location: ./inbox.php');
             exit();
         } else {

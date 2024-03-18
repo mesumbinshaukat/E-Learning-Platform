@@ -20,36 +20,35 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     <meta name="Description" content="">
 
     <?php include("./style.php"); ?>
-    <!-- Add DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
 
     <style>
-        /* Custom Pagination Styles */
-        .dataTables_paginate {
-            text-align: center;
-            margin-top: 20px;
-        }
+    /* Custom Pagination Styles */
+    .dataTables_paginate {
+        text-align: center;
+        margin-top: 20px;
+    }
 
-        .paginate_button {
-            cursor: pointer;
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            background-color: #fff;
-            color: #333;
-            border-radius: 3px;
-            transition: background-color 0.3s ease;
-        }
+    .paginate_button {
+        cursor: pointer;
+        margin: 0 5px;
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        color: #333;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+    }
 
-        .paginate_button:hover {
-            background-color: #eee;
-        }
+    .paginate_button:hover {
+        background-color: #eee;
+    }
 
-        .paginate_button.current {
-            background-color: #007bff;
-            color: #fff;
-            border: 1px solid #007bff;
-        }
+    .paginate_button.current {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid #007bff;
+    }
     </style>
 </head>
 
@@ -124,41 +123,92 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
                                                 $i = 1;
                                                 while ($row = mysqli_fetch_assoc($query)) {
                                             ?>
-                                                    <tr>
-                                                        <td><?php echo $i; ?></td>
-                                                        <td><?php echo $row['sender_type']; ?></td>
-                                                        <td><?php echo $row['sender_id']; ?></td>
-                                                        <td><?php echo $row['sender_name']; ?></td>
-                                                        <td><?php echo $row['subject']; ?></td>
-                                                        <td><?php echo $row['purpose']; ?></td>
-                                                        <td><?php echo $row['recipient_type']; ?></td>
-                                                        <td><?php echo $row['sending_format']; ?></td>
-                                                        <td><?php echo $row['message']; ?></td>
-                                                        <td>
-                                                            <a download="" target="_blank" href="./assets/docs/attachments/<?php echo $row['attachment']; ?>" class="btn btn-info">Download</a>
-                                                        </td>
-                                                        <?php
+                                            <tr>
+                                                <td><?php echo $i; ?></td>
+                                                <td><?php echo $row['sender_type']; ?></td>
+                                                <td><?php echo $row['sender_id']; ?></td>
+                                                <td><?php echo $row['sender_name']; ?></td>
+                                                <td><?php echo $row['subject']; ?></td>
+                                                <td><?php echo $row['purpose']; ?></td>
+                                                <td><?php echo $row['recipient_type']; ?></td>
+                                                <td><?php echo $row['sending_format']; ?></td>
+                                                <td><?php echo $row['message']; ?></td>
+                                                <td>
+                                                    <a download="" target="_blank"
+                                                        href="./assets/docs/attachments/<?php echo $row['attachment']; ?>"
+                                                        class="btn btn-info">Download</a>
+                                                </td>
+                                                <?php
                                                         if ($row["sender_type"] === "Admin") {
                                                         ?>
-                                                            <td><button class="btn btn-info" disabled>You Are The Sender</button>
-                                                            </td>
-                                                            <?php
+                                                <td><button class="btn btn-info" disabled>You Are The Sender</button>
+                                                </td>
+                                                <?php
                                                         } else {
                                                             if (empty($row["reply_staus"]) || $row["reply_status"] !== "Replied") {
                                                             ?>
-                                                                <td><a class="btn btn-info text-light">Reply</a></td>
-                                                            <?php
+                                                <td><a class="btn btn-success text-light" data-bs-toggle="modal"
+                                                        data-bs-target="#reply_<?php echo $i; ?>">Reply</a></td>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="reply_<?php echo $i; ?>"
+                                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div
+                                                        class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                                    Reply</h1>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="reply.php" method="POST">
+                                                                    <input type="hidden" name="recipient_id"
+                                                                        value="<?php echo $row['sender_id']; ?>">
+                                                                    <input type="hidden" name="recipient_name"
+                                                                        value="<?php echo $row['sender_name']; ?>">
+                                                                    <input type="hidden" name="sender_email"
+                                                                        value="<?php echo $row['sender_email']; ?>">
+
+                                                                    <input type="hidden" name="subject"
+                                                                        value="<?php echo $row['subject']; ?>">
+                                                                    <input type="hidden" name="sender_id"
+                                                                        value="<?php echo $_COOKIE['superadmin_id']; ?>">
+                                                                    <input type="hidden" name="id"
+                                                                        value="<?php echo $row['id']; ?>">
+                                                                    <input type="hidden" name="recipient_type"
+                                                                        value="<?php echo $row['recipient_type']; ?>">
+                                                                    <div class="mb-3">
+
+                                                                        <label class="form-label">Message</label>
+                                                                        <textarea class="form-control" name="message"
+                                                                            required></textarea>
+                                                                    </div>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Reply</button>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php
                                                             } else {
                                                             ?>
-                                                                <td>
-                                                                    <button class="btn btn-info" disabled>Replied</button>
-                                                                </td>
-                                                        <?php
+                                                <td>
+                                                    <button class="btn btn-info" disabled>Replied</button>
+                                                </td>
+                                                <?php
                                                             }
                                                         }
                                                         ?>
-                                                        <td><?php echo $row['sending_date']; ?></td>
-                                                    </tr>
+                                                <td><?php echo $row['sending_date']; ?></td>
+                                            </tr>
                                             <?php
                                                     $i++;
                                                 }
@@ -180,20 +230,17 @@ if (!isset($_COOKIE['superadmin_username']) && !isset($_COOKIE['superadmin_passw
     </div>
 
     <?php include("./scripts.php"); ?>
-    <!-- Add DataTables JS -->
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#file-datatable').DataTable({
-                paging: true,
-                lengthChange: false,
-                searching: false,
-                ordering: true,
-                info: false,
-                autoWidth: false,
-            });
-        });
-    </script>
+    <?php
+    if (isset($_SESSION["success"]) && !empty($_SESSION["success"])) {
+        echo "<script>toastr.success('" . $_SESSION["success"] . "')</script>";
+    }
+    if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+        echo "<script>toastr.error('" . $_SESSION["error"] . "')</script>";
+    }
+    if (session_unset()) {
+        $_SESSION["previous_url"] = $_SERVER['REQUEST_URI'];
+    }
+    ?>
 </body>
 
 </html>

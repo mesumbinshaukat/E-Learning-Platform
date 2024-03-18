@@ -35,7 +35,7 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
         setupMailServer($mail);
 
         // Recipients
-        $mail->setFrom("info@commencers.in", $_COOKIE["superadmin_username"]);
+        $mail->setFrom("info@cyanovainnovations.com", $_COOKIE["superadmin_username"]);
         addRecipients($mail);
         if (isset($_SESSION["attachment"])) {
             // Attachments
@@ -70,8 +70,8 @@ function setupMailServer($mail)
     $mail->isSMTP(); // Send using SMTP
     $mail->Host = 'smtp.hostinger.com';  // Set the SMTP server to send through
     $mail->SMTPAuth = true;  // Enable SMTP authentication
-    $mail->Username = 'info@commencers.in';  // SMTP username
-    $mail->Password = '4QkqWkfQf<P.';  // SMTP password
+    $mail->Username = 'info@cyanovainnovations.com';  // SMTP username
+    $mail->Password = 'CyanovaInnovations@2024';  // SMTP password
     $mail->SMTPSecure = 'ssl'; // Enable implicit TLS encryption
     $mail->Port = 465; // TCP port to connect to
     $mail->Debugoutput = 'html'; // Output debug information as HTML

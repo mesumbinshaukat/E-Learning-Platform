@@ -43,8 +43,8 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
         $mail->isSMTP(); //Send using SMTP
         $mail->Host = 'smtp.hostinger.com';  //Set the SMTP server to send through
         $mail->SMTPAuth = true;  //Enable SMTP authentication
-        $mail->Username = 'info@commencers.in';  //SMTP username
-        $mail->Password = '4QkqWkfQf<P.';  //SMTP password
+        $mail->Username = 'info@cyanovainnovations.com';  //SMTP username
+        $mail->Password = 'CyanovaInnovations@2024';  //SMTP password
         $mail->SMTPSecure = 'ssl'; //Enable implicit TLS encryption
         $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         $mail->Debugoutput = 'html'; // Output debug information as HTML
@@ -61,7 +61,7 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
             $mail->addAddress($recipient_email, $recipient_name);     //Add a recipient
 
         } else {
-            $mail->addAddress("admin@commencers.in", "Info Admin");
+            $mail->addAddress("support@commencers.in", "Info Admin");
         }
 
         //$mail->addAddress('ellen@example.com');               //Name is optional
