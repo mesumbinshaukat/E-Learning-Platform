@@ -46,8 +46,8 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
         setupMailContent($mail, $recipient_subject, $recipient_message);
 
         if ($mail->send()) {
-            session_destroy();
-            session_start();
+            session_unset();
+
             $_SESSION["mail_sent"] = "Successfully sent!";
             // Check if the request is not AJAX before redirecting
             if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
@@ -66,7 +66,7 @@ if (isset($_SESSION["sending_format"]) && isset($_SESSION["purpose"])) {
 
 function setupMailServer($mail)
 {
-    $mail->SMTPDebug = 2; // Enable verbose debug output
+    $mail->SMTPDebug = 0; // Enable verbose debug output
     $mail->isSMTP(); // Send using SMTP
     $mail->Host = 'smtp.hostinger.com';  // Set the SMTP server to send through
     $mail->SMTPAuth = true;  // Enable SMTP authentication
@@ -120,10 +120,10 @@ function addRecipients($mail)
         }
     } else {
         // Add individual recipient logic here
-        if (!empty($recipient_email) && !empty($recipient_name)) {
-            $mail->addAddress($recipient_email, $recipient_name);
+        if (!empty($_SESSION["recipient_name"]) && !empty($_SESSION["recipient_email"])) {
+            $mail->addAddress($_SESSION["recipient_email"], $_SESSION["recipient_name"]);
         } else {
-            $mail->addAddress("admin@commencers.in", "Info Admin");
+            $mail->addAddress("wot.official.786@gmail.com", "Info Admin");
         }
     }
 }
@@ -156,9 +156,8 @@ function setupMailContent($mail, $subject, $message)
 
 function handleSuccessfulMail()
 {
-    session_destroy();
-    session_start();
-    $_SESSION["mail_sent"] = "Successfully sent!";
+    session_unset();
+    $_SESSION["mail_sent"] = "Email Successfully sent!";
     if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
         header('location: ./compose.php');
         exit();

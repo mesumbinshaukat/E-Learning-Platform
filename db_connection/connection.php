@@ -1,9 +1,9 @@
 <?php
-// $server = "localhost";
-// $id = "root";
-// $database = "e-learning";
-// $password = "";
-// $conn = mysqli_connect($server, $id, $password, $database) or die("Connection Failed");
+$server = "localhost";
+$id = "root";
+$database = "e-learning";
+$password = "";
+$conn = mysqli_connect($server, $id, $password, $database) or die("Connection Failed");
 
 // Infinity Free
 // $server = "sql207.infinityfree.com";
@@ -14,9 +14,9 @@
 // $conn = mysqli_connect($server, $id, $password, $database) or die("Connection Failed");
 
 // Hostinger
-$server = "127.0.0.1:3306";
-$id = "u612827123_root";
-$database = "u612827123_e_learning";
-$password = ">S4F&n$59Qr(";
+// $server = "127.0.0.1:3306";
+// $id = "u612827123_root";
+// $database = "u612827123_e_learning";
+// $password = ">S4F&n$59Qr(";
 
-$conn = mysqli_connect($server, $id, $password, $database) or die("Connection Failed");
+// $conn = mysqli_connect($server, $id, $password, $database) or die("Connection Failed");
