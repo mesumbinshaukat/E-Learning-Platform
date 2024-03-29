@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_COOKIE['superadmin_username']) && isset($_COOKIE['superadmin_password'])) {
     unset($_COOKIE['superadmin_username']);
     unset($_COOKIE['superadmin_password']);
